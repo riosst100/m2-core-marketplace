@@ -21,10 +21,12 @@
     "version": "1.0.0",
     "autoload":{
       "files":[
-        "src/module-seller-registration/registration.php"
+        "src/module-seller-registration/registration.php",
+        "src/module-product-attributes-mapping/registration.php"
       ],
       "psr-4":{
-        "CoreMarketplace\\SellerRegistration\\":"src/module-seller-registration"
+        "CoreMarketplace\\SellerRegistration\\":"src/module-seller-registration",
+        "CoreMarketplace\\ProductAttributesMapping\\":"src/module-product-attributes-mapping"
       }
     }
 }
