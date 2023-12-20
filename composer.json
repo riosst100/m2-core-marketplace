@@ -1,0 +1,16 @@
+{
+  "name": "riosst100/m2-core-marketplace",
+  "description": "Base Platform For Magento 2 + PWA Studio",
+  "type": "library",
+  "require": {
+    "php": ">=8.1.0"
+  },
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Rio Susanto",
+      "email": "riosst100@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev"
+}
