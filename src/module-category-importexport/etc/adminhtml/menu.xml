@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="CoreMarketplace_CategoryImportExport::categoryimportexport" title="Import Categories" module="CoreMarketplace_CategoryImportExport" sortOrder="30" action="coremarketplace_categoryimportexport/categoryImport/new" resource="CoreMarketplace_CategoryImportExport::categoryimportexport" parent="Magento_Backend::system_convert"/>
+        <add id="CoreMarketplace_CategoryImportExport::categoryexport" title="Export Categories" module="CoreMarketplace_CategoryImportExport" sortOrder="32" action="coremarketplace_categoryimportexport/categoryExport/new" resource="CoreMarketplace_CategoryImportExport::categoryimportexport" parent="Magento_Backend::system_convert"/>
+    </menu>
+</config>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="CoreMarketplace\CategoryImportExport\Block\Adminhtml\CategoryExport\Edit" name="coremarketplace_categoryexport_category_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="CoreMarketplace\CategoryImportExport\Block\Adminhtml\CategoryExport\Edit\Tabs" name="coremarketplace_categoryexport_category_tabs">
+                <block class="CoreMarketplace\CategoryImportExport\Block\Adminhtml\CategoryExport\Edit\Tab\CategoryExport" name="coremarketplace_categoryexport_categoryexport_edit_tab"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">exportcategories</argument>
+                    <argument name="block" xsi:type="string">coremarketplace_categoryexport_categoryexport_edit_tab</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
