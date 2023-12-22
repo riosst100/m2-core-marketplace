@@ -22,11 +22,13 @@
     "autoload":{
       "files":[
         "src/module-seller-registration/registration.php",
-        "src/module-product-attributes-link/registration.php"
+        "src/module-product-attributes-link/registration.php",
+        "src/module-category-importexport/registration.php"
       ],
       "psr-4":{
         "CoreMarketplace\\SellerRegistration\\":"src/module-seller-registration",
-        "CoreMarketplace\\ProductAttributesLink\\":"src/module-product-attributes-link"
+        "CoreMarketplace\\ProductAttributesLink\\":"src/module-product-attributes-link",
+        "CoreMarketplace\\CategoryImportExport\\":"src/module-category-importexport"
       }
     }
 }
