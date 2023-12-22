@@ -1,8 +1,18 @@
 <?xml version="1.0"?>
+<!--
+/**
+ * Webcastle_CategoryImportExport
+ *
+ * @category   Webcastle
+ * @package    Webcastle_CategoryImportExport
+ * @author     Anjaly K V - Webcastle Media
+ * @copyright  2023
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../lib/internal/Magento/Framework/App/etc/routes.xsd">
     <router id="admin">
-        <route id="coremarketplace_categoryimportexport" frontName="coremarketplace_categoryimportexport">
-            <module name="CoreMarketplace_CategoryImportExport" before="Magento_Backend"/>
+        <route id="webcastle_categoryimportexport" frontName="webcastle_categoryimportexport">
+            <module name="Webcastle_CategoryImportExport" before="Magento_Backend"/>
         </route>
     </router>
 </config>

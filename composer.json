@@ -32,7 +32,7 @@
       "psr-4":{
         "CoreMarketplace\\SellerRegistration\\":"src/module-seller-registration",
         "CoreMarketplace\\ProductAttributesLink\\":"src/module-product-attributes-link",
-        "CoreMarketplace\\CategoryImportExport\\":"src/module-category-importexport",
+        "Webcastle\\CategoryImportExport\\":"src/module-category-importexport",
         "CoreMarketplace\\GeoIp\\":"src/module-geoip"
       }
     }

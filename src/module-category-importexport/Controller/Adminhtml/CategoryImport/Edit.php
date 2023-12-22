@@ -1,6 +1,13 @@
 <?php
-
-namespace CoreMarketplace\CategoryImportExport\Controller\Adminhtml\CategoryImport;
+/**
+ * Webcastle_CategoryImportExport
+ *
+ * @category   Webcastle
+ * @package    Webcastle_CategoryImportExport
+ * @author     Anjaly K V - Webcastle Media
+ * @copyright  2023
+ */
+namespace Webcastle\CategoryImportExport\Controller\Adminhtml\CategoryImport;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
 
@@ -53,7 +60,7 @@ class Edit extends \Magento\Backend\App\Action
      */
     protected function _isAllowed()
     {
-        return $this->_authorization->isAllowed('CoreMarketplace_CategoryImportExport::categoryimportexport');
+        return $this->_authorization->isAllowed('Webcastle_CategoryImportExport::categoryimportexport');
     }
 
     /**
@@ -78,7 +85,7 @@ class Edit extends \Magento\Backend\App\Action
             $this->messageManager->addNotice(__('Please make this directory path writable var/categoryimport'));
         }
         $resultPage = $this->_resultPageFactory->create();
-        $resultPage->setActiveMenu('CoreMarketplace_CategoryImportExport::categoryimportexport');
+        $resultPage->setActiveMenu('Webcastle_CategoryImportExport::categoryimportexport');
         $resultPage->getConfig()->getTitle()->prepend('Import Categories');
         return $resultPage;
     }

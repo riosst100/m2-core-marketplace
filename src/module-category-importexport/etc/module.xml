@@ -1,6 +1,16 @@
 <?xml version="1.0"?>
+<!--
+/**
+ * Webcastle_CategoryImportExport
+ *
+ * @category   Webcastle
+ * @package    Webcastle_CategoryImportExport
+ * @author     Anjaly K V - Webcastle Media
+ * @copyright  2023
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/Module/etc/module.xsd">
-    <module name="CoreMarketplace_CategoryImportExport" schema_version="1.0.2" setup_version="1.0.2">
+    <module name="Webcastle_CategoryImportExport" schema_version="1.0.2" setup_version="1.0.2">
         <sequence>
             <module name="Magento_Backend"/>
             <module name="Magento_ImportExport"/>
