@@ -1,6 +1,13 @@
 <?php
-
-namespace CoreMarketplace\CategoryImportExport\Controller\Adminhtml\CategoryExport;
+/**
+ * Webcastle_CategoryImportExport
+ *
+ * @category   Webcastle
+ * @package    Webcastle_CategoryImportExport
+ * @author     Anjaly K V - Webcastle Media
+ * @copyright  2023
+ */
+namespace Webcastle\CategoryImportExport\Controller\Adminhtml\CategoryExport;
 
 class Edit extends \Magento\Backend\App\Action
 {
@@ -44,7 +51,7 @@ class Edit extends \Magento\Backend\App\Action
      */
     protected function _isAllowed()
     {
-        return $this->_authorization->isAllowed('CoreMarketplace_CategoryImportExport::categoryimportexport');
+        return $this->_authorization->isAllowed('Webcastle_CategoryImportExport::categoryimportexport');
     }
 
     /**
@@ -55,7 +62,7 @@ class Edit extends \Magento\Backend\App\Action
         /** @var \Magento\Backend\Model\View\Result\Page|\Magento\Framework\View\Result\Page $resultPage */
         
         $resultPage = $this->_resultPageFactory->create();
-        $resultPage->setActiveMenu('CoreMarketplace_CategoryImportExport::categoryexport');
+        $resultPage->setActiveMenu('Webcastle_CategoryImportExport::categoryexport');
         $resultPage->getConfig()->getTitle()->prepend('Export Categories');
         return $resultPage;
     }

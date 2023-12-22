@@ -1,15 +1,25 @@
 <?xml version="1.0"?>
+<!--
+/**
+ * Webcastle_CategoryImportExport
+ *
+ * @category   Webcastle
+ * @package    Webcastle_CategoryImportExport
+ * @author     Anjaly K V - Webcastle Media
+ * @copyright  2023
+ */
+-->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="content">
-            <block class="CoreMarketplace\CategoryImportExport\Block\Adminhtml\CategoryImport\Edit" name="coremarketplace_categoryimport_category_edit"/>
+            <block class="Webcastle\CategoryImportExport\Block\Adminhtml\CategoryImport\Edit" name="webcastle_categoryimport_category_edit"/>
         </referenceContainer>
         <referenceContainer name="left">
-            <block class="CoreMarketplace\CategoryImportExport\Block\Adminhtml\CategoryImport\Edit\Tabs" name="coremarketplace_categoryimport_category_tabs">
-                <block class="CoreMarketplace\CategoryImportExport\Block\Adminhtml\CategoryImport\Edit\Tab\CategoryImport" name="coremarketplace_categoryimport_categoryimport_edit_tab"/>
+            <block class="Webcastle\CategoryImportExport\Block\Adminhtml\CategoryImport\Edit\Tabs" name="webcastle_categoryimport_category_tabs">
+                <block class="Webcastle\CategoryImportExport\Block\Adminhtml\CategoryImport\Edit\Tab\CategoryImport" name="webcastle_categoryimport_categoryimport_edit_tab"/>
                 <action method="addTab">
                     <argument name="name" xsi:type="string">importcategories</argument>
-                    <argument name="block" xsi:type="string">coremarketplace_categoryimport_categoryimport_edit_tab</argument>
+                    <argument name="block" xsi:type="string">webcastle_categoryimport_categoryimport_edit_tab</argument>
                 </action>
             </block>
         </referenceContainer>

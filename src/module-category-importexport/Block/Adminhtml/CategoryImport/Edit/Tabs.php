@@ -1,6 +1,14 @@
 <?php
+/**
+ * Webcastle_CategoryImportExport
+ *
+ * @category   Webcastle
+ * @package    Webcastle_CategoryImportExport
+ * @author     Anjaly K V - Webcastle Media
+ * @copyright  2023
+ */
 
-namespace CoreMarketplace\CategoryImportExport\Block\Adminhtml\CategoryImport\Edit;
+namespace Webcastle\CategoryImportExport\Block\Adminhtml\CategoryImport\Edit;
 
 /**
  * @method Tabs setTitle(\string $title)

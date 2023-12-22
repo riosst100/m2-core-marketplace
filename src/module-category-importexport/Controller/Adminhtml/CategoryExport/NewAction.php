@@ -1,6 +1,13 @@
 <?php
-
-namespace CoreMarketplace\CategoryImportExport\Controller\Adminhtml\CategoryExport;
+/**
+ * Webcastle_CategoryImportExport
+ *
+ * @category   Webcastle
+ * @package    Webcastle_CategoryImportExport
+ * @author     Anjaly K V - Webcastle Media
+ * @copyright  2023
+ */
+namespace Webcastle\CategoryImportExport\Controller\Adminhtml\CategoryExport;
 
 class NewAction extends \Magento\Backend\App\Action
 {

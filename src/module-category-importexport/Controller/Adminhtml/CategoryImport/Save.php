@@ -1,6 +1,13 @@
 <?php
-
-namespace CoreMarketplace\CategoryImportExport\Controller\Adminhtml\CategoryImport;
+/**
+ * Webcastle_CategoryImportExport
+ *
+ * @category   Webcastle
+ * @package    Webcastle_CategoryImportExport
+ * @author     Anjaly K V - Webcastle Media
+ * @copyright  2023
+ */
+namespace Webcastle\CategoryImportExport\Controller\Adminhtml\CategoryImport;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
 
@@ -177,7 +184,7 @@ class Save extends \Magento\Backend\App\Action
                                             $cateitem->setPath($parentcat->getPath().'/'.$cateitem->getId());
                                         } else {
                                             $this->messageManager->addError('Parent category not Found.');
-                                            $resultRedirect->setPath('coremarketplace_categoryimportexport/*/edit');
+                                            $resultRedirect->setPath('webcastle_categoryimportexport/*/edit');
                                             return $resultRedirect;
                                         }
                                         $cateitem->move($parentid, false);
@@ -189,7 +196,7 @@ class Save extends \Magento\Backend\App\Action
                                 }
                             } else {
                                 $this->messageManager->addError('Data Column not Found.');
-                                $resultRedirect->setPath('coremarketplace_categoryimportexport/*/edit');
+                                $resultRedirect->setPath('webcastle_categoryimportexport/*/edit');
                                 return $resultRedirect;
                             }
                         }
@@ -208,16 +215,16 @@ class Save extends \Magento\Backend\App\Action
                     }
                         unlink($filepath);
                         $this->_backendSession->setNavinImportcategoryTestData(false);
-                        $resultRedirect->setPath('coremarketplace_categoryimportexport/*/edit');
+                        $resultRedirect->setPath('webcastle_categoryimportexport/*/edit');
                         return $resultRedirect;
                 } else {
                     $this->messageManager->addError('Data Not Found.');
-                    $resultRedirect->setPath('coremarketplace_categoryimportexport/*/edit');
+                    $resultRedirect->setPath('webcastle_categoryimportexport/*/edit');
                     return $resultRedirect;
                 }
             } else {
                 $this->messageManager->addError('File not Found.');
-                $resultRedirect->setPath('coremarketplace_categoryimportexport/*/edit');
+                $resultRedirect->setPath('webcastle_categoryimportexport/*/edit');
                 return $resultRedirect;
             }
         } catch (\Magento\Framework\Exception\LocalizedException $e) {
@@ -231,7 +238,7 @@ class Save extends \Magento\Backend\App\Action
             $this->messageManager->addException($e, __('Something went wrong while saving the category.'));
         }
         $resultRedirect->setPath(
-            'coremarketplace_categoryimportexport/*/edit',
+            'webcastle_categoryimportexport/*/edit',
             [
                 '_current' => true
             ]

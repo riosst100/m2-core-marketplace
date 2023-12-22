@@ -1,6 +1,14 @@
 <?php
+/**
+ * Webcastle_CategoryImportExport
+ *
+ * @category   Webcastle
+ * @package    Webcastle_CategoryImportExport
+ * @author     Anjaly K V - Webcastle Media
+ * @copyright  2023
+ */
 
-namespace CoreMarketplace\CategoryImportExport\Block\Adminhtml\CategoryExport\Edit\Tab;
+namespace Webcastle\CategoryImportExport\Block\Adminhtml\CategoryExport\Edit\Tab;
 
 class CategoryExport extends \Magento\Backend\Block\Widget\Form\Generic implements \Magento\Backend\Block\Widget\Tab\TabInterface
 {
@@ -14,7 +22,7 @@ class CategoryExport extends \Magento\Backend\Block\Widget\Form\Generic implemen
         $form = $this->_formFactory->create();
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         $storemanager = $objectManager->create('Magento\Store\Model\StoreManagerInterface');
-        $url = $this->getViewFileUrl('CoreMarketplace_CategoryImportExport/coremarketplace_importcategory.zip');
+        $url = $this->getViewFileUrl('Webcastle_CategoryImportExport/webcastle_importcategory.zip');
         $fieldsetexport = $form->addFieldset(
             'export_fieldset',
             [

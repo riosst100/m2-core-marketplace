@@ -1,6 +1,14 @@
 <?php
+/**
+ * Webcastle_CategoryImportExport
+ *
+ * @category   Webcastle
+ * @package    Webcastle_CategoryImportExport
+ * @author     Anjaly K V - Webcastle Media
+ * @copyright  2023
+ */
 
-namespace CoreMarketplace\CategoryImportExport\Block\Adminhtml\CategoryExport\Edit;
+namespace Webcastle\CategoryImportExport\Block\Adminhtml\CategoryExport\Edit;
 
 class Form extends \Magento\Backend\Block\Widget\Form\Generic
 {
@@ -29,6 +37,6 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
 
     public function getFormSubmitUrl()
     {
-        return $this->getUrl("coremarketplace_categoryimportexport/categoryexport/export");
+        return $this->getUrl("webcastle_categoryimportexport/categoryexport/export");
     }
 }

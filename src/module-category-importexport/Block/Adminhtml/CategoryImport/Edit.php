@@ -1,6 +1,14 @@
 <?php
+/**
+ * Webcastle_CategoryImportExport
+ *
+ * @category   Webcastle
+ * @package    Webcastle_CategoryImportExport
+ * @author     Anjaly K V - Webcastle Media
+ * @copyright  2023
+ */
 
-namespace CoreMarketplace\CategoryImportExport\Block\Adminhtml\CategoryImport;
+namespace Webcastle\CategoryImportExport\Block\Adminhtml\CategoryImport;
 
 class Edit extends \Magento\Backend\Block\Widget\Form\Container
 {
@@ -36,7 +44,7 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
     protected function _construct()
     {
         $this->_objectId = 'importexport_id';
-        $this->_blockGroup = 'CoreMarketplace_CategoryImportExport';
+        $this->_blockGroup = 'Webcastle_CategoryImportExport';
         $this->_controller = 'adminhtml_categoryImport';
         parent::_construct();
         $this->buttonList->remove('save');
