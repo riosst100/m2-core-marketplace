@@ -4,5 +4,5 @@ use Magento\Framework\Component\ComponentRegistrar;
 
 ComponentRegistrar::register(
     ComponentRegistrar::MODULE,
-    'CoreMarketplace_ProductAttributesMapping',
+    'CoreMarketplace_ProductAttributesLink',
     __DIR__);
