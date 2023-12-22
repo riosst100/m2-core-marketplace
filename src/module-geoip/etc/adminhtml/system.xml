@@ -1,23 +1,29 @@
 <?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <tab id="core_marketplace" sortOrder="110" translate="label">
-            <label>CoreMarketplace Extensions</label>
+        <tab id="magefan" sortOrder="110" translate="label">
+            <label>Magefan Extensions</label>
         </tab>
         <section id="mfgeoip" translate="label" sortOrder="10413272670" showInDefault="1" showInWebsite="0" showInStore="0">
             <class>separator-top</class>
             <label>GeoIP Database</label>
-            <tab>core_marketplace</tab>
-            <resource>CoreMarketplace_GeoIp::geo_ip</resource>
+            <tab>magefan</tab>
+            <resource>Magefan_GeoIp::geo_ip</resource>
             <group id="geoip" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>GeoIP Database</label>
                 <attribute type="expanded">1</attribute>
                 <field id="version" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <frontend_model>CoreMarketplace\GeoIp\Block\Adminhtml\System\Config\Form\Info</frontend_model>
+                    <frontend_model>Magefan\GeoIp\Block\Adminhtml\System\Config\Form\Info</frontend_model>
                 </field>
                 <field id="ip_location" translate="label comment" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <frontend_model>CoreMarketplace\GeoIp\Block\Adminhtml\System\Config\Form\IpInfo</frontend_model>
+                    <frontend_model>Magefan\GeoIp\Block\Adminhtml\System\Config\Form\IpInfo</frontend_model>
                 </field>
             </group>
 
@@ -25,24 +31,24 @@
                 <label>MaxMind GeoIP Database</label>
                 <attribute type="expanded">1</attribute>
                 <field id="maxmind" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <frontend_model>CoreMarketplace\GeoIp\Block\Adminhtml\System\Config\Form\MaxMindInfo</frontend_model>
+                    <frontend_model>Magefan\GeoIp\Block\Adminhtml\System\Config\Form\MaxMindInfo</frontend_model>
                 </field>
                 <field id="key" translate="label comment" type="text" sortOrder="15" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>License Key (optional)</label>
                     <comment><![CDATA[
-                           Enter <a title="Generate a License Key" target="_blank" rel="nofollow noopener" href="https://support.maxmind.com/hc/en-us/articles/4407111582235-Generate-a-License-Key">MaxMind License Key</a> and save config to update the MaxMind GeoIP Database directly from MaxMind and not via the CoreMarketplace server.
+                           Enter <a title="Generate a License Key" target="_blank" rel="nofollow noopener" href="https://support.maxmind.com/hc/en-us/articles/4407111582235-Generate-a-License-Key">MaxMind License Key</a> and save config to update the MaxMind GeoIP Database directly from MaxMind and not via the Magefan server.
                         ]]>
                     </comment>
                 </field>
                 <field id="listbutton" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <frontend_model>CoreMarketplace\GeoIp\Block\Adminhtml\System\Config\Form\Button</frontend_model>
+                    <frontend_model>Magefan\GeoIp\Block\Adminhtml\System\Config\Form\Button</frontend_model>
                 </field>
             </group>
             <group id="cloudflare" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>CloudFlare IP Geolocation</label>
                 <attribute type="expanded">1</attribute>
                 <field id="cloudflare_check" translate="label comment" type="text" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <frontend_model>CoreMarketplace\GeoIp\Block\Adminhtml\System\Config\Form\CloudflareCheck</frontend_model>
+                    <frontend_model>Magefan\GeoIp\Block\Adminhtml\System\Config\Form\CloudflareCheck</frontend_model>
                 </field>
                 <field id="cloudflare_ip_enable" translate="label comment" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Enable CloudFlare IP Geolocation</label>

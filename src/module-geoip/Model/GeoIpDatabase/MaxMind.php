@@ -1,13 +1,17 @@
 <?php
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * See LICENSE.txt for license details (http://opensource.org/licenses/osl-3.0.php).
+ */
 
-namespace CoreMarketplace\GeoIp\Model\GeoIpDatabase;
+namespace Magefan\GeoIp\Model\GeoIpDatabase;
 
-use CoreMarketplace\GeoIp\Model\Config;
+use Magefan\GeoIp\Model\Config;
 use Magento\Framework\Archive\Gz;
 use Magento\Framework\Archive\Tar;
 /**
  * Class MaxMind
- * @package CoreMarketplace\GeoIp\Model\GeoIpDatabase
+ * @package Magefan\GeoIp\Model\GeoIpDatabase
  */
 class MaxMind
 {
@@ -95,7 +99,7 @@ class MaxMind
         if ($this->config->getLicenseKey()) {
             return $this->updateByAPI();
         } else {
-            return $this->updateByCoreMarketplaceServer();
+            return $this->updateByMagefanServer();
         }
     }
     /**
@@ -103,9 +107,9 @@ class MaxMind
      * @throws \Magento\Framework\Exception\FileSystemException
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    public function updateByCoreMarketplaceServer()
+    public function updateByMagefanServer()
     {
-        $dbPath = $this->_dir->getPath('var') . '/core_marketplace/geoip';
+        $dbPath = $this->_dir->getPath('var') . '/magefan/geoip';
         $this->createDir($dbPath);
         $url = self::URL;
 
@@ -142,7 +146,7 @@ class MaxMind
      */
     private function updateByAPI()
     {
-        $dbPath = $this->_dir->getPath('var') . '/core_marketplace/geoip';
+        $dbPath = $this->_dir->getPath('var') . '/magefan/geoip';
         $this->createDir($dbPath);
         $url = self::URL_API . '?' . http_build_query([
             'edition_id' => 'GeoLite2-Country',

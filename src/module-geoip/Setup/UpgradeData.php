@@ -1,6 +1,10 @@
 <?php
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
 
-namespace CoreMarketplace\GeoIp\Setup;
+namespace Magefan\GeoIp\Setup;
 
 use Magento\Framework\Setup\UpgradeDataInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
@@ -26,7 +30,7 @@ class UpgradeData implements UpgradeDataInterface
         $connection = $this->resources->getConnection();
         $version = $context->getVersion();
         if (version_compare($version, '2.2.0') < 0) {
-            $table = $this->resources->getTableName( 'core_marketplace_geoip_country' );
+            $table = $this->resources->getTableName( 'magefan_geoip_country' );
             if ($connection->isTableExists($table)) {
                 $connection->dropTable($table);
             }

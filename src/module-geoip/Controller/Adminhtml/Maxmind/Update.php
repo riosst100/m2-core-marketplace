@@ -1,12 +1,16 @@
 <?php
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
 
-namespace CoreMarketplace\GeoIp\Controller\Adminhtml\Maxmind;
+namespace Magefan\GeoIp\Controller\Adminhtml\Maxmind;
 
 use Magento\Framework\Controller\ResultFactory;
 
 /**
  * Class DownloadDb
- * @package CoreMarketplace\GeoIp\Controller\Adminhtml\Ajax
+ * @package Magefan\GeoIp\Controller\Adminhtml\Ajax
  */
 class Update extends \Magento\Backend\App\Action
 {
@@ -15,21 +19,21 @@ class Update extends \Magento\Backend\App\Action
      *
      * @see _isAllowed()
      */
-    const ADMIN_RESOURCE = 'CoreMarketplace_GeoIp::geo_ip';
+    const ADMIN_RESOURCE = 'Magefan_GeoIp::geo_ip';
 
     /**
-     * @var \CoreMarketplace\GeoIp\Model\GeoIpDatabase\MaxMind
+     * @var \Magefan\GeoIp\Model\GeoIpDatabase\MaxMind
      */
     protected $maxMind;
 
     /**
      * Update constructor.
      * @param \Magento\Backend\App\Action\Context $context
-     * @param \CoreMarketplace\GeoIp\Model\GeoIpDatabase\MaxMind $maxMind
+     * @param \Magefan\GeoIp\Model\GeoIpDatabase\MaxMind $maxMind
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
-        \CoreMarketplace\GeoIp\Model\GeoIpDatabase\MaxMind $maxMind
+        \Magefan\GeoIp\Model\GeoIpDatabase\MaxMind $maxMind
     ) {
         parent::__construct($context);
         $this->maxMind = $maxMind;

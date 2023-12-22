@@ -1,6 +1,10 @@
 <?php
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * See LICENSE.txt for license details (http://opensource.org/licenses/osl-3.0.php).
+ */
 
-namespace CoreMarketplace\GeoIp\Model;
+namespace Magefan\GeoIp\Model;
 
 
 use Magento\Store\Model\ScopeInterface;
@@ -12,7 +16,7 @@ use Magento\Framework\HTTP\PhpEnvironment\RemoteAddress;
 
 /**
  * Class IpToCountryRepository
- * @package CoreMarketplace\GeoIp\Model
+ * @package Magefan\GeoIp\Model
  */
 class IpToCountryRepository
 {
@@ -129,11 +133,11 @@ class IpToCountryRepository
 
             if (!$this->ipToCountry[$ip]) {
                 try {
-                    $filename = $this->directoryList->getPath('var') . DIRECTORY_SEPARATOR . 'core_marketplace/geoip/GeoLite2-Country.mmdb';
+                    $filename = $this->directoryList->getPath('var') . DIRECTORY_SEPARATOR . 'magefan/geoip/GeoLite2-Country.mmdb';
                     if (file_exists($filename)) {
                         $datFile = $filename;
                     } else {
-                        $datFile = $this->moduleDir->getDir('CoreMarketplace_GeoIp') . '/data/GeoLite2-Country.mmdb';
+                        $datFile = $this->moduleDir->getDir('Magefan_GeoIp') . '/data/GeoLite2-Country.mmdb';
                     }
                     $reader = new \GeoIp2\Database\Reader($datFile);
                     $record = $reader->country($ip);

@@ -1,6 +1,10 @@
 <?php
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
 
-namespace CoreMarketplace\GeoIp\Block\Adminhtml\System\Config\Form;
+namespace Magefan\GeoIp\Block\Adminhtml\System\Config\Form;
 
 /**
  * Admin Cloudflare Check configurations information block

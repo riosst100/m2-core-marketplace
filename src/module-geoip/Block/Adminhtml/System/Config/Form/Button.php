@@ -1,10 +1,14 @@
 <?php
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
 
-namespace CoreMarketplace\GeoIp\Block\Adminhtml\System\Config\Form;
+namespace Magefan\GeoIp\Block\Adminhtml\System\Config\Form;
 
 /**
  * Class Button
- * @package CoreMarketplace\GeoIp\Block\Adminhtml\System\Config\Form
+ * @package Magefan\GeoIp\Block\Adminhtml\System\Config\Form
  */
 class Button extends \Magento\Config\Block\System\Config\Form\Field
 {

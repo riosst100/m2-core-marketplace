@@ -1,7 +1,13 @@
 <?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
     <group id="default">
-        <job name="core_marketplace_geoip_cron_updatemaxmind" instance="CoreMarketplace\GeoIp\Cron\UpdateMaxMind" method="execute">
+        <job name="magefan_geoip_cron_updatemaxmind" instance="Magefan\GeoIp\Cron\UpdateMaxMind" method="execute">
             <schedule>0 3 * * *</schedule>
         </job>
     </group>

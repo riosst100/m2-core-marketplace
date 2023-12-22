@@ -1,6 +1,10 @@
 <?php
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
 
-namespace CoreMarketplace\GeoIp\Block\Adminhtml\System\Config\Form;
+namespace Magefan\GeoIp\Block\Adminhtml\System\Config\Form;
 
 /**
  * Admin geoip configurations information block
@@ -34,15 +38,9 @@ class Info extends \Magento\Config\Block\System\Config\Form\Field
      */
     public function render(\Magento\Framework\Data\Form\Element\AbstractElement $element)
     {
-        $useUrl = \Magefan\Community\Model\UrlChecker::showUrl($this->getUrl());
-        $version = '1.0.0';
         $html = '<div style="padding:10px;background-color:#f8f8f8;border:1px solid #ddd;margin-bottom:7px;">
-            ' . $this->escapeHtml($this->getModuleTitle()) . ' v' . $this->escapeHtml($version) . ' was developed by ';
-        if ($useUrl) {
-            $html .= '<a href="' . $this->escapeHtml($this->getModuleUrl()) . '" target="_blank">Magefan</a>';
-        } else {
-            $html .= '<strong>Magefan</strong>';
-        }
+            ' . $this->escapeHtml($this->getModuleTitle()) . ' was developed by ';
+        $html .= '<strong>Magefan</strong>';
         $html .= '.</div>';
 
         return $html;

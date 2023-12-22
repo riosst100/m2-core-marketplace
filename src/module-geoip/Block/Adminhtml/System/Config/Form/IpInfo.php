@@ -1,8 +1,12 @@
 <?php
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * See LICENSE.txt for license details (http://opensource.org/licenses/osl-3.0.php).
+ */
 
-namespace CoreMarketplace\GeoIp\Block\Adminhtml\System\Config\Form;
+namespace Magefan\GeoIp\Block\Adminhtml\System\Config\Form;
 
-use CoreMarketplace\GeoIp\Model\IpToCountryRepository;
+use Magefan\GeoIp\Model\IpToCountryRepository;
 
 /**
  * Admin configurations IP information block
@@ -10,7 +14,7 @@ use CoreMarketplace\GeoIp\Model\IpToCountryRepository;
 class IpInfo extends \Magento\Config\Block\System\Config\Form\Field
 {
     /**
-     * @var \CoreMarketplace\GeoIp\Model\IpToCountryRepository
+     * @var \Magefan\GeoIp\Model\IpToCountryRepository
      */
     protected $ipRepository;
 
