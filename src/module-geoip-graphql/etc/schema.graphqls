@@ -1,0 +1,17 @@
+type Query {
+    getWebsiteByUserIp (
+     ip_address: String @doc(description: "User IP Address.")
+    ): WebsiteResult
+    @resolver(class: "CoreMarketplace\\GeoIpGraphQl\\Model\\Resolver\\GetWebsiteByUserIp") @doc(description: "Get list website and selected website based on user IP address.")
+}
+
+type WebsiteResult {
+    count: Int
+    items: [Website]
+}
+
+type Website {
+    name: String @doc(description: "The Website Name.")
+    code: String @doc(description: "The Website Code.")
+    is_selected: Boolean @doc(description: "Is Website Selected.")
+}

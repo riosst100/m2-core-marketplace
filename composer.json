@@ -27,13 +27,15 @@
         "src/module-seller-registration/registration.php",
         "src/module-product-attributes-link/registration.php",
         "src/module-category-importexport/registration.php",
-        "src/module-geoip/registration.php"
+        "src/module-geoip/registration.php",
+        "src/module-geoip-graphql/registration.php"
       ],
       "psr-4":{
         "CoreMarketplace\\SellerRegistration\\":"src/module-seller-registration",
         "CoreMarketplace\\ProductAttributesLink\\":"src/module-product-attributes-link",
         "Webcastle\\CategoryImportExport\\":"src/module-category-importexport",
-        "CoreMarketplace\\GeoIp\\":"src/module-geoip"
+        "CoreMarketplace\\GeoIp\\":"src/module-geoip",
+        "CoreMarketplace\\GeoIpGraphQl\\":"src/module-geoip-graphql"
       }
     }
 }
