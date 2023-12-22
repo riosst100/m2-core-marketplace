@@ -1,12 +1,12 @@
 <?php
 
-namespace CoreMarketplace\ProductAttributesMapping\Ui\DataProvider\Form\Modifier;
+namespace CoreMarketplace\ProductAttributesLink\Ui\DataProvider\Form\Modifier;
 
 use Magento\Ui\Component\Form\Field;
 use Magento\Ui\Component\Form\Fieldset;
 use Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\AbstractModifier;
 
-class AttributeOptionMapping extends AbstractModifier
+class AttributeOptionLink extends AbstractModifier
 {
     /**
     * @param array $meta

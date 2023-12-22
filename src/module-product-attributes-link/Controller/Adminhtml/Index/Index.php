@@ -1,4 +1,3 @@
-
 <?php
 
 namespace CoreMarketplace\ProductAttributesLink\Controller\Adminhtml\Index;
