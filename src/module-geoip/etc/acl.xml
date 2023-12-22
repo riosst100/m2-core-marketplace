@@ -1,4 +1,10 @@
 <?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
     <acl>
@@ -7,7 +13,7 @@
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
-                            <resource id="CoreMarketplace_GeoIp::geo_ip" title="GeoIP Database Section" sortOrder="15" />
+                            <resource id="Magefan_GeoIp::geo_ip" title="GeoIP Database Section" sortOrder="15" />
                         </resource>
                     </resource>
                 </resource>

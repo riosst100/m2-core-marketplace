@@ -1,15 +1,18 @@
 <?php
-
-namespace CoreMarketplace\GeoIp\Cron;
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+namespace Magefan\GeoIp\Cron;
 
 /**
  * Class UpdateMaxMind
- * @package CoreMarketplace\GeoIp\Cron
+ * @package Magefan\GeoIp\Cron
  */
 class UpdateMaxMind
 {
     /**
-     * @var \CoreMarketplace\GeoIp\Model\GeoIpDatabase\MaxMind
+     * @var \Magefan\GeoIp\Model\GeoIpDatabase\MaxMind
      */
     protected $maxMind;
     /**
@@ -19,11 +22,11 @@ class UpdateMaxMind
 
     /**
      * UpdateMaxMind constructor.
-     * @param \CoreMarketplace\GeoIp\Model\GeoIpDatabase\MaxMind $maxMind
+     * @param \Magefan\GeoIp\Model\GeoIpDatabase\MaxMind $maxMind
      * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
-        \CoreMarketplace\GeoIp\Model\GeoIpDatabase\MaxMind $maxMind,
+        \Magefan\GeoIp\Model\GeoIpDatabase\MaxMind $maxMind,
         \Psr\Log\LoggerInterface $logger
     ) {
         $this->maxMind = $maxMind;

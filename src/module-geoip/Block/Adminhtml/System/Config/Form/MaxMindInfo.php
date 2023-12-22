@@ -1,6 +1,10 @@
 <?php
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
 
-namespace CoreMarketplace\GeoIp\Block\Adminhtml\System\Config\Form;
+namespace Magefan\GeoIp\Block\Adminhtml\System\Config\Form;
 
 /**
  * Admin geoip maxmind configurations information block
@@ -12,7 +16,7 @@ class MaxMindInfo extends \Magento\Config\Block\System\Config\Form\Field
      */
     protected $_dir;
     /**
-     * @var \CoreMarketplace\GeoIp\Model\GeoIpDatabase\MaxMind
+     * @var \Magefan\GeoIp\Model\GeoIpDatabase\MaxMind
      */
     protected $maxMind;
 
@@ -20,13 +24,13 @@ class MaxMindInfo extends \Magento\Config\Block\System\Config\Form\Field
      * MaxMindInfo constructor.
      * @param \Magento\Backend\Block\Template\Context $context
      * @param \Magento\Framework\Filesystem\DirectoryList $dir
-     * @param \CoreMarketplace\GeoIp\Model\GeoIpDatabase\MaxMind $maxMind
+     * @param \Magefan\GeoIp\Model\GeoIpDatabase\MaxMind $maxMind
      * @param array $data
      */
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
         \Magento\Framework\Filesystem\DirectoryList $dir,
-        \CoreMarketplace\GeoIp\Model\GeoIpDatabase\MaxMind $maxMind,
+        \Magefan\GeoIp\Model\GeoIpDatabase\MaxMind $maxMind,
         array $data = []
     ) {
         parent::__construct($context, $data);
@@ -42,7 +46,7 @@ class MaxMindInfo extends \Magento\Config\Block\System\Config\Form\Field
      */
     public function render(\Magento\Framework\Data\Form\Element\AbstractElement $element)
     {
-        $dirList = $this->_dir->getPath('var'). '/core_marketplace/geoip/GeoLite2-Country.mmdb';
+        $dirList = $this->_dir->getPath('var'). '/magefan/geoip/GeoLite2-Country.mmdb';
 
         if (!file_exists($dirList)) {
             try {
