@@ -1,17 +1,10 @@
 type Query {
-    getWebsiteByUserIp (
+    availableStoresByUserIp (
      ip_address: String @doc(description: "User IP Address.")
-    ): WebsiteResult
-    @resolver(class: "CoreMarketplace\\GeoIpGraphQl\\Model\\Resolver\\GetWebsiteByUserIp") @doc(description: "Get list website and selected website based on user IP address.")
+    ): [StoreConfig]
+    @resolver(class: "CoreMarketplace\\GeoIpGraphQl\\Model\\Resolver\\AvailableStoresByUserIpResolver") @doc(description: "Get a list of available store views and their config information based on user IP Address.")
 }
 
-type WebsiteResult {
-    count: Int
-    items: [Website]
-}
-
-type Website {
-    name: String @doc(description: "The Website Name.")
-    code: String @doc(description: "The Website Code.")
-    is_selected: Boolean @doc(description: "Is Website Selected.")
+type StoreConfig {
+    is_suggested: Boolean @doc(description: "Is Website Suggested based on User IP Address.")
 }
