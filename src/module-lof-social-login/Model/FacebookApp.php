@@ -56,9 +56,10 @@ class FacebookApp
      */
     public function newFacebook()
     {
-        $fb = new \Facebook\Facebook([
+        $fb = new \JanuSoftware\Facebook\Facebook([
             'app_id'  => $this->dataHelper->getAppId(),
-            'app_secret' => $this->dataHelper->getAppSecret(), 
+            'app_secret' => $this->dataHelper->getAppSecret(),
+            'default_graph_version' => 'v15.0'
         ]);
         return $fb;
     }
