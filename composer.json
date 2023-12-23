@@ -24,7 +24,7 @@
       "landofcoder/module-all" : "1.*",
       "google/apiclient":"^2.10",
       "hybridauth/hybridauth": "*",
-      "abraham/twitteroauth": "^4.0",
+      "abraham/twitteroauth": "*",
       "janu-software/facebook-php-sdk": "^0.1"
     },
     "autoload":{
