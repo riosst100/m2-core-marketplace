@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_SmtpEmail
+ * @copyright  Copyright (c) 2016 Landofcoder (https://landofcoder.com/)
+ * @license    https://landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::smtpemail_elements" title="Smtp Email">
+                    <resource id="Lof_SmtpEmail::emaillog" title="Email Logs" sortOrder="20">
+                        <resource id="Lof_SmtpEmail::emaillog_delete" title="Delete Email Log" sortOrder="30" />
+                        <resource id="Lof_SmtpEmail::emaillog_save" title="Save Emaillog" sortOrder="10"/>
+                        <resource id="Lof_SmtpEmail::emaillog_update" title="Update Emaillog" sortOrder="30"/>
+                        <resource id="Lof_SmtpEmail::emaillog_view" title="View Emaillog" sortOrder="40"/>
+                    </resource>
+                    <resource id="Lof_SmtpEmail::emaildebug" title="Email Debugs" sortOrder="30">
+                        <resource id="Lof_SmtpEmail::emaildebug_delete" title="Delete Email Debug" sortOrder="30" />
+                    </resource>
+                    <resource id="Lof_SmtpEmail::blacklist" title="Blacklist Email" sortOrder="40">
+                        <resource id="Lof_SmtpEmail::blacklist_edit" title="Edit Blacklist" sortOrder="10" />
+                        <resource id="Lof_SmtpEmail::blacklist_save" title="Save Blacklist" sortOrder="20" />
+                        <resource id="Lof_SmtpEmail::blacklist_delete" title="Delete Blacklist" sortOrder="30" />
+					    <resource id="Lof_SmtpEmail::blacklist_update" title="Update Blacklist" sortOrder="30"/>
+					    <resource id="Lof_SmtpEmail::blacklist_view" title="View Blacklist" sortOrder="40"/>
+                    </resource>
+                        <resource id="Lof_SmtpEmail::blockip" title="Block Ip" sortOrder="50">
+                        <resource id="Lof_SmtpEmail::blockip_edit" title="Edit Block Ip" sortOrder="10" />
+                        <resource id="Lof_SmtpEmail::blockip_save" title="Save Block Ip" sortOrder="20" />
+                        <resource id="Lof_SmtpEmail::blockip_delete" title="Delete Block Ip" sortOrder="30" />
+					    <resource id="Lof_SmtpEmail::blockip_update" title="Update Blockip" sortOrder="30"/>
+					    <resource id="Lof_SmtpEmail::blockip_view" title="View Blockip" sortOrder="40"/>
+                    </resource>
+                    <resource id="Lof_SmtpEmail::spam" title="Spam" sortOrder="60">
+                        <resource id="Lof_SmtpEmail::spam_edit" title="Edit Spam" sortOrder="10" />
+                        <resource id="Lof_SmtpEmail::spam_save" title="Save Spam" sortOrder="20" />
+                        <resource id="Lof_SmtpEmail::spam_delete" title="Delete Spam" sortOrder="30" />
+                        <resource id="Lof_SmtpEmail::spam_update" title="Update Spam" sortOrder="30"/>
+					    <resource id="Lof_SmtpEmail::spam_view" title="View Spam" sortOrder="40"/>
+                    </resource>
+                    <resource id="Lof_SmtpEmail::report" title="Report" sortOrder="70" />
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Lof_SmtpEmail::config_smtpemail" title="SmtpEmail" />
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

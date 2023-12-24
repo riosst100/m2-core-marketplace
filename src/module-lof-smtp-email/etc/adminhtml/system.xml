@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_SmtpEmail
+ * @copyright  Copyright (c) 2016 Landofcoder (https://landofcoder.com/)
+ * @license    https://landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Config/etc/system_file.xsd">
+    <system>
+        <tab id="landofcoder" translate="label" sortOrder="300">
+            <label>Landofcoder.com</label>
+        </tab>
+        <section id="lofsmtpemail" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>SMTP Email</label>
+            <tab>landofcoder</tab>
+            <resource>Lof_SmtpEmail::config_smtpemail</resource>
+           <group id="general_settings" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Setting</label>
+                <field id="enable_smtp_email" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable SMTP Email</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enable_email_log" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable Email Log</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                 <field id="enable_email_debug" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable Email Debug</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="smtp_config" translate="label comment" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>SMTP Config</label>
+                 <field id="provider" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>SMTP Provider</label>
+                    <comment>Pre-defined SMTP providers</comment>
+                    <frontend_model>Lof\SmtpEmail\Block\Adminhtml\System\Config\AutoFill</frontend_model>
+                    <source_model>Lof\SmtpEmail\Model\Config\Source\Providers</source_model>
+                </field>
+                <field id="auth" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Authentication method</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Smtpauth</source_model>
+                    <comment>Use your SMTP Credentials.</comment>
+                </field>
+
+                <field id="ssl" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>SSL type</label>
+                    <source_model>Lof\SmtpEmail\Model\Config\Source\Authtype</source_model>
+                    <comment>Use SSL Type (if applicable) .</comment>
+                </field>
+                <field id="port" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Port</label>
+                    <comment>Use Port for SMTP default 25 </comment>
+                </field>
+                <field id="smtphost" translate="label comment" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>SMTP Host</label>
+                    <comment>Use "smtp.yoursmtphost.com" without http</comment>
+                </field>
+                <field id="username" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Username</label>
+                    <comment>Email Address.</comment>
+                </field>
+                <field id="password" translate="label" type="password" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Password</label>
+                </field>
+                <field id="set_reply_to" translate="label" type="select" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Set Reply-to</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                 <field id="set_from" translate="label" type="select" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Set From</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Use Return-Path email address for the From address rather than the Magento supplied value.</comment>
+                </field>
+                <field id="set_return_path" translate="label" type="select" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Set Return-Path</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesnocustom</source_model>
+                </field>
+                <field id="return_path_email" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Return-Path Email</label>
+                </field>
+                <group id="debug" translate="label" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="100">
+                    <label>Try SMTP Configuration Settings</label>
+                    <attribute type="expanded">0</attribute>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Fieldset</frontend_model>
+                    <field id="email" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Email address</label>
+                        <comment>Email address to send test to.</comment>
+                        <source_model>Magento\Config\Model\Config\Source\Design\Robots</source_model>
+                    </field>
+                    <field id="button" translate="label comment" type="button" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label></label>
+                        <frontend_model>Lof\SmtpEmail\Block\Adminhtml\System\Config\TestButton</frontend_model>
+                    </field>
+                </group>
+            </group>
+            <group id="clear" translate="label" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="30">
+                <label>Clear</label>
+                <field id="log" translate="label comment" type="text" sortOrder="10" showInWebsite="1" showInDefault="1" showInStore="1" canRestore="1">
+                    <label>Keep Emails log For, days</label>
+                    <comment>0 disables log cleaning. Not recommended</comment>
+                </field>
+                <field id="debug" translate="label comment" type="text" sortOrder="20" showInWebsite="1" showInDefault="1" showInStore="1" canRestore="1">
+                    <label>Keep Emails debug For, days</label>
+                    <comment>0 disables debug cleaning. Not recommended</comment>
+
+                </field>
+             </group>
+             <group id="trans_email" translate="label" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="40">
+                <label>Store Email Addresses</label>
+                <field id="same_smtp" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Same email SMTP</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="general_contact" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>General Contact</label>
+                    <frontend_model>Lof\SmtpEmail\Block\Adminhtml\System\Config\Form\Field\Heading</frontend_model>
+                    <depends><field id="same_smtp">0</field></depends>
+                </field>
+                <field id="general_contact_email" translate="label comment" type="text" sortOrder="30" showInWebsite="1" showInDefault="1" showInStore="1" canRestore="1">
+                    <label>Email Sender</label>
+                    <depends><field id="same_smtp">0</field></depends>
+                </field>
+                <field id="general_contact_pass" translate="label comment" type="password" sortOrder="40" showInWebsite="1" showInDefault="1" showInStore="1" canRestore="1">
+                    <label>Password</label>
+                    <depends><field id="same_smtp">0</field></depends>
+                </field>
+                <field id="sales_representative" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sales Representative</label>
+                    <frontend_model>Lof\SmtpEmail\Block\Adminhtml\System\Config\Form\Field\Heading</frontend_model>
+                    <depends><field id="same_smtp">0</field></depends>
+                </field>
+                 <field id="sales_representative_email" translate="label comment" type="text" sortOrder="60" showInWebsite="1" showInDefault="1" showInStore="1" canRestore="1">
+                    <label>Email Sender</label>
+                    <depends><field id="same_smtp">0</field></depends>
+                </field>
+                <field id="sales_representative_pass" translate="label comment" type="password" sortOrder="70" showInWebsite="1" showInDefault="1" showInStore="1" canRestore="1">
+                    <label>Password</label>
+                    <depends><field id="same_smtp">0</field></depends>
+                </field>
+                 <field id="customer_support" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Customer Support</label>
+                    <frontend_model>Lof\SmtpEmail\Block\Adminhtml\System\Config\Form\Field\Heading</frontend_model>
+                    <depends><field id="same_smtp">0</field></depends>
+                </field>
+                 <field id="customer_support_email" translate="label comment" type="text" sortOrder="90" showInWebsite="1" showInDefault="1" showInStore="1" canRestore="1">
+                    <label>Email Sender</label>
+                    <depends><field id="same_smtp">0</field></depends>
+                </field>
+                 <field id="customer_support_pass" translate="label comment" type="password" sortOrder="100" showInWebsite="1" showInDefault="1" showInStore="1" canRestore="1">
+                    <label>Password</label>
+                    <depends><field id="same_smtp">0</field></depends>
+                </field>
+                 <field id="custom_email_1" translate="label comment" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Email 1</label>
+                    <frontend_model>Lof\SmtpEmail\Block\Adminhtml\System\Config\Form\Field\Heading</frontend_model>
+                    <depends><field id="same_smtp">0</field></depends>
+                </field>
+                <field id="custom_email_1_email" translate="label comment" type="text" sortOrder="120" showInWebsite="1" showInDefault="1" showInStore="1" canRestore="1">
+                    <label>Email Sender</label>
+                    <depends><field id="same_smtp">0</field></depends>
+                </field>
+                <field id="custom_email_1_pass" translate="label comment" type="password" sortOrder="130" showInWebsite="1" showInDefault="1" showInStore="1" canRestore="1">
+                    <label>Password</label>
+                    <depends><field id="same_smtp">0</field></depends>
+                </field>
+                 <field id="custom_email_2" translate="label comment" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Email 2</label>
+                    <frontend_model>Lof\SmtpEmail\Block\Adminhtml\System\Config\Form\Field\Heading</frontend_model>
+                    <depends><field id="same_smtp">0</field></depends>
+                </field>
+                <field id="custom_email_2_email" translate="label comment" type="text" sortOrder="150" showInWebsite="1" showInDefault="1" showInStore="1" canRestore="1">
+                    <label>Email Sender</label>
+                    <depends><field id="same_smtp">0</field></depends>
+                </field>
+                <field id="custom_email_2_pass" translate="label comment" type="password" sortOrder="160" showInWebsite="1" showInDefault="1" showInStore="1" canRestore="1">
+                    <label>Password</label>
+                    <depends><field id="same_smtp">0</field></depends>
+                </field>
+             </group>
+         </section>
+    </system>
+</config>
