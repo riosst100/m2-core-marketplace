@@ -8,7 +8,7 @@ use Magento\Framework\GraphQl\Query\ResolverInterface;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
 use Magento\Store\Model\StoreManagerInterface;
 use Magefan\GeoIp\Model\IpToCountryRepository;
-use Magento\StoreGraphQl\Model\Resolver\Store\StoreConfigDataProvider;
+use CoreMarketplace\GeoIpGraphQl\Model\Resolver\Store\StoreConfigDataProvider;
 
 class AvailableStoresByUserIpResolver implements ResolverInterface
 {
