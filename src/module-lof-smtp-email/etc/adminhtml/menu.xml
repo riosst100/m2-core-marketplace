@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_SmtpEmail
+ * @copyright  Copyright (c) 2016 Landofcoder (https://landofcoder.com/)
+ * @license    https://landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+	<menu>
+		<add id="Lof_SmtpEmail::smtpemail" sortOrder="116" title="Smtp Email" module="Lof_SmtpEmail" resource="Magento_Backend::smtpemail_elements" parent="Lof_All::lof_all" />
+		<add id="Lof_SmtpEmail::emaillog" title="Emails Log" module="Lof_SmtpEmail" sortOrder="20" parent="Lof_SmtpEmail::smtpemail" action="lofsmtpemail/emaillog/index" resource="Lof_SmtpEmail::emails_log"/>
+		<add id="Lof_SmtpEmail::emaildebug" title="Emails Debug" module="Lof_SmtpEmail" sortOrder="30" parent="Lof_SmtpEmail::smtpemail" action="lofsmtpemail/emaildebug/index" resource="Lof_SmtpEmail::emails_debug"/>
+		<add id="Lof_SmtpEmail::blacklist" title="Emails Blacklist" module="Lof_SmtpEmail" sortOrder="35" parent="Lof_SmtpEmail::smtpemail" action="lofsmtpemail/blacklist/index" resource="Lof_SmtpEmail::blacklist"/>
+		<add id="Lof_SmtpEmail::blockip" title="Block Ip" module="Lof_SmtpEmail" sortOrder="36" parent="Lof_SmtpEmail::smtpemail" action="lofsmtpemail/blockip/index" resource="Lof_SmtpEmail::blockip"/>
+		<add id="Lof_SmtpEmail::spam" title="Spam" module="Lof_SmtpEmail" sortOrder="37" parent="Lof_SmtpEmail::smtpemail" action="lofsmtpemail/spam/index" resource="Lof_SmtpEmail::spam"/>
+		<add id="Lof_SmtpEmail::report_email" title="Report" module="Lof_SmtpEmail" sortOrder="38" parent="Lof_SmtpEmail::smtpemail" action="lofsmtpemail/report/report" resource="Lof_SmtpEmail::report"/>
+		<add id="Lof_SmtpEmail::settings" title="Configuration" module="Lof_SmtpEmail" sortOrder="40" action="adminhtml/system_config/edit/section/lofsmtpemail" resource="Lof_SmtpEmail::config_smtpemail" parent="Lof_SmtpEmail::smtpemail"/>
+	</menu>
+</config>
