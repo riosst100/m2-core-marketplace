@@ -21,7 +21,6 @@
     "version": "1.0.0",
     "require": {
       "geoip2/geoip2": "^2.9.0",
-      "landofcoder/module-all" : "1.*",
       "google/apiclient":"^2.10",
       "hybridauth/hybridauth": "*",
       "abraham/twitteroauth": "*",
