@@ -73,25 +73,21 @@ class StoreConfigDataProvider extends \Magento\StoreGraphQl\Model\Resolver\Store
     /**
      * Get available website stores by country code
      *
-     * @param string $countryCode
+     * @param string|null $countryCode
      * @param int|null $storeGroupId
      * @return array
      */
-    public function getAvailableStoreConfigByCountryCode(string $countryCode, int $storeGroupId = null): array
+    public function getAvailableStoreConfigByCountryCode(string $countryCode = null, int $storeGroupId = null): array
     {
         $storesConfigData = [];
 
         $websiteList = $this->websiteCollectionFactory->create();
         if ($websiteList) {
             foreach($websiteList as $website) {
-                if ($website->getCode() == "base") {
-                    continue;
-                }
-
                 $websiteId = $website->getId();
 
                 $isSuggested = false;
-                if ($website->getCode() == strtolower($countryCode)) {
+                if ($countryCode && $website->getCode() == strtolower($countryCode)) {
                     $isSuggested = true;
                 }
 
