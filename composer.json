@@ -32,22 +32,14 @@
         "src/module-product-attributes-link/registration.php",
         "src/module-category-importexport/registration.php",
         "src/module-geoip/registration.php",
-        "src/module-geoip-graphql/registration.php",
-        "src/module-lof-payment-fee/registration.php",
-        "src/module-payment-fee-graphql/registration.php",
-        "src/module-lof-social-login/registration.php",
-        "src/module-lof-smtp-email/registration.php"
+        "src/module-geoip-graphql/registration.php"
       ],
       "psr-4":{
         "CoreMarketplace\\SellerRegistration\\":"src/module-seller-registration",
         "CoreMarketplace\\ProductAttributesLink\\":"src/module-product-attributes-link",
         "Webcastle\\CategoryImportExport\\":"src/module-category-importexport",
         "Magefan\\GeoIp\\":"src/module-geoip",
-        "CoreMarketplace\\GeoIpGraphQl\\":"src/module-geoip-graphql",
-        "Lof\\Paymentfee\\":"src/module-lof-payment-fee",
-        "CoreMarketplace\\PaymentfeeGraphQl\\":"src/module-payment-fee-graphql",
-        "Lof\\SocialLogin\\":"src/module-lof-social-login",
-        "Lof\\SmtpEmail\\":"src/module-lof-smtp-email"
+        "CoreMarketplace\\GeoIpGraphQl\\":"src/module-geoip-graphql"
       }
     }
 }
