@@ -1,0 +1,461 @@
+"Return Addresses","Return Addresses"
+"Add New Return Address","Add New Return Address"
+Save,Save
+"Save & Continue Edit","Save & Continue Edit"
+"General Information","General Information"
+Title,Title
+"Return Address","Return Address"
+"Sort Order","Sort Order"
+"Is Active","Is Active"
+No,No
+Yes,Yes
+ID,ID
+Active,Active
+Disabled,Disabled
+Enabled,Enabled
+"Change status","Change status"
+Status,Status
+Delete,Delete
+"Are you sure?","Are you sure?"
+Conditions,Conditions
+"Add New Condition","Add New Condition"
+"[STORE VIEW]","[STORE VIEW]"
+RMA,RMA
+"Create RMA for this customer","Create RMA for this customer"
+Fields,Fields
+"Add New Field","Add New Field"
+Code,Code
+Type,Type
+Description,Description
+"Options list","Options list"
+"Only for drop-down list.
+                <br>Enter each value from the new line using format:
+                <br>value1 | label1
+                <br>value2 | label2","Only for drop-down list.
+                <br>Enter each value from the new line using format:
+                <br>value1 | label1
+                <br>value2 | label2"
+"Sort order","Sort order"
+"Is required for staff","Is required for staff"
+"Is required for customers","Is required for customers"
+"Visible for customers in statuses","Visible for customers in statuses"
+"Is show in confirm shipping dialog","Is show in confirm shipping dialog"
+"Is editable for customers","Is editable for customers"
+Statuses,Statuses
+Reasons,Reasons
+Resolutions,Resolutions
+"Custom Fields","Custom Fields"
+"Quick Responses","Quick Responses"
+"Workflow Rules","Workflow Rules"
+Reports,Reports
+Settings,Settings
+"Add New Reason","Add New Reason"
+"Add New Resolution","Add New Resolution"
+"Add New RMA","Add New RMA"
+"Create New RMA","Create New RMA"
+"Order #","Order #"
+"Purchased From (Store)","Purchased From (Store)"
+"Purchased On","Purchased On"
+"Bill to Name","Bill to Name"
+"Ship to Name","Ship to Name"
+"G.T. (Base)","G.T. (Base)"
+"G.T. (Purchased)","G.T. (Purchased)"
+Print,Print
+"Credit Memo","Credit Memo"
+"Exchange Order","Exchange Order"
+"RMA #%1 - %2","RMA #%1 - %2"
+"Delete File","Delete File"
+"Additional Information","Additional Information"
+"RMA #","RMA #"
+"RMA Owner","RMA Owner"
+"Upload Return Label","Upload Return Label"
+"External Link","External Link"
+open,open
+Customer,Customer
+"(received a gift)","(received a gift)"
+"Exchage Order","Exchage Order"
+"Contact Information","Contact Information"
+"First Name","First Name"
+"Last Name","Last Name"
+Company,Company
+Telephone,Telephone
+Email,Email
+"Street Address","Street Address"
+City,City
+Zip/Postcode,Zip/Postcode
+Rules,Rules
+"Add New Rule","Add New Rule"
+Actions,Actions
+"Set Status","Set Status"
+"Set Owner","Set Owner"
+Event,Event
+Filters,Filters
+"Rule Name","Rule Name"
+Priority,Priority
+"Arranged in the ascending order. 0 is the highest.","Arranged in the ascending order. 0 is the highest."
+"Stop Further Rules Processing","Stop Further Rules Processing"
+Notifications,Notifications
+"Send email to RMA owner","Send email to RMA owner"
+"Send email to customer","Send email to customer"
+"Send email to other email addresses","Send email to other email addresses"
+"Email subject","Email subject"
+"Email body","Email body"
+"Attach files which were attached to the last message","Attach files which were attached to the last message"
+"Is Stop Processing","Is Stop Processing"
+"Create RMA for this order","Create RMA for this order"
+"Order meets RMA policy","Order meets RMA policy"
+"Order doesn't meet RMA policy","Order doesn't meet RMA policy"
+"Add New Status","Add New Status"
+"Show buttons 'Print RMA Packing Slip', 'Print RMA Shipping Label' and 'Confirm Shipping' in the customer account","Show buttons 'Print RMA Packing Slip', 'Print RMA Shipping Label' and 'Confirm Shipping' in the customer account"
+"Email Notification for customer","Email Notification for customer"
+"leave blank to not send","leave blank to not send"
+"Message for RMA history","Message for RMA history"
+"Email Notification for administrator","Email Notification for administrator"
+Templates,Templates
+"Add New Template","Add New Template"
+"Internal Title","Internal Title"
+Template,Template
+"You can use variables:
+                [rma_increment_id],
+                [rma_firstname],
+                [rma_lastname],
+                [rma_email],
+                [store_name],
+                [store_phone],
+                [store_address],
+                [user_firstname],
+                [user_lastname],
+                [user_email]","You can use variables:
+                [rma_increment_id],
+                [rma_firstname],
+                [rma_lastname],
+                [rma_email],
+                [store_name],
+                [store_phone],
+                [store_address],
+                [user_firstname],
+                [user_lastname],
+                [user_email]"
+Stores,Stores
+"Request RMA","Request RMA"
+"My Returns","My Returns"
+Grid,Grid
+List,List
+All,All
+"Create RMA","Create RMA"
+"Request New Return","Request New Return"
+"New Return for Order #%1","New Return for Order #%1"
+"RMA #%1","RMA #%1"
+"RMA Return Address","RMA Return Address"
+"New Return Address","New Return Address"
+"Return Address Manager","Return Address Manager"
+"Add Return Address ","Add Return Address "
+"Add Return Address","Add Return Address"
+"Return Address was successfully deleted","Return Address was successfully deleted"
+"Edit Return Address '%1'","Edit Return Address '%1'"
+"Edit Return Address ","Edit Return Address "
+"The Return Address does not exist.","The Return Address does not exist."
+"Please select Return Address(es)","Please select Return Address(es)"
+"Total of %d record(s) were successfully updated","Total of %d record(s) were successfully updated"
+"Total of %1 record(s) were successfully deleted","Total of %1 record(s) were successfully deleted"
+"return Address was successfully saved","return Address was successfully saved"
+"Unable to find Return Address to save","Unable to find Return Address to save"
+"New Condition","New Condition"
+"Condition  Manager","Condition  Manager"
+"Condition Manager","Condition Manager"
+"Add Condition ","Add Condition "
+"Add Condition","Add Condition"
+"Condition was successfully deleted","Condition was successfully deleted"
+"Edit Condition '%1'","Edit Condition '%1'"
+Condition,Condition
+"Edit Condition ","Edit Condition "
+"The Condition does not exist.","The Condition does not exist."
+"Please select Condition(s)","Please select Condition(s)"
+"Total of %d record(s) were successfully deleted","Total of %d record(s) were successfully deleted"
+"Condition was successfully saved","Condition was successfully saved"
+"Unable to find Condition to save","Unable to find Condition to save"
+"New Field","New Field"
+"Field  Manager","Field  Manager"
+"Field Manager","Field Manager"
+"Add Field ","Add Field "
+"Add Field","Add Field"
+"Field was successfully deleted","Field was successfully deleted"
+"Edit Field '%1'","Edit Field '%1'"
+"Edit Field ","Edit Field "
+"The Field does not exist.","The Field does not exist."
+"Please select Field(s)","Please select Field(s)"
+"Field was successfully saved","Field was successfully saved"
+"Unable to find Field to save","Unable to find Field to save"
+"New Reason","New Reason"
+"Reason  Manager","Reason  Manager"
+"Reason Manager","Reason Manager"
+"Add Reason ","Add Reason "
+"Add Reason","Add Reason"
+"Reason was successfully deleted","Reason was successfully deleted"
+"Edit Reason '%1'","Edit Reason '%1'"
+Reason,Reason
+"Edit Reason ","Edit Reason "
+"The Reason does not exist.","The Reason does not exist."
+"Please select Reason(s)","Please select Reason(s)"
+"Reason was successfully saved","Reason was successfully saved"
+"Unable to find Reason to save","Unable to find Reason to save"
+"Statistics was successfully updated","Statistics was successfully updated"
+"RMA by Brand","RMA by Brand"
+"RMA Report","RMA Report"
+"RMA by Product","RMA by Product"
+Rma,Rma
+"New Resolution","New Resolution"
+"Resolution  Manager","Resolution  Manager"
+"Resolution Manager","Resolution Manager"
+"Add Resolution ","Add Resolution "
+"Add Resolution","Add Resolution"
+"Resolution was successfully deleted","Resolution was successfully deleted"
+"Edit Resolution '%1'","Edit Resolution '%1'"
+Resolution,Resolution
+"Edit Resolution ","Edit Resolution "
+"The Resolution does not exist.","The Resolution does not exist."
+"Please select Resolution(s)","Please select Resolution(s)"
+"Resolution was successfully saved","Resolution was successfully saved"
+"Unable to find Resolution to save","Unable to find Resolution to save"
+"New RMA","New RMA"
+"RMA was successfully deleted","RMA was successfully deleted"
+"The rma does not exist.","The rma does not exist."
+"Marked as read","Marked as read"
+"Marked as unread","Marked as unread"
+"Please select rma(s)","Please select rma(s)"
+"A total of %1 record(s) have been deleted.","A total of %1 record(s) have been deleted."
+Items,Items
+"To apply changes you should fill in required ""%1"" field","To apply changes you should fill in required ""%1"" field"
+"Please, add order items to the RMA (set 'Qty to Return')","Please, add order items to the RMA (set 'Qty to Return')"
+"RMA was successfully saved","RMA was successfully saved"
+"Unable to find rma to save","Unable to find rma to save"
+"New Rule","New Rule"
+"Rule  Manager","Rule  Manager"
+"Rule Manager","Rule Manager"
+"Add Rule ","Add Rule "
+"Add Rule","Add Rule"
+"Rule was successfully deleted","Rule was successfully deleted"
+"Edit Rule '%1'","Edit Rule '%1'"
+"Edit Rule ","Edit Rule "
+"The Rule does not exist.","The Rule does not exist."
+"Please select Rule(s)","Please select Rule(s)"
+"Rule was successfully saved","Rule was successfully saved"
+"Unable to find Rule to save","Unable to find Rule to save"
+"New Status","New Status"
+"Status  Manager","Status  Manager"
+"Status Manager","Status Manager"
+"Add Status ","Add Status "
+"Add Status","Add Status"
+"Status was successfully deleted","Status was successfully deleted"
+"Edit Status '%1'","Edit Status '%1'"
+"Edit Status ","Edit Status "
+"The Status does not exist.","The Status does not exist."
+"Please select Status(s)","Please select Status(s)"
+"Status was successfully saved","Status was successfully saved"
+"Unable to find Status to save","Unable to find Status to save"
+"New Template","New Template"
+"Template  Manager","Template  Manager"
+"Template Manager","Template Manager"
+"Add Template ","Add Template "
+"Add Template","Add Template"
+"Template was successfully deleted","Template was successfully deleted"
+"Edit Template '%1'","Edit Template '%1'"
+"Edit Template ","Edit Template "
+"The Template does not exist.","The Template does not exist."
+"Please select Template(s)","Please select Template(s)"
+"Template was successfully saved","Template was successfully saved"
+"Unable to find Template to save","Unable to find Template to save"
+"Wrong Order #, Email or Last Name","Wrong Order #, Email or Last Name"
+"RMA was successfuly created","RMA was successfuly created"
+"Shipping is confirmed. Thank you!","Shipping is confirmed. Thank you!"
+"Your message was successfuly added","Your message was successfuly added"
+"Allowed extensions:","Allowed extensions:"
+"Maximum size:","Maximum size:"
+"Customer Name","Customer Name"
+Owner,Owner
+"Last Replier","Last Replier"
+"Created Date","Created Date"
+"Last Activity","Last Activity"
+Store,Store
+Action,Action
+View,View
+"-- Please Select --","-- Please Select --"
+" at %1 (%2)"," at %1 (%2)"
+"not set","not set"
+Pattern,Pattern
+"Attribute Value","Attribute Value"
+Default,Default
+Integer,Integer
+Price,Price
+"Strip Tags","Strip Tags"
+"Primary Attributes","Primary Attributes"
+"Stock Attributes","Stock Attributes"
+"Prices & Taxes","Prices & Taxes"
+Images,Images
+"Custom Attributes","Custom Attributes"
+Mapping,Mapping
+Category,Category
+"Landofcoder Meta Tags","Landofcoder Meta Tags"
+"Others Attributes","Others Attributes"
+Text,Text
+"Multi-line text","Multi-line text"
+Date,Date
+Checkbox,Checkbox
+"Drop-down list","Drop-down list"
+"Customer Email","Customer Email"
+"Created At","Created At"
+"View link","View link"
+"New RMA has been created","New RMA has been created"
+"RMA has been changed","RMA has been changed"
+"New reply from customer","New reply from customer"
+"New reply from staff","New reply from staff"
+"-- Default Address --","-- Default Address --"
+"Update the Product","Update the Product"
+"Conditions Combination","Conditions Combination"
+"RMA Attribute","RMA Attribute"
+"Last 7-days Clicks","Last 7-days Clicks"
+"Last 7-days Orders","Last 7-days Orders"
+"Last 7-days Revenue","Last 7-days Revenue"
+"Last 7-days Conversation Rate (%)","Last 7-days Conversation Rate (%)"
+"Attribute Set","Attribute Set"
+Quantity,Quantity
+"Product Type","Product Type"
+"Base Image","Base Image"
+Thumbnail,Thumbnail
+"Small Image","Small Image"
+"Base Image Size (bytes)","Base Image Size (bytes)"
+"Thumbnail Size (bytes)","Thumbnail Size (bytes)"
+"Small Image Size (bytes)","Small Image Size (bytes)"
+"PHP Condition","PHP Condition"
+"Open Chooser","Open Chooser"
+"Last message body","Last message body"
+"Updated At","Updated At"
+"Status (before change)","Status (before change)"
+"Owner (before change)","Owner (before change)"
+"Last Reply By","Last Reply By"
+"Hours since Created","Hours since Created"
+"Hours since Updated","Hours since Updated"
+"Hours since Last reply","Hours since Last reply"
+"%1 (before change)","%1 (before change)"
+Staff,Staff
+"- Disable these emails -","- Disable these emails -"
+RMAs,RMAs
+"Cannot delete return address with id %1","Cannot delete return address with id %1"
+"Cannot delete item with id %1","Cannot delete item with id %1"
+"Cannot delete condition with id %1","Cannot delete condition with id %1"
+"Cannot delete field with id %1","Cannot delete field with id %1"
+"Cannot delete message with id %1","Cannot delete message with id %1"
+"Cannot delete Quick Response with id %1","Cannot delete Quick Response with id %1"
+"Cannot delete reason with id %1","Cannot delete reason with id %1"
+"Cannot delete resolution with id %1","Cannot delete resolution with id %1"
+"Cannot delete rma with id %1","Cannot delete rma with id %1"
+"Cannot delete rule with id %1","Cannot delete rule with id %1"
+"Cannot delete status with id %1","Cannot delete status with id %1"
+"Please, enter a message","Please, enter a message"
+"Select Order","Select Order"
+"Exchange/Credit Balance","Exchange/Credit Balance"
+"Customer credit balance:","Customer credit balance:"
+"Total price of new products:","Total price of new products:"
+"Total price of exchanged/credit products:","Total price of exchanged/credit products:"
+"Price difference:","Price difference:"
+Resolution:,Resolution:
+"Get %1 from customer credit balance","Get %1 from customer credit balance"
+"Put %1 to customer credit balance","Put %1 to customer credit balance"
+"Resolve manually","Resolve manually"
+"Add Message","Add Message"
+"Message Type","Message Type"
+"Message to Customer","Message to Customer"
+"Internal Note","Internal Note"
+"RMA History","RMA History"
+"mark as unread","mark as unread"
+"mark as read","mark as read"
+"You can not return more, than available. Please, try again.","You can not return more, than available. Please, try again."
+"show all order items","show all order items"
+"Product Name","Product Name"
+SKU,SKU
+Qty,Qty
+"Qty to Return","Qty to Return"
+"Reason to Return","Reason to Return"
+"Item Condition","Item Condition"
+"(Bundled Product)","(Bundled Product)"
+Stock,Stock
+Ordered,Ordered
+Available,Available
+--,--
+"Insert Quick Response","Insert Quick Response"
+"This was a gift, please do not notify purchaser","This was a gift, please do not notify purchaser"
+"Enter your contact information","Enter your contact information"
+"To request a new RMA or check the status of current RMA, please, fill the form:","To request a new RMA or check the status of current RMA, please, fill the form:"
+"* Required Fields","* Required Fields"
+"Order Information","Order Information"
+"Email or Last Name","Email or Last Name"
+Next,Next
+"View Return","View Return"
+"There are no Returns","There are no Returns"
+"Items %1 to %2 of %3 total","Items %1 to %2 of %3 total"
+"%1 Item(s)","%1 Item(s)"
+Show,Show
+"per page","per page"
+"View as","View as"
+"Sort by","Sort by"
+"Set Ascending Direction","Set Ascending Direction"
+"Set Descending Direction","Set Descending Direction"
+"Please, select an order","Please, select an order"
+Order,Order
+"-- Select an Order --","-- Select an Order --"
+"You have no completed orders to request RMA or your orders were placed more than %1 days ago. Please, contact customer service.","You have no completed orders to request RMA or your orders were placed more than %1 days ago. Please, contact customer service."
+"Submit Request","Submit Request"
+"Please, select RMA items which you would like to return.","Please, select RMA items which you would like to return."
+"Attach files","Attach files"
+"Request Information","Request Information"
+"Email Address","Email Address"
+"Order Shipping Address","Order Shipping Address"
+"Items in this order","Items in this order"
+"There are no items for this product that can be returned.","There are no items for this product that can be returned."
+"Another RMA for this product: %1","Another RMA for this product: %1"
+"This is a non-returnable item per our return policy.","This is a non-returnable item per our return policy."
+"Quantity to return","Quantity to return"
+"-- Select a Reason --","-- Select a Reason --"
+"-- Select a Condition --","-- Select a Condition --"
+"-- Select a Resolution --","-- Select a Resolution --"
+"I agree","I agree"
+"Date: %1","Date: %1"
+"Original order: #%1","Original order: #%1"
+"Customer Information","Customer Information"
+"RMA Items","RMA Items"
+Weight,Weight
+"Print RMA Packing Slip","Print RMA Packing Slip"
+"Print RMA Shipping Label","Print RMA Shipping Label"
+"Confirm Shipping","Confirm Shipping"
+"(This was a gift)","(This was a gift)"
+"Date Requested","Date Requested"
+"Items RMA Requested for","Items RMA Requested for"
+QTY,QTY
+Submit,Submit
+%name,%name
+"The quantity is incorrect.","The quantity is incorrect."
+"Default status for new RMA","Default status for new RMA"
+"Default owner for new RMA","Default owner for new RMA"
+"Ask customer to confirm shipping","Ask customer to confirm shipping"
+"Shipping confirmation text","Shipping confirmation text"
+"Enable option ""This was a gift""","Enable option ""This was a gift"""
+"Enable integration with Help Desk","Enable integration with Help Desk"
+"Code of ""Brand"" attribute","Code of ""Brand"" attribute"
+"Allow upload only attachments with extensions","Allow upload only attachments with extensions"
+"Limit of attachments size, Mb","Limit of attachments size, Mb"
+"Show Columns in RMA Grid","Show Columns in RMA Grid"
+"Show RMA section in Customer Account","Show RMA section in Customer Account"
+"Customers are required to select:","Customers are required to select:"
+"Allow to request RMA after order completion, days","Allow to request RMA after order completion, days"
+"Allow to request RMA if order has status","Allow to request RMA if order has status"
+"Ask to agree with RMA policy text","Ask to agree with RMA policy text"
+"CMS block with RMA policy text","CMS block with RMA policy text"
+"Number Format","Number Format"
+"Start Counter From","Start Counter From"
+"Counter Increment Step","Counter Increment Step"
+"Counter Length","Counter Length"
+"Email Sender","Email Sender"
+"Template of Notification Email for Customer","Template of Notification Email for Customer"
+"Template of Notification Email for RMA Owner","Template of Notification Email for RMA Owner"
+"Template of Rule Notification","Template of Rule Notification"
+" Send blind carbon copy (BCC) of all emails to"," Send blind carbon copy (BCC) of all emails to"

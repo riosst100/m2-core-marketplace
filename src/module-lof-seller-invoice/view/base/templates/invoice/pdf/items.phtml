@@ -1,0 +1,51 @@
+<?php
+$_items = $block->getItemsCollection();
+$currencySymbol = $block->getCurrencySymbol();
+?>
+<?php
+$i = 0;
+foreach ($_items as $_item):
+$options = $block->getSelectedOptionsOfQuoteItem($_item);
+?>
+
+<?php if ($_item->getParentItem()) {
+    continue;
+} else {
+    $i++;
+}?>
+<tbody class="<?php /* @noEscape */ echo $i%2 ? 'even' : 'odd' ?>">
+<tr>
+  <th scope="row"><?= $i; ?></th>
+  <td>
+    <?= $_item->getName();?>
+    <?php
+      if(!empty($options))
+      {
+        echo '<p class="custom-options"><ul>';
+        foreach ($options as $option)
+          {
+              $optionTitle = $option['label'];
+              $optionId = $option['option_id'];
+              $optionType = $option['option_type'];
+              $optionValue = $option['print_value'];
+              $optionCustomView = $option['custom_view'];
+              echo $optionCustomView?('<li>'.$optionCustomView.'</li>'):('<li><strong>'.$optionTitle."</strong>: ".$optionValue.'</li>');
+          }
+          echo '</ul></p>';
+      }
+      ?>
+    <?php if ($_item->getDescription()) { ?>
+    <p style="margin-top: 10px;">
+      <b><?=__('Note: '); ?></b>
+      <?=strip_tags($_item->getDescription()) ?>
+    </p>
+    <?php } ?>
+  </td>
+  <td align="left"><?= $_item->getSku();?></td>
+  <td align="right"><?= $currencySymbol.$_item->getCustomPrice(); ?></td>
+  <td align="right"><?= $_item->getQty();?></td>
+  <td align="right"><?= $currencySymbol.$_item->getTaxAmount(); ?></td>
+  <td align="right"><?= $currencySymbol.$_item->getRowTotal(); ?></td>
+</tr>
+</tbody>
+<?php endforeach; ?>

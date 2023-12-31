@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Magento/Email/etc/email_templates.xsd">
+    <template id="rma_notification_customer_email_template" label="RMA - Notification Email for Customer"
+              file="notification_customer_email_template.html" type="html" module="Lofmp_Rma" area="frontend"/>
+    <template id="rma_notification_seller_email_template" label="RMA - Notification Email for RMA Owner"
+              file="notification_seller_email_template.html" type="html" module="Lofmp_Rma" area="frontend"/>
+    <template id="rma_notification_admin_email_template" label="RMA - Notification Email for Admin"
+              file="notification_admin_email_template.html" type="html" module="Lofmp_Rma" area="frontend"/>
+    <template id="rma_notification_rule_template" label="RMA - Template of Rule Notifications"
+              file="notification_rule_template.html" type="html" module="Lofmp_Rma" area="frontend"/>
+</config>

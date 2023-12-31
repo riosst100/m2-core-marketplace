@@ -1,0 +1,414 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <!--    RMA frontend REST API -->
+    <!--    RMA Address REST API -->
+    <route method="GET" url="/V1/lofmp-returns/address">
+        <service class="Lofmp\Rma\Api\Repository\AddressRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/lofmp-returns/address/:addressId">
+        <service class="Lofmp\Rma\Api\Repository\AddressRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <!--    RMA Condition REST API -->
+    <route method="GET" url="/V1/lofmp-returns/condition">
+        <service class="Lofmp\Rma\Api\Repository\ConditionRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/lofmp-returns/condition/:conditionId">
+        <service class="Lofmp\Rma\Api\Repository\ConditionRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <!--    RMA Resolution REST API -->
+    <route method="GET" url="/V1/lofmp-returns/resolution">
+        <service class="Lofmp\Rma\Api\Repository\ResolutionRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/lofmp-returns/resolution/:resolutionId">
+        <service class="Lofmp\Rma\Api\Repository\ResolutionRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <!--    RMA Reason REST API -->
+    <route method="GET" url="/V1/lofmp-returns/reason">
+        <service class="Lofmp\Rma\Api\Repository\ReasonRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/lofmp-returns/reason/:reasonId">
+        <service class="Lofmp\Rma\Api\Repository\ReasonRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <!--    RMA Status REST API -->
+    <route method="GET" url="/V1/lofmp-returns/status">
+        <service class="Lofmp\Rma\Api\Repository\StatusRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/lofmp-returns/status/:statusId">
+        <service class="Lofmp\Rma\Api\Repository\StatusRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <!--    RMA Quick response REST API -->
+    <route method="GET" url="/V1/lofmp-returns/quickresponse">
+        <service class="Lofmp\Rma\Api\Repository\QuickResponseRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/lofmp-returns/quickresponse/:quickresponseId">
+        <service class="Lofmp\Rma\Api\Repository\QuickResponseRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <!--    RMA Custom Fields REST API -->
+    <route method="GET" url="/V1/lofmp-returns/customfield">
+        <service class="Lofmp\Rma\Api\Repository\FieldRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/lofmp-returns/customfield/:fieldId">
+        <service class="Lofmp\Rma\Api\Repository\FieldRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <!--    RMA REST API -->
+    <route method="GET" url="/V1/lofmp-returns/me/rma">
+        <service class="Lofmp\Rma\Api\Repository\CustomerRmaRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="GET" url="/V1/lofmp-returns/me/rma/:rmaId">
+        <service class="Lofmp\Rma\Api\Repository\CustomerRmaRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="POST" url="/V1/lofmp-returns/me/rma">
+        <service class="Lofmp\Rma\Api\Repository\CustomerRmaRepositoryInterface" method="saveRma"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="POST" url="/V1/lofmp-returns/me/bundlerma">
+        <service class="Lofmp\Rma\Api\Repository\CustomerRmaRepositoryInterface" method="saveBundle"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <!--    RMA Item REST API -->
+    <route method="GET" url="/V1/lofmp-returns/me/item">
+        <service class="Lofmp\Rma\Api\Repository\CustomerItemRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="GET" url="/V1/lofmp-returns/me/item/:itemId">
+        <service class="Lofmp\Rma\Api\Repository\CustomerItemRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="GET" url="/V1/lofmp-returns/me/itembyrma/:rmaId">
+        <service class="Lofmp\Rma\Api\Repository\CustomerItemRepositoryInterface" method="getItemByRma"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="POST" url="/V1/lofmp-returns/me/item">
+        <service class="Lofmp\Rma\Api\Repository\CustomerItemRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+    <!--    RMA Message REST API -->
+    <route method="GET" url="/V1/lofmp-returns/me/message">
+        <service class="Lofmp\Rma\Api\Repository\CustomerMessageRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="GET" url="/V1/lofmp-returns/me/messagebyrma/:rmaId">
+        <service class="Lofmp\Rma\Api\Repository\CustomerMessageRepositoryInterface" method="getListByRma"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="GET" url="/V1/lofmp-returns/me/message/:messageId">
+        <service class="Lofmp\Rma\Api\Repository\CustomerMessageRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="POST" url="/V1/lofmp-returns/me/message">
+        <service class="Lofmp\Rma\Api\Repository\CustomerMessageRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+    <!--    RMA admin REST API -->
+    <!--    RMA REST API -->
+    <route method="POST" url="/V1/admin/lofmp-returns/rma">
+        <service class="Lofmp\Rma\Api\Repository\RmaRepositoryInterface" method="save"/>
+        <resources>
+			<resource ref="Lofmp_Rma::rma_rma_save"/>
+		</resources>
+    </route>
+    <route method="PUT" url="/V1/admin/lofmp-returns/rma/:rmaId">
+        <service class="Lofmp\Rma\Api\Repository\RmaRepositoryInterface" method="save"/>
+        <resources>
+			<resource ref="Lofmp_Rma::rma_rma_save"/>
+		</resources>
+    </route>
+    <route method="DELETE" url="/V1/admin/lofmp-returns/rma/:rmaId">
+		<service class="Lofmp\Rma\Api\Repository\RmaRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Lofmp_Rma::rma_rma_delete"/>
+		</resources>
+	</route>
+    <!--    RMA Message REST API -->
+    <route method="POST" url="/V1/admin/lofmp-returns/message">
+        <service class="Lofmp\Rma\Api\Repository\MessageRepositoryInterface" method="save"/>
+        <resources>
+			<resource ref="Lofmp_Rma::rma_message_save"/>
+		</resources>
+    </route>
+    <route method="PUT" url="/V1/admin/lofmp-returns/message/:messageId">
+        <service class="Lofmp\Rma\Api\Repository\MessageRepositoryInterface" method="save"/>
+        <resources>
+			<resource ref="Lofmp_Rma::rma_message_save"/>
+		</resources>
+    </route>
+    <route method="DELETE" url="/V1/admin/lofmp-returns/message/:messageId">
+		<service class="Lofmp\Rma\Api\Repository\MessageRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Lofmp_Rma::rma_message_delete"/>
+		</resources>
+	</route>
+
+    <!--    RMA Address REST API -->
+    <route method="POST" url="/V1/admin/lofmp-returns/address">
+        <service class="Lofmp\Rma\Api\Repository\AddressRepositoryInterface" method="save"/>
+        <resources>
+			<resource ref="Lofmp_Rma::rma_return_addresses"/>
+		</resources>
+    </route>
+    <route method="PUT" url="/V1/admin/lofmp-returns/address/:addressId">
+        <service class="Lofmp\Rma\Api\Repository\AddressRepositoryInterface" method="save"/>
+        <resources>
+			<resource ref="Lofmp_Rma::rma_return_addresses"/>
+		</resources>
+    </route>
+    <route method="DELETE" url="/V1/admin/lofmp-returns/address/:addressId">
+		<service class="Lofmp\Rma\Api\Repository\AddressRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Lofmp_Rma::rma_return_addresses"/>
+		</resources>
+	</route>
+
+    <!--    RMA Condition REST API -->
+    <route method="POST" url="/V1/admin/lofmp-returns/condition">
+        <service class="Lofmp\Rma\Api\Repository\ConditionRepositoryInterface" method="save"/>
+        <resources>
+			<resource ref="Lofmp_Rma::rma_dictionary_condition"/>
+		</resources>
+    </route>
+    <route method="PUT" url="/V1/admin/lofmp-returns/condition/:conditionId">
+        <service class="Lofmp\Rma\Api\Repository\ConditionRepositoryInterface" method="save"/>
+        <resources>
+			<resource ref="Lofmp_Rma::rma_dictionary_condition"/>
+		</resources>
+    </route>
+    <route method="DELETE" url="/V1/admin/lofmp-returns/condition/:conditionId">
+		<service class="Lofmp\Rma\Api\Repository\ConditionRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Lofmp_Rma::rma_dictionary_condition"/>
+		</resources>
+	</route>
+    <!--    RMA Resolution REST API -->
+    <route method="POST" url="/V1/admin/lofmp-returns/resolution">
+        <service class="Lofmp\Rma\Api\Repository\ResolutionRepositoryInterface" method="save"/>
+        <resources>
+			<resource ref="Lofmp_Rma::rma_dictionary_resolution"/>
+		</resources>
+    </route>
+    <route method="PUT" url="/V1/admin/lofmp-returns/resolution/:resolutionId">
+        <service class="Lofmp\Rma\Api\Repository\ResolutionRepositoryInterface" method="save"/>
+        <resources>
+			<resource ref="Lofmp_Rma::rma_dictionary_resolution"/>
+		</resources>
+    </route>
+    <route method="DELETE" url="/V1/admin/lofmp-returns/resolution/:resolutionId">
+		<service class="Lofmp\Rma\Api\Repository\ResolutionRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Lofmp_Rma::rma_dictionary_resolution"/>
+		</resources>
+	</route>
+    <!--    RMA Reason REST API -->
+    <route method="POST" url="/V1/admin/lofmp-returns/reason">
+        <service class="Lofmp\Rma\Api\Repository\ReasonRepositoryInterface" method="save"/>
+        <resources>
+			<resource ref="Lofmp_Rma::rma_dictionary_reason"/>
+		</resources>
+    </route>
+    <route method="PUT" url="/V1/admin/lofmp-returns/reason/:reasonId">
+        <service class="Lofmp\Rma\Api\Repository\ReasonRepositoryInterface" method="save"/>
+        <resources>
+			<resource ref="Lofmp_Rma::rma_dictionary_reason"/>
+		</resources>
+    </route>
+    <route method="DELETE" url="/V1/admin/lofmp-returns/reason/:reasonId">
+		<service class="Lofmp\Rma\Api\Repository\ReasonRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Lofmp_Rma::rma_dictionary_reason"/>
+		</resources>
+	</route>
+    <!--    RMA Status REST API -->
+    <route method="POST" url="/V1/admin/lofmp-returns/status">
+        <service class="Lofmp\Rma\Api\Repository\StatusRepositoryInterface" method="save"/>
+        <resources>
+			<resource ref="Lofmp_Rma::rma_dictionary_status"/>
+		</resources>
+    </route>
+    <route method="PUT" url="/V1/admin/lofmp-returns/status/:statusId">
+        <service class="Lofmp\Rma\Api\Repository\StatusRepositoryInterface" method="save"/>
+        <resources>
+			<resource ref="Lofmp_Rma::rma_dictionary_status"/>
+		</resources>
+    </route>
+    <route method="DELETE" url="/V1/admin/lofmp-returns/status/:statusId">
+		<service class="Lofmp\Rma\Api\Repository\StatusRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Lofmp_Rma::rma_dictionary_status"/>
+		</resources>
+	</route>
+    <!--    RMA QuickResponse REST API -->
+    <route method="POST" url="/V1/admin/lofmp-returns/quickresponse">
+        <service class="Lofmp\Rma\Api\Repository\QuickResponseRepositoryInterface" method="save"/>
+        <resources>
+			<resource ref="Lofmp_Rma::rma_dictionary_template"/>
+		</resources>
+    </route>
+    <route method="PUT" url="/V1/admin/lofmp-returns/quickresponse/:quickresponseId">
+        <service class="Lofmp\Rma\Api\Repository\QuickResponseRepositoryInterface" method="save"/>
+        <resources>
+			<resource ref="Lofmp_Rma::rma_dictionary_template"/>
+		</resources>
+    </route>
+    <route method="DELETE" url="/V1/admin/lofmp-returns/quickresponse/:quickresponseId">
+		<service class="Lofmp\Rma\Api\Repository\QuickResponseRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Lofmp_Rma::rma_dictionary_template"/>
+		</resources>
+	</route>
+    <!--    RMA Field REST API -->
+
+    <route method="POST" url="/V1/admin/lofmp-returns/customfield">
+        <service class="Lofmp\Rma\Api\Repository\FieldRepositoryInterface" method="save"/>
+        <resources>
+			<resource ref="Lofmp_Rma::rma_dictionary_field"/>
+		</resources>
+    </route>
+    <route method="PUT" url="/V1/admin/lofmp-returns/customfield/:fieldId">
+        <service class="Lofmp\Rma\Api\Repository\FieldRepositoryInterface" method="save"/>
+        <resources>
+			<resource ref="Lofmp_Rma::rma_dictionary_field"/>
+		</resources>
+    </route>
+    <route method="DELETE" url="/V1/admin/lofmp-returns/customfield/:fieldId">
+		<service class="Lofmp\Rma\Api\Repository\FieldRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Lofmp_Rma::rma_dictionary_field"/>
+		</resources>
+	</route>
+    <!--    RMA Work Flow Rule REST API -->
+    <route method="GET" url="/V1/admin/lofmp-returns/rule">
+        <service class="Lofmp\Rma\Api\Repository\RuleRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Lofmp_Rma::rma_rule"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/admin/lofmp-returns/rule/:ruleId">
+        <service class="Lofmp\Rma\Api\Repository\RuleRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="Lofmp_Rma::rma_rule"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/admin/lofmp-returns/rule">
+        <service class="Lofmp\Rma\Api\Repository\RuleRepositoryInterface" method="save"/>
+        <resources>
+			<resource ref="Lofmp_Rma::rma_rule"/>
+		</resources>
+    </route>
+    <route method="PUT" url="/V1/admin/lofmp-returns/rule/:ruleId">
+        <service class="Lofmp\Rma\Api\Repository\RuleRepositoryInterface" method="save"/>
+        <resources>
+			<resource ref="Lofmp_Rma::rma_rule"/>
+		</resources>
+    </route>
+    <route method="DELETE" url="/V1/admin/lofmp-returns/rule/:ruleId">
+		<service class="Lofmp\Rma\Api\Repository\RuleRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Lofmp_Rma::rma_rule"/>
+		</resources>
+	</route>
+</routes>

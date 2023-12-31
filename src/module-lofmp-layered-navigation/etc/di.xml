@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Magento\LayeredNavigation\Block\Navigation" type="\Lofmp\LayeredNavigation\Block\Navigation"/>
+    
+    <virtualType name="vendorPageFilterList" type="Magento\Catalog\Model\Layer\FilterList">
+        <arguments>
+            <argument name="filterableAttributes" xsi:type="object">Magento\Catalog\Model\Layer\Category\FilterableAttributeList</argument>
+        </arguments>
+    </virtualType>
+
+    <!--layer vendor-->
+    <type name="Lofmp\LayeredNavigation\Model\Layer\SellerHomePage">
+        <arguments>
+            <argument name="context" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\SellerHomePage\Context</argument>
+        </arguments>
+    </type>
+
+    <!--context for Lofmp\LayeredNavigation\Model\Layer\SellerHomePage-->
+    <virtualType name="Lofmp\LayeredNavigation\Model\Layer\SellerHomePage\Context" type="Magento\Catalog\Model\Layer\Context">
+        <arguments>
+            <argument name="collectionProvider" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\SellerHomePage\ItemCollectionProvider</argument>
+            <argument name="stateKey" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\SellerHomePage\StateKey</argument>
+            <argument name="collectionFilter" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\SellerHomePage\CollectionFilter</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="sellerFilterList" type="Lofmp\LayeredNavigation\Model\Layer\FilterList">
+        <arguments>
+            <argument name="filterableAttributes" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\SellerHomePage\FilterableAttributeList</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Lofmp\LayeredNavigation\Model\Layer\SellerHomePage\FilterableAttributeList">
+        <arguments>
+            <argument name="layer" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\SellerHomePage</argument>
+        </arguments>
+    </type>
+
+    <!--Filter Items-->
+    <virtualType name="Lofmp\LayeredNavigation\Model\Layer\Filter\Attribute">
+        <arguments>
+            <argument name="resource" xsi:type="object">Lofmp\LayeredNavigation\Model\ResourceModel\Layer\Filter\Attribute</argument>
+            <argument name="algorithmFactory" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\Filter\Dynamic\AlgorithmFactory</argument>
+            <argument name="dataProviderFactory" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\Filter\DataProvider\AttributeFactory</argument>
+            <argument name="layer" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\SellerHomePage</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Lofmp\LayeredNavigation\Model\Layer\Filter\Decimal" type="Magento\Catalog\Model\Layer\Filter\Decimal">
+        <arguments>
+            <argument name="catalogLayer" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\SellerHomePage</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Lofmp\LayeredNavigation\Model\Layer\Filter\Price">
+        <arguments>
+            <argument name="resource" xsi:type="object">Lofmp\LayeredNavigation\Model\ResourceModel\Layer\Filter\Price</argument>
+            <argument name="algorithmFactory" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\Filter\Dynamic\AlgorithmFactory</argument>
+            <argument name="dataProviderFactory" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\Filter\DataProvider\PriceFactory</argument>
+            <argument name="layer" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\SellerHomePage</argument>
+        </arguments>
+    </type>
+
+    <!--Filter Data Provider-->
+    <virtualType name="Lofmp\LayeredNavigation\Model\Layer\Filter\DataProvider\Price" type="Magento\Catalog\Model\Layer\Filter\DataProvider\Price">
+        <arguments>
+            <argument name="resource" xsi:type="object">Lofmp\LayeredNavigation\Model\ResourceModel\Layer\Filter\Price</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Lofmp\LayeredNavigation\Model\Layer\Filter\Price\Range" type="Magento\Catalog\Model\Layer\Filter\Price\Range">
+        <arguments>
+            <argument name="layerResolver" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\Resolver</argument>
+        </arguments>
+        <!--Price ranger-->
+    </virtualType>
+    <type name="Lofmp\LayeredNavigation\Model\Layer\Resolver">
+        <arguments>
+            <argument name="layersPool" xsi:type="array">
+                <item name="seller_page" xsi:type="string">Lofmp\LayeredNavigation\Model\Layer\SellerHomePage</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Lofmp\LayeredNavigation\Model\Layer\Filter\Item" type="Magento\Catalog\Model\Layer\Filter\Item">
+        <arguments>
+            <argument name="catalogLayer" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\SellerHomePage</argument>
+        </arguments>
+    </virtualType>
+
+    <!--Dynamic Filter-->
+    <type name="Lofmp\LayeredNavigation\Model\Layer\Filter\Dynamic\AlgorithmFactory">
+        <arguments>
+            <argument name="algorithms" xsi:type="array">
+                <item name="auto" xsi:type="string">Lofmp\LayeredNavigation\Model\Layer\Filter\Dynamic\Auto</item>
+                <item name="improved" xsi:type="string">Lofmp\LayeredNavigation\Model\Layer\Filter\Dynamic\Improved</item>
+                <item name="manual" xsi:type="string">Lofmp\LayeredNavigation\Model\Layer\Filter\Dynamic\Manual</item>
+            </argument>
+        </arguments>
+    </type>
+
+
+    <!--Filter Type-->
+    <virtualType name="Lofmp\LayeredNavigation\Model\Layer\Filter\Dynamic\Auto"
+     type="Magento\Catalog\Model\Layer\Filter\Dynamic\Auto">
+        <arguments>
+            <argument name="range" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\Filter\Price\Range</argument>
+            <argument name="layerResolver" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\Resolver</argument>
+            <argument name="resource" xsi:type="object">Lofmp\LayeredNavigation\Model\ResourceModel\Layer\Filter\Price</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Lofmp\LayeredNavigation\Model\Layer\Filter\Dynamic\Improved"
+                 type="Magento\Catalog\Model\Layer\Filter\Dynamic\Improved">
+        <arguments>
+            <argument name="layerResolver" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\Resolver</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Lofmp\LayeredNavigation\Model\Layer\Filter\Dynamic\Manual"
+                 type="Magento\Catalog\Model\Layer\Filter\Dynamic\Manual">
+        <arguments>
+            <argument name="range" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\Filter\Price\Range</argument>
+            <argument name="resource" xsi:type="object">Lofmp\LayeredNavigation\Model\ResourceModel\Layer\Filter\Price</argument>
+            <argument name="layerResolver" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\Resolver</argument>
+        </arguments>
+    </virtualType>
+
+    <!--resource MODEL-->
+    <type name="Lofmp\LayeredNavigation\Model\ResourceModel\Layer\Filter\Price">
+        <arguments>
+            <argument name="layerResolver" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\Resolver</argument>
+        </arguments>
+    </type>
+
+    <!--<type name="Magento\Catalog\Model\Layer\Search\CollectionFilter">-->
+        <!--<plugin name="searchQuery" type="Magento\CatalogSearch\Model\Layer\Search\Plugin\CollectionFilter" />-->
+    <!--</type>-->
+</config>

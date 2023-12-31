@@ -1,0 +1,443 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_Auction
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+use Lof\Auction\Model\ResourceModel\Product\Source\AuctionStatus;
+$_imgHelper = $this->helper('Lof\Auction\Helper\Image');
+$helper = $this->helper('Lof\Auction\Helper\Data');
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+$localeDate = $helper->getTimezone();
+$gmtOffset = $helper->getGmtOffset();
+$_auctionCollection       = $block->getAuction();
+$title                  = $this->getConfig('widget_title');
+$show_auction_name = $this->getConfig('show_auction_name');
+
+$blockId = rand() . time();
+$number_item_per_column = (int)$this->getConfig('number_item_per_column');
+if ($number_item_per_column == '' || $number_item_per_column == 0) {
+    $number_item_per_column = 1;
+}
+
+$default_items = $this->getConfig('default_items');
+$addition_class = $this->getConfig('addition_class');
+$mobile_items = (int)$this->getConfig('mobile_items', 1);
+$tablet_small_items = (int)$this->getConfig('tablet_small_items', 2);
+$tablet_items = (int)$this->getConfig('tablet_items', 3);
+$portrait_items = (int)$this->getConfig('portrait_items', 4);
+$large_items = (int)$this->getConfig('large_items', 5);
+$dots = $this->getConfig('dots');
+$nav = $this->getConfig('nav');
+$nav_prev = $this->getConfig('nav_prev');
+$nav_next = $this->getConfig('nav_next');
+$loop = $this->getConfig('loop');
+$autoplay = $this->getConfig('autoplay');
+$autoplay_timeout = (int)$this->getConfig('autoplay_timeout', 3000);
+$autoplay_pauseonhover = (int)$this->getConfig('autoplay_pauseonhover');
+$auto_play = $this->getConfig('auto_play');
+$speed = $this->getConfig('speed');
+$rtl                    = $this->getConfig('rtl');
+$image_width            = $this->getConfig('image_width');
+$image_height            = $this->getConfig('image_height');
+$image_width = $image_width?(int)$image_width:240;
+$image_height = $image_height?(int)$image_height:300;
+$html = '';
+$cmsblock = $this->getConfig('cmsblock');
+$pretext_html = $this->getConfig('pretext_html');
+if ($cmsblock === 'pretext_html' && $pretext_html) {
+    $html = base64_decode($pretext_html);
+} elseif ($cmsblock != '') {
+    $html = $this->getCmsBlockModel()->load($cmsblock)->getContent();
+}
+$templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+$html = $helper->filter($html);
+$aucConfig = $helper->getAuctionConfiguration();
+$show_auto_bid_amount = isset($aucConfig['show_auto_bid_amount']) ? (int)$aucConfig['show_auto_bid_amount'] : 1;
+
+$mouseDrag             = 1;
+$touchDrag             = 1;
+$pullDrag              = 1;
+
+$available_statuses = [
+    AuctionStatus::STATUS_TIME_END,
+    AuctionStatus::STATUS_PROCESS
+];
+?>
+<?php if ($_auctionCollection->count()) : ?>
+    <div id="auction-list-container<?= $blockId; ?>" class="auc-list-container block widget list-auction-product-wrapper">
+        <?php if ($title) { ?>
+            <div class="block-title"><h2><?= $title ?></h2></div>
+        <?php } ?>
+        <?php if ($html != '') { ?>
+            <div class="pretext-html"><?= $html ?></div>
+        <?php } ?>
+        <div class="products auctionowl-play">
+            <div
+                id="lof-carousel<?= $blockId ?>"
+                class="owl-carousel lof-carousel<?= $blockId ?>"
+                data-rtl="<?= $rtl ? "true" : "false" ?>"
+                data-loop="<?= $loop ? "true" : "false" ?>"
+                data-nav="false"
+                data-dot="<?= $dots ? "true" : "false" ?>"
+                data-autoplay="<?= $autoplay ? "true" : "false" ?>"
+                data-autoplay-timeout="<?= $autoplay_timeout ?>"
+                data-pauonhover="<?= $autoplay_pauseonhover ? "true" : "false" ?>"
+                data-mobile-items="<?= (int)$mobile_items ?>"
+                data-tablet-small-items="<?= (int)$tablet_small_items ?>"
+                data-tablet-items="<?= (int)$tablet_items ?>"
+                data-portrait-items="<?= (int)$portrait_items ?>"
+                data-large-items="<?= (int)$default_items ?>"
+                data-large-max-items="<?= (int)$large_items ?>"
+                data-nav-text-owlpre="<?= $nav_prev; ?>"
+                data-nav-text-owlnext="<?= $nav_next; ?>"
+                data-mousedrag="<?= $mouseDrag ?>"
+                data-pulldrag="<?= $pullDrag ?>"
+                data-touchdrag="<?= $touchDrag ?>">
+            <?php
+            $i = 0;
+            foreach ($_auctionCollection as $key => $auction):
+                $i++;
+                $_product = $helper->getProductById($auction->getProductId());
+                $auction_product = $this->getAuctionDetail($_product->getId());
+                if(!$auction_product){
+                    continue;
+                }
+                $data_auction = json_encode($auction_product);
+                $stopTime = isset($auction_product['stop_auction_utc_time'])?$auction_product['stop_auction_utc_time']:0;
+                $startTime = isset($auction_product['start_auction_utc_time'])?$auction_product['start_auction_utc_time']:0;
+
+                $_image = $_imgHelper->getImg($_product, $image_width, $image_height, 'category_page_grid');
+                $auctionData = $auction->getData();
+                $auctionData['stop_auction_time'] = $auction_product["stop_auction_time"];
+                $auctionData['start_auction_time'] = $auction_product["start_auction_time"];
+                $incVal = $helper->getIncrementPriceAsRange($auctionData['min_amount']);
+                if ($auctionData['min_amount'] < $auctionData['starting_price']) {
+                    $auctionData['min_amount'] = $auctionData['starting_price'];
+                }
+                $today = $this->getToday();
+			    $difference= strtotime($auction_product['stop_auction_time']) - strtotime($today);
+
+                $range_price = $helper->getMinAmount($auctionData['entity_id'], $aucConfig);
+                $starting = strtotime($auctionData['start_auction_time']) <= strtotime($today)?true:false;
+                $commingsoon = (strtotime($auctionData['start_auction_time']) > strtotime($today))?true:false;
+                $processing = ((strtotime($auctionData['stop_auction_time']) >= strtotime($today)) && $starting)?true:false;
+                $auction_status = $auction_product["auction_status"];
+                // if ($difference > 0):
+                ?>
+                <div class="item product product-item lof-auction-product auction-item-<?= (int)$auction->getId(); ?>" data-auctionid="<?= (int)$auction->getId(); ?>" data-sku="<?= $_product->getSku(); ?>">
+                 <div class="item-inner clearfix product-item-info">
+                    <a href="<?= $_product->getProductUrl() ?>" title="<?= $_image->getLabel() ?>" class="product-item-photo">
+                    <span class="product-image-container" style="width: <?= $image_width; ?>px">
+                        <span class="product-image-wrapper" style="padding-bottom: 125%;">
+                            <img class="product-image-photo" src="<?= $_image->getUrl(); ?>" alt="<?= $_image->getLabel() ?>" width="<?= $image_width ?>"
+                                height="<?= $image_height ?>"/>
+                        </span>
+                    </span>
+                    </a>
+                    <div class="product details product-item-details box-info">
+                        <h2 class="product name product-item-name product-name">
+                            <a class="product-item-link" href="<?= $_product->getProductUrl() ?>"><?= $_helper->productAttribute(
+                            $_product,
+                            $_product->getName(),
+                            'name'
+                            ); ?></a>
+                        </h2>
+                        <?= $block->getReviewsSummaryHtml($_product, $templateType, true); ?>
+                        <?= $block->getLofProductPriceHtml($_product, 'lofauction-' . time() . rand()) ?>
+                        <div class="auc-auction-container">
+                            <div class="auc-auction active">
+                                <div class="auc-auction-info">
+                                    <div id="auctionbidform<?= $blockId; ?>">
+                                        <ul class="list-group">
+                                            <?php if ($commingsoon && in_array($auction_status, $available_statuses)): ?>
+                                                <li class="list-group-item">
+                                                    <div id="starting_soon_bid_title_<?= $blockId; ?><?= $key;?>"><?= __("Auctions will start in:") ?></div>
+                                                </li>
+                                            <?php endif; ?>
+                                            <?php if(in_array($auction_status, $available_statuses)): ?>
+                                            <li class="list-group-item">
+                                                <div class="wait-for-load timeleftbox clearfix">
+                                                    <div id="count-down-auction<?= $blockId; ?><?= $key; ?>" class="count-down-wrapper" data-datetime="<?=$stopTime?>" data-starttime="<?=$startTime?>"></div>
+                                                </div>
+                                            </li>
+                                            <?php endif; ?>
+                                            <?php if ($processing && in_array($auction_status, $available_statuses)): ?>
+                                            <li class="list-group-item wait-for-load">
+                                                <div class='lofmp_row'>
+                                                    <?php
+                                                    if ($aucConfig['show_curt_auc_price']): ?>
+                                                        <span class='label'><?= __('Current Bid :'); ?></span>
+                                                        <strong class='value'>
+                                                            <?= $block->formatPrice($auctionData['min_amount']); ?>
+                                                        </strong>
+                                                    <?php endif; ?>
+                                                    <?php if ($aucConfig['show_auc_detail']): ?>
+                                                        <span class="wgbid_link<?= $blockId; ?><?= $key; ?>">[
+                                                                <a href="#" class='anchr number-of-bid'>
+                                                                    <?= $block->getNumberOfBid($auctionData['entity_id']); ?>
+                                                                </a>]
+                                                        </span>
+                                                        <div id="lof_history_bid_wgfeatured_<?= $blockId; ?><?= $key; ?>" class="bid-history-table-<?= (int)$auctionData['entity_id']; ?>">
+                                                            <div class="auc-bid-history-container">
+                                                            <?php if ($aucConfig['auction_rule']) { ?>
+                                                                <div class='auction_rule'>
+                                                                    <div class="label"><?= __('Auction Rule'); ?></div>
+                                                                    <p><?= $aucConfig['auction_rule']; ?></p>
+                                                                </div>
+                                                            <?php } ?>
+                                                            <table class="data table auc-history-bidder-table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col" class="col auc-history-bidder"><?= __('Bidder'); ?></th>
+                                                                    <th scope="col" class="col auc-history-date"><?= __('Date & Time'); ?></th>
+                                                                    <th scope="col" class="col auc-history-amount"><?= __('Amount');?></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php foreach ($this->getHistory($auction->getProductId()) as $k => $history) {
+                                                                    if ($show_auto_bid_amount) {
+                                                                        $history_amount = $this->getHistoryAuto($history->getCustomerId(), $auction->getProductId())->getAmount();
+                                                                        if ($history_amount > $history->getAuctionAmount()) {
+                                                                            if ($aucConfig['show_auto_bid_amount']) {
+                                                                                $auction_amount = $history_amount . '<span class="auc-auto-bid-ico">' . __('Auto Bid') . '</span>';
+                                                                                $auction_amount = $block->formatPrice($auction_amount);
+                                                                            } else {
+                                                                                $auction_amount = __('****');
+                                                                            }
+                                                                        } else {
+                                                                            if ($aucConfig['show_price']) {
+                                                                                $auction_amount = $history->getAuctionAmount();
+                                                                                $auction_amount = $block->formatPrice($auction_amount);
+                                                                            } else {
+                                                                                $auction_amount = __('****');
+                                                                            }
+                                                                        }
+                                                                    } else {
+                                                                        if ($aucConfig['show_price']) {
+                                                                            $auction_amount = $history->getAuctionAmount();
+                                                                            $auction_amount = $block->formatPrice($auction_amount);
+                                                                        } else {
+                                                                            $auction_amount = __('****');
+                                                                        }
+                                                                    } ?>
+                                                                    <tr>
+                                                                        <td class="col auc-history-bidder"><?php
+                                                                        if ($aucConfig['show_bidder']) {
+                                                                            echo $helper->getCustomerById($history->getCustomerId())->getName();
+                                                                        } else {
+                                                                            echo __('****');
+                                                                        } ?></td>
+                                                                        <td class="col auc-history-date"><?= $history->getCreatedAt(); ?></td>
+                                                                        <td class="col auc-history-amount"><?= $auction_amount; ?></td>
+                                                                    </tr>
+                                                                    <?php
+                                                                } ?>
+                                                            </tbody>
+                                                            </table>
+                                                            </div>
+                                                        </div>
+                                                        <script type="text/javascript">
+                                                        require([
+															'jquery',
+															'Magento_Ui/js/modal/modal'
+														],function($, modal) {
+                                                                var options<?= $key;?> = {
+                                                                    type: 'popup',
+                                                                    responsive: true,
+                                                                    innerScroll: true,
+                                                                    title: '<?= __('Bid History'); ?>',
+                                                                    buttons: [{
+                                                                        text: $.mage.__('Ok'),
+                                                                        class: '',
+                                                                        click: function () {
+                                                                            this.closeModal();
+                                                                        }
+                                                                    }]
+                                                                };
+                                                                var popup = modal(options<?= $key;?>, $('#lof_history_bid_wgfeatured_<?= $blockId; ?><?= $key;?>'));
+                                                                $(".wgbid_link<?= $blockId; ?><?= $key;?>").on('click',function(){
+                                                                    $("#lof_history_bid_wgfeatured_<?= $blockId; ?><?= $key;?>").modal("openModal");
+                                                                });
+                                                            });
+                                                        </script>
+                                                    <?php endif; ?>
+                                                </div>
+                                                </li>
+                                                <li class="list-group-item wait-for-load">
+                                                    <div class="lofmp_wrap">
+                                                        <form action="<?= $block->getAuctionFormAction($auctionData['entity_id']) ?>" enctype="multipart/form-data" method="post"
+                                                              id="lof_bidding_wgform<?= $blockId.$key; ?>" class="lof_bidding_form">
+                                                            <?php if (!$aucConfig['disable_manual']) { ?>
+                                                                <?php if ($aucConfig['auto_enable'] && $auctionData['auto_auction_opt']) { ?>
+                                                                    <div class="input-box auto-bid">
+                                                                        <input type="checkbox" value="1" name="auto_bid_allowed"/>
+                                                                        <span><?= __('Place Bid as Automatic') ?></span>
+                                                                    </div>
+                                                                <?php } ?>
+                                                                <div class="input-box">
+                                                                    <input
+                                                                        type="number"
+                                                                        value="<?= $range_price; ?>"
+                                                                        name="bidding_amount"
+                                                                        class="range-price input-text required-entry mpbidding_amount"
+                                                                        placeholder="<?= $block->escapeHtmlAttr(__("Enter Bid Amount")); ?>"
+                                                                        required="required"
+                                                                        step=".01"
+                                                                        oncut="return false;"
+                                                                        oncopy="return false;"
+                                                                        onpaste="return false;"/>
+                                                                </div>
+                                                            <?php } else { ?>
+                                                                <input
+                                                                    type="hidden"
+                                                                    value="<?= $range_price; ?>"
+                                                                    name="bidding_amount"
+                                                                    class="range-price input-text required-entry mpbidding_amount"
+                                                                    placeholder="Enter Bid Amount" required="required"
+                                                                    oncut="return false;" oncopy="return false;"
+                                                                    onpaste="return false;"/>
+                                                                <input type="hidden" value="1" name="auto_bid_allowed"/>
+                                                            <?php } ?>
+                                                            <input type="hidden" name='data_auction' value='<?= $data_auction; ?>'/>
+                                                            <button class="action primary" title="<?= __('Bidding') ?>" type="submit">
+                                                                <span><?= __('Place Bid') ?></span>
+                                                            </button>
+                                                            <?php if (!$aucConfig['disable_manual']) { ?>
+                                                                <div class="auc-bid-note">
+                                                                    <span><?= __('Enter %1 or more', '<span class="range-price-format price" data-price="'.(float)$range_price.'">' . $helper->getPriceFormat($range_price) . '</span>'); ?></span>
+                                                                </div>
+                                                            <?php } ?>
+                                                        </form>
+                                                        <?php if ($aucConfig['auto_enable'] && $auctionData['auto_auction_opt'] && isset($aucConfig['enable_max_absentee_bid']) && $aucConfig['enable_max_absentee_bid']): ?>
+                                                        <?php
+                                                            $randNewId = rand().time();
+                                                            $widget = [
+                                                                'Lof_Auction/js/max_absentee_bid' => [
+                                                                    'wrapper'       => '#max_absentee_bid_wrapper'.$auctionData['entity_id']."_".$randNewId,
+                                                                    'auctionId'     => $auctionData['entity_id'],
+                                                                    'getUrl'        => $block->escapeUrl($this->getUrl("lofauction/account/getMaxabsentee")),
+                                                                    'priceFormat'   => $helper->getPriceFormatType()
+                                                                ]
+                                                            ];
+                                                        ?>
+                                                        <div id="max_absentee_bid_wrapper<?= $auctionData['entity_id']."_".$randNewId ?>" class="wait-for-load input-box auto-bid max-absentee-bid-wrapper" data-mage-init='<?= json_encode($widget) ?>'>
+                                                            <form action="<?= $block->escapeUrl($this->getUrl("lofauction/account/setMaxabsentee")) ?>" class="form auction-max-absentee-bid" id="max_absentee_bid_form<?= $auctionData['entity_id']."_".$randNewId ?>" autocomplete="off" method="post">
+                                                                <div class="top-content">
+                                                                    <h3><?= $block->escapeHtml("Enter your maximum absentee bid");?></h3>
+                                                                    <span class="small-text text-small"><?= __('Minimum Bid: %1', '<span class="range-price-format price" data-price="'.(float)$range_price.'">' . $block->formatPrice($range_price) . '</span>'); ?></span>
+                                                                </div>
+                                                                <div class="max-absentee-bid-input-field main-content">
+                                                                    <input type="hidden" name="current_url" value="<?= $block->escapeUrl($block->getCurrentUrl()); ?>" />
+                                                                    <input type="hidden" name="auction_id" value="<?= (int)$auctionData['entity_id']; ?>" />
+                                                                    <input type="number"
+                                                                        value="<?= $range_price; ?>"
+                                                                        name="max_absentee_bid"
+                                                                        class="range-price input-text max-absentee-bid-input required-entry validate-digits-range digits-range-<?= (int)$range_price; ?>-<?= (int)$auctionData['max_amount'];?>"
+                                                                        placeholder="<?= $block->escapeHtmlAttr(__('Enter Max Absentee Bid Amount')); ?>"
+                                                                        step=".01"
+                                                                        oncut="return false;"
+                                                                        oncopy="return false;"
+                                                                        onpaste="return false;"/>
+                                                                    <button class="action primary btn-place-max-bid" title="<?= $block->escapeHtmlAttr(__('Place Max Bid')) ?>">
+                                                                        <span><?= __('Place Max Bid') ?></span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="bottom-content">
+                                                                    <span><span class="range-price max-bid-amount"><?= (float)$range_price;?></span><?= __(' x 1 unit = '); ?><span class="range-price-format price max-bid-price" data-price="<?= (float)$range_price; ?>"><?= $block->formatPrice($range_price); ?></span></span>
+                                                                    <br/>
+                                                                    <span class="small-text text-small"><?= $block->escapeHtml(__("Applicable fees & taxes are added at checkout")); ?></span>
+                                                                    <?php if ($helper->isRequirePlaceBid()) : ?>
+                                                                    <br/>
+                                                                    <span class="small-text text-small"><?= $block->escapeHtml(__("Require place a bid before.")); ?></span>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    <?php endif; ?>
+                                                    </div>
+                                                </li>
+                                            <?php endif; ?>
+                                            </ul>
+                                            <script type="text/javascript">
+                                                require([
+                                                    'jquery',
+                                                    'moment',
+                                                    'moment-timezone-with-data'
+                                                ],function($,moment, moment_timezone) {
+                                                        if ($("#count-down-auction<?= $blockId; ?><?= $key; ?>").length > 0) {
+                                                            var x = setInterval(function() {
+                                                                var countDownDate = $("#count-down-auction<?= $blockId; ?><?= $key; ?>").data("datetime");
+                                                                countDownDate = moment(countDownDate);
+                                                                var startTime = $("#count-down-auction<?= $blockId; ?><?= $key; ?>").data("starttime");
+                                                                startTime = moment(startTime);
+                                                                var d = new Date();
+                                                                var utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+                                                                var now = moment(utc);
+                                                                var diff = countDownDate.diff(now);
+                                                                var diffStart = startTime.diff(now);
+                                                                if (diff <= 0) {
+                                                                    clearInterval(x);
+                                                                    document.getElementById("count-down-auction<?= $blockId.$key;?>").innerHTML = "<?= $block->escapeHtml(__('EXPIRED'));?>";
+                                                                    if (typeof(document.getElementById("lof_bidding_wgform<?= $blockId.$key;?>")) !="undefined" && document.getElementById("lof_bidding_wgform<?= $blockId.$key;?>") ) {
+                                                                        document.getElementById("lof_bidding_wgform<?= $blockId.$key;?>").remove();
+                                                                    }
+
+                                                                } else if (diffStart < 0){
+                                                                    var duration = moment.duration(diff);
+                                                                    var $title = $("#starting_soon_bid_title_<?= $blockId; ?><?= $key;?>");
+                                                                    $title.text('<?= $block->escapeHtml(__("This auction is starting, refresh page to see more information.")); ?>');
+                                                                    countDown(duration);
+                                                                } else {
+                                                                    let duration = moment.duration(diffStart);
+                                                                    countDown(duration);
+                                                                }
+                                                            }, 1000);
+                                                        }
+                                                        function countDown(duration) {
+                                                            if (duration) {
+                                                                var d = duration.days(),
+                                                                h = duration.hours(),
+                                                                m = duration.minutes(),
+                                                                s = duration.seconds(),
+                                                                y = duration.years(),
+                                                                month = duration.months()
+
+                                                                document.getElementById("count-down-auction<?= $blockId. $key;?>").innerHTML = '<span class="countdown_row countdown_show4"><span class="countdown_section"><span class="countdown_amount">'+d + "</span><br><?= $block->escapeHtml(__('Days')); ?></span><span class='countdown_section'><span class='countdown_amount'>" + h + "</span><br><?= $block->escapeHtml(__('Hours')); ?></span><span class='countdown_section'><span class='countdown_amount'>"
+                                                                + m + "</span><br><?= $block->escapeHtml(__('Minutes')); ?></span><span class='countdown_section'><span class='countdown_amount'>" + s + "</span><br><?= $block->escapeHtml(__('Seconds')); ?></span>"+'</span>';
+                                                            }
+                                                        }
+                                                });
+                                            </script>
+                                        </div>
+                                    </div>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+                <?php
+                    // endif;
+                endforeach;
+                ?>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        require(['Lof_Auction/js/auction']);
+    </script>
+<?php endif; ?>

@@ -1,0 +1,12 @@
+<div class="action-select-wrap buttons">
+    <span class="selected-number"
+          text="$t('Selected') + ' ' + selectedItemsNumber()" />
+    <!-- ko repeat: { foreach: actions, item: '$action'}  -->
+    <button data-bind="enable: isEnabled()"
+            class="action" css="$action().cssClass"
+            click="applyAction.bind($data, $action().type)"
+            type="button">
+        <span text="$action().label"/>
+    </button>
+    <!-- /ko-->
+</div>

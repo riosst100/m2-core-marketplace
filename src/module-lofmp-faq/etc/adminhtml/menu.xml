@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://landofcoder.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_Faq
+ * @copyright  Copyright (c) 2017 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Lofmp_Faq::mpfaq" title="Marketplace FAQ" module="Lofmp_Faq" sortOrder="10" resource="Lofmp_Faq::question" parent="Lof_MarketPlace::marketplace"/>
+        <add id="Lofmp_Faq::category_manage" title="Manage Categories" module="Lofmp_Faq" sortOrder="10" parent="Lofmp_Faq::mpfaq" action="lofmpfaq/category/index" resource="Lofmp_Faq::category"/>
+        <add id="Lofmp_Faq::question_manage" title="Manage Questions" module="Lofmp_Faq" sortOrder="20" parent="Lofmp_Faq::mpfaq" action="lofmpfaq/question/index" resource="Lofmp_Faq::question"/>
+        <!-- <add id="Lofmp_Faq::seller_manage" title="Manage Sellers" module="Lofmp_Faq" sortOrder="30" parent="Lofmp_Faq::mpfaq" action="lofmpfaq/seller/index" resource="Lofmp_Faq::seller"/> -->
+        <add id="Lofmp_Faq::setting" title="Setting" module="Lofmp_Faq" sortOrder="40" parent="Lofmp_Faq::mpfaq" action="adminhtml/system_config/edit/section/lofmpfaq/" resource="Lofmp_Faq::setting"/>
+    </menu>
+</config>

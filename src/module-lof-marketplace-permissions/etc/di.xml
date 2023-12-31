@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPermissions
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Lof\MarketPermissions\Api\StatusServiceInterface" type="Lof\MarketPermissions\Model\Config"/>
+    <preference for="Lof\MarketPermissions\Api\Data\StructureInterface" type="Lof\MarketPermissions\Model\Structure"/>
+    <preference for="Lof\MarketPermissions\Api\Data\TeamInterface" type="Lof\MarketPermissions\Model\Team"/>
+    <preference for="Lof\MarketPermissions\Api\Data\StructureSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Lof\MarketPermissions\Api\Data\TeamSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Lof\MarketPermissions\Api\TeamRepositoryInterface" type="Lof\MarketPermissions\Model\TeamRepository"/>
+    <preference for="Lof\MarketPermissions\Api\Data\SellerSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Lof\MarketPermissions\Api\SellerRepositoryInterface" type="Lof\MarketPermissions\Model\SellerRepository"/>
+    <preference for="Lof\MarketPermissions\Api\Data\SellerInterface" type="Lof\MarketPermissions\Model\Seller"/>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="seller_listing_data_source" xsi:type="string">Lof\MarketPermissions\Model\ResourceModel\Seller\Grid\Collection</item>
+                <item name="role_listing_data_source" xsi:type="string">Lof\MarketPermissions\Model\ResourceModel\Role\Grid\Collection</item>
+                <item name="seller_users_listing_data_source" xsi:type="string">Lof\MarketPermissions\Model\ResourceModel\Users\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Lof\MarketPermissions\Model\SaveHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="superUser" xsi:type="object">\Lof\MarketPermissions\Model\SaveHandler\SuperUser</item>
+                <item name="defaultRole" xsi:type="object">\Lof\MarketPermissions\Model\SaveHandler\DefaultRole</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Lof\MarketPermissions\Model\ResourcePool">
+        <arguments>
+            <argument name="resources" xsi:type="array">
+                <item name="index" xsi:type="string">Lof_MarketPlace::index</item>
+                <item name="dashboard" xsi:type="string">Lof_MarketPlace::dashboard</item>
+                <item name="dashboard_view" xsi:type="string">Lof_MarketPlace::dashboard_view</item>
+                <item name="profile" xsi:type="string">Lof_MarketPlace::profile</item>
+                <item name="profile_view" xsi:type="string">Lof_MarketPlace::profile_view</item>
+                <item name="profile_edit" xsi:type="string">Lof_MarketPlace::profile_edit</item>
+                <item name="sales" xsi:type="string">Lof_MarketPlace::sales</item>
+                <item name="order" xsi:type="string">Lof_MarketPlace::order</item>
+                <item name="orders_view" xsi:type="string">Lof_MarketPlace::orders_view</item>
+                <item name="orders_edit" xsi:type="string">Lof_MarketPlace::orders_edit</item>
+                <item name="orders_send_email" xsi:type="string">Lof_MarketPlace::orders_send_email</item>
+                <item name="orders_create_invoice" xsi:type="string">Lof_MarketPlace::orders_create_invoice</item>
+                <item name="orders_create_ship" xsi:type="string">Lof_MarketPlace::orders_create_ship</item>
+                <item name="invoice" xsi:type="string">Lof_MarketPlace::invoice</item>
+                <item name="invoice_view" xsi:type="string">Lof_MarketPlace::invoice_view</item>
+                <item name="invoice_edit" xsi:type="string">Lof_MarketPlace::invoice_edit</item>
+                <item name="shipment" xsi:type="string">Lof_MarketPlace::shipment</item>
+                <item name="shipments_view" xsi:type="string">Lof_MarketPlace::shipments_view</item>
+                <item name="shipments_edit" xsi:type="string">Lof_MarketPlace::shipments_edit</item>
+                <item name="amounttransaction" xsi:type="string">Lof_MarketPlace::amounttransaction</item>
+                <item name="amounttransaction_view" xsi:type="string">Lof_MarketPlace::amounttransaction_view</item>
+                <item name="catalog" xsi:type="string">Lof_MarketPlace::catalog</item>
+                <item name="manager_product" xsi:type="string">Lof_MarketPlace::manager_product</item>
+                <item name="manager_product_view" xsi:type="string">Lof_MarketPlace::manager_product_view</item>
+                <item name="manager_product_edit" xsi:type="string">Lof_MarketPlace::manager_product_edit</item>
+                <item name="manager_product_add" xsi:type="string">Lof_MarketPlace::manager_product_add</item>
+                <item name="manager_product_delete" xsi:type="string">Lof_MarketPlace::manager_product_delete</item>
+                <item name="manager_product_save" xsi:type="string">Lof_MarketPlace::manager_product_save</item>
+                <item name="manager_product_status" xsi:type="string">Lof_MarketPlace::manager_product_status</item>
+                <item name="withdrawals" xsi:type="string">Lof_MarketPlace::withdrawals</item>
+                <item name="withdrawals_view" xsi:type="string">Lof_MarketPlace::withdrawals_view</item>
+                <item name="withdrawals_request" xsi:type="string">Lof_MarketPlace::withdrawals_request</item>
+                <item name="withdrawals_history" xsi:type="string">Lof_MarketPlace::withdrawals_history</item>
+                <item name="message" xsi:type="string">Lof_MarketPlace::message</item>
+                <item name="message_customer" xsi:type="string">Lof_MarketPlace::message_customer</item>
+                <item name="message_customer_view" xsi:type="string">Lof_MarketPlace::message_customer_view</item>
+                <item name="message_customer_send" xsi:type="string">Lof_MarketPlace::message_customer_send</item>
+                <item name="message_admin" xsi:type="string">Lof_MarketPlace::message_admin</item>
+                <item name="message_admin_view" xsi:type="string">Lof_MarketPlace::message_admin_view</item>
+                <item name="message_admin_send" xsi:type="string">Lof_MarketPlace::message_admin_send</item>
+                <item name="send_admin" xsi:type="string">Lof_MarketPlace::send_admin</item>
+                <item name="review" xsi:type="string">Lof_MarketPlace::review</item>
+                <item name="review_view" xsi:type="string">Lof_MarketPlace::review_view</item>
+                <item name="review_edit" xsi:type="string">Lof_MarketPlace::review_edit</item>
+                <item name="rating" xsi:type="string">Lof_MarketPlace::rating</item>
+                <item name="rating_view" xsi:type="string">Lof_MarketPlace::rating_view</item>
+                <item name="rating_edit" xsi:type="string">Lof_MarketPlace::rating_edit</item>
+                <item name="vacation" xsi:type="string">Lof_MarketPlace::vacation</item>
+                <item name="vacation_save" xsi:type="string">Lof_MarketPlace::vacation_save</item>
+                <item name="upload" xsi:type="string">Lof_MarketPlace::upload</item>
+                <item name="uploadimage" xsi:type="string">Lof_MarketPlace::uploadimage</item>
+                <item name="uploadimage_image" xsi:type="string">Lof_MarketPlace::uploadimage_image</item>
+                <item name="uploadimage_imagezip" xsi:type="string">Lof_MarketPlace::uploadimage_imagezip</item>
+                <item name="import" xsi:type="string">Lof_MarketPlace::import</item>
+                <item name="import_validate" xsi:type="string">Lof_MarketPlace::import_validate</item>
+                <item name="export" xsi:type="string">Lof_MarketPlace::export</item>
+                <item name="export_file" xsi:type="string">Lof_MarketPlace::export_file</item>
+                <item name="report" xsi:type="string">Lof_MarketPlace::report</item>
+                <item name="report_view" xsi:type="string">Lof_MarketPlace::report_view</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Lof\MarketPermissions\Model\Customer\SellerAttributes">
+        <arguments>
+            <argument name="userContext" xsi:type="object">\Magento\Authorization\Model\UserContextInterface\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Lof\MarketPermissions\Model\Seller\Structure">
+        <arguments>
+            <argument name="teamRepository" xsi:type="object">\Lof\MarketPermissions\Api\TeamRepositoryInterface\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Lof\MarketPermissions\Model\SellerAdminPermission">
+        <arguments>
+            <argument name="customerContext" xsi:type="object">\Magento\Authorization\Model\UserContextInterface\Proxy</argument>
+            <argument name="sellerRepository" xsi:type="object">\Lof\MarketPermissions\Api\SellerRepositoryInterface\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Lof\MarketPermissions\Model\Email\Sender">
+        <arguments>
+            <argument name="sellerRepository" xsi:type="object">\Lof\MarketPermissions\Api\SellerRepositoryInterface\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Lof\MarketPermissions\Model\Email\CustomerData">
+        <arguments>
+            <argument name="sellerRepository" xsi:type="object">\Lof\MarketPermissions\Api\SellerRepositoryInterface\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Lof\MarketPermissions\Model\SellerManagement">
+        <arguments>
+            <argument name="sellerRepository" xsi:type="object">\Lof\MarketPermissions\Api\SellerRepositoryInterface\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Lof\MarketPermissions\Model\Role\Validator">
+        <arguments>
+            <argument name="sellerRepository" xsi:type="object">\Lof\MarketPermissions\Api\SellerRepositoryInterface\Proxy</argument>
+            <argument name="userRoleManagement" xsi:type="object">\Lof\MarketPermissions\Model\UserRoleManagement\Proxy</argument>
+            <argument name="roleRepository" xsi:type="object">\Lof\MarketPermissions\Model\RoleRepository\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Lof\MarketPermissions\Model\Role\Permission">
+        <arguments>
+            <argument name="userRoleManagement" xsi:type="object">\Lof\MarketPermissions\Model\UserRoleManagement\Proxy</argument>
+        </arguments>
+    </type>
+    <virtualType name="SellerGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SellerProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Lof\MarketPlace\Model\ResourceModel\Seller\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">SellerGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Lof\MarketPermissions\Model\Create\Session\Storage" type="Magento\Framework\Session\Storage">
+        <arguments>
+            <argument name="namespace" xsi:type="string">seller_create</argument>
+        </arguments>
+    </virtualType>
+    <type name="Lof\MarketPermissions\Model\Create\Session">
+        <arguments>
+            <argument name="storage" xsi:type="object">Lof\MarketPermissions\Model\Create\Session\Storage</argument>
+        </arguments>
+    </type>
+    <preference for="Lof\MarketPermissions\Api\Data\SellerCustomerInterface" type="Lof\MarketPermissions\Model\Customer"/>
+    <preference for="Lof\MarketPermissions\Api\SellerManagementInterface" type="Lof\MarketPermissions\Model\SellerManagement"/>
+    <preference for="Lof\MarketPermissions\Api\RoleManagementInterface" type="Lof\MarketPermissions\Model\RoleManagement"/>
+    <preference for="Lof\MarketPermissions\Model\PermissionManagementInterface" type="Lof\MarketPermissions\Model\PermissionManagement"/>
+    <preference for="Lof\MarketPermissions\Model\Customer\PermissionInterface" type="Lof\MarketPermissions\Model\Customer\Permission"/>
+    <type name="Magento\Customer\Api\CustomerRepositoryInterface">
+        <plugin name="SellerCustomerDelete" type="Lof\MarketPermissions\Plugin\Customer\Api\CustomerRepository\Delete"/>
+        <plugin name="SellerCustomerSave" type="Lof\MarketPermissions\Plugin\Customer\Api\CustomerRepository\Save"/>
+        <plugin name="SellerCustomerQuery" type="Lof\MarketPermissions\Plugin\Customer\Api\CustomerRepository\Query"/>
+    </type>
+    <type name="Magento\Framework\Model\ActionValidator\RemoveAction">
+        <plugin name="sellerFrameworkModelActionValidatorRemoveAction" type="Lof\MarketPermissions\Plugin\Framework\Model\ActionValidator\RemoveActionPlugin"/>
+    </type>
+    <type name="Lof\MarketPermissions\Model\SellerRepository">
+        <arguments>
+            <argument name="sellerSaver" xsi:type="object">Lof\MarketPermissions\Model\Seller\Save\Proxy</argument>
+            <argument name="collectionProcessor" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface</argument>
+        </arguments>
+    </type>
+    <type name="Lof\MarketPermissions\Model\Seller\Delete">
+        <arguments>
+            <argument name="teamRepository" xsi:type="object">Lof\MarketPermissions\Api\TeamRepositoryInterface\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Lof\MarketPermissions\Model\StructureRepository">
+        <arguments>
+            <argument name="collectionProcessor" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface</argument>
+        </arguments>
+    </type>
+    <type name="Lof\MarketPermissions\Model\TeamRepository">
+        <arguments>
+            <argument name="collectionProcessor" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface</argument>
+        </arguments>
+    </type>
+    <preference for="Lof\MarketPermissions\Api\Data\RoleInterface" type="Lof\MarketPermissions\Model\Role"/>
+    <preference for="Lof\MarketPermissions\Api\Data\PermissionInterface" type="Lof\MarketPermissions\Model\Permission"/>
+    <preference for="Lof\MarketPermissions\Api\Data\RoleSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Lof\MarketPermissions\Api\RoleRepositoryInterface" type="Lof\MarketPermissions\Model\RoleRepository"/>
+    <preference for="Lof\MarketPermissions\Api\AclInterface" type="Lof\MarketPermissions\Model\UserRoleManagement"/>
+
+    <virtualType name="Lof\MarketPermissions\Acl\AclResource\Config\Reader\Filesystem" type="Magento\Framework\Acl\AclResource\Config\Reader\Filesystem">
+        <arguments>
+            <argument name="fileName" xsi:type="string">seller_acl.xml</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Lof\MarketPermissions\Acl\Cache" type="Magento\Framework\Acl\Data\Cache">
+        <arguments>
+            <argument name="cacheTag" xsi:type="string">seller_acl_resources</argument>
+            <argument name="aclBuilder" xsi:type="object">Lof\MarketPermissions\Authorization\Acl\Builder</argument>
+        </arguments>
+    </virtualType>
+    <type name="Lof\MarketPermissions\Model\RoleRepository">
+        <arguments>
+            <argument name="cache" xsi:type="object">Lof\MarketPermissions\Acl\Cache</argument>
+        </arguments>
+    </type>
+    <type name="Lof\MarketPermissions\Model\UserRoleManagement">
+        <arguments>
+            <argument name="cache" xsi:type="object">Lof\MarketPermissions\Acl\Cache</argument>
+        </arguments>
+    </type>
+    <virtualType name="Lof\MarketPermissions\Acl\RootResource" type="Magento\Framework\Acl\RootResource">
+        <arguments>
+            <argument name="identifier" xsi:type="string">Lof_MarketPlace::index</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Lof\MarketPermissions\Acl\AclResource\Provider" type="Magento\Framework\Acl\AclResource\Provider">
+        <arguments>
+            <argument name="configReader" xsi:type="object">Lof\MarketPermissions\Acl\AclResource\Config\Reader\Filesystem</argument>
+            <argument name="cacheKey" xsi:type="string">seller_acl_resources_cache</argument>
+        </arguments>
+    </virtualType>
+    <type name="Lof\MarketPermissions\Model\Authorization\Loader\Rule">
+        <arguments>
+            <argument name="rootResource" xsi:type="object">Lof\MarketPermissions\Acl\RootResource</argument>
+            <argument name="resourceProvider" xsi:type="object">Lof\MarketPermissions\Acl\AclResource\Provider</argument>
+        </arguments>
+    </type>
+    <virtualType name="Lof\MarketPermissions\Authorization\Loader\ResourceLoader" type="Magento\Framework\Acl\Loader\ResourceLoader">
+        <arguments>
+            <argument name="resourceProvider" xsi:type="object">Lof\MarketPermissions\Acl\AclResource\Provider</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Lof\MarketPermissions\Authorization\Acl\Builder" type="Magento\Framework\Acl\Builder">
+        <arguments>
+            <argument name="resourceLoader" xsi:type="object">Lof\MarketPermissions\Authorization\Loader\ResourceLoader</argument>
+            <argument name="ruleLoader" xsi:type="object">Lof\MarketPermissions\Model\Authorization\Loader\Rule</argument>
+            <argument name="roleLoader" xsi:type="object">Lof\MarketPermissions\Model\Authorization\Loader\Role</argument>
+        </arguments>
+    </virtualType>
+    <type name="Lof\MarketPermissions\Model\Authorization\AclPolicy">
+        <arguments>
+            <argument name="aclBuilder" xsi:type="object">Lof\MarketPermissions\Authorization\Acl\Builder</argument>
+        </arguments>
+    </type>
+    <type name="Lof\MarketPermissions\Model\Authorization">
+        <arguments>
+            <argument name="aclPolicy" xsi:type="object">Lof\MarketPermissions\Model\Authorization\AclPolicy</argument>
+            <argument name="roleLocator" xsi:type="object">Lof\MarketPermissions\Model\Authorization\RoleLocator</argument>
+        </arguments>
+    </type>
+    <preference for="Lof\MarketPermissions\Api\AuthorizationInterface" type="Lof\MarketPermissions\Model\Authorization"/>
+    <type name="Lof\MarketPermissions\Block\Marketplace\Role\Edit">
+        <arguments>
+            <argument name="resourceProvider" xsi:type="object">Lof\MarketPermissions\Acl\AclResource\Provider</argument>
+        </arguments>
+    </type>
+    <type name="Lof\MarketPermissions\Model\PermissionManagement">
+        <arguments>
+            <argument name="resourceProvider" xsi:type="object">Lof\MarketPermissions\Acl\AclResource\Provider</argument>
+        </arguments>
+    </type>
+    <type name="Lof\MarketPermissions\Controller\Marketplace\Role\EditPost">
+        <arguments>
+            <argument name="resourceProvider" xsi:type="object">Lof\MarketPermissions\Acl\AclResource\Provider</argument>
+        </arguments>
+    </type>
+    <preference for="Lof\MarketPermissions\Api\SellerUserManagerInterface" type="Lof\MarketPermissions\Model\SellerUserManager"/>
+    <type name="Magento\Webapi\Controller\Rest\ParamsOverrider">
+        <arguments>
+            <argument name="paramOverriders" xsi:type="array">
+                <item name="%seller_id%" xsi:type="object">Lof\MarketPermissions\Model\Webapi\ParamOverriderSellerId</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Lof\MarketPermissions\Model\Authorization\SellerSessionUserContext">
+        <arguments>
+            <argument name="sellerSession" xsi:type="object">Magento\Customer\Model\Session\Proxy</argument>
+        </arguments>
+    </type>
+</config>

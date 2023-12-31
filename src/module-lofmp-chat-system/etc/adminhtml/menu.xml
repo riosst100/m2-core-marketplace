@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://landofcoder.com/license
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category   Landofcoder
+ * @package    Lofmp_ChatSystem
+ * @copyright  Copyright (c) 2017 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+	<menu>
+		<add id="Lofmp_ChatSystem::chatsystem" sortOrder="130" title="Chat System" module="Lofmp_ChatSystem" resource="Magento_Backend::chatsystem_elements" parent="Lof_MarketPlace::marketplace"/>  
+		<add id="Lofmp_ChatSystem::chat" title="Chat" module="Lofmp_ChatSystem" sortOrder="75" parent="Lofmp_ChatSystem::chatsystem" action="lofmpchatsystem/chat/index" resource="Lofmp_ChatSystem::chat"/>
+		<add id="Lofmp_ChatSystem::settings" title="Configuration" module="Lofmp_ChatSystem" sortOrder="150" action="adminhtml/system_config/edit/section/lofmpchatsystem" resource="Lofmp_ChatSystem::config_chatsystem" parent="Lofmp_ChatSystem::chatsystem"/>
+	</menu>
+</config>

@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.landofcoder.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category   Landofcoder
+ * @package    Lofmp_PriceComparison
+ * @copyright  Copyright (c) 2017 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Sales\Block\Order\History">
+        <plugin name="Lofmp_PriceComparison::afterGetReorderUrl" type="Lofmp\PriceComparison\Plugin\Sales\Block\Order\History" sortOrder="1" />
+    </type>
+    <type name="Magento\Sales\Block\Order\Info\Buttons">
+        <plugin name="Lofmp_PriceComparison::afterGetReorderUrl" type="Lofmp\PriceComparison\Plugin\Sales\Block\Order\Info\Buttons" sortOrder="1" />
+    </type>
+    <type name="Magento\Sales\Block\Order\Recent">
+        <plugin name="Lofmp_PriceComparison::afterGetReorderUrl" type="Lofmp\PriceComparison\Plugin\Sales\Block\Order\Recent" sortOrder="1" />
+    </type>
+    <type name="Magento\Sales\Block\Reorder\Sidebar">
+        <plugin name="Lofmp_PriceComparison::afterGetFormActionUrl" type="Lofmp\PriceComparison\Plugin\Sales\Block\Reorder\Sidebar" sortOrder="1" />
+    </type>
+    <preference for="Magento\Checkout\Model\Cart" type="Lofmp\PriceComparison\Model\Rewrite\Checkout\Cart" />
+    <preference for="Magento\Quote\Model\Quote\Item" type="Lofmp\PriceComparison\Model\Rewrite\Quote\Item" />
+    <preference for="Magento\CatalogInventory\Model\Stock\Item" type="Lofmp\PriceComparison\Model\Rewrite\CatalogInventory\Stock\Item" />
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="lofmppricecomparison_product_listing_data_source" xsi:type="string">Lofmp\PriceComparison\Model\ResourceModel\Product\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Lofmp\PriceComparison\Model\ResourceModel\Product\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">lofmp_marketplace_pricecomparison_items</argument>
+            <argument name="eventPrefix" xsi:type="string">lofmppricecomparison_product_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">product_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Lofmp\PriceComparison\Model\ResourceModel\Product</argument>
+        </arguments>
+    </type> 
+    
+    <virtualType name="PriceComparisonGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType> 
+    <virtualType name="PriceComparisonGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Lofmp\PriceComparison\Model\ResourceModel\Product\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">PriceComparisonGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+</config>

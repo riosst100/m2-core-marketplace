@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_SellerBadge
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Lofmp_SellerBadge::main"
+             title="Seller Badges"
+             module="Lofmp_SellerBadge"
+             parent="Lof_MarketPlace::marketplace"
+             sortOrder="50"
+             resource="Lofmp_SellerBadge::main"/>
+        <add id="Lofmp_SellerBadge::seller_badge"
+             title="Manage Badges"
+             module="Lofmp_SellerBadge"
+             sortOrder="60"
+             resource="Magento_Backend::content"
+             parent="Lofmp_SellerBadge::main"
+             action="lofmp_sellerbadge/sellerbadge/index"/>
+        <add id="Lofmp_SellerBadge::seller_badge_manager"
+             title="Manage Seller Badges"
+             module="Lofmp_SellerBadge"
+             sortOrder="70"
+             resource="Magento_Backend::content"
+             parent="Lofmp_SellerBadge::main"
+             action="lofmp_sellerbadge/sellerbadgemanager/index"/>
+        <add id="Lofmp_SellerBadge::configuration"
+             title="Configuration"
+             module="Lofmp_SellerBadge"
+             sortOrder="80"
+             resource="Magento_Backend::content"
+             parent="Lofmp_SellerBadge::main"
+             action="adminhtml/system_config/edit/section/lofmpsellerbadge"/>
+    </menu>
+</config>

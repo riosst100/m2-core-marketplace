@@ -1,0 +1,53 @@
+"Update Slider","Update Slider"
+"Create New Slider","Create New Slider"
+"This slider no longer exists.","This slider no longer exists."
+"Cannot delete this item","Cannot delete this item"
+"Delete data success","Delete data success"
+"You must have a seller account to access","You must have a seller account to access"
+"Update data success","Update data success"
+"Cannot update data","Cannot update data"
+"Something went wrong while saving the slider.","Something went wrong while saving the slider."
+Sliders,Sliders
+Id,Id
+"Slider Title","Slider Title"
+Status,Status
+"Created At","Created At"
+Action,Action
+"Bulk Actions","Bulk Actions"
+Edit,Edit
+Delete,Delete
+"Add New Slider","Add New Slider"
+"Edit Slider","Edit Slider"
+"Save ","Save "
+"Save Slider","Save Slider"
+Title,Title
+"Image Types","Image Types"
+Upload,Upload
+"URL Link","URL Link"
+"Image upload","Image upload"
+"Add files...","Add files..."
+Cancel,Cancel
+"Caption photo","Caption photo"
+"Link URL","Link URL"
+"Image position","Image position"
+"Show pagination :","Show pagination :"
+No,No
+Yes,Yes
+"Show thumbnails :","Show thumbnails :"
+"Effect slider :","Effect slider :"
+"Image Height (in 'px') :","Image Height (in 'px') :"
+"The height of slider","The height of slider"
+"Image Width (in 'px') :","Image Width (in 'px') :"
+"The with of slider","The with of slider"
+"Slider Speed (in 'milliseconds') :","Slider Speed (in 'milliseconds') :"
+"milliseconds between the end of the sliding effect and the start of the nex one","milliseconds between the end of the sliding effect and the start of the nex one"
+"Slider Duration (in 'milliseconds') :","Slider Duration (in 'milliseconds') :"
+"length of the sliding effect in milliseconds","length of the sliding effect in milliseconds"
+"Set As Default Slider :","Set As Default Slider :"
+"Seller Sliders","Seller Sliders"
+General,General
+Enabled,Enabled
+"Enabled Seller Banner when Slider is enabled","Enabled Seller Banner when Slider is enabled"
+"Enable/Disable seller banner when seller enable slider for his store.","Enable/Disable seller banner when seller enable slider for his store."
+"Manage Sliders","Manage Sliders"
+"Add Slider","Add Slider"

@@ -1,0 +1,526 @@
+<?php
+$items = $block->getOrder()->getAllItems();
+$rma = $block->getRma();
+$seller_id = $rma->getSellerId();
+$helper = $this->helper('Lof\MarketPlace\Helper\Data');
+$rmaHelper = $this->helper('Lofmp\Rma\Helper\Data');
+$helper_Seller = $this->helper('Lof\MarketPlace\Helper\Seller');
+$exOrderId = $rmaHelper->getExchangeOrderIds($rma->getId());
+$creditmemoId = $rmaHelper->getCreditMemoIds($rma->getId());
+$seller_id = $rma->getSellerId();
+$StatusList = $rmaHelper->getStatusList();
+$currentSeller = $helper_Seller->getSellerByCustomer();
+if ($seller_id != $currentSeller['seller_id']):
+    ?>
+    <script>alert('Wrong URL');
+        window.location = '<?= $block->getUrl('catalog/rma/index'); ?>';</script>
+<?php
+endif;
+$helper_message = $this->helper('Lofmp\Rma\Helper\Message');
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$calculate = $objectManager->get('Lof\MarketPlace\Model\CalculateCommission');
+$orderitems = $objectManager->get('Lof\MarketPlace\Model\Orderitems');
+?>
+<form id="rma-new-form"
+      action="<?= $block->getUrl('catalog/rma/savemessage/', ["_secure" => $block->getRequest()->isSecure()]) ?>"
+      method="POST" enctype="multipart/form-data"
+      data-hasrequired="<?= __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+    <input name="id" type="hidden" value="<?= $rma->getId() ?>">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2><?= __(' RMA # %1 ', $rma->getIncrementId()); ?></h2>
+                    <?php if ($block->allowCreateCreditmemo($block->getOrder()->getId(), $seller_id)):
+                        ?>
+                        <button type="button" class="btn btn-primary lof_creditmemo"
+                                style="float: right;"><?= __('Credit Memo'); ?></button>
+                        <div id="lof_creditmemo">
+                            <div><?= __('Are you sure you want to create credit memo for order?'); ?></div>
+                        </div>
+                    <?php
+                    endif;
+                    ?>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="content invoice">
+                        <div class="row">
+                            <div class="col-xs-12 invoice-header">
+                                <h1>
+                                    <i class="fa fa-globe"></i> <?= __('Information'); ?>
+                                </h1>
+                            </div>
+                        </div>
+                        <div class="row invoice-info">
+                            <div class="col-sm-3 invoice-col">
+                                <b><?= __('Billing Address'); ?></b>
+                                <br>
+                                <address>
+                                    <?= $block->getFormattedAddress(); ?>
+                                </address>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-sm-3 invoice-col">
+                                <b><?= __('Shipping Address'); ?></b>
+                                <br>
+                                <address>
+                                    <?= $block->getBillingAddress(); ?>
+                                </address>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-sm-3 invoice-col">
+                                <?php /* @escapeNotVerified */
+                                echo __('<b>Order:</b> # %1', $block->getOrder()->getRealOrderId()) ?>
+
+                                <br>
+                                <b><?= __('Order Date'); ?>:</b> <?= $block->getOrderDate(); ?>
+                                <br>
+                                <b><?= __('Order Status'); ?>
+                                    :</b> <?= $block->getOrder()->getStatusLabel(); ?>
+                                <br>
+                                <b><?= __('Customer Name'); ?>
+                                    :</b> <?= $block->getOrder()->getCustomerName(); ?>
+                                <br>
+                                <b><?= __('Email'); ?>:</b> <?= $block->getOrder()->getCustomerEmail(); ?>
+                                <br>
+                                <b><?= __('Customer Group'); ?>:</b> <?= $block->getCustomerGroupName(); ?>
+
+
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-sm-3 invoice-col">
+                                <b><?= __('Account Information '); ?></b>
+                                <br>
+                                <b><?= __('Rma Date'); ?>:</b> <?= $block->getRmaDate(); ?>
+
+                                <?php if ($rma->getUserId()): ?>
+                                    <br/><b><?= __('Managers'); ?>
+                                        :</b> <?= $rmaHelper->getUserName($rma->getUserId());
+                                endif ?>
+                                <br>
+
+
+                                <?php foreach ($rmaHelper->getVisibleFields($rma->getStatusId(), true, true) as $field):
+                                    if ($value = $rmaHelper->getFieldValue($rma, $field)):
+                                        ?>
+                                        <br/><b><?= __($field->getName()) ?>: </b><?= $value ?>
+                                    <?php endif;
+                                endforeach ?>
+                                <br>
+                                <b><?= __('Rma Status'); ?>:</b><br/>
+                                <select id="status_id" name="status_id" class=" select admin__control-select"
+                                        data-ui-id="adminhtml-rma-edit-tab-generalinfo-0-fieldset-element-select-status-id">
+                                    <?php foreach ($rmaHelper->getStatusList() as $status): ?>
+                                        <option
+                                            value="<?= $status->getId() ?>" <?php if ($status->getId() == $rma->getStatusId()) {
+                                            echo 'selected = selected ';
+                                        } ?>
+                                        ><?= $status->getName() ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                                </select>
+                                <br>
+                                <b><?= __('Rma Return Address'); ?>:</b>
+                                <br/>
+                                <textarea name="return_address" cols="20"
+                                          style="width: 300px"><?= $rma->getReturnAddress() ? $rma->getReturnAddress() : $currentSeller['address'] ?></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 invoice-header">
+                                <h1>
+                                    <i class="fa fa-globe"></i> <?= __('Items'); ?>
+                                </h1>
+                            </div>
+                        </div>
+                        <div class="row invoice-info">
+                            <div class="col-xs-12 table">
+                                <table class="table table-striped edit-order-table">
+                                    <thead>
+                                    <tr>
+                                        <th><?= __('Product'); ?></th>
+                                        <th><?= __('Item Status'); ?></th>
+                                        <th><?= __('Qty'); ?></th>
+                                        <th><?= __('Admin Commission'); ?></th>
+                                        <th><?= __('Seller Total'); ?></th>
+                                        <th><?= __('Qty Return'); ?></th>
+                                        <th><?= __('Return Reason'); ?></th>
+                                        <th><?= __('Condition'); ?></th>
+                                        <th><?= __('Resolution'); ?></th>
+                                        <th><?= __('Refund Commission'); ?></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                    $subtotal = $tax = $discount = $grand_total = $seller_amount = $refund_total = $seller_geant = $seller_total = 0;
+                                    foreach ($items as $item) {
+                                        if ($item->getData('product_type') == 'bundle'): ?>
+                                            <tr class="even">
+                                                <td><?= $item->getData('name') ?><?= __('(Bundled Product)') ?></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <?php continue;
+                                        endif;
+                                        if ($item->getData('base_row_total') > 0) {
+
+                                            $refund = $item->getData('amount_refunded') + $item->getData('tax_refunded') - $item->getData('discount_refunded');
+                                            $refund_total = $refund_total + $refund;
+                                            $product_id = $item->getData('product_id');
+                                            $subtotalIncl = $item->getData('base_row_total_incl_tax');
+                                            $discount_amount = $item->getData('discount_amount');
+                                            $tax_amount = $item->getData('tax_amount');
+                                            $total = $item->getData('base_row_total');
+
+                                            $row_total = $total + $tax_amount - $discount_amount;
+                                            $subtotal = $subtotal + $total;
+                                            $tax = $tax + $tax_amount;
+                                            $discount = $discount + $discount_amount;
+                                            $subtotalExcl = $row_total - $tax_amount;
+                                            $grand_total = $grand_total + $row_total;
+                                            $seller_name = $block->getSeller($product_id)->getData('name');
+                                            $seller_id = $block->getSeller($product_id)->getData('seller_id');
+                                            $admin_commission = $block->getOrderItems($product_id)->getData('admin_commission_order');
+                                            $seller_commission = $block->getOrderItems($product_id)->getData('seller_commission_order');
+
+                                            $seller_total += $seller_commission;
+
+                                            //$itemReason =  $block->getRmaReason($item);
+
+                                            $itemData = $block->getRmaItemData($item);
+                                            //$itemCondition =  $block->getRmaCondition($item);
+
+
+                                            if ($seller_id != $currentSeller['seller_id']):
+                                                continue;
+                                            endif;
+                                            if (empty($itemData) || $itemData['qty_requested'] <= 0):
+                                                continue;
+                                            endif;
+
+                                            ?>
+                                            <tr>
+                                                <td>
+                                                    <div
+                                                        class="product-title"><?= $item->getData('name'); ?></div>
+                                                    <div class="product-sku-block">
+                                                        <span><?= __('SKU'); ?>:</span><?= $item->getData('sku'); ?>
+                                                    </div>
+                                                    <div class="product-price">
+                                                        <span><?= __('Price'); ?>:</span> <?= $helper->getPriceFomat($item->getData('price')); ?>
+                                                    </div>
+                                                    <?php
+                                                    if (isset($item->getData('product_options')['attributes_info'])) {
+                                                        echo '<dl class="item-options">';
+                                                        foreach ($item->getData('product_options')['attributes_info'] as $key => $attributes_info) {
+                                                            echo '<dt>' . $attributes_info['label'] . '</dt>';
+                                                            echo '<dd>' . $attributes_info['value'] . '</dd>';
+                                                        }
+                                                        echo '</dl>';
+                                                    }
+                                                    ?>
+                                                </td>
+                                                <td><?= $item->getStatus()->getText(); ?></td>
+                                                <td>
+                                                    <table class="qty-table">
+                                                        <tbody>
+                                                        <?php if ($item->getData('qty_ordered') > 0) { ?>
+                                                            <tr>
+                                                                <th><?= __('Ordered'); ?></th>
+                                                                <td><?= (int)$item->getData('qty_ordered'); ?></td>
+                                                            </tr>
+                                                        <?php } ?>
+                                                        <?php if ($block->getQtyAvailable($item) >= 0) { ?>
+                                                            <tr>
+                                                                <th><?= __('Available'); ?></th>
+                                                                <td><?= (int)$block->getQtyAvailable($item); ?></td>
+                                                            </tr>
+                                                        <?php } ?>
+                                                        <?php if ($block->getQtyRequest($item) > 0) { ?>
+                                                            <tr>
+                                                                <th><?= __('Requested'); ?></th>
+                                                                <td><?= (int)$block->getQtyRequest($item); ?></td>
+                                                            </tr>
+                                                        <?php } ?>
+                                                        <?php if ($item->getData('qty_refunded') > 0) { ?>
+                                                            <tr>
+                                                                <th><?= __('Refunded'); ?></th>
+                                                                <td><?= (int)$item->getData('qty_refunded'); ?></td>
+                                                            </tr>
+                                                        <?php } ?>
+                                                        <?php if ($item->getData('qty_canceled') > 0) { ?>
+                                                            <tr>
+                                                                <th><?= __('Canceled'); ?></th>
+                                                                <td><?= (int)$item->getData('qty_canceled'); ?></td>
+                                                            </tr>
+                                                        <?php } ?>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                                <td><?= $helper->getPriceFomat($admin_commission); ?></td>
+                                                <td><?= $helper->getPriceFomat($seller_commission); ?></td>
+                                                <td>
+                                                    <?= $itemData['qty_requested']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= __($itemData['reason_name']); ?>
+                                                </td>
+                                                <td>
+                                                    <?= __($itemData['condition_name']) ?>
+                                                </td>
+                                                <td>
+                                                    <div class="control">
+                                                        <?= __($itemData['resolution_name']) ?>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <table class="qty-table">
+                                                        <tbody>
+                                                        <?php if ($itemData['seller_commission'] > 0) { ?>
+                                                            <tr>
+                                                                <th><?= __('Seller:'); ?></th>
+                                                                <td><?= $helper->getPriceFomat($itemData['seller_commission']); ?></td>
+                                                            </tr>
+                                                        <?php } ?>
+                                                        <?php if ($itemData['admin_commission'] > 0) { ?>
+                                                            <tr>
+                                                                <th><?= __('Admin:'); ?></th>
+                                                                <td><?= $helper->getPriceFomat($itemData['admin_commission']); ?></td>
+                                                            </tr>
+                                                        <?php } ?>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+
+                                            </tr>
+                                        <?php }
+                                    } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 invoice-header">
+                            <h1>
+                                <i class="fa fa-globe"></i> <?= __('Comment'); ?>
+                            </h1>
+                        </div>
+                        <div class="col-xs-12 invoice-header">
+                            <style type="text/css">
+                                .rma-message-list {
+                                    list-style: none;
+                                    padding: 0;
+
+                                }
+
+                                .message-list .message-item {
+                                    background: #f4feff;
+                                    border: 1px solid #a2d7e1;
+                                    border-radius: 6px;
+                                    padding: 15px 10px;
+                                    margin-bottom: 15px;
+                                    position: relative;
+                                    width: 90%;
+                                    -webkit-box-sizing: border-box;
+                                    box-sizing: border-box;
+                                    clear: both;
+                                }
+
+                                .message-list .message-item.internal {
+                                    background: #6FA7D6;
+                                }
+
+                                .message-list .message-item.admin {
+                                    border: 1px solid #b5eaab;
+                                    float: right;
+                                }
+                            </style>
+                            <script type="text/javascript">
+                                require([
+                                    'jquery',
+                                    'Magento_Ui/js/modal/modal'
+                                ], function (
+                                    $,
+                                    modal) {
+                                    var $replyArea = $('[data-role=reply-area]');
+                                    var $replyNote = $('[data-role=reply-note]');
+
+                                    $('#internalcheck').change(function () {
+                                        if (this.checked) {
+                                            $replyNote.html('Only seller will see this message');
+                                        } else {
+                                            $replyNote.html('');
+                                        }
+                                    });
+                                    $('[data-role=quick_reply]').on('change', function () {
+                                        var id = $(this).val();
+                                        if (id != 0) {
+                                            var template = $('#htmltemplate-' + id).html();
+                                            var val = $replyArea.val();
+                                            if (val != '') {
+                                                val = val + '\n';
+                                            }
+                                            $replyArea.val(val + template);
+                                            $(this).val(0);
+                                            updateSaveBtn();
+                                        }
+                                    });
+                                    var options_creditmemo = {
+                                        type: 'popup',
+                                        responsive: true,
+                                        innerScroll: true,
+                                        title: '',
+                                        buttons: [{
+                                            text: $.mage.__('Ok'),
+                                            class: '',
+                                            click: function () {
+                                                window.location = "<?= $block->getUrl('catalog/creditmemo/create',
+                                                    [
+                                                        'rmaid' => $rma->getId(),
+                                                        'id' => $rma->getOrderId(),
+                                                        '_secure' => $block->getRequest()->isSecure()
+                                                    ])?>";
+                                            }
+                                        }]
+                                    };
+                                    var popup = modal(options_creditmemo, $('#lof_creditmemo'));
+                                    $(".lof_creditmemo").on('click', function () {
+                                        $("#lof_creditmemo").modal("openModal");
+                                    });
+                                    $replyArea.on('keyup', function () {
+                                        updateSaveBtn();
+                                    });
+                                });
+                            </script>
+                            <?php
+                            $responses = $helper_message->getOptionsList();
+                            ?>
+
+                            <legend class="admin__legend legend">
+                                <span><?= __('RMA Message') ?></span>
+
+                                <div class="actions _primary " style="float: right;">
+                                    <?php if ($rma->getIsAdminRead()): ?>
+                                        <a href="<?= $block->getMarkUrl(false) ?>"><?= __('mark as unread') ?></a>
+                                    <?php else: ?>
+                                        <a href="<?= $block->getMarkUrl(true) ?>"><?= __('mark as read') ?></a>
+                                    <?php endif ?>
+                                </div>
+                            </legend>
+
+                            <div class="message-list">
+                                <?php foreach ($rmaHelper->getMessages($rma) as $message):
+                                    if ($message->getInternal() == 1) {
+                                        continue;
+                                    }
+                                    ?>
+
+                                    <div
+                                        class="message-item <?= $message->getInternal() ?> <?= $message->getUserId() ? 'admin' : 'customer' ?>">
+                                        <div class="rma-message__header">
+                                            <strong>
+                                                <?php if ($message->getCustomerId()): ?>
+                                                    <?= $message->getCustomerName() ?>
+                                                    <?php if ($rmaHelper->getCustomerEmail($message->getCustomerId()) != ''): ?>
+                                                        , <?= $rmaHelper->getCustomerEmail($message->getCustomerId()) ?>
+                                                    <?php endif ?>
+                                                <?php elseif ($message->getUserId()): ?>
+                                                    <?= $rmaHelper->getUserName($message->getUserId()) ?>
+                                                <?php elseif ($message->getSellerId()): ?>
+                                                    <?= $rmaHelper->getSellerName($message->getSellerId()) ?>
+                                                <?php endif ?>
+                                            </strong>
+                                            <span style="float: right;"><?= $message->getCreatedAt() ?></span>
+                                        </div>
+
+                                        <div
+                                            class="rma-message__body">
+                                            <?php if ($message->getText()):
+                                                if ($message->getIsHtml()): ?>
+                                                    <?= $message->getText() ?>
+                                                <?php else: ?>
+                                                    <?= nl2br($message->getText()) ?>
+                                                <?php endif ?>
+                                            <?php endif ?>
+                                            <?php $attachments = $rmaHelper->getAttachments('message',
+                                                $message->getId()) ?>
+                                            <?php if (count($attachments)): ?>
+                                                <div class="rma-message__attachments">
+                                                    <?php /** @var \Lofmp\Rma\Api\Data\AttachmentInterface $attachment */ ?>
+                                                    <?php foreach ($attachments as $attachment): ?>
+                                                        <a href="<?= $block->getAttachmentUrl($attachment->getUid()) ?>"><?= $attachment->getName() ?></a>
+                                                    <?php endforeach ?>
+                                                </div>
+                                            <?php endif ?>
+                                        </div>
+                                    </div>
+                                <?php endforeach ?>
+                            </div>
+
+                            <div class="field admin__field">
+                                <label class="label admin__field-label" for="quick_reply">
+                                    <?= __('Insert Quick Response') ?>
+                                </label>
+
+                                <div class="control admin__field-control">
+                                    <select name="quick_reply" class="admin__control-select" data-role="quick_reply">
+                                        <?php $templatesHtml = ''; ?>
+                                        <?php foreach ($responses as $response): ?>
+                                            <option value="<?= $response->getId() ?>">
+                                                <?= $response->getName() ?>
+                                            </option>
+                                            <?php
+                                            if ($response->getId() > 0) {
+                                                $templatesHtml .= '<div id="htmltemplate-' . $response->getId() . '" style="display: none;">' .
+                                                    $response->getTemplate() .
+                                                    '</div>';
+                                            }
+                                            ?>
+                                        <?php endforeach ?>
+                                    </select>
+                                    <?= $templatesHtml; ?>
+                                </div>
+                            </div>
+                            <div class="field admin__field">
+
+                                <div class="control admin__field-control">
+                                    <input type="checkbox" id="internalcheck" name="internalcheck"
+                                           value="2"><?= __('Internal Note') ?><br>
+
+                                    <div data-role="reply-note"></div>
+                                </div>
+                            </div>
+
+                            <div class="field admin__field rma-add-message__reply-area">
+                                <div class="control admin__field-control">
+            <textarea name="reply" rows="2" cols="30" class="admin__control-textarea"
+                      style="width:100%" data-role="reply-area"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="field admin__field rma-add-message__attachments">
+                                <div class="control admin__field-control" data-mage-init='{"jqueryMultiFile": {}}'>
+                                    <input id="attachment" name="attachment[]" value="" class="multi" type="file"/>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action primary" data-role="rma-submit">
+                <span><?= __('Submit Request') ?></span>
+            </button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,73 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_Auction
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+<<<<<<< HEAD
+	$helper       = $this->helper("Lof\MarketPlace\Helper\Data");
+	$seller = $helper->getSellerByCustomer();
+=======
+    $helper       = $this->helper("Lof\MarketPlace\Helper\Data");
+    $seller = $helper->getSellerByCustomer();
+>>>>>>> master
+
+?>
+<form class="entry-edit form-inline" action="<?php echo $block->getUrl('lofmpauction/product/saveimport', ["_secure" => $this->getRequest()->isSecure()]) ?>" enctype="multipart/form-data" method="post" data-role="form-profile-validate" data-mage-init='{"validation":{}}'>
+    <div class="lof-mp-page-title page-title">
+        <h2><?php echo __('Import Auction Detail') ?></h2>
+        <div class="page-actions-buttons">
+             <div class="actions-split save primary" title="Save">
+                <button class="action-default primary" title="<?php echo __('Save Auction') ?>" type="submit">
+                    <span><span><?php echo __('Save Auction') ?></span></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="admin__fieldset-wrapper-content">
+        <div class="admin__fieldset-wrapper-content">
+            <fieldset class="admin__fieldset">
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <span class="no-display" id="sample-file-span" style="display: inline;">
+                            <a href="<?php echo $this->getViewFileUrl('Lofmp_Auction::auctioninfo.csv');?>" id="sample-file-link">
+                                <?php echo __('Download Sample File');?>
+                            </a>
+                        </span>
+                    </label>
+                </div>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?php echo __("CSV file"); ?>
+                    </label>
+                    <div class="admin__field-control">
+<<<<<<< HEAD
+						<input type="file" name="import_file"  />
+					</div>
+                </div>
+            </fieldset>
+		</div>
+	</div>
+=======
+                        <input type="file" name="import_file"  />
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+>>>>>>> master
+</form>

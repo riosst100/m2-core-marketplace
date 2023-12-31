@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lof_Quickrfq
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <quickrfq>
+            <option>
+                <enabled_module>1</enabled_module>
+                <required_customer_login>0</required_customer_login>
+                <enabled_terms>1</enabled_terms>
+                <terms_label>I have read, agreed to abide by Terms and Conditions of RFQ</terms_label>
+            </option>
+            <email>
+                <recipient>
+                    <![CDATA[hello@example.com]]>
+                </recipient>
+                <template>quickrfq_email_template</template>
+                <template_customer>quickrfq_email_template_customer</template_customer>
+                <notice_sender>quickrfq_email_notice_sender</notice_sender>
+                <notice_receiver>quickrfq_email_notice_receiver</notice_receiver>
+
+            </email>
+            <email_reply>
+                <subject>Quick RFQ</subject>
+                <body>Quote Received ...</body>
+            </email_reply>
+            <upload>
+                <enabled>1</enabled>
+                <file_formats>doc,docx,xls,xlsx,pdf,txt,jpg,png,jpeg</file_formats>
+                <maximum_file_size>2</maximum_file_size>
+            </upload>
+            <quote_process>
+                <expiry_day>10</expiry_day>
+                <remind_day>0</remind_day>
+                <auto_apply_coupon>0</auto_apply_coupon>
+                <keep_cart_item>0</keep_cart_item>
+                <quote_update_text>Admin updated your quote information. Please try to access the site to check new updating</quote_update_text>
+                <quote_approve_text>Admin approved your quote. Please try to access the site to check new updating</quote_approve_text>
+                <quote_close_text>Admin closed your quote. Please try to access the site to check new updating</quote_close_text>
+                <quote_expiry_text>Your approved cart is going Expiry on few days. Please go back the site to complete the cart.</quote_expiry_text>
+                <quote_renew_text>Admin re-new your quote. Please try to access the site to check new updating</quote_renew_text>
+            </quote_process>
+        </quickrfq>
+    </default>
+</config>

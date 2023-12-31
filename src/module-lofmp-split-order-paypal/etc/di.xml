@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lofmp_SplitOrderPaypal
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid" type="Magento\Sales\Model\ResourceModel\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="pp_parent_order_id" xsi:type="string">sales_order.pp_parent_order_id</item>
+                <item name="pp_is_main_order" xsi:type="string">sales_order.pp_is_main_order</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <preference for="Magento\InventorySales\Plugin\Sales\OrderManagement\AppendReservationsAfterOrderPlacementPlugin"
+                type="Lofmp\SplitOrderPaypal\Plugin\Sales\OrderManagement\AppendReservationsAfterOrderPlacementPlugin"/>
+    <type name="Magento\Sales\Model\ResourceModel\Order\Grid\Collection">
+        <plugin name="lofmp_splitorder_paypal_sales_order_grid_collection_plugin" type="Lofmp\SplitOrderPaypal\Plugin\Sales\Model\ResourceModel\Order\Grid\CollectionPlugin"/>
+    </type>
+    <type name="Magento\Sales\Model\ResourceModel\Order\Collection">
+        <plugin name="lofmp_splitorder_paypal_sales_order_collection_plugin" type="Lofmp\SplitOrderPaypal\Plugin\Sales\Model\ResourceModel\Order\CollectionPlugin"/>
+    </type>
+    <type name="Magento\InventoryShipping\Observer\VirtualSourceDeductionProcessor">
+        <plugin name="lofmp_splitorder_prevent_reduction_of_number_of_virtual_products" type="Lofmp\SplitOrderPaypal\Plugin\Model\VirtualSourceDeductionProcessorPlugin"/>
+    </type>
+    <type name="Magento\Sales\Model\ResourceModel\Order\Invoice\Orders\Grid\Collection">
+        <plugin name="lofmp_splitorder_paypal_sales_invoice_grid_collection_plugin" type="Lofmp\SplitOrderPaypal\Plugin\Sales\Model\ResourceModel\Order\Invoice\Orders\Grid\CollectionPlugin"/>
+    </type>
+    <type name="Magento\Sales\Model\ResourceModel\Transaction\Grid\Collection">
+        <plugin name="lofmp_splitorder_paypal_sales_invoice_grid_collection_plugin" type="Lofmp\SplitOrderPaypal\Plugin\Sales\Model\ResourceModel\Transaction\Grid\CollectionPlugin"/>
+    </type>
+    <type name="Magento\Sales\Model\Order\Email\Sender\OrderSender">
+        <plugin name="lofmp_splitorder_paypal_sales_order_email_plugin" type="Lofmp\SplitOrderPaypal\Plugin\Sales\Model\Order\Email\Sender\OrderSenderPlugin"/>
+    </type>
+    <type name="Magento\Sales\Model\Order\Email\Sender\InvoiceSender">
+        <plugin name="lofmp_splitorder_paypal_sales_invoice_email_plugin" type="Lofmp\SplitOrderPaypal\Plugin\Sales\Model\Order\Email\Sender\InvoiceSenderPlugin"/>
+    </type>
+</config>

@@ -1,0 +1,28 @@
+{
+    "name": "landofcoder/module-quickrfq",
+    "description": "Quick Request for quote",
+    "type": "magento2-module",
+    "version": "1.0.8",
+    "authors": [{
+        "name": "landofcoder",
+        "homepage": "https://landofcoder.com",
+        "email": "landofcoder@gmail.com"
+    }],
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "require": {
+        "landofcoder/module-all" : "1.*",
+        "landofcoder/module-quickrfq" : "1.*",
+        "landofcoder/module-marketplace" : "1.*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Lofmp\\Quickrfq\\": ""
+        }
+    }
+}

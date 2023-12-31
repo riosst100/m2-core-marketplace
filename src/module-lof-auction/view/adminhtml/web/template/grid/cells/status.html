@@ -1,0 +1,41 @@
+<!--
+  ~ Landofcoder
+  ~
+  ~ NOTICE OF LICENSE
+  ~
+  ~ This source file is subject to the Landofcoder.com license that is
+  ~ available through the world-wide-web at this URL:
+  ~ https://landofcoder.com/terms
+  ~
+  ~ DISCLAIMER
+  ~
+  ~ Do not edit or add to this file if you wish to upgrade this extension to newer
+  ~ version in the future.
+  ~
+  ~ @category   Landofcoder
+  ~ @package    Lof_Auction
+  ~ @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  ~ @license    https://landofcoder.com/terms
+  -->
+
+<!-- ko if: $row().auction_status === 'TIME END' -->
+<div class="data-grid-cell-content lofau-status-box lofau-status-time-end" text="$col.getLabel($row())"></div>
+<!-- /ko -->
+
+<!-- ko if: $row().auction_status === 'PROCESSING' -->
+<div class="data-grid-cell-content lofau-status-box lofau-status-processing" text="$col.getLabel($row())"></div>
+<!-- /ko -->
+
+<!-- ko if: $row().auction_status === 'WINNER NOT DEFINED' -->
+<div class="data-grid-cell-content lofau-status-box lofau-status-winner-not-defined" text="$col.getLabel($row())"></div>
+<!-- /ko -->
+
+<!-- ko if: $row().auction_status === 'CANCELED' -->
+<div class="data-grid-cell-content lofau-status-box lofau-status-canceled" text="$col.getLabel($row())"></div>
+<!-- /ko -->
+
+<!-- ko if: $row().auction_status === 'COMPLETED' -->
+<div class="data-grid-cell-content lofau-status-box lofau-status-completed" text="$col.getLabel($row())"></div>
+<!-- /ko -->
+
+

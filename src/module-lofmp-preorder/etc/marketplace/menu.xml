@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_PreOrder
+ * @copyright  Copyright (c) 2021 Landofcoder (https://landofcoder.com/)
+ * @license    https://landofcoder.com/LICENSE-1.0.html
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+    	<add
+            id="Lofmp_PreOrder::mppreorder_management"
+            title="Pre Orders"
+            module="Lofmp_PreOrder"
+            sortOrder="142"
+            icon="fa fa-calendar"
+            resource="Lofmp_PreOrder::preorder"
+            dependsOnConfig="lofpreorder/settings/enabled"
+            />
+
+        <add
+            id="Lofmp_PreOrder::slot_groups"
+            title="Manage Pre Orders"
+            module="Lofmp_PreOrder"
+            action="mppreorder/preorder/index"
+            sortOrder="143"
+            parent="Lofmp_PreOrder::mppreorder_management"
+            resource="Lofmp_PreOrder::preorder"
+            dependsOnConfig="lofpreorder/settings/enabled"
+            />
+
+    </menu>
+</config>

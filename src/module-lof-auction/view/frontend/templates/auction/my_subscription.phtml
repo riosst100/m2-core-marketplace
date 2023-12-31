@@ -1,0 +1,145 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_Auction
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+$helper = $this->helper('Lof\Auction\Helper\Data');
+$aucConfig = $helper->getAuctionConfiguration();
+?>
+<div class="block block-dashboard-info">
+    <div class="block-title"><strong><?= __('My Subscription Auction List'); ?></strong></div>
+</div>
+<?php $collection = $block->getCollection(); ?>
+<?php if ($collection && $collection->count()): ?>
+<form method="POST" id="mass-update-form" action="<?= $block->getUrl('lofauction/account/updateMaxabsentee', []); ?>">
+    <div class="table-wrapper ">
+        <table class="data table" id="my-auction-bid-table">
+            <caption class="table-caption"><?= __('Subscriptions') ?></caption>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th scope="col" class="col"><?= __('ID') ?></th>
+                    <th scope="col" class="col"><?= __('My Max Absentee Bid Amount') ?></th>
+                    <th scope="col" class="col"><?= __('Product Name') ?></th>
+                    <th scope="col" class="col"><?= __('Auction Price') ?></th>
+                    <th scope="col" class="col"><?= __('Auction Status') ?></th>
+                    <th scope="col" class="col"><?= __('Auction End At') ?></th>
+                    <th scope="col" class="col"><?= __('Subscribed At') ?></th>
+                    <th scope="col" class="col"><?= __('Action') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($collection as $item): ?>
+                    <?php $pro = $block->getProductDetail($item->getProductId()); ?>
+                    <?php $auction = $block->getAuctionDetail($item->getAuctionId()); ?>
+                    <tr>
+                        <td><input type="checkbox" class="select-auction"  name="auction_id[]" value="<?= (int)$auction->getId() ?>"/></td>
+                        <td data-th="<?= $block->escapeHtmlAttr(__('ID')) ?>" class="col">
+                            <?= $item->getEntityId(); ?>
+                        </td>
+                        <td data-th="<?= $block->escapeHtmlAttr(__('My Max Absentee Bid Amount')) ?>" class="col">
+                            <?= $block->formatPrice($item->getMaxAbsenteeAmount()); ?>
+                            <br/>
+                            <span><?= $block->escapeHtml(__("Update Max Absentee:"));?></span>
+                            <br/>
+                            <input
+                                type="number" 
+                                name="max_absentee_bid[<?= (int)$auction->getId(); ?>]"
+                                class="input-text max-absentee-bid-input required-entry validate-digits-range digits-range-<?= (int)$auction->getMinAmount(); ?>-<?= (int)$auction->getMaxAmount();?>"
+                                placeholder="<?= __('Enter Max Absentee Bid Amount'); ?>" 
+                                value="<?= (float)$item->getMaxAbsenteeAmount(); ?>"
+                                oncut="return false;" 
+                                oncopy="return false;"
+                                onpaste="return false;"
+                            />
+                        </td>
+                        <td data-th="<?= $block->escapeHtml(__('Product Name')) ?>" class="col">
+                            <?php if ($pro) : ?>
+                            <a href="<?= $block->escapeUrl($pro['url']); ?>" target="_blank" class="action view">
+                                <span><?= $block->escapeHtml($pro['name']) ?></span>
+                            </a>
+                            <?php endif; ?>
+                        </td>
+                        <td data-th="<?= $block->escapeHtml(__('Auction Price')) ?>" class="col">
+                            <?php if ($auction) : ?>
+                                <span><?= $block->escapeHtml(__("Min: "));?></span>&nbsp;<?= $block->formatPrice($auction->getMinAmount()); ?>
+                                <br/>
+                                <span><?= $block->escapeHtml(__("Max: "));?></span>&nbsp;<?= $block->formatPrice($auction->getMaxAmount()); ?>
+                            <?php endif; ?>
+                        </td>
+                        <td data-th="<?= $block->escapeHtml(__('Auction Status')) ?>" class="col">
+                            <?php if ($auction) : ?>
+                                <?= $helper->getAuctionStatus($auction->getAuctionStatus()) ?>
+                            <?php endif; ?>
+                        </td>
+                        <td data-th="<?= $block->escapeHtml(__('Auction End At')) ?>" class="col">
+                            <?php if ($auction) : ?>
+                                <?= $helper->convertUtcToStoreTime($auction->getStopAuctionTime()); ?>
+                            <?php endif; ?>       
+                        </td>
+                        <td data-th="<?= $block->escapeHtmlAttr(__('Subscribed At')) ?>" class="col">
+                            <?= $helper->convertUtcToStoreTime($item->getCreatedAt()); ?>
+                        </td>
+                        <td data-th="<?= $block->escapeHtmlAttr(__('Action')) ?>" class="col">
+                            <a href="<?= $block->escapeUrl($block->getDeleteUrl($item->getEntityId())); ?>" title="<?= $block->escapeHtmlAttr(__("Remove this subscription"));?>" class="btn primary btn-delete">
+                                <span><?= $block->escapeHtml(__("Remove")); ?></span>
+                            </a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+        <p>
+            <input type="hidden" name="current_url" value="<?= $block->escapeUrl($block->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]));?>"/>
+            <button id="mass-update-button" value="Update" title="<?= $block->escapeHtmlAttr(__("Update Auction"));?>" class="action primary">
+                <span><?= $block->escapeHtml(__("Update"));?></span>
+            </button>
+        </p>
+    </div>
+</form>
+<script type="text/javascript">
+        require(['jquery'],function($) {
+            var selectedAuctions = []
+            $(document).ready( function () {
+                $('#mass-update-button').addClass("hidden");
+                $(".select-auction").on("click", function () {
+                    const index = selectedAuctions.indexOf($(this).val());
+                    if ($(this).prop('checked') && index <= -1) {
+                        selectedAuctions.push ($(this).val());
+                    } else if(index > -1) {
+                        selectedAuctions.splice (index, 1);
+                    }
+                    if (selectedAuctions.length > 0) {
+                        $('#mass-update-button').toggleClass("hidden");
+                    }
+                })
+                $('#mass-update-button').click(function(){
+                    if (selectedAuctions.length > 0) {
+                        $('#mass-update-form').submit();
+                    }
+                    return false;
+                })
+            });
+        });
+</script>
+<?php if ($block->getPagerHtml()): ?>
+    <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml(); ?></div>
+<?php endif ?>
+<?php else: ?>
+    <div class="message info empty"><span><?= __('You have no subscription records.'); ?></span></div>
+<?php endif ?>

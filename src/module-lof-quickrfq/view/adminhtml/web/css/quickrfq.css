@@ -1,0 +1,131 @@
+/*
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_Quickrfq
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+.manage-request-message-history {
+    float: left;
+    width: calc((100%) * 0.5 - 30px);
+}
+.seller-info {
+    float: left;
+    width: calc((100%) * 0.5 - 30px);
+}
+.customer-info {
+    float: right;
+    width: calc((100%) * 0.5 - 30px);
+}
+#message-send-button{
+    float: right;
+    font-size: 1.7rem;
+}
+
+.message-field-label {
+    font-weight: 600;
+    font-size: 1.6rem;
+    display: block;
+}
+
+.attachments-item {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    width: 250px;
+}
+
+.field-attachment label {
+    display: inline-block;
+    text-decoration: none;
+    color: #1979c3;
+    cursor: pointer;
+    font-size: 1.4rem;
+    margin-left: 2rem;
+    margin-top: 1rem;
+    position: relative;
+}
+
+.field-attachment {
+    padding-bottom: 1rem;
+}
+
+.field-attachment label:before {
+    left: -2rem;
+    position: absolute;
+}
+
+.field-attachment input {
+    display: none;
+}
+
+.field-attachment label:before {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 1.4rem;
+    line-height: 1.4;
+    color: #1979c3;
+    content: '\e900';
+    font-family: 'magento-icons';
+    vertical-align: middle;
+    display: inline-block;
+    font-weight: normal;
+    overflow: hidden;
+    speak: none;
+    text-align: center;
+}
+
+#manage-request-message-textarea {
+    margin-top: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.message-block-item {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+}
+
+.message-block-item-date-time {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: .5rem;
+}
+
+.message-block-item {
+    font-size: 1.4rem;
+    word-break: break-all;
+}
+#description span {
+    height: 18px;
+    width: 110px;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #000;
+}
+
+#message-send-button.submitting {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.7;
+}

@@ -1,0 +1,184 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_Auction
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+/** @var \Lof\Auction\Block\Product $block **/
+$auctionData = $block->getAuctionDetail();
+if ($auctionData):
+$stopTime = $auctionData['stop_auction_utc_time'];
+$startTime = $auctionData['start_auction_utc_time'];
+$helper = $this->helper('Lof\Auction\Helper\Data');
+$product = $this->getCurrentProduct();
+$aucConfig = $block->getAuctionConfiguration();
+$range_price = $helper->getMinAmount($auctionData['entity_id'], $aucConfig);
+$allowForBuy = 0;
+$todayUtc = $helper->getTimezoneDateTime();
+$bidder = $helper->getCustomerById($auctionData['customer_id']);
+$process = $auctionData['current_time_stamp'] <= $auctionData['stop_auction_time_stamp'];
+$starting = $auctionData['start_auction_time_stamp'] <= $auctionData['current_time_stamp'];
+$auctionData['min_amount'] = !isset($auctionData['min_amount']) ? $auctionData['starting_price'] : $auctionData['min_amount'];
+$show_max_price = $helper->getAdvancedDisplayConfig("show_max_price");
+$show_max_qty = $helper->getAdvancedDisplayConfig("show_max_qty");
+$show_min_price = $helper->getAdvancedDisplayConfig("show_min_price");
+$show_min_qty = $helper->getAdvancedDisplayConfig("show_min_qty");
+$show_start_price = $helper->getAdvancedDisplayConfig("show_start_price");
+$show_reserve_price = $helper->getAdvancedDisplayConfig("show_reserve_price");
+$show_timezone = $helper->getAdvancedDisplayConfig("show_timezone");
+$show_current_time = $helper->getAdvancedDisplayConfig("show_current_time");
+$show_bid_start = $helper->getAdvancedDisplayConfig("show_bid_start");
+$show_bid_end = $helper->getAdvancedDisplayConfig("show_bid_end");
+$expire_full_info = $helper->getAdvancedDisplayConfig("expire_full_info");
+$step = $helper->getIncrementPriceAsRange($auctionData['min_amount']);
+$auctionObject = $this->getAuctionData();
+
+if ($auctionData && !$auctionData['new_auction_start']):
+    if ($process):
+        echo $block->getAuctiondDetailBlock("auction.info", $auctionData);
+    elseif (!$process):
+        $aftComp = $block->getAuctionDetailAfterEnd($auctionData);
+        if ($aftComp['watting_user']): ?>
+            <?php
+            if ($expire_full_info) :
+                echo $block->getAuctiondDetailBlock("auction.info", $auctionData);
+            endif;
+            ?>
+            <div class="lof_product_background">
+                <div class="product-collateral">
+                    <div class="box-collateral box-tags lof_row">
+                        <h3><?= $aftComp['watting_user']['msg_lable']; ?></h3>
+                    </div>
+                </div>
+            </div>
+        <?php elseif ($aftComp['winner'] && $aftComp['winner']['price']):
+            $winner = $aftComp['winner'];
+            if ($winner['time_for_buy'] > 0):
+                if ($winner['shop'] == 0):
+                    $allowForBuy = 1; ?>
+                    <div id="winner-data-container" class="lof_product_background allow-for-buy">
+                        <div id="auctionbidform">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <div class="bid_title"><?= $auctionData['auction_title']; ?></div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="lof-column">
+                                        <label class='label'><?= __('Bid Start:') ?></label>
+                                        <span class='value'><?= $auctionData['start_auction_time']; ?></span>
+                                    </div>
+                                    <div class="lof-column">
+                                        <label class='label'><?= __('Bid End:') ?></label>
+                                        <span class='value'><?= $auctionData['stop_auction_time']; ?></span>
+                                    </div>
+                                    <div class="lof-column">
+                                        <label class='label'><?= __('Timezone:') ?></label>
+                                        <span class='value'><?= $auctionData['time_zone']; ?></span>
+                                    </div>
+                                    <div class="lof-column">
+                                        <label class='label'><?= __('Current Time:') ?></label>
+                                        <span class='value'><?= $auctionData['today_time']; ?></span>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="lof-column">
+                                        <label class='label'><?= __('Minimum Qty:') ?></label>
+                                        <span class='value'><?= $auctionData['min_qty']; ?></span>
+                                    </div>
+                                    <div class="lof-column">
+                                        <label class='label'><?= __('Maximum Qty:') ?></label>
+                                        <span class='value'><?= $auctionData['max_qty']; ?></span>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="lof-column">
+                                        <label class='label'><?= __('Starting Price:') ?></label>
+                                        <span class='value'><?= $block->formatPrice($auctionData['starting_price']); ?></span>
+                                    </div>
+                                    <?php if ($auctionData['max_amount']): ?>
+                                        <div class="lof-column">
+                                            <label class='label'><?= __('Max Price:') ?></label>
+                                            <span class='value'><?= $block->formatPrice($auctionData['max_amount']); ?></span>
+                                        </div>
+                                    <?php endif; ?>
+                                    <?php if ($auctionData['reserve_price']): ?>
+                                        <div class="lof-column">
+                                            <label class='label'><?= __('Reserve Price:') ?></label>
+                                            <span class='value'><?= $block->formatPrice($auctionData['reserve_price']); ?></span>
+                                        </div>
+                                    <?php endif; ?>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="bid_title"><?= __($aucConfig['show_winner_msg'] . ' Now, you can get it in ' . $block->formatPrice($winner['price'])) ?></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <?php else: ?>
+                    <div class="lof_product_background">
+                        <div id="bottom_lin">
+                            <div class='bid_title'><?= $auctionData['auction_title'] ?></div>
+                            <div class="lof_row">
+                                <?= __('you already bought this product'); ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif;
+            endif;
+        endif;
+    endif; ?>
+    <script type="text/javascript">
+        require([
+            'jquery',
+            'Magento_Catalog/js/price-utils'
+        ], function ($, priceUtils) {
+            $(document).ready(function () {
+                <?php
+                if ($auctionData['pro_buy_it_now']): ?>
+                $('#product-addtocart-button span').text('<?= __('Buy It Now'); ?>');
+                <?php elseif ($allowForBuy == 1): ?>
+                var PriceFormat = <?php /* @escapeNotVerified */ echo $this->helper('Magento\Tax\Helper\Data')->getPriceFormat($block->getStore()); ?>;
+                var bidWinnerCart = priceUtils.formatPrice(<?=($winner['price']) ?>, PriceFormat, false);
+                var btnText = "<?=__('Buy with ')?>" + bidWinnerCart;
+                $("#product-addtocart-button span").text(btnText);
+                <?php elseif ($starting): ?>
+                $("#product_addtocart_form").remove();
+                <?php endif; ?>
+                $("input[name='auto_bid_allowed']").on('change', function () {
+                    if ($(this).is(":checked")) {
+                        $("#bidding_amount").val(<?= $range_price ?>);
+                        $("#bidding_amount").prop('disabled', true);
+                    } else {
+                        $("#bidding_amount").prop('disabled', false);
+                    }
+                })
+            })
+        })
+    </script>
+    <?php
+else:
+    ?>
+    <div class="lof_product_background">
+        <div id="bottom_lin">
+            <div class="lof_row">
+                <?= __('The product was expired for auction bidding'); ?>
+            </div>
+        </div>
+    </div>
+    <?php
+endif;
+endif;

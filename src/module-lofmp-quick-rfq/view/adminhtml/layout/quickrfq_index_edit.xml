@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="styles"/>
+    <update handle="editor"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Lofmp\Quickrfq\Block\Adminhtml\Rfq\Layout" name="manage.quote.layout"
+                   template="Lofmp_Quickrfq::layout.phtml">
+                <block class="Lof\Quickrfq\Block\Adminhtml\Rfq\Message"
+                       name="manage.request.message"
+                       template="Lof_Quickrfq::message.phtml"/>
+                <block class="Lof\Quickrfq\Block\Adminhtml\Rfq\CustomerAddress"
+                       name="negotiable.quote.customerinfo"
+                       template="Lof_Quickrfq::customer_address.phtml"/>
+                <block class="Lofmp\Quickrfq\Block\Adminhtml\Rfq\SellerInfo"
+                       name="manage.quote.seller"
+                       template="Lofmp_Quickrfq::sellerinfo.phtml"/>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

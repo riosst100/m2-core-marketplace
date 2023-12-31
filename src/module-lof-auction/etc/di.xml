@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<!--*
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lof_Auction
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  *-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="change_product" type="Lof\Auction\Plugin\Product" sortOrder="1" disabled="true"/>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="lofauction_product_listing_data_source" xsi:type="string">Lof\Auction\Model\ResourceModel\Product\Grid\Collection</item>
+                <item name="lofauction_mix_listing_data_source" xsi:type="string">Lof\Auction\Model\ResourceModel\MixAmount\Grid\Collection</item>
+                <item name="lofauction_bid_listing_data_source" xsi:type="string">Lof\Auction\Model\ResourceModel\Amount\Grid\Collection</item>
+                <item name="lofauction_autobid_listing_data_source" xsi:type="string">Lof\Auction\Model\ResourceModel\AutoAuction\Grid\Collection</item>
+                <item name="lofauction_winner_listing_data_source" xsi:type="string">Lof\Auction\Model\ResourceModel\WinnerData\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Lof\Auction\Model\ResourceModel\WinnerData\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">lof_auction_winner_data</argument>
+            <argument name="eventPrefix" xsi:type="string">lof_auction_winner_data_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">winner_data_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Lof\Auction\Model\ResourceModel\WinnerData</argument>
+        </arguments>
+    </type>
+    <type name="Lof\Auction\Model\ResourceModel\AutoAuction\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">lof_auto_auction</argument>
+            <argument name="eventPrefix" xsi:type="string">lof_auto_auction_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">auto_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Lof\Auction\Model\ResourceModel\AutoAuction</argument>
+        </arguments>
+    </type>
+    <type name="Lof\Auction\Model\ResourceModel\Amount\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">lof_auction_amount</argument>
+            <argument name="eventPrefix" xsi:type="string">lofauction_amount_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">amount_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Lof\Auction\Model\ResourceModel\Amount</argument>
+        </arguments>
+    </type>
+    <type name="Lof\Auction\Model\ResourceModel\Product\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">lof_auction_product</argument>
+            <argument name="eventPrefix" xsi:type="string">lofauction_product_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">product_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Lof\Auction\Model\ResourceModel\Product</argument>
+        </arguments>
+    </type>
+    <type name="Lof\Auction\Model\ResourceModel\MixAmount\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">lof_auction_mix</argument>
+            <argument name="eventPrefix" xsi:type="string">lof_auction_mix_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">mix_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Lof\Auction\Model\ResourceModel\MixAmount</argument>
+        </arguments>
+    </type>
+    <virtualType name="AuctionGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\GraphQl\Query\Resolver\Argument\FieldEntityAttributesPool">
+        <arguments>
+            <argument name="attributesInstances" xsi:type="array">
+                <item name="lofAuctionList" xsi:type="object">\Lof\Auction\Model\Resolver\FilterArgumentAuction</item>
+                <item name="lofMySubscribedAuctionList" xsi:type="object">\Lof\Auction\Model\Resolver\FilterArgumentSubscribedAuction</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Console\CommandList">
+		<arguments>
+			<argument name="commands" xsi:type="array">
+				<item name="ProcessAuction" xsi:type="object">Lof\Auction\Console\Command\ProcessAuction</item>
+                <item name="ConvertSubscriber" xsi:type="object">Lof\Auction\Console\Command\ConvertSubscriber</item>
+			</argument>
+		</arguments>
+	</type>
+    <virtualType name="Lof\Auction\Model\ResourceModel\MaxAbsenteeBid\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">lof_auction_absentee_bid</argument>
+			<argument name="resourceModel" xsi:type="string">Lof\Auction\Model\ResourceModel\MaxAbsenteeBid\Collection</argument>
+		</arguments>
+	</virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="lofauction_absenteebid_listing_data_source" xsi:type="string">Lof\Auction\Model\ResourceModel\MaxAbsenteeBid\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+
+    <preference for="Lof\Auction\Api\Data\EndAuctionInterface" type="Lof\Auction\Model\Data\EndAuction"/>
+    <preference for="Lof\Auction\Api\Data\WattingUserInterface" type="Lof\Auction\Model\Data\WattingUser"/>
+    <preference for="Lof\Auction\Api\Data\WinnerInterface" type="Lof\Auction\Model\Data\Winner"/>
+    <preference for="Lof\Auction\Api\Data\MaxAbsenteeBidInterface" type="Lof\Auction\Model\Data\MaxAbsenteeBid"/>
+    <preference for="Lof\Auction\Api\Data\MixBidInterface" type="Lof\Auction\Model\MixAmount"/>
+    <preference for="Lof\Auction\Api\Data\AmountInterface" type="Lof\Auction\Model\Amount"/>
+    <preference for="Lof\Auction\Api\Data\ProductInterface" type="Lof\Auction\Model\Product"/>
+    <preference for="Lof\Auction\Api\BidRepositoryInterface" type="Lof\Auction\Model\BidRepository"/>
+    <preference for="Lof\Auction\Api\Data\AutoAuctionInterface" type="Lof\Auction\Model\AutoAuction"/>
+    <preference for="Lof\Auction\Api\Data\WinnerDataInterface" type="Lof\Auction\Model\WinnerData"/>
+    <preference for="Lof\Auction\Api\AmountRepositoryInterface" type="Lof\Auction\Model\AmountRepository"/>
+    <preference for="Lof\Auction\Api\AutoAuctionRepositoryInterface" type="Lof\Auction\Model\AutoAuctionRepository"/>
+    <preference for="Lof\Auction\Api\ProductRepositoryInterface" type="Lof\Auction\Model\ProductRepository"/>
+    <preference for="Lof\Auction\Api\MaxAbsenteeBidRepositoryInterface" type="Lof\Auction\Model\MaxAbsenteeBidRepository"/>
+    <preference for="Lof\Auction\Api\WinnerDataRepositoryInterface" type="Lof\Auction\Model\WinnerDataRepository"/>
+    <preference for="Lof\Auction\Api\AuctionRepositoryInterface" type="Lof\Auction\Model\AuctionRepository"/>
+    <preference for="Lof\Auction\Api\Data\ProductSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Lof\Auction\Api\Data\WinnerDataSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Lof\Auction\Api\Data\AutoAuctionSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Lof\Auction\Api\Data\AmountSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Lof\Auction\Api\Data\MaxAbsenteeBidSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Lof\Auction\Api\Data\MixBidSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+</config>

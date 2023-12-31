@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://landofcoder.com/license
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category   Landofcoder
+ * @package    Lof_FAQ
+ * @copyright  Copyright (c) 2016 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="Magento_Backend::mpfaq_elements" title="Lof Mp FAQ">
+					<resource id="Lofmp_Faq::question" title="Question" sortOrder="10">
+						<resource id="Lofmp_Faq::question_edit" title="Edit Question" sortOrder="10" />
+						<resource id="Lofmp_Faq::question_save" title="Save Question" sortOrder="20" />
+						<resource id="Lofmp_Faq::question_delete" title="Delete Question" sortOrder="30" />
+					</resource>
+					<resource id="Lofmp_Faq::category" title="Category" sortOrder="30">
+						<resource id="Lofmp_Faq::category_edit" title="Edit Category" sortOrder="10" />
+						<resource id="Lofmp_Faq::category_save" title="Save Category" sortOrder="20" />
+						<resource id="Lofmp_Faq::category_delete" title="Delete Category" sortOrder="30" />
+					</resource>
+				</resource>
+				<resource id="Magento_Backend::stores">
+					<resource id="Magento_Backend::stores_settings">
+						<resource id="Magento_Config::config">
+							<resource id="Lofmp_Faq::config_faq" title="Lof Mp FAQ" />
+						</resource>
+					</resource>
+				</resource>
+			</resource>
+		</resources>
+	</acl>
+</config>

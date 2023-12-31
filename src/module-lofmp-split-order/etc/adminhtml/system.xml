@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lofmp_SplitOrder
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="landofcoder" translate="label" sortOrder="400">
+            <label>landofcoder.com</label>
+        </tab>
+        <section id="lofmp_split_order" showInDefault="1">
+            <tab>landofcoder</tab>
+            <label>Split Order</label>
+            <resource>Lofmp_SplitOrder::config</resource>
+            <group id="module" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>General</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[Select <strong>"Yes"</strong> to enable the split orders feature per seller.<br/>
+                        Note: This feature <strong>SHOULD NOT</strong> be enabled when the site is using the <a href="https://landofcoder.com/magento-2-marketplace-split-cart.html" target="_blank">MAGENTO 2 MARKETPLACE SPLIT CART Addon</a></br>
+                        You can visit its settings and disable split cart addon or use the command:<br/>
+                         <code><strong>php bin/magento module:disable Lofmp_SplitCart</strong></code>
+                        ]]>
+                    </comment>
+                </field>
+            </group>
+            <group id="options" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label">
+                <label>Settings</label>
+                <field id="shipping" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Split Shipping Total</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Split shipping total between orders, otherwise, place shipping total to one order only.</comment>
+                </field>
+                <field id="hide_main_order" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Hide Main Order</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Hide Main Order from some 3rd payment methods.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

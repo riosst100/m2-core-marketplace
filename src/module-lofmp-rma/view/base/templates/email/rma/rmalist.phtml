@@ -1,0 +1,27 @@
+<?php
+/* @var $block \Lofmp\Rma\Block\Rma\View\Items */
+?>
+<table cellspacing="0" cellpadding="0" border="0" width="650">
+    <thead>
+        <tr>
+            <th align="left" width="220" bgcolor="#EAEAEA" style="font-size:11px;padding:3px 9px;border-bottom:1px"><?php echo __("Rma Increment Id") ?></th>
+            <th align="left" width="220" bgcolor="#EAEAEA" style="font-size:11px;padding:3px 9px;border-bottom:1px"><?php echo __("Status") ?></th>
+            <th align="left" width="220" bgcolor="#EAEAEA" style="font-size:11px;padding:3px 9px;border-bottom:1px"><?php echo __("Created at") ?></th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php
+        $rmaList = $block->getrmaList();
+    foreach ($rmaList as $rma):
+        ?>
+    <tr>
+        <td align="left" width="220" bgcolor="#EAEAEA" style="font-size:11px;padding:3px 9px;border-bottom:1px"><?php echo $rma->getIncrementId() ?></td>
+        <td align="left" width="220" bgcolor="#EAEAEA" style="font-size:11px;padding:3px 9px;border-bottom:1px"><?php echo $block->getStatusname($rma->getStatusId()) ?></td>
+        <td align="left" width="220" bgcolor="#EAEAEA" style="font-size:11px;padding:3px 9px;border-bottom:1px"><?php echo $rma->getCreatedat() ?></td>
+    </tr>
+        <?php
+        # code...
+        endforeach;
+    ?>
+    </tbody>
+</table>

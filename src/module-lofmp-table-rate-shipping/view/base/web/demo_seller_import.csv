@@ -1,0 +1,6 @@
+country_code,region_id,zip,zip_to,price,weight_from,weight_to,shipping_method,free_shipping,cost,cart_total
+US,*,90001,90100,10,0,30,Seller 2 shipping,0,0,0
+US,*,90101,90110,5,0.5,1,Seller 2 shipping 2,0,0,0
+GB,*,GN1000,GN1020,6,0.5,1,Seller 2 shipping,0,0,0
+US,21,*,*,25,0,6,Seller 2 shipping 3,300,0,0
+US,*,49628-7978,49628-7979,18,0,5,Seller 2 shipping,100,0,0

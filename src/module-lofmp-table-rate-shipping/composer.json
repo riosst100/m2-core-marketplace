@@ -1,0 +1,19 @@
+{
+    "name": "landofcoder/module-seller-tablerateshipping",
+    "description": "Table Rate Shipping for Marketplace",
+    "require": {
+        "landofcoder/module-marketplace":"*"
+    },
+    "type": "magento2-module",
+    "version": "1.1.0",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [ "registration.php" ],
+        "psr-4": {
+            "Lofmp\\TableRateShipping\\": ""
+        }
+    }
+  }

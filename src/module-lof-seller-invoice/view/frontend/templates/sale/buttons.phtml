@@ -1,0 +1,10 @@
+<?php 
+	$sellers = $block->getSellers();
+?>
+<div class="page-actions-buttons">
+	<?php foreach ($sellers as $seller): ?>
+		<button id="seller_order_<?php echo $seller['seller_id']; ?>" title="<?php echo $seller['seller_name'];?> Order Pdf File" type="button" class="action-default scalable" style="margin-right: 10px" onclick="location.href='<?php echo $this->getPreviewPdfUrl($seller['seller_id']);?>'">
+		    <span><?php echo $seller['seller_name'];?>	Order File</span>
+		</button>
+	<?php endforeach;?>
+</div>

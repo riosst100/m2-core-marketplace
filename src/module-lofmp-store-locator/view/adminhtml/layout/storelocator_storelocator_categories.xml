@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://landofcoder.com/license
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category   Landofcoder
+ * @package    Lofmp_StoreLocator
+ * @copyright  Copyright (c) 2016 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+    <container name="root" label="Root">
+        <block class="Lofmp\StoreLocator\Block\Adminhtml\StoreLocator\Edit\Tab\Categories" name="storelocator.edit.tab.categories"/>
+        <block class="Magento\Backend\Block\Widget\Grid\Serializer" name="categories_grid_serializer">
+            <arguments>
+                <argument name="input_names" xsi:type="string">position</argument>
+                <argument name="grid_block" xsi:type="string">storelocator.edit.tab.categories</argument>
+                <argument name="callback" xsi:type="string">getSelectedCategories</argument>
+                
+                <argument name="input_element_name" xsi:type="string">links[categories]</argument>
+                <argument name="reload_param_name" xsi:type="string">categories</argument>
+            </arguments>
+        </block>
+    </container>
+</layout>

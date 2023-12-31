@@ -1,0 +1,271 @@
+<?php
+$helper                 = $this->helper("Lofmp\StoreLocator\Helper\Data");
+if($helper->getConfig('general/enable')){
+$api_key                = $helper->getConfig('general/api_key');
+$pagination             = $helper->getConfig('general/pagination');
+$store_limit            = $helper->getConfig('general/store_limit');
+$store_perpage          = $helper->getConfig('general/store_perpage');
+$enable_category_filter = $helper->getConfig('general/enable_category_filter');
+$enable_tag_filter      = $helper->getConfig('general/enable_tag_filter');
+$default_radius			= $helper->getConfig('general/default_radius');
+$default_radius			= $default_radius?(int)$default_radius:40;
+$location_lng           = $helper->getConfig('location/location_lng');
+$location_lat           = $helper->getConfig('location/location_lat');
+$zoom                   = (int) $helper->getConfig('location/zoom');
+$pub                    = $block->getViewFileUrl('Lofmp_StoreLocator/js/plugins/storelocator/templates');
+$infoTemplate           = $pub . '/infowindow-description.html';
+$locationTemplate       = $pub . '/location-list-description.html';
+$dataLocation           = $this->getMediaUrl() . 'storelocator/index/locations';
+$tagcollection          = $this->getTagCollection();
+$categoryCollection     = $this->getCategoryCollection();
+$zipcodeCollection      = $this->getListZipCode();
+$countryCollection      = $this->getListCountry();
+$cityCollection         = $this->getListCity();
+$dataCountry            = $this->getCountry();
+$unit 					= "km"; //m or km
+$unit_label				= "Mi"; //Mi or Km
+if($unit == "km") {
+	$unit_label = "Km";
+}
+?>
+<div class="storelocator bh-sl-container">
+	<div class="bh-sl-form-container">
+		<form id="bh-sl-user-location" method="post" action="#">
+			<ul id="myTabs" class="nav nav-pills" role="tablist">
+				<li role="presentation" class="active"><a href="#search-distance" aria-controls="search-distance" role="tab" data-toggle="tab"> <i class="fa fa-anchor"></i> <?php echo __('Search by Distance'); ?></a></li>
+				<li role="presentation"><a href="#search-all" aria-controls="search-all" role="tab" data-toggle="tab"> <i class="fa fa-rocket"></i> <?php echo __('Search by Area'); ?></a></li>
+			</ul>
+			<div class="bh-sl-tab-panel-content tab-content col-xs-12">
+				<div role="tabpanel" class="tab-pane active" id="search-distance">
+					<div class="form-group col-md-4 col-sm-4 col-xs-12">
+						<input class="form-control" type="text" id="bh-sl-address" name="bh-sl-address" />
+					</div>
+					<div class="form-group col-md-4 col-sm-4 col-xs-12 slider-range-min">
+						<div id="bh-sl-max-distance" class="bh-sl-max-distance "></div>
+						<span id="bh-sl-show-unit" class="slider-range-amount"></span>
+						<input id="bh-sl-input-distance" type="hidden" name="input-distance" value=""/>
+					</div>
+					<div class="form-group col-sm-3 col-xs-12 pull-right button-box text-right">
+						<button class="bh-sl-submit primary" class="bh-sl-submit" type="submit"><?php echo __('Search'); ?></button>
+						<button class="bh-sl-reset primary" type="button"><?php echo __('Reset'); ?></button>
+					</div>
+
+				</div>
+				<div role="tabpanel" class="tab-pane" id="search-all">
+					<div class="bh-sl-filters-container">
+						<div class="form-group col-sm-6 col-xs-12 padding-right padding-left">
+							<input id="bh-sl-search" name="bh-sl-search" placeholder="<?php echo __('Store Name'); ?>" class="input-search-store-name form-control" type="text">
+						</div>
+						<div class="form-group col-sm-6 col-xs-12 padding-right padding-left">
+							<div id="city-filter" class="bh-sl-filters">
+								<select name="city" class="form-control select">
+									<option value=""><?php echo __('-- Select City --'); ?></option>
+									<?php foreach ($cityCollection as $item): ?>
+										<option value="<?php echo $item; ?>"><?php echo $item; ?></option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+						</div>
+						<div class="form-group col-sm-6 col-xs-12 padding-right padding-left">
+							<div id="zipcode-filter" class="bh-sl-filters">
+								<select name="zipcode" class="form-control select">
+									<option value=""><?php echo __('-- Select Zipcode --'); ?></option>
+									<?php foreach ($zipcodeCollection as $item): ?>
+										<option value="<?php echo $item; ?>"><?php echo $item; ?></option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+						</div>
+						<div class="form-group col-sm-6 col-xs-12 padding-right padding-left">
+							<div id="country-filter" class="bh-sl-filters">
+								<select name="country" class="form-control select">
+                                    <option value=""><?php echo __('-- Select Country --'); ?></option>
+                                    <?php foreach ($dataCountry as $item): ?>
+                                        <option value="<?php echo $item; ?>"><?php echo $item; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+							</div>
+						</div>
+						
+						<div class="form-group col-sm-3 col-xs-12 pull-right button-box text-right">
+							<button class="bh-sl-submit primary" class="bh-sl-submit" type="submit"><?php echo __('Search'); ?></button>
+							<button class="bh-sl-reset primary" type="button"><?php echo __('Reset'); ?></button>
+						</div>
+					</div>
+				</div>
+				<!-- filter category -->
+				<div class="bh-sl-filters-container">
+					<?php if ($enable_tag_filter): ?>
+						<ul id="tag-filters" class="bh-sl-filters">
+							<li><h3><?php echo __('Tags'); ?></h3></li>
+							<?php $i=0; foreach ($tagcollection as $item): $i++;?>
+							<?php if($i == 5): ?>
+							</ul>
+							<ul id="tag-filters" class="bh-sl-filters">
+								<li><h3></h3></li>
+							<?php endif; ?>
+							<li>
+								<label>
+									<input type="checkbox" name="tag" value="<?php echo $item['value']; ?>"> <?php echo $item['label']; ?>
+								</label>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+				<?php endif; ?>
+				<?php if ($enable_category_filter): ?>
+					<ul id="category-filters" class="bh-sl-filters">
+						<li><h3><?php echo __('Categories'); ?></h3></li>
+						<?php $i=0; foreach ($categoryCollection as $item): $i++;?>
+
+						<?php if($i == 5): ?>
+						</ul>
+						<ul id="category-filters" class="bh-sl-filters">
+							<li><h3></h3></li>
+						<?php endif; ?>
+						<li>
+							<label>
+								<input type="checkbox" name="category" value="<?php echo $item['value']; ?>"> <?php echo $item['label']; ?>
+							</label>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+			<?php endif; ?>
+			</div>
+		</div>
+
+	</form>
+</div>
+<!-- show map + list -->
+<div id="bh-sl-map-container" class="bh-sl-map-container">
+	<div class="map-box-container col-sm-8 col-xs-12 pull-left">
+		<div id="bh-sl-map" class="bh-sl-map"></div>
+	</div>
+	<div class="list-store-box col-sm-4 col-xs-12 pull-left">
+		<div class="page-title">
+			<h2 class="title">
+				<span class="fa fa-list" aria-hidden="true"></span>
+				<span><?php echo __('Store list');?></span>
+				<span class="number-store pull-right">
+					<span class="bh-sl-total-results"></span> <?php echo __('results');?>
+				</span>
+			</h2>
+		</div>
+		<div class="list-store col-xs-12">
+			<div class="bh-sl-loc-list">
+				<ul class="list"></ul>
+			</div>
+		</div>
+		<?php if ($pagination): ?>
+			<div class="pagination-list">
+				<div class="bh-sl-pagination-container">
+					<ol class="bh-sl-pagination"></ol>
+				</div>
+			</div>
+		<?php endif ?>
+	</div>
+</div>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<?php echo $api_key; ?>&sensor=false&libraries=places"></script>
+
+<script>
+
+        var current_location_lat = 0;
+        var current_location_long = 0;
+        var current_lat_long = "";
+        function getStoreCurrentLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showCurrentPosition);
+            } else {
+                console.log("\n<?php echo __('Geolocation is not supported by this browser.');?>");
+            }
+        }
+        function showCurrentPosition(position) {
+            current_location_lat = position.coords.latitude;
+            current_location_long = position.coords.longitude;
+            current_lat_long = {lat: parseFloat(current_location_lat), lng: parseFloat(current_location_long)};
+
+            geocodeGetCurrentAddress('#bh-sl-address');
+        }
+
+        function geocodeGetCurrentAddress(input_selector) {
+            require(['jquery'],function ($) {
+                var geocoder = new google.maps.Geocoder;
+                if(geocoder && current_lat_long && ($(input_selector).length > 0)) {
+                    geocoder.geocode({'location': current_lat_long}, function(results, status) {
+                        if (status === 'OK') {
+                            if (results[0]) {
+                               var current_address = results[0].formatted_address;
+                               $(input_selector).val(current_address);
+                            } else {
+                              console.log('\n<?php echo __('No results found');?>');
+                            }
+                          } else {
+                            console.log('\n<?php echo __('Geocoder failed due to: ');?>' + status);
+                          }
+                        });
+                }
+            });
+        }
+
+	require(['jquery', 'handlebars', 'markerwithlabel',  'storelocator', 'bootstrap', 'jquery/ui'],function ($) {
+		$(document).ready(function ($) {
+			$("#bh-sl-max-distance").slider({
+				range: "min",
+				value: <?php echo $default_radius; ?>,
+				min: 1,
+				max: 3000,
+				slide: function( event, ui ) {
+					$( "#bh-sl-show-unit" ).text( ui.value + " <?php echo $unit_label; ?>" );
+					$( "#bh-sl-input-distance" ).val( ui.value );
+				}
+			});
+			$( "#bh-sl-show-unit" ).text( $( "#bh-sl-max-distance" ).slider( "value" ) + " <?php echo $unit_label; ?>" );
+			$( "#bh-sl-input-distance" ).val( $( "#bh-sl-max-distance" ).slider( "value" ) );
+			$('#myTabs a:first').tab('show');
+			$('#bh-sl-map-container').storeLocator({
+				'dataType': 'json',
+				'dataLocation': '<?php echo $dataLocation; ?>',
+				'slideMap': false,
+				'defaultLoc': true,
+				'defaultLat': '<?php echo $location_lat ?>',
+				'defaultLng': '<?php echo $location_lng ?>',
+				'infowindowTemplatePath' : '<?php echo $infoTemplate; ?>',
+				'listTemplatePath': '<?php echo $locationTemplate; ?>',
+				'storeLimit': <?php echo $store_limit; ?>,
+				'loading': true,
+				'maxDistance': true,
+				'lengthUnit': '<?php echo $unit; ?>',
+				'maxDistanceID': 'bh-sl-input-distance',
+				'taxonomyFilters': {
+					'tag': 'tag-filters',
+					'category' : 'category-filters',
+					'zipcode': 'zipcode-filter',
+					'country': 'country-filter',
+					'city': 'city-filter',
+				},
+				'mapSettings': {
+					zoom: <?php echo $zoom ?>,
+
+				},
+				'nameSearch': true,
+				'searchID': 'bh-sl-search',
+				'addressID': 'bh-sl-address',
+				'autoComplete': true,
+				'pagination': <?php echo $pagination?'true':'false'; ?>,
+				'locationsPerPage' : <?php echo $store_perpage; ?>,
+				catMarkers: {
+					'Restaurant' : ['img/red-marker.png', 128, 128],
+				},
+				'markerCluster' : null,
+			});
+			if(typeof(google) != "undefined") {
+				//var geocoder = new google.maps.Geocoder;
+				getStoreCurrentLocation();
+			}
+		});
+	});
+</script>
+</div>
+<?php
+	}
+?>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.landofcoder.com/license-agreement.html
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_FavoriteSeller
+ * @copyright  Copyright (c) 2018 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <referenceContainer name="sidebar.main">
+        <!--<block class="Lof\MarketPlace\Block\Seller\Info" name="seller_info" template="Lof_MarketPlace::seller/info.phtml"/>-->
+        <block class="Lofmp\FavoriteSeller\Block\Seller\View" name="seller.info.add.favorite.seller" after="seller_info" ifconfig="favoriteseller_config/general/enable" template="Lofmp_FavoriteSeller::addfavorite.phtml" />
+    </referenceContainer>
+</page>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2021 Landofcoder.com
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <lofmp_layerednavigation>
+            <general>
+                <enabled>1</enabled>
+                <show_seller_group>1</show_seller_group>
+                <show_category>1</show_category>
+            </general>
+        </lofmp_layerednavigation>
+    </default>
+</config>

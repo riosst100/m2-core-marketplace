@@ -1,0 +1,199 @@
+/*
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_Quickrfq
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+@media all and (min-width: 769px), print {
+    .modals-wrapper .modal-popup.lof-popup-request-quote .modal-inner-wrap {
+        max-width: 640px;
+        width: 640px;
+    }
+
+    .fieldset-cols {
+        margin-right: -15px;
+        margin-left: -15px;
+        box-sizing: border-box;
+        margin-bottom: 15px;
+    }
+
+    .fieldset.fieldset-cols > legend {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .fieldset-cols:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+
+    .field-side {
+        float: left;
+        width: 50%;
+        padding-left: 15px;
+        padding-right: 15px;
+        box-sizing: border-box;
+    }
+    .field-attachment label {
+        display: inline-block;
+        text-decoration: none;
+        color: #1979C3;
+        cursor: pointer;
+        font-size: 1.4rem;
+        margin-left: 20px;
+        margin-top: 10px;
+        position: relative;
+    }
+    input[type="file" i] {
+        appearance: initial;
+        background-color: initial;
+        cursor: default;
+        align-items: baseline;
+        color: inherit;
+        text-overflow: ellipsis;
+        white-space: pre;
+        text-align: start !important;
+        padding: initial;
+        border: initial;
+        overflow: hidden;
+    }
+    .field-attachment label {
+        display: inline-block;
+        text-decoration: none;
+        color: #1979c3;
+        cursor: pointer;
+        font-size: 1.4rem;
+        margin-left: 2rem;
+        margin-top: 1rem;
+        position: relative;
+    }
+    .field-attachment {
+        padding-bottom: 1rem;
+    }
+    .field-attachment label:before {
+        left: -2rem;
+        position: absolute;
+    }
+    .field-attachment input {
+        display: none;
+    }
+    .field-attachment label:before {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-size: 1.4rem;
+        line-height: 1.4;
+        color: #1979c3;
+        content: '\e9cd';
+        font-family: 'lofquickrfq';
+        vertical-align: middle;
+        display: inline-block;
+        font-weight: normal;
+        overflow: hidden;
+        speak: none;
+        text-align: center;
+    }
+    .action-delete:before {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-size: 1.4rem;
+        line-height: 1.2;
+        color: #8F8F8F;
+        content: '\e9ac';
+        font-family: 'lofquickrfq';
+        vertical-align: middle;
+        display: inline-block;
+        font-weight: normal;
+        overflow: hidden;
+        speak: none;
+        text-align: center;
+    }
+    .action-delete {
+        display: inline-block;
+        text-decoration: none;
+        background: none;
+        border: none;
+        padding: 0;
+    }
+    .action-delete span {
+        display: none;
+    }
+    .action-delete:before {
+        position: relative;
+        top: -.2rem;
+    }
+    button{
+        -webkit-appearance: button;
+        appearance: button;
+        cursor: pointer;
+    }
+    #recaptcha {
+        display: inline-block;
+        position: relative;
+    }
+
+}
+
+#add-quote-form button.save.submitting {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+input[type="date"] {
+    background: #fff;
+    background-clip: padding-box;
+    border: 1px solid #c2c2c2;
+    border-radius: 1px;
+    font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    height: 32px;
+    line-height: 1.42857143;
+    padding: 0 9px;
+    vertical-align: baseline;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.negotiable-quote-errors .error-wrap {
+    display: none;
+}
+
+a.lof-quote-request-button {
+    background-image: none;
+    background: #eee;
+    border: 1px solid #ccc;
+    color: #333;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-weight: 600;
+    margin: 0;
+    padding: 7px 15px;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    box-sizing: border-box;
+    vertical-align: middle;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 0 0 #fff, inset 0 -1px 0 0 rgba(204,204,204,0.3);
+}
+.action-convert-cart {
+    margin-top: 10px;
+}
+.request-quote-info .text-success{
+    color: #f3793b;
+}

@@ -1,0 +1,39 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+          <add 
+               id="Lofmp_DeliverySlot::deliveryslot" 
+               title="Delivery Slot" 
+               module="Lofmp_DeliverySlot" 
+               sortOrder="100"
+               parent="Lof_MarketPlace::marketplace"
+               resource="Lofmp_DeliverySlot::delivery_slot_elements"/>
+
+          <add 
+               id="Lofmp_DeliverySlot::slot_groups" 
+               title="Slot Groups" 
+               module="Lofmp_DeliverySlot" 
+               sortOrder="50" 
+               parent="Lofmp_DeliverySlot::deliveryslot"
+               action="deliveryslot/deliveryslotgroup/index" 
+               resource="Lofmp_DeliverySlot::slots_group"/>
+
+          <add 
+               id="Lofmp_DeliverySlot::slots" 
+               title="Slots" 
+               module="Lofmp_DeliverySlot" 
+               sortOrder="60" 
+               parent="Lofmp_DeliverySlot::deliveryslot"
+               action="deliveryslot/deliveryslot/index" 
+               resource="Lofmp_DeliverySlot::slots"/>
+
+          <add 
+               id="Lofmp_DeliverySlot::slots_config" 
+               title="Configuration" 
+               module="Lofmp_DeliverySlot" 
+               sortOrder="65" 
+               parent="Lofmp_DeliverySlot::deliveryslot"
+               action="admin/system_config/edit/section/delivery_slot" 
+               resource="Lofmp_DeliverySlot::lofmp_deliveryslot_config"/>
+    </menu>
+</config>

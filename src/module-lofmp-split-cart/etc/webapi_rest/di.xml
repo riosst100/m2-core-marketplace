@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- plugin on Magento\Quote\Api\Data\CartInterface -->
+    <type name="Magento\Quote\Api\Data\CartInterface">
+        <plugin name="split_cart_sets_item_seller"
+                type="Lofmp\SplitCart\Plugin\Cart\AddSellerToCartItemPlugin"
+                sortOrder="1"
+                disabled="false"/>
+    </type>
+</config>

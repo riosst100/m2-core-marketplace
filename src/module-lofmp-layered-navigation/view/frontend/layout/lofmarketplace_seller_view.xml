@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Magento_Swatches::css/swatches.css"/>
+    </head>
+    <body>
+        <referenceContainer name="sidebar.main">
+            <block class="Lof\MarketPlace\Block\GroupList" name="group_list" template="Lof_MarketPlace::grouplist.phtml" ifconfig="lofmp_layerednavigation/general/show_seller_group"/>
+            <block class="Lofmp\LayeredNavigation\Block\Category" name="category_list" template="Lofmp_LayeredNavigation::category.phtml" ifconfig="lofmp_layerednavigation/general/show_category"/>
+            <referenceContainer name="div.sidebar.additional">
+                <block class="Lofmp\LayeredNavigation\Block\Navigation\Category" name="seller.catalog.leftnav" before="-" template="Lofmp_LayeredNavigation::layer/view.phtml" ifconfig="lofmp_layerednavigation/general/enabled">
+                    <block class="Lofmp\LayeredNavigation\Block\Navigation\State" name="catalog.navigation.state" as="state" />
+                    <block class="Lofmp\LayeredNavigation\Block\Navigation\FilterRenderer" name="catalog.navigation.renderer" as="renderer" template="Lofmp_LayeredNavigation::layer/filter.phtml"/>
+                </block>
+            </referenceContainer>
+        </referenceContainer>
+    </body>
+</page>

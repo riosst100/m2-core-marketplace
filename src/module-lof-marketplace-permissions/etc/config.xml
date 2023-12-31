@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPermissions
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <lof_marketpermissions>
+            <general>
+                <enable>1</enable>
+            </general>
+            <email>
+                <customer_seller_customer_assign_template>lof_marketpermissions_email_customer_seller_customer_assign_template</customer_seller_customer_assign_template>
+                <customer_account_locked_template>lof_marketpermissions_email_customer_account_locked_template</customer_account_locked_template>
+                <customer_account_activated_template>lof_marketpermissions_email_customer_account_activated_template</customer_account_activated_template>
+            </email>
+        </lof_marketpermissions>
+    </default>
+</config>

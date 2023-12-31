@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="print" />
+    <body>
+        <attribute name="class" value="account"/>
+        <referenceContainer name="content">
+            <block name="rma.rma.print" class="Lofmp\Rma\Block\Rma\View" template="rma/print.phtml" cacheable="false" ifconfig="rma/general/is_active_frontend">
+            </block>
+        </referenceContainer>
+    </body>
+</page>

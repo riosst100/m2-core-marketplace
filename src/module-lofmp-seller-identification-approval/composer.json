@@ -1,0 +1,26 @@
+{
+    "name": "landofcoder/module-seller-identification-approval",
+    "description": "Seller Identification Documents Approval",
+    "require": {
+        "landofcoder/module-marketplace": "*"
+    },
+    "type": "magento2-module",
+    "version": "1.1.2",
+    "authors": [
+        {
+            "name": "Landofcoder",
+            "email": "landofcoder@gmail.com",
+            "role": "Magento 2 Lof Marketplace Extension",
+            "homepage": "https://landofcoder.com"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Lofmp\\SellerIdentificationApproval\\": ""
+        }
+    }
+}
+

@@ -1,0 +1,71 @@
+.tab-content .fade {
+	background-color: #fff;
+	position: relative;
+}
+#menu1 .lof-message {
+	display: block;
+}
+.ratings {
+    margin: 7px 0;
+}
+.ratings .rating-box {
+    margin: 0;
+    display: inline-block;
+    zoom: 1;
+    background-image: url(../image/stars-big.png);
+    background-position: left -22px;
+    background-repeat: no-repeat;
+    height: 19px;
+    width: 121px;
+}
+.ratings .rating-box .rating {
+    background-image: url(../image/stars-big.png);
+    background-position: left top;
+    background-repeat: no-repeat;
+    height: 19px;
+}
+
+.amount-transaction .amount {
+    color: #1abb9c;
+}
+.amount-transaction .refund {
+    color: #eb5202;
+}
+.page-main-actions .page-actions._fixed {
+	left:230px;
+}
+.main-col label {
+	color: #303030;
+}
+.admin__field.field.required {
+	display: inline-block;
+}
+
+.fileupload-buttonbar .toggle {
+	float:none;
+}
+#media_gallery_content {
+	overflow: initial;
+}
+.import-product .admin__fieldset > .admin__field {
+	display: block;
+}
+#return_policy_path_row,
+#shipping_policy_path_row,
+#company_description_path_row {
+    display: none;
+}
+.actions-split .action-default {
+    margin-right: 0;
+}
+.image.image-placeholder input[type='file'] {
+    border: 0px;
+    font-size: 14px;
+}
+.btn, .buttons, .modal-footer .btn+.btn, button,.action-multicheck-wrap button {
+    margin-bottom: 0px !important;
+    margin-right: 0px;
+}
+table.qty-table th {
+    padding-right: 7px;
+}

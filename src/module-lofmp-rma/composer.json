@@ -1,0 +1,29 @@
+{
+  "name": "landofcoder/module-seller-rma",
+  "description": "RMA extensions for Marketplace",
+  "require": {
+    "landofcoder/module-marketplace":"*"
+  },
+  "type": "magento2-module",
+  "version": "1.0.7",
+  "license": [
+      "OSL-3.0",
+      "AFL-3.0"
+  ],
+  "authors": [
+    {
+      "name": "Landofcoder",
+      "homepage": "https://landofcoder.com",
+      "email": "landofcoder@gmail.com",
+      "role": "Magento 2 Extension Provider"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Lofmp\\Rma\\": ""
+    }
+  }
+}

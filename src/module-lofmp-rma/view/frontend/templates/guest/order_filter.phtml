@@ -1,0 +1,77 @@
+<?php
+/** @var $block \Magento\Framework\View\Element\Template **/
+$helper = $this->helper('Lofmp\Rma\Helper\Data');
+$order_id = $block->getRequest()->getParam('id');
+$product_name = $block->getRequest()->getParam('product');
+$date_from = $block->getRequest()->getParam('date_from');
+$date_to = $block->getRequest()->getParam('date_to');
+$sort = $block->getRequest()->getParam('sort');
+$sortTypes = [
+    "entity_id:ASC" => __("ID ASC"),
+    "entity_id:DESC" => __("ID DESC"),
+    "created_at:ASC" => __("Order Date ASC"),
+    "created_at:DESC" => __("Order Date DESC"),
+    "grand_total:ASC" => __("Order Total ASC"),
+    "grand_total:DESC" => __("Order Total DESC")
+];
+?>
+<div class="order-filter-form-wrappger">
+    <form action="<?= $block->getUrl('returns/rma/sellect'); ?>" id="form-search-order" method="GET">
+            <table class="data table table-order-finder-items" id="my-orders-finder-table">
+                <thead>
+                    <tr>
+                        <th scope="col" class="col order-id"><?= __('Order ID') ?></th>
+                        <th scope="col" class="col product-name"><?= __('Product Name') ?></th>
+                        <th scope="col" class="col order-date"><?= __('Order Date') ?></th>
+                        <th scope="col" class="col sort-by"><?= __('Sort') ?></th>
+                        <th scope="col" class="col actions">&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-th="<?= $block->escapeHtml(__('Order ID')) ?>" class="col order-id">
+                            <input type="text" class="input-text" name="id" placeholder="<?= __("Search by Order ID") ?>" value="<?= $order_id; ?>"/>
+                        </td>
+                        <td data-th="<?= $block->escapeHtml(__('Product Name')) ?>" class="col product-name">
+                            <input type="text" class="input-text" name="product" placeholder="<?= __("Search by Product Name") ?>" value="<?= $product_name;?>"/>
+                        </td>
+                        <td data-th="<?= $block->escapeHtml(__('Order Date')) ?>" class="col order-date">
+                            <input type="text" class="input-text hasDatepicker filterHasDatePicker" id="filter-order-date-from" name="date_from" placeholder="<?= __("From Date") ?>" value="<?= $date_from;?>"/><br/><br/>
+                            <input type="text" class="input-text hasDatepicker filterHasDatePicker" id="filter-order-date-to" name="date_to" placeholder="<?= __("To Date") ?>" value="<?= $date_to;?>"/>
+                        </td>
+                        <td data-th="<?= $block->escapeHtml(__('Sort')) ?>" class="col sort">
+                            <select name="sort" class="input-select">
+                                <option value=""><?= __("Default"); ?></option>
+                                <?php foreach ($sortTypes as $key => $val) { ?>
+                                    <option value="<?= $key;?>" <?= ($key==$sort)?'selected="selected"':''; ?>><?= $val; ?></option>
+                                <?php } ?>
+                            </select>
+                        </td>
+                        <td data-th="<?= $block->escapeHtml(__('Actions')) ?>" class="col actions">
+                            <input type="submit" class="action save primary" name="submit" value="<?= __("Submit");?>"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+</div>
+<script>
+require([
+    'jquery',
+    'mage/mage',
+    'mage/calendar'
+], function($){
+    $('.filterHasDatePicker').calendar({
+        // show date
+        changeYear: true,
+        changeMonth: true,
+        yearRange: '2006:2050',
+        buttonText: '<?= __("Select Date");?>',
+
+        // show time as well
+        timeInput: true,
+        timeFormat: 'HH:mm:ss',
+        showsTime: true
+    });
+});
+</script>

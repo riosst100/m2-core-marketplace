@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Lofmp_Rma::rma" title="MKP RMA" module="Lofmp_Rma" sortOrder="12" resource="Lofmp_Rma::rma_rma"/>
+        <add id="Lofmp_Rma::rma_manager" title="Marketplace Return Orders" module="Lofmp_Rma" sortOrder="12" resource="Lofmp_Rma::rma_manager" parent="Lofmp_Rma::rma"/>
+        <add id="Lofmp_Rma::rma_rma" title="RMA" module="Lofmp_Rma" sortOrder="10" action="rma/rma" resource="Lofmp_Rma::rma_rma" parent="Lofmp_Rma::rma_manager"/>
+        <add id="Lofmp_Rma::rma_status" title="Rma Status" module="Lofmp_Rma" sortOrder="20" action="rma/status" resource="Lofmp_Rma::rma_status" parent="Lofmp_Rma::rma_manager"/>
+        <add id="Lofmp_Rma::rma_reason" title="Return Reasons" module="Lofmp_Rma" sortOrder="20" action="rma/reason" resource="Lofmp_Rma::rma_reason" parent="Lofmp_Rma::rma_manager"/>
+        <add id="Lofmp_Rma::rma_condition" title="Item Conditions" module="Lofmp_Rma" sortOrder="30" action="rma/condition" resource="Lofmp_Rma::rma_condition" parent="Lofmp_Rma::rma_manager"/>
+        <add id="Lofmp_Rma::rma_resolution" title="Resolutions" module="Lofmp_Rma" sortOrder="40" action="rma/resolution" resource="Lofmp_Rma::rma_resolution" parent="Lofmp_Rma::rma_manager"/>
+        <add id="Lofmp_Rma::rma_field" title="Custom Fields" module="Lofmp_Rma" sortOrder="50" action="rma/field" resource="Lofmp_Rma::rma_field" parent="Lofmp_Rma::rma_manager"/>
+        <add id="Lofmp_Rma::rma_template" title="Quick Responses" module="Lofmp_Rma" sortOrder="60" action="rma/template" resource="Lofmp_Rma::rma_template" parent="Lofmp_Rma::rma_manager"/>
+        <add id="Lofmp_Rma::rma_rule" title="Workflow Rules" module="Lofmp_Rma" sortOrder="80" action="rma/rule" resource="Lofmp_Rma::rma_rule" parent="Lofmp_Rma::rma_manager"/>
+        <add id="Lofmp_Rma::rma_address" title="Return Address" module="Lofmp_Rma" sortOrder="80" action="rma/address" resource="Lofmp_Rma::rma_address" parent="Lofmp_Rma::rma_manager"/>
+        <add id="Lofmp_Rma::rma_report" title="Reports" module="Lofmp_Rma" sortOrder="40" resource="Lofmp_Rma::rma_report" parent="Lofmp_Rma::rma"/>
+        <add id="Lofmp_Rma::rma_report_report_rma" title="RMA" module="Lofmp_Rma" sortOrder="10" action="rma/report/view" resource="Lofmp_Rma::rma_report_report_rma" parent="Lofmp_Rma::rma_report"/>
+        <add id="Lofmp_Rma::rma_report_report_rma_product" title="RMA by Product" module="Lofmp_Rma" sortOrder="20" action="rma/report/product" resource="Lofmp_Rma::rma_report_report_rma_product" parent="Lofmp_Rma::rma_report"/>
+        <add id="Lofmp_Rma::rma_report_report_rma_brand" title="RMA by Reasons" module="Lofmp_Rma" sortOrder="30" action="rma/report/reason" resource="Lofmp_Rma::rma_report_report_rma_brand" parent="Lofmp_Rma::rma_report"/>
+        <add id="Lofmp_Rma::rma_settings" title="Settings" module="Lofmp_Rma" sortOrder="50" action="adminhtml/system_config/edit/section/rma" resource="Lofmp_Rma::rma_settings" parent="Lofmp_Rma::rma"/>
+    </menu>
+</config>

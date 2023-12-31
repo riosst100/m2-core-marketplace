@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+    	<add id="Lofmp_Rma::rma" icon="fa fa-undo" title="RMA" module="Lofmp_Rma" sortOrder="130" resource="Lofmp_Rma::rma" dependsOnConfig="rma/general/allow_seller_manage"/>
+    	<add id="Lofmp_Rma::manager" title="Manage RMAs" module="Lofmp_Rma" action="catalog/rma/index" sortOrder="131" parent="Lofmp_Rma::rma" resource="Lofmp_Rma::manager" dependsOnConfig="rma/general/allow_seller_manage"/>
+        <add id="Lofmp_Rma::report" title="Report RMAs" module="Lofmp_Rma" action="catalog/rmareport/view" sortOrder="133" parent="Lofmp_Rma::rma" resource="Lofmp_Rma::report" dependsOnConfig="rma/general/allow_seller_manage"/>
+        <add id="Lofmp_Rma::report_reason" title="Report By Reasons" module="Lofmp_Rma" action="catalog/rmareport/reason" sortOrder="134" parent="Lofmp_Rma::rma" resource="Lofmp_Rma::report_reason" dependsOnConfig="rma/general/allow_seller_manage"/>
+        <add id="Lofmp_Rma::report_product" title="Report By Products" module="Lofmp_Rma" action="catalog/rmareport/product" sortOrder="135" parent="Lofmp_Rma::rma" resource="Lofmp_Rma::report_product" dependsOnConfig="rma/general/allow_seller_manage"/>
+    </menu>
+</config>

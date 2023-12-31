@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magento\Quote\Api\Data\PaymentInterface">
+        <attribute code="delivery_slot" type="int"/>
+        <attribute code="delivery_date" type="string"/>
+        <attribute code="delivery_comment" type="string"/>
+    </extension_attributes>
+
+    <!-- extension attributes on order data interface -->
+    <extension_attributes for="Magento\Sales\Api\Data\OrderInterface">
+        <attribute code="delivery_slot" type="string"/>
+        <attribute code="delivery_date" type="string"/>
+    </extension_attributes>
+</config>

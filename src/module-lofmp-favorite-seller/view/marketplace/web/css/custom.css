@@ -1,0 +1,21 @@
+#loading-animation{
+    visibility: hidden;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    margin: 0px;
+}
+#send-email, #back-btn, .fa-arrow-left{
+    font-size: 1.8rem;
+    border-radius: 10px;
+    font-weight: 800;
+}
+#send-email{
+    background-color: #a2d7e1;
+    margin-left: 20px;
+}
+#back-btn{
+    background-color: transparent;
+    border: none;
+    margin-right: 20px;
+}

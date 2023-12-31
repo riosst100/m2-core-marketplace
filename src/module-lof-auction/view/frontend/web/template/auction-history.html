@@ -1,0 +1,16 @@
+<span class="bid_link" data-bind="attr: { id: getBidLinkId() }">[<a href="#" class='anchr number_of_bids' data-bind="text: getNumberOfBid()"></a>]</span>
+<div data-bind="attr: { id: getHistoryId() }" style="display: none;">
+    <div class="auc-bid-history-container">
+        <table class="data table">
+            <thead>
+                <tr>
+                    <th scope="col" class="col auc-history-bidder" data-bind="i18n: 'Bidder'"></th>
+                    <th scope="col" class="col auc-history-date" data-bind="i18n: 'Date & Time'"></th>
+                    <th scope="col" class="col auc-history-amount" data-bind="i18n: 'Amount'"></th>
+                </tr>
+            </thead>
+            <tbody class="list-bids">
+            </tbody>
+        </table>
+    </div>
+</div>

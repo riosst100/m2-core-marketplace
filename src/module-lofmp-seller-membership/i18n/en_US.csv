@@ -1,0 +1,148 @@
+Back,Back
+Reset,Reset
+Save,Save
+"Add Membership Product","Add Membership Product"
+"Cancel Request","Cancel Request"
+"fee for each sales","fee for each sales"
+"Can add product","Can add product"
+"Can cancel order","Can cancel order"
+"Can create invoice","Can create invoice"
+"Can create shipment","Can create shipment"
+"Hide payment info","Hide payment info"
+"Hide customer email","Hide customer email"
+"Can Use Shipping","Can Use Shipping"
+"Can submit order comments","Can submit order comments"
+"Can use message","Can use message"
+"Can use review","Can use review"
+"Can use rating","Can use rating"
+"Can import/export product","Can import/export product"
+"Can use vacation","Can use vacation"
+"Can use report","Can use report"
+"Can use withdrawal","Can use withdrawal"
+"%1 Day","%1 Day"
+"%1 Days","%1 Days"
+"%1 Week","%1 Week"
+"%1 Weeks","%1 Weeks"
+"%1 Month","%1 Month"
+"%1 Months","%1 Months"
+"%1 Year","%1 Year"
+"%1 Years","%1 Years"
+"Manage Cancel Request","Manage Cancel Request"
+"This Cancel Request no longer exists.","This Cancel Request no longer exists."
+"Edit Cancel Request","Edit Cancel Request"
+"New Cancel Request","New Cancel Request"
+"Something went wrong while saving.","Something went wrong while saving."
+"A total of %1 record(s) have been approved.","A total of %1 record(s) have been approved."
+"A total of %1 record(s) have been declided.","A total of %1 record(s) have been declided."
+"You updated Cancel Request : ","You updated Cancel Request : "
+"Something went wrong while saving the Cancel Request.","Something went wrong while saving the Cancel Request."
+Membership,Membership
+Product,Product
+Seller,Seller
+Transaction,Transaction
+"We can't add this item to your shopping cart right now.","We can't add this item to your shopping cart right now."
+"You must have a seller account to access","You must have a seller account to access"
+Pending,Pending
+Approved,Approved
+Checking,Checking
+Declided,Declided
+"We can't process your request right now. Sorry, that's all we know.","We can't process your request right now. Sorry, that's all we know."
+"View Customer","View Customer"
+"Membership Group - General","Membership Group - General"
+"Could not save the membership: %1","Could not save the membership: %1"
+"Cancel Request with id ""%1"" does not exist.","Cancel Request with id ""%1"" does not exist."
+"Could not delete the Cancel Request : %1","Could not delete the Cancel Request : %1"
+"Could not delete the Cancel Request: %1","Could not delete the Cancel Request: %1"
+"Could not create the Cancel Request: %1","Could not create the Cancel Request: %1"
+"Customer Id ""%1"" does not have any membership.","Customer Id ""%1"" does not have any membership."
+"Customer Id have %1 Cancel Request (Pending).","Customer Id have %1 Cancel Request (Pending)."
+"Membership with id ""%1"" does not exist.","Membership with id ""%1"" does not exist."
+"Could not delete the membership : %1","Could not delete the membership : %1"
+"Could not delete the membership: %1","Could not delete the membership: %1"
+"You need to choose options for your item.","You need to choose options for your item."
+"%1 day","%1 day"
+"%1 days","%1 days"
+"%1 week","%1 week"
+"%1 weeks","%1 weeks"
+"%1 month","%1 month"
+"%1 months","%1 months"
+"%1 year","%1 year"
+"%1 years","%1 years"
+Duration,Duration
+Day,Day
+Week,Week
+Month,Month
+Year,Year
+"Could not save the transaction: %1","Could not save the transaction: %1"
+"Transaction with id ""%1"" does not exist.","Transaction with id ""%1"" does not exist."
+"Could not delete the transaction : %1","Could not delete the transaction : %1"
+"Could not delete the transaction: %1","Could not delete the transaction: %1"
+Edit,Edit
+"View Seller","View Seller"
+Delete,Delete
+"Delete ""${ $.$data.email }""","Delete ""${ $.$data.email }"""
+"Are you sure you wan't to delete a ""${ $.$data.email }"" record?","Are you sure you wan't to delete a ""${ $.$data.email }"" record?"
+"Duration Unit","Duration Unit"
+Price,Price
+"Sort Order","Sort Order"
+"We can't find products matching the selection.","We can't find products matching the selection."
+"Tables Membership","Tables Membership"
+Featured,Featured
+Commission,Commission
+"Limit Product","Limit Product"
+"Add to Cart","Add to Cart"
+"In stock","In stock"
+"Out of stock","Out of stock"
+"My Membership","My Membership"
+Expired,Expired
+"Expiry Date","Expiry Date"
+Unlimited,Unlimited
+Upgrade,Upgrade
+"View Payment History","View Payment History"
+"Hi %customer_name,","Hi %customer_name,"
+"Your request cancel the Membership is approve.","Your request cancel the Membership is approve."
+"You can review your customer account at:","You can review your customer account at:"
+"Your request cancel the Membership is declided.","Your request cancel the Membership is declided."
+"Hi %seller_name,","Hi %seller_name,"
+"Your your seller account will be expired on %expiration_date","Your your seller account will be expired on %expiration_date"
+"You can review your seller account at:","You can review your seller account at:"
+"Default Seller Group","Default Seller Group"
+"Seller Membership","Seller Membership"
+"Custom Route For Buy Membership","Custom Route For Buy Membership"
+"Page Title","Page Title"
+"Meta Keywords","Meta Keywords"
+"Meta Description","Meta Description"
+"Expiry Notification Email Template","Expiry Notification Email Template"
+"Expiry email is sent before (days)","Expiry email is sent before (days)"
+"Email Sender","Email Sender"
+"Lofmp SellerMembership: List Membership","Lofmp SellerMembership: List Membership"
+"Show a list seller membership","Show a list seller membership"
+Title,Title
+"Cancel Request Details","Cancel Request Details"
+"Entity Id","Entity Id"
+Status,Status
+"-- Please Select --","-- Please Select --"
+"Customer Name","Customer Name"
+"Group Name","Group Name"
+Package,Package
+"Expiration Date","Expiration Date"
+"Customer comment","Customer comment"
+"Creation time","Creation time"
+Approve,Approve
+Declide,Declide
+ID,ID
+"Seller Comment","Seller Comment"
+Group,Group
+"Request On","Request On"
+"All Store Views","All Store Views"
+"Store View","Store View"
+Thumbnail,Thumbnail
+Name,Name
+Type,Type
+"Attribute Set","Attribute Set"
+SKU,SKU
+Visibility,Visibility
+Websites,Websites
+Amount,Amount
+"Additional Info","Additional Info"
+"Transaction Date","Transaction Date"

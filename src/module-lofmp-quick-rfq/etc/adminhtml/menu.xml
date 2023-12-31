@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2020 Landofcoder.com.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Lofmp_Quickrfq::quickrfq" title="Quick Request For Quote" module="Lofmp_Quickrfq" sortOrder="112" resource="Lofmp_Quickrfq::quickrfq" dependsOnConfig="lofmp_quickrfq/general/enabled" parent="Lof_MarketPlace::marketplace"/>
+        <add id="Lofmp_Quickrfq::setting" title="Setting" module="Lofmp_Quickrfq" sortOrder="50" parent="Lofmp_Quickrfq::quickrfq" action="adminhtml/system_config/edit/section/lofmp_quickrfq" dependsOnConfig="lofmp_quickrfq/general/enabled"  resource="Lofmp_Quickrfq::quickrfq"/>
+    </menu>
+</config>

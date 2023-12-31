@@ -1,0 +1,141 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$name = '';
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$url = $storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB);
+if ($params = $block->getRequest()->getParams()) {
+    $endate =str_replace('.', '-', $params['to']);
+    $startdate =str_replace('.', '-', $params['from']);
+    $name = $params['pr'];
+} else {
+    $type= 'month';
+    $startdate = date("Y-m-d", strtotime("-2 month"));
+    $endate = date("Y-m-d");
+}
+$resourceCollection =  $objectManager->create('Lofmp\Rma\Model\ResourceModel\Item\Collection')
+        ->addFieldToFilter(
+            'main_table.reason_id',
+            ['notnull' => true]
+        )
+        ->setDateColumnFilter('created_at')
+        ->addDateFromFilter($startdate)
+        ->addDateToFilter($endate)
+        ->_getReasonSelectedColumns($name);
+if ($name):
+    $resourceCollection->addFieldToFilter('product.value', ['like' => '%' . $name . '%']);
+endif;
+$collection = $resourceCollection->getData();
+?>
+<div class = 'reasonchart'>
+<div class="filter">
+    <label><?= __("From");?></label>
+    <input name="datefrom" id="datefrom"  value="<?php echo $startdate ?>" type="text">
+    <label><?= __("To");?></label>
+    <input name="dateto" id="dateto"  value="<?php echo $endate ?>" type="text">
+    <label><?= __("Product");?></label>
+    <input name="pr" id="pr"  value="<?php echo $name ?>" type="text">
+    <button type="button" id='filter' ><?= __("Filter");?></button>
+</div>
+<script type="text/javascript">
+require([
+    "jquery",
+    "mage/calendar"
+    ], function($){
+      $('#datefrom').datepicker({
+            prevText: '&#x3c;zurück', prevStatus: '',
+            prevJumpText: '&#x3c;&#x3c;', prevJumpStatus: '',
+            nextText: 'Vor&#x3e;', nextStatus: '',
+            nextJumpText: '&#x3e;&#x3e;', nextJumpStatus: '',
+            monthNames: ['Januar','Februar','März','April','Mai','Juni',
+            'Juli','August','September','Oktober','November','Dezember'],
+            monthNamesShort: ['Jan','Feb','Mär','Apr','Mai','Jun',
+            'Jul','Aug','Sep','Okt','Nov','Dez'],
+            dayNames: ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'],
+            dayNamesShort: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+            dayNamesMin: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+          showMonthAfterYear: false,
+          dateFormat:'yy.mm.dd '
+        } 
+      );
+        $('#dateto').datepicker({
+            prevText: '&#x3c;zurück', prevStatus: '',
+            prevJumpText: '&#x3c;&#x3c;', prevJumpStatus: '',
+            nextText: 'Vor&#x3e;', nextStatus: '',
+            nextJumpText: '&#x3e;&#x3e;', nextJumpStatus: '',
+            monthNames: ['Januar','Februar','März','April','Mai','Juni',
+            'Juli','August','September','Oktober','November','Dezember'],
+            monthNamesShort: ['Jan','Feb','Mär','Apr','Mai','Jun',
+            'Jul','Aug','Sep','Okt','Nov','Dez'],
+            dayNames: ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'],
+            dayNamesShort: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+            dayNamesMin: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+          showMonthAfterYear: false,
+          dateFormat:'yy.mm.dd'
+        });
+        var t = $('#dateto').val();
+        var  fr = $('#datefrom').val();
+        var pr = $('#pr').val();
+        $( "#dateto" ).change(function() {
+            t = $('#dateto').val();
+        });
+        $( "#datefrom" ).change(function() {
+            fr = $('#datefrom').val();
+        });
+        $('#pr').change(function() {
+            pr = $('#pr').val();
+        });
+        $( "#filter" ).click(function() {
+          window.location.href = '<?php echo $url ?>marketplace/catalog/rmareport/reason?from='+fr+'&to='+t+'&pr='+pr;
+        });
+    });
+</script>
+<?php
+if (count($collection)>0):
+    ?>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawVisualization);
+  var d = [];
+  d.push(['Reason(Product)','<?= __("Total RMA");?>','<?= __("Total Request");?>','<?= __("Total Return");?>']);
+    <?php
+    if ($name) {
+        foreach ($collection as $value):
+            if (!$value['total_returned_cnt']) {
+                $value['total_returned_cnt'] = 0;
+            }
+            ?>
+      d.push(['<?php echo $value['reason_name'].'-'.$value['product_name'] ?>',<?php
+        echo $value['total_rma_cnt'] ?>,<?php echo $value['total_requested_cnt'] ?>,<?php echo $value['total_returned_cnt'] ?>]);
+            <?php
+    endforeach;
+    } else {
+        foreach ($collection as $value):
+            if (!$value['total_returned_cnt']) {
+                $value['total_returned_cnt'] = 0;
+            }
+            ?>
+  d.push(['<?php echo $value['reason_name'] ?>',<?php echo $value['total_rma_cnt'] ?>,<?php echo $value['total_requested_cnt'] ?>,<?php echo $value['total_returned_cnt'] ?>]);
+            <?php
+      endforeach;
+    }
+    ?>
+function drawVisualization() {
+  // Some raw data (not necessarily accurate)
+  var data = google.visualization.arrayToDataTable(d);
+  var options = {
+    title : '<?= __("RMA Reason Report");?>',
+    vAxis: {title: '<?= __("Number");?>'},
+    hAxis: {title: '<?= __("Month");?>'},
+    seriesType: 'bars',
+    /* series: {5: {type: 'line'}}*/
+  };
+  var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+  chart.draw(data, options);
+}
+</script>
+<div id="chart_div" style="widht: 100%; height: 400px;"></div>
+    <?php
+endif;
+?>
+</div>

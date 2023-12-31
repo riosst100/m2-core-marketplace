@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Lof
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Lof.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.landofcoder.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category   Lof
+ * @package    Lofmp_TimeDiscount
+ * @copyright  Copyright (c) 2017 Lof (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="vendor-1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Lofmp\TimeDiscount\Block\Seller\Product\Edit" name="add_timediscount_product"/>
+        </referenceContainer>
+    </body>
+</page>

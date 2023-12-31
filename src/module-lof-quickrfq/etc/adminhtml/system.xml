@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lof_Quickrfq
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="quickrfq" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Quick Rfq</label>
+            <tab>landofcoder</tab>
+            <resource>Lof_Quickrfq::quickrfq</resource>
+            <group id="option" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Options For RFQ</label>
+                <field id="enabled_module" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable RFQ</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="required_customer_login" translate="label" type="select" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Required Customer Login</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enabled_terms" translate="label" type="select" sortOrder="18" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable Terms</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="terms_label" translate="label" type="text" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Terms Label</label>
+                    <depends>
+                        <field id="quickrfq/option/enabled_terms">1</field>
+                    </depends>
+                </field>
+                <field id="terms" translate="label" type="textarea" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Terms and Conditions of RFQ</label>
+                    <depends>
+                        <field id="quickrfq/option/enabled_terms">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="email" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Email Options</label>
+                <field id="sender" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+                <field id="recipient" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Send Emails To Admin</label>
+                    <validate>validate-email</validate>
+                </field>
+                <field id="template" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Email Template After Create Quote for Admin</label>
+                    <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="template_customer" translate="label comment" type="select" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Email Template After Create Quote For Customer</label>
+                    <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="notice_sender" translate="label comment" type="select" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Email Template After Send Message For Sender</label>
+                    <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="notice_receiver" translate="label comment" type="select" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Email Template After Send Message For Receiver</label>
+                    <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            <group id="upload" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Upload Restrictions For RFQ</label>
+                <field id="enabled" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable Upload</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="file_formats" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>File formats for upload</label>
+                    <validate>alpha-numeric-space</validate>
+                    <comment><![CDATA[Separate each file extension with a comma. Special symboles like dots, converted commas, asterisk, etc. are not allowed.]]></comment>
+                </field>
+                <field id="maximum_file_size" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Maximum file size</label>
+                    <validate>not-negative-amount</validate>
+                    <comment><![CDATA[File size in MB. Note that this setting can be overridden by the server settings.]]></comment>
+                </field>
+            </group>
+            <group id="google_options" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Google Captcha Keys</label>
+                <field id="captchastatus" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="googleprivatekey" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google Captcha Secret Key</label>
+                    <validate>required-entry</validate>
+                    <comment>Get Key From https://www.google.com/recaptcha/admin</comment>
+                    <depends>
+                        <field id="captchastatus">1</field>
+                    </depends>
+                </field>
+                <field id="googlepublickey" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google Captcha Site Key</label>
+                    <validate>required-entry</validate>
+                    <comment>Get Key From https://www.google.com/recaptcha/admin</comment>
+                    <depends>
+                        <field id="captchastatus">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="quote_process" translate="label" type="text" sortOrder="55" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Quote Process Options</label>
+
+                <field id="expiry_day" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Set Expiry days</label>
+                    <comment>Set number days after the quote was approved. Default: 10</comment>
+                </field>
+
+                <!-- <field id="remind_day" translate="label comment" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Set Remind days</label>
+                    <comment>Set number days before expiry quote to remind customer. Empty to dont use this</comment>
+                </field> -->
+
+                <field id="auto_apply_coupon" translate="label" type="select" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Auto Apply Coupon</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Allow Auto or Manually apply coupon code which was added by Admin.</comment>
+                </field>
+
+                <field id="keep_cart_item" translate="label" type="select" sortOrder="18" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Keep Old Cart Items</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Merge quote items to current cart or remove old and create new when customer Checkout Cart for Approved Quote on frontend.</comment>
+                </field>
+
+                <field id="quote_update_text" translate="label" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Message Text when admin Update quote data for Customer</label>
+                </field>
+
+                <field id="quote_close_text" translate="label" type="textarea" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Message Text when Close quote for Customer</label>
+                </field>
+
+                <field id="quote_approve_text" translate="label" type="textarea" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Message Text when Approved quote for Customer</label>
+                </field>
+
+                <field id="quote_expiry_text" translate="label" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Message Text when Expired quote for Customer</label>
+                </field>
+
+                <field id="quote_renew_text" translate="label" type="textarea" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Message Text when Re-New quote for Customer</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

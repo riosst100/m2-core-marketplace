@@ -1,0 +1,106 @@
+<?xml version="1.0" ?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lof_Quickrfq
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route method="POST" url="/V1/lof-quickrfq/quickrfq">
+        <service class="Lof\Quickrfq\Api\QuickrfqRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Lof_Quickrfq::quickrfq_save"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/lof-quickrfq/quickrfq/update">
+        <service class="Lof\Quickrfq\Api\QuickrfqRepositoryInterface" method="update"/>
+        <resources>
+            <resource ref="Lof_Quickrfq::quickrfq_update"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/lof-quickrfq/quickrfq/search">
+        <service class="Lof\Quickrfq\Api\QuickrfqRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Lof_Quickrfq::quickrfq_view"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/lof-quickrfq/quickrfq/:quickrfqId">
+        <service class="Lof\Quickrfq\Api\QuickrfqRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="Lof_Quickrfq::quickrfq_view"/>
+        </resources>
+    </route>
+    <route method="PUT" url="/V1/lof-quickrfq/quickrfq/:quickrfqId">
+        <service class="Lof\Quickrfq\Api\QuickrfqRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Lof_Quickrfq::quickrfq_update"/>
+        </resources>
+    </route>
+    <route method="DELETE" url="/V1/lof-quickrfq/quickrfq/:quickrfqId">
+        <service class="Lof\Quickrfq\Api\QuickrfqRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Lof_Quickrfq::quickrfq_delete"/>
+        </resources>
+    </route>
+    
+    <!-- Frontend REST API -->
+    <route method="GET" url="/V1/lof-quickrfq/me/quote">
+        <service class="Lof\Quickrfq\Api\CustomerRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="GET" url="/V1/lof-quickrfq/me/quote/:quickrfqId">
+        <service class="Lof\Quickrfq\Api\CustomerRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="POST" url="/V1/lof-quickrfq/me/quote">
+        <service class="Lof\Quickrfq\Api\CustomerRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="GET" url="/V1/lof-quickrfq/me/message">
+        <service class="Lof\Quickrfq\Api\CustomerRepositoryInterface" method="getListMessage"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="POST" url="/V1/lof-quickrfq/me/message">
+        <service class="Lof\Quickrfq\Api\CustomerRepositoryInterface" method="saveMessage"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+</routes>

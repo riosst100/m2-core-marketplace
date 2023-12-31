@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_SellerBadge
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Lofmp\SellerBadge\Api\SellerBadgeRepositoryInterface" type="Lofmp\SellerBadge\Model\SellerBadgeRepository"/>
+    <preference for="Lofmp\SellerBadge\Api\Data\SellerBadgeInterface" type="Lofmp\SellerBadge\Model\Data\SellerBadge"/>
+    <preference for="Lofmp\SellerBadge\Api\Data\SellerBadgeSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <virtualType name="Lofmp\SellerBadge\Model\ResourceModel\SellerBadge\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">lofmp_sellerbadge_badge</argument>
+            <argument name="resourceModel" xsi:type="string">Lofmp\SellerBadge\Model\ResourceModel\SellerBadge\Collection</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="lofmp_sellerbadge_badge_listing_data_source" xsi:type="string">Lofmp\SellerBadge\Model\ResourceModel\SellerBadge\Grid\Collection</item>
+                <item name="lofmp_sellerbadge_manager_listing_data_source" xsi:type="string">Lofmp\SellerBadge\Model\ResourceModel\SellerBadgeManager\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="Lofmp\SellerBadge\Api\SellerBadgeManagerRepositoryInterface" type="Lofmp\SellerBadge\Model\SellerBadgeManagerRepository"/>
+    <preference for="Lofmp\SellerBadge\Api\Data\SellerBadgeManagerInterface" type="Lofmp\SellerBadge\Model\Data\SellerBadgeManager"/>
+    <preference for="Lofmp\SellerBadge\Api\Data\SellerBadgeManagerSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <virtualType name="Lofmp\SellerBadge\Model\ResourceModel\SellerBadgeManager\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">lofmp_sellerbadge_manager</argument>
+            <argument name="resourceModel" xsi:type="string">Lofmp\SellerBadge\Model\ResourceModel\SellerBadgeManager\Collection</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="ImageUpload" type="Lofmp\SellerBadge\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">lofmp_sellerbadge/tmp/sellerbadge</argument>
+            <argument name="basePath" xsi:type="string">lofmp_sellerbadge/sellerbadge</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+            <argument name="allowedMimeTypes" xsi:type="array">
+                <item name="jpg" xsi:type="string">image/jpg</item>
+                <item name="jpeg" xsi:type="string">image/jpeg</item>
+                <item name="gif" xsi:type="string">image/gif</item>
+                <item name="png" xsi:type="string">image/png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Lofmp\SellerBadge\Controller\Adminhtml\SellerBadge\Image\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">ImageUpload</argument>
+        </arguments>
+    </type>
+
+</config>

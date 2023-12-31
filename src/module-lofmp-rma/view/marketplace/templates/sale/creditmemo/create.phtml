@@ -1,0 +1,415 @@
+<?php
+/**
+ * @var \Lof\MarketPlace\Block\Sale\Order\View $block
+ */
+
+$order_id = $block->getOrder()->getId();
+if ($rma_id = $block->getRequest()->getParam('rmaid')):
+    $rmaHelper = $this->helper('Lofmp\Rma\Helper\Data');
+    $rma_productid = $rmaHelper->getRmaProductIds($rma_id);
+    $order = $rmaHelper->getOrderByRmaId($rma_id);
+    $items = $order->getItems();
+    if ($order->getId() != $order_id):
+        $url = $block->getUrl('catalog/rma/view', ['id' => $rma_id, '_secure' => $block->getRequest()->isSecure()]);
+        ?>
+        <script>
+            alert('Wrong URL');
+            window.location = '<?= $url ?>'
+        </script>
+    <?php
+    endif;
+else:
+    $items = $block->getOrder()->getAllItems();
+    $order = $block->getOrder();
+endif;
+$helper = $this->helper('Lof\MarketPlace\Helper\Data');
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$calculate = $objectManager->get('Lof\MarketPlace\Model\CalculateCommission');
+$orderitems = $objectManager->get('Lof\MarketPlace\Model\Orderitems');
+$refundedShippingAmount = $order->getData('shipping_refunded');
+$invoice = $order->getInvoiceCollection()->getFirstItem();
+$invoiceId = $order->getInvoiceId();
+?>
+<form id="lof-form-creditmemo" data-parsley-validate="" action="<?= $block->getUrl('catalog/order/creditmemo',
+    ['id' => $order_id, '_secure' => $block->getRequest()->isSecure()]); ?>" class="form-horizontal form-label-left"
+      method="post" data-hasrequired="<?php /* @escapeNotVerified */
+echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+    <?php
+    if ($rma_id) {
+        ?>
+        <input name="rma_id" type="hidden" value="<?= $rma_id ?>">
+        <?php
+    }
+    ?>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2><?= $block->escapeHtml(__('Order #%1', $this->getOrder()->getRealOrderId())) ?></h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="content invoice">
+                        <div class="row">
+                            <div class="col-xs-12 invoice-header">
+                                <h1>
+                                    <i class="fa fa-globe"></i> <?= __('Order'); ?>
+                                    <small class="pull-right"><?= __('Created At'); ?>
+                                        : <?= $block->getOrderDate(); ?></small>
+                                </h1>
+                            </div>
+                        </div>
+                        <div class="row invoice-info">
+                            <div class="col-sm-3 invoice-col">
+                                <b><?= __('Shipping Address'); ?></b>
+                                <br>
+                                <address>
+                                    <?= $block->getFormattedAddress(); ?>
+                                </address>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-sm-3 invoice-col">
+                                <b><?= __('Billing Address'); ?></b>
+                                <br>
+                                <address>
+                                    <?= $block->getBillingAddress(); ?>
+                                </address>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-sm-3 invoice-col">
+                                <?php /* @escapeNotVerified */
+                                echo __('<b>Order:</b> #%1', $block->getOrder()->getRealOrderId()) ?>
+
+                                <br>
+                                <b><?= __('Order Date'); ?>:</b> <?= $block->getOrderDate(); ?>
+                                <br>
+                                <b><?= __('Order Status'); ?>:</b> <?= $block->getOrder()->getStatusLabel(); ?>
+                                <br>
+                                <b><?= __('Purchased From'); ?>:</b> <?= $block->getOrderStoreName(); ?>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-sm-3 invoice-col">
+                                <b><?= __('Account Information '); ?></b>
+                                <br>
+
+                                <b><?= __('Customer Name'); ?>:</b> <?= $block->getOrder()->getCustomerName(); ?>
+                                <br>
+                                <b><?= __('Email'); ?>:</b> <?= $block->getOrder()->getCustomerEmail(); ?>
+                                <br>
+                                <b><?= __('Customer Group'); ?>:</b> <?= $block->getCustomerGroupName(); ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 table">
+                                <table class="table table-striped edit-order-table">
+                                    <thead>
+                                    <tr>
+                                        <th><?= __('Product'); ?></th>
+                                        <th><?= __('Qty'); ?></th>
+                                        <th><?= __('Price'); ?></th>
+                                        <th><?= __('Return to Stock'); ?></th>
+                                        <th><?= __('Qty to Refund'); ?></th>
+                                        <th><?= __('Subtotal'); ?></th>
+                                        <th><?= __('Tax Amount'); ?></th>
+                                        <th><?= __('Tax Percent'); ?></th>
+                                        <th><?= __('Discount Amount'); ?></th>
+                                        <th><?= __('Row Total'); ?></th>
+                                        <th><?= __('Admin Commission'); ?></th>
+                                        <th><?= __('Seller Total'); ?></th>
+                                        <th><?= __('Seller'); ?></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                    $subtotal = $subtotal_seller = $tax = $tax_seller = $discount = $discount_seller = $grand_total = $grand_total_seller = $refund_total_seller = $seller_amount = $refund_total = $seller_total = $seller_total_seller = $shippingamount = 0;
+                                    foreach ($items as $item):
+                                        if ($item->getData('base_row_total') > 0):
+                                            $product_id = $item->getData('product_id');
+                                            if (isset($rma_productid)):
+                                                if (!in_array($product_id, $rma_productid)) {
+                                                    continue;
+                                                }
+                                            endif;
+                                            $seller_id = $orderitems->load($item->getId(),
+                                                'order_item_id')->getSellerId();
+                                            if ($seller_id == $helper->getSellerId()):
+                                                $seller = $block->getSeller($product_id);
+                                                $refund = $item->getData('amount_refunded') + $item->getData('tax_refunded') - $item->getData('discount_refunded');
+                                                $refund_total = $refund_total + $refund;
+                                                $subtotalIncl = $item->getData('base_row_total_incl_tax');
+                                                $discount_amount = $item->getData('discount_amount');
+                                                $tax_amount = $item->getData('tax_amount');
+                                                $total = $item->getData('base_row_total');
+                                                $shippingcharges = $item->getData('shipping_amount');
+                                                $row_total = $total + $tax_amount - $discount_amount;
+                                                $subtotal = $subtotal + $total;
+                                                $tax = $tax + $tax_amount;
+                                                $shippingamount = $shippingamount + $shippingcharges;
+                                                $discount = $discount + $discount_amount;
+                                                $subtotalExcl = $row_total - $tax_amount;
+                                                $grand_total = $grand_total + $row_total;
+                                                $seller_name = $seller->getData('name');
+                                                $seller_id = $seller->getData('seller_id');
+
+                                                $admin_commission = $block->getOrderItems($product_id)->getData('admin_commission_order');
+                                                $seller_commission = $block->getOrderItems($product_id)->getData('seller_commission_order');
+                                                if ($seller_id == $helper->getSellerId()):
+                                                    $subtotal_seller = $subtotal_seller + $total;
+                                                    $tax_seller = $tax_seller + $tax_amount;
+                                                    $discount_seller = $discount_seller + $discount_amount;
+                                                    $grand_total_seller = $grand_total_seller + $row_total;
+                                                    $seller_total_seller += $seller_commission;
+                                                endif;
+                                                $seller_total += $seller_commission;
+                                                $itemId = $item->getItemId();
+                                                ?>
+                                                <tr>
+                                                    <td>
+                                                        <div class="product-title"><?= $item->getData('name'); ?></div>
+                                                        <div class="product-sku-block">
+                                                            <span><?= __('SKU'); ?>:</span><?= $item->getData('sku'); ?>
+                                                        </div>
+                                                        <?php
+                                                        if (isset($item->getData('product_options')['attributes_info'])) {
+                                                            echo '<dl class="item-options">';
+                                                            foreach ($item->getData('product_options')['attributes_info'] as $key => $attributes_info) {
+                                                                echo '<dt>' . $attributes_info['label'] . '</dt>';
+                                                                echo '<dd>' . $attributes_info['value'] . '</dd>';
+                                                            }
+                                                            echo '</dl>';
+                                                        }
+                                                        ?>
+                                                    </td>
+
+                                                    <td>
+                                                        <table class="qty-table">
+                                                            <tbody>
+                                                            <?php if ($item->getData('qty_ordered') > 0) { ?>
+                                                                <tr>
+                                                                    <th><?= __('Ordered'); ?></th>
+                                                                    <td><?= (int)$item->getData('qty_ordered'); ?></td>
+                                                                </tr>
+                                                            <?php } ?>
+                                                            <?php if ($item->getData('qty_ordered') > 0) { ?>
+                                                                <tr>
+                                                                    <th><?= __('Invoiced'); ?></th>
+                                                                    <td><?= (int)$item->getData('qty_invoiced'); ?></td>
+                                                                </tr>
+                                                            <?php } ?>
+                                                            <?php if ($item->getData('qty_refunded') > 0) { ?>
+                                                                <tr>
+                                                                    <th><?= __('Refunded'); ?></th>
+                                                                    <td><?= (int)$item->getData('qty_refunded'); ?></td>
+                                                                </tr>
+                                                            <?php } ?>
+                                                            <?php if ($item->getData('qty_canceled') > 0) { ?>
+                                                                <tr>
+                                                                    <th><?= __('Canceled'); ?></th>
+                                                                    <td><?= (int)$item->getData('qty_canceled'); ?></td>
+                                                                </tr>
+                                                            <?php } ?>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                    <td><?= $helper->getPriceFomat($item->getData('price')); ?></td>
+                                                    <td><input type="checkbox" class="input-checkbox"
+                                                               name="creditmemo[items][<?= $itemId; ?>][back_to_stock]"
+                                                               value="1"></td>
+                                                    <td><input type="text"
+                                                               class="input-text admin__control-text qty-input"
+                                                               name="creditmemo[items][<?= $itemId; ?>][qty]"
+                                                               value="<?= $item->getQtyToRefund() ?>"/></td>
+                                                    <td><?= $helper->getPriceFomat($total); ?></td>
+                                                    <td><?= $helper->getPriceFomat($tax_amount); ?></td>
+                                                    <td><?= $item->getData('tax_percent') . '%'; ?></td>
+                                                    <td><?= $helper->getPriceFomat($discount_amount); ?></td>
+                                                    <td><?= $helper->getPriceFomat($row_total); ?></td>
+                                                    <td><?= $helper->getPriceFomat($admin_commission); ?></td>
+                                                    <td><?= $helper->getPriceFomat($seller_commission); ?></td>
+                                                    <td><?= $seller_name; ?></td>
+                                                </tr>
+                                            <?php
+                                            endif;
+                                        endif;
+                                    endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- /.col -->
+                        </div>
+                        <div class="row">
+                            <!-- accepted payments column -->
+                            <div class="col-xs-8">
+                                <p class="lead"><?= __('Payment Methods'); ?>:</p>
+                                <img src="<?= $block->getViewFileUrl('Lof_MarketPlace::images/visa.png') ?>" alt="Visa">
+                                <img src="<?= $block->getViewFileUrl('Lof_MarketPlace::images/mastercard.png') ?>"
+                                     alt="Mastercard">
+                                <img src="<?= $block->getViewFileUrl('Lof_MarketPlace::images/american_express.png') ?>"
+                                     alt="American Express">
+                                <img src="<?= $block->getViewFileUrl('Lof_MarketPlace::images/paypal.png') ?>"
+                                     alt="Paypal">
+                                <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+                                    <?= $block->getOrder()->getPayment()->getMethodInstance()->getTitle(); ?>
+                                </p>
+                                <p><?= __('The order was placed using'); ?> <?= $block->getOrder()->getData('order_currency_code'); ?>
+                                    .</p>
+
+                                <div class="admin__page-section-item order-comments-history">
+                                    <div class="admin__page-section-item-title">
+                                        <span class="title"><?= __('Credit Memo Comments'); ?></span>
+                                    </div>
+                                    <div id="history_form" class="admin__fieldset-wrapper-content">
+                                        <div class="admin__field">
+                                            <label class="normal admin__field-label" for="creditmemo_comment_text">
+                                                <span><?= __('Comment Text'); ?></span></label>
+                                            <div class="admin__field-control">
+                                                <textarea id="creditmemo_comment_text" class="admin__control-textarea"
+                                                          name="creditmemo[comment_text]" rows="3" cols="5"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-xs-4">
+                                <p class="lead"><?= __('Order Totals'); ?></p>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <tbody>
+                                        <tr>
+                                            <th style="width:50%"><?= __('Subtotal'); ?></th>
+                                            <td><?= $helper->getPriceFomat($subtotal); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th><?= __('Tax'); ?></th>
+                                            <td><?= $helper->getPriceFomat($tax); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th><?= __('Discount'); ?></th>
+                                            <td><?= $helper->getPriceFomat(-$discount); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th><?= __('Refund Shipping'); ?></th>
+                                            <td><input type="text" name="creditmemo[shipping_amount]"
+                                                       value="<?= $shippingamount - $refundedShippingAmount; ?>"
+                                                       class="input-text admin__control-text  not-negative-amount"
+                                                       id="shipping_amount"></td>
+                                        </tr>
+                                        <tr>
+                                            <th><?= __('Adjustment Refund'); ?></th>
+                                            <td><input type="text" name="creditmemo[adjustment_positive]" value="0"
+                                                       class="input-text admin__control-text  not-negative-amount"
+                                                       id="adjustment_positive"></td>
+                                        </tr>
+                                        <tr>
+                                            <th><?= __('Adjustment Fee'); ?></th>
+                                            <td><input type="text" name="creditmemo[adjustment_negative]" value="0"
+                                                       class="input-text admin__control-text  not-negative-amount"
+                                                       id="adjustment_negative"></td>
+                                        </tr>
+                                        <tr>
+                                            <th><?= __('Grand Total'); ?></th>
+                                            <td><?= $helper->getPriceFomat($grand_total); ?></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <input type="hidden" name="id" value="<?= $order_id ?>">
+                                <input type="hidden" name="invoice_id" value="<?= $invoiceId ?>">
+                                <input type="hidden" name="creditmemo[do_offline]" id="mp-creditmemo-do-offline"
+                                       value="0">
+                                <!-- for buyer mail -->
+                                <div class="order-totals-bottom">
+
+                                    <div
+                                        class="field choice admin__field admin__field-option field-comment_customer_notify">
+                                        <input id="notify-customer" name="creditmemo[comment_customer_notify]" value="1"
+                                               type="checkbox" class="admin__control-checkbox" disabled="disabled"/>
+                                        <label class="admin__field-label"
+                                               for="notify-customer"><?= __('Append Comments') ?></label>
+
+                                    </div>
+                                    <div
+                                        class="field choice admin__field admin__field-option field-is_visible_on_front">
+                                        <input id="history_notify" name="creditmemo[is_visible_on_front]" value="1"
+                                               type="checkbox" class="admin__control-checkbox"/>
+                                        <label class="admin__field-label"
+                                               for="history_notify"><?= __('Visible on Frontend') ?></label>
+                                    </div>
+                                    <div
+                                        class="field choice admin__field admin__field-option field-is_visible_on_front">
+                                        <input id="send-email" name="creditmemo[send_email]" value="1" type="checkbox"
+                                               class="admin__control-checkbox">
+                                        <label class="admin__field-label"
+                                               for="send-email"><?= __('Email Copy of Credit Memo') ?></label>
+                                    </div>
+                                </div>
+
+                                <div class="actions">
+                                    <button class="action-default scalable save submit-button primary" type="button"
+                                            id="submit_creditMemo_offline">
+                    <span>
+                      <span>
+                        <?= __('Refund Offline') ?>
+                      </span>
+                    </span>
+                                    </button>
+                                    <?php
+                                    if ($invoice && $invoice->getTransactionId()) { ?>
+                                        <button class="action-default scalable save submit-button primary" type="button"
+                                                id="submit_creditMemo" title="<?= __('Refund Online') ?>">
+                      <span>
+                        <span>
+                            <?= __('Refund') ?>
+                        </span>
+                      </span>
+                                        </button>
+                                        <?php
+                                    } ?>
+                                </div>
+                            </div>
+
+                            <!-- /.col -->
+                        </div>
+                        <!-- this row will not appear when printing -->
+                        <div class="row no-print">
+                            <div class="col-xs-12">
+                                <button class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i>
+                                    Print
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+    require([
+        "jquery",
+        "mage/mage"
+    ], function ($) {
+        var dataForm = $('#lof-form-creditmemo');
+        dataForm.mage('validation', {});
+
+        $('#submit_creditMemo').click(function () {
+            if ($('#mp-creditmemo-do-offline')) $('#mp-creditmemo-do-offline').attr('value', 0);
+            dataForm.submit()
+        });
+
+        $('#submit_creditMemo_offline').click(function () {
+            if ($('#mp-creditmemo-do-offline')) $('#mp-creditmemo-do-offline').attr('value', 1);
+            dataForm.submit();
+        });
+
+        $('#send-email').click(function () {
+            if (this.checked == true) {
+                $('#notify-customer').removeAttr('disabled');
+            } else {
+                $('#notify-customer').attr('disabled', 'disabled');
+            }
+        });
+    });
+</script>

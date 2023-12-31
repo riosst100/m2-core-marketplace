@@ -1,0 +1,547 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://landofcoder.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2016 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+$helper       = $this->helper("Lof\MarketPlace\Helper\Data");
+$helperSeller = $this->helper("Lof\MarketPlace\Helper\Seller");
+$seller       = $helperSeller->getSellerByCustomer();
+$helper1      = $this->helper("Lofmp\StoreLocator\Helper\Data");
+
+
+$id = $this->getRequest()->getParam('id');
+if($id){
+	$sellerlocator = $helper1->getSellerLocator($id);
+	$tagid 					= $helper1->getTagId($id);
+	$categoryid				= $helper1->getCategoryId($id);
+	$location_lat  = $sellerlocator['lat'];
+	$location_lng  = $sellerlocator['lng'];
+}
+$api_key                = $helper1->getConfig('general/api_key');
+$pagination             = $helper1->getConfig('general/pagination');
+$store_limit            = $helper1->getConfig('general/store_limit');
+$store_perpage          = $helper1->getConfig('general/store_perpage');
+$enable_category_filter = $helper1->getConfig('general/enable_category_filter');
+$enable_tag_filter      = $helper1->getConfig('general/enable_tag_filter');
+$location_lng           = $helper1->getConfig('location/location_lng');
+$location_lat           = $helper1->getConfig('location/location_lat');
+$zoom                   = (int) $helper1->getConfig('location/zoom');
+$pub                    = $block->getViewFileUrl('Lofmp_StoreLocator/js/plugins/storelocator/templates');
+$infoTemplate           = $pub . '/infowindow-description.html';
+$locationTemplate       = $pub . '/location-list-description.html';
+$dataLocation           = $this->getMediaUrl() . 'storelocator/index/locations';
+$tagcollection          = $this->getTagCollection();
+$categoryCollection     = $this->getCategoryCollection();
+$zipcodeCollection      = $this->getListZipCode();
+$countryCollection      = $this->getListCountry();
+$cityCollection         = $this->getListCity();
+$dataCountry            = $this->getCountry();
+$sellerId   			= $seller['seller_id'];
+// $product_ids = $helper1->getProductIDbySellerid($sellerId);
+//         print_r($product_ids);
+//         die();
+$twitter_id				= $seller['twitter_id'];
+$facebook_id			= $seller['facebook_id'];
+$_countries 			= $this->getListCountry();
+$categoryCollection     = $this->getCategoryCollection();
+$tagCollection          = $this->getTagCollection();
+
+?>
+
+<form class="entry-edit form-inline" action="<?php echo $block->getUrl('catalog/sellerlocator/save/storelocator_id/'.$id, ["_secure" => $this->getRequest()->isSecure()]) ?>" enctype="multipart/form-data" method="post" data-role="form-profile-validate" data-mage-init='{"validation":{}}'>
+	<input type="hidden" name="store_id" class="admin__control-text" value="<?php echo $helper->getCurrentStoreId(); ?>" />
+	<div class="lof-mp-page-title page-title">
+		<h2><?php echo __('Edit Profile Information') ?></h2>
+		<div class="page-actions-buttons">
+			 <div class="actions-split save primary" title="Save">
+				<button class="action-default primary" title="<?php echo __('Save ') ?>" type="submit">
+					<span><span><?php echo __('Save ') ?></span></span>
+				</button>
+			</div>
+		</div>
+	</div>
+	<div class="admin__fieldset-wrapper-content">
+		<fieldset class="admin__fieldset">
+		    <div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Name"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="name" class="admin__control-text" value="<?php if(!empty($sellerlocator)) echo $sellerlocator['name']; ?>" />
+				</div>
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("link"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="link" class="admin__control-text" value="<?php if(!empty($sellerlocator)) echo $sellerlocator['link']; ?>" />
+				</div>
+			</div>
+			<fieldset class="admin__field">
+					<label class="admin__field-label">
+						<?php  echo __("Description"); ?>
+					</label>
+					<div class="admin__field-control">
+						<textarea type="text" name="description" class="admin__control-text" rows="2" cols="15"><?php  if(!empty($sellerlocator)) echo $sellerlocator['description']; ?></textarea>
+					</div>
+				</fieldset>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("City"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="city" class="admin__control-text" value="<?php if(!empty($sellerlocator)) echo $sellerlocator['city']; ?>" />
+				</div>
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("ZipCode"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="zipcode" class="admin__control-text" value="<?php if(!empty($sellerlocator)) echo $sellerlocator['zipcode']; ?>" />
+				</div>
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Country"); ?>
+				</label>
+				<div class="admin__field-control">
+					<select name="country" id="country">
+						<?php foreach($_countries as $_country): ?>
+							<option value="<?php echo $_country['value'] ?>"                   <?php if(!empty($sellerlocator)&&$_country['value']==$sellerlocator['country']) echo 'selected'?>>
+								<?php echo $_country['label'] ?>
+							</option>
+						<?php endforeach; ?>
+					</select>
+				</div>
+
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Category"); ?>
+				</label>
+				<div class="admin__field-control">
+					<select name="category[]" multiple id="category">
+
+						<?php foreach($categoryCollection as $item): ?>
+							<option value="<?php echo $item['value'];?>" <?php if($id && in_array($item['value'], array_column($categoryid, 'category_id'))) echo "selected";?>>
+								<?php echo $item['label']; ?>
+							</option>
+						<?php endforeach; ?>
+					</select>
+				</div>
+
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Tag"); ?>
+				</label>
+				<div class="admin__field-control">
+					<select name="tag[]" multiple id="tag">
+						<?php foreach($tagCollection as $item): ?>
+							<option value="<?php echo $item['value']; ?>" <?php if( $id && in_array($item['value'], array_column($tagid, 'tag_id'))) echo "selected";?> >
+								<?php echo $item['label']; ?>
+							</option>
+						<?php endforeach; ?>
+					</select>
+				</div>
+
+			</div>
+			<div class="admin__field  ">
+				<label class="admin__field-label">
+					<?php echo __("MarkerColor"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="color" class="admin__control-text jscolor" value="<?php if(!empty($sellerlocator)) echo $sellerlocator['color']; ?>" />
+
+				</div>
+			</div>
+
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Marker FontIcon"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="fontClass" id="fontClass" class="admin__control-text" value="<?php if(!empty($sellerlocator)) echo $sellerlocator['fontClass']; ?>" />
+				   </div>
+
+			</div>
+
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Address"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="address" id="address" class="admin__control-text" value="<?php if(!empty($sellerlocator)) echo $sellerlocator['address']; ?>" />
+				   </div>
+
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+
+				</label>
+                <div class="admin__field-control">
+					<div id="bh-sl-map-container" class="bh-sl-map-container" style=" padding-top: 25px;">
+				<div class="map-box-container col-sm-8 col-xs-12 pull-left" >
+					<div id="bh-sl-map" class="bh-sl-map" style="width:690px;height:400px; background-color:#424DFF; "></div>
+				</div>
+				</div>
+				</div>
+			</div>
+
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Lat"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="lat" class="admin__control-text" id="lat" value="<?php if(!empty($sellerlocator)) echo $sellerlocator['lat']; ?>" />
+				</div>
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Long"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="lng" class="admin__control-text" id="lng" value="<?php if(!empty($sellerlocator)) echo $sellerlocator['lng']; ?>"/>
+				</div>
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Address 2"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="address2" class="admin__control-text"  value="<?php if(!empty($sellerlocator)) echo $sellerlocator['address2']; ?>"/>
+				</div>
+			</div>
+
+		</fieldset>
+	</div>
+
+	<div class="fieldset-wrapper admin__collapsible-block-wrapper">
+		<div class="fieldset-wrapper-title" data-toggle="collapse" data-target="#seo">
+			<strong class="admin__collapsible-title">
+				<?php echo __("SEO"); ?>
+			</strong>
+		</div>
+		<div id="seo"  class="admin__fieldset-wrapper-content admin__collapsible-content">
+			<input type="hidden" id="seller_id" name="seller_id" title="Seller ID" value="<?php echo $sellerId; ?>" />
+			<fieldset class="admin__fieldset">
+				<fieldset class="admin__field">
+
+				<label class="admin__field-label">
+					<?php echo __("SEO Rewrite Url"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="seo_url" class="admin__control-text" value="<?php if(!empty($sellerlocator)) echo isset($sellerlocator['seo_url'])?$sellerlocator['seo_url']:''; ?>" />
+				</div>
+
+
+				</fieldset>
+
+				<fieldset class="admin__field">
+
+				<label class="admin__field-label">
+					<?php echo __("Page Title"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="pagetitle" class="admin__control-text" value="<?php if(!empty($sellerlocator)) echo $sellerlocator['pagetitle']; ?>" />
+				</div>
+
+
+				</fieldset>
+                <fieldset class="admin__field">
+					<label class="admin__field-label">
+						<?php  echo __("Meta keywords"); ?>
+					</label>
+					<div class="admin__field-control">
+						<textarea type="text" name="keywords" class="admin__control-text" rows="2" cols="15"><?php  if(!empty($sellerlocator)) echo $sellerlocator['keywords']; ?></textarea>
+					</div>
+				</fieldset>
+				 <fieldset class="admin__field">
+				     <label class="admin__field-label">
+						<?php echo __("Meta Description"); ?>
+					</label>
+					<div class="admin__field-control">
+						<textarea type="text" name="meta_description" class="admin__control-text" rows="2" cols="15"><?php if(!empty($sellerlocator)) echo $sellerlocator['meta_description']; ?></textarea>
+					</div>
+				</fieldset>
+
+			</fieldset>
+		</div>
+	</div>
+	<div class="fieldset-wrapper admin__collapsible-block-wrapper">
+		<div class="fieldset-wrapper-title" data-toggle="collapse" data-target="#open">
+			<strong class="admin__collapsible-title">
+				<?php echo __("Open"); ?>
+			</strong>
+		</div>
+		<div id="open"  class="admin__fieldset-wrapper-content admin__collapsible-content">
+
+			<fieldset class="admin__fieldset">
+				<fieldset class="admin__field">
+
+					<label class="admin__field-label">
+						<?php  echo __("Monday"); ?>
+					</label>
+					<div class="admin__field-control">
+						<input type="text" name="hours" class="admin__control-text" value="<?php if(!empty($sellerlocator)) echo $sellerlocator['hours']; ?>" />
+					</div>
+				</fieldset>
+				<fieldset class="admin__field">
+					<label class="admin__field-label">
+						<?php echo __("Tuesday"); ?>
+					</label>
+					<div class="admin__field-control">
+						<input type="text" name="hours1" class="admin__control-text" value="<?php if(!empty($sellerlocator)) echo $sellerlocator['hours1']; ?>" />
+					</div>
+				</fieldset>
+				<fieldset class="admin__field">
+					<label class="admin__field-label">
+						<?php echo __("Wednesday"); ?>
+					</label>
+					<div class="admin__field-control">
+						<input type="text" name="hours2" class="admin__control-text" value="<?php if(!empty($sellerlocator)) echo $sellerlocator['hours2']; ?>" />
+					</div>
+				</fieldset>
+				<fieldset class="admin__field">
+					<label class="admin__field-label">
+						<?php echo __("Thursday"); ?>
+					</label>
+					<div class="admin__field-control">
+						<input type="text" name="hours3" class="admin__control-text" value="<?php if(!empty($sellerlocator)) echo $sellerlocator['hours3']; ?>" />
+					</div>
+				</fieldset>
+				<fieldset class="admin__field">
+					<label class="admin__field-label">
+						<?php echo __("Friday"); ?>
+					</label>
+					<div class="admin__field-control">
+						<input type="text" name="hours4" class="admin__control-text" value="<?php if(!empty($sellerlocator)) echo $sellerlocator['hours4']; ?>" />
+					</div>
+				</fieldset>
+				<fieldset class="admin__field">
+					<label class="admin__field-label">
+						<?php echo __("Sasturday"); ?>
+					</label>
+					<div class="admin__field-control">
+						<input type="text" name="hours5" class="admin__control-text" value="<?php if(!empty($sellerlocator)) echo $sellerlocator['hours5']; ?>" />
+					</div>
+				</fieldset>
+				<fieldset class="admin__field">
+					<label class="admin__field-label">
+						<?php echo __("Sunday"); ?>
+					</label>
+					<div class="admin__field-control">
+						<input type="text" name="hours6" class="admin__control-text" value="<?php if(!empty($sellerlocator)) echo $sellerlocator['hours6']; ?>" />
+					</div>
+				</fieldset>
+			</fieldset>
+		</div>
+	</div>
+	<div class="fieldset-wrapper admin__collapsible-block-wrapper">
+		<div class="fieldset-wrapper-title" data-toggle="collapse" data-target="#images">
+			<strong class="admin__collapsible-title">
+				<?php echo __("Images"); ?>
+			</strong>
+		</div>
+	<div id="images"  class="admin__fieldset-wrapper-content admin__collapsible-content">
+			<fieldset class="admin__fieldset">
+				<fieldset class="admin__field">
+					<label class="admin__field-label">
+						<span><?php echo __('Company Banner') ?></span>
+					</label>
+					<div class="admin__field-control">
+						<div class="image image-placeholder">
+							<div class="uploader">
+								<div class="fileinput-button form-buttons button">
+									<input type="file" id="image" name="image" title="Company Banner" />
+								</div>
+							</div>
+							<div class="product-image-wrapper">
+				                <p class="image-placeholder-text">
+				                   <?php echo __('Browse to find or drag image here(Size 1240x400)'); ?>
+				                </p>
+				            </div>
+						</div>
+						<?php if($id && $sellerlocator['image']) { ?>
+						<div class="image">
+							<img src="<?php echo $helper->getMediaUrl() . $sellerlocator['image']; ?>" title="<?php echo $sellerlocator['image']; ?>" alt="<?php echo $sellerlocator['image']; ?>"  width="150" class="small-image-preview v-middle" data-ui-id="adminhtml-seller-edit-tab-main-0-fieldset-element-file-thumbnail">
+						</div>
+						<?php } ?>
+					</div>
+				</fieldset>
+			</fieldset>
+		</div>
+    </div>
+    <div class="fieldset-wrapper admin__collapsible-block-wrapper">
+		<div class="fieldset-wrapper-title" data-toggle="collapse" data-target="#social">
+			<strong class="admin__collapsible-title">
+				<?php echo __("Social Media"); ?>
+			</strong>
+		</div>
+		<div id="social"  class="admin__fieldset-wrapper-content admin__collapsible-content">
+			<input type="hidden" id="seller_id" name="seller_id" title="Seller ID" value="<?php echo $sellerId; ?>" />
+			<fieldset class="admin__fieldset">
+				<fieldset class="admin__field">
+					<label class="admin__field-label">
+						<span><?php echo __('Twitter ID') ?></span>
+					</label>
+					<div class="admin__field-control">
+						<input type="text" name="twitter" id="twitter"  class="admin__control-text" title="Twitter ID" value="<?php if(!empty($sellerlocator)) echo $sellerlocator['twitter']; ?>">
+					</div>
+				</fieldset>
+
+				<fieldset class="admin__field">
+					<label class="admin__field-label">
+						<span><?php echo __('Facebook ID') ?></span>
+					</label>
+					<div class="admin__field-control">
+						<input type="text" name="facebook" id="facebook"  class="admin__control-text" title="Facebook ID" value="<?php if(!empty($sellerlocator)) echo $sellerlocator['facebook']; ?>">
+					</div>
+				</fieldset>
+
+				<fieldset class="admin__field">
+					<label class="admin__field-label">
+						<span><?php echo __('Google Plus ID') ?></span>
+					</label>
+					<div class="admin__field-control">
+						<input type="text" name="googleplus" id="googleplus" class="admin__control-text" title="Google Plus ID" value="<?php
+						if(!empty($sellerlocator)) echo $sellerlocator['googleplus']; ?>">
+					</div>
+				</fieldset>
+
+				<fieldset class="admin__field">
+					<label class="admin__field-label">
+						<span><?php echo __('Youtube ID') ?></span>
+					</label>
+					<div class="admin__field-control">
+						<input type="text" name="youtube" id="youtube" class="admin__control-text" title="Youtube ID" value="<?php if(!empty($sellerlocator)) echo $sellerlocator['youtube']; ?>">
+					</div>
+				</fieldset>
+
+				<fieldset class="admin__field">
+					<label class="admin__field-label">
+						<span><?php echo __('Linkedin ID') ?></span>
+					</label>
+					<div class="admin__field-control">
+						<input type="text" name="linkedin" id="linkedin" class="admin__control-text" title="Linkedin ID" value="<?php if(!empty(
+						$sellerlocator)) echo $sellerlocator['linkedin']; ?>">
+					</div>
+				</fieldset>
+
+				<fieldset class="admin__field">
+					<label class="admin__field-label">
+						<span><?php echo __('Vimeo ID') ?></span>
+					</label>
+					<div class="admin__field-control">
+						<input type="text" name="vimeo" id="vimeo" class="admin__control-text" title="Vimeo ID" value="<?php if(!empty($sellerlocator)) echo $sellerlocator['vimeo']; ?>">
+					</div>
+				</fieldset>
+			</fieldset>
+		</div>
+	</div>
+</form>
+
+<script >
+
+	function initMap() {
+                var map = new google.maps.Map(document.getElementById("bh-sl-map"), {
+                  center: {lat: <?php echo $location_lat; ?>, lng: <?php echo $location_lng; ?>},
+                  zoom: 13,
+                });
+                var input = document.getElementById("address");
+                var lat = document.getElementById("lat");
+                var lng = document.getElementById("lng");
+
+
+                var infowindow = new google.maps.InfoWindow();
+                var marker = new google.maps.Marker({
+                  map: map,
+                  draggable: true,
+                  position: {lat: <?php echo $location_lat; ?>, lng: <?php  echo $location_lng; ?>},
+                });
+                // marker.setVisible(true);
+
+
+                google.maps.event.addListener(marker,"drag",function(event){
+                  document.getElementById("lat").value = this.position.lat();
+                  document.getElementById("lng").value = this.position.lng();
+
+                  var geocoder = new google.maps.Geocoder;
+                  geocoder.geocode({"location": this.position}, function(results, status) {
+                    if (status === "OK") {
+                      document.getElementById("address").value = results[0].formatted_address;
+                      infowindow.setContent(results[0].formatted_address);
+                      infowindow.open(map, marker);
+                    }
+                  });
+                });
+
+                var autocomplete = new google.maps.places.Autocomplete(input);
+                autocomplete.bindTo("bounds", map);
+
+                autocomplete.addListener("place_changed", function() {
+                  infowindow.close();
+                  marker.setVisible(false);
+                  var place = autocomplete.getPlace();
+
+                  // If the place has a geometry, then present it on a map.
+                  if (place.geometry.viewport) {
+                    map.fitBounds(place.geometry.viewport);
+                  } else {
+                    map.setCenter(place.geometry.location);
+                    map.setZoom(17);  // Why 17? Because it looks good.
+                  }
+
+                  marker.setPosition(place.geometry.location);
+                  marker.setVisible(true);
+
+                  var address = place.formatted_address;
+
+                  document.getElementById("lat").value = place.geometry.location.lat();
+                  document.getElementById("lng").value = place.geometry.location.lng();
+
+                  infowindow.setContent("<div><strong>" + place.name + "</strong><br>" + address);
+                  infowindow.open(map, marker);
+                });
+
+              }
+	</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $api_key?>&libraries=places&callback=initMap" async defer>
+
+</script>
+<script type="text/javascript">
+require(['jquery', 'bootstrap','multiselect'],function ($) {
+		$(document).ready(function ($) {
+
+		 	     $('#tag').multiselect({
+					    columns: 1,
+					    placeholder: 'Select Tag',
+					    search: true
+					});
+                   $('#category').multiselect({
+					    columns: 1,
+					    placeholder: 'Select Category',
+					    search: true
+					});
+
+    });
+
+	});
+</script>

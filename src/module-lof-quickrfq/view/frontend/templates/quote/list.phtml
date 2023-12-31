@@ -1,0 +1,98 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_Quickrfq
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+$collection = $block->getListQuoteCustomer();
+$total = $collection->count();
+$blockId = rand() . time();
+$grid_pagination = true;
+$url         = $block->getHrefUrl();
+$count       = $collection->count();
+$size        = $collection->getSize();
+$limit       = $block->getLimit();
+$currentPage = $block->getCurrentPage();
+$start       = $size - (($currentPage - 1) * $limit);
+$pricingHelper = $this->helper("Magento\Framework\Pricing\Helper\Data");
+?>
+<div class="lrw-instruction">
+    <?php if ($collection && count($collection)): ?>
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="col action" scope="col"><?= $block->escapeHtml(__('Requested Quote For Product')) ?></th>
+                <th class="col action" scope="col"><?= $block->escapeHtml(__('Quote Price')) ?></th>
+                <th class="col action" scope="col"><?= $block->escapeHtml(__('Quote Qty')) ?></th>
+                <th class="col action" scope="col"><?= $block->escapeHtml(__('Contact Name')) ?></th>
+                <th class="col action" scope="col"><?= $block->escapeHtml(__('Status')) ?></th>
+                <th class="col action" scope="col"><?= $block->escapeHtml(__('Created At')) ?></th>
+                <th class="col action" scope="col"><?= $block->escapeHtml(__('Action')) ?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($collection as $item): ?>
+                <?php 
+                    $product = $item->getProduct($item->getProductId());
+                ?>
+                <tr>
+                    <td class="col product-name">
+                        <div class="product-image">
+                            <a href="<?= $product->getProductUrl() ?>" target="_BLANK" title="<?= $block->escapeHtml(__("View Product Detail")); ?>">
+                                <img src="<?= $block->getImageRender() . 'catalog/product/' . $product->getThumbnail(); ?>" width="100" alt="<?= $block->escapeHtml($item->getProductName()); ?>"/>
+                            </a>
+                        </div>
+                        <br/>
+                        <a href="<?= $product->getProductUrl() ?>" target="_BLANK" title="<?= $block->escapeHtml(__("View Product Detail")); ?>"><span><?= $block->escapeHtml($item->getProductName()) ?></span></a>
+                        <br/>
+                        <span><?= __("SKU: %1", $item->getProductSku()); ?></span>
+                    </td>
+                    <td class="col product-price">
+                        <strong><?= $pricingHelper->currency($item->getPricePerProduct(), true, false); ?></strong>
+                        <?php if ($item->getAdminPrice()) : ?>
+                        <br/><span class="small small-text"><?= __("admin price: %1", $pricingHelper->currency($item->getAdminPrice(), true, false)); ?></span>
+                        <?php endif; ?>
+                    </td>
+                    <td class="col product-qty">
+                        <strong><?= $block->escapeHtml($item->getQuantity()) ?></strong>
+                        <?php if ($item->getAdminQuantity()) : ?>
+                        <br/><span class="small small-text"><?= __("admin qty: %1", $item->getAdminQuantity()); ?></span>
+                        <?php endif; ?>
+                    </td>
+                    <td class="col contact-name"><?= $block->escapeHtml($item->getContactName()) ?></td>
+                    <td class="col item-status"><strong><?= $block->escapeHtml($item->getStatus()) ?></strong></td>
+                    <td class="col created-at"><?= $block->escapeHtml($item->getCreateDate()) ?></td>
+                    <td class="col action">
+                        <a href="<?= $block->escapeUrl($block->getDetailLink($item->getQuickrfqId())) ?>" title="<?= $block->escapeHtmlAttr(__('View')) ?>"
+                           class="action view"><?= $block->escapeHtml(__('View')) ?></a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php else: ?>
+        <p class="message message-warning"><?= __('There aren\'t referred customers') ?></p>
+    <?php endif; ?>
+</div>
+<div>
+    <div class=" toolbar bottom">
+        <?php if ($grid_pagination) { ?>
+            <?php echo $block->getPagerHtml(); ?>
+        <?php } ?>
+    </div>
+</div>

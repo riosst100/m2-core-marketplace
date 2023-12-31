@@ -1,0 +1,36 @@
+<div class="step-title" data-role="title"><!-- ko i18n: 'Choose Delivery Slot'--><!-- /ko --></div>
+<p data-bind="text:deliveryInfo"></p>
+<div class="delivery_arrival_date">
+    <label class="label">
+        <span><!-- ko i18n: 'Delivery Date'--><!-- /ko --></span>
+    </label>
+    <br>
+    <div class="arrival_date">
+        <input style="width: 50% !important;margin-bottom:15px;" class="input-text" type="text" id="targetDate" name="datepicker" value=""
+               data-bind="datepicker:targetDate,datepickerOptions: { minDate: new Date() }, event:{ change: updateSlots}"/>
+    </div>
+</div>
+<div class="delivery_slot">
+    <label class="label">
+        <span><!-- ko i18n: 'Delivery Slots'--><!-- /ko --></span>
+    </label>
+    <br>
+
+    <div class="slots">
+        <select  style="width: 50% !important;margin-bottom:15px;" id="slotName" data-bind="
+        options: availableSlots,
+        optionsText: 'name',
+        optionsValue: 'value',
+        optionsAfterRender: setOptionDisable
+        "></select>
+    </div>
+</div>
+<div class="delivery_comments">
+    <label class="label"><!-- ko i18n: 'Delivery Instructions'--><!-- /ko --></label>
+    <br/>
+    <div class="comments">
+        <textarea style="width: 50% !important;margin-top: 30px;" id="deliveryComments" rows="3"
+                  class="body-textarea"
+                  name="delivery-comments"></textarea>
+    </div>
+</div>

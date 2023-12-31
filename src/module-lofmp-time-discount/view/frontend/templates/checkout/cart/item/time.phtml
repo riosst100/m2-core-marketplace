@@ -1,0 +1,85 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://landofcoder.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2017 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+?>
+<?php
+$_item = $block->getItem();
+$product = $_item->getProduct();
+$helperSeller = $this->helper(\Lof\MarketPlace\Helper\Seller::class);
+$helper = $this->helper(\Lof\MarketPlace\Helper\Data::class);
+$timeDiscountHelper = $this->helper(\Lofmp\TimeDiscount\Helper\TimeDiscount::class);
+$seller_id = $helperSeller->getSellerIdByProduct($product['entity_id']);
+$seller = $timeDiscountHelper->sellerById($seller_id, 'seller_id');
+$timeDiscountQuote = $timeDiscountHelper->getQuote();
+$url = $seller->getUrl();
+if ($timeDiscountQuote && $timeDiscountQuote->getId() && $timeDiscountQuote->getProductId() == $product['entity_id']):
+?>
+    <div class="lof-seller-block lof-block" id="mp-lof-block">
+        <div>
+            <span class="lof-block-font-bold-up"><?= __('Time Start') ?></span>
+            <span class="lof-block-title-css">
+            <?= $timeDiscountQuote->getData('time_start'); ?>
+        </span>
+        </div>
+        <div>
+            <span class="lof-block-font-bold-up"><?= __('Time End') ?></span>
+            <span class="lof-block-title-css">
+            <?= $timeDiscountQuote->getData('time_end'); ?>
+        </span>
+        </div>
+    </div>
+<?php endif; ?>
+<?php
+$seller_id = '';
+$priceComparison = $helper->isEnableModule('Lofmp_PriceComparison');
+if ($priceComparison) {
+    $assignHelper = $this->helper(\Lofmp\PriceComparison\Helper\Data::class);
+    $quote = $assignHelper->getQuoteCollection()->addFieldToFilter('product_id', $product['entity_id'])->getLastItem();
+
+    if (count($quote->getData()) > 0) {
+        $seller_id = $quote->getSellerId();
+    } else {
+        $seller_id = $helperSeller->getSellerIdByProduct($product['entity_id']);
+    }
+} else {
+    $seller_id = $helperSeller->getSellerIdByProduct($product['entity_id']);
+}
+
+if ($seller_id != '') :
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $seller = $objectManager->create(\Lof\MarketPlace\Model\Seller::class)->load($seller_id, 'seller_id');
+    $url = $seller->getUrl();
+    $shoptitle = $seller->getName();
+    ?>
+    <?php if ($shoptitle): ?>
+    <div class="lof-seller-block lof-block" id="mp-lof-block">
+        <div>
+            <span class="lof-block-font-bold-up"><?= $block->escapeHtml(__('Sold By')) ?></span>
+            <span class="lof-block-title-css">
+                <a href="<?= $block->escapeUrl($url) ?>"
+                   title="<?= $block->escapeHtmlAttr(__('Visit Shop')) ?>" id="profileconnect">
+                    <?= $block->escapeHtml($shoptitle) ?>
+                </a>
+            </span>
+        </div>
+    </div>
+    <?php endif; ?>
+<?php
+endif;

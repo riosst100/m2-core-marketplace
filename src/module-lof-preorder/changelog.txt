@@ -1,0 +1,7 @@
+= 1.0.3 - 2021-03-06 =
+* Added - Compatile with Magento 2.4.x
+* Optimized - Load list products
+
+= 1.0.2 - 2021-02-09 =
+* Fixes - Percent Partial payment setting
+* Fixes - Zero percent preorder payment item

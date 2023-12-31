@@ -1,0 +1,114 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_Rma
+ * @copyright  Copyright (c) 2019 Landofcoder (https://landofcoder.com/)
+ * @license    https://landofcoder.com/LICENSE-1.0.html
+ */
+/** @var \Lofmp\Rma\Block\Rma\SellectOrder $block */
+?>
+<?php
+    $orders = $block->getOrderList();
+if (count($orders)): ?>
+        <div class="block">
+            <div class="block-title">
+                <strong><?= __('Select an order or more orders to return') ?></strong>
+            </div>
+            <?= $block->getChildHtml('rma_filter'); ?>
+            <form class="form select-orders-to-return" action="<?= $block->getUrl('returns/guest/newrma_bundle'); ?>" id="new-bundle-rma-form" method="post" data-mage-init='{"validation":{}}'>
+                <input type="hidden" name="form_key" value="<?= $block->getFormKey(); ?>">
+                <div class="block-content">
+                    <div class="table-wrapper orders-history">
+                    <table class="data table table-order-items history" id="my-orders-table">
+                        <caption class="table-caption"><?= /* @escapeNotVerified */ __('Orders') ?></caption>
+                        <thead>
+                            <tr>
+                                <th scope="col" class="col id select-id"><?= /* @escapeNotVerified */ __('Select #') ?></th>
+                                <th scope="col" class="col id"><?= /* @escapeNotVerified */ __('Order #') ?></th>
+                                <th scope="col" class="col date"><?= /* @escapeNotVerified */ __('Date') ?></th>
+                                <th scope="col" class="col shipping"><?= /* @escapeNotVerified */ __('Ship To') ?></th>
+                                <th scope="col" class="col total"><?= /* @escapeNotVerified */ __('Order Total') ?></th>
+                                <th scope="col" class="col status"><?= /* @escapeNotVerified */ __('Status') ?></th>
+                                <th scope="col" class="col actions"><?= /* @escapeNotVerified */ __('Action') ?></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($orders as $_order): ?>
+                                <tr>
+                                    <td data-th="<?= $block->escapeHtml(__('Select #')) ?>" class="col id select-id">
+                                    <?php if ($block->IsItemsQtyAvailable($_order)): ?>
+                                    <input type="checkbox" name="order_id[]" value="<?= $_order->getId(); ?>"/>
+                                    <?php endif; ?>
+                                    </td>
+                                    <td data-th="<?= $block->escapeHtml(__('Order #')) ?>" class="col id"><?= /* @escapeNotVerified */ $_order->getRealOrderId() ?></td>
+                                    <td data-th="<?= $block->escapeHtml(__('Date')) ?>" class="col date"><?= /* @escapeNotVerified */ $block->formatDate($_order->getCreatedAt()) ?></td>
+                                    <?php $extra = $block->getChildBlock('extra.container'); ?>
+                                    <?php if ($extra): ?>
+                                        <?php $extra->setOrder($_order); ?>
+                                        <?= /* @noEscape */ $extra->getChildHtml() ?>
+                                    <?php endif; ?>
+                                    <td data-th="<?= $block->escapeHtml(__('Ship To')) ?>" class="col shipping"><?= $_order->getShippingAddress() ? $block->escapeHtml($_order->getShippingAddress()->getName()) : '&nbsp;' ?></td>
+                                    <td data-th="<?= $block->escapeHtml(__('Order Total')) ?>" class="col total"><?= /* @escapeNotVerified */ $_order->formatPrice($_order->getGrandTotal()) ?></td>
+                                    <td data-th="<?= $block->escapeHtml(__('Status')) ?>" class="col status"><?= /* @escapeNotVerified */ $_order->getStatusLabel() ?></td>
+                                    <td data-th="<?= $block->escapeHtml(__('Actions')) ?>" class="col actions">
+                                        <a href="<?= /* @escapeNotVerified */ $block->getOrderUrl($_order->getId()) ?>" class="action view">
+                                            <span><?= /* @escapeNotVerified */ __('View Order') ?></span>
+                                        </a>
+                                        <?php if ($block->IsItemsQtyAvailable($_order) && $block->getIsUseBothType()):
+                                            ?>
+                                        <a href="<?= /* @escapeNotVerified */ $block->getCreateRmaUrl($_order->getId()) ?>" class="action return">
+                                            <span><?= /* @escapeNotVerified */ __('Return') ?></span>
+                                        </a>
+                                            <?php
+                                        endif;
+                                        ?>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <?php
+                $toolbarHtml = trim($block->getChildHtml('toolbar'));
+                if ($toolbarHtml) {
+                    ?>
+                <br/>
+                <div class="rma-toolbar toolbar">
+                    <?php
+                    echo $toolbarHtml;
+                    ?>
+                </div>
+                <?php } ?>
+                <br/>
+                <div class="actions-toolbar">
+                    <div class="primary">
+                        <input type="hidden" name="hideit" id="hideit" value="">
+                        <button type="submit" title="<?= __('Request Return'); ?>" class="action submit primary">
+                            <span><?= __('Request Return'); ?></span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+<?php else: ?>
+    <div class="message info empty">
+        <span><?= __('You have no orders to request RMA or your orders were placed more than %1 days ago. Please, contact customer service.', $block->getReturnPeriod()) ?></span>
+    </div>
+<?php endif ?>
+<div class="action-bottom">
+<a href="<?= $block->getUrl("rma/guest/rmalist");?>" class="lof_rma_back_btn"><span><span><?= __("<< Go back!");?></span></span></a>
+</div>

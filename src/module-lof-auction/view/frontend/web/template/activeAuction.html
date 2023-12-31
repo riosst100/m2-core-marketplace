@@ -1,0 +1,136 @@
+<!-- ko if: isActive() -->
+<div data-bind="attr:{class: getAuctionBidClass()}, visible: isVisible">
+    <!-- ko foreach: getRegion('before') -->
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <!-- /ko -->
+    <ul class="list-group">
+      <!-- ko if: showProductName() -->
+        <li class="list-group-item">
+            <div class="auction-title auction_title" data-bind="text: getAuctionTitle()"></div>
+        </li>
+        <!-- /ko -->
+        <!-- ko ifnot: showProductName() -->
+        <li class="list-group-item hide-when-done auction-countdown-title">
+            <div class="auction-start-in starting_soon_bid_title" data-bind="i18n: 'Auction will start in:'"></div>
+        </li>
+        <!-- /ko -->
+        <li class="list-group-item hidden hide-when-done auction-countdown-wrapper">
+            <div class="timeleftbox clearfix">
+                <div class="auction-count-down count-down-auction" data-bind="attr:{id: getCountdownId()}">
+                    <!-- ko ifnot: isProcessing() -->
+                    <strong data-bind="i18n: 'Auction Ended'"></strong>
+                    <!-- /ko -->
+                </div>
+            </div>
+        </li>
+        <!-- ko if: showProductName() -->
+        <li class="list-group-item">
+            <!-- ko if: getAuctionConfigValue('show_bid_start') -->
+            <div class="lof-column">
+            <label class="label" data-bind="i18n: 'Bid Start:'"></label>
+            <span class="start_auction_time value" data-bind="text: getAuctionFieldValue('start_auction_time')"></span>
+            </div>
+            <!-- /ko -->
+            <!-- ko if: getAuctionConfigValue('show_bid_end') -->
+            <div class="lof-column">
+            <label class="label" data-bind="i18n: 'Bid End:'"></label>
+            <span class="stop_auction_time value" data-bind="text: getAuctionFieldValue('stop_auction_time')"></span>
+            </div>
+            <!-- /ko -->
+            <!-- ko if: getAuctionConfigValue('show_timezone') -->
+            <div class="lof-column">
+                <label class="label" data-bind="i18n: 'Timezone:'"></label>
+                <span class="time_zone value" data-bind="text: getAuctionFieldValue('time_zone')"></span>
+            </div>
+            <!-- /ko -->
+            <!-- ko if: getAuctionConfigValue('show_current_time') -->
+            <div class="lof-column">
+                <label class="label" data-bind="i18n: 'Current Time:'"></label>
+                <span class="today_time value" data-bind="text: getAuctionFieldValue('today_time')"></span>
+            </div>
+            <!-- /ko -->
+        </li>
+        <!-- /ko -->
+        <li class="list-group-item hide-when-comming">
+            <!-- ko if: getAuctionConfigValue('show_min_qty') -->
+            <div class="lof-column">
+                <label class="label" data-bind="i18n: 'Minimum Qty:'"></label>
+                <span class="min_qty value" data-bind="text: getAuctionFieldValue('min_qty')"></span>
+            </div>
+            <!-- /ko -->
+            <!-- ko if: getAuctionConfigValue('show_max_qty') -->
+            <div class="lof-column">
+                <label class="label" data-bind="i18n: 'Maximum Qty:'"></label>
+                <span class="max_qty value" data-bind="text: getAuctionFieldValue('max_qty')"></span>
+            </div>
+            <!-- /ko -->
+        </li>
+        <li class="list-group-item hide-when-comming">
+            <!-- ko if: getAuctionConfigValue('show_start_price') -->
+            <div class="lof-column">
+                <label class="label" data-bind="i18n: 'Starting Price:'"></label>
+                <span class="value">
+                    <span class="starting_price format-price price" data-bind="text: formatPrice( getAuctionFieldValue('starting_price') )"></span>
+                </span>
+            </div>
+            <!-- /ko -->
+            <!-- ko if: getAuctionConfigValue('show_max_price') -->
+            <div class="lof-column">
+                <label class="label" data-bind="i18n: 'Max Price:'"></label>
+                <span class="value">
+                    <span class="max_amount format-price price" data-bind="text: formatPrice(getAuctionFieldValue('max_amount'))"></span>
+                </span>
+            </div>
+            <!-- /ko -->
+            <!-- ko if: getAuctionConfigValue('show_reserve_price') -->
+            <div class="lof-column">
+                <label class="label" data-bind="i18n: 'Reserve Price:'"></label>
+                <span class="value">
+                    <span class="reserve_price format-price price" data-bind="text: formatPrice(getAuctionFieldValue('reserve_price'))"></span>
+                </span>
+            </div>
+            <!-- /ko -->
+        </li>
+        <li class="list-group-item hide-when-done hide-when-comming hidden auction-history">
+            <div class="lof_row">
+                <!-- ko if: getAuctionConfigValue('show_curt_auc_price') -->
+                <span class="label" data-bind="i18n: 'Current Bid :'"></span>
+                <strong class="value">
+                    <span class="min_amount format-price price" data-bind="text: formatPrice( getAuctionFieldValue('min_amount') )"></span>
+                </strong>
+                <!-- /ko -->
+                <!-- ko if: (getAuctionConfigValue('show_auc_detail') || getAuctionConfigValue('show_auto_details')) -->
+
+                <!-- ko foreach: getRegion('auction-history') -->
+                <!-- ko template: getTemplate() --><!-- /ko -->
+                <!-- /ko -->
+
+                <!-- /ko -->
+            </div>
+            <!-- ko if: getAuctionConfigValue('show_bidder_name') -->
+            <div class="lof-row">
+            <span class="label" data-bind="i18n: 'Bidder :'"></span>
+            <span class="customer_name value" data-bind="text: getAuctionFieldValue('customer_name')"></span>
+            </div>
+            <!-- /ko -->
+        </li>
+        <li data-bind="attr: {class: getBidFormClass()}">
+            <div class="lof_wrap">
+            <!-- ko foreach: getRegion('auction-bid-form') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!-- /ko -->
+
+            <!-- ko foreach: getRegion('auction-absentee') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!-- /ko -->
+            </div>
+        </li>
+        <li class="list-group-item show-when-done hidden hide-when-comming auction-winner-msg">
+            <div class="bid_title"></div>
+        </li>
+        <!-- ko foreach: getRegion('additional-auction-fields') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!-- /ko -->
+    </ul>
+</div>
+<!-- /ko -->

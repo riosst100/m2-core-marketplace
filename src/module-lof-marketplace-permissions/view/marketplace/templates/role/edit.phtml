@@ -1,0 +1,111 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPermissions
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+/** @var $block \Lof\MarketPermissions\Block\Marketplace\Role\Edit */
+
+$role = $block->getRole();
+?>
+
+<form class="form form-edit-role" method="post" id="role-edit-form"
+      action="<?= $block->escapeUrl($block->getUrl('*/*/editPost', ['id' => $role->getId()])) ?>"
+      data-mage-init='{"validation":{}}'>
+    <?= $block->getBlockHtml('formkey') ?>
+    <div class="lof-mp-page-title page-title">
+        <h3><?= __('Roles and Permissions') ?></h3>
+    </div>
+    <div class="page-main-actions">
+        <div class="page-actions">
+            <div class="actions" data-ui-id="page-actions-toolbar-content-header">
+                <div class="page-actions-inner">
+                    <div class="page-actions-buttons">
+                        <button type="button" class="action- scalable back"
+                                onclick="<?= sprintf("location.href = '%s';", $block->getBackUrl()) ?>"
+                                title="<?= $block->escapeHtmlAttr(__('Back')) ?>">
+                            <span><?= $block->escapeHtml(__('Back')) ?></span>
+                        </button>
+                        <button type="submit" class="action-default primary"
+                                title="<?= $block->escapeHtmlAttr(__('Save Role')) ?>">
+                            <span><?= $block->escapeHtml(__('Save Role')) ?></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fieldset-wrapper admin__collapsible-block-wrapper">
+        <div class="fieldset-wrapper-title" data-toggle="collapse" data-target="#role-information">
+            <strong class="admin__collapsible-title">
+                <span><?= $block->escapeHtml(__('Role Information')) ?></span>
+            </strong>
+        </div>
+        <div id="role-information" class="admin__fieldset-wrapper-content">
+            <fieldset class="admin__fieldset">
+                <div class="admin__field role-name _required">
+                    <label class="admin__field-label">
+                        <span><?= $block->escapeHtml(__('Role Name')) ?></span>
+                    </label>
+                    <div class="admin__field-control">
+                        <input class="admin__control-text"
+                               type="text" name="role_name" id="role_name"
+                               value="<?= $block->escapeHtmlAttr($role->getRoleName()) ?>"
+                               title="<?= $block->escapeHtmlAttr(__('Role Name')) ?>"
+                               data-async-is-valid="true"
+                               data-mage-init='{"Lof_MarketPermissions/js/form/element/async-validation": {
+                                        "name": "seller_role_name",
+                                        "validateUrl": "<?= $block->escapeUrl($block->getUrl('permissions/role/validate')) ?>"
+                                    }}'
+                               data-validate="{required:true, 'validate-async-seller-role-name': true}">
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <div class="fieldset-wrapper admin__collapsible-block-wrapper">
+        <div class="fieldset-wrapper-title" data-toggle="collapse" data-target="#role-permissions">
+            <strong class="admin__collapsible-title">
+                <span><?= $block->escapeHtml(__('Role Permissions')) ?></span>
+            </strong>
+        </div>
+        <div id="role-permissions" class="admin__fieldset-wrapper-content">
+            <fieldset class="admin__fieldset">
+                <div class="box-actions">
+                    <button class="action" data-action="expand-tree" type="button">
+                        <span><?= $block->escapeHtml(__('Expand All')) ?></span>
+                    </button>
+                    <button class="action" data-action="collapse-tree" type="button">
+                        <span><?= $block->escapeHtml(__('Collapse All')) ?></span>
+                    </button>
+                </div>
+                <?php
+                // This is a temporary solution for backward compatibility because we cannot modify block public api methods
+                // Modify getTreeJsOptions methods in minor version for it to return array without roleTree key
+                $treeJsOptions = $block->getTreeJsOptions();
+                $treeOptions = $treeJsOptions['roleTree'];
+                ?>
+                <div class="tree x-tree" id="role-tree" data-role="role-tree"
+                     data-mage-init='{"roleTree":<?= /* @noEscape */
+                     $block->getJsonHelper()->jsonEncode($treeOptions) ?>}'>
+                </div>
+                <input type="hidden" name="role_permissions"/>
+            </fieldset>
+        </div>
+    </div>
+</form>

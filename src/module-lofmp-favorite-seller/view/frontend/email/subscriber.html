@@ -1,0 +1,20 @@
+<!--
+/**
+ * Copyright © 2017 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!--@subject Your received new message: {{var subject|raw}} @-->
+<!--@vars {
+"var customer_name":"Customer Name",
+"var subject":"Subject",
+"var message":"Message",
+"var seller_name":"Seller Name",
+"var seller_link":"Seller Link"
+} @-->
+{{template config_path="design/email/header_template"}}
+<p>Hi, {{var customer_name|raw}},</p>
+<p>You received new message from seller <a href="{{var seller_link|raw}}">{{var seller_name|raw}}</a></p>
+<p>Message:</p>
+<p>{{var message|raw}}</p>
+{{template config_path="design/email/footer_template"}}

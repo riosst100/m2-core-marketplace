@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="followup_email_before_set_vars">
+        <observer name="add_custom_variable_to_email" 
+            instance="Lofmp\CouponCode\Observer\ObserverforAddCustomVariable" />
+    </event>
+</config>

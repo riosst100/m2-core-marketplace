@@ -1,0 +1,15 @@
+<!--@subject {{var store.getFrontendName()}}: Return #{{var rma.increment_id}} @-->
+{{template config_path="design/email/header_template"}}
+
+{{var hidden_separator | raw}}<br>
+
+{{var message | raw }}<br><br>
+
+You can check Rma at: <a href="{{var rmaUrl }}">{{var rmaUrl }}</a>
+<br><br>
+Thank you,<br>
+<strong>{{var store.getFrontendName()}}</strong>
+
+{{var hidden_code | raw}}
+
+{{template config_path="design/email/footer_template"}}

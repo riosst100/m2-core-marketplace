@@ -1,0 +1,86 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<!-- REST API ADMIN -->
+	<route url="/V1/adminTimediscount/item" method="POST">
+		<service class="Lofmp\TimeDiscount\Api\ProductRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lofmp_TimeDiscount::product_save"/>
+		</resources>
+	</route>
+	<route url="/V1/adminTimediscount/item/search" method="GET">
+		<service class="Lofmp\TimeDiscount\Api\ProductRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Lofmp_TimeDiscount::product"/>
+		</resources>
+	</route>
+	<route url="/V1/adminTimediscount/item/:id" method="GET">
+		<service class="Lofmp\TimeDiscount\Api\ProductRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="Lofmp_TimeDiscount::product"/>
+		</resources>
+	</route>
+	<route url="/V1/adminTimediscount/item/:sku" method="GET">
+		<service class="Lofmp\TimeDiscount\Api\ProductRepositoryInterface" method="getBySku"/>
+		<resources>
+			<resource ref="Lofmp_TimeDiscount::product"/>
+		</resources>
+	</route>
+	<route url="/V1/adminTimediscount/item/:productId" method="PUT">
+		<service class="Lofmp\TimeDiscount\Api\ProductRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lofmp_TimeDiscount::product_save"/>
+		</resources>
+	</route>
+	<route url="/V1/adminTimediscount/item/:sku" method="DELETE">
+		<service class="Lofmp\TimeDiscount\Api\ProductRepositoryInterface" method="deleteBySku"/>
+		<resources>
+			<resource ref="Lofmp_TimeDiscount::product_edit"/>
+		</resources>
+	</route>
+	<!-- END REST API ADMIN -->
+
+	<!-- REST API Seller -->
+	<route url="/V1/sellerTimediscount/me/item/:sku" method="POST">
+		<service class="Lofmp\TimeDiscount\Api\ProductRepositoryInterface" method="sellerSaveProduct"/>
+		<resources>
+			<resource ref="self" />
+		</resources>
+		<data>
+			<parameter name="customerId" force="true">%customer_id%</parameter>
+		</data>
+	</route>
+
+	<route url="/V1/sellerTimediscount/me/search" method="GET">
+		<service class="Lofmp\TimeDiscount\Api\ProductRepositoryInterface" method="sellerGetList"/>
+		<resources>
+			<resource ref="self" />
+		</resources>
+		<data>
+			<parameter name="customerId" force="true">%customer_id%</parameter>
+		</data>
+	</route>
+	<route url="/V1/sellerTimediscount/me/item/:sku" method="GET">
+		<service class="Lofmp\TimeDiscount\Api\ProductRepositoryInterface" method="sellerGet"/>
+		<resources>
+			<resource ref="self" />
+		</resources>
+		<data>
+			<parameter name="customerId" force="true">%customer_id%</parameter>
+		</data>
+	</route>
+	<route url="/V1/sellerTimediscount/me/item/:sku" method="DELETE">
+		<service class="Lofmp\TimeDiscount\Api\ProductRepositoryInterface" method="sellerDeleteBysku"/>
+		<resources>
+			<resource ref="self" />
+		</resources>
+		<data>
+			<parameter name="customerId" force="true">%customer_id%</parameter>
+		</data>
+	</route>
+    <route url="/V1/sellerTimediscount/item/:sku" method="GET">
+		<service class="Lofmp\TimeDiscount\Api\ProductRepositoryInterface" method="getDetail"/>
+		<resources>
+            <resource ref="anonymous" />
+        </resources>
+	</route>
+</routes>

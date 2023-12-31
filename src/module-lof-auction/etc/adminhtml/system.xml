@@ -1,0 +1,362 @@
+<?xml version="1.0"?>
+<!--*
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lof_Auction
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  *-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="lofauction" translate="label" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Auction</label>
+            <tab>landofcoder</tab>
+            <resource>Lof_Auction::config_auction</resource>
+            <group id="general_settings" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Standard Auction</label>
+                <field canRestore="1" id="enable" translate="label comment" sortOrder="1" type="select" showInDefault="1" >
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="2" id="check_max_bids" translate="label comment" sortOrder="1" type="select" showInDefault="1" >
+                    <label>Enable Check Max Bids</label>
+                    <comment>Enable/Disable check max bids of for auction when customer place a bid. If the auction is max bids, user can not place bid for this auction.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="route" translate="label comment" sortOrder="2" type="text" showInDefault="1" >
+                    <label>Auction Bid Url Route</label>
+                    <comment>Input custom url route. Empty to use default route: lofauction/bid/index</comment>
+                </field>
+                <field canRestore="1" id="show_curt_auc_price" translate="label comment" sortOrder="10" type="select" showInDefault="1" >
+                    <label>Show Current Bid Price</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="show_bidder" translate="label comment" sortOrder="20" type="select" showInDefault="1" >
+                    <label>Show Bidder Name</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="show_price" translate="label comment" sortOrder="30" type="select" showInDefault="1" >
+                    <label>Show Auction Price</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="show_auc_detail" translate="label comment" sortOrder="35" type="select" showInDefault="1" >
+                    <label>Show Auction details</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="show_winner_msg" translate="label comment" sortOrder="40" type="textarea" showInDefault="1" >
+                    <label>Show Winner Message</label>
+                </field>
+                <field canRestore="1" id="show_bidder_name" translate="label comment" sortOrder="41" type="select" showInDefault="1" >
+                    <label>Display Bidder Name</label>
+                    <comment>Display bidder name who has current bid</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="use_customer_id" translate="label comment" sortOrder="42" type="select" showInDefault="1" >
+                    <label>Use Customer ID for Bidder Name</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_bidder_name">1</field>
+                    </depends>
+                </field>
+                <field canRestore="1" id="show_confirm_bid" translate="label comment" sortOrder="43" type="select" showInDefault="1" >
+                    <label>Show Confirm Bid</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="confirm_message" translate="label comment" sortOrder="45" type="textarea" showInDefault="1" >
+                    <label>Confirm Message</label>
+                    <comment>Template message for customer confirmation. %price% stands for the Price</comment>
+                </field>
+
+                <field canRestore="1" id="auction_rule" translate="label comment" sortOrder="50" type="textarea" showInDefault="1" >
+                    <label>Auction Rule</label>
+                    <comment>Rule, Terms of Auctions</comment>
+                </field>
+
+                <field canRestore="1" id="only_one_addtocart" translate="label comment" type="select" sortOrder="52" showInDefault="1" >
+                    <label>Allow Only One Auction product can be added to cart when Time End</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable/Diable feature allow only one auction product can be added to cart when Time End.</comment>
+                </field>
+
+            </group>
+            <group id="increment_option" translate="label" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Increment Auction Option</label>
+                <field id="default_step" translate="label comment" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Default Step</label>
+                    <validate>required-entry validate-number</validate>
+                </field>
+                <field canRestore="1" id="enable" translate="label" sortOrder="2" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Incremental Auction</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="price_range" translate="label comment"  sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                     <label>Ranges</label>
+                    <frontend_model>Lof\Auction\Block\Adminhtml\System\Config\Form\Field\IncrementalPriceRange</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+            </group>
+            <group id="auto" translate="label"  sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Automatic Auction Option</label>
+                <field canRestore="1" id="enable" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Automatic Auction</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="disable_manual" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Disabled Manual Auction</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Disable manual auction bidding. When choose yes, the automatic auction will been applied and disable manual input on auction. Default: No</comment>
+                </field>
+                <field canRestore="1" id="limit" translate="label comment" type="select" sortOrder="2" showInDefault="1" >
+                    <label>Customers can change auto bid price for multiple times</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="use_increment" translate="label comment" type="select" sortOrder="3" showInDefault="1" >
+                    <label>Use Incremental Price</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="show_bid_amount" translate="label comment" type="select" sortOrder="4" showInDefault="1" >
+                    <label>Show Automatic Price</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="show_auto_details" translate="label comment" type="select" sortOrder="6" showInDefault="1" >
+                    <label>Show Automatic Bidder Details</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="enable_auto_outbid_msg" translate="label comment" type="select" sortOrder="7" showInDefault="1" >
+                    <label>Show Outbid Message</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="show_auto_outbid_msg" translate="label comment" type="textarea" sortOrder="8" showInDefault="1" >
+                    <label>Outbid Message</label>
+                </field>
+
+                <field canRestore="1" id="enable_max_absentee_bid" translate="label comment" type="select" sortOrder="20" showInDefault="1" >
+                    <label>Enable maximum Absentee Bid</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Customer can place a bid on an item through my Logged In account, then he can place a setting to the maximum $ figure He will go to.</comment>
+                </field>
+
+                <field canRestore="1" id="require_place_bid" translate="label comment" type="select" sortOrder="22" showInDefault="1" >
+                    <label>Require place a bid before set Max Absentee Bid</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable_max_absentee_bid">1</field>
+                    </depends>
+                    <comment>Customer should place a bid for auction before use the feature "set Maximum Absentee Bid".</comment>
+                </field>
+
+                <field canRestore="1" id="run_other_absentee" translate="label comment" type="select" sortOrder="25" showInDefault="1" >
+                    <label>Run Other Absentee Bids</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable_max_absentee_bid">1</field>
+                    </depends>
+                    <comment>Allow Run other absentee bid to place bid when customer create/update max absentee bid for an auction.</comment>
+                </field>
+            </group>
+            <group id="restriction" translate="label comment" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Auction Restriction</label>
+                <comment>Ask customers to wait a while if they bid repeatedly over a short period of time</comment>
+                <field canRestore="1" id="enable" translate="label comment" type="select" sortOrder="2" showInDefault="1" >
+                    <label>Enable Restriction Auction</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="enable_each_customer" translate="label comment" type="select" sortOrder="2" showInDefault="1" >
+                    <label>Enable Restriction Auction For Each Customer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                    <comment>Disable the option to allow all customers can bid in continues time.</comment>
+                </field>
+                <field canRestore="1" id="period" translate="label comment" sortOrder="9" type="text" showInDefault="1" >
+                    <label>Continues Time (minutes)</label>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                    <validate>required-entry validate-number</validate>
+                    <comment>If 2 customer bids are less than this time period, it will be considered continuous.</comment>
+                </field>
+                <field canRestore="1" id="times" translate="label comment" sortOrder="9" type="text" showInDefault="1" >
+                    <label>Numbers of bids</label>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                    <validate>required-entry validate-number</validate>
+                    <comment>Numbers of bids that customers can create in a short time.</comment>
+                </field>
+            </group>
+            <group id="auction_page" translate="label" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Auction Page</label>
+                <field canRestore="1" id="enable_top_block" translate="label comment" sortOrder="1" type="select" showInDefault="1" >
+                    <label>Enable Top Block</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                 <field canRestore="1" id="top_block" translate="label" type="select" sortOrder="1" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Top Static Block </label>
+                    <source_model>Lof\Auction\Model\Config\Source\Block</source_model>
+                </field>
+                <field canRestore="1" id="enable_bottom_block" translate="label comment" sortOrder="1" type="select" showInDefault="1" >
+                    <label>Enable Bottom Block</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="bottom_block" translate="label" type="select" sortOrder="5" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Bottom Static Block</label>
+                    <source_model>Lof\Auction\Model\Config\Source\Block</source_model>
+                </field>
+                 <field id="meta_title" translate="label comment" sortOrder="9" type="text" showInDefault="1" canRestore="1">
+                    <label>Meta Title</label>
+                </field>
+                <field id="meta_keywords" translate="label comment" sortOrder="10" type="textarea" showInDefault="1" canRestore="1">
+                    <label>Meta Keyworks</label>
+                </field>
+                <field id="meta_description" translate="label comment" sortOrder="15" type="textarea" showInDefault="1" canRestore="1">
+                    <label>Meta Description</label>
+                </field>
+                 <field canRestore="1" id="featured_title" translate="label comment" sortOrder="20" type="text" showInDefault="1" >
+                    <label>Featured Auctions Title</label>
+                </field>
+                 <field canRestore="1" id="ending_title" translate="label comment" sortOrder="30" type="text" showInDefault="1" >
+                    <label>Ending Soon Auctions Title</label>
+                </field>
+                <field canRestore="1" id="starting_title" translate="label comment" sortOrder="30" type="text" showInDefault="1" >
+                    <label>Starting Soon Auctions Title</label>
+                </field>
+            </group>
+            <group id="emails" translate="label" type="text" sortOrder="15" showInDefault="1" >
+                <label>Email Notification Option</label>
+                <field canRestore="1" id="enable_admin_email" translate="label comment" type="select" sortOrder="2" showInDefault="1" >
+                    <label>Email Notification to Admin</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="admin_notify_email_template" translate="label comment" type="select" sortOrder="3" showInDefault="1" >
+                    <label>Admin notification email template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    <depends>
+                        <field id="enable_admin_email">1</field>
+                    </depends>
+                </field>
+                <field canRestore="1" id="enable_outbid_email" translate="label comment" type="select" sortOrder="4" showInDefault="1" >
+                    <label>Email notification to outbid buyer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="outbid_notify_email_template" translate="label comment" type="select" sortOrder="5" showInDefault="1" >
+                    <label>Outbid notify email template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    <depends>
+                        <field id="enable_outbid_email">1</field>
+                    </depends>
+                </field>
+                <field canRestore="1" id="enable_confirm_email" translate="label comment" type="select" sortOrder="6" showInDefault="1" >
+                    <label>Email confirm to outbid buyer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="confirm_email_template" translate="label comment" type="select" sortOrder="7" showInDefault="1" >
+                    <label>Confirm email template for Bidder</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    <depends>
+                        <field id="enable_confirm_email">1</field>
+                    </depends>
+                </field>
+                <field canRestore="1" id="enable_winner_notify_email" translate="label comment" type="select" sortOrder="8" showInDefault="1" >
+                    <label>Email notification to winner</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="winner_notify_email_template" translate="label comment" type="select" sortOrder="9" showInDefault="1" >
+                    <label>Winner notify email template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    <depends>
+                        <field id="enable_winner_notify_email">1</field>
+                    </depends>
+                </field>
+                <field id="admin_email_address" translate="label comment" type="text" sortOrder="10" showInDefault="1" >
+                    <label>Enter admin email address</label>
+                    <validate>email-address</validate>
+                </field>
+                <field canRestore="1" id="enable_min_day_notify" translate="label comment" type="select" sortOrder="11" showInDefault="1" >
+                    <label>Email notification before auction ending</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="min_day_notify" translate="label comment" sortOrder="12" type="text" showInDefault="1" >
+                    <label>Min Days to notify subscriber before auction complete.</label>
+                    <depends>
+                        <field id="enable_min_day_notify">1</field>
+                    </depends>
+                    <validate>number</validate>
+                    <comment>Input number days before auction complete to send notification email to auction's subscribers</comment>
+                </field>
+                <field canRestore="1" id="min_hours_notify" translate="label comment" sortOrder="13" type="text" showInDefault="1" >
+                    <label>Min Hours to notify subscriber before auction complete.</label>
+                    <depends>
+                        <field id="enable_min_day_notify">1</field>
+                    </depends>
+                    <validate>number</validate>
+                    <comment>Input Hours before auction complete to send notification email to auction's subscribers</comment>
+                </field>
+                <field canRestore="1" id="min_day_notify_email_template" translate="label comment" type="select" sortOrder="15" showInDefault="1" >
+                    <label>Min days notify email template</label>
+                    <depends>
+                        <field id="enable_min_day_notify">1</field>
+                    </depends>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            <group id="advanced_display" translate="label" type="text" sortOrder="20" showInDefault="1" >
+                <label>Advanced Display Auction Settings</label>
+                <field canRestore="1" id="show_max_price" translate="label comment" sortOrder="5" type="select" showInDefault="1" >
+                    <label>Show Max Price</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="show_max_qty" translate="label comment" sortOrder="15" type="select" showInDefault="1" >
+                    <label>Show Max Qty</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="show_min_qty" translate="label comment" sortOrder="25" type="select" showInDefault="1" >
+                    <label>Show Min Qty</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="show_start_price" translate="label comment" sortOrder="28" type="select" showInDefault="1" >
+                    <label>Show Starting Price</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="show_reserve_price" translate="label comment" sortOrder="30" type="select" showInDefault="1" >
+                    <label>Show Reserve Price</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="show_timezone" translate="label comment" sortOrder="33" type="select" showInDefault="1" >
+                    <label>Show Timezone Info</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="show_current_time" translate="label comment" sortOrder="35" type="select" showInDefault="1" >
+                    <label>Show Current Time</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="show_bid_start" translate="label comment" sortOrder="40" type="select" showInDefault="1" >
+                    <label>Show Bid Start Date</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="show_bid_end" translate="label comment" sortOrder="45" type="select" showInDefault="1" >
+                    <label>Show Bid End Date</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="expire_full_info" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show full auction info for ending auction</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

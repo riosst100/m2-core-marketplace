@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.landofcoder.com/license-agreement.html
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_FavoriteSeller
+ * @copyright  Copyright (c) 2018 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+-->
+
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">subscription_customers_listing.subscription_customers_listing_data_source</item>
+            <item name="deps" xsi:type="string">subscription_customers_listing.subscription_customers_listing_data_source</item>
+        </item>
+        <item name="spinner" xsi:type="string">subscription_customers_columns</item>
+        <item name="buttons" xsi:type="array">
+            <item name="send" xsi:type="array">
+                <item name="name" xsi:type="string">send</item>
+                <item name="label" xsi:type="string" translate="true">Send Email To Customers</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">favoriteseller/sendemail/index</item>
+            </item>
+        </item>
+    </argument>
+    <dataSource name="subscription_customers_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <dataProvider name="subscription_customers_listing_data_source" class="Lofmp\FavoriteSeller\Ui\DataProvider\Seller\SubscriptionDataProvider">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext"/>
+        <massaction name="listing_massaction">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="selectProvider" xsi:type="string">subscription_customers_listing.subscription_customers_listing.subscription_customers_columns.ids</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>
+                    <item name="indexField" xsi:type="string">id</item>
+                </item>
+            </argument>
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to delete selected items?</message>
+                        <title translate="true">Delete items</title>
+                    </confirm>
+                    <url path="favoriteseller/action/massdelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+        </massaction>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="subscription_customers_columns">
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>55</resizeDefaultWidth>
+            </settings>
+        </selectionsColumn>
+        <column name="id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="firstname" class="Lofmp\FavoriteSeller\Ui\Component\Listing\Columns\SubFirstName">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">First Name</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="lastname" class="Lofmp\FavoriteSeller\Ui\Component\Listing\Columns\SubLastName">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Last Name</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="email" class="Lofmp\FavoriteSeller\Ui\Component\Listing\Columns\SubEmail">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Email</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="Lofmp\FavoriteSeller\Ui\Component\Listing\Columns\SubCustomerActions">
+            <settings>
+                <indexField>id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

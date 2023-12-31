@@ -1,0 +1,235 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_Quickrfq
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+use Lof\Quickrfq\Model\Quickrfq;
+
+$helper = $this->helper("Lof\Quickrfq\Helper\Data");
+$quote = $block->getCurrentQuote();
+$product = $block->getProduct($quote->getProductId());
+$attachments = $block->getAttachFiles();
+
+$quote_price = $quote->getAdminPrice()?(float)$quote->getAdminPrice():(float)$quote->getPricePerProduct();
+$quoteAuthorName = $quote->getUserName()?$quote->getUserName():$quote->getSellerName();
+$quoteAuthorName = $quoteAuthorName?$quoteAuthorName:__("Admin");
+?>
+<div class="thread-info request-quote-info">
+    <div class="product-info">
+        <div class="product-image">
+            <a href="<?= $product->getProductUrl() ?>" title="<?= $block->escapeHtml(__("View Product Detail")); ?>">
+                <img src="<?= $block->getImageRender() . 'catalog/product/' . $product->getThumbnail(); ?>" width="150" alt="<?= $block->escapeHtml($quote->getProductName()); ?>"/>
+            </a>
+        </div>
+        <h4 class="product-name">
+            <a href="<?= $product->getProductUrl() ?>" title="<?= $block->escapeHtml(__("View Product Detail")); ?>">
+                <?= $block->escapeHtml($quote->getProductName()) ?>
+            </a>
+        </h4>
+        <div class="product-price">
+            <?= $block->getProductPriceHtml($product->getFinalPrice()) ?>
+        </div>
+        <?php if ($quote->getStatus() == Quickrfq::STATUS_APPROVE && !$helper->isExpiryQuote($quote)) : ?>
+        <div class="product-price">
+           <span class="text-success"><?= $block->escapeHtml(__("approved price: %1 Per Unit", $block->getProductPriceHtml($quote_price))); ?></span>
+        </div>
+        <div class="action-convert-cart">
+            <a href="javascript:;" data-url="<?= $block->getUrl("quickrfq/quickrfq/checkoutCart", ["quickrfq_id" => $quote->getQuickrfqId()]);?>" class="action button primary button-addtocart" data-action="update-mini-cart" title="<?= $block->escapeHtml(__("Convert Quote to Shopping Cart")) ?>"><?= $block->escapeHtml(__("Add to Cart"));?></a>
+        </div>
+        <?php endif; ?>
+    </div>
+    <div class="quote-info">
+        <div class="quote-info-row">
+            <div class="quote-parent-info-item">
+                <label><?= $block->escapeHtml(__('Quote Status:')) ?></label>
+                <span
+                    class="quote-status quote-span"><strong><?= $quote->getStatus() ?></strong></span>
+            </div>
+            <div class="quote-parent-info-item">
+                <label><?= $block->escapeHtml(__('Quantity:')) ?></label>
+                <span
+                    class="quote-qty quote-span"><?= $quote->getQuantity() ?>&nbsp;<?= $block->escapeHtml(__('Units')) ?></span>
+            </div>
+            <?php if ($quote->getAdminQuantity()) : ?>
+            <div class="quote-parent-info-item">
+                <label class="small small-text"><?= $block->escapeHtml(__('Admin Suggest Quantity:')) ?></label>
+                <span
+                    class="quote-qty quote-span small small-text"><?= $quote->getAdminQuantity() ?>&nbsp;<?= $block->escapeHtml(__('Units')) ?></span>
+            </div>
+            <?php endif; ?>
+            <div class="quote-parent-info-item">
+                <label><?= $block->escapeHtml(__('Expected Price:')) ?></label>
+                <span class="quote-price quote-span"><?= $block->getProductPriceHtml($quote->getPricePerProduct()) ?>&nbsp;<?=
+                    $block->escapeHtml(__('Per Unit')) ?></span>
+            </div>
+            <?php if ($quote->getAdminPrice()) : ?>
+            <div class="quote-parent-info-item">
+                <label class="small small-text"><?= $block->escapeHtml(__('Admin Suggest Price:')) ?></label>
+                <span
+                    class="quote-price quote-span small small-text"><?= $block->getProductPriceHtml($quote->getAdminPrice()) ?>&nbsp;<?= $block->escapeHtml(__('Per Units')) ?></span>
+            </div>
+            <?php endif; ?>
+            <div class="quote-parent-info-item">
+                <label><?= $block->escapeHtml(__('Expected Total:')) ?></label>
+                <span
+                    class="quote-total-price quote-span"><?= $block->getProductPriceHtml($quote->getPricePerProduct() * $quote->getQuantity()) ?></span>
+            </div>
+            <?php if ($quote->getAdminPrice()) : ?>
+            <div class="quote-parent-info-item">
+                <label class="small small-text"><?= $block->escapeHtml(__('Admin Suggest Total:')) ?></label>
+                <span
+                    class="quote-admin-total-price quote-span small small-text"><?= $block->getProductPriceHtml($quote->getAdminPrice() * $quote->getAdminQuantity()) ?></span>
+            </div>
+            <?php endif; ?>
+            <?php if( $quote->getCouponCode()) : ?>
+            <div class="quote-parent-info-item">
+                <label><?= $block->escapeHtml(__('Admin Added Coupon Code:')) ?></label>
+                <span
+                    class="quote-coupon-code quote-span"><?= $quote->getCouponCode() ?></span>
+                <br/>
+                <span class="small small-text"><?= __("You can apply coupon code when checkout order for this quote."); ?></span>
+            </div>
+            <?php endif; ?>
+            <?php if( $quote->getSellerId() && $quote->getSellerName()) : ?>
+            <div class="quote-parent-info-item">
+                <label><?= $block->escapeHtml(__('Seller:')) ?></label>
+                <span
+                    class="quote-seller quote-span"><?= $quote->getSellerName() ?></span>
+            </div>
+            <?php endif; ?>
+            <div class="quote-parent-info-item">
+                <label><?= $block->escapeHtml(__('Date Need Quote:')) ?></label>
+                <span
+                    class="quote-qty quote-span"><?= $quote->getDateNeedQuote() ?></span>
+            </div>
+            <?php if( $quote->getExpiry()) : ?>
+            <div class="quote-parent-info-item">
+                <label><?= $block->escapeHtml(__('Expiry Date For Create Order:')) ?></label>
+                <span
+                    class="quote-qty quote-span"><?= $quote->getExpiry() ?></span>
+            </div>
+            <?php endif; ?>
+            <?php if ($attachments && $attachments->getSize()): ?>
+                <div class="quote-parent-info-item">
+                    <label><?= $block->escapeHtml(__('Attachments:')) ?></label>
+                    <span class="attachment quote-span">
+                    <div class="attachments-list">
+                        <?php foreach ($attachments as $file): ?>
+                            <div class="quote-parent-info-item">
+                                <div class="attachments-item">
+                                    <a href="<?= $block->escapeUrl($block->getAttachmentUrl($file->getId())) ?>"
+                                       title="<?= $block->escapeHtmlAttr($file->getFileName()) ?>"><?= $block->escapeHtml($file->getFileName()) ?>
+                                    </a>
+                                </div>
+                            </div>
+                        <?php endforeach ?>
+                    </div>
+                </span>
+
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
+<div class="fieldset-wrapper">
+    <div class="fieldset-wrapper-title">
+        <span class="message-title" translate="yes"><?= __("Messages"); ?></span>
+    </div>
+    <div class="quickrfq-message">
+        <?php if ($block->getMessageCollection() && $block->getMessageCollection()->getSize()): ?>
+            <div class="lof-message-page-wrap">
+                <div class="lof-message-page-content">
+                    <?php foreach ($block->getMessageCollection() as $item): ?>
+                        <?php $customerId = $item->getIsMain() ? 1 : $item->getCustomerId(); ?>
+                        <div class="lof-message-wrap <?= ($customerId) ? 'self' : ''; ?>">
+                            <div class="lof-message-content">
+                                <div class="lof-message-message">
+                                    <?= $block->escapeHtml($item->getMessage()) ?>
+                                </div>
+                            </div>
+                            <div class="lof-message-created-at">
+                                <?php if (!$item->getCustomerId()) : ?>
+                                <span class="message-author-name"><?= $block->escapeHtml($quoteAuthorName); ?></span>
+                                <?php endif; ?>
+                                <span class="message-created-at"><?= __(" at: %1", $block->escapeHtml($item->getCreatedAt()));  ?></span>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        <?php else: ?>
+            <div class="message error">
+                <div><?= $block->escapeHtml(__('No message found!')) ?></div>
+            </div>
+        <?php endif; ?>
+        <?php if ($quote->getStatus() != Quickrfq::STATUS_DONE && $quote->getStatus() != Quickrfq::STATUS_CLOSE) : ?>
+        <form class="form form-contact-quickrfq" method="post" id="lof-contact-form"
+              action="<?= $block->escapeUrl($block->getSendMessageLink()) ?>"
+              enctype="multipart/form-data"
+              data-mage-init='{"validation":{}}'>
+            <?= $block->getBlockHtml('formkey') ?>
+            <fieldset class="fieldset contact-form-content">
+                <div class="field _required">
+                    <div class="control">
+                        <textarea name="message" id="message" cols="30" rows="5"
+                                  data-validate="{required:true}"></textarea>
+                    </div>
+                </div>
+            </fieldset>
+            <input type="hidden" name="quickrfq_id" value="<?= intval($block->getQuoteId()) ?>">
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button type="submit" class="action save primary" title="<?= $block->escapeHtmlAttr(__('Send')) ?>">
+                        <span><?= $block->escapeHtml(__('Send')) ?></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <?php endif; ?>
+    </div>
+</div>
+<script type="text/javascript">
+    require([
+        'jquery',
+        'Magento_Customer/js/customer-data',
+        'mage/storage'
+    ], function ($, customerData, storage) {
+        $("a[data-action='update-mini-cart']").on("click", function () {
+            var releaseDone = customerData.reload(['cart'], false);
+            var url = $(this).data("url");
+            var deferred = $.Deferred();
+            $(this).addClass("disabled");
+            $(this).html('<span><?= $block->escapeHtml(__("Adding...")); ?></span>');
+            console.log("Processing add to cart...");
+            storage.get(
+                    url,
+                    false
+                ).done(function (response) {
+                    customerData.reload(['cart'], false);
+                    $("a[data-action='update-mini-cart']").remove();
+                    deferred.resolve();
+                    setTimeout(function() {
+                        window.location.href = "<?= $block->getUrl("checkout/cart"); ?>";
+                    }, 500);
+                }).fail(function (response) {
+                    deferred.reject();
+                });
+            return false;
+        })
+    });
+</script>

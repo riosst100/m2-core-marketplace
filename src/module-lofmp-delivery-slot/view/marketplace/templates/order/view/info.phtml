@@ -1,0 +1,62 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_DeliverySlot
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+/**
+ * @var $block Lof\MarketPlace\Block\Sale\Order\View
+ */
+$order = $block->getOrder();
+?>
+<div class="row lof_marketplace">
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><?= $block->escapeHtml(__("Delivery Slots")); ?></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content" id="shipment_delivery_slots">
+                <p>
+                    <span class="title"><?= $block->escapeHtml(__('Shipping Delivery Date:')) ?>&nbsp;</span>
+                    <?php if ($order->getData('delivery_date')): ?>
+                        <strong><?= $block->escapeHtml($order->getData('delivery_date')); ?></strong>
+                    <?php else: ?>
+                        <span class="empty"><?= $block->escapeHtml(__('(empty)')) ?></span>
+                    <?php endif; ?>
+                </p>
+                <p>
+                    <span class="title"><?= $block->escapeHtml(__('Shipping Delivery Slot:')) ?>&nbsp;</span>
+                    <?php if ($order->getData('delivery_time_slot') && $order->getData('delivery_time_slot') != '-'): ?>
+                        <strong><?= $block->escapeHtml($order->getData('delivery_time_slot')); ?></strong>
+                    <?php else: ?>
+                        <span class="empty"><?= $block->escapeHtml(__('(empty)')) ?></span>
+                    <?php endif; ?>
+                </p>
+                <p>
+                    <span class="title"><?= $block->escapeHtml(__('Shipping Delivery Comment: ')) ?></span>
+                    <?php if ($order->getData('delivery_comment')): ?>
+                        <strong><?= $block->escapeHtml($order->getData('delivery_comment')); ?></strong>
+                    <?php else: ?>
+                        <span class="empty"><?= $block->escapeHtml(__('(empty)')) ?></span>
+                    <?php endif; ?>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

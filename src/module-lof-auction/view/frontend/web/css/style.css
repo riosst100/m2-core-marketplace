@@ -1,0 +1,150 @@
+/*
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_Auction
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+#auctionbidform .timeleftbox {
+    background: #efefef;
+    padding: 0px;
+}
+.countdown_row {
+    clear: both;
+    width: 100%;
+    padding: 0;
+        text-align: center;
+}
+.countdown_section {
+    display: block;
+    float: left;
+    font-size: 75%;
+}
+.countdown_show4 .countdown_section {
+    width: 24.5%;
+}
+.countdown_amount {
+    font-size: 200%;
+}
+.clearfix:before {
+        display: table;
+    content: " ";
+}
+.clearfix:after {
+    clear: both;
+    display: table;
+    content: " ";
+}
+.list-group .list-group-item {
+    position: relative;
+    display: flow-root;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+#auctionbidform {
+    background: #FFFFFF;
+    border: 10px solid #EFEFEF;
+}
+#auctionbidform ul.list-group {
+    padding: 0px;
+    margin: 0px;
+}
+.list-group-item .lof-column {
+    width: 50%;
+    float: left;
+}
+#auctionbidform #bidding_amount {
+    width: 79%;
+    float: left;
+    display: inline-block;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+#auctionbidform #target {
+    float: left;
+    display: inline-block;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-top-left-radius: unset;
+    border-bottom-left-radius: unset;
+}
+.auc-auto-bid-ico {
+    background-color: #dd4b39;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    color: #fff;
+    font-size: 70%;
+    padding: 0.2em 0.6em 0.2em;
+    float: right;
+}
+.auc-list-container .products-list .auc-product-info {
+    float: left;
+    width: 55%;
+}
+.auc-list-container .products-list .auc-auction-container {
+    float: left;
+    width: 43%;
+    margin-left: 2%;
+        min-width: 230px;
+}
+#auction-list-container #auctionbidform #bidding_amount,
+#auction-list-container  input[name="bidding_amount"] {
+    width: 50%;
+    float: left;
+}
+.auc-block-title {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+    display: flow-root;
+}
+.auc-block-title a.auc-viewall-link {
+    float: right;
+    margin-top: 10px;
+}
+.auc-block-title h2 {
+    float: left;
+    margin: 0;
+    font-size: 2.6rem;
+}
+.product-item-info #auctionbidform {
+    border: 0;
+}
+.product-item-info #auctionbidform .list-group-item {
+        padding: 10px 0px;
+        border: 0;
+}
+.list-group-item .lof_wrap .input-box {
+   /* display: inline-block;*/
+}
+.auc-list-container .owl-item {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.auc-list-container li.item {
+    list-style: none;
+}
+.auc-block-title {
+    clear: both;
+}
+ol.products.list.items.product-items:after {
+    display: block;
+    clear: both;
+    content: "";
+}
+.auc-product-info .wait-for-load, .auc-auction-info .wait-for-load { display: none; }

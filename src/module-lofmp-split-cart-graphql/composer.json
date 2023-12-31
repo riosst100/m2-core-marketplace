@@ -1,0 +1,29 @@
+{
+  "name": "landofcoder/module-split-cart-graph-ql",
+  "description": "Split Cart for Seller Items",
+  "authors": [
+      {
+        "name": "Landofcoder",
+        "email": "landofcoder@gmail.com",
+        "homepage": "https://landofcoder.com",
+        "role": "Magento 2 extension & Ecommerce Solution Provider"
+      }
+  ],
+  "require": {
+  },
+  "type": "magento2-module",
+  "version": "1.0.0",
+  "license": "GPL-3.0",
+  "autoload": {
+      "files": [ "registration.php" ],
+      "psr-4": {
+          "Lofmp\\SplitCartGraqhQl\\": ""
+      }
+  },
+  "repositories": {
+      "module-splicart": {
+        "type": "git",
+        "url": "https://github.com/landofcoder/module-split-cart-graph-ql"
+      }
+  }
+}

@@ -1,0 +1,335 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_MultiShipping
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Multishipping checkout shipping template
+ *
+ * @var $block \Magento\Multishipping\Block\Checkout\Shipping
+ */
+?>
+<form action="<?php /* @escapeNotVerified */
+echo $block->getPostActionUrl() ?>" method="post" id="shipping_method_form" class="form multicheckout shipping">
+    <?php foreach ($block->getAddresses() as $_index => $_address): ?>
+        <div class="block block-shipping">
+            <div class="block-title"><strong><?php /* @escapeNotVerified */
+                    echo __('Address %1 <span>of %2</span>', ($_index + 1), $block->getAddressCount()) ?></strong></div>
+            <div class="block-content">
+                <div class="box box-shipping-address">
+                    <strong class="box-title">
+                        <span><?php /* @escapeNotVerified */
+                            echo __('Shipping To') ?></span>
+                        <a href="<?php /* @escapeNotVerified */
+                        echo $block->getAddressEditUrl($_address) ?>"
+                           class="action edit"><span><?php /* @escapeNotVerified */
+                                echo __('Change') ?></span></a>
+                    </strong>
+                    <div class="box-content">
+                        <address><?php /* @escapeNotVerified */
+                            echo $_address->format('html') ?></address>
+                    </div>
+                </div>
+                <div class="box box-shipping-method">
+                    <strong class="box-title">
+                        <span><?php /* @escapeNotVerified */
+                            echo __('Shipping Method') ?></span>
+                    </strong>
+                    <div class="box-content">
+                        <?php if (!($_shippingRateGroups = $block->getRatesBySeller($_address))): ?>
+                            <p><?php /* @escapeNotVerified */
+                                echo __('Sorry, no quotes are available for this order right now.') ?></p>
+                        <?php else: ?>
+                            <dl class="items methods-shipping">
+                                <?php $_sole = count($_shippingRateGroups) == 1;
+                                foreach ($_shippingRateGroups as $code => $_rates): ?>
+                                    <?php if ($code != 'seller_rates') { ?>
+                                        <dt class="item-title"><?php echo $block->escapeHtml($_rates['title']) ?></dt>
+                                        <dd class="item-content">
+                                            <fieldset class="fieldset seller_<?php echo $_address->getId() ?>">
+                                                <legend class="legend">
+                                                    <span><?php echo $block->escapeHtml($block->getCarrierName($code)) ?></span>
+                                                </legend>
+                                                <br>
+                                                <?php $_sole = $_sole && count($_rates['rates']) == 1;
+                                                foreach ($_rates['rates'] as $_rate): ?>
+                                                    <div class="field choice">
+                                                        <?php if ($_rate->getErrorMessage()): ?>
+                                                            <strong><?php echo $block->escapeHtml($_rate->getCarrierTitle()) ?>
+                                                                : <?php echo $block->escapeHtml($_rate->getErrorMessage()) ?></strong>
+                                                        <?php else: ?>
+                                                            <div class="control">
+                                                                <?php if ($_sole) : ?>
+                                                                    <input type="radio"
+                                                                           name="shipping_method[<?php /* @escapeNotVerified */
+                                                                           echo $_address->getId() . '_' . $code ?>]"
+                                                                           value="<?php echo $block->escapeHtml($_rate->getCode()) ?>"
+                                                                           id="s_method_<?php /* @escapeNotVerified */
+                                                                           echo $_address->getId() . '_' . $code ?>_<?php /* @escapeNotVerified */
+                                                                           echo $_rate->getCode() ?>"
+                                                                           class="radio solo method seller_rate_<?php echo $_address->getId() ?>"
+                                                                           checked="checked"/>
+                                                                <?php else: ?>
+                                                                    <input type="radio"
+                                                                           name="shipping_method[<?php /* @escapeNotVerified */
+                                                                           echo $_address->getId() . '_' . $code ?>]"
+                                                                           value="<?php /* @escapeNotVerified */
+                                                                           echo $_rate->getCode() ?>"
+                                                                           id="s_method_<?php /* @escapeNotVerified */
+                                                                           echo $_address->getId() . '_' . $code ?>_<?php /* @escapeNotVerified */
+                                                                           echo $_rate->getCode() ?>"<?php if (in_array($_rate->getCode(),
+                                                                        $block->getSelectedMethod($_address))) echo ' checked="checked"' ?>
+                                                                           class="radio seller_rate_<?php echo $_address->getId() ?> required-entry _required"/>
+                                                                <?php endif; ?>
+                                                            </div>
+                                                            <label for="s_method_<?php /* @escapeNotVerified */
+                                                            echo $_address->getId() ?>_<?php /* @escapeNotVerified */
+                                                            echo $_rate->getCode() ?>"><?php echo $block->escapeHtml($_rate->getMethodTitle()) ?>
+                                                                <?php $_excl = $block->getShippingPrice($_address,
+                                                                    $_rate->getPrice(),
+                                                                    $this->helper('Magento\Tax\Helper\Data')->displayShippingPriceIncludingTax()); ?>
+                                                                <?php $_incl = $block->getShippingPrice($_address,
+                                                                    $_rate->getPrice(), true); ?>
+                                                                <?php if ($this->helper('Magento\Tax\Helper\Data')->displayShippingBothPrices() && $_incl != $_excl): ?>
+                                                                <span class="price-including-tax"
+                                                                      data-label="<?php /* @escapeNotVerified */
+                                                                      echo __('Incl. Tax'); ?>">
+                                        <?php endif; ?>
+                                        <?php /* @escapeNotVerified */
+                                        echo $_incl; ?>
+                                        <?php if ($this->helper('Magento\Tax\Helper\Data')->displayShippingBothPrices() && $_incl != $_excl): ?>
+                                            </span>
+                                                            <?php endif; ?>
+                                                                <?php if ($this->helper('Magento\Tax\Helper\Data')->displayShippingBothPrices() && $_incl != $_excl): ?>
+                                                                    <span class="price-excluding-tax"
+                                                                          data-label="<?php /* @escapeNotVerified */
+                                                                          echo __('Excl. Tax'); ?>"><?php /* @escapeNotVerified */
+                                                                        echo $_excl; ?></span>
+                                                                <?php endif; ?>
+                                                            </label>
+                                                        <?php endif ?>
+                                                    </div>
+                                                <?php endforeach; ?>
+                                            </fieldset>
+                                        </dd>
+                                    <?php } ?>
+                                <?php endforeach; ?>
+                            </dl>
+
+                            <script type="text/javascript">
+                                require(['jquery'],
+                                    function ($) {
+                                        var address_id = '<?php echo $_address->getId() ?>';
+                                        var SEPARATOR = '<?php echo \Lofmp\MultiShipping\Model\Shipping::SEPARATOR;?>';
+                                        var METHODS_SEPARATOR = '<?php echo \Lofmp\MultiShipping\Model\Shipping::METHOD_SEPARATOR;?>';
+
+                                        $('.seller_rate_' + address_id).on('click', function () {
+                                            var flagg = true;
+                                            var rates = [];
+                                            var sortedrate = [];
+                                            $('.seller_' + address_id).each(function (ind, elm) {
+                                                var flag = false;
+                                                $(elm).find('.radio').each(function (i, inpt) {
+                                                    if (inpt.checked) {
+                                                        flag = true;
+                                                        rates.push(inpt.value);
+                                                    }
+                                                });
+                                                if (!flag) {
+                                                    flagg = false;
+                                                }
+                                            });
+                                            if (flagg) {
+                                                for (var i = 0; i < rates.length; i++) {
+                                                    var sortedValue = rates[i].split(SEPARATOR);
+                                                    var pos = isNaN(parseInt(sortedValue[1])) ? 0 : parseInt(sortedValue[1]);
+                                                    sortedrate[pos] = rates[i];
+                                                }
+                                                var rate = '';
+                                                for (var i = 0; i < sortedrate.length; i++) {
+                                                    if (sortedrate[i] != undefined) {
+                                                        if (rate) {
+                                                            rate = rate + METHODS_SEPARATOR + sortedrate[i];
+                                                        } else {
+                                                            rate = sortedrate[i];
+                                                        }
+                                                    }
+                                                }
+                                                if ($('s_method_' + address_id + '_seller_rates_' + rate)) {
+                                                    document.getElementById('s_method_' + address_id + '_seller_rates_' + rate).checked = true;
+                                                }
+                                            }
+                                        });
+                                    });
+                            </script>
+
+                        <?php $market_rate = $block->getShippingRates($_address) ?>
+                            <dl style="display:none;" class="items methods-shipping">
+                                <?php $_sole = count($market_rate) == 1;
+                                foreach ($market_rate as $code => $_rates): ?>
+                                    <?php if ($code == 'seller_rates') { ?>
+                                        <dd class="item-content">
+                                            <fieldset class="fieldset">
+                                                <?php $_sole = $_sole && count($_rates) == 1;
+                                                foreach ($_rates as $_rate): ?>
+                                                    <div class="field choice">
+                                                        <?php if ($_rate->getErrorMessage()): ?>
+                                                            <strong><?php echo $block->escapeHtml($_rate->getCarrierTitle()) ?>
+                                                                : <?php echo $block->escapeHtml($_rate->getErrorMessage()) ?></strong>
+                                                        <?php else: ?>
+                                                            <div class="control">
+                                                                <?php if ($_sole) : ?>
+                                                                    <input type="radio"
+                                                                           name="shipping_method[<?php /* @escapeNotVerified */
+                                                                           echo $_address->getId() ?>]"
+                                                                           value="<?php echo $block->escapeHtml($_rate->getCode()) ?>"
+                                                                           id="s_method_<?php /* @escapeNotVerified */
+                                                                           echo $_address->getId() ?>_<?php /* @escapeNotVerified */
+                                                                           echo $_rate->getCode() ?>"
+                                                                           class="radio solo method" checked="checked"/>
+                                                                <?php else: ?>
+                                                                    <input type="radio"
+                                                                           name="shipping_method[<?php /* @escapeNotVerified */
+                                                                           echo $_address->getId() ?>]"
+                                                                           value="<?php /* @escapeNotVerified */
+                                                                           echo $_rate->getCode() ?>"
+                                                                           id="s_method_<?php /* @escapeNotVerified */
+                                                                           echo $_address->getId() ?>_<?php /* @escapeNotVerified */
+                                                                           echo $_rate->getCode() ?>"<?php if ($_rate->getCode() === $block->getAddressShippingMethod($_address)) echo ' checked="checked"' ?>
+                                                                           class="radio"/>
+                                                                <?php endif; ?>
+                                                            </div>
+                                                            <label for="s_method_<?php /* @escapeNotVerified */
+                                                            echo $_address->getId() ?>_<?php /* @escapeNotVerified */
+                                                            echo $_rate->getCode() ?>"><?php echo $block->escapeHtml($_rate->getMethodTitle()) ?>
+                                                                <?php $_excl = $block->getShippingPrice($_address,
+                                                                    $_rate->getPrice(),
+                                                                    $this->helper('Magento\Tax\Helper\Data')->displayShippingPriceIncludingTax()); ?>
+                                                                <?php $_incl = $block->getShippingPrice($_address,
+                                                                    $_rate->getPrice(), true); ?>
+                                                                <?php if ($this->helper('Magento\Tax\Helper\Data')->displayShippingBothPrices() && $_incl != $_excl): ?>
+                                                                <span class="price-including-tax"
+                                                                      data-label="<?= __('Incl. Tax'); ?>">
+                                        <?php endif; ?>
+                                        <?php /* @escapeNotVerified */
+                                        echo $_incl; ?>
+                                        <?php if ($this->helper('Magento\Tax\Helper\Data')->displayShippingBothPrices() && $_incl != $_excl): ?>
+                                            </span>
+                                                            <?php endif; ?>
+                                                                <?php if ($this->helper('Magento\Tax\Helper\Data')->displayShippingBothPrices() && $_incl != $_excl): ?>
+                                                                    <span class="price-excluding-tax"
+                                                                          data-label="<?= __('Excl. Tax'); ?>"><?php /* @escapeNotVerified */
+                                                                        echo $_excl; ?></span>
+                                                                <?php endif; ?>
+                                                            </label>
+                                                        <?php endif ?>
+                                                    </div>
+                                                <?php endforeach; ?>
+                                            </fieldset>
+                                        </dd>
+                                    <?php } ?>
+                                <?php endforeach; ?>
+                            </dl>
+
+
+                        <?php endif; ?>
+                        <?php /* @escapeNotVerified */
+                        echo $block->getItemsBoxTextAfter($_address); ?>
+                    </div>
+                </div>
+                <div class="box box-items">
+                    <strong class="box-title">
+                        <span><?php /* @escapeNotVerified */
+                            echo __('Items') ?></span>
+                        <a href="<?php /* @escapeNotVerified */
+                        echo $block->getItemsEditUrl($_address) ?>"
+                           class="action edit"><span><?php /* @escapeNotVerified */
+                                echo __('Edit Items') ?></span></a>
+                    </strong>
+                    <div class="box-content">
+                        <div class="table-wrapper">
+                            <table class="items data table" id="shipping-table-<?php /* @escapeNotVerified */
+                            echo $_address->getId() ?>">
+                                <caption class="table-caption"><?php /* @escapeNotVerified */
+                                    echo __('Items') ?></caption>
+                                <thead>
+                                <tr>
+                                    <th class="col item" scope="col"><?php /* @escapeNotVerified */
+                                        echo __('Product Name') ?></th>
+                                    <th class="col qty" scope="col"><?php /* @escapeNotVerified */
+                                        echo __('Qty') ?></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php foreach ($block->getAddressItems($_address) as $_item): ?>
+                                    <tr>
+                                        <td class="col item"
+                                            data-th="<?php echo $block->escapeHtml(__('Product Name')); ?>"><?php echo $block->getItemHtml($_item->getQuoteItem()) ?></td>
+                                        <td class="col qty"
+                                            data-th="<?php echo $block->escapeHtml(__('Qty')); ?>"><?php /* @escapeNotVerified */
+                                            echo $_item->getQty() ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+    <?php echo $block->getChildHtml('checkout_billing_items') ?>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button class="action primary continue" type="submit"><span><?php /* @escapeNotVerified */
+                    echo __('Continue to Billing Information') ?></span></button>
+        </div>
+        <div class="secondary">
+            <a href="<?php /* @escapeNotVerified */
+            echo $block->getBackUrl() ?>" class="action back"><span><?php /* @escapeNotVerified */
+                    echo __('Back to Select Addresses') ?></span></a>
+        </div>
+    </div>
+</form>
+
+<script>
+    require([
+        'jquery',
+        'mage/mage'
+    ], function ($) {
+
+        var dataForm = $('#shipping_method_form');
+        dataForm.mage('validation', {
+            errorPlacement: function (error, element) {
+                if (element.prop('id').search('full') !== -1) {
+
+                } else {
+                    $(error).html('Please select one shipping method from each group');
+                    error.insertBefore(element.parent());
+                }
+            },
+        });
+
+    });
+</script>
+

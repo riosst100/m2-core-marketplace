@@ -1,0 +1,51 @@
+<!--@subject {{var store.getFrontendName()}}: Return #{{var rma.increment_id}} @-->
+{{template config_path="design/email/header_template"}}
+
+{{var hidden_separator | raw}}
+
+<table>
+    <tr>
+        <td>RMA</td>
+        <td style="padding: 2px 20px;font-weight: 500;">#{{var rma.increment_id}}</td>
+    </tr>
+    <tr>
+        <td>Customer Name</td>
+        <td style="padding: 2px 20px">{{trans "%name" name=$customer.name}}</td>
+    </tr>
+    <tr>
+        <td>Email address</td>
+        <td style="padding: 2px 20px">{{var customer.email}}</td>
+    </tr>
+    <tr>
+        <td>Store</td>
+        <td style="padding: 2px 20px">{{var store.getFrontendName()}}</td>
+    </tr>
+    <tr>
+        <td>Owner</td>
+        <td style="padding: 2px 20px">{{var rma_seller_name}}</td>
+    </tr>
+    <tr>
+        <td>Status</td>
+        <td style="padding: 2px 20px">{{var rma_status}}</td>
+    </tr>
+    <tr>
+        <td>Created</td>
+        <td style="padding: 2px 20px;font-weight: 500;">{{var rma_createdAtFormated}}</td>
+    </tr>
+    <tr>
+        <td>Updated</td>
+        <td style="padding: 2px 20px">{{var rma_updatedAtFormated}}</td>
+    </tr>
+</table>
+
+
+<br><br>
+{{block class="Lofmp\\Rma\\Block\\Rma\\View" area='frontend' template='Lofmp_Rma::email/rma/items.phtml' Rma=$rma }}
+
+<br><br>
+<br>
+<p>Message : {{var message | raw}}</p>
+<br>
+{{var hidden_code | raw}}
+
+{{template config_path="design/email/footer_template"}}

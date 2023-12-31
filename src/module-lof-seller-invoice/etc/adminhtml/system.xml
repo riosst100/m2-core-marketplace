@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://landofcoder.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_SellerInvoice
+ * @copyright  Copyright (c) 2017 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+	<system>
+		<tab id="landofcoder" translate="label" sortOrder="400">
+			<label><![CDATA[<a href="http://landofcoder.com" target="_BLANK" title=""Magento Marketplace, Opencart Marketplace, Magento 2 Extension, Free Magento Extension, Opencart Advanced Reports">landofcoder.com</a>]]></label>
+		</tab>
+		<section id="sellerinvoice" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+			<class>separator-top</class>
+			<label>Seller Invoice</label>
+			<tab>landofcoder</tab>
+			<resource>Lof_SellerInvoice::configurations</resource>
+			<group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>General Setting</label>
+				<field id="store_logo" translate="label comment" type="image" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Store/Company Logo</label>
+					<backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+					<upload_dir config="system/filesystem/media" scope_info="1">lof/sellerinvoice</upload_dir>
+					<base_url type="media" scope_info="1">lof/sellerinvoice</base_url>
+					<comment><![CDATA[Upload store/company logo will store in the folder: pub/media/lof/sellerinvoice/default/.<br/>Accept image type: JPG, JPEG]]></comment>
+				</field>
+				<field id="company_name" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Company Name</label>
+                    <comment><![CDATA[Input the company name. Empty to disable]]></comment>
+                </field>
+                <field id="tax_id" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Tax Id (number)</label>
+                    <comment><![CDATA[Company Tax Id or Tax Number or Cefiticate Number. Empty to disable]]></comment>
+                </field>
+                <field id="store_name" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Store Name</label>
+                    <comment><![CDATA[Input the store name. Empty to disable]]></comment>
+                </field>
+                <field id="store_address" translate="label" type="textarea" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Store Address</label>
+                    <comment><![CDATA[Input the store address. Empty to disable]]></comment>
+                </field>
+                <field id="store_phone" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Store Phone Number</label>
+                    <comment><![CDATA[Input the store phone number. Empty to disable]]></comment>
+                </field>
+                <field id="store_email" translate="label" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Store Email Address</label>
+                    <comment><![CDATA[Input the store email address. Empty to disable]]></comment>
+                </field>
+				<field id="pdf_footer" translate="label" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>PDF Footer Text</label>
+                    <comment><![CDATA[Empty to disable.]]></comment>
+                </field>
+				<field id="enable_billing" translate="label comment" type="select" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Enabled Billing</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="enable_shipping" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Enabled Shipping</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+                <field id="show_seller_tax" translate="label comment" type="select" sortOrder="52" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Show Seller Tax ID</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+                <field id="show_seller_address" translate="label comment" type="select" sortOrder="55" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Show Seller Address</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="new_invoice" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>New Invoice</label>
+					<source_model>Lof\SellerInvoice\Model\Config\Source\EmailTemplate\NewInvoice</source_model>
+				</field>
+				<field id="sender_email_identity" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Email Sender</label>
+					<source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

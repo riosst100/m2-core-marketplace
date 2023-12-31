@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lofmp_SellerIdentificationApproval
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <seller_identification_approval>
+            <general>
+                <enabled>1</enabled>
+                <require>1</require>
+                <show_when_register>1</show_when_register>
+                <show_when_becomeseller>1</show_when_becomeseller>
+            </general>
+            <passport>
+                <enabled>1</enabled>
+                <allow_update>1</allow_update>
+                <file_formats>doc,docx,xls,xlsx,pdf,txt,jpg,png,jpeg</file_formats>
+                <maximum_file_size>2</maximum_file_size>
+            </passport>
+            <identity_card>
+                <enabled>1</enabled>
+                <allow_update>1</allow_update>
+                <file_formats>doc,docx,xls,xlsx,pdf,txt,jpg,png,jpeg</file_formats>
+                <maximum_file_size>2</maximum_file_size>
+            </identity_card>
+            <driving_license>
+                <enabled>1</enabled>
+                <allow_update>1</allow_update>
+                <file_formats>doc,docx,xls,xlsx,pdf,txt,jpg,png,jpeg</file_formats>
+                <maximum_file_size>2</maximum_file_size>
+            </driving_license>
+            <company_certification>
+                <enabled>1</enabled>
+                <allow_update>1</allow_update>
+                <file_formats>doc,docx,xls,xlsx,pdf,txt,jpg,png,jpeg</file_formats>
+                <maximum_file_size>2</maximum_file_size>
+            </company_certification>
+            <bank_checkbook>
+                <enabled>1</enabled>
+                <allow_update>1</allow_update>
+                <file_formats>doc,docx,xls,xlsx,pdf,txt,jpg,png,jpeg</file_formats>
+                <maximum_file_size>2</maximum_file_size>
+            </bank_checkbook>
+            <signature>
+                <enabled>1</enabled>
+                <allow_update>1</allow_update>
+                <file_formats>doc,docx,xls,xlsx,pdf,txt,jpg,png,jpeg</file_formats>
+                <maximum_file_size>2</maximum_file_size>
+            </signature>
+        </seller_identification_approval>
+    </default>
+</config>

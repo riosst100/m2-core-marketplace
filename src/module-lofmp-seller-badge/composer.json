@@ -1,0 +1,24 @@
+{
+    "name": "landofcoder/module-seller-badge",
+    "description": "landofcoder",
+    "require": {
+        "landofcoder/module-marketplace": "*",
+        "landofcoder/module-seller-rule": "*"
+    },
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "landofcoder",
+            "homepage": "https://landofcoder.com",
+            "email": "landofcoder@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "files": [ "registration.php" ],
+        "psr-4": {
+            "Lofmp\\SellerBadge\\": ""
+        }
+    }
+}

@@ -1,0 +1,79 @@
+<?php
+ $helper = $this->helper('Lofmp\Rma\Helper\Help');
+  $allow = $helper->getConfig($block->getStoreId(), 'rma/general/file_allowed_extensions');
+  $allowfile = str_replace(',', '|', $allow);
+  $allowfileAR = explode(',', $allow);
+  $allowedStatuses = $helper->getConfig($store = null, 'rma/policy/allow_in_statuses');
+  $SizeLimit = $helper->getConfig($store = null, 'rma/general/file_size_limit');
+  $showPolicy  = $helper->getConfig($store = null, 'rma/policy/is_active');
+    $returnPeriod    = (int)$helper->getConfig($store = null, 'rma/policy/return_period');
+  $OnlyShipped = $helper->getConfig($store = null, 'return_only_shipped');
+                         $customFields = $block->getCustomFields();
+?>
+                              <?php if ($customFields): ?>
+
+                                  <fieldset class="fieldset">
+                                      <?php foreach ($customFields as $field): ?>
+                                          <div class="field <?php if ($field->IsCustomerRequired()): ?>required<?php endif ?>">
+                                              <?php if ($field->getType() == 'checkbox'): ?>
+                                                    <?= $block->getFieldInputHtml($field) ?>
+                                                  <label class="label" for="<?= $field->getCode() ?>">
+                                                      <span><?= __($field->getName()) ?></span>
+                                                  </label>
+                                                  <p class="small"><?= $field->getDescription() ?></p>
+                                              <?php else: ?>
+                                                  <label class="label">
+                                                      <span><?= __($field->getName()) ?></span>
+                                                  </label>
+
+                                                  <div class="control">
+                                                      <?= $block->getFieldInputHtml($field) ?>
+                                                      <p class="small"><?= $field->getDescription() ?></p>
+                                                  </div>
+                                              <?php endif ?>
+                                          </div>
+                                      <?php endforeach ?>
+                                  </fieldset>
+                              <?php endif ?>
+                        <div class="block">
+                          <div class="block-title">
+                              <strong><?= __('Comments') ?></strong>
+                          </div>
+                          <div class="block-content">
+                             <fieldset class="fieldset">
+                                          <div class="field">
+                                              <div class="control">
+                                                  <textarea name="reply" id="reply" class="input-text" style="width: 100%"></textarea>
+                                              </div>
+                                          </div>
+
+                                          <div class="field">
+                                              <label class="label">
+                                                  <span><?= __('Upload files') ?></span>
+                                              </label>
+
+                                              <div class="control">
+                                                 <input type='file' class='multi' name='attachment[]' id='attachment' accept='<?= $allowfile ?>'>
+                                              </div>
+
+                                          </div>
+                                      </fieldset>
+                          </div>
+                        </div>
+                        <div class="actions-toolbar">
+                                <div class="primary">
+                                    <button type="submit" id = 'rma-request-button' class="action primary" data-role="rma-submit" >
+                                        <span><?= __('Submit Request') ?></span>
+                                    </button>
+                                    <?php if ($showPolicy) { ?>
+                                    <input type="checkbox" id="chkBoxPolicy" name="PolicyCheck" onclick="myFunction()">I agree the policy <a id ="PolicyView" >(View Our Policy) </a>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                          <div id="rma-policy" title="RMA Policy" style="display: none">
+                             <p>
+                                 Order allow to return after <?= $returnPeriod; ?> day,
+                                 this policy allow return order in status :<?= $allowedStatuses; ?>
+                                 <?php if ($OnlyShipped) { echo "and only the shipped items will be available to return";}?>
+                             </p>
+                          </div>

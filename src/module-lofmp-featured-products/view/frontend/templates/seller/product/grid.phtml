@@ -1,0 +1,168 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var Lofmp\FeaturedProducts\Block\Seller\ShowFeaturedProduct $block */
+?>
+<?php if ($exist = ($block->getProductCollection() && $block->getProductCollection()->getSize() && $block->getModuleConfigData()->isEnable())): ?>
+    <?php
+    $type = 'widget-product-grid';
+
+    $mode = 'grid';
+
+    $image = 'new_products_content_widget_grid';
+    $items = $block->getProductCollection()->getItems();
+
+    $moduleConfigData = $block->getModuleConfigData();
+    $title = $moduleConfigData->getGeneralConfig('title');
+
+    $showWishlist = $moduleConfigData->getGeneralConfig('show_wishlist');
+    $showCompare = $moduleConfigData->getGeneralConfig('show_compare');
+    $showCart = $moduleConfigData->getGeneralConfig('show_cart');
+    $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::DEFAULT_VIEW;
+    $description = false;
+
+    $numberDesktopItem =  $moduleConfigData->getOwlCarouselConfig('number_desktop_item');
+    $numberTabletItem =  $moduleConfigData->getOwlCarouselConfig('number_tablet_item');
+    $numberMobileItem =  $moduleConfigData->getOwlCarouselConfig('number_mobile_item');
+    $margin = $moduleConfigData->getOwlCarouselConfig('margin');
+    $autoplay =  $moduleConfigData->getOwlCarouselConfig('autoplay');
+    $autoplayTimeout =  $moduleConfigData->getOwlCarouselConfig('autoplay_timeout');
+    $autoplayHoverPause =  $moduleConfigData->getOwlCarouselConfig('autoplay_hover_pause');
+    $showDotNavigation =  $moduleConfigData->getOwlCarouselConfig('show_dot_navigation');
+    $showNextPrevButtons =  $moduleConfigData->getOwlCarouselConfig('show_next_prev_buttons');
+    $mouseDrag =  $moduleConfigData->getOwlCarouselConfig('mouse_drag');
+    $touchDrag =  $moduleConfigData->getOwlCarouselConfig('touch_drag');
+    $rtlLayout =  $moduleConfigData->getOwlCarouselConfig('rtl_layout');
+    $loop = $moduleConfigData->getOwlCarouselConfig('loop');
+    ?>
+    <div class="block widget block-products-list <?= /* @noEscape */ $mode ?>">
+        <?php if ($title): ?>
+            <div class="block-title">
+                <strong><?= $block->escapeHtml(__($title)) ?></strong>
+            </div>
+        <?php endif ?>
+        <div class="block-content">
+            <div class="products-<?= /* @noEscape */ $mode ?> <?= /* @noEscape */ $mode ?>">
+                <div class="owl-carousel owl-theme product-items">
+                    <?php $iterator = 1; ?>
+                    <?php foreach ($items as $_item): ?>
+                    <?php if ($iterator++ != 1): ?></div><?php endif ?>
+                    <div class="product-block product-item">
+                        <div class="product-item-info">
+                            <a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>" class="product-item-photo">
+                                <?= $block->getImage($_item, $image)->toHtml() ?>
+                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a title="<?= $block->escapeHtml($_item->getName()) ?>"
+                                       href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>"
+                                       class="product-item-link">
+                                        <?= $block->escapeHtml($_item->getName()) ?>
+                                    </a>
+                                </strong>
+                                <?= $block->getProductPriceHtml($_item, $type); ?>
+
+                                <?php if ($templateType): ?>
+                                    <?= $block->getReviewsSummaryHtml($_item, $templateType) ?>
+                                <?php endif; ?>
+
+                                <?php if ($showWishlist || $showCompare || $showCart): ?>
+                                    <div class="product-item-actions">
+                                        <?php if ($showCart): ?>
+                                            <div class="actions-primary">
+                                                <?php if ($_item->isSaleable()): ?>
+                                                    <?php if ($_item->getTypeInstance()->hasRequiredOptions($_item)): ?>
+                                                        <button class="action tocart primary" data-mage-init='{"redirectUrl":{"url":"<?= $block->escapeUrl($block->getAddToCartUrl($_item)) ?>"}}' type="button" title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>">
+                                                            <span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
+                                                        </button>
+                                                    <?php else: ?>
+                                                        <?php
+                                                        $postDataHelper = $this->helper('Magento\Framework\Data\Helper\PostHelper');
+                                                        $postData = $postDataHelper->getPostData($block->getAddToCartUrl($_item), ['product' => $_item->getEntityId()])
+                                                        ?>
+                                                        <button class="action tocart primary" data-post='<?= /* @noEscape */ $postData ?>' type="button" title="<?php echo __('Add to Cart') ?>">
+                                                            <span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
+                                                        </button>
+                                                    <?php endif; ?>
+                                                <?php else: ?>
+                                                    <?php if ($_item->getIsSalable()): ?>
+                                                        <div class="stock available"><span><?= $block->escapeHtml(__('In stock')) ?></span></div>
+                                                    <?php else: ?>
+                                                        <div class="stock unavailable"><span><?= $block->escapeHtml(__('Out of stock')) ?></span></div>
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
+                                            </div>
+                                        <?php endif; ?>
+                                        <?php if ($showWishlist || $showCompare): ?>
+                                            <div class="actions-secondary" data-role="add-to-links">
+                                                <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow() && $showWishlist): ?>
+                                                    <a href="#"
+                                                       data-post='<?= /* @noEscape */ $block->getAddToWishlistParams($_item) ?>' class="action towishlist" data-action="add-to-wishlist" title="<?= $block->escapeHtmlAttr(__('Add to Wish List')) ?>">
+                                                        <span><?= $block->escapeHtml(__('Add to Wish List')) ?></span>
+                                                    </a>
+                                                <?php endif; ?>
+                                                <?php if ($block->getAddToCompareUrl() && $showCompare): ?>
+                                                    <?php $compareHelper = $this->helper('Magento\Catalog\Helper\Product\Compare');?>
+                                                    <a href="#" class="action tocompare" data-post='<?= /* @noEscape */ $compareHelper->getPostDataParams($_item) ?>' title="<?= $block->escapeHtmlAttr(__('Add to Compare')) ?>">
+                                                        <span><?= $block->escapeHtml(__('Add to Compare')) ?></span>
+                                                    </a>
+                                                <?php endif; ?>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <?= ($iterator == count($items)+1) ? '</div>' : '' ?>
+                        <?php endforeach ?>
+                </div>
+            </div>
+            <?= $block->getPagerHtml() ?>
+        </div>
+    </div>
+    <script type="text/javascript">
+        require([
+            'jquery',
+            <?php if($this->helper("Lof\All\Helper\Data")->getConfig("enable_owlcarousel")): ?>
+            "Lof_All/lib/owl.carousel/owl.carousel.min",
+            <?php endif; ?>
+        ], function($){
+            $(document).ready(function(){
+                window.owlCarouselConfig = new Object();
+
+                owlCarouselConfig.responsive = {
+                    0:{
+                        items:<?=$numberMobileItem ?>,
+                        nav:true
+                    },
+                    600:{
+                        items:<?=$numberTabletItem ?>,
+                        nav:false
+                    },
+                    1000:{
+                        items:<?=$numberDesktopItem ?>,
+                        nav:true,
+                        loop:false
+                    }
+                };
+                owlCarouselConfig.margin = <?php echo $margin ?>;
+                owlCarouselConfig.autoplay = <?php echo $autoplay ? "true" : "false "?>;
+                owlCarouselConfig.autoplayTimeout = <?php echo $autoplayTimeout ?>;
+                owlCarouselConfig.autoplayHoverPause = <?php echo $autoplayHoverPause ? "true" : "false" ?>;
+                owlCarouselConfig.dots = <?php echo $showDotNavigation ? "true" : "false"?>;
+                owlCarouselConfig.nav = <?php echo $showNextPrevButtons ? "true" : "false"?>;
+                owlCarouselConfig.mouseDrag = <?php echo $mouseDrag ? "true" : "false"?>;
+                owlCarouselConfig.touchDrag = <?php echo $touchDrag ? "true" : "false"?>;
+                owlCarouselConfig.rtl = <?php echo $rtlLayout ? "true" : "false"?>;
+                owlCarouselConfig.loop = <?php echo $loop ? "true" : "false"?>;
+
+                $(".owl-carousel").owlCarousel(owlCarouselConfig);
+            });
+        });
+    </script>
+<?php endif;?>

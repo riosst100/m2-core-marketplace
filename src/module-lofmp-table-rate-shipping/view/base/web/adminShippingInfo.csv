@@ -1,0 +1,2 @@
+country_code,region_id,zip,zip_to,price,weight_from,weight_to,shipping_method,free_shipping,partner_id,cost,cart_total
+"US","*","90001","90100","10.0000","1.0000","2.0000","Standard Shipping","0","0","0","0"

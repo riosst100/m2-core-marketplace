@@ -1,0 +1,207 @@
+<?php
+$rma = $block->getCurrentRma();
+$helper = $this->helper('Lof\MarketPlace\Helper\Data');
+$_order = $block->getOrder();
+$items = $_order->getAllItems();
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+$helper_Rma = $this->helper('Lofmp\Rma\Helper\Data');
+$seller_id = $rma?$rma->getSellerId():0;
+?>
+<input name="seller_id" value="<?= $seller_id ?>" type="hidden">
+<script type="text/javascript">
+    require([
+        "jquery"
+    ], function ($) {
+        $('[data-role=show-all-items]').on('click', function (e) {
+            e.preventDefault();
+            $(e.currentTarget).hide();
+            $('[data-role=items-table] tr').show();
+        })
+    });
+</script>
+
+<fieldset class="fieldset admin__fieldset rma-edit__items">
+    <legend class="admin__legend legend">
+        <span><?= __('Items') ?></span>
+    </legend>
+    <table class="table table-striped edit-order-table">
+                  <thead>
+                    <tr>
+                      <th><?php echo __('Product'); ?></th> 
+                      <th><?php echo __('Qty'); ?></th>
+                      <th><?php echo __('Qty Return'); ?></th> 
+                      <th><?php echo __('Return Reason');?></th>
+                      <th><?php echo __('Condition');?></th>
+                      <th><?php echo __('Resolution');?></th>
+                      <th><?php echo __(' Commission');?></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $subtotal = $tax = $discount = $grand_total = $refund_total = 0;
+                    foreach ($items as $item) {
+                        if ($item->getData('product_type') == 'bundle'): ?>
+                      <tr class="even">                       
+                          <td><?= $item->getData('name') ?><?= __('(Bundled Product)') ?></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                      </tr>
+                            <?php continue;
+endif;
+                        if ($item->getData('base_row_total') >0) {
+                            $refund = $item->getData('amount_refunded')+$item->getData('tax_refunded')-$item->getData('discount_refunded');
+                            $refund_total = $refund_total+$refund;
+                            $product_id = $item->getData('product_id');
+                            $sellerid = $block->getSellerIdByProductId($product_id);
+                            if ($seller_id != $sellerid) {
+                                continue;
+                            }
+                            $subtotalIncl = $item->getData('base_row_total_incl_tax');
+                            $discount_amount = $item->getData('discount_amount');
+                            $tax_amount = $item->getData('tax_amount');
+                            $total =   $item->getData('base_row_total');
+
+                            $row_total =  $total + $tax_amount - $discount_amount;
+                            $subtotal = $subtotal + $total;
+                            $tax = $tax + $tax_amount;
+                            $discount = $discount + $discount_amount;
+                            $subtotalExcl = $row_total - $tax_amount;
+                            $grand_total = $grand_total + $row_total;
+                 
+                            $max = $block->getQtyAvailable($item) + $block->getQtyRequest($item) ;
+                          //$itemReason =  $block->getRmaReason($item);
+
+                            $itemData =  $block->getRmaItemData($item);
+                            if (empty($itemData) || ($itemData['qty_requested']==0)) {
+                                continue;
+                            }
+                          //$itemCondition =  $block->getRmaCondition($item);
+                            ?>
+                      <tr>
+                        <td>
+                          <div class="product-title"><?php echo $item->getData('name');?></div>
+                          <div class="product-sku-block"><span><?php echo __('SKU');?>:</span><?php echo $item->getData('sku');?></div>
+                          <div class="product-price"><span><?php echo __('Price');?>:</span> <?php echo $item->getData('price');?></div>
+                            <?php
+                            if (isset($item->getData('product_options')['attributes_info'])) {
+                                echo '<dl class="item-options">';
+                                foreach ($item->getData('product_options')['attributes_info'] as $key => $attributes_info) {
+                                    echo '<dt>'.$attributes_info['label'].'</dt>';
+                                    echo '<dd>'.$attributes_info['value'].'</dd>';
+                                }
+                                echo '</dl>';
+                            }
+                            ?>
+                        </td>
+                        <td>
+                          <table class="qty-table">
+                            <tbody>
+                              <?php if ($item->getData('qty_ordered') > 0) { ?>
+                              <tr>
+                                <th><?php echo __('Ordered'); ?></th>
+                                <td><?php echo (int)$item->getData('qty_ordered'); ?></td>
+                              </tr>
+                              <?php } ?>
+                              <?php if ($block->getQtyAvailable($item)>=0) { ?>
+                              <tr>
+                                <th><?php echo __('Available'); ?></th>
+                                <td><?php echo (int)$block->getQtyAvailable($item); ?></td>
+                              </tr>
+                              <?php } ?>
+                              <?php if ($item->getData('qty_refunded') > 0) { ?>
+                              <tr>
+                                <th><?php echo __('Refunded'); ?></th>
+                                <td><?php echo (int)$item->getData('qty_refunded'); ?></td>
+                              </tr>
+                              <?php } ?>
+                              <?php if ($item->getData('qty_canceled') > 0) { ?>
+                              <tr>
+                                <th><?php echo __('Canceled'); ?></th>
+                                <td><?php echo (int)$item->getData('qty_canceled'); ?></td>
+                              </tr>
+                              <?php } ?>
+                            </tbody>
+                          </table>
+                        </td>                      
+                        
+                        <td>
+                          <input name="items[<?= $item->getData('item_id') ?>][qty_requested]"
+                                   id="qty_requested<?= $item->getData('item_id') ?>"
+                                   class="input-text"
+                                   type="number"
+                                   min="0"
+                                   max="<?= $max ?>"
+                                   style="width:60px;text-align: center;"
+                                   value="<?= $block->getQtyRequest($item)?$block->getQtyRequest($item):0; ?>"
+                                  
+                                >
+                          <input name="items[<?= $item->getData('item_id') ?>][item_id]" value="<?= $itemData['item_id']?$itemData["item_id"]:$item->getData('item_id') ?>" type="hidden">
+                          <input name="items[<?= $item->getData('item_id') ?>][product_id]" value="<?= $item->getData('product_id') ?>" type="hidden">
+                          <input name="items[<?= $item->getData('item_id') ?>][order_item_id]"
+                                 value="<?= $item->getData('item_id') ?>" type="hidden">
+
+                        </td>
+                        <td>
+                        <select name="items[<?= $item->getData('item_id') ?>][reason_id]"
+                                    id="reason_id<?= $item->getData('item_id') ?>">
+                                <option value=""><?= __('Select Reason') ?></option>
+                                <?php foreach ($helper_Rma->getReasons() as $reason):?>
+                                    <option
+                                        value="<?= $reason->getId() ?>" <?php if ($reason->getId() == $itemData['reason_id']) { echo 'selected = "selected"'; } ?>><?= $reason->getName() ?></option>
+                                <?php endforeach ?>
+
+                        </select>
+                        </td>
+                           <td>
+                        <select name="items[<?= $item->getData('item_id') ?>][condition_id]"
+                                    id="condition_id<?= $item->getData('item_id') ?>">
+                                <option value=""><?= __('Select Condition') ?></option>
+                                <?php foreach ($helper_Rma->getConditions() as $condition): ?>
+                                    <option
+                                        value="<?= $condition->getId() ?>" <?php if ($condition->getId() == $itemData['condition_id']) { echo 'selected = "selected"'; } ?>><?= $condition->getName() ?></option>
+                                <?php endforeach ?>
+                        </select>
+                        </td>
+                        <td>
+                           <div class="control">
+                            <select name="items[<?= $item->getData('item_id') ?>][resolution_id]"
+                                    id="resolution_id<?= $item->getData('item_id') ?>">
+                                <option value=""><?= __('Select Resolution') ?></option>
+                                <?php foreach ($helper_Rma->getResolutions() as $resolution): ?>
+                                    <option
+                                        value="<?= $resolution->getId() ?>" <?php if ($resolution->getId() == $itemData['resolution_id']) { echo 'selected = "selected"'; } ?> ><?= $resolution->getName() ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                        </td>
+                        <td>
+                         <table class="qty-table">
+                            <tbody>
+                              <?php if ($itemData['seller_commission'] > 0) { ?>
+                              <tr>
+                                <th><?php echo __('Seller:'); ?></th>
+                                <td><?php echo $helper->getPriceFomat($itemData['seller_commission']); ?></td>
+                              </tr>
+                              <?php } ?>
+                              <?php if ($itemData['admin_commission'] > 0) { ?>
+                              <tr>
+                                <th><?php echo __('Admin:'); ?></th>
+                                <td><?php echo $helper->getPriceFomat($itemData['admin_commission']); ?></td>
+                              </tr>
+                              <?php } ?>
+                            </tbody>
+                          </table></td>
+                        
+                      </tr>
+                    <?php }
+                    } ?>
+                  </tbody>
+                </table>
+</fieldset>

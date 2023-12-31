@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://landofcoder.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_DeliverySlot
+ * @copyright  Copyright (c) 2021 Landofcoder (https://landofcoder.com/)
+ * @license    https://landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Lofmp\DeliverySlot\Model\ResourceModel\DeliverySlotGroup\Grid\Collection" type="Lofmp\DeliverySlot\Model\ResourceModel\Marketplace\DeliverySlotGroup\Grid\Collection" />
+
+    <preference for="Lofmp\DeliverySlot\Model\ResourceModel\DeliverySlots\Grid\Collection" type="Lofmp\DeliverySlot\Model\ResourceModel\Marketplace\DeliverySlots\Grid\Collection" />
+
+    <!-- <preference for="Lof\MarketPlace\Model\ResourceModel\Order\Grid\Collection" type="Lofmp\DeliverySlot\Model\ResourceModel\Marketplace\Order\Grid\Collection" /> -->
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="mpdelivery_slots_grid_data_source" xsi:type="string">
+                    Lofmp\DeliverySlot\Model\ResourceModel\DeliverySlots\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="mpdeliveryslot_group_grid_data_source" xsi:type="string">
+                    Lofmp\DeliverySlot\Model\ResourceModel\DeliverySlotGroup\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

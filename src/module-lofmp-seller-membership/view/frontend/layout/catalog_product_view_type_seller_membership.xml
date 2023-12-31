@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lofmp_SellerMembership
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+    	<attribute name="class" value="page-product-seller-membership"/>
+        <referenceContainer name="product.info.type">
+            <block class="Lofmp\SellerMembership\Block\Product\View\Type\Membership" name="product.info.membership" as="product_type_data" template="Magento_Catalog::product/view/type/default.phtml"/>
+            <container name="product.info.membership.extra" after="product.info.membership" as="product_type_data_extra" label="Product Extra Info"/>
+        </referenceContainer>
+        <referenceBlock name="product.info.options.wrapper">
+            <block class="Lofmp\SellerMembership\Block\Product\View\Type\Membership" name="product.info.options.membership" as="options_membership" before="-" template="Lofmp_SellerMembership::product/view/type/options/membership.phtml" />
+        </referenceBlock>
+    </body>
+</page>

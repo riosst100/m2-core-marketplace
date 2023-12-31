@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lofmp_Auction
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <virtualType name="AuctionGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <preference for="Lof\Auction\Model\ResourceModel\Product\Grid\Collection" type="Lofmp\Auction\Model\ResourceModel\Product\Grid\Collection" />
+    <preference for="Lof\Auction\Model\ResourceModel\Amount\Grid\Collection" type="Lofmp\Auction\Model\ResourceModel\Amount\Grid\Collection" />
+    <preference for="Lof\Auction\Model\ResourceModel\AutoAuction\Grid\Collection" type="Lofmp\Auction\Model\ResourceModel\AutoAmount\Grid\Collection" />
+    <preference for="Lof\Auction\Model\ResourceModel\MixAmount\Grid\Collection" type="Lofmp\Auction\Model\ResourceModel\MixAmount\Grid\Collection" />
+    <preference for="Lof\Auction\Model\ResourceModel\WinnerData\Grid\Collection" type="Lofmp\Auction\Model\ResourceModel\WinnerData\Grid\Collection" />
+
+</config>

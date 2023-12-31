@@ -1,0 +1,105 @@
+type Query {
+    myCouponCode (
+        type: String @doc(description: "Query by type: all, available, expired, used.")
+        filters: CouponCodeFilterInput @doc(description: "Identifies which coupon code filter inputs to search for and return.")
+        pageSize: Int = 20 @doc(description: "Specifies the maximum number of results to return at once. This attribute is optional.")
+        currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1.")
+        sort: CouponCodeSortInput @doc(description: "Specifies which attributes to sort on, and whether to return the results in ascending or descending order.")
+    ) : LofCouponCodes @resolver( class: "Lofmp\\CouponCodeGraphQl\\Model\\Resolver\\LofCouponCodes") @doc(description: "Query by Query get Coupon Codes.")
+
+    publicCouponCode (
+        type: String @doc(description: "Query by type: all, available, expired, used.")
+        filters: CouponCodeFilterInput @doc(description: "Identifies which coupon code filter inputs to search for and return.")
+        pageSize: Int = 20 @doc(description: "Specifies the maximum number of results to return at once. This attribute is optional.")
+        currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1.")
+        sort: CouponCodeSortInput @doc(description: "Specifies which attributes to sort on, and whether to return the results in ascending or descending order.")
+    ) : LofCouponCodes @resolver( class: "Lofmp\\CouponCodeGraphQl\\Model\\Resolver\\PublicCouponCode") @doc(description: "Query by Query get public Coupon Codes.")
+    
+    sellerCoupons (
+        sellerUrl: String! @doc(description: "Filter for sellerUrl.")
+        filters: CouponCodeFilterInput @doc(description: "Identifies which coupon code filter inputs to search for and return.")
+        pageSize: Int = 20 @doc(description: "Specifies the maximum number of results to return at once. This attribute is optional.")
+        currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1.")
+        sort: CouponCodeSortInput @doc(description: "Specifies which attributes to sort on, and whether to return the results in ascending or descending order.")
+    ) : LofCouponCodes @resolver( class: "Lofmp\\CouponCodeGraphQl\\Model\\Resolver\\SellerCoupons") @doc(description: "Query by Query get seller Coupon Codes.")
+}
+
+input CouponCodeFilterInput  @doc(description: "CouponCodeFilterInput defines the filters to be used in the search. A filter contains at least one attribute, a comparison operator, and the value that is being searched for.")
+{
+    seller_id : FilterEqualTypeInput @doc(description: "Filter Coupon Code seller_id")
+    entity_id: FilterEqualTypeInput @deprecated(reason: "Filter Coupon Code entity_id")
+    category_id: FilterEqualTypeInput @deprecated(reason: "Filter Coupon Code category_id")
+    resource_type: FilterEqualTypeInput @deprecated(reason: "Filter Coupon Code resource_type")
+    status: FilterEqualTypeInput @deprecated(reason: "Filter Coupon Code status")
+    store_id: FilterMatchTypeInput @deprecated(reason: "Filter Coupon Code store_id")
+    created_at: FilterMatchTypeInput @doc(description: "Filter Timestamp indicating when the coupon was created")
+    is_public: FilterEqualTypeInput @deprecated(reason: "Filter Coupon Code is_public")
+}
+
+input CouponCodeSortInput @doc(description: "CouponCodeSortInput specifies the attribute to use for sorting search results and indicates whether the results are sorted in ascending or descending order. It's possible to sort coupons using searchable attributes with enabled 'Use in Filter Options' option")
+{
+    created_at: SortEnum @doc(description: "Sort by the created_at (default).")
+    expiration_date: SortEnum @doc(description: "Sort by the expiration_date assigned to each coupon.")
+    alias: SortEnum @doc(description: "Sort by the alias assigned to each coupon.")
+    code: SortEnum @doc(description: "Sort by the code assigned to each coupon.")
+    is_active: SortEnum @doc(description: "Sort by the is_active assigned to each coupon.")
+    name: SortEnum @doc(description: "Sort by the name assigned to each coupon.")
+    from_date: SortEnum @doc(description: "Sort by the from_date assigned to each coupon.")
+    to_date: SortEnum @doc(description: "Sort by the to_date assigned to each coupon.")
+    discount_amount: SortEnum @doc(description: "Sort by the discount_amount assigned to each coupon.")
+    times_used: SortEnum @doc(description: "Sort by the times_used assigned to each coupon.")
+    usage_limit: SortEnum @doc(description: "Sort by the usage_limit assigned to each coupon.")
+    couponcode_id: SortEnum @doc(description: "Sort by the couponcode_id.")
+}
+
+type LofCouponCode {
+    couponcode_id  : Int  @doc(description: "Query by couponcode_id.")
+    coupon_id  : Int  @doc(description: "Query by coupon_id.")
+    name : String @doc(description: "Query by name.")
+    alias  : String  @doc(description: "Query by alias.")
+    code  : String  @doc(description: "Query by code.")
+    seller_id  : Int  @doc(description: "Query by seller_id.")
+    seller : SellerInfo @doc(description: "Query by seller.")
+    from_date  : String  @doc(description: "Query by from_date.")
+    to_date  : String  @doc(description: "Query by to_date.")
+    uses_per_customer  : String  @doc(description: "Query by uses_per_customer.")
+    is_active  : Int  @doc(description: "Query by is_active.")
+    discount_amount  : Float  @doc(description: "Query by discount_amount.")
+    times_used  : Int  @doc(description: "Query by times_used.")
+    created_at  : String  @doc(description: "Query by created_at.")
+    expiration_date  : String  @doc(description: "Query by created_at.")
+    type  : String  @doc(description: "Query by type.")
+    coupon_rule : LofCouponRule @doc(description: "Query by Coupon Rule info")
+    description  : String  @doc(description: "Query by description.")
+}
+
+type LofCouponRule {
+    rule_id  : Int  @doc(description: "Query by rule_id.")
+    coupon_rule_id  : Int  @doc(description: "Query by coupon_rule_id.")
+    rule_name : String @doc(description: "Query by rule_name.")
+    discount_amount  : Float  @doc(description: "Query by discount_amount.")
+}
+
+type LofCouponCodes @doc(description: "The push notifications object is the top-level object returned in a notification search.") {
+    items: [LofCouponCode] @doc(description: "An array of notifications that match the specified search criteria.")
+    page_info: SearchResultPageInfo @doc(description: "An object that includes the page_info and currentPage values specified in the query.")
+    total_count: Int @doc(description: "The number of notifications that are marked as visible. By default, in complex notifications, parent notifications are visible, but their child coupons are not.")
+    sort_fields: SortFields @doc(description: "An object that includes the default sort field and all available sort fields.") @resolver(class: "Lofmp\\CouponCodeGraphQl\\Model\\Resolver\\LofCouponCodes\\SortFields")
+}
+
+type SortField {
+    value: String @doc(description: "Attribute code of sort field.")
+    label: String @doc(description: "Label of sort field.")
+}
+type SortFields @doc(description: "SortFields contains a default value for sort fields and all available sort fields.") {
+    default: String @doc(description: "Default value of sort fields.")
+    options: [SortField] @doc(description: "Available sort fields.")
+}
+
+
+type SellerInfo {
+    seller_id: Int @doc(description: "Seller ID")
+    shop_title: String @doc(description: "Shop Title")
+    thumbnail: String @doc(description: "Thumbnail")
+    url: String @doc(description: "Shop Url")
+}

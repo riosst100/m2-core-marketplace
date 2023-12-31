@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * LandofCoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   LandofCoder
+ * @package    Lofmp_CouponCode
+ * @copyright  Copyright (c) 2016 Landofcoder (https://landofcoder.com/)
+ * @license    https://landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Checkout\Controller\Cart\CouponPost" type="Lofmp\CouponCode\Controller\Cart\CouponPost" />
+    <preference for="Lofmp\CouponCode\Api\CouponRepositoryInterface" type="Lofmp\CouponCode\Model\CouponRepository"/>
+    <preference for="Lofmp\CouponCode\Api\Data\CouponInterface" type="Lofmp\CouponCode\Model\Coupon"/>
+    <preference for="Lofmp\CouponCode\Api\Data\RuleInterface" type="Lofmp\CouponCode\Model\Data\Rule"/>
+    <preference for="Lofmp\CouponCode\Api\Data\CouponSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Lofmp\CouponCode\Api\Data\RuleSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Magento\Newsletter\Model\Subscriber" type="Lofmp\CouponCode\Model\Rewrite\Newsletter\Subscriber"/>
+    <preference for="Lofmp\CouponCode\Api\LogManagementInterface" type="Lofmp\CouponCode\Model\LogManagement" />
+    <preference for="Lofmp\CouponCode\Api\LogRepositoryInterface" type="Lofmp\CouponCode\Model\LogRepository" />
+    <preference for="Lofmp\CouponCode\Api\CouponManagementInterface" type="Lofmp\CouponCode\Model\CouponManagement" />
+    <preference for="Lofmp\CouponCode\Api\RuleManagementInterface" type="Lofmp\CouponCode\Model\RuleManagement" />
+    <preference for="Lofmp\CouponCode\Api\RuleRepositoryInterface" type="Lofmp\CouponCode\Model\RuleRepository" />
+    <preference for="Lofmp\CouponCode\Api\CouponRepositoryInterface" type="Lofmp\CouponCode\Model\CouponRepository" />
+
+    <!-- <type name="Magento\Newsletter\Model\Subscriber" shared="true">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="generatorCoupon" xsi:type="object">Lofmp\CouponCode\Helper\Generator</item>
+            </argument>
+        </arguments>
+    </type>
+ -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="lofmpcouponcode_rule_listing_data_source" xsi:type="string">Lofmp\CouponCode\Model\ResourceModel\Rule\Grid\Collection</item>
+                <item name="lofmpcouponcode_coupon_listing_data_source" xsi:type="string">Lofmp\CouponCode\Model\ResourceModel\Coupon\Grid\Collection</item>
+                <item name="lofmpcouponcode_log_listing_data_source" xsi:type="string">Lofmp\CouponCode\Model\ResourceModel\Log\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Lofmp\CouponCode\Model\ResourceModel\Rule\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">lofmp_couponcode_rule</argument>
+            <argument name="eventPrefix" xsi:type="string">lofmpcouponcode_rule_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">rule_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Lofmp\CouponCode\Model\ResourceModel\Rule</argument>
+        </arguments>
+    </type>
+     <type name="Lofmp\CouponCode\Model\ResourceModel\Log\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">lofmp_coupon_code_log</argument>
+            <argument name="eventPrefix" xsi:type="string">lofmpcouponcode_log_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">log_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Lofmp\CouponCode\Model\ResourceModel\Log</argument>
+        </arguments>
+    </type>
+     <type name="Lofmp\CouponCode\Model\ResourceModel\Coupon\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">lofmp_couponcode_coupon</argument>
+            <argument name="eventPrefix" xsi:type="string">lofmpcouponcode_coupon_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">coupon_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Lofmp\CouponCode\Model\ResourceModel\Coupon</argument>
+        </arguments>
+    </type>
+    <virtualType name="LogGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="RuleGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CouponGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="CouponCodeRuleGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Lofmp\CouponCode\Model\ResourceModel\Rule\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">RuleGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CouponCodeCouponGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Lofmp\CouponCode\Model\ResourceModel\Coupon\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">CouponGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SellerCouponCodeCouponGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Lofmp\CouponCode\Model\ResourceModel\Marketplace\Coupon\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">CouponGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CouponCodeLogGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Lofmp\CouponCode\Model\ResourceModel\Log\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">LogGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <type name="Lofmp\CouponCode\Ui\Component\MassAction\Group\Options">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="urlPath" xsi:type="string">lofmpcouponcode/generate/massGenerate</item>
+                <item name="paramName" xsi:type="string">rule</item>
+                <item name="confirm" xsi:type="array">
+                    <item name="title" xsi:type="string" translatable="true">Generate and Send Coupons</item>
+                    <item name="message" xsi:type="string" translatable="true">Are you sure want to generate coupons for selected customers?</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,24 @@
+<?php
+$order = $block->getOrder();
+$order_id = $order->getId();
+$helper = $this->helper(\Lof\MarketPlace\Helper\Data::class);
+$tracking = $helper->getOrderinfo($order_id);
+if ($tracking != "" && $tracking->getIsInvoiced()) :
+?>
+<a href="javascript:" data-url="<?= $block->getUrl("sellerinvoice/invoice/downloadfile", ["order_id" => $order_id]); ?>" class="btn btn-primary lof_invoice" id="btnInvoiceExport"><?= __('Export Invoice PDF'); ?></a>
+<script>
+    require([
+    'jquery',
+    //'jspdf',
+    //'html2canvas'
+    ], function(jQuery, jsPdf) {
+        jQuery(document).ready(function() {
+            jQuery("#btnInvoiceExport").click(function() {
+                var url = jQuery(this).data("url");
+                window.location = url;
+                return false;
+            })
+        })
+    })
+</script>
+<?php endif; ?>

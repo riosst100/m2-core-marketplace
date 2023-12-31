@@ -1,0 +1,61 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Generic.Files.LineLength.TooLong
+
+/** @var \Magento\Customer\Block\Form\Login $block */
+?>
+<div class="login-container">
+    <div class="block block-customer-login">
+        <div class="block-title">
+            <strong id="block-customer-login-heading" role="heading" aria-level="2"><?= $block->escapeHtml(__('Guest Users')) ?></strong>
+        </div>
+        <div class="block-content" aria-labelledby="block-customer-login-heading">
+            <form class="form form-login"
+                action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>"
+                method="post"
+                id="login-form"
+                data-mage-init='{"validation":{}}'>
+                <?= $block->getBlockHtml('formkey') ?>
+                <fieldset class="fieldset login" data-hasrequired="<?= $block->escapeHtml(__('* Required Fields')) ?>">
+                    <div class="field order_id required">
+                        <label class="label" for="order_id"><span><?= $block->escapeHtml(__('Order Id')) ?></span></label>
+                        <div class="control">
+                            <input name="order_id" value=""
+                                id="order_id" type="text" class="input-text"
+                                title="<?= $block->escapeHtmlAttr(__('Order Id')) ?>"
+                                data-mage-init='{"mage/trim-input":{}}'
+                                data-validate="{required:true}">
+                        </div>
+                    </div>
+                    <div class="field email required">
+                        <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+                        <div class="control">
+                            <input name="email" value=""
+                                id="email" type="email" class="input-text"
+                                title="<?= $block->escapeHtmlAttr(__('Email')) ?>"
+                                data-mage-init='{"mage/trim-input":{}}'
+                                data-validate="{required:true, 'validate-email':true}">
+                        </div>
+                    </div>
+                    <?= $block->getChildHtml('form_additional_info') ?>
+                    <div class="actions-toolbar">
+                        <div class="primary"><button type="submit" class="action login primary" name="send" id="send2"><span><?= $block->escapeHtml(__('Login Guest')) ?></span></button></div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <script type="text/x-magento-init">
+            {
+                "*": {
+                    "Magento_Customer/js/block-submit-on-send": {
+                        "formId": "login-form"
+                    }
+                }
+            }
+        </script>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lofmp_SplitCart
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\Controller\Index\Index">
+        <plugin name="lofmp_splitcart_check_split_quote_onepage" type="Lofmp\SplitCart\Plugin\Checkout\Controller\Index\Index" sortOrder="1" disabled="false"/>
+    </type>
+    <type name="Magento\Checkout\Controller\Cart\Index">
+        <plugin name="lofmp_splitcart_add_notice" type="Lofmp\SplitCart\Plugin\Checkout\Controller\Cart\Index" sortOrder="1" disabled="false"/>
+    </type>
+    <type name="Magento\Checkout\Controller\Cart\UpdatePost">
+        <plugin name="lofmp_splitcart_custom_clear_cart" type="Lofmp\SplitCart\Plugin\Checkout\Controller\Cart\UpdatePost" sortOrder="1" disabled="false"/>
+    </type>
+    <type name="Magento\Checkout\Model\Session">
+        <plugin name="lofmp_splitcart_get_custom_split_quote" type="Lofmp\SplitCart\Plugin\Checkout\Model\Session" sortOrder="1" disabled="false"/>
+    </type>
+    <type name="Magento\Quote\Model\Quote\Item">
+        <plugin name="lofmp_splitcart_save_item_seller_id" type="Lofmp\SplitCart\Plugin\Quote\Model\Quote\Item" sortOrder="1" disabled="false"/>
+    </type>
+    <type name="Magento\Checkout\Block\Cart">
+        <plugin name="lofmp_splitcart_remove_elements" type="Lofmp\SplitCart\Plugin\Checkout\Block\Cart" sortOrder="1" disabled="false"/>
+    </type>
+</config>

@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_DeliverySlot
+ * @copyright  Copyright (c) 2021 Landofcoder (https://landofcoder.com/)
+ * @license    https://landofcoder.com/LICENSE-1.0.html
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+    	<add 
+            id="Lofmp_DeliverySlot::deliveryslot" 
+            title="Delivery Slots" 
+            module="Lofmp_DeliverySlot" 
+            sortOrder="131"
+            icon="fa fa-calendar"
+            resource="Lofmp_DeliverySlot::delivery_slot_elements"
+            dependsOnConfig="delivery_slot/lofmp_delivery_slot_settings/allow_seller_manage"
+            />
+
+        <add 
+            id="Lofmp_DeliverySlot::slot_groups" 
+            title="Slot Groups" 
+            module="Lofmp_DeliverySlot" 
+            action="deliveryslot/deliveryslotgroup/index" 
+            sortOrder="132"
+            parent="Lofmp_DeliverySlot::deliveryslot"
+            resource="Lofmp_DeliverySlot::slots_group"
+            dependsOnConfig="delivery_slot/lofmp_delivery_slot_settings/allow_seller_manage"
+            />
+            
+        <add 
+            id="Lofmp_DeliverySlot::slots" 
+            title="Slots" 
+            module="Lofmp_DeliverySlot" 
+            action="deliveryslot/deliveryslot/index"  
+            sortOrder="133"
+            parent="Lofmp_DeliverySlot::deliveryslot"
+            resource="Lofmp_DeliverySlot::slots"
+            dependsOnConfig="delivery_slot/lofmp_delivery_slot_settings/allow_seller_manage"
+            />
+
+        <add 
+            id="Lofmp_DeliverySlot::orders" 
+            title="Pending Delivery Orders" 
+            module="Lofmp_DeliverySlot" 
+            action="deliveryslot/order/index"  
+            sortOrder="134"
+            parent="Lofmp_DeliverySlot::deliveryslot"
+            resource="Lofmp_DeliverySlot::delivery_slot_elements"
+            dependsOnConfig="delivery_slot/lofmp_delivery_slot_settings/allow_seller_manage"
+            />
+
+        <add 
+            id="Lofmp_DeliverySlot::slots_config" 
+            title="Configuration" 
+            module="Lofmp_DeliverySlot" 
+            sortOrder="135" 
+            parent="Lofmp_DeliverySlot::deliveryslot"
+            action="deliveryslot/config/edit" 
+            resource="Lofmp_DeliverySlot::lofmp_deliveryslot_config"
+            dependsOnConfig="delivery_slot/lofmp_delivery_slot_settings/allow_seller_manage"
+            />
+    </menu>
+</config>

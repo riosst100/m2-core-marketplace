@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lofmp_SellerIdentificationApproval
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_action_lofmp_seller_membership_default_save_after">
+        <observer name="lofmpsellermembershiplimit_controller_action_lofmp_seller_membership_default_save_after" instance="Lofmp\SellerMembershipLimit\Observer\SaveDefaultMembership" />
+    </event>
+    <event name="controller_action_lofmp_seller_membership_membership_save_after">
+        <observer name="lofmpsellermembershiplimit_controller_action_lofmp_seller_membership_membership_save_after" instance="Lofmp\SellerMembershipLimit\Observer\SaveMembershipAfter" />
+    </event>
+    <event name="controller_action_catalog_product_save_entity_after">
+        <observer name="lofmpsellermembershiplimit_controller_action_catalog_product_save_entity_after" instance="Lofmp\SellerMembershipLimit\Observer\SaveProductSeller"/>
+    </event>
+    <event name="lof_auction_controller_action_auction_product_save_entity_after">
+        <observer name="lofmpsellermembershiplimit_controller_action_auction_product_save_entity_after" instance="Lofmp\SellerMembershipLimit\Observer\SaveAuctionSeller"/>
+    </event>
+</config>

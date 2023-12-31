@@ -1,0 +1,175 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_SplitCart
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Generic.Files.LineLength.TooLong
+// phpcs:disable Magento2.Security.XssTemplate.FoundUnescaped
+
+/**  @var $block \Magento\Checkout\Block\Cart\Grid */
+
+$orgItems = $block->getItems();
+$sortedItems = [];
+foreach ($orgItems as $item) {
+    $sellerId = $item->getLofSellerId() ? $item->getLofSellerId() : $item->getSellerId();
+    if ($sellerId) {
+        $sortedItems[$sellerId][] = $item;
+    } else {
+        $sortedItems[0][] = $item;
+    }
+}
+$priceHelper = $this->helper(\Magento\Framework\Pricing\Helper\Data::class);
+?>
+<?php $mergedCells = ($this->helper(Magento\Tax\Helper\Data::class)->displayCartBothPrices() ? 2 : 1); ?>
+<?= $block->getChildHtml('form_before') ?>
+<?php foreach ($sortedItems as $sellerId => $sortedItem): ?>
+    <form action="<?= $block->escapeUrl($block->getUrl('checkout/cart/updatePost')) ?>"
+          method="post"
+          id="form-validate"
+          data-mage-init='{"Magento_Checkout/js/action/update-shopping-cart":
+                  {"validationURL" : "<?= $block->escapeUrl($block->getUrl('checkout/cart/updateItemQty')) ?>",
+                  "updateCartActionContainer": "#update_cart_action_container<?= (int)$sellerId ?>"}
+              }'
+          class="form form-cart">
+        <?= $block->getBlockHtml('formkey') ?>
+        <div class="cart table-wrapper<?= $mergedCells == 2 ? ' detailed' : '' ?>">
+            <?php if ($block->getPagerHtml()): ?>
+                <div class="cart-products-toolbar cart-products-toolbar-top toolbar"
+                     data-attribute="cart-products-toolbar-top"><?= $block->getPagerHtml() ?>
+                </div>
+            <?php endif ?>
+            <table id="shopping-cart-table"
+                   class="cart items data table"
+                   data-mage-init='{"shoppingCart":{"emptyCartButton": ".action.clear#empty_cart_button<?= (int)$sellerId ?>",
+                   "updateCartActionContainer": "#update_cart_action_container<?= (int)$sellerId ?>"}}'>
+                <caption class="table-caption"><?= $block->escapeHtml(__('Shopping Cart Items')) ?></caption>
+                <thead>
+                <tr>
+                    <th class="col item" scope="col"><span><?= $block->escapeHtml(__('Item')) ?></span></th>
+                    <th class="col price" scope="col"><span><?= $block->escapeHtml(__('Price')) ?></span></th>
+                    <th class="col qty" scope="col"><span><?= $block->escapeHtml(__('Qty')) ?></span></th>
+                    <th class="col subtotal" scope="col"><span><?= $block->escapeHtml(__('Subtotal')) ?></span></th>
+                </tr>
+                </thead>
+                <?php $total = 0; ?>
+                <?php foreach ($sortedItem as $_item): ?>
+                    <?php $total += ($_item->getPrice() * $_item->getQty()) ?>
+                    <?= $block->getItemHtml($_item) ?>
+                <?php endforeach ?>
+            </table>
+            <?php if ($block->getPagerHtml()): ?>
+                <div class="cart-products-toolbar cart-products-toolbar-bottom toolbar"
+                     data-attribute="cart-products-toolbar-bottom"><?= $block->getPagerHtml() ?>
+                </div>
+            <?php endif ?>
+        </div>
+        <div class="cart main actions">
+            <?php if ($block->getContinueShoppingUrl()): ?>
+                <a class="action continue"
+                   href="<?= $block->escapeUrl($block->getContinueShoppingUrl()) ?>"
+                   title="<?= $block->escapeHtml(__('Continue Shopping')) ?>">
+                    <span><?= $block->escapeHtml(__('Continue Shopping')) ?></span>
+                </a>
+            <?php endif; ?>
+            <?php if ($block->getViewModel()->isClearShoppingCartEnabled()): ?>
+                <button type="button"
+                        name="update_cart_action"
+                        data-cart-empty=""
+                        value="empty_cart_split"
+                        title="<?= $block->escapeHtml(__('Clear Shopping Cart')) ?>"
+                        class="action clear" id="empty_cart_button<?= (int)$sellerId ?>">
+                    <span><?= $block->escapeHtml(__('Clear Shopping Cart')) ?></span>
+                </button>
+            <?php endif ?>
+            <button type="submit"
+                    name="update_cart_action"
+                    data-cart-item-update=""
+                    value="update_qty"
+                    title="<?= $block->escapeHtml(__('Update Shopping Cart')) ?>"
+                    class="action update">
+                <span><?= $block->escapeHtml(__('Update Shopping Cart')) ?></span>
+            </button>
+            <input type="hidden" value="" id="update_cart_action_container<?= (int)$sellerId ?>"
+                   data-cart-item-update=""/>
+            <input type="hidden" name="sid" value="<?= $block->escapeHtmlAttr($sellerId) ?>">
+        </div>
+    </form>
+    <form action="<?= $block->escapeUrl($block->getUrl('splitcart/checkout/proceedtocheckout')) ?>"
+          method="post" id="checkout-validate" class="form form-checkout" novalidate="novalidate">
+        <?= $block->getBlockHtml('formkey') ?>
+        <div class="cart-summary" style="top: 0px;">
+            <input type="hidden" name="sid" value="<?= $block->escapeHtmlAttr($sellerId) ?>">
+            <div class="lofmp-cart-summary"><strong
+                    class="summary title"><?= $block->escapeHtml(__('Summary')) ?></strong>
+                <div data-bind="scope:'block-totals'" class="cart-totals" id="cart-totals<?= (int)$sellerId ?>">
+                    <div data-bind="blockLoader: isLoading" class="table-wrapper">
+                        <table class="data table totals">
+                            <caption class="table-caption"><?= $block->escapeHtml(__('Total')) ?></caption>
+                            <tbody>
+                            <tr class="totals sub">
+                                <th scope="row" colspan="1" class="mark"><?= $block->escapeHtml(__('Subtotal')) ?></th>
+                                <td data-th="<?= $block->escapeHtmlAttr(__('Subtotal')) ?>" class="amount">
+                                    <?= $priceHelper->currency($total, true, false) ?>
+                                </td>
+                            </tr>
+                            <!-- <tr class="totals shipping excl"><th class="mark" colspan="1" scope="row"> Shipping</th><td class="amount"><span class="price"></span></td></tr> -->
+                            <tr class="grand totals">
+                                <th scope="row" colspan="1" class="mark">
+                                    <strong
+                                        data-bind="text: title"><?= $block->escapeHtml(__('Order Total')) ?></strong>
+                                </th>
+                                <td data-th="<?= $block->escapeHtmlAttr(__('Order Total')) ?>" class="amount">
+                                    <strong> <?= $priceHelper->currency($total, true, false) ?> </strong>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <ul class="checkout methods items checkout-methods-items">
+                    <li class="item">
+                        <button class="action primary checkout mp-btn-checkout"
+                                title="<?= $block->escapeHtmlAttr(__('Go to Checkout')) ?>"
+                                data-role="proceed-to-checkout"
+                                type="submit" value="<?= $block->escapeHtmlAttr($sellerId) ?>"
+                                name="slitcart_checkout">
+                            <span><?= $block->escapeHtml(__('Go to Checkout')) ?></span>
+                        </button>
+                    </li>
+                    <?php $multiShippingHelper = $this->helper(\Magento\Multishipping\Helper\Data::class); ?>
+                    <?php if ($multiShippingHelper->isMultishippingCheckoutAvailable()): ?>
+                        <li class="item">
+                            <a class="action multicheckout"
+                               href="<?= $block->escapeUrl($block->getUrl('splitcart/checkout/proceedtocheckout', [
+                                   'sid' => $sellerId,
+                                   'multishipping' => 1,
+                               ])) ?>"
+                            >
+                                <span><?= $block->escapeHtml(__('Check Out with Multiple Addresses')) ?></span>
+                            </a>
+                        </li>
+                    <?php endif; ?>
+                </ul>
+            </div>
+        </div>
+    </form>
+<?php endforeach; ?>
+<?= $block->getChildHtml('checkout.cart.order.actions') ?>
+<?= $block->getChildHtml('shopping.cart.table.after') ?>

@@ -1,0 +1,50 @@
+<div class="input-box auto-bid max-absentee-bid-wrapper" data-bind="attr: { id: getAbsenteeId() }" >
+    <form data-bind="attr: { action: getAbsenteeSetUrl() }" class="form auction-max-absentee-bid hidden" autocomplete="off" method="post">
+      <div class="top-content">
+        <h3 data-bind="i18n: 'Enter your maximum absentee bid'"></h3>
+        <span class="small-text text-small">
+          <span data-bind="i18n: 'Minimum Bid:'"></span>
+          <span class="price">
+            <span class="price format-price" data-bind="text: formatPrice( getRangePrice($parent) )"></span>
+          </span>
+        </span>
+      </div>
+      <div class="max-absentee-bid-input-field main-content">
+        <input type="hidden" name="current_url" data-bind="attr: {value: getAuctionConfigValue('current_url')}">
+        <input
+            type="hidden"
+            name="auction_id"
+            data-bind="attr: {value: getAuctionFieldValue('entity_id', $parent)}"
+        >
+        <input
+            type="number"
+            data-bind="attr: {value: getRangePrice($parent), class: getAbsenteeBidInputClass($parent), placeholder: $t('Enter Max Absentee Bid Amount')}"
+            name="max_absentee_bid"
+            step=".01"
+            oncut="return false;"
+            oncopy="return false;"
+            onpaste="return false;"
+        >
+        <button class="action primary btn-place-max-bid" data-bind="attr:{title: $t('Place Max Bid')}">
+          <span data-bind="i18n: 'Place Max Bid'"></span>
+        </button>
+      </div>
+      <div class="bottom-content">
+        <span>
+          <span class="max-bid-amount" data-bind="text: getRangePrice($parent)"></span>&nbsp;<span data-bind="i18n: 'x 1 unit ='"></span>
+          <span class="price max-bid-price">
+            <span class="price format-price" data-bind="text: formatPrice( getRangePrice($parent) )"></span>
+          </span>
+        </span>
+        <br/>
+        <span class="small-text text-small" data-bind="i18n: 'Applicable fees &amp; taxes are added at checkout'"></span>
+        <!-- ko if: getAuctionConfigValue('require_place_bid') -->
+        <br/>
+        <span class="small-text text-small" data-bind="i18n: 'Require place a bid before.'"></span>
+        <!-- /ko -->
+      </div>
+    </form>
+</div>
+<!-- ko if: _getCurrenMaxAbstenteBid() -->
+<span class="small-text text-small" data-bind="i18n: 'Loading Absentee Form'" style="display: none;"></span>
+<!-- /ko -->

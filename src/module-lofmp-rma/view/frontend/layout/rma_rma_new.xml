@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
+    <head>
+        <css src="Lof_All::lib/bootstrap/css/bootstrap.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+                <block name="rma.new.step2" class="Lofmp\Rma\Block\Rma\NewRma" template="rma/newrma.phtml" ifconfig="rma/general/is_active_frontend">
+                	<block name="rma.new.sellerform" class="Lofmp\Rma\Block\Rma\NewRma" template="rma/sellerform.phtml" />
+                </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.landofcoder.com/license-agreement.html
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_FavoriteSeller
+ * @copyright  Copyright (c) 2018 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Lof_MarketPlace:etc/menu.xsd">
+    <menu>
+        <add id="Lofmp_FavoriteSeller::favorite_seller" icon="fa fa-thumbs-up" title="Subscriptions" module="Lofmp_FavoriteSeller" sortOrder="85" resource="Lofmp_FavoriteSeller::favorite_seller" dependsOnConfig="favoriteseller_config/general/enable" translate="title"/>
+        <add id="Lofmp_FavoriteSeller::manager" title="Manage Subscriptions" module="Lofmp_FavoriteSeller" action="favoriteseller/index/index" sortOrder="10" parent="Lofmp_FavoriteSeller::favorite_seller" resource="Lofmp_FavoriteSeller::manager"  dependsOnConfig="favoriteseller_config/general/enable" translate="title"/>
+    </menu>
+</config>

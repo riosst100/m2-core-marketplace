@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<route url="/V1/SellerInvoice/sellerinvoice/search" method="GET">
+		<service class="Lof\SellerInvoice\Api\SellerinvoiceRepositoryInterface" method="sellerGetListInvoice"/>
+		<resources>
+			<resource ref="self" />
+		</resources>
+		<data>
+			<parameter name="customerId" force="true">%customer_id%</parameter>
+		</data>
+	</route>
+	<route url="/V1/SellerInvoice/sellerinvoice/:orderId" method="GET">
+		<service class="Lof\SellerInvoice\Api\SellerinvoiceRepositoryInterface" method="sellerGetInvoice"/>
+		<resources>
+			<resource ref="self" />
+		</resources>
+		<data>
+			<parameter name="customerId" force="true">%customer_id%</parameter>
+		</data>
+	</route>
+</routes>

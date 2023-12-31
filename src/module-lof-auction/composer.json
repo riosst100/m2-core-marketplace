@@ -1,0 +1,32 @@
+{
+  "name": "landofcoder/module-auction",
+  "description": "Magento 2 Auction Extension",
+  "require": {
+    "landofcoder/module-all" : "1.*"
+  },
+  "keywords": [
+    "landofcoder",
+    "landofcoder auction",
+    "bidding auction",
+    "landofcoder auction magento 2 extension"
+  ],
+  "license": [
+    "OSL-3.0",
+    "AFL-3.0"
+  ],
+  "version": "1.0.12",
+  "type": "magento2-module",
+  "authors": [
+      {
+          "name": "Landofcoder",
+          "email": "landofcoder@gmail.com",
+          "role": "Magento 2 Lof Auction Extension"
+      }
+  ],
+  "autoload": {
+    "files": [ "registration.php" ],
+    "psr-4": {
+      "Lof\\Auction\\": ""
+    }
+  }
+}

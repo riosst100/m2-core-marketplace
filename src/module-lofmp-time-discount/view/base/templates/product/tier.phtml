@@ -1,0 +1,207 @@
+
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/* @var $block \Magento\Catalog\Block\Adminhtml\Product\Edit\Tab\Price\Tier */
+
+$element = $block->getElement();
+
+?>
+<?php $_htmlId      = $block->getElement()->getHtmlId() ?>
+<?php $_htmlClass   = $block->getElement()->getClass() ?>
+<?php $_htmlName    = $block->getElement()->getName() ?>
+<?php $_readonly    = $block->getElement()->getReadonly() ?>
+
+
+<?php $_priceValueValidation = $block->getPriceValidation('validate-greater-than-zero'); ?>
+
+
+<?php $_showWebsite = true; ?>
+<div class="field" id="attribute-<?php /* @escapeNotVerified */ echo $_htmlId?>-container" data-attribute-code="<?php /* @escapeNotVerified */ echo $_htmlId?>"
+     data-apply-to="<?php echo $block->escapeHtml(
+         $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode(
+             $element->hasEntityAttribute() ? $element->getEntityAttribute()->getApplyTo() : []
+         )
+     )?>">
+    <label class="label"><span><?php /* @escapeNotVerified */ echo $block->getElement()->getLabel() ?></span></label>
+    <div class="control">
+        <table class="admin__control-table tiers_table" id="tiers_table">
+            <thead>
+                <tr>
+                    <th class="col-start"><?php /* @escapeNotVerified */ echo __('Time Start') ?></th>
+                    <th class="col-end"><?php /* @escapeNotVerified */ echo __('Time End') ?></th>
+                    <th class="col-type-discount"><?php /* @escapeNotVerified */ echo __('Type Discount') ?></th>
+                    <th class="col-discount"><?php /* @escapeNotVerified */ echo __('Discount') ?></th>
+                    <th class="col-order"><?php /* @escapeNotVerified */ echo __('Order') ?></th>
+                    <th class="col-delete"><?php /* @escapeNotVerified */ echo __('Action') ?></th>
+                </tr>
+            </thead>
+            <tbody id="<?php /* @escapeNotVerified */ echo $_htmlId ?>_container"></tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="<?php if (!$_showWebsite): ?>5<?php else: ?>6<?php endif; ?>" class="col-actions-add"><?php echo $block->getAddButtonHtml() ?></td>
+                </tr>
+            </tfoot>
+        </table>
+
+<script>
+require([
+    'jquery',
+    'mage/template',
+    "prototype",
+    "mage/adminhtml/form",
+    "mage/calendar"
+], function (jQuery,mageTemplate) {
+
+//<![CDATA[
+var tierPriceRowTemplate = '<tr>'
+    + '<td class="col-start">'
+       + '<input class="time_start <?php /* @escapeNotVerified */ echo $_htmlClass ?> start  validate-greater-than-zero" type="text" name="<?php /* @escapeNotVerified */ echo $_htmlName ?>[<%- data.index %>][start]" value="<%- data.start %>" id="tier_price_row_<%- data.index %>_start" />'
+    + '</td>'
+    + '<td class="col-end">'
+       + '<input class="time_end <?php /* @escapeNotVerified */ echo $_htmlClass ?> end  validate-greater-than-zero" type="text" name="<?php /* @escapeNotVerified */ echo $_htmlName ?>[<%- data.index %>][end]" value="<%- data.end %>" id="tier_price_row_<%- data.index %>_end" />'
+    + '</td>'
+    + '<td class="col-type-discount">'
+    + '<select class="<?= /* @escapeNotVerified */ $_htmlClass ?> required-entry" name="<?= /* @escapeNotVerified */ $_htmlName ?>[<%- data.index %>][type]" id="tier_price_row_<%- data.index %>_type">'
+    + '<option value="percent"><?php echo __('Percent'); ?></option>'
+    + '<option value="fixed"><?php echo __('Fixed'); ?></option>'
+    + '</select>'
+    +'</td>'
+    + '<td class="col-discount">'
+    + '<input class="time_discount <?php /* @escapeNotVerified */ echo $_htmlClass ?> discount  validate-greater-than-zero" type="text" name="<?php /* @escapeNotVerified */ echo $_htmlName ?>[<%- data.index %>][discount]" value="<%- data.discount %>" id="tier_price_row_<%- data.index %>_discount" />'
+    +'</td>'
+     + '<td class="col-order">'
+       + '<input class="<?php /* @escapeNotVerified */ echo $_htmlClass ?> order  validate-greater-than-zero" type="text" name="<?php /* @escapeNotVerified */ echo $_htmlName ?>[<%- data.index %>][order]" value="<%- data.order %>" id="tier_price_row_<%- data.index %>_order" />'
+    + '</td>'
+    + '<td class="col-delete"><input type="hidden" name="<?php /* @escapeNotVerified */ echo $_htmlName ?>[<%- data.index %>][delete]" class="delete" value="" id="tier_price_row_<%- data.index %>_delete" />'
+    + '<button title="<?php /* @escapeNotVerified */ echo $block->escapeHtml(__('Delete Tier')); ?>" type="button" class="action- scalable delete icon-btn delete-product-option" id="tier_price_row_<%- data.index %>_delete_button" onclick="return tierPriceControl.deleteItem(event);">'
+    + '<span><?php /* @escapeNotVerified */ echo __("Delete") ?></span></button></td>'
+    + '</tr>';
+
+var tierPriceControl = {
+    template: mageTemplate(tierPriceRowTemplate),
+    itemsCount: 0,
+    addItem : function () {
+        <?php if ($_readonly): ?>
+        if (arguments.length < 3) {
+            return;
+        }
+        <?php endif; ?>
+        var data = {
+            start: '',
+            end: '',
+            discount: 0,
+            readOnly: false,
+            index: this.itemsCount++,
+            order: this.itemsCount,
+        };
+
+        if(arguments.length >= 5) {
+            data.start      = arguments[0];
+            data.end        = arguments[1];
+            data.type      = arguments[2];
+            data.discount      = arguments[3];
+            data.order      = arguments[4];
+        }
+        if (arguments.length == 6) {
+            data.readOnly = arguments[5];
+        }
+
+        Element.insert($('<?php /* @escapeNotVerified */ echo $_htmlId ?>_container'), {
+            bottom : this.template({
+                data: data
+            })
+        });
+
+        //$('tier_price_row_' + data.index + '_end').value = data.end;
+        //$('tier_price_row_' + data.index + '_discount').value = data.discount;
+
+        
+
+        if (data.readOnly == '1') {
+            ['start', 'end', 'discount', 'delete'].each(function(idx){
+                $('tier_price_row_'+data.index+'_'+idx).disabled = true;
+            });
+            $('tier_price_row_'+data.index+'_delete_button').hide();
+        }
+         jQuery(".time_start").datetimepicker({
+            date_format:'M/d/yy',
+            time_format:'h:mm a',
+            showsTime: true,
+           /* showHour: true,
+            showMinute: true,*/
+            buttonText:"<?php echo __('Select Date') ?>",
+         });
+          jQuery(".time_end").datetimepicker({
+            date_format:'M/d/yy',
+            time_format:'h:mm a',
+            showsTime: true,
+           /* showHour: true,
+            showMinute: true,*/
+            buttonText:"<?php echo __('Select Date') ?>",
+         });
+        <?php if ($_readonly): ?>
+        $('<?php /* @escapeNotVerified */ echo $_htmlId ?>_container').select('input', 'select').each(this.disableElement);
+        $('<?php /* @escapeNotVerified */ echo $_htmlId ?>_container').up('table').select('button').each(this.disableElement);
+        <?php else: ?>
+        $('<?php /* @escapeNotVerified */ echo $_htmlId ?>_container').select('input', 'select').each(function(el){ Event.observe(el, 'change', el.setHasChanges.bind(el)); });
+        <?php endif; ?>
+    },
+    disableElement: function(el) {
+        el.disabled = true;
+        el.addClassName('disabled');
+    },
+    deleteItem: function(event) {
+        var tr = Event.findElement(event, 'tr');
+        if (tr) {
+            Element.select(tr, '.delete').each(function(elem){elem.value='1'});
+            Element.select(tr, ['input', 'select']).each(function(elem){elem.hide()});
+            Element.remove(tr);
+            //Element.addClassName(tr, 'no-display template');
+        }
+        return false;
+    }
+};
+<?php foreach ($block->getValues() as $_item): ?>
+tierPriceControl.addItem('<?php /* @escapeNotVerified */ echo $_item['start'] ?>', '<?php /* @escapeNotVerified */ echo $_item['end'] ?>','<?php /* @escapeNotVerified */ echo $_item['type'] ?>', '<?php /* @escapeNotVerified */ echo $_item['discount'] ?>', '<?php /* @escapeNotVerified */ echo $_item['order'] ?>',<?php echo (int)!empty($_item['readonly'])?>);
+<?php endforeach; ?>
+<?php if ($_readonly): ?>
+$('<?php /* @escapeNotVerified */ echo $_htmlId ?>_container').up('table').select('button')
+    .each(tierPriceControl.disableElement);
+<?php endif; ?>
+
+window.tierPriceControl = tierPriceControl;
+//]]>
+
+});
+</script>
+<script>
+     require([
+          "jquery",
+          "mage/calendar"
+     ], function($){
+         $(".time_start").datetimepicker({
+            date_format:'M/d/yy',
+            time_format:'h:mm a',
+            showsTime: true,
+           /* showHour: true,
+            showMinute: true,*/
+            buttonText:"<?php echo __('Select Date') ?>",
+         });
+         $(".time_end").datetimepicker({
+            date_format:'M/d/yy',
+            time_format:'h:mm a',
+            showsTime: true,
+           /* showHour: true,
+            showMinute: true,*/
+            buttonText:"<?php echo __('Select Date') ?>",
+         });
+       });
+</script>
+    </div>
+</div>

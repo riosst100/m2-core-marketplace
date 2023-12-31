@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<!--*
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lof_Auction
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  *-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <lofauction>
+        	<general_settings>
+        		<enable>1</enable>
+                <check_max_bids>0</check_max_bids>
+        		<show_curt_auc_price>1</show_curt_auc_price>
+        		<show_bidder>1</show_bidder>
+        		<show_auc_detail>1</show_auc_detail>
+        		<show_winner_msg>Congrats! You’ve won</show_winner_msg>
+                <show_price>1</show_price>
+                <show_bidder_name>1</show_bidder_name>
+                <use_customer_id>0</use_customer_id>
+                <show_confirm_bid>1</show_confirm_bid>
+                <confirm_message>Would you like to bid on this product for %price%?</confirm_message>
+                <only_one_addtocart>1</only_one_addtocart>
+        	</general_settings>
+            <increment_option>
+                <default_step>0.1</default_step>
+                <enable>0</enable>
+            </increment_option>
+        	<auto>
+        		<enable>1</enable>
+				<disable_manual>0</disable_manual>
+        		<limit>1</limit>
+        		<use_increment>1</use_increment>
+        		<show_bid_amount>1</show_bid_amount>
+        		<show_autobidder_name>1</show_autobidder_name>
+        		<show_auto_details>1</show_auto_details>
+        		<enable_auto_outbid_msg>1</enable_auto_outbid_msg>
+        		<show_auto_outbid_msg>You've been outbid</show_auto_outbid_msg>
+                <enable_max_absentee_bid>0</enable_max_absentee_bid>
+                <require_place_bid>0</require_place_bid>
+                <allow_set_winner_absentee>0</allow_set_winner_absentee>
+                <use_half_absentee>0</use_half_absentee>
+                <run_other_absentee>1</run_other_absentee>
+        	</auto>
+            <restriction>
+                <enable>1</enable>
+                <enable_each_customer>0</enable_each_customer>
+                <period>15</period>
+                <times>5</times>
+            </restriction>
+            <auction_page>
+                <enable_top_block>0</enable_top_block>
+                <enable_bottom_block>0</enable_bottom_block>
+                <meta_title>Auctions</meta_title>
+                <meta_keywords>Auctions</meta_keywords>
+                <meta_description>Featured, Ending Soon Auctions</meta_description>
+                <featured_title>Featured Auctions</featured_title>
+                <ending_title>Ending Soon Auctions</ending_title>
+                <starting_title>Starting Soon Auctions</starting_title>
+            </auction_page>
+            <emails>
+                <enable_admin_email>1</enable_admin_email>
+                <admin_notify_email_template>lofauction_emails_admin_notify_email_template</admin_notify_email_template>
+                <enable_outbid_email>1</enable_outbid_email>
+                <outbid_notify_email_template>lofauction_emails_outbid_notify_email_template</outbid_notify_email_template>
+                <enable_confirm_email>1</enable_confirm_email>
+                <confirm_email_template>lofauction_emails_confirm_email_template</confirm_email_template>
+                <enable_winner_notify_email>1</enable_winner_notify_email>
+                <winner_notify_email_template>lofauction_emails_winner_notify_email_template</winner_notify_email_template>
+                <enable_admin_email_template>dropship_email_order_approve_notification</enable_admin_email_template>
+                <enable_min_day_notify>1</enable_min_day_notify>
+				<min_day_notify>1</min_day_notify>
+                <min_hours_notify>0</min_hours_notify>
+				<min_day_notify_email_template>lofauction_emails_min_day_notify_email_template</min_day_notify_email_template>
+            </emails>
+            <advanced_display>
+                <show_max_price>1</show_max_price>
+                <show_max_qty>1</show_max_qty>
+                <show_min_qty>1</show_min_qty>
+                <show_start_price>1</show_start_price>
+                <show_reserve_price>1</show_reserve_price>
+                <show_timezone>1</show_timezone>
+                <show_current_time>1</show_current_time>
+                <show_bid_start>1</show_bid_start>
+                <show_bid_end>1</show_bid_end>
+                <expire_full_info>0</expire_full_info>
+            </advanced_display>
+        </lofauction>
+    </default>
+</config>

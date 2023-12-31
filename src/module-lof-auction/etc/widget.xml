@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--*
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lof_Auction
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  *-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+	<widget id="lof_auction_best" class="Lof\Auction\Block\Widget\AuctionBest">
+		<label translate="true">Lof Auction: Best Auctions</label>
+        <description>Show auction listings.</description>
+		<parameters>
+			<parameter name="general_settings_heading" xsi:type="conditions" visible="true" sort_order="0" class="Lof\Auction\Block\Adminhtml\System\Config\Form\Field\Heading">
+				<label translate="true">General Settings</label>
+			</parameter>
+			<parameter name="widget_title" xsi:type="text" visible="true" sort_order="1">
+				<label translate="true">Title</label>
+			</parameter>
+			<parameter name="image_width" xsi:type="text" visible="true" sort_order="2">
+				<label translate="true">Product Image Width</label>
+				<description translate="true">Input product image width number. Example: 240</description>
+				<value>240</value>
+			</parameter>
+			<parameter name="image_height" xsi:type="text" visible="true" sort_order="3">
+				<label translate="true">Product Image Height</label>
+				<description translate="true">Input product image height number. Example: 300</description>
+				<value>300</value>
+			</parameter>
+			<parameter name="filter_settings_heading" xsi:type="conditions" visible="true" sort_order="5" class="Lof\Auction\Block\Adminhtml\System\Config\Form\Field\Heading">
+				<label translate="true">Filter Settings</label>
+			</parameter>
+			<parameter name="featured" xsi:type="multiselect" visible="true" sort_order="6" source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Featured Auction</label>
+			</parameter>
+			<parameter name="support_automatic" xsi:type="multiselect"  visible="true" sort_order="7" source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Support Automatic Option</label>
+			</parameter>
+			<parameter name="auction_status" xsi:type="multiselect"  visible="true" sort_order="8" source_model="Lof\Auction\Model\ResourceModel\Product\Source\AuctionStatus">
+				<label translate="true">Auction Status</label>
+			</parameter>
+			<parameter name="stop_auction_date" xsi:type="text"  visible="true" sort_order="9">
+				<label translate="true">Auctions have Stop Date Less Than</label>
+				<description translate="true">Input date with format: M/d/yyyy h:i:s for example: 2/30/2020 00:45:25. Will Filter auctions has stop date less than the date. Empty to disable</description>
+				<value></value>
+			</parameter>
+			<parameter name="limit" xsi:type="text"  visible="true" sort_order="10">
+				<label translate="true">Limit Number</label>
+				<description translate="true">Limit number auctions to show.</description>
+				<value>4</value>
+			</parameter>
+			<parameter name="carousel_settings_heading" xsi:type="conditions" visible="true" sort_order="30" class="Lof\Auction\Block\Adminhtml\System\Config\Form\Field\Heading">
+				<label translate="true">Carousel Settings</label>
+			</parameter>
+			<parameter name="mobile_items" xsi:type="text"  visible="true" sort_order="70">
+				<label translate="true">Number Columns On Page (Phones)</label>
+				<description translate="true">Show number items when screen size bellow 480px</description>
+				<value>1</value>
+			</parameter>
+			<parameter name="tablet_small_items" xsi:type="text"  visible="true" sort_order="80">
+				<label translate="true">Number Columns On Page (Phones to Small tablets)</label>
+				<description translate="true">Show number items when screen size between 641px and 480px</description>
+				<value>2</value>
+			</parameter>
+			<parameter name="tablet_items" xsi:type="text"  visible="true" sort_order="90">
+				<label translate="true">Number Columns On Page (Phones to tablets)</label>
+				<description translate="true">Show number items when screen size between 768px and 641px</description>
+				<value>2</value>
+			</parameter>
+			<parameter name="portrait_items" xsi:type="text"  visible="true" sort_order="100">
+				<label translate="true">Number Columns On Page (Portrait tablets)</label>
+				<description translate="true">Show number items when screen size between 979px and 769px</description>
+				<value>3</value>
+			</parameter>
+			<parameter name="default_items" xsi:type="text"  visible="true" sort_order="110">
+				<label translate="true">Number Columns On Page (Default)</label>
+				<description translate="true">Show number items when screen size between 1199px and 980px</description>
+				<value>4</value>
+			</parameter>
+			<parameter name="large_items" xsi:type="text"  visible="true" sort_order="120">
+				<label translate="true">Number Columns On Page (Large display)</label>
+				<description translate="true">Show number items when screen size 1200px and up</description>
+				<value>4</value>
+			</parameter>
+			<parameter name="autoplay" xsi:type="select"  visible="true" sort_order="130" source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Autoplay</label>
+			</parameter>
+			<parameter name="autoplay_timeout" xsi:type="text" visible="true" sort_order="140">
+				<label translate="true">Autoplay Timeout</label>
+			</parameter>
+			<parameter name="rtl" xsi:type="select"  visible="true" sort_order="200" source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">RTL</label>
+
+			</parameter>
+			<parameter name="loop" xsi:type="select"  visible="true" sort_order="210" source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Loop</label>
+
+			</parameter>
+			<parameter name="dots" xsi:type="select"  visible="true" sort_order="220" source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show dots navigations</label>
+			</parameter>
+			<parameter name="nav" xsi:type="select"  visible="true" sort_order="230" source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show next/prev buttons.</label>
+			</parameter>
+			<parameter name="nav_prev" xsi:type="text" visible="true" sort_order="240">
+				<label translate="true">Nav Prev Text</label>
+				<depends><parameter name="nav" value="1" /></depends>
+				<value>Prev</value>
+			</parameter>
+			<parameter name="nav_next" xsi:type="text" visible="true" sort_order="250">
+				<label translate="true">Nav Next Text</label>
+				<depends><parameter name="nav" value="1" /></depends>
+				<value>Next</value>
+			</parameter>
+		</parameters>
+	</widget>
+</widgets>

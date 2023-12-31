@@ -1,0 +1,222 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<route method="GET" url="/V1/lof-couponcode/generatecoupon">
+		<service class="Lofmp\CouponCode\Api\CouponRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lofmp_CouponCode::coupon_save"/>
+		</resources>
+	</route>
+	<route method="GET" url="/V1/lof-couponcode/search">
+		<service class="Lofmp\CouponCode\Api\CouponRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Lofmp_CouponCode::coupon"/>
+		</resources>
+	</route>
+	<route method="GET" url="/V1/lof-couponcode/:couponId">
+		<service class="Lofmp\CouponCode\Api\CouponRepositoryInterface" method="getById"/>
+		<resources>
+			<resource ref="Lofmp_CouponCode::coupon"/>
+		</resources>
+	</route>
+	<route method="PUT" url="/V1/lof-couponcode/:couponId">
+		<service class="Lofmp\CouponCode\Api\CouponRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lofmp_CouponCode::coupon_save"/>
+		</resources>
+	</route>
+	<route method="DELETE" url="/V1/lof-couponcode/:couponId">
+		<service class="Lofmp\CouponCode\Api\CouponRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Lofmp_CouponCode::coupon_delete"/>
+		</resources>
+	</route>
+	<route method="GET" url="/V1/lof-couponcode/:ruleId">
+		<service class="Lofmp\CouponCode\Api\RuleRepositoryInterface" method="getById"/>
+		<resources>
+			<resource ref="Lofmp_CouponCode::rule"/>
+		</resources>
+	</route>
+	<route method="PUT" url="/V1/lof-couponcode/:ruleId">
+		<service class="Lofmp\CouponCode\Api\RuleRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lofmp_CouponCode::rule_save"/>
+		</resources>
+	</route>
+	<route method="DELETE" url="/V1/lof-couponcode/rule/:ruleId">
+		<service class="Lofmp\CouponCode\Api\RuleRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Lofmp_CouponCode::rule_delete"/>
+		</resources>
+	</route>
+	<route method="POST" url="/V1/lof-couponcode/log">
+		<service class="Lofmp\CouponCode\Api\LogRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lofmp_CouponCode::log_save"/>
+		</resources>
+	</route>
+	<route method="GET" url="/V1/lof-couponcode/:logId">
+		<service class="Lofmp\CouponCode\Api\LogRepositoryInterface" method="getById"/>
+		<resources>
+			<resource ref="Lofmp_CouponCode::log"/>
+		</resources>
+	</route>
+	<route method="PUT" url="/V1/lof-couponcode/:logId">
+		<service class="Lofmp\CouponCode\Api\LogRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lofmp_CouponCode::log_save"/>
+		</resources>
+	</route>
+	<route method="DELETE" url="/V1/lof-couponcode/:logId">
+		<service class="Lofmp\CouponCode\Api\LogRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Lofmp_CouponCode::log_delete"/>
+		</resources>
+	</route>
+
+	<!-- Seller Coupon Code Api -->
+	<route method="GET" url="/V1/lof-couponcode/coupon/:alias">
+		<service class="Lofmp\CouponCode\Api\CouponManagementInterface" method="getCouponAlias"/>
+		<resources>
+            <resource ref="self" />
+        </resources>
+		<data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+	<route method="GET" url="/V1/lof-couponcode/listcoupon">
+		<service class="Lofmp\CouponCode\Api\CouponManagementInterface" method="getCouponByConditions"/>
+		<resources>
+            <resource ref="self" />
+        </resources>
+		<data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+    <route method="GET" url="/V1/lof-couponcode/listAvailableCoupon">
+		<service class="Lofmp\CouponCode\Api\CouponManagementInterface" method="getAvailableCoupons"/>
+		<resources>
+            <resource ref="self" />
+        </resources>
+		<data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+    <route method="GET" url="/V1/lof-couponcode/listExpiredCoupon">
+		<service class="Lofmp\CouponCode\Api\CouponManagementInterface" method="getExpiredCoupons"/>
+		<resources>
+            <resource ref="self" />
+        </resources>
+		<data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+    <route method="GET" url="/V1/lof-couponcode/listUsedCoupon">
+		<service class="Lofmp\CouponCode\Api\CouponManagementInterface" method="getUsedCoupons"/>
+		<resources>
+            <resource ref="self" />
+        </resources>
+		<data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+	<route method="GET" url="/V1/lof-couponcode/getByRuleId/:ruleId/:page/:limit">
+		<service class="Lofmp\CouponCode\Api\CouponManagementInterface" method="getCouponByRuleId"/>
+		<resources>
+            <resource ref="self" />
+        </resources>
+		<data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+	<route method="GET" url="/V1/lof-couponcode/getByEmail/:email/:page/:limit">
+		<service class="Lofmp\CouponCode\Api\CouponManagementInterface" method="getCouponByEmail"/>
+		<resources>
+            <resource ref="self" />
+        </resources>
+		<data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+	<route method="PUT" url="/V1/lof-couponcode/coupon">
+		<service class="Lofmp\CouponCode\Api\CouponManagementInterface" method="putCoupon"/>
+		<resources>
+            <resource ref="self" />
+        </resources>
+		<data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+	<route method="DELETE" url="/V1/lof-couponcode/coupon/:couponId">
+		<service class="Lofmp\CouponCode\Api\CouponManagementInterface" method="deleteById"/>
+		<resources>
+            <resource ref="self" />
+        </resources>
+		<data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+
+	<!-- Seller Coupon Code Rule Api -->
+	<route method="POST" url="/V1/lof-couponcode/rule">
+		<service class="Lofmp\CouponCode\Api\RuleRepositoryInterface" method="save"/>
+		<resources>
+            <resource ref="self" />
+        </resources>
+		<data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+	<route method="GET" url="/V1/lof-couponcode/rules">
+		<service class="Lofmp\CouponCode\Api\RuleManagementInterface" method="getList"/>
+		<resources>
+            <resource ref="self" />
+        </resources>
+		<data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+	<route method="GET" url="/V1/lof-couponcode/rule/:ruleId">
+		<service class="Lofmp\CouponCode\Api\RuleManagementInterface" method="getById"/>
+		<resources>
+            <resource ref="self" />
+        </resources>
+		<data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+	<route method="DELETE" url="/V1/lof-couponcode/rule/:ruleId">
+		<service class="Lofmp\CouponCode\Api\RuleManagementInterface" method="deleteById"/>
+		<resources>
+            <resource ref="self" />
+        </resources>
+		<data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+	<route method="PUT" url="/V1/lof-couponcode/rule/:ruleId">
+		<service class="Lofmp\CouponCode\Api\RuleManagementInterface" method="save"/>
+		<resources>
+            <resource ref="self" />
+        </resources>
+		<data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+	<!-- Seller Coupon Code Log Api -->
+	<route method="GET" url="/V1/lof-couponcode/log/:coupon_code/:email/:page/:limit">
+		<service class="Lofmp\CouponCode\Api\LogManagementInterface" method="getLog"/>
+		<resources>
+            <resource ref="self" />
+        </resources>
+		<data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+    <!-- Public Api - get List Public Coupon Code -->
+    <route method="GET" url="/V1/lof-couponcode/:sellerUrl/coupons">
+		<service class="Lofmp\CouponCode\Api\CouponManagementInterface" method="getPublicCoupons"/>
+		<resources>
+            <resource ref="anonymous" />
+        </resources>
+	</route>
+</routes>

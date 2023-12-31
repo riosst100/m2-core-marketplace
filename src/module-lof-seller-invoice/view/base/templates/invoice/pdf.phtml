@@ -1,0 +1,246 @@
+<?php
+    $objectManager   = \Magento\Framework\App\ObjectManager::getInstance();
+    $countryData     = $objectManager->get("Magento\Directory\Model\CountryFactory");
+    $helper          = $this->helper('Lof\SellerInvoice\Helper\Data');
+    $model           = $block->getInvoiceData();
+    $pdf_footer      = $helper->getConfig("general/pdf_footer");
+    $logoUrl         = $helper->getConfig("general/store_logo");
+    $logoUrl         = $block->getLogoPath($logoUrl, $model);
+    $company_name    = $helper->getConfig("general/company_name");
+    $store_name      = $helper->getConfig("general/store_name");
+    $tax_id          = $helper->getConfig("general/tax_id");
+    $store_address   = $helper->getConfig("general/store_address");
+    $store_phone     = $helper->getConfig("general/store_phone");
+    $store_email     = $helper->getConfig("general/store_email");
+    $enable_billing  = $helper->getConfig("general/enable_billing");
+    $enable_billing  = ($enable_billing != null)?(int)$enable_billing: 1;
+    $enable_shipping = $helper->getConfig("general/enable_shipping");
+    $show_seller_tax  = $helper->getConfig("general/show_seller_tax");
+    $show_seller_address  = $helper->getConfig("general/show_seller_address");
+    $request         = $objectManager->get("Magento\Framework\App\Request\Http");
+    $orderData = null;
+    if (!$model->getId()) {
+        if($orderId = $request->getParam("order_id")){
+            $model  = $objectManager->create('\Magento\Sales\Model\Order')->load($orderId);
+            $orderData = $model;
+        }
+    } else {
+        $orderData = $model->getOrder();
+    }
+    $shippingAddress = $model->getShippingAddress();
+    $billingAddress  = $model->getBillingAddress();
+    $enable_shipping = ($enable_shipping != null)?(int)$enable_shipping: 1;
+    $sellerData      = $block->getSellerData();
+?>
+<html><head>
+    <title></title>
+</head><body style="font-family: Verdana, Arial, sans-serif;">
+        <table width="100%" style="font-size: x-small;">
+            <tr>
+                <td valign="top"><img src="<?= $logoUrl; ?>" style="width:150px; max-width:150px;"></td>
+                <td align="right">
+                    <h3><?= $company_name; ?></h3>
+                    <?= $store_name; ?>
+                    <br/>
+                    <?= $store_address; ?>
+                    <?php if($tax_id){ ?>
+                    <br/><?=__("Tax ID: %1", $tax_id); ?>
+                    <?php } ?>
+                    <?php if($store_phone){ ?>
+                    <br/><?=__("phone: %1", $store_phone); ?>
+                    <?php } ?>
+                    <?php if($store_email){ ?>
+                    <br/><?=__("email: "); ?><a href="mailto:<?= $store_email; ?>"><?= $store_email; ?></a>
+                    <?php } ?>
+                </td>
+            </tr>
+        </table>
+        <?php if($enable_billing || $enable_shipping): ?>
+            <section class="admin__page-section order-addresses">
+                <div class="admin__page-section-title">
+                    <span class="title"><?=__("Address Information") ?></span>
+                </div>
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <?php if($enable_billing && $billingAddress): ?>
+                                <div class="admin__page-section-item-title">
+                                    <span class="title"><strong><?=__("Billing Address"); ?></strong></span>
+                                </div>
+                                <address class="admin__page-section-item-content">
+                                    <?php
+                                        echo $billingAddress->getName() . '<br>';
+                                        echo $billingAddress->getStreet()[0] . '<br>';
+                                        echo $billingAddress->getCity() . ', ' . $billingAddress->getRegion() . ', ' . $billingAddress->getPostcode() .'<br>';
+                                        echo $countryData->create()->loadByCode($billingAddress->getCountryId())->getName() . '<br>';
+                                    ?>
+                                    T: <a href="tel:<?= $billingAddress->getTelephone()?>"><?= $billingAddress->getTelephone()?></a>
+                                </address>
+                            <?php endif; ?>
+                        </td>
+                        <td align="right">
+                            <?php if($enable_shipping && $shippingAddress): ?>
+                                <div class="admin__page-section-item-title">
+                                    <span class="title"><strong><?=__("Shipping Address") ?></strong></span>
+                                </div>
+                                <address class="admin__page-section-item-content">
+                                    <?php
+                                        echo $shippingAddress->getName() . '<br>';
+                                        echo $shippingAddress->getStreet()[0] . '<br>';
+                                        echo $shippingAddress->getCity() . ', ' . $shippingAddress->getRegion() . ', ' . $shippingAddress->getPostcode() .'<br>';
+                                        echo $countryData->create()->loadByCode($shippingAddress->getCountryId())->getName() . '<br>';
+                                    ?>
+                                    T: <a href="tel:<?= $shippingAddress->getTelephone()?>"><?= $shippingAddress->getTelephone()?></a>
+                                </address>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        <?php endif; ?>
+        <section class="admin__page-section order-view-billing-shipping">
+        <?php if($orderData->getPayment()): ?>
+            <div class="admin__page-section-title">
+                <span class="title"><?=__("Payment &amp; Shipping Method"); ?></span>
+            </div>
+            <table width="100%">
+                <tr>
+                    <td>
+                        <div class="admin__page-section-item-title">
+                            <span class="title"><?=__("Payment Information"); ?></span>
+                        </div>
+                        <div class="admin__page-section-item-content">
+                            <div class="order-payment-method-title"><?= $orderData->getPayment()->getMethodInstance()->getTitle(); ?></div>
+                            <div class="order-payment-currency">
+                                <?=__("The order was placed using %1", $model->getOrderCurrencyCode()); ?>
+                            </div>
+                        </div>
+                    </td>
+                    <td align="right">
+                        <div class="admin__page-section-item-title">
+                            <span class="title"><?=__("Seller Info") ?></span>
+                        </div>
+                        <div class="admin__page-section-item-content shipping-description-wrapper">
+                            <a href="<?= $sellerData->getUrl(); ?>"><?= $sellerData->getData("name"); ?></a>
+                            <br/>
+                            <?=__("Telephone: %1", $sellerData->getData("telephone")); ?>
+                            <br/>
+                            <?=__('Email: <a href="mailto:%1">' . '%1', $sellerData->getData("email")); ?></a>
+                            <?php if ($show_seller_tax && $sellerData->getTaxvat()) : ?>
+                                <br/><?=__("Tax ID: %1", $sellerData->getTaxvat()); ?>
+                            <?php endif; ?>
+                            <?php if ($show_seller_address) : ?>
+                                <br/><?=__("Address: "); ?>
+                                <?= $sellerData->getAddress()." <br/>".$sellerData->getCity(). ", ".$sellerData->getRegion().", ".$sellerData->getPostcode()."<br/>"; ?>
+                            <?php endif; ?>
+                            <br/>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        <?php endif; ?>
+        </section>
+        <section class="admin__page-section">
+            <div class="admin__page-section-title">
+                <span class="title"><?=__("Items Invoiced") ?></span>
+            </div>
+            <div id="invoice_item_container" class="admin__page-section-content">
+                <div class="admin__table-wrapper">
+                      <table width="100%">
+                        <tr class="headings" style="background-color: lightgray;">
+                            <th class="col-product"><span><?=__("Product");?></span></th>
+                            <th class="col-price"><span><?=__("Price");?></span></th>
+                            <th class="col-qty"><span><?=__("Qty");?></span></th>
+                            <th class="col-subtotal"><span><?=__("Subtotal");?></span></th>
+                            <th class="col-tax"><span><?=__("Tax Amount");?></span></th>
+                            <th class="col-discount"><span><?=__("Discount Amount");?></span></th>
+                            <th class="col-total last"><span><?=__("Row Total");?></span></th>
+                        </tr>
+                            <?php
+                                $subtotal = $tax = $discount = $grand_total = $seller_amount =$seller_total = 0;
+                                // if($invoice_id){
+                                $sellerProducts = $block->getSellerProduct();
+                                $items = $orderData->getAllItems();
+                                foreach($items as $item) {
+                                    if($item->getData('base_row_total') >0)  {
+                                        $product_id = $item->getData('product_id');
+                                        $checkItem = $item->getLofSellerId() ? $item->getLofSellerId() == $sellerData->getId() : in_array($product_id, $sellerProducts);
+                                        if($checkItem) {
+                                            $subtotalIncl = $item->getData('base_row_total_incl_tax');
+                                            $discount_amount = $item->getData('discount_amount');
+                                            $tax_amount = $item->getData('tax_amount');
+                                            $total =   $item->getData('base_row_total');
+
+                                            $row_total =  $total + $tax_amount - $discount_amount;
+                                            $subtotal = $subtotal + $total;
+                                            $tax = $tax + $tax_amount;
+                                            $discount = $discount + $discount_amount;
+                                            $subtotalExcl = $row_total - $tax_amount;
+                                            $grand_total = $grand_total + $row_total;
+
+
+                            ?>
+                            <tr>
+                                <td class="col-product">
+                                    <div class="product-title"><?= $item->getData('name');?></div>
+                                    <div><strong><?=__('SKU');?>:</strong> <?= $item->getData('sku');?></div>
+                                    <?php
+                                        if(isset($item->getData('product_options')['options'])) {
+                                            echo '<dl class="item-options">';
+                                            foreach ($item->getData('product_options')['options'] as $key => $options) {
+                                                echo '<dt>'.$options['label'].'</dt>';
+                                                echo '<dd>'.$options['value'].'</dd>';
+                                            }
+                                            echo '</dl>';
+                                        }
+                                        if(isset($item->getData('product_options')['options'])) {
+                                            echo '<dl class="item-options">';
+                                                foreach ($item->getData('product_options')['options'] as $key => $options) {
+                                                  echo '<dt>'.$options['label'].'</dt>';
+                                                  echo '<dd>'.$options['value'].'</dd>';
+                                                }
+                                            echo '</dl>';
+                                        }
+                                    ?>
+                                </td>
+                                <td class="col-price"><?= $helper->getPriceFomat($item->getData('price'));?></td>
+                                <td class="col-qty"><?= $item->getData('qty_ordered');?></td>
+                                <td class="col-subtotal"><?= $helper->getPriceFomat($total);?></td>
+                                <td class="col-tax"><?= $helper->getPriceFomat($tax_amount);?></td>
+                                <td class="col-discount"><?= $helper->getPriceFomat($discount_amount);?></td>
+                                <td class="col-total last"><?= $helper->getPriceFomat($row_total);?></td>
+                            </tr>
+                            <?php
+                                        }
+                                    }
+                                }
+                            // }
+                            ?>
+                                <tr>
+                                    <td colspan="5"></td>
+                                    <td align="right"><?=__("Grand Total:");?></td>
+                                    <td align="right"><?= $helper->getPriceFomat($grand_total);?></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5"></td>
+                                    <td align="right"><?=__("Subtotal:");?></td>
+                                    <td align="right"><?= $helper->getPriceFomat($subtotal);?></td>
+                                </tr>
+                                <!-- <tr>
+                                    <td colspan="5"></td>
+                                    <td align="right">Shipping &amp; Handling: </td>
+                                    <td align="right" class="gray"><?= $helper->getPriceFomat($model->getShippingAmount());?></td>
+                                </tr> -->
+                                <tr>
+                                    <td colspan="5"></td>
+                                    <td align="right"><?=__("Tax:");?> </td>
+                                    <td align="right"><?= $helper->getPriceFomat($tax);?></td>
+                                </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <div style="text-align: center;position:absolute;bottom: 0;">
+            <?= $pdf_footer; ?>
+        </div>
+</body></html>

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://landofcoder.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_RequestForQuote
+ * @copyright  Copyright (c) 2017 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<sellerinvoice>
+			<general>
+				<pdf_footer>Landofcoder.com | Invocie PDF</pdf_footer>
+				<store_logo>default/logo.jpg</store_logo>
+				<enable_billing>1</enable_billing>
+				<enable_shipping>1</enable_shipping>
+                <show_seller_address>1</show_seller_address>
+                <show_seller_tax>1</show_seller_tax>
+				<new_invoice>si_new_invoice</new_invoice>
+				<sender_email_identity>general</sender_email_identity>
+			</general>
+		</sellerinvoice>
+	</default>
+</config>

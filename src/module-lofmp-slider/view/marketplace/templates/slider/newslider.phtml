@@ -1,0 +1,281 @@
+<?php
+/** @var \Lofmp\Slider\Block\Marketplace\Slider\NewSlider $block */
+$helper = $this->helper("Lof\MarketPlace\Helper\Data");
+$current_slider = $block->getSliderByID();
+$image_url = [];
+if(isset($current_slider["image_url"])){
+    $image_url = $block->getSliderImages($current_slider["image_url"]);
+}
+$effect = ['random','simpleFade', 'curtainTopLeft', 'curtainTopRight', 'curtainBottomLeft', 'curtainBottomRight', 'curtainSliceLeft', 'curtainSliceRight', 'blindCurtainTopLeft', 'blindCurtainTopRight', 'blindCurtainBottomLeft', 'blindCurtainBottomRight', 'blindCurtainSliceBottom', 'blindCurtainSliceTop', 'stampede', 'mosaic', 'mosaicReverse', 'mosaicRandom', 'mosaicSpiral', 'mosaicSpiralReverse', 'topLeftBottomRight', 'bottomRightTopLeft', 'bottomLeftTopRight', 'bottomLeftTopRight', 'scrollLeft', 'scrollRight', 'scrollHorz', 'scrollBottom', 'scrollTop'];
+?>
+<style type="text/css">
+	img.image_show {max-width: 100%;}
+	#list_image input{margin-top: 20px;}
+</style>
+<form class="entry-edit form-inline" action="<?= $block->getUrl('*/*/saveslider');?>" enctype="multipart/form-data" method="post" autocomplete="off">
+	<?php
+	if(isset($current_slider["slider_id"])){ ?>
+		<input type="hidden" name="slider_id" class="admin__control-text" value="<?= $current_slider["slider_id"]; ?>" />
+	<?php } ?>
+	<input type="hidden" name="status" class="admin__control-text" value="0" />
+	<div class="lof-mp-page-title page-title">
+		<h2><?= (!$current_slider) ? __('Add New Slider') : __('Edit Slider')?></h2>
+		<div class="page-actions-buttons">
+			 <div class="actions-split save primary" title="Save">
+				<button class="action-default primary" title="<?= __('Save ') ?>" type="submit">
+					<span><span><?= __('Save Slider') ?></span></span>
+				</button>
+			</div>
+		</div>
+	</div>
+	<div class="admin__fieldset-wrapper-content">
+		<fieldset class="admin__fieldset">
+
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?= __("Title"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" value="<?= isset($current_slider['title'])? $current_slider['title'] : '' ?>" name="title" class="admin__control-text validate-no-html-tags"  />
+				</div>
+			</div>
+
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?= __("Image Types"); ?>
+				</label>
+				<div class="admin__field-control">
+					<select class="admin__control-select" name="image_type" id="post_image_type">
+						<option value="0" <?= isset($current_slider['image_type'])? "selected" : ""?>><?= __("Upload") ?></option>
+						<option value="1" <?= !isset($current_slider['image_type'])? "selected" : ""?>><?= __("URL Link") ?></option>
+					</select>
+				</div>
+			</div>
+
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?= __("Image upload"); ?>
+				</label>
+
+				<div class="admin__field-control" id="image">
+			        <div class="row fileupload-buttonbar" id="image_upload">
+			            <div class="col-lg-12">
+			                <span class="btn btn-success fileinput-button">
+			                    <i class="glyphicon glyphicon-plus"></i>
+			                    <span><?= __("Add files...")?></span>
+			                    <input type="file" name="file[]" class="<?= (!$current_slider)? 'required-file' : ''?>" multiple id="gallery-photo-add">
+			                </span>
+			                <button id="cancel_upload" type="button" class="btn btn-warning cancel'">
+			                	<i class="glyphicon glyphicon-ban-circle"></i>
+			                	<span><?= __("Cancel")?></span>
+			                </button>
+			            </div>
+			        </div>
+			        <!-- ========. image url .====== -->
+					<div class="row fileupload-buttonbar" id="image_link">
+			            <div class="col-lg-12">
+			            	<?php $val = '';
+				            	for($i=0; $i < count($image_url); $i++){
+				            		if(isset($image_url[$i+1])){
+				            			$val .= $image_url[$i]->image_url . ",";
+				            		}else{
+				            			$val .= $image_url[$i]->image_url;
+				            		}
+				            	}
+			            	?>
+			                <input type="text" id="image_link_input" value="<?= $val; ?>" name="image_link" placeholder="www.example/image1.jpg, www.example/image2.jpg" class="admin__control-text">
+			            </div>
+			        </div>
+			        <!-- ========. image url .====== -->
+			        <table  style="margin-top: 10px" role="presentation" id="list_image" class="table table-striped">
+			        	<tbody>
+			        		<?php foreach($image_url as $key => $value): ?>
+			        			<tr>
+			        				<td>
+			        					<image src="<?= (!$current_slider['image_type'])? $helper->getMediaUrl() . $value->image_url : $value->image_url ?>"/>
+			        					<input type="text" value="<?= $value->caption; ?>" class="admin__control-text validate-no-html-tags" name="caption[]" placeholder="<?= __('Caption photo');?>"/>
+						        		<input type="text" value="<?= $value->url_link; ?>" class="admin__control-text validate-url" name="url_link[]" placeholder="<?= __('Link URL');?>"/>
+						        		<input type="number" value="<?= (isset($value->position))? $value->position : ''; ?>" class="admin__control-text" name="position[]" placeholder="<?= __('Image position');?>"/>
+			        				</td>
+			        			</tr>
+							<?php endforeach;?>
+			        	</tbody>
+			        </table>
+				</div>
+			</div>
+
+
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?= __("Show pagination :"); ?>
+				</label>
+				<div class="admin__field-control">
+					<select class="admin__control-select" name="pagination">
+						<option value="0" <?= isset($current_slider['pagination']) && !(int)$current_slider['pagination']? "selected" : ""?>><?= __("No");?></option>
+						<option value="1" <?= isset($current_slider['pagination']) && (int)$current_slider['pagination']? "selected" : ""?>><?= __("Yes");?></option>
+					</select>
+				</div>
+			</div>
+
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?= __("Show thumbnails :"); ?>
+				</label>
+				<div class="admin__field-control">
+					<select class="admin__control-select" name="thumbnail">
+						<option value="0" <?= isset($current_slider['thumbnail']) && !(int)$current_slider['thumbnail']? "selected" : ""?>><?= __("No");?></option>
+						<option value="1" <?= isset($current_slider['thumbnail']) && (int)$current_slider['thumbnail']? "selected" : ""?>><?= __("Yes"); ?></option>
+					</select>
+				</div>
+			</div>
+
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?= __("Effect slider :"); ?>
+				</label>
+				<div class="admin__field-control">
+					<select class="admin__control-select" name="effect">
+					<?php foreach($effect as $value): ?>
+						<option value="<?= $value;?>" <?= (isset($current_slider['effect']) == $value)? "selected" : ""?>><?= $value;?></option>
+					<?php endforeach; ?>
+					</select>
+				</div>
+			</div>
+
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?= __("Image Height (in 'px') :"); ?><span style="color:red">*</span>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="image_height" required value="<?= isset($current_slider['image_height'])? $current_slider['image_height'] : '' ?>" placeholder="<?= __('The height of slider');?>" class="admin__control-text required validate-number" />
+				</div>
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?= __("Image Width (in 'px') :"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="image_width" required value="<?= isset($current_slider['image_width'])? $current_slider['image_width'] : '' ?>" placeholder="<?= __('The with of slider');?>" class="admin__control-text validate-number" />
+				</div>
+			</div>
+
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?= __("Slider Speed (in 'milliseconds') :"); ?><span style="color:red">*</span>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="slider_speed" required value="<?= isset($current_slider['slider_speed'])? $current_slider['slider_speed'] : '' ?>" placeholder="<?= __('milliseconds between the end of the sliding effect and the start of the nex one')?>" class="admin__control-text required validate-number" />
+				</div>
+			</div>
+
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?= __("Slider Duration (in 'milliseconds') :"); ?><span style="color:red">*</span>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="slider_duration" required value="<?= isset($current_slider['slider_duration'])? $current_slider['slider_duration'] : '' ?>" class="admin__control-text required validate-number" placeholder="<?= __('length of the sliding effect in milliseconds')?>"/>
+				</div>
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?= __("Set As Default Slider :"); ?>
+				</label>
+				<div class="admin__field-control">
+					<select class="admin__control-select" name="is_active">
+						<option value="0" <?= isset($current_slider['is_active']) && !(int)$current_slider['is_active']? "selected" : ""?>><?= __("No");?></option>
+						<option value="1" <?= isset($current_slider['is_active']) && (int)$current_slider['is_active']? "selected" : ""?>><?= __("Yes");?></option>
+					</select>
+				</div>
+			</div>
+			<input type="hidden" name="seller_id" value="<?= $helper->getSellerId(); ?>">
+			<?php if(isset($current_slider["image_url"])){
+				foreach($image_url as $value): ?>
+				<input type="hidden" name="photo[]" value="<?= $value->image_url; ?>"/>
+			<?php
+			endforeach;
+			} ?>
+		</fieldset>
+	</div>
+
+</form>
+<script>
+	require(['jquery'], function(){
+
+		var inputLocalFont = document.getElementById("gallery-photo-add");
+		inputLocalFont.addEventListener("change",previewImages,false);
+		function previewImages(){
+			jQuery("#image_link_input").val("");
+			jQuery("#list_image").find('tbody').empty();
+		    var fileList = this.files;
+
+		    var anyWindow = window.URL || window.webkitURL;
+
+		        for(var i = 0; i < fileList.length; i++){
+		          	var objectUrl = anyWindow.createObjectURL(fileList[i]);
+		          	var html = `
+						<tr>
+							<td>
+								<img src="`+ objectUrl +`" class="image_show"/>
+								<input type="text" value="" class="admin__control-text" name="caption[]" placeholder="Caption photo"/>
+				        		<input type="text" value="" class="admin__control-text" name="url_link[]" placeholder="Link URL"/>
+				        		<input type="number" value="" class="admin__control-text" name="position[]" placeholder="Image position"/>
+							</td>
+						</tr>
+					`;
+                	jQuery("#list_image").find('tbody')
+					    .append(html)
+                	}
+		          window.URL.revokeObjectURL(fileList[i]);
+		        }
+
+    	// -------------------. Use url link
+    	jQuery("#post_image_type").on("change", function(){
+	        var val = jQuery(this).val();
+	        if(val == "0"){
+	            jQuery("#image_upload").show();
+	            jQuery("#image_link").hide();
+	        }else{
+	            jQuery("#image_upload").hide();
+	            jQuery("#image_link").show();
+	        }
+	    }).change();
+	    // -------------------. Show image with url
+
+		jQuery("#image_link_input").on("change",function(){
+			jQuery("#gallery-photo-add").val("");
+			var img_src = [];
+			var imageUrl = jQuery(this).val().split(' ').join('');
+			if (imageUrl !== "") {
+				imageUrl = imageUrl.split(",");
+		      	imageUrl = imageUrl.filter((v,i) => imageUrl.indexOf(v) == i);
+		      	jQuery(this).val(imageUrl);
+		      	jQuery("#list_image").find('tbody').empty();
+		      	for (var i = 0; i < imageUrl.length; i++) {
+
+		      		url = imageUrl[i];
+		      		if(url.match(/\.(jpeg|jpg|gif|png)$/) != null){
+					    var html = `
+							<tr>
+								<td>
+									<img src="`+ url +`" class="image_show"/>
+									<input type="text" value="" class="admin__control-text" name="caption[]" placeholder="Caption photo"/>
+					        		<input type="text" value="" class="admin__control-text" name="url_link[]" placeholder="Link URL"/>
+					        		<input type="number" value="" class="admin__control-text" name="position[]" placeholder="Image position"/>
+								</td>
+							</tr>
+						`;
+		            	jQuery("#list_image").find('tbody')
+						    .append(html)
+		      		}
+			    }
+			}else{
+				jQuery("#list_image").find('tbody').empty();
+			}
+	    });
+
+	    jQuery('#cancel_upload').on('click', function() {
+	    	jQuery("#list_image").find('tbody').empty();
+	        jQuery("#gallery-photo-add").val("");
+	    });
+	})
+</script>

@@ -1,0 +1,23 @@
+<?php
+/**
+ * Copyright ©  All rights reserved.
+ * See COPYING.txt for license details.
+ */
+declare(strict_types=1);
+
+namespace Lof\SellerInvoice\Model\ResourceModel;
+
+use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
+
+class Sellerinvoice extends AbstractDb
+{
+
+    /**
+     * @inheritDoc
+     */
+    protected function _construct()
+    {
+        $this->_init('lof_marketplace_sellerinvoice', 'sellerinvoice_id');
+    }
+}
+

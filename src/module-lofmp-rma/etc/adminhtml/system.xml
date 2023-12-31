@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Config/etc/system_file.xsd">
+    <system>
+        <tab id="Lofmprma" translate="label" sortOrder="100">
+            <label>Lofmp RMA Manager</label>
+        </tab>
+        <section id="rma" showInDefault="1" showInWebsite="1" showInStore="1" type="text" translate="label" sortOrder="100">
+            <label>RMA</label>
+            <tab>Lofmprma</tab>
+            <resource>Lofmp_Rma::config_rma</resource>
+            <group id="general" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10">
+                <label>General Settings</label>
+                <field id="allow_seller_manage" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Allow Seller Manage</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="return_address" translate="label" type="textarea" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Return Address</label>
+                </field>
+                <field id="is_active_frontend" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show RMA section in Customer Account</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="default_status" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default status </label>
+                    <source_model>\Lofmp\Rma\Model\Config\Source\Rma\Status</source_model>
+                </field>
+                <field id="default_user" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default RMA manager </label>
+                    <source_model>\Lofmp\Rma\Model\System\Config\Source\Admin\User</source_model>
+                </field>
+                <field id="enable_guest_rma" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable RMA for Guest</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="is_gift_active" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable option &quot;This was a gift&quot;</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="file_allowed_extensions" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Allow upload file with extensions</label>
+                    <comment>ex:jpg,png,pdf...)</comment>
+                </field>
+                <field id="file_size_limit" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>File max size(Mb)</label>
+                </field>
+                <field id="is_require_shipping_confirmation" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Ask to confirm shipping</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="shipping_confirmation_text" translate="label" type="textarea" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Shipping confirmation text</label>
+                </field>
+                <field id="enable_bundle_rma_fronend" translate="label" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Bundle RMA section in Customer Account</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enable_bundle_rma_backend" translate="label" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Bundle RMA section in Backend</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="use_both_rma_type" translate="label" type="select" sortOrder="125" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use both options Single RMA and Bundle RMA</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="policy" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="30">
+                <label>RMA Policy</label>
+                <field id="return_period" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allow to request RMA after order completion(day)</label>
+                </field>
+                <field id="outdate" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allow to resolve RMA in (day)</label>
+                </field>
+                <field id="allow_in_statuses" translate="label" type="multiselect" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allow order status</label>
+                    <source_model>\Lofmp\Rma\Model\Config\Source\Order\Status</source_model>
+                </field>
+                <field id="return_only_shipped" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Request only shipped products</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If the order has only been partially shipped, then only the shipped items will be available for the RMA</comment>
+                </field>
+                <field id="is_active" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Ask to agree with RMA policy text</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+
+            <group id="notification" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="50">
+                <label>Email Notification Settings</label>
+                <field id="sender_email" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+                <field id="customer_email_template" translate="label" type="select" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Customer  Notification Email Template</label>
+                    <source_model>\Lofmp\Rma\Model\System\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="seller_email_template" translate="label" type="select" sortOrder="26" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label> RMA Seller Notification Email Template</label>
+                    <source_model>\Lofmp\Rma\Model\System\Config\Source\Email\Template</source_model>
+                </field>
+                 <field id="admin_email_template" translate="label" type="select" sortOrder="26" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label> RMA Manager Notification Email Template</label>
+                    <source_model>\Lofmp\Rma\Model\System\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="rule_template" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label> Rule Notification Template</label>
+                    <source_model>\Lofmp\Rma\Model\System\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="send_email_bcc" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label> Send blind carbon copy (BCC) of all emails to</label>
+                </field>
+            </group>
+
+            <group id="rmafields" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="30">
+                <label>Frontend RMA Fields Settings</label>
+                <field id="enable_reason" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Reason Field</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enable_condition" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Condition Field</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enable_resolution" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Resolution Field</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

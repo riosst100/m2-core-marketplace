@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lof_Quickrfq
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Lof_Extensions::landofcoderextensions" title="Lof Extensions">
+                    <resource id="Lof_Quickrfq::quickrfq" title="Quick RFQ" sortOrder="30">
+                        <resource id="Lof_Quickrfq::quickrfq_approve" sortOrder="2" title="Approve Quote"/>
+                        <resource id="Lof_Quickrfq::quickrfq_close" sortOrder="2" title="Close Quote"/>
+                        <resource id="Lof_Quickrfq::quickrfq_save" sortOrder="10" title="Save Quote"/>
+                        <resource id="Lof_Quickrfq::quickrfq_delete" sortOrder="20" title="Delete Quote"/>
+                        <resource id="Lof_Quickrfq::quickrfq_update" sortOrder="30" title="Update Quote"/>
+                        <resource id="Lof_Quickrfq::quickrfq_view" sortOrder="40" title="View Quote"/>
+                        <resource id="Lof_Quickrfq::send" sortOrder="50" title="Send Message"/>
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Lof_Quickrfq::config_quickrfq" title="Lof Quick Request For Quote Config" />
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

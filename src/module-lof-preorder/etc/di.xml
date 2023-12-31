@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lof_PreOrder
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="Lof_PreOrder::afterIsSalable" type="Lof\PreOrder\Model\Plugin\Product" sortOrder="1" />
+    </type>
+    <!-- <type name="Magento\ConfigurableProduct\Plugin\Model\ResourceModel\Attribute\InStockOptionSelectBuilder">
+        <plugin name="Magento_ConfigurableProduct_Plugin_Model_ResourceModel_InStockOptionSelectBuilder"
+                type="Lof\PreOrder\Plugin\Attribute\InStockOptionSelector"/>
+    </type>
+    <preference for="Magento\ConfigurableProduct\Block\Product\View\Type\Configurable" type="Lof\PreOrder\Block\Product\View\Type\Configurable"/> -->
+    <!-- <preference for="Magento\Swatches\Block\Product\Renderer\Configurable" type="Lof\PreOrder\Block\Outstock" /> -->
+    <preference for="Lof\PreOrder\Api\PreOrderRepositoryInterface" type="Lof\PreOrder\Model\PreOrderRepository"/>
+	<preference for="Lof\PreOrder\Api\Data\PreOrderInterface" type="Lof\PreOrder\Model\PreOrder"/>
+    <preference for="Lof\PreOrder\Api\Data\ItemInterface" type="Lof\PreOrder\Model\Item"/>
+    <preference for="Lof\PreOrder\Api\Data\CompleteItemInterface" type="Lof\PreOrder\Model\Complete"/>
+    <preference for="Lof\PreOrder\Api\Data\PreOrderSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Magento\CatalogInventory\Model\StockStateProvider" type="Lof\PreOrder\Model\Plugin\StockStateProvider" />
+    <preference for="Magento\CatalogInventory\Model\Quote\Item\QuantityValidator" type="Lof\PreOrder\Model\Plugin\QuantityValidator" />
+    <preference for="Magento\InventorySales\Model\IsProductSalableForRequestedQtyCondition\IsSalableWithReservationsCondition" type="Lof\PreOrder\Model\Plugin\IsSalableWithReservationsCondition" />
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="lofpreorder_preorder_listing_data_source" xsi:type="string">Lof\PreOrder\Model\ResourceModel\PreOrder\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Lof\PreOrder\Model\ResourceModel\PreOrder\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">lof_preorder_items</argument>
+            <argument name="eventPrefix" xsi:type="string">lof_preorder_items_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">items_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Lof\PreOrder\Model\ResourceModel\PreOrder</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="PreOrderGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="PreOrderGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Lof\PreOrder\Model\ResourceModel\PreOrder\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">PreOrderGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+</config>

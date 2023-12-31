@@ -1,0 +1,141 @@
+<?php
+$helper = $this->helper('Lofmp\TimeDiscount\Helper\Data');
+$i = 0;
+if($product = $this->getProduct()):
+if($product->getData('data') && count($product->getData('data')) > 0 && $helper->getConfig('general_settings/enable')):
+$today = $helper->getTimezoneDateTime();
+?>
+<div class="row" id="lofmp_timediscount">
+	<div class="field col-sm-6">
+		<div class="response-field-text">
+			<div class="subtemplate-wrapper">
+				<label for="time_start"><?= __('Time Start');?></label>
+				<div class="row">
+					<div class="col-sm-12">
+						<input class="time_start validate-greater-than-zero" type="text" name="time_start"  id="time_start" />
+						<i class="fa fa-calendar form-field-icon" style="color:;"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="field col-sm-6">
+		<div class="response-field-text">
+			<div class="subtemplate-wrapper">
+				<label for="time_end"><?= __('Time End');?></label>
+				<div class="row">
+					<div class="col-sm-12">
+						<input class="time_end validate-greater-than-zero" type="text" name="time_end"  id="time_end" />
+						<i class="fa fa-calendar form-field-icon" style="color:;"></i>
+						<div class="test"></div>
+						<div class="test1"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="field col-sm-12">
+		<div class="response-field-text">
+			<div class="subtemplate-wrapper">
+				<label for="time_end"><?= __('Infomation time slot discount');?></label>
+				<div class="row">
+					<div class="col-sm-6">
+						<?= __('Today: ').$today;?>
+					</div>
+					<div class="col-sm-6">
+						<?= __('Timezone: ').$helper->getTimezoneName();?>
+					</div>
+				</div>
+				<?php
+				foreach ($product->getData('data') as $key => $timeslot):
+					$timeStart = $helper->getTimezoneDateTime($timeslot['start']);
+					$timeEnd = $helper->getTimezoneDateTime($timeslot['end']);
+					if (strtotime($today) <= strtotime($timeEnd)):
+					$i++;
+				?>
+					<div class="row">
+						<div class="col-sm-6">
+							<?= __('Start: ').$timeslot['start'];?>
+						</div>
+						<div class="col-sm-6">
+							<?= __('End: ').$timeEnd;?>
+						</div>
+						<div class="col-sm-6">
+							<?php if($timeslot['type'] == 'percent'):
+								$price = $this->getCurrentProduct()->getPrice()*(1-$timeslot['discount']/100);
+								$discount = $timeslot['discount'].'%';
+							else:
+								$discount = $this->formatPrice($timeslot['discount']);
+								$price = $this->getCurrentProduct()->getPrice() - $timeslot['discount'];
+							endif;
+							echo __('Discount: ')."<strong>".$discount."</strong>";?>
+						</div>
+						<div class="col-sm-6">
+							<?= __('Price: ')."<strong>".$this->formatPrice($price)."</strong>";?>
+						</div>
+					</div>
+				<?php 
+				endif;
+			endforeach; ?>
+			</div>
+		</div>
+	</div>
+</div>
+<style type="text/css">
+<?php if($i ==0): ?>
+	#lofmp_timediscount {
+		display: none;
+	}
+<?php endif; ?>
+</style>
+<script>
+     require([
+          "jquery",
+          "mage/calendar"
+     ], function($){
+         $(".time_start").datetimepicker({
+            date_format:'M/d/yy',
+            time_format:'h:mm a',
+            showsTime: true,
+           /* showHour: true,
+            showMinute: true,*/
+            buttonText:"<?= __('Select Date') ?>",
+         });
+       	$(".time_end").datetimepicker({
+            date_format:'M/d/yy',
+            time_format:'h:mm a',
+            showsTime: true,
+            buttonText:"<?= __('Select Date') ?>",
+         });
+       	  $(".time_end,.time_start").on("keyup change", function () {
+		        var end = Date.parse($(".time_end").val());
+		        var start = Date.parse($(".time_start").val());
+		        <?php 
+				foreach ($product->getData('data') as $key => $timeslot):  
+					$timeStart = $helper->getTimezoneDateTime($timeslot['start']);
+					$timeEnd = $helper->getTimezoneDateTime($timeslot['end']);
+				?>
+		        	if(start >= Date.parse('<?= $timeStart;?>') && end <= Date.parse('<?= $timeEnd;?>') && end >=start){
+		        		<?php if($timeslot['type'] == 'percent'):
+							$price = $this->getCurrentProduct()->getPrice()*(1-$timeslot['discount']/100);
+							$discount = $timeslot['discount'].'%';
+						else:
+							$discount = $this->formatPrice($timeslot['discount']);
+							$price = $this->getCurrentProduct()->getPrice() - $timeslot['discount'];
+						endif;
+		        		?>
+		        		$('.price-final_price #product-price-<?= $this->getCurrentProduct()->getId(); ?>').html('<?= $this->formatPrice($price); ?>');
+		        		return false;
+					}else{
+		        		$('.price-final_price #product-price-<?= $this->getCurrentProduct()->getId(); ?>').html('<?= $this->formatPrice($this->getCurrentProduct()->getPrice()); ?>');
+		        		//return false;
+					}
+		        <?php endforeach; ?>
+		    });
+       });
+
+</script>
+<?php
+endif;
+endif;
+?>

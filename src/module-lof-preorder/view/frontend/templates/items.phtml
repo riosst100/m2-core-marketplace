@@ -1,0 +1,78 @@
+<div class="lof-loading-mask lof-display-none">
+    <div class="lof-loader"></div>
+</div>
+<?php
+    $flag = 0;
+    $helper = $this->helper('Lof\PreOrder\Helper\Data');
+    $cartHelper = $this->helper('Magento\Checkout\Helper\Cart');
+    $preorderCompleteProductId = $helper->getPreorderCompleteProductId();
+    $options = $helper->getPreorderCompleteOptions(false);
+    $_order = $block->getOrder();
+    $_items = $_order->getItemsCollection();
+    $info = [];
+    $incrementId = "#".$_order->getIncrementId();
+    $product = $helper->getProduct($preorderCompleteProductId);
+    $url = $cartHelper->getAddUrl($product);
+    $count = 0;
+?>
+<?php foreach ($_items as $_item): ?>
+    <?php
+        $quoteItemId = $_item->getQuoteItemId();
+        $itemId = $_item->getId();
+        $productId = $_item->getProductId();
+        $preorderOrderedItem = $helper->getPreorderOrderedItem($itemId);
+        $msg = "";
+    if ($preorderOrderedItem) {
+        $msg = $preorderOrderedItem->getPreorderNote();
+        if (!$msg) {
+            $msg = $helper->getPreOrderInfoBlock($productId, $_item->getProduct());
+        }
+    }
+    if ($_item->getParentItem()) {
+        $parentId = $_item->getParentItem()->getProductId();
+        $key = $count-1;
+        $info[$key]['item_id'] = $itemId;
+        $info[$key]['product_id'] = $productId;
+        $info[$key]['parent_id'] = $parentId;
+        $info[$key]['msg'] = '';
+
+        if ($preorderOrderedItem) {
+            $flag = 1;
+            $info[$key]['preorder'] = $helper->getPreorderStatus($itemId, $preorderOrderedItem);
+            if ($helper->isConfigAvailable($productId, $qty, $parentId)) {
+                $info[$key]['available'] = 1;
+            }
+            $info[$key]['msg'] = $msg;
+        }
+    } else {
+        $qty = $_item->getQtyOrdered();
+        $name = $_item->getName();
+        $iteminfo = ['available' => 0, 'preorder' => 0, 'msg'=>'', 'item_id' => $itemId, 'parent_id' => 0 ,'product_id' => $productId, 'product_name' => $name, 'qty' => $qty];
+           
+        if ($preorderOrderedItem) {
+            $flag = 1;
+            $iteminfo['preorder'] = $helper->getPreorderStatus($itemId, $preorderOrderedItem);
+            if ($helper->isAvailable($productId, $qty)) {
+                $iteminfo['available'] = 1;
+            }
+            $iteminfo['msg'] = $msg;
+        }
+        $info[$count] = $iteminfo;
+        $count++;
+    }
+    ?>
+<?php endforeach; ?>
+<?php
+$addtocart_button_text = $helper->getAddtocartButtonText();
+$preorder_warning_in_order = $helper->getPreorderWarningInOrder();
+$preorder_warning_in_order = strip_tags($preorder_warning_in_order);
+$orderid = $_order->getId();
+$data = json_encode(["option" => $options, "preorder_warning"=> $preorder_warning_in_order, "info" => $info, "flag" => $flag, "orderid" => $orderid, "incrementId" => $incrementId, "url" => $url, "preorderCompleteProductId" => $preorderCompleteProductId, "buttonText" => $addtocart_button_text]);
+?>
+<script type="text/x-magento-init">
+    {
+        "body": {
+            "Lof_PreOrder/js/items": <?php echo $data ?>
+        }
+    }
+</script>

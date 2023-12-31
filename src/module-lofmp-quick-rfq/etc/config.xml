@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2020 Landofcoder.com
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <lofmp_quickrfq>
+            <general>
+                <enabled>1</enabled>
+            </general>
+        </lofmp_quickrfq>
+    </default>
+</config>

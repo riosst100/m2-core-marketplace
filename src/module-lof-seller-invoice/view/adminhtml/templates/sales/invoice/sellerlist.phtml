@@ -1,0 +1,10 @@
+<?php 
+	$sellers 	= $block->getSellerIds();
+?>
+<div class="page-actions-buttons">
+	<?php foreach ($sellers as $seller): ?>
+		<button id="seller_invoice_<?php echo $seller['seller_id']; ?>" title="<?php echo $seller['seller_name'];?>	Invoice Pdf" type="button" class="action-default scalable send-email" style="margin-right: 10px" onclick="location.href='<?php echo $this->getPreviewPdfUrl($seller['seller_id']);?>'">
+		    <span><?php echo $seller['seller_name'];?>	Invoice Pdf</span>
+		</button>
+	<?php endforeach;?>
+</div>

@@ -1,0 +1,66 @@
+<?php
+/**
+ * customeraddress
+ *
+ * @copyright Copyright © 2020 landofcoder. All rights reserved.
+ * @author    landofcoder@gmail.com
+ * @var \Lof\Quickrfq\Block\Adminhtml\Rfq\CustomerAddress $block
+ */
+?>
+<?php $quote = $block->getQuote(); ?>
+<?php $attachments = $block->getAttachFiles() ?>
+
+<div class="admin__table-secondary">
+    <div class="admin__page-section-item-content">
+        <table class="admin__table-secondary lof-cp-table">
+            <tr>
+                <th>
+                    <span><?= $block->escapeHtml(__('Customer Name')) ?></span>
+                </th>
+                <td>
+                    <span><?= $block->escapeHtml(__($quote->getContactName())) ?></span>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <span><?= $block->escapeHtml(__('Email Address')) ?></span>
+                </th>
+                <td>
+                    <span><?= $block->escapeHtml(__($quote->getEmail())) ?></span>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <span><?= $block->escapeHtml(__('Phone Number ')) ?></span>
+                </th>
+                <td>
+                    <span><?= $block->escapeHtml(__($quote->getPhone())) ?></span>
+                </td>
+            </tr>
+            <?php if ($attachments && $attachments->getSize()): ?>
+            <tr>
+                <th>
+                    <span><?= $block->escapeHtml(__('Attachment')) ?></span>
+                </th>
+                <td>
+                    <span>
+                        <div class="attachment-list">
+                            <div class="attachments-list">
+                                <?php foreach ($attachments as $file): ?>
+                                    <div class="quote-parent-info-item">
+                                        <div class="attachments-item">
+                                            <a href="<?= $block->escapeUrl($block->getAttachmentUrl($file->getEntityId())) ?>"
+                                               title="<?= $block->escapeHtmlAttr($file->getFileName()) ?>"><?= $block->escapeHtml($file->getFileName()) ?>
+                                            </a>
+                                        </div>
+                                    </div>
+                                <?php endforeach ?>
+                            </div>
+                        </div>
+                    </span>
+                </td>
+            </tr>
+            <?php endif; ?>
+        </table>
+    </div>
+</div>

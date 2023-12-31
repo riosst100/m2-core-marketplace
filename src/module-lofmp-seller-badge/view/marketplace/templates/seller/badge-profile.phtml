@@ -1,0 +1,49 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_SellerBadge
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+?>
+
+<?php
+/**
+ * Badge
+ *
+ * @var $block \Lofmp\SellerBadge\Block\Seller\Badge
+ * @var $helper \Lofmp\SellerBadge\Helper\Data
+ */
+
+$helperSeller = $this->helper("Lof\MarketPlace\Helper\Seller");
+$seller = $helperSeller->getSellerByCustomer();
+if (!$seller) {
+    return;
+}
+$sellerId = $seller['seller_id'];
+
+$_badgeCollection = $block->getBadgeCollection($sellerId);
+
+if (!$_badgeCollection->count()) {
+    return;
+}
+?>
+
+<div class="lofmp-badges lofmp-badges--medium x_panel">
+    <?= $this->getLayout()->createBlock(\Lofmp\SellerBadge\Block\Seller\Badge::class)
+        ->setBadgeCollection($_badgeCollection)
+        ->setTemplate("Lofmp_SellerBadge::seller/items.phtml")->toHtml(); ?>
+</div>

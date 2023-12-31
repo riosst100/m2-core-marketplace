@@ -1,0 +1,54 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPermissions
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+/** @var Lof\MarketPermissions\Block\Marketplace\Management\Info $block
+ * @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer
+ */
+?>
+<div class="lof-mp-page-title page-title">
+    <h3><?= $block->escapeHtml(__('Roles and Permissions')) ?></h3>
+</div>
+<?php if ($block->hasCustomerSeller() && $block->isRoleEditAllowed()): ?>
+    <div class="page-main-actions">
+        <div class="page-actions">
+            <div class="actions" data-ui-id="page-actions-toolbar-content-header">
+                <div class="page-actions-inner">
+                    <div class="page-actions-buttons">
+                        <button type="button"
+                                title="<?= $block->escapeHtmlAttr(__('Add New Role')) ?>"
+                                id="add-new-role"
+                                class="action primary"
+                                data-mobile-label="<?= $block->escapeHtmlAttr(__('Add New Role')) ?>">
+                            <span><?= $block->escapeHtml(__('Add New Role')) ?></span>
+                        </button>
+                        <?php $url = $block->escapeJs($block->getUrl('*/*/edit')); ?>
+                        <?= /* @noEscape */
+                        $secureRenderer->renderEventListenerAsTag(
+                            'onclick',
+                            "location = ('{$url}')",
+                            '.actions #add-new-role'
+                        ); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>

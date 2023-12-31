@@ -1,0 +1,99 @@
+<?php
+    $helper = $this->helper("Lofmp\PriceComparison\Helper\Data");
+    $_helper = $this->helper('Lof\MarketPlace\Helper\Data');
+    $queryString = $helper->getQueryString();
+    $collection = $this->getAllProducts();
+    $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
+    $productId = $helper->getProductId();
+    $product = $helper->getProduct();
+    $productImage = $_helper->getMediaUrl().'catalog/product'.$product->getData('small_image');
+    $price = $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($product->getFinalPrice(), true, false);
+?>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><?php echo __('Assign Product');?></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <img width="200px" src="<?php echo $productImage; ?>" />
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="assign_product_name">
+                            <h3><a href="<?php echo $product->getProductUrl();?>"><?php echo $product->getName(); ?></a></h3>
+                        </div>
+                        <div class="assign_product_price">
+                            <h4><?php echo $price; ?></h4>
+                        </div>
+                        <div class="assign_product_description">
+                            <?php echo $product->getDescription(); ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <form method="post" action="<?php echo $this->getUrl('lofmppricecomparison/product/save', ["_secure" => $this->getRequest()->isSecure()]); ?>" id="lofmppricecomparison_product_form" enctype="multipart/form-data" method="post" data-role="form-profile-validate" data-mage-init='{"validation":{}}'>
+                <input type="hidden" name="form_key" value="<?php echo $this->getFormKey(); ?>">
+                <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
+                 <div class="admin__fieldset-wrapper-content">
+                    <fieldset class="admin__fieldset">
+                        <div class="admin__field _required">
+                            <label class="admin__field-label">
+                                <span><?php echo __("Product Condition"); ?></span>
+                            </label>
+                            <div class="admin__field-control">
+                                <select aria-required="true" name="product_condition" id="product_condition" class="required-entry admin__control-select" title="Product Condition" data-validate="{'validate-select':true}">
+                                    <option value="1"><?php echo __('New'); ?></option>
+                                    <option value="2"><?php echo __('Used'); ?></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="admin__field _required">
+                            <label class="admin__field-label">
+                                <span><?php echo __("Price"); ?></span>
+                            </label>
+                            <div class="admin__field-control">
+                                <input value="" type="text" data-validate="{required:true}" class="admin__control-text required-entry validate-zero-or-greater" title="price" name="price" id="price" aria-required="true">
+                            </div>
+                        </div>
+                        <div class="admin__field _required">
+                            <label class="admin__field-label">
+                                <span><?php echo __("Quantity"); ?></span>
+                            </label>
+                            <div class="admin__field-control">
+                                <input value="" type="text" data-validate="{required:true}" class="admin__control-text required-entry validate-number" title="qty" name="qty" id="qty" aria-required="true">
+                            </div>
+                        </div>
+                        <div class="admin__field _required">
+                            <label class="admin__field-label">
+                                <span><?php echo __("Description"); ?></span>
+                            </label>
+                            <div class="admin__field-control">
+                                <textarea data-validate="{required:true}" class="admin__control-text required-entry" title="description" name="description" id="description" aria-required="true"></textarea>
+                            </div>
+                        </div>
+                        <div class="admin__field _required">
+                            <label class="admin__field-label">
+                                <span><?php echo __("Image"); ?></span>
+                            </label>
+                            <div class="admin__field-control">
+                                <input accept="image/*" type="file" class="admin__control-text required-entry" title="image" name="image" id="image">
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="actions-toolbar">
+                        <div class="primary">
+                            <button type="submit" class="action continue primary" title="Continue"><span><?php echo __('Save');?></span></button>
+                        </div>
+                    </div>
+                </div>
+             </form>
+        </div>
+    </div>    
+</div>

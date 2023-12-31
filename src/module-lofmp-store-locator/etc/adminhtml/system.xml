@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://landofcoder.com/license
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category   Landofcoder
+ * @package    Lofmp_StoreLocator
+ * @copyright  Copyright (c) 2016 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+	<system>
+		<tab id="landofcoder" translate="label" sortOrder="900">
+			<label>Landofcoder</label>
+		</tab>
+		<section id="lofmpstorelocator" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+			<class>separator-top</class>
+			<label>Seller Store Locator</label>
+			<tab>landofcoder</tab>
+			<resource>Lofmp_StoreLocator::config_storelocator</resource>
+			<group id="general" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>General Settings</label>
+				<field id="enable" translate="label comment" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Enable</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="route" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Route</label>
+				</field>
+				<field id="pagination" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Pagination List Store</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<comment><![CDATA[Enable/Disable Show Pagination. ]]></comment>
+				</field>
+				<field id="store_limit" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Store Limit</label>
+					<comment><![CDATA[Limit number of stores will be show in list store when pagging on frontend.]]></comment>
+				</field>
+				<field id="store_perpage" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Store Per Page</label>
+				</field>
+				<field id="enable_locator_product" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable Product Search</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Enable/Disable module block on product page. Default: Yes]]></comment>
+                </field>
+				<field id="enable_category_filter" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Enable Category Filter</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<comment><![CDATA[Enable/Disable Show Category Filter Search. ]]></comment>
+				</field>
+				<field id="enable_tag_filter" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Enable Tag Filter</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<comment><![CDATA[Enable/Disable Show Tag Filter Search. ]]></comment>
+				</field>
+			    <field id="enable_productlocator" translate="label comment" type="select" sortOrder="65" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Enable Find Stores By Product Name</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="seo_heading" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>SEO</label>
+					<frontend_model>Lofmp\StoreLocator\Block\Adminhtml\System\Config\Form\Field\Heading1</frontend_model>
+				</field>
+				<field id="enable_rewrite_url" translate="label comment" type="select" sortOrder="75" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Enable Rewrite Url</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<comment><![CDATA[Enable/Disable Rewrite Url for store locator item.]]></comment>
+				</field>
+				<field id="page_title" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Page title</label>
+				</field>
+				<field id="seo_keywords" translate="label comment" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Meta KeyWords</label>
+				</field>
+				<field id="seo_description" translate="label comment" type="textarea" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Meta Description</label>
+				</field>
+				<field id="other_heading" translate="label comment" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Google API</label>
+					<frontend_model>Lofmp\StoreLocator\Block\Adminhtml\System\Config\Form\Field\Heading1</frontend_model>
+				</field>
+				<field id="api_key" translate="label comment" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Key</label>
+					<comment><![CDATA[Please register a google API key at <a href="https://developers.google.com/maps/web/" target="_blank">here</a>]]></comment>
+				</field>
+				
+				<field id="show_seller_info" translate="label comment" type="select" sortOrder="125" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Show Seller Info Block in Storelocator Details Page</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="show_seller_name" translate="label comment" type="select" sortOrder="128" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Show Seller Name in Storelocator Details Page</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+			</group>
+			<group id="location" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Default Location Settings</label>
+				<field id="address_preview" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Map</label>
+					<frontend_model>Lofmp\StoreLocator\Block\Adminhtml\System\Config\Form\Field\Gmap</frontend_model>
+				</field>
+				<field id="location_lng" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Longitude</label>
+				</field>
+				<field id="location_lat" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Latitude</label>
+				</field>
+				<field id="zoom" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Zoom</label>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

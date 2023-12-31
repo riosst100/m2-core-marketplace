@@ -1,0 +1,24 @@
+{
+    "name": "landofcoder/module-delivery-slot-graph-ql",
+    "description": "Magento 2 Seller Delivery Slots with Time Graph Ql",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Landofcoder",
+            "email": "info@landofcoder.com",
+            "homepage": "https://landofcoder.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "version": "1.0.0",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Lofmp\\DeliverySlotGraphQl\\": ""
+        }
+    }
+}

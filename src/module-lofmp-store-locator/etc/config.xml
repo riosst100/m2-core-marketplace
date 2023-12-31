@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://landofcoder.com/license
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category   Landofcoder
+ * @package    Lofmp_StoreLocator
+ * @copyright  Copyright (c) 2016 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<lofmpstorelocator>
+			<general>
+				<enable>1</enable>
+				<route>storelocator</route>
+				<page_title>Store locators</page_title>
+				<seo_keywords>keywords</seo_keywords>
+				<seo_description>seo description</seo_description>
+				<pagination>1</pagination>
+				<store_limit>20</store_limit>
+				<store_perpage>5</store_perpage>
+				<enable_category_filter>1</enable_category_filter>
+				<enable_tag_filter>1</enable_tag_filter>
+				<api_key>AIzaSyDRVUZdOrZ1HuJFaFkDtmby0E93eJLykIk</api_key>
+				<enable_locator_product>1</enable_locator_product>
+				<enable_rewrite_url>1</enable_rewrite_url>
+				<enable_productlocator>0</enable_productlocator>
+				<show_seller_info>1</show_seller_info>
+				<show_seller_name>1</show_seller_name>
+			</general>
+			<location>
+				<address_preview>57 Trafalgar Square, London WC2N 5DU, UK</address_preview>
+				<location_lng>-0.12775829999998223</location_lng>
+				<location_lat>51.5073509</location_lat>
+				<zoom>12</zoom>
+			</location>
+		</lofmpstorelocator>
+	</default>
+</config>
