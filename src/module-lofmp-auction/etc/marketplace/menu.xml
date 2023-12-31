@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lofmp_Auction
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+    	<add id="Lofmp_Auction::auction" title="Auction" module="Lofmp_Auction" sortOrder="290" icon="fa fa-gavel" resource="Lofmp_Auction::auction" dependsOnConfig="lofauction/general_settings/allow_seller_manage"/>
+    	<add id="Lofmp_Auction::product" title="Add Auction" module="Lofmp_Auction" action="lofmpauction/product/new" sortOrder="10"  resource="Lofmp_Auction::product" parent="Lofmp_Auction::auction"  dependsOnConfig="lofauction/general_settings/allow_seller_manage"/>
+    	<add id="Lofmp_Auction::product_index" title="Manage Auctions" module="Lofmp_Auction" action="lofmpauction/product/index" sortOrder="20"  resource="Lofmp_Auction::product_index" parent="Lofmp_Auction::auction"  dependsOnConfig="lofauction/general_settings/allow_seller_manage"/>
+    	<add id="Lofmp_Auction::manualbid" title="Manage Manual Bids" module="Lofmp_Auction" action="lofmpauction/manualbid/index" sortOrder="30"  resource="Lofmp_Auction::manualbid" parent="Lofmp_Auction::auction"  dependsOnConfig="lofauction/general_settings/allow_seller_manage"/>
+    	<add id="Lofmp_Auction::bid" title="Manage Bids" module="Lofmp_Auction" action="lofmpauction/bid/index" sortOrder="25"  resource="Lofmp_Auction::bid" parent="Lofmp_Auction::auction"  dependsOnConfig="lofauction/general_settings/allow_seller_manage"/>
+    	<add id="Lofmp_Auction::autobid" title="Manage Auto Bids" module="Lofmp_Auction" action="lofmpauction/autobid/index" sortOrder="40"  resource="Lofmp_Auction::autobid" parent="Lofmp_Auction::auction"  dependsOnConfig="lofauction/general_settings/allow_seller_manage"/>
+    	<add id="Lofmp_Auction::winner" title="Manage Winners" module="Lofmp_Auction" action="lofmpauction/winner/index" sortOrder="40"  resource="Lofmp_Auction::winner" parent="Lofmp_Auction::auction"  dependsOnConfig="lofauction/general_settings/allow_seller_manage"/>
+    </menu>
+</config>

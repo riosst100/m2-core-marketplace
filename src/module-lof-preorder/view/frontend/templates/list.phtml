@@ -1,0 +1,62 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_PreOrder
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+?>
+<?php
+//Get Object Manager Instance
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$categoryId = 0;
+$category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');//get current category
+if (get_class_methods($category)) {
+    $categoryId = $category->getId();
+}
+$helper = $this->helper('Lof\PreOrder\Helper\Data');
+$url = $helper->getCheckConfigUrl();
+$_productCollection = $block->getLoadedProductCollection();
+if (get_class_methods($category) && $categoryId) {
+    $_productCollection->addCategoriesFilter(['eq' => $categoryId]);
+}
+$show_msg = $helper->getShowPreorderMsgOnCategory();
+$preorderInfo = [];
+foreach ($_productCollection as $product) {
+    $isPreorder = $helper->isPreorder($product->getId(), $product);
+    $productUrl = $product->getId();
+    $preorderInfo[$productUrl]['preorder'] = $isPreorder;
+    if ($show_msg) {
+        $msg = $helper->getPreOrderInfoBlock($product->getId(), $product);
+        $preorderInfo[$productUrl]['msg'] = $msg;
+    } else {
+        $preorderInfo[$productUrl]['msg'] = "";
+    }
+}
+$preorderInfo['url'] = $url;
+$preorderInfo['buttonText'] = $helper->getAddtocartButtonText();
+$data = json_encode(["preorderInfo" => $preorderInfo]);
+
+?>
+<script type="text/x-magento-init">
+    {
+        "body": {
+            "Lof_PreOrder/js/list": <?php echo $data ?>
+        }
+    }
+
+</script>
+

@@ -1,0 +1,4 @@
+product_id,customer_id,min_amount,starting_price, reserve_price,auction_status,days,min_qty,max_qty,start_auction_time,stop_auction_time,increment_opt,increment_price,auto_auction_opt,status,created_at,buy_it_now,featured_auction
+4,0,650,10,50,0,10,1,20,2017-12-27 04:27:44,2018-01-04 08:40:03,1,,1,0,2017-12-28 04:33:58,0,1
+1,0,6,1,2,0,10,1,100,2018-01-01 02:49:52,2018-01-31 02:49:13,1,,1,0,2018-01-04 02:50:14,1,1
+12,0,60,1,50,0,10,1,11,2018-01-05 07:35:27,2018-02-28 07:35:27,1,,1,0,2018-01-06 07:36:59,1,1

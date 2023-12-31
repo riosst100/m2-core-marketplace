@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block name="rma.new.step2" class="Lofmp\Rma\Block\Rma\NewBundleRma" template="Lofmp_Rma::guest/new_bundle_rma.phtml" cacheable="false"  ifconfig="rma/general/enable_guest_rma">
+            </block>
+        </referenceContainer>
+    </body>
+</page>

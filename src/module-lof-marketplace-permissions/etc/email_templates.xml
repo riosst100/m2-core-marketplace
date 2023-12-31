@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPermissions
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="lof_marketpermissions_email_customer_seller_customer_assign_template"
+              label="Assign Seller to Customer"
+              file="seller_customer_assign.html"
+              type="html"
+              module="Lof_MarketPermissions"
+              area="frontend"/>
+
+    <template id="lof_marketpermissions_email_customer_account_locked_template"
+              label="Customer Status Inactive"
+              file="customer_account_locked.html"
+              type="html"
+              module="Lof_MarketPermissions"
+              area="frontend"/>
+
+    <template id="lof_marketpermissions_email_customer_account_activated_template"
+              label="Customer Status Active"
+              file="customer_account_activated.html"
+              type="html"
+              module="Lof_MarketPermissions"
+              area="frontend"/>
+</config>

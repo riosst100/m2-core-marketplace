@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">mpdelivery_config_form.delivery_slot_config_data_source</item>
+            <item name="deps" xsi:type="string">mpdelivery_config_form.delivery_slot_config_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">New Rule</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">mpdelivery_config_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="Lofmp\DeliverySlot\Block\Marketplace\Form\Config\SaveButton"/>
+            <button name="back"
+                    class="Lofmp\DeliverySlot\Block\Marketplace\Form\Config\BackButton"/>
+
+        </buttons>
+        <namespace>mpdelivery_config_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>mpdelivery_config_form.delivery_slot_config_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="delivery_slot_config_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Lofmp\DeliverySlot\Model\Config\DataProvider</argument>
+            <argument name="name" xsi:type="string">delivery_slot_config_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">seller_id</argument>
+            <argument name="requestFieldName" xsi:type="string">seller_id</argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="deliveryslot/config/save"/>
+        </settings>
+    </dataSource>
+    <fieldset name="deliveryslot_group_field">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">false</item>
+                <item name="label" xsi:type="string" translate="true">DeliverySlot Config</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+            </item>
+        </argument>
+        <field name="delivery_slot__general__enabled" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">Enabled Feature</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>boolean</dataType>
+                <label translate="true">Enabled Feature</label>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="string">0</map>
+                            <map name="true" xsi:type="string">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="delivery_slot__vacation__enabled" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">Vaction Mode</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>boolean</dataType>
+                <label translate="true">Vaction Mode</label>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="string">0</map>
+                            <map name="true" xsi:type="string">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="delivery_slot__vacation__message">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Vacation Message</item>
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="source" xsi:type="string">delivery_slot__vacation__message</item>
+                    <item name="dataScope" xsi:type="string">delivery_slot__vacation__message</item>
+                </item>
+            </argument>
+        </field>
+        <field name="delivery_slot__vacation__from_date" formElement="date">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">delivery_slot__vacation__from_date</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">From Date</label>
+				<dataScope>delivery_slot__vacation__from_date</dataScope>
+			</settings>
+		</field>
+        <field name="delivery_slot__vacation__to_date" formElement="date">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">delivery_slot__vacation__to_date</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">To Date</label>
+				<dataScope>delivery_slot__vacation__to_date</dataScope>
+			</settings>
+		</field>
+    </fieldset>
+</form>

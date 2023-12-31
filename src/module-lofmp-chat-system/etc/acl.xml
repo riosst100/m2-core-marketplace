@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::chatsystem_elements" title="Lofmp ChatSystem">
+                     <resource id="Lofmp_ChatSystem::chat" title="Chat" sortOrder="10">
+					     <resource id="Lofmp_ChatSystem::chat_save" title="Save Chat" sortOrder="10"/>
+					     <resource id="Lofmp_ChatSystem::chat_delete" title="Delete Chat" sortOrder="20"/>
+                         <resource id="Lofmp_ChatSystem::chat_clear" title="Clear Chat" sortOrder="30"/>
+                         <resource id="Lofmp_ChatSystem::chat_edit" title="Edit Chat" sortOrder="40"/>
+				    </resource>
+				    <resource id="Lofmp_ChatSystem::ChatMessage" title="ChatMessage" sortOrder="10">
+					    <resource id="Lofmp_ChatSystem::ChatMessage_save" title="Save ChatMessage" sortOrder="10"/>
+					    <resource id="Lofmp_ChatSystem::ChatMessage_delete" title="Delete ChatMessage" sortOrder="20"/>
+					    <resource id="Lofmp_ChatSystem::ChatMessage_update" title="Update ChatMessage" sortOrder="30"/>
+					    <resource id="Lofmp_ChatSystem::ChatMessage_view" title="View ChatMessage" sortOrder="40"/>
+				    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Lofmp_ChatSystem::config_chatsystem" title="Lofmp ChatSystem" sortOrder="1000"/>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

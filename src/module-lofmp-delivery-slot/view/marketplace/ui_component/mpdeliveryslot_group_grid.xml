@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">mpdeliveryslot_group_grid.mpdeliveryslot_group_grid_data_source</item>
+		</item>
+	</argument>
+	<settings>
+		<spinner>slot_group_columns</spinner>
+		<deps>
+			<dep>mpdeliveryslot_group_grid.mpdeliveryslot_group_grid_data_source</dep>
+		</deps>
+		<buttons>
+			<button name="add">
+				<url path="*/*/deliverygroupform"/>
+				<class>primary</class>
+				<label translate="true">Add New Group Slot</label>
+			</button>
+		</buttons>
+	</settings>
+    <dataSource name="mpdeliveryslot_group_grid_data_source" component="Magento_Ui/js/grid/provider">
+		<settings>
+			<updateUrl path="mui/index/render"/>
+		</settings>
+		<dataProvider name="mpdeliveryslot_group_grid_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+			<settings>
+				<requestFieldName>group_id</requestFieldName>
+				<primaryFieldName>group_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+    <listingToolbar name="listing_top">
+		<settings>
+			<sticky>true</sticky>
+		</settings>
+		<bookmark name="bookmarks"/>
+		<columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="provider" xsi:type="string">mpdeliveryslot_group_grid.mpdeliveryslot_group_grid_data_source</item>
+                    <item name="chipsProvider" xsi:type="string">mpdeliveryslot_group_grid.mpdeliveryslot_group_grid_data_source.listing_top.listing_filters_chips</item>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="provider" xsi:type="string">mpdeliveryslot_group_grid.mpdeliveryslot_group_grid_data_source.listing_top.bookmarks</item>
+                        <item name="namespace" xsi:type="string">current.search</item>
+                    </item>
+                </item>
+            </argument>
+        </filterSearch>
+		<filters name="listing_filters"/>
+        <massaction name="listing_massaction">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="selectProvider" xsi:type="string">
+                        mpdeliveryslot_group_grid.mpdeliveryslot_group_grid.slot_group_columns.ids
+                    </item>
+                    <item name="indexField" xsi:type="string">group_id</item>
+                </item>
+            </argument>
+            <action name="delete">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">delete</item>
+                        <item name="label" xsi:type="string">Delete</item>
+                        <item name="url" xsi:type="url" path="deliveryslot/deliveryslotgroup/massdelete"/>
+                    </item>
+                </argument>
+            </action>
+        </massaction>
+		<paging name="listing_paging"/>
+	</listingToolbar>
+    
+    <columns name="slot_group_columns">
+        <argument name="data" xsi:type="array">
+            <item name="editorConfig" xsi:type="array">
+                <item name="selectProvider" xsi:type="string">
+                    mpdeliveryslot_group_grid.mpdeliveryslot_group_grid.slot_group_columns.ids
+                </item>
+                <item name="enabled" xsi:type="boolean">true</item>
+                <item name="indexField" xsi:type="string">group_id</item>
+                <item name="clientConfig" xsi:type="array">
+                    <item name="validateBeforeSave" xsi:type="boolean">false</item>
+                </item>
+            </item>
+        </argument>
+        <selectionsColumn name="ids">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">group_id</item>
+                </item>
+            </argument>
+        </selectionsColumn>
+        <column name="group_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">Group ID</item>
+                </item>
+            </argument>
+        </column>
+        <column name="slot_group_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">Group Name</item>
+                </item>
+            </argument>
+        </column>
+        <column name="zip_code">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">Zip Code</item>
+                </item>
+            </argument>
+        </column>
+        <actionsColumn name="actions" class="Lofmp\DeliverySlot\Ui\Component\Listing\Column\DeliverySlotGroup\EditAction">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="editUrlPath" xsi:type="string">deliveryslot/deliveryslotgroup/edit</item>
+                    <item name="urlEntityParamName" xsi:type="string">group_id</item>
+                </item>
+            </argument>
+            <settings>
+                <indexField>group_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

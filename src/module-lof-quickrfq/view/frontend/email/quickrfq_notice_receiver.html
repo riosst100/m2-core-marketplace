@@ -1,0 +1,49 @@
+<!--
+  ~ Landofcoder
+  ~
+  ~ NOTICE OF LICENSE
+  ~
+  ~ This source file is subject to the Landofcoder.com license that is
+  ~ available through the world-wide-web at this URL:
+  ~ https://landofcoder.com/terms
+  ~
+  ~ DISCLAIMER
+  ~
+  ~ Do not edit or add to this file if you wish to upgrade this extension to newer
+  ~ version in the future.
+  ~
+  ~ @category   Landofcoder
+  ~ @package    Lof_Quickrfq
+  ~ @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  ~ @license    https://landofcoder.com/terms
+  -->
+<!--@subject {{trans "You received an email from %sender_name" sender_name=$data.sender_name}} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<table>
+    <tr class="email-intro">
+        <td>
+            <p>
+                You received an email from <strong>{{var data.sender_name}}.</strong> You can follow the below details:
+            </p>
+        </td>
+    </tr>
+    <tr class="email-summary">
+        <td>
+            <h3>Details</h3>
+        </td>
+    </tr>
+    <tr class="email-information">
+        <td>
+            <strong>Subject: </strong>{{var data.subject}}
+        </td>
+    </tr>
+    <tr class="email-information">
+        <td>
+            <strong>Message: </strong>{{var data.message}}
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}

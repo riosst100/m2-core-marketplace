@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<route url="/V1/sellerFeaturedProduct" method="POST">
+		<service class="Lofmp\FeaturedProducts\Api\FeaturedProductRepositoryInterface" method="saveFeatureProduct"/>
+		<resources>
+			<resource ref="self" />
+		</resources>
+		<data>
+			<parameter name="customerId" force="true">%customer_id%</parameter>
+		</data>
+	</route>
+	<route url="/V1/sellerFeaturedProduct/search" method="GET">
+		<service class="Lofmp\FeaturedProducts\Api\FeaturedProductRepositoryInterface" method="getListFeatureProduct"/>
+		<resources>
+			<resource ref="self" />
+		</resources>
+		<data>
+			<parameter name="customerId" force="true">%customer_id%</parameter>
+		</data>
+	</route>
+	<route url="/V1/sellerFeaturedProduct/:id" method="GET">
+		<service class="Lofmp\FeaturedProducts\Api\FeaturedProductRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="self" />
+		</resources>
+		<data>
+			<parameter name="customerId" force="true">%customer_id%</parameter>
+		</data>
+	</route>
+	<route url="/V1/sellerFeaturedProduct/:id" method="PUT">
+		<service class="Lofmp\FeaturedProducts\Api\FeaturedProductRepositoryInterface" method="saveFeatureProduct"/>
+		<resources>
+			<resource ref="self" />
+		</resources>
+		<data>
+			<parameter name="customerId" force="true">%customer_id%</parameter>
+		</data>
+	</route>
+	<route url="/V1/sellerFeaturedProduct/:id" method="DELETE">
+		<service class="Lofmp\FeaturedProducts\Api\FeaturedProductRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="self" />
+		</resources>
+		<data>
+			<parameter name="customerId" force="true">%customer_id%</parameter>
+		</data>
+	</route>
+    <!-- Public Api - get list featured product by seller url -->
+    <route method="GET" url="/V1/sellerFeaturedProduct/:sellerUrl/search">
+		<service class="Lofmp\FeaturedProducts\Api\GetFeaturedProductRepositoryInterface" method="get"/>
+		<resources>
+            <resource ref="anonymous" />
+        </resources>
+	</route>
+</routes>

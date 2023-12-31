@@ -1,0 +1,32 @@
+<!--
+/**
+ * Copyright © 2017 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!--@subject We have offer for you @-->
+<!--@vars {
+"var rule_title":"Coupon Rule Title",
+"var coupon_code":"Coupon Code",
+"var barcode":"Barcode Code Image Link",
+"var qrcode":"Qrcode Code Link",
+"var from_date":"From Date",
+"var to_date":"Expired Date",
+"var simple_action":"Simple Action",
+"var discount_amount":"Discount Amount",
+"var discount_amount_formatted":"Discount Amount Formated"
+"var link_website":"Base website link"
+} @-->
+{{template config_path="design/email/header_template"}}
+Hi,
+
+<p>Sorry for bothering you. We are now testing our coupon code generation tool and are happy to have all the customer feedback we can get.</p>
+<p>Please come back to us if any questions.</p>
+
+<p>By the way, to compensate your time we would like to offer a <strong>{{var discount_amount_formatted|raw}}</strong> discount on any products at the store. Don't hesitate to use it!
+
+Best Regard!
+<p>Your coupon code is <strong>{{var coupon_code|raw}}</strong>.
+    The coupon will give you <strong>{{var discount_amount_formatted|raw}}</strong> discount. </p>
+
+{{template config_path="design/email/footer_template"}}

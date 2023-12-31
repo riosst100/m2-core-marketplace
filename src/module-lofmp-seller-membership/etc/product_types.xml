@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lofmp_SellerMembership
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Catalog:etc/product_types.xsd">
+     <type name="seller_membership" label="Seller Membership" modelInstance="Lofmp\SellerMembership\Model\Product\Type\SellerMembership" composite="false" indexPriority="60" sortOrder="60" isQty="true" canUseQtyDecimals="false">
+        <priceModel instance="Lofmp\SellerMembership\Model\Product\Type\Membership\Price" />
+        <customAttributes>
+            <attribute name="is_real_product" value="false"/>
+            <attribute name="refundable" value="false"/>
+        </customAttributes>
+    </type>
+    <composableTypes>
+        <type name="seller_membership" />
+    </composableTypes>
+</config>

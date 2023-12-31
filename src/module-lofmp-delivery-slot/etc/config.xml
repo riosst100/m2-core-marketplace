@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <delivery_slot>
+            <lofmp_delivery_slot_settings>
+                <enabled>1</enabled>
+                <allow_seller_manage>1</allow_seller_manage>
+                <no_of_days>7</no_of_days>
+            </lofmp_delivery_slot_settings>
+            <vacation>
+                <message>Slots not available , Vacation Period from</message>
+            </vacation>
+        </delivery_slot>
+    </default>
+</config>
+

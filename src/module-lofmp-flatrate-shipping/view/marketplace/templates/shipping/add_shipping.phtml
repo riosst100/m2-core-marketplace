@@ -1,0 +1,182 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_FlatRateShipping
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// phpcs:disable
+/**
+ * @var $block \Lofmp\FlatRateShipping\Block\Shipping\Shipping
+ */
+$helper = $this->helper(\Lof\MarketPlace\Helper\Data::class);
+$sellers = $this->helper(\Lof\MarketPlace\Helper\Seller::class);
+$seller = $sellers->getSellerByCustomer();
+$data = $this->getRequest()->getPostValue();
+$shipping = $this->getShipping($this->getShippingId())->getFirstItem();
+$formAction = $block->getUrl('lofmpflatrateshipping/shipping/save', ['_secure' => $this->getRequest()->isSecure()]);
+?>
+<form class="entry-edit form-inline" action="<?= $block->escapeUrl($formAction) ?>" enctype="multipart/form-data"
+      method="post"
+      data-role="form-profile-validate" data-mage-init='{"validation":{}}'>
+    <div class="lof-mp-page-title page-title">
+        <h2><?= $block->escapeHtml(__('Upload Shipping Detail')) ?></h2>
+        <div class="page-actions-buttons">
+            <div class="actions-split save primary" title="Save">
+                <button class="action-default primary" title="<?= __('Upload') ?>" type="submit">
+                    <span><span><?= $block->escapeHtml(__('Upload')) ?></span></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="admin__fieldset-wrapper-content">
+        <div class="admin__fieldset-wrapper-content">
+            <fieldset class="admin__fieldset">
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?= $block->escapeHtml(__('CSV file')) ?>
+                    </label>
+                    <div class="admin__field-control">
+                        <input type="file" name="import_file"/>
+                        <div id="sample-file-span" style="margin-top: 15px;">
+                            <a href="<?= $this->getViewFileUrl('Lofmp_FlatRateShipping::shippinginfo.csv'); ?>"
+                               id="sample-file-link">
+                                <b><?= $block->escapeHtml(__('Download Sample File')) ?></b>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</form>
+<form class="entry-edit form-inline" action="<?= $block->escapeUrl($formAction) ?>" enctype="multipart/form-data"
+      method="post"
+      data-role="form-profile-validate" data-mage-init='{"validation":{}}'>
+    <div class="lof-mp-page-title page-title">
+        <h2><?= $block->escapeHtml(__('Add shipping record')) ?></h2>
+        <div class="page-actions-buttons">
+            <div class="actions-split save primary" title="Save">
+                <button class="action-default primary" title="<?= $block->escapeHtmlAttr(__('Save')) ?>" type="submit">
+                    <span><span><?= $block->escapeHtml(__('Save')) ?></span></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="admin__fieldset-wrapper-content">
+        <div class="admin__fieldset-wrapper-content">
+            <fieldset class="admin__fieldset">
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?= $block->escapeHtml(__('Shipping Method Name')) ?>
+                    </label>
+                    <div class="admin__field-control">
+                        <input type="text"
+                               class="required-entry admin__control-text"
+                               name="title"
+                               id="title"
+                               value="<?= $block->escapeHtmlAttr($shipping->getData('title')) ?>"
+                               placeholder="<?= $block->escapeHtmlAttr(__('Enter shipping title')) ?>"
+                        />
+                    </div>
+                </div>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?= $block->escapeHtml(__('Type')) ?>
+                    </label>
+                    <div class="admin__field-control">
+                        <select name="type" aria-required="true" class="admin__control-select required">
+                            <option <?php if ($shipping->getData('type') == 'O'):
+                                echo "selected";
+                            endif; ?> value="O"><?= $block->escapeHtml(__('Per Order')) ?></option>
+                            <option <?php if ($shipping->getData('type') == 'I'):
+                                echo "selected";
+                            endif; ?> value="I"><?= $block->escapeHtml(__('Per Item')) ?></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?= $block->escapeHtml(__('Free Shipping')) ?>
+                    </label>
+                    <div class="admin__field-control">
+                        <input type="text"
+                               class="required-entry validate-number validate-greater-than-zero  admin__control-text"
+                               name="free_shipping"
+                               id="free_shipping"
+                               value="<?= $block->escapeHtmlAttr($shipping->getData('free_shipping')) ?>"
+                               placeholder="<?= $block->escapeHtmlAttr(__(' Minimum order amount for free shipping')) ?>"
+                        />
+                    </div>
+                </div>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?= $block->escapeHtml(__('Sort Order')) ?>
+                    </label>
+                    <div class="admin__field-control">
+                        <div class="input-box">
+                            <input type="text"
+                                   class="required-entry admin__control-text"
+                                   name="sort_order"
+                                   id="sort_order"
+                                   value="<?= $block->escapeHtmlAttr($shipping->getData('sort_order')) ?>"
+                                   placeholder="<?= $block->escapeHtml(__('Enter Sort Order')) ?>"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?= $block->escapeHtml(__('Status')) ?>
+                    </label>
+                    <div class="admin__field-control">
+                        <div class="input-box">
+                            <select name="status" aria-required="true" class="admin__control-select required">
+                                <option <?php if ($shipping->getData('status') == 1):
+                                    echo "selected";
+                                endif; ?> value="1">
+                                    <?= $block->escapeHtml(__('Enable')) ?>
+                                </option>
+                                <option <?php if ($shipping->getData('status') == 0) {
+                                    echo "selected";
+                                } ?> value="0">
+                                    <?= $block->escapeHtml(__('Disable')) ?>
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?= $block->escapeHtml(__('Price')) ?>
+                    </label>
+                    <div class="admin__field-control">
+                        <div class="input-box">
+                            <input type="text"
+                                   class="required-entry validate-number validate-greater-than-zero admin__control-text"
+                                   name="price"
+                                   id="price"
+                                   value="<?= $block->escapeHtmlAttr($shipping->getData('price')) ?>"
+                                   placeholder="<?= $block->escapeHtmlAttr(__('Enter shipping price')) ?>"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</form>

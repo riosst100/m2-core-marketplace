@@ -1,0 +1,126 @@
+<?php
+/**
+ * @var $block Lofmp\Slider\Block\Seller\Slider
+ */
+$helper = $this->helper("Lof\MarketPlace\Helper\Data");
+$data = $block->getSlider();
+$moduleId = rand() . time();
+if ($data):
+    $data['image_width'] = isset($data['image_width']) && (float)$data['image_width'] > 0 ? (float)$data['image_width'] : 800;
+    $data['image_height'] = isset($data['image_height']) && (float)$data['image_height'] > 0 ? (float)$data['image_height'] : 200;
+    $image = $block->getSliderImages($data["image_url"]);
+    $width = 200;
+    $height = 100;
+    foreach ($image as $value) {
+        $url = $helper->getMediaUrl() . "resized/" . $width . "/" . $value->image_url;
+        if (!$data['image_type']) {
+            $value->thumbnail = $block->resize($value->image_url, $width, $height);
+        } else {
+            if ($data['image_type']) {
+                $value->thumbnail = $value->image_url;
+            } else {
+                $value->thumbnail = $url;
+            }
+        }
+    }
+    usort($image, function ($a, $b) {
+        return $a->position <=> $b->position;
+    });
+
+    ?>
+    <?php if (count($image) == 1): ?>
+    <?php foreach ($image as $value): ?>
+        <div class="seller_slider" id="camera_wrap_<?= $moduleId; ?>"
+             style="<?= ((float)$data['image_width'] > 0) ? 'width:' . (float)$data['image_width'] . 'px; margin-left: calc(50% - ' . ((float)$data['image_width'] / 2) . 'px);' : '' ?>">
+            <?php foreach ($image as $value): ?>
+                <?php
+                $imgSrc = (!$data['image_type'])
+                    ? $block->escapeUrl($helper->getMediaUrl() . $value->image_url)
+                    : $block->escapeUrl($value->image_url);
+                ?>
+                <div data-thumb="<?= isset($value->thumbnail) ? $block->escapeUrl($value->thumbnail) : '' ?>"
+                     data-link="<?= $block->escapeUrl($value->url_link); ?>"
+                     data-target="_blank"
+                     data-src="<?= $imgSrc ?>">
+                    <div class="fadeFromBottom">
+                        <img src="<?= $imgSrc ?>" alt="">
+                        <?= $block->escapeHtml($value->caption); ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php endforeach; ?>
+<?php else: ?>
+    <div class="camera_wrap camera_magenta_skin seller-slider-wrapper" id="camera_wrap_<?= $moduleId; ?>">
+        <?php foreach ($image as $value): ?>
+            <div data-thumb="<?= isset($value->thumbnail) ? $block->escapeUrl($value->thumbnail) : '' ?>"
+                 data-link="<?= $block->escapeUrl($value->url_link); ?>"
+                 data-target="_blank"
+                 data-src="<?= (!$data['image_type']) ? $block->escapeUrl($helper->getMediaUrl() . $value->image_url) : $block->escapeUrl($value->image_url); ?>">
+                <div class="camera_caption fadeFromBottom">
+                    <?= $block->escapeHtml($value->caption); ?>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    <div style="clear:both; display:block; height:50px"></div>
+    <style type="text/css">
+        @media all and (min-width: 768px) {
+            .seller-slider-wrapper {
+                height: <?= (int)$data["image_height"] ?>px!important;
+                <?= ((float)$data['image_width'] > 0) ? 'width:' . (float)$data['image_width'] . 'px; margin-left: calc(50% - ' . ((float)$data['image_width'] / 2) . 'px);' : '' ?>
+            }
+        }
+    </style>
+    <script type="text/javascript">
+        requirejs([
+                'require',
+                'jquery',
+                'jquery_Customized',
+                'jquery_Easing',
+                'Camera'
+            ],
+            function (require, jquery, jquery_Customized, jquery_Easing, camera) {
+
+                var image_height = '<?= (int)$data["image_height"] ?>px';
+                var slider_speed = '<?= (int)$data["slider_speed"] ?>';
+                slider_speed = parseInt(slider_speed);
+                var transPeriod = '<?= (int)$data["slider_duration"] ?>';
+                transPeriod = parseInt(transPeriod);
+                var pagination = '<?= (int)$data["pagination"] ?>';
+                var effect = '<?= $data["effect"] ?>';
+                var image_type = '<?= (int)$data["image_type"] ?>';
+                if (effect == '') {
+                    effect = 'random';
+                }
+                if (pagination == '1') {
+                    pagination = true;
+                } else {
+                    pagination = false;
+                }
+                if (transPeriod < 0) {
+                    transPeriod == 1500;
+                }
+                if (slider_speed < 0) {
+                    transPeriod == 3000;
+                }
+                var thumbnail = '<?= (int)$data["thumbnail"] ?>';
+                if (thumbnail == '1' && image_type == '0') {
+                    thumbnail = true;
+                } else {
+                    thumbnail = false;
+                }
+                jQuery('#camera_wrap_<?= $moduleId; ?>').camera({
+                    //height: image_height,
+                    loader: 'pie',
+                    pagination: pagination,
+                    thumbnails: thumbnail,
+                    fx: effect,
+                    time: slider_speed,
+                    transPeriod: transPeriod
+                });
+            });
+    </script>
+<?php endif; ?>
+<?php endif; ?>
+

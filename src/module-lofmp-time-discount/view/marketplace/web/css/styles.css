@@ -1,0 +1,18 @@
+.assign_image_detail {
+    width: 135px;
+    display: inline-block;
+    margin-right: 10px;
+    position: relative;
+    vertical-align: middle;
+}
+.delete_assign_image {
+    background-color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    height: 17px;
+    right: 0;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 17px;
+}

@@ -1,0 +1,35 @@
+{
+    "name": "landofcoder/module-seller-membership-limit",
+    "description": "Seller Membership limit Extension for Marketplace extension magento 2",
+    "require": {
+      "landofcoder/module-marketplace":"*"
+    },
+    "keywords": [
+        "landofcoder",
+        "landofcoder seller membership limit",
+        "magento 2 seller membership limit"
+    ],
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "authors": [
+      {
+        "name": "Landofcoder",
+        "homepage": "https://landofcoder.com",
+        "email": "landofcoder@gmail.com",
+        "role": "Magento 2 Extension Provider"
+      }
+    ],
+    "autoload": {
+      "files": [
+        "registration.php"
+      ],
+      "psr-4": {
+        "Lofmp\\SellerMembershipLimit\\": ""
+      }
+    }
+  }
+  

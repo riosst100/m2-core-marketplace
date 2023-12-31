@@ -1,0 +1,22 @@
+{
+    "name": "landofcoder/module-seller-auction",
+    "description": "Auction for Seller",
+    "require": {
+        "landofcoder/module-marketplace":"*",
+        "landofcoder/module-auction":"*"
+    },
+    "type": "magento2-module",
+    "version": "1.0.1",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Lofmp\\Auction\\": ""
+        }
+    }
+}

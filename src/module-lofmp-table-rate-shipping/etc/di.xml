@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lofmp_TableRateShipping
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="lofmptablerateshipping_shipping_listing_data_source" xsi:type="string">Lofmp\TableRateShipping\Model\ResourceModel\Shipping\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Lofmp\TableRateShipping\Model\ResourceModel\Shipping\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">lofmp_marketplace_shippinglist</argument>
+            <argument name="eventPrefix" xsi:type="string">lofmptablerateshipping_shipping_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">shipping_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Lofmp\TableRateShipping\Model\ResourceModel\Shipping</argument>
+        </arguments>
+    </type>
+    <virtualType name="TableRateShippingGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="ShippingGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Lofmp\TableRateShipping\Model\ResourceModel\Shipping\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">TableRateShippingGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+    <preference for="Lofmp\TableRateShipping\Api\Data\TableRateShippingInterface" type="Lofmp\TableRateShipping\Model\Shipping"/>
+    <preference for="Lofmp\TableRateShipping\Api\Data\TableRateShippingMethodInterface" type="Lofmp\TableRateShipping\Model\Shippingmethod"/>
+</config>

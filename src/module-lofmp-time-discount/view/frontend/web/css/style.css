@@ -1,0 +1,14 @@
+#lofmp_timediscount .form-field-icon {
+	position: absolute;
+    right: 15px;
+    top: 0;
+    cursor: text;
+    line-height: 1.4em;
+    font-size: 1.05em;
+    color: inherit;
+    background-color: transparent;
+    padding: 7px 10px 0 0;
+}
+#lofmp_timediscount label {
+	font-weight: 600;
+}

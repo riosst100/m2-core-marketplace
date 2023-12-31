@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Lof\MarketPlace\Block\Seller\Product\ListProduct">
+        <arguments>
+            <argument name="layerResolver" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\Resolver</argument>
+            <argument name="catalogLayer" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\SellerHomePage</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Lofmp\LayeredNavigation\Block\Navigation\State" type="Magento\LayeredNavigation\Block\Navigation\State">
+        <arguments>
+            <argument name="catalogLayer" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\SellerHomePage</argument>
+            <argument name="layerResolver" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\Resolver</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Lofmp\LayeredNavigation\Block\Navigation\FilterRenderer">
+        <arguments>
+            <argument name="catalogLayer" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\SellerHomePage</argument>
+            <argument name="layerResolver" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\Resolver</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Lofmp\LayeredNavigation\Block\Navigation\Category" type="Magento\LayeredNavigation\Block\Navigation\Category">
+        <arguments>
+            <argument name="visibilityFlag" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\SellerHomePage\AvailabilityFlag</argument>
+            <argument name="filterList" xsi:type="object">sellerFilterList</argument>
+            <argument name="layerResolver" xsi:type="object">Lofmp\LayeredNavigation\Model\Layer\Resolver</argument>
+        </arguments>
+    </virtualType>
+
+    <preference for="Lof\MarketPlace\Block\Seller\Product\ListProduct" type="\Lofmp\LayeredNavigation\Block\Seller\Product\ListProduct"/>
+
+    <preference for="Magento\Catalog\Model\ResourceModel\Layer\Filter\Price" type="\Lofmp\LayeredNavigation\Model\ResourceModel\Layer\Filter\Price"/>
+    
+</config>

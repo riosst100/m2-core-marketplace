@@ -1,0 +1,157 @@
+<?php
+$customerId = $block->getSellerId();
+$customerCollection= $block->getSubscriptionCustomers($customerId);
+$helper = $block->getMarketplaceHelper();
+$configData = $this->helper("Lofmp\FavoriteSeller\Helper\ConfigData");
+$enableSendEmail = $configData->getEmailConfig("enable");
+?>
+
+<?php if ($customerCollection != null) : ?>
+<div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <a href="<?= $block->getUrl('favoriteseller/index/index')?>"><input id="back-btn" type="button" value="<?= $block->escapeHtmlAttr(__("Back"));?>"/></a>
+                    <?php if ($enableSendEmail) : ?>
+                        <a id="open-modal" href="#send-mail-modal"><input id="send-email" type="button" value="<?= $block->escapeHtmlAttr(__("Send email to customers"));?>"/></a>
+                    <?php endif; ?>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <form id="mass-delete-customers-form" method="POST" action="<?= $block->getUrl('favoriteseller/action/massdelete', []); ?>">
+                        <table id="subscription-customers-table"  class="table table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th><?= $block->escapeHtml(__("First Name"));?></th>
+                                <th><?= $block->escapeHtml(__("Last Name"));?></th>
+                                <th><?= $block->escapeHtml(__("Email"));?></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($customerCollection as $customer) :?>
+                                <tr class="customer-info">
+                                    <td><input type="checkbox" class="select-customer" name="select-customer[]" value="<?= $customer->getId() ?>"/></td>
+                                    <td><?= $block->escapeHtml($customer->getFirstName()); ?></td>
+                                    <td><?= $block->escapeHtml($customer->getLastName()) ?></td>
+                                    <td class="email-address"><?= $customer->getEmail() ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </form>
+                    <div class="clearfix"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php if ($enableSendEmail) : ?>
+<!-- hidden inline form -->
+<div id="send-mail-modal" style="display: none">
+    <h2><?= $block->escapeHtml(__("Send message to customers"));?></h2>
+    <form id="send-mail-form" action="#" method="post" name="send-mail-form">
+        <label for="email-addresses"><?= $block->escapeHtml(__("Email Addresses"));?></label>
+        <div id='tagsinput-container' style="width: 500px; margin: 0px auto;">
+            <input name="email-addresses" id="input-tags" style="width:500px !important" readonly="readonly"/>
+        </div>
+        <br/>
+        <label for="email-subject"><?= $block->escapeHtml(__("Subject"));?></label>
+        <br/>
+        <input id="email-subject" class="txt" type="text" name="email-subject"/>
+        <br>
+        <label for="email-content"><?= $block->escapeHtml(__("Enter a Message"));?></label>
+        <textarea id="email-content" class="txtarea" name="email-content"></textarea>
+        <button id="send-message"><?= $block->escapeHtml(__("Send Message"));?></button>
+        <div id="loading-animation" class="sk-fading-circle">
+            <div class="sk-circle1 sk-circle"></div>
+            <div class="sk-circle2 sk-circle"></div>
+            <div class="sk-circle3 sk-circle"></div>
+            <div class="sk-circle4 sk-circle"></div>
+            <div class="sk-circle5 sk-circle"></div>
+            <div class="sk-circle6 sk-circle"></div>
+            <div class="sk-circle7 sk-circle"></div>
+            <div class="sk-circle8 sk-circle"></div>
+            <div class="sk-circle9 sk-circle"></div>
+            <div class="sk-circle10 sk-circle"></div>
+            <div class="sk-circle11 sk-circle"></div>
+            <div class="sk-circle12 sk-circle"></div>
+        </div>
+    </form>
+</div>
+<?php endif; ?>
+<script type="text/javascript">
+    require(['jquery', 'alertify', 'jquery.dataTables', 'jquery.fancybox', 'jquery.tagsinput'],function($, alertify){
+        $(document).ready( function () {
+            $('#subscription-customers-table').DataTable({
+
+            });
+
+            $('#open-modal').fancybox();
+
+            $('#open-modal').click(function() {
+                var emailList = [];
+                $('.customer-info').each(function() {
+                    if($('.select-customer', this).is(':checked')){
+                        emailList.push($('.email-address', this).html());
+                    }
+                });
+
+                $('#input-tags').tagsInput({
+                    'width':'450px',
+                    'interactive':false,
+                    'tagClass': 'tags tag-value'
+                }).importTags(emailList.toString());
+            });
+            <?php if ($enableSendEmail) : ?>
+            $("#send-mail-form").submit(function() { return false; });
+
+            $('#send-message').click(function(){
+                $('#loading-animation').css('visibility','visible');
+
+                var url = "<?= $block->getUrl().'marketplace/favoriteseller/action/sendmessage'?>";
+                var subject = $('#email-subject').val();
+                var content = $('#email-content').val();
+
+                var $rawText = $('#input-tags').siblings('.tagsinput').children('.tag');
+                var emailsAddresses = [];
+                for (var i = $rawText.length; i--;) {
+                    emailsAddresses.push($($rawText[i]).text().substring(0, $($rawText[i]).text().length -  1).trim());
+                }
+
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        "email_addresses": emailsAddresses,
+                        "subject": subject,
+                        "content": content
+                    },
+                    complete: function(response) {
+                        var responseStatus = response.responseJSON.status;
+                        if(responseStatus === 'success'){
+                            $('#loading-animation').css('visibility','hidden');
+                            $.fancybox.close();
+                        }
+                        $('#email-subject').val('');
+                        $('#email-content').val('');
+                    },
+                    error: function (xhr, status, errorThrown) {
+                        $('#loading-animation').css('visibility','hidden');
+                        console.log('Error');
+                    }
+                });
+            })
+            <?php endif; ?>
+        });
+    });
+</script>
+
+<?php else :?>
+    <a href="<?= $block->getUrl('favoriteseller/index/index')?>"><input id="back-btn" type="button" value="<?= $block->escapeHtmlAttr(__("Back"));?>"/></a>
+    <div class="message info empty"><span><?= $block->escapeHtml(__('You have no customers in your subscription list.')) ?></span></div>
+<?php endif; ?>

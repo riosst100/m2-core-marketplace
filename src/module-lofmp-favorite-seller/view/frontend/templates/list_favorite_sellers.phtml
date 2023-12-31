@@ -1,0 +1,91 @@
+<?php
+$customerId = $block->getCustomerId();
+$sellerSet= $block->getFavoriteSellers($customerId);
+$helper = $block->getMarketplaceHelper();
+?>
+<?php if ($sellerSet != null) : ?>
+    <form method="POST" id="mass-delete-form" action="<?= $block->getUrl('favoriteseller/action/massdelete', []); ?>">
+        <table id="favorite-sellers-table"  class="cell-border display compact" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th><?= __("Seller");?></th>
+                    <th><?= __("Seller Logo");?></th>
+                    <th><?= __("Action");?></th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php foreach($sellerSet as $seller) :
+                if($seller['thumbnail']) :
+                    $imageSrc = $helper->getMediaUrl() . $seller['thumbnail'];
+                else :
+                    $imageSrc = $helper->getMediaUrl() . 'images/user.png';
+                endif;
+            ?>
+                <tr>
+                    <td><input type="checkbox" class="select-seller" name="select-seller[]" value="<?= (int)$seller->getId() ?>"/></td>
+                    <td><a href="<?= $block->escapeUrl($seller->getUrl()) ?>"><?= $block->escapeHtml($seller->getName()) ?></a></td>
+                    <td>
+                        <div class="seller-profile-picture">
+                            <img src="<?= $imageSrc; ?>" alt="<?= $block->escapeHtmlAttr($seller->getName());?>" class="img-circle profile-img">
+                        </div>
+                    </td>
+                    <td>
+                        <a class="delete-seller-link" data-link="<?= $block->getDeleteUrl($seller->getId()) ?>" href="#" title="<?= $block->escapeHtmlAttr(__("Delete"));?>">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+        <button id="mass-delete-button" value="Delete" title="<?= $block->escapeHtmlAttr(__("Remove Selected Sellers"));?>" class="action primary">
+            <span><?= $block->escapeHtml(__("Remove"));?></span>
+        </button>
+    </form>
+    <script type="text/javascript">
+        require(['jquery', 'alertify', 'jquery.dataTables'],function($, alertify){
+            var selectedSellers = []
+            $(document).ready( function () {
+                $('#favorite-sellers-table').DataTable({
+
+                });
+                $('#mass-delete-button').addClass("hidden");
+                $(".select-seller").on("click", function () {
+                    const index = selectedSellers.indexOf($(this).val());
+                    if ($(this).prop('checked') && index <= -1) {
+                        selectedSellers.push ($(this).val());
+                    } else if(index > -1) {
+                        selectedSellers.splice (index, 1);
+                    }
+                    if (selectedSellers.length > 0) {
+                        $('#mass-delete-button').toggleClass("hidden");
+                    }
+                })
+
+                alertify.defaults.glossary.title = '<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <?= $block->escapeHtmlAttr(__("Delete Favorite Sellers"));?>';
+                $('#mass-delete-button').click(function(){
+                    if (selectedSellers.length > 0) {
+                        alertify.confirm("<?= $block->escapeHtml("Are you want to delete there favorite sellers."); ?>",
+                            function(){
+                                $('#mass-delete-form').submit();
+                            }
+                        );
+                    }
+                    return false;
+                })
+
+                $('.delete-seller-link').on('click', function (e) {
+                    var link = $(this).data('link');
+                    alertify.confirm("<?= $block->escapeHtml("Are you want to delete this favorite seller?"); ?>",
+                        function(){
+                            window.location = link
+                        }
+                    );
+                })
+            });
+        });
+    </script>
+<?php else :?>
+    <div class="message info empty"><span><?= $block->escapeHtml(__('You have no sellers in your favorite list.')) ?></span></div>
+<?php endif; ?>

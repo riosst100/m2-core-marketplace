@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">mpdelivery_slots_form.delivery_slots_grid_data_source</item>
+            <item name="deps" xsi:type="string">mpdelivery_slots_form.delivery_slots_grid_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">New Rule</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">mpdelivery_slots_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save_and_continue" class="Lofmp\DeliverySlot\Block\Marketplace\Block\DeliverySlots\Edit\SaveAndContinueButton"/>
+            <button name="save" class="Lofmp\DeliverySlot\Block\Marketplace\Block\DeliverySlots\Edit\SaveButton"/>
+            <button name="reset" class="Lofmp\DeliverySlot\Block\Marketplace\Block\DeliverySlots\Edit\ResetButton"/>
+            <button name="delete" class="Lofmp\DeliverySlot\Block\Marketplace\Block\DeliverySlots\Edit\DeleteButton"/>
+            <button name="back" class="Lofmp\DeliverySlot\Block\Marketplace\Block\DeliverySlots\Edit\BackButton"/>
+        </buttons>
+        <namespace>mpdelivery_slots_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>mpdelivery_slots_form.delivery_slots_grid_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="delivery_slots_grid_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Lofmp\DeliverySlot\Model\ResourceModel\DeliverySlots\DataProvider</argument>
+            <argument name="name" xsi:type="string">delivery_slots_grid_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">slot_id</argument>
+            <argument name="requestFieldName" xsi:type="string">slot_id</argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="deliveryslot/deliveryslot/save"/>
+        </settings>
+
+    </dataSource>
+
+    <fieldset name="slot_information">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">false</item>
+                <item name="label" xsi:type="string" translate="true">Slot Information</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+            </item>
+        </argument>
+        <field name="day" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">day</item>
+                    <item name="label" xsi:type="string" translate="true">Choose Day</item>
+                    <item name="dataScope" xsi:type="string">day</item>
+                </item>
+                <item name="options" xsi:type="object">Lofmp\DeliverySlot\Model\Config\Source\DeliverySlot\DayOptions</item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="parent_id" sortOrder="20">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">parent_id</item>
+                    <item name="label" xsi:type="string" translate="true">Slot Group</item>
+                    <item name="dataScope" xsi:type="string">parent_id</item>
+                </item>
+                <item name="options" xsi:type="object">Lofmp\DeliverySlot\Model\Config\Source\DeliverySlot\SellerSlotGroupOptions</item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="start_time" sortOrder="30">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">start_time</item>
+                    <item name="label" xsi:type="string" translate="true">Start Time</item>
+                    <item name="dataScope" xsi:type="string">start_time</item>
+                </item>
+                <item name="options" xsi:type="object">Lofmp\DeliverySlot\Model\Config\Source\DeliverySlot\TimeOptions</item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="end_time" sortOrder="50">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">end_time</item>
+                    <item name="label" xsi:type="string" translate="true">End Time</item>
+                    <item name="dataScope" xsi:type="string">end_time</item>
+                </item>
+                <item name="options" xsi:type="object">Lofmp\DeliverySlot\Model\Config\Source\DeliverySlot\TimeOptions</item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="status" sortOrder="60" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">status</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>boolean</dataType>
+                <label translate="true">Status</label>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="string">0</map>
+                            <map name="true" xsi:type="string">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="allocation" sortOrder="70">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">allocation</item>
+                    <item name="label" xsi:type="string" translate="true">Allocation</item>
+                    <item name="dataScope" xsi:type="string">allocation</item>
+                    <item name="additionalInfo" xsi:type="string" translate="true"><![CDATA[<strong>Quota For Each Day. Limit number orders can delivery for each day. Please input number value.</strong>]]></item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+    </fieldset>
+</form>

@@ -1,0 +1,165 @@
+<?php
+   
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+       $url = $storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB);
+if ($params = $block->getRequest()->getParams()) {
+    
+    $type= $params['type'];
+    $endate =str_replace('.', '-', $params['to']);
+    $startdate =str_replace('.', '-', $params['from']);
+} else {
+     $type= 'month';
+    $startdate = date("Y-m-d", strtotime("-2 month"));
+    $endate = date("Y-m-d");
+}
+    
+
+    $resourceCollection =  $objectManager->create('Lofmp\Rma\Model\ResourceModel\Rma\Collection')
+           ->setPeriodType($type)
+            ->setDateColumnFilter('created_at')
+            ->addDateFromFilter($startdate)
+            ->addDateToFilter($endate)
+            ->_getSelectedColumns();
+
+   
+    $collection = $resourceCollection->getData();
+    
+    $Statuscollection = $objectManager->create('Lofmp\Rma\Model\ResourceModel\Status\Collection')->addActiveFilter();
+
+?>
+
+
+                <div class="filter">
+                    <label>From</label>
+
+                    <input name="datefrom" id="datefrom"  value="<?php echo $startdate ?>" type="text">
+                    <label>To</label>
+                    <input name="dateto" id="dateto"  value="<?php echo $endate ?>" type="text">
+                    <label>Period</label>
+                    <select name="selector" >
+                      <option value="year" <?php if ($type == 'year') { echo ' selected="selected"'; }?>>year</option>
+                      <option value="quarter"<?php if ($type == 'quarter') { echo ' selected="selected"'; }?> >quarter</option>
+                      <option value="month" <?php if ($type == 'month') { echo ' selected="selected"'; } ?> >month</option>
+                      <option value="day" <?php if ($type == 'day') { echo ' selected="selected"'; }?> >day</option>
+                    </select>
+                <button type="button" id='filter' >Filter</button>
+                    
+                </div>
+           
+
+ 
+
+<script type="text/javascript">
+                    require([
+                        "jquery",
+                        "mage/calendar"
+                        ], function($){
+                          $('#datefrom').datepicker({
+                               prevText: '&#x3c;zurück', prevStatus: '',
+                                prevJumpText: '&#x3c;&#x3c;', prevJumpStatus: '',
+                                nextText: 'Vor&#x3e;', nextStatus: '',
+                                nextJumpText: '&#x3e;&#x3e;', nextJumpStatus: '',
+                                monthNames: ['Januar','Februar','März','April','Mai','Juni',
+                                'Juli','August','September','Oktober','November','Dezember'],
+                                monthNamesShort: ['Jan','Feb','Mär','Apr','Mai','Jun',
+                                'Jul','Aug','Sep','Okt','Nov','Dez'],
+                                dayNames: ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'],
+                                dayNamesShort: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+                                dayNamesMin: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+                              showMonthAfterYear: false,
+                              dateFormat:'yy.mm.dd '
+                            } 
+                          );
+                           $('#dateto').datepicker({
+                               prevText: '&#x3c;zurück', prevStatus: '',
+                                prevJumpText: '&#x3c;&#x3c;', prevJumpStatus: '',
+                                nextText: 'Vor&#x3e;', nextStatus: '',
+                                nextJumpText: '&#x3e;&#x3e;', nextJumpStatus: '',
+                                monthNames: ['Januar','Februar','März','April','Mai','Juni',
+                                'Juli','August','September','Oktober','November','Dezember'],
+                                monthNamesShort: ['Jan','Feb','Mär','Apr','Mai','Jun',
+                                'Jul','Aug','Sep','Okt','Nov','Dez'],
+                                dayNames: ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'],
+                                dayNamesShort: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+                                dayNamesMin: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+                              showMonthAfterYear: false,
+                              dateFormat:'yy.mm.dd'
+                             });
+                             var t = $('#dateto').val();
+                             var  fr = $('#datefrom').val();
+                              var type = $('select[name=selector]').val();
+                             $( "#dateto" ).change(function() {
+                                t = $('#dateto').val();
+                            });
+                             $( "#datefrom" ).change(function() {
+                                fr = $('#datefrom').val();
+                            });
+                              $('select[name=selector]').change(function() {
+                                type = $('select[name=selector]').val();
+                            });
+                             $( "#filter" ).click(function() {
+                         window.location.href = '<?php echo $url ?>marketplace/catalog/rmareport/view?from='+fr+'&to='+t+'&type='+type;
+                                            });
+                        });
+                    </script>
+
+<?php
+if (count($collection)>=0) {
+    ?>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawVisualization);
+        var d = [];
+        d.push(['datetime', 'Total Number of RMAs', 
+            <?php
+            foreach ($Statuscollection as $status) {
+                ?>
+
+                     '<?php   echo $status->getName()?>',
+              
+                <?php
+            }
+            ?>]);
+          <?php
+            foreach ($collection as $value) {
+                ?>
+             d.push(['<?php echo $value['time']?>', <?php echo $value['total_rma_cnt'] ?>, 
+                <?php
+                foreach ($Statuscollection as $status) {
+                        echo $value["{$status->getId()}_cnt"];
+                    ?>,
+                    <?php
+                }
+                ?>
+             ]);
+             
+
+                <?php
+            }
+            ?>
+           
+
+       function drawVisualization() {
+        // Some raw data (not necessarily accurate)
+        var data = google.visualization.arrayToDataTable(d);
+
+    var options = {
+      title : 'RMA Report',
+      vAxis: {title: 'Number'},
+      hAxis: {title: 'Month'},
+      seriesType: 'bars',
+     /* series: {5: {type: 'line'}}*/
+    };
+
+    var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+  }
+    </script>
+
+<a id="export_link" target="_blank" style="float:right; z-index: 10000;position:relative;">Save chart as an image</a>
+<div id="chart_div" style="widht: 100%; height: 400px;"></div>
+    <?php
+}
+?>

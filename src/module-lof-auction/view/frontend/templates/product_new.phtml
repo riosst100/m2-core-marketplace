@@ -1,0 +1,110 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_Auction
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+/** @var \Lof\Auction\Block\Product $block **/
+/** @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer */
+$auctionData = $block->getAuctionDetail();
+if ($auctionData):
+$helper = $this->helper('Lof\Auction\Helper\Data');
+$expire_full_info = $helper->getAdvancedDisplayConfig("expire_full_info");
+$aucConfig = $block->getAuctionConfiguration();
+$auctionData['min_amount'] = !isset($auctionData['min_amount']) ? $auctionData['starting_price'] : $auctionData['min_amount'];
+$step = $helper->getIncrementPriceAsRange($auctionData['min_amount']);
+$step = $step ? $step : 0;
+$blockId = rand() . time();
+?>
+<div id="lofProductAuction<?= $blockId; ?>" class="auction-product-info" data-bind="scope:'lofProductAuction', sku: '<?= $auctionData['sku']; ?>'">
+
+    <!-- ko template: getTemplate() --><!-- /ko -->
+
+    <span class="loading-text"><?= $block->escapeHtml(__("Loading Auction information...")); ?></span>
+
+    <script type="text/x-magento-init">
+        {
+            "#lofProductAuction<?= $blockId; ?>": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "lofProductAuction": {
+                            "component": "Lof_Auction/js/view/auctionproduct",
+                            "sku": "<?= $auctionData['sku']; ?>",
+                            "storeCode": "<?= $helper->getStoreCode(); ?>",
+                            "currentUrl": "<?= $helper->getCurrentUrl(); ?>",
+                            "auctionKey": "<?= $blockId; ?>",
+                            "productId": "<?= (int)$auctionData["product_id"]; ?>",
+                            "auctionData": <?= $block->getSerializedConfig($auctionData); ?>,
+                            "step": <?= $step; ?>,
+                            "expireFullInfo": <?= (int)$expire_full_info; ?>,
+                            "winnerMsg": "<?= $block->escapeHtml($helper->getConfig('general_settings/show_winner_msg')); ?>",
+                            "children": {
+                                "auction-history": {
+                                    "component": "Lof_Auction/js/view/auction-history",
+                                    "sku": "<?= $auctionData['sku']; ?>",
+                                    "productId": "<?= (int)$auctionData["product_id"]; ?>",
+                                    "auctionId": "<?= (int)$auctionData["entity_id"]; ?>",
+                                    "auctionKey": "<?= $blockId; ?>",
+                                    "displayArea": "auction-history"
+                                },
+                                "auction-bid-form": {
+                                    "component": "Lof_Auction/js/view/auction-bid-form",
+                                    "sku": "<?= $auctionData['sku']; ?>",
+                                    "productId": "<?= (int)$auctionData["product_id"]; ?>",
+                                    "auctionId": "<?= (int)$auctionData["entity_id"]; ?>",
+                                    "auctionKey": "<?= $blockId; ?>",
+                                    "displayArea": "auction-bid-form"
+                                }
+                                <?php if ($aucConfig['auto_enable'] && $auctionData['auto_auction_opt'] && isset($aucConfig['enable_max_absentee_bid']) && $aucConfig['enable_max_absentee_bid']): ?>
+                                ,"auction-absentee": {
+                                    "component": "Lof_Auction/js/view/auction-absentee",
+                                    "sku": "<?= $auctionData['sku']; ?>",
+                                    "productId": "<?= (int)$auctionData["product_id"]; ?>",
+                                    "auctionId": "<?= (int)$auctionData["entity_id"]; ?>",
+                                    "auctionKey": "<?= $blockId; ?>",
+                                    "displayArea": "auction-absentee"
+                                }
+                                <?php endif; ?>
+                            }
+                        }
+                    }
+                }
+
+            },
+            "*": {
+                "Magento_Ui/js/block-loader": "<?= $block->escapeJs($block->escapeUrl($block->getViewFileUrl(
+                    'images/loader-1.gif'
+                ))) ?>"
+            }
+        }
+    </script>
+
+</div>
+<div class="lof_product_background auction-was-expired" style="display:none">
+    <div id="bottom_lin">
+        <div class="lof_row">
+            <?= __('The product was expired for auction bidding'); ?>
+        </div>
+    </div>
+</div>
+<style>
+#product_addtocart_form { display: none;}
+.list-group .list-group-item.hide-when-comming { display: none;}
+</style>
+<?php
+endif;
+?>

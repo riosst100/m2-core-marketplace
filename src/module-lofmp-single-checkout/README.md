@@ -1,0 +1,1 @@
+# module-seller-single-checkout

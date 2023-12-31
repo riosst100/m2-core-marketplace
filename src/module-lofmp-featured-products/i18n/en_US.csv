@@ -1,0 +1,68 @@
+"New Featured Product","New Featured Product"
+Product,Product
+"Select Product...","Select Product..."
+"Featured From","Featured From"
+"Featured To","Featured To"
+"Sort Order","Sort Order"
+ID,ID
+"Product Name","Product Name"
+SKU,SKU
+Status,Status
+Disabled,Disabled
+Enabled,Enabled
+"Edit Featured Product","Edit Featured Product"
+Action,Action
+Edit,Edit
+"Featured Products","Featured Products"
+"You must have a seller account to access","You must have a seller account to access"
+"Add Featured Product","Add Featured Product"
+"The product Id is required, please choose product before!","The product Id is required, please choose product before!"
+"Product not exists","Product not exists"
+"This product already is a featured product","This product already is a featured product"
+"Add Featured Product Successful","Add Featured Product Successful"
+"Edit Featured Product Successful","Edit Featured Product Successful"
+"A total of %1 record(s) have been deleted.","A total of %1 record(s) have been deleted."
+Collapse,Collapse
+Slider,Slider
+"Add to Cart","Add to Cart"
+"In stock","In stock"
+"Out of stock","Out of stock"
+"Add to Wish List","Add to Wish List"
+"Add to Compare","Add to Compare"
+"Export to:","Export to:"
+"records found","records found"
+selected,selected
+"per page","per page"
+"Previous page","Previous page"
+"of %1","of %1"
+"Next page","Next page"
+"Seller Featured Products","Seller Featured Products"
+General,General
+"Module Enable","Module Enable"
+Title,Title
+"Show Wishlist Button","Show Wishlist Button"
+"Show Compare Button","Show Compare Button"
+"Show Add To Cart Button","Show Add To Cart Button"
+"OWL Carousel Settings","OWL Carousel Settings"
+"Number Items on Desktop Device","Number Items on Desktop Device"
+"Number Items on Tablet Device","Number Items on Tablet Device"
+"Number Items on Mobile Device","Number Items on Mobile Device"
+"Item Margin","Item Margin"
+Autoplay,Autoplay
+"Autoplay Timeout (millisecond)","Autoplay Timeout (millisecond)"
+"Show dots navigation","Show dots navigation"
+"Show next/prev buttons","Show next/prev buttons"
+"Mouse Drag","Mouse Drag"
+"Touch Drag","Touch Drag"
+"RTL Layout","RTL Layout"
+Loop,Loop
+"Manage Featured Products","Manage Featured Products"
+"All Store Views","All Store Views"
+"Store View","Store View"
+"Delete items","Delete items"
+"Delete selected items?","Delete selected items?"
+Delete,Delete
+Thumbnail,Thumbnail
+Name,Name
+Type,Type
+"Attribute Set","Attribute Set"

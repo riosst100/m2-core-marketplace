@@ -1,0 +1,16 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Manage Delivery Slot Orders</title>
+    </head>
+    <update handle="customer_account"/>
+	<body>
+		<referenceBlock name="page.title">
+            <action method="setTitleClass">
+                <argument name="class" xsi:type="string">complex</argument>
+            </action>
+        </referenceBlock>
+		<referenceContainer name="content">
+        	<uiComponent name="mpdeliveryslot_order_grid"/>
+        </referenceContainer>
+	</body>
+</page>

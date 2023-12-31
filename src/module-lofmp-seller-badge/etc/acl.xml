@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_SellerBadge
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Lofmp_SellerBadge::main" title="Seller Badge Title" sortOrder="10"/>
+                <resource id="Lofmp_SellerBadge::seller_badge" title="Seller Badge" sortOrder="10">
+                    <resource id="Lofmp_SellerBadge::SellerBadge_save" title="Save Seller Badge" sortOrder="10"/>
+                    <resource id="Lofmp_SellerBadge::SellerBadge_delete" title="Delete Seller Badge" sortOrder="20"/>
+                    <resource id="Lofmp_SellerBadge::SellerBadge_update" title="Update Seller Badge" sortOrder="30"/>
+                    <resource id="Lofmp_SellerBadge::SellerBadge_view" title="View Seller Badge" sortOrder="40"/>
+                </resource>
+                <resource id="Lofmp_SellerBadge::seller_badge_manager" title="Manage Seller Badges" sortOrder="10">
+                    <resource id="Lofmp_SellerBadge::SellerBadgeManager_save" title="Save Seller Badge" sortOrder="10"/>
+                    <resource id="Lofmp_SellerBadge::SellerBadgeManager_delete" title="Delete Seller Badge" sortOrder="20"/>
+                    <resource id="Lofmp_SellerBadge::SellerBadgeManager_update" title="Update Seller Badge" sortOrder="30"/>
+                    <resource id="Lofmp_SellerBadge::SellerBadgeManager_view" title="View Seller Badge" sortOrder="40"/>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

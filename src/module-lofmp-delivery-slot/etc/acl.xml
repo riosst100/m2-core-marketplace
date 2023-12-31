@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::delivery_slot_elements" title="Lof Delivery Slots">
+                    <resource id="Lofmp_DeliverySlot::slots" title="Manage Slots" sortOrder="10">
+                        <resource id="Lofmp_DeliverySlot::slots_save" title="Save Slots" sortOrder="20" />
+                        <resource id="Lofmp_DeliverySlot::slots_delete" title="Delete Slots" sortOrder="30" />
+                    </resource>
+                    <resource id="Lofmp_DeliverySlot::slots_group" title="Manage Slots Group" sortOrder="14">
+                        <resource id="Lofmp_DeliverySlot::slots_group_save" title="Save Slots Group" sortOrder="20" />
+                        <resource id="Lofmp_DeliverySlot::slots_group_delete" title="Delete Slots Group" sortOrder="30" />
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Lofmp_DeliverySlot::lofmp_deliveryslot_config"
+                                      title="Lofmp DeliverySlot" translate="title" sortOrder="50"/>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

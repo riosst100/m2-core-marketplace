@@ -1,0 +1,249 @@
+<?xml version="1.0" ?>
+<!--*
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lof_Auction
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  *-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<route method="GET" url="/V1/lof-auction/auctions">
+		<service class="Lof\Auction\Api\ProductRepositoryInterface" method="getList"/>
+		<resources>
+            <resource ref="anonymous"/>
+        </resources>
+	</route>
+    <route method="POST" url="/V1/getAuctionInformation/:sku">
+		<service class="Lof\Auction\Api\ProductRepositoryInterface" method="getByProductSku"/>
+		<resources>
+            <resource ref="anonymous"/>
+        </resources>
+	</route>
+    <route method="POST" url="/V1/getMinAuctionAmount/:entityId">
+		<service class="Lof\Auction\Api\AuctionRepositoryInterface" method="getMinAuctionAmount"/>
+		<resources>
+            <resource ref="anonymous"/>
+        </resources>
+	</route>
+    <route method="POST" url="/V1/getAuctionBids/:entityId">
+		<service class="Lof\Auction\Api\BidRepositoryInterface" method="getList"/>
+		<resources>
+            <resource ref="anonymous"/>
+        </resources>
+	</route>
+    <route method="POST" url="/V1/getAuctionDetailAfterEnd/:entityId">
+		<service class="Lof\Auction\Api\AuctionRepositoryInterface" method="getAuctionDetailAfterEnd"/>
+		<resources>
+            <resource ref="self"/>
+        </resources>
+		<data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+
+    <!-- <route method="GET" url="/V1/getAuctionBids/:id">
+		<service class="Lof\Auction\Api\BidRepositoryInterface" method="getList"/>
+		<resources>
+            <resource ref="anonymous"/>
+        </resources>
+	</route> -->
+	<route method="POST" url="/V1/lof-auction/auctionBid">
+		<service class="Lof\Auction\Api\AmountRepositoryInterface" method="placeManualBid"/>
+		<resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+	<route method="POST" url="/V1/lof-auction/auctionAutoBid">
+		<service class="Lof\Auction\Api\AutoAuctionRepositoryInterface" method="placeAutoBid"/>
+		<resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+	<route method="GET" url="/V1/lof-auction/myBids">
+		<service class="Lof\Auction\Api\AmountRepositoryInterface" method="getMyList"/>
+		<resources>
+			<resource ref="self"/>
+		</resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+	<route method="GET" url="/V1/lof-auction/myAutoBids">
+		<service class="Lof\Auction\Api\AutoAuctionRepositoryInterface" method="getMyList"/>
+		<resources>
+			<resource ref="self"/>
+		</resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+
+	<route method="GET" url="/V1/lof-auction/getMaxAbsenteeBid">
+		<service class="Lof\Auction\Api\MaxAbsenteeBidRepositoryInterface" method="getMaxBidAmount"/>
+		<resources>
+            <resource ref="self"/>
+        </resources>
+		<data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+
+	<route method="POST" url="/V1/lof-auction/setMaxAbsenteeBid">
+		<service class="Lof\Auction\Api\MaxAbsenteeBidRepositoryInterface" method="setMaxBidAmount"/>
+		<resources>
+            <resource ref="self"/>
+        </resources>
+		<data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+
+	<!-- Manage Products -->
+	<route method="GET" url="/V1/lof-auction/products">
+		<service class="Lof\Auction\Api\ProductRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Lof_Auction::product"/>
+		</resources>
+	</route>
+	<route method="POST" url="/V1/lof-auction/product">
+		<service class="Lof\Auction\Api\ProductRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lof_Auction::product_save"/>
+		</resources>
+	</route>
+	<route method="GET" url="/V1/lof-auction/product/:entityId">
+		<service class="Lof\Auction\Api\ProductRepositoryInterface" method="getById"/>
+		<resources>
+			<resource ref="Lof_Auction::product_edit"/>
+		</resources>
+	</route>
+	<route method="PUT" url="/V1/lof-auction/product/:entityId">
+		<service class="Lof\Auction\Api\ProductRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lof_Auction::product_save"/>
+		</resources>
+	</route>
+	<route method="DELETE" url="/V1/lof-auction/product/:entityId">
+		<service class="Lof\Auction\Api\ProductRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Lof_Auction::product_delete"/>
+		</resources>
+	</route>
+
+	<!-- Manage Winnders -->
+
+	<route method="GET" url="/V1/lof-auction/winners">
+		<service class="Lof\Auction\Api\WinnerDataRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Lof_Auction::winner"/>
+		</resources>
+	</route>
+	<route method="POST" url="/V1/lof-auction/winner">
+		<service class="Lof\Auction\Api\WinnerDataRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lof_Auction::winner_save"/>
+		</resources>
+	</route>
+	<route method="GET" url="/V1/lof-auction/winner/:entityId">
+		<service class="Lof\Auction\Api\WinnerDataRepositoryInterface" method="getById"/>
+		<resources>
+			<resource ref="Lof_Auction::winner"/>
+		</resources>
+	</route>
+	<route method="PUT" url="/V1/lof-auction/winner/:entityId">
+		<service class="Lof\Auction\Api\WinnerDataRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lof_Auction::winner_save"/>
+		</resources>
+	</route>
+	<route method="DELETE" url="/V1/lof-auction/winner/:entityId">
+		<service class="Lof\Auction\Api\WinnerDataRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Lof_Auction::winner_delete"/>
+		</resources>
+	</route>
+
+	<!-- Manage Bids -->
+
+	<route method="GET" url="/V1/lof-auction/bids">
+		<service class="Lof\Auction\Api\AmountRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Lof_Auction::bid"/>
+		</resources>
+	</route>
+	<route method="POST" url="/V1/lof-auction/bid">
+		<service class="Lof\Auction\Api\AmountRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lof_Auction::bid_save"/>
+		</resources>
+	</route>
+	<route method="GET" url="/V1/lof-auction/bid/:entityId">
+		<service class="Lof\Auction\Api\AmountRepositoryInterface" method="getById"/>
+		<resources>
+			<resource ref="Lof_Auction::bid"/>
+		</resources>
+	</route>
+	<route method="PUT" url="/V1/lof-auction/bid/:entityId">
+		<service class="Lof\Auction\Api\AmountRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lof_Auction::bid_save"/>
+		</resources>
+	</route>
+	<route method="DELETE" url="/V1/lof-auction/bid/:entityId">
+		<service class="Lof\Auction\Api\AmountRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Lof_Auction::bid_delete"/>
+		</resources>
+	</route>
+
+	<!-- Manage Auto Bids -->
+	<route method="GET" url="/V1/lof-auction/autobids">
+		<service class="Lof\Auction\Api\AutoAuctionRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Lof_Auction::autobid"/>
+		</resources>
+	</route>
+	<route method="POST" url="/V1/lof-auction/autobid">
+		<service class="Lof\Auction\Api\AutoAuctionRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lof_Auction::autobid_save"/>
+		</resources>
+	</route>
+	<route method="GET" url="/V1/lof-auction/autobid/:entityId">
+		<service class="Lof\Auction\Api\AutoAuctionRepositoryInterface" method="getById"/>
+		<resources>
+			<resource ref="Lof_Auction::autobid"/>
+		</resources>
+	</route>
+	<route method="PUT" url="/V1/lof-auction/autobid/:entityId">
+		<service class="Lof\Auction\Api\AutoAuctionRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lof_Auction::autobid_save"/>
+		</resources>
+	</route>
+	<route method="DELETE" url="/V1/lof-auction/autobid/:entityId">
+		<service class="Lof\Auction\Api\AutoAuctionRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Lof_Auction::autobid_delete"/>
+		</resources>
+	</route>
+</routes>

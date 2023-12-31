@@ -1,0 +1,26 @@
+{
+    "name": "landofcoder/module-seller-singlecheckout",
+    "description": "Enable shipping rate define functionality for Vendor",
+    "require": {
+        "landofcoder/module-marketplace":"*"
+    },
+    "type": "magento2-module",
+    "version": "1.1.0",
+   "license": [
+    "EULA"
+    ],
+    "authors": [
+        {
+            "name": "Landofcoder",
+            "email": "landofcoder@gmail.com",
+            "role": "Magento 2 Lof Marketplace Extension"
+        }
+    ],
+    "autoload": {
+        "files": [ "registration.php" ],
+        "psr-4": {
+            "Lofmp\\SingleCheckout\\": ""
+        }
+    }
+}
+

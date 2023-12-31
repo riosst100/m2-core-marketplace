@@ -1,0 +1,21 @@
+.seller-profile-picture {
+    height: 55px;
+    width: 100px;
+    position:relative;
+}
+
+.img-circle.profile-img {
+    height: 56px; 
+    width: 56px;
+    background: #fff;
+    border: 1px solid rgb(223 229 234 / 44%);
+    position: relative;
+}
+
+.delete-seller-link,
+.delete-seller-link:visited{
+    color: #000000;
+}
+.favoriteseller-suggestion-index .toolbar-sorter{
+    display: none;
+}

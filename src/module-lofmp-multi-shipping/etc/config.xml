@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lofmp_MultiShipping
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <carriers>
+            <seller_rates>
+                <active>1</active>
+                <title>Marketplace Rates</title>
+                <name>seller_rates</name>
+                <model>Lofmp\MultiShipping\Model\Carrier\Sellerrates</model>
+            </seller_rates>
+        </carriers>
+        <lofmp_multishipping>
+            <general>
+                <activation>1</activation>
+                <use_admin_shipping>1</use_admin_shipping>
+                <carrier_title>Marketplace Rates</carrier_title>
+                <method_title>Multi Shipping</method_title>
+            </general>
+        </lofmp_multishipping>
+        <seller_acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <seller>
+                    <title>Seller Panel</title>
+                    <path>#</path>
+                    <sort_order>1</sort_order>
+                    <children>
+                        <seller_settings>
+                            <title>Settings</title>
+                            <sort_order>60</sort_order>
+                            <path>#</path>
+                            <children>
+                                <seller_shipping_settings>
+                                    <ifconfig>lofmp_multishipping/general/activation</ifconfig>
+                                    <title>Shipping Settings</title>
+                                    <sort_order>10</sort_order>
+                                    <path>lofmultishipping/settings/index</path>
+                                </seller_shipping_settings>
+                                <seller_shipping_methods>
+                                    <ifconfig>lofmp_multishipping/general/activation</ifconfig>
+                                    <title>Shipping Methods</title>
+                                    <sort_order>20</sort_order>
+                                    <path>lofmultishipping/methods/view</path>
+                                </seller_shipping_methods>
+                            </children>
+                        </seller_settings>
+                    </children>
+                </seller>
+            </resources>
+        </seller_acl>
+    </default>
+</config>

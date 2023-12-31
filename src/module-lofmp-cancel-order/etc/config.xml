@@ -1,0 +1,17 @@
+<?xml version="1.1"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <lofmp_cancelorder>
+            <general>
+                <enable>1</enable>
+                <notify_customer>1</notify_customer>
+                <notify_seller>1</notify_seller>
+                <notify_admin>1</notify_admin>
+                <admin_name>Admin</admin_name>
+                <email_identity>general</email_identity>
+                <admin_email>admin@example.com</admin_email>
+                <email_template>lofmp_cancelorder_general_email_template</email_template>
+            </general>
+        </lofmp_cancelorder>
+    </default>
+</config>

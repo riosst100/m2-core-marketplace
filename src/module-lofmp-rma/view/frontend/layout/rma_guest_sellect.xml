@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+		<css src="Lofmp_Rma::css/styles.css" />
+	</head>
+    <body>
+        <referenceContainer name="content">
+            <block name="rma.guestrma.sellect" class="Lofmp\Rma\Block\Guest\SellectOrder" template="Lofmp_Rma::guest/sellectorder.phtml" cacheable="false" ifconfig="rma/general/enable_guest_rma">
+                <block class="Magento\Framework\View\Element\Template" name="rma_filter" template="Lofmp_Rma::guest/order_filter.phtml" cacheable="false"/>
+                <block class="Lofmp\Rma\Block\Rma\Toolbar" name="rma_toolbar" template="Lofmp_Rma::rma/toolbar.phtml">
+					<block class="Magento\Theme\Block\Html\Pager" name="rma_toolbar_pager"/>
+				</block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

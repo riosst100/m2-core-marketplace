@@ -1,0 +1,445 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_Rma
+ * @copyright  Copyright (c) 2019 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+/** @var \Lofmp\Rma\Block\Rma\NewRma $block */
+$order =  $block->getOrder();
+$items = $block->getOrder()->getAllItems();
+$helper_Rma = $this->helper('Lofmp\Rma\Helper\Data');
+$helper = $this->helper('Lofmp\Rma\Helper\Help');
+$allow = $helper->getConfig($block->getStoreId(), 'rma/general/file_allowed_extensions');
+$allowfile = str_replace(',', '|', $allow);
+$allowfileAR = explode(',', $allow);
+$sizeLimit = $helper->getConfig($store = null, 'rma/general/file_size_limit');
+$allowedStatuses = $helper->getConfig($store = null, 'rma/policy/allow_in_statuses');
+$returnPeriod    = (int)$helper->getConfig($store = null, 'rma/policy/return_period');
+$onlyShipped = $helper->getConfig($store = null, 'return_only_shipped');
+$showPolicy  = $helper->getConfig($store = null, 'rma/policy/is_active');
+$enable_reason  = $helper->getConfig($store = null, 'rma/rmafields/enable_reason');
+$enable_condition  = $helper->getConfig($store = null, 'rma/rmafields/enable_condition');
+$enable_resolution  = $helper->getConfig($store = null, 'rma/rmafields/enable_resolution');
+$style_reason_field = !$enable_reason?'style="display:none"':'';
+$style_condition_field = !$enable_condition?'style="display:none"':'';
+$style_resolution_field = !$enable_resolution?'style="display:none"':'';
+$sellerid = $block->getSellerId();
+$seller_name = $block->getSeller($sellerid)->getName();
+?>
+<script>
+function myFunction() {
+    var popup = document.getElementById("rma-request-button");
+    popup.classList.toggle("show");
+}
+</script>
+<form id="rma-new-form" action="<?= $block->getUrl('returns/rma/save/', ["_secure" => $block->getRequest()->isSecure()]) ?>" method="POST" enctype="multipart/form-data"
+          data-hasrequired="<?= __('* Required Fields') ?>" data-mage-init='{"validation":{}}' onsubmit="return checkCheckBoxes();" >
+<input name="order_id" type="hidden" value="<?= $block->getOrder()->getId() ?>">
+<input name="customername" type="hidden" value="<?= $order->getCustomerName() ?>">
+<input name="email" type="hidden" value="<?= $order->getCustomerEmail() ?>">
+<input name="seller_id" type="hidden" value="<?=  $sellerid ?>">
+ <div class="block">
+    <div class="block-title">
+        <strong><?= __('Request Information') ?></strong>
+    </div>
+    <div class="block-content">
+          <div class="box">
+               <div class="box-content">
+                    <div class='info'>
+                        <strong><?= __('Order ID:') ?>:</strong>
+                        <?= "#".$order->getIncrementId() ?>
+                    </div>
+                    <div class='info'>
+                        <strong><?= __('Customer Name') ?>:</strong>
+                        <?= $order->getCustomerName() ?>
+                    </div>
+                    <div class='info' >
+                        <strong><?= __('Email Address') ?>:</strong>
+                        <?= $order->getCustomerEmail() ?>
+                    </div>
+                    <div class='info' >
+                        <strong><?= __('Order Date') ?>:</strong>
+                        <?= $block->getOrderDate(); ?>
+                    </div>
+                    <div class='info' >
+                        <strong><?= 'Order Status' ?>:</strong>
+                        <?= $order->getStatusLabel(); ?>
+                    </div>
+                    <?php if ($seller_name): ?>
+                    <div class='info' >
+                        <strong><?= 'Seller' ?>:</strong>
+                        <?= $seller_name; ?>
+                    </div>
+                    <?php endif; ?>
+               </div>
+           </div>
+            <div class="box box-order-shipping-information">
+                <strong class="box-title">
+                    <?= __('Shipping Address') ?>:
+                </strong>
+
+                <div class="box-content">
+                    <?= $block->getFormattedAddress(); ?>
+                </div>
+            </div>
+    </div>
+</div>
+ <div class="block">
+    <div class="block-title">
+        <strong><?= __('Item(s) to Returns') ?></strong>
+    </div>
+    <div class="block-content">
+        <table class="table table-striped edit-order-table item_return" id="item_return"  >
+                  <tbody>
+                  <?php
+                    foreach ($items as $item) {
+                        if ($item->getData('base_row_total') <=0): continue; endif;
+                        $attribute_value = $block->getAttribute($item);
+                        $product_id = $item->getData('product_id');
+                        if ($sellerid):
+                            $seller_id = $block->getSellerIdByProductId($product_id);
+                            if ($seller_id != $sellerid) : continue; endif;
+                        endif;
+                        ?>
+                        <?php if ($item->getData('product_type') == 'bundle'): ?>
+                            <tr class="even">
+                                <td></td>
+                                <td><?= $item->getData('name') ?><br><?= __('(Bundled Product)') ?></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <?php continue;
+                        endif; ?>
+                   <tr>
+                    <td class="col-active">
+                        <div class="choose-item">
+                        <input type='checkbox' name="items[<?= $item->getData('item_id') ?>][is_return]"
+                                        data-item-id="<?= $item->getData('item_id') ?>"
+                                        class="rma-item-checkbox"
+                                        value='1'
+                                        <?= ($attribute_value =='No' & $block->getQtyAvailable($item) > 0   ) ? '' : 'disabled' ?>>
+                        </div>
+                        </td>
+                        <td class="col-name" >
+                          <div class="product-title"><?= $item->getData('name');?></div>
+                          <div class="product-sku-block"><span><?= __('SKU');?>:</span><?= $item->getData('sku');?></div>
+
+                          <?php
+                            if (isset($item->getData('product_options')['attributes_info'])) {
+                                echo '<dl class="item-options">';
+                                foreach ($item->getData('product_options')['attributes_info'] as $key => $attributes_info) {
+                                    echo '<dt>'.$attributes_info['label'].'</dt>';
+                                    echo '<dd>'.$attributes_info['value'].'</dd>';
+                                }
+                                echo '</dl>';
+                            }
+                            $productImage = $block->initImage($item, 'product_page_image_small');
+                            if ($productImage) {
+                                ?>
+                          <img class="image"
+                                         src="<?= $productImage->resize(300)->getUrl() ?>"
+                                         width="150px"/>
+                            <?php } ?>
+                        </td>
+                        <td class="col-quantity">
+                          <div class="field">
+                           <table class="qty-table">
+                            <tbody>
+                              <?php if ($item->getData('qty_ordered') > 0) { ?>
+                              <tr>
+                               <td> <?= __('Ordered: ') ?><?= (int)$item->getData('qty_ordered'); ?></td>
+                              </tr>
+                              <?php } ?>
+                              <?php if ($block->getQtyAvailable($item)) { ?>
+                              <tr>
+                                <td><?= __('Available: '); ?><?= (int)$block->getQtyAvailable($item); ?></td>
+                              </tr>
+                              <?php } ?>
+                            </tbody>
+                          </table>
+                          </div>
+                        </td>
+                        <?php if ($block->getQtyAvailable($item) <= 0) {?>
+                        <td class="col-params">
+                          <div class="field">
+                                <div class="item-options">
+                                    <div class="message info">
+                                        <span>
+                                            <?=  __('this items can not be returned any more');?>
+                                        </span>
+
+                                    </div>
+                                </div>
+
+                          </div>
+                        </td>
+                            <?php
+                        }
+                        ?>
+                        <?php if ($attribute_value =='Yes'): ?>
+                          <td class="col-params">
+                          <div class="field">
+                                <div class="item-options">
+                                    <div class="message info">
+                                        <span><?= __('This item not allow to return per our return policy.') ?></span>
+                                    </div>
+                                </div>
+                          </div>
+                          </td>
+                          <?php endif ?>
+                        <td class="col-params">
+                        <div id="item<?= $item->getData('item_id') ?>" class="item-options" style="display:none">
+                          <fieldset class="fieldset" >
+                                <div class="requested-qty">
+                                    <label class="label admin__field-label">
+                                        <strong><span><?= __('Quantity Return: ') ?></span></strong>
+                                    </label>
+                                    <input name="items[<?= $item->getData('item_id') ?>][qty_requested]"
+                                   id="qty_requested<?= $item->getData('item_id') ?>"
+                                   class="input-text"
+                                   type="number"
+                                   min="0"
+                                   max="<?= $block->getQtyAvailable($item) ?>"
+                                   style="width:60px;text-align: center;"
+                                   value="<?= $block->getQtyAvailable($item) > 0 ? 1 : 0 ?>"
+                                   data-validate="{'required-number':'true'}"
+                                >
+
+                                </div>
+                                <div class="field required" <?= $style_reason_field; ?>>
+                                    <label class="label admin__field-label" for="items_<?= $item->getData('item_id') ?>_reason_id" data-ui-id="form-element-items[<?= $item->getData('item_id') ?>][reason_id]label"><span><?= __("Return Reason");?></span></label>
+                                    <select id="items_<?= $item->getData('item_id') ?>_reason_id" name="items[<?= $item->getData('item_id') ?>][reason_id]" class="required reason_id select admin__control-select" title="Return Reason" data-ui-id="form-element-items[<?= $item->getData('item_id') ?>][reason_id]" data-validate="{required:true}" >
+                                    <option value="" ><?= __("Choose Reason");?></option>
+                                    <?php $i=0;
+                                    foreach ($helper_Rma->getReasons() as $reason): $i++;?>
+                                    <option
+                                        value="<?= $reason->getId() ?>" <?= (!$enable_reason && $i==1)?'selected="selected"':''; ?>><?= $reason->getName() ?></option>
+                                                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+                                <div class="field required" <?= $style_condition_field; ?>>
+                                    <label class="label admin__field-label" for="items_<?= $item->getData('item_id') ?>_condition_id" data-ui-id="form-element-items[<?= $item->getData('item_id') ?>][condition_id]label"><span><?= __("Item Condition");?></span>
+                                    </label>
+                                    <select id="items_<?= $item->getData('item_id') ?>_condition_id" name="items[<?= $item->getData('item_id') ?>][condition_id]" title="Item Condition" class=" select admin__control-select" data-ui-id="form-element-items[<?= $item->getData('item_id') ?>][condition_id]" data-validate="{required:true}" >
+                                    <option value="" ><?= __("Choose Condition");?></option>
+                                    <?php $i=0;
+                                    foreach ($helper_Rma->getConditions() as $condition): $i++; ?>
+                                    <option
+                                        value="<?= $condition->getId() ?>" <?= (!$enable_condition && $i==1)?'selected="selected"':''; ?>><?= $condition->getName() ?></option>
+                                                                       <?php endforeach ?>
+                                    </select>
+                                </div>
+                                <div class="field required" <?= $style_resolution_field; ?>>
+                                    <label class="label admin__field-label" for="items_<?= $item->getData('item_id') ?>_resolution_id" data-ui-id="form-element-items[<?= $item->getData('item_id') ?>][resolution_id]label"><span>Resolution</span></label>
+                                    <select id="items_<?= $item->getData('item_id') ?>_resolution_id" name="items[<?= $item->getData('item_id') ?>][resolution_id]" class="required select admin__control-select" title="Resolution" data-ui-id="form-element-items[<?= $item->getData('item_id') ?>][resolution_id]" data-validate="{required:true}" >
+                                    <option value="" ><?= __("Choose Resolution");?></option>
+                                    <?php $i=0;
+                                    foreach ($helper_Rma->getResolutions() as $resolution): $i++;?>
+                                    <option
+                                        value="<?= $resolution->getId() ?>" <?= (!$enable_resolution && $i==1)?'selected="selected"':''; ?>><?= $resolution->getName() ?></option>
+                                                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+                            </fieldset>
+                        </div>
+                        </td>
+                   </tr>
+                    <?php
+                    }
+                    ?>
+                </tbody>
+        </table>
+    </div>
+</div>
+<?php $customFields = $block->getCustomFields(); ?>
+<?php if ($customFields): ?>
+              <fieldset class="fieldset">
+                  <?php foreach ($customFields as $field): ?>
+                      <div class="field <?php if ($field->IsCustomerRequired()): ?>required<?php endif ?>">
+                          <?php if ($field->getType() == 'checkbox'): ?>
+                                <?= $block->getFieldInputHtml($field) ?>
+                              <label class="label" for="<?= $field->getCode() ?>">
+                                  <span><?= __($field->getName()) ?></span>
+                              </label>
+                              <p class="small"><?= $field->getDescription() ?></p>
+                          <?php else: ?>
+                              <label class="label">
+                                  <span><?= __($field->getName()) ?></span>
+                              </label>
+
+                              <div class="control">
+                                  <?= $block->getFieldInputHtml($field) ?>
+                                  <p class="small"><?= $field->getDescription() ?></p>
+                              </div>
+                          <?php endif ?>
+                      </div>
+                  <?php endforeach ?>
+              </fieldset>
+  <?php endif ?>
+<div class="block">
+        <div class="block-title">
+            <strong><?= __('Comments') ?></strong>
+        </div>
+        <div class="block-content">
+             <fieldset class="fieldset">
+                      <div class="field">
+                          <div class="control">
+                              <textarea name="reply" id="reply" class="input-text" style="width: 100%"></textarea>
+                          </div>
+                      </div>
+
+                      <div class="field">
+                          <label class="label">
+                              <span><?= __('Upload files') ?></span>
+                          </label>
+
+                          <div class="control">
+                             <input type='file' class='multi' name='attachment[]' id='attachment' accept='<?= $allowfile ?>'>
+                          </div>
+
+                      </div>
+                  </fieldset>
+        </div>
+    </div>
+    <div class="actions-toolbar">
+            <div class="primary">
+                <button type="submit" id = 'rma-request-button' class="action primary" data-role="rma-submit" >
+                    <span><?= __('Submit Request') ?></span>
+                </button>
+                <?php if ($showPolicy) { ?>
+                <input type="checkbox" id="chkBoxPolicy" name="PolicyCheck" onclick="myFunction()">&nbsp;<?= __("I agree the policy");?> <a id="PolicyView"><?= __("(View Our Policy)");?></a>
+                <?php } ?>
+            </div>
+        </div>
+      <div id="rma-policy" title="<?= __("RMA Policy");?>" style="display: none">
+         <p>
+            <?= __("Order allow to return after");?> <?= $returnPeriod; ?> <?= __("day,");?>
+            <?= __(" this policy allow return order in status :");?><?= $allowedStatuses; ?>
+             <?php if ($onlyShipped) { echo "and only the shipped items will be available to return";}?>
+         </p>
+      </div>
+    </form>
+
+ <script type="text/javascript">
+    require([
+        "jquery"
+    ], function ($) {
+      $('#attachment').bind('change', function() {
+          if(this.files[0].size/1024/1024 ><?= isset($sizeLimit)?$sizeLimit:0 ?>){
+            alert("<?= __("max file allow is %1 MB.Please choose another file", $sizeLimit); ?>");
+          }
+            var type = this.files[0].name.split('.').pop().toLowerCase();
+            var k = 0;
+          <?php
+            foreach ($allowfileAR as $allowfile) {
+                ?>
+                if(type == '<?= $allowfile ?>' )
+                  k=1;
+                <?php
+            }
+            ?>
+
+          if(k==0)
+            alert('<?= __("Wrong file type.Please upload another file");?>');
+        });
+        $('.rma-item-checkbox').click(function () {
+            if ($(this)[0].checked) {
+                $("#item" + $(this).data('item-id')).show();
+            } else {
+                $("#item" + $(this).data('item-id')).hide();
+            }
+        });
+        $('#PolicyView').click(function () {
+         $('#rma-policy').dialog({
+               height: 80,
+                width: 350,
+                modal: true,
+                resizable: false,
+                dialogClass: 'no-close rma-policy-dialog'
+            });
+        });
+        $("#rma-new-form").submit(function() {
+          <?php if ($showPolicy) : ?>
+          if(!document.getElementById("chkBoxPolicy").checked){
+            alert('<?= __("You must agree to the policy to return item");?>');
+            return false;
+          }
+          <?php endif; ?>
+
+          if ($('.choose-item').find(':checked').length==0) {
+            alert('<?= __("You must choose item to return");?>');
+            return false;
+          }
+          return true;
+        });
+    });
+</script>
+<style type="text/css">
+ .ui-widget-header{
+    border-radius: 15px;
+    z-index: 144;
+ }
+ .ui-button{
+   float: right;
+ }
+   .ui-widget.rma-policy-dialog {
+   border-radius: 15px;
+    z-index: 144;
+
+}
+
+.ui-widget-content.rma-policy-dialog {
+    background: #F9F9F9;
+    border: 1px solid #90d93f;
+    color: #222222;
+}
+
+.ui-dialog.rma-policy-dialog {
+    left: 0;
+    outline: 0 none;
+    padding: 0 !important;
+    position: absolute;
+    top: 0;
+}
+
+.ui-dialog.rma-policy-dialog .ui-dialog-content {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    overflow: auto;
+    position: relative;
+    padding: 0 !important;
+    margin: 0;
+}
+
+.ui-dialog.rma-policy-dialog .ui-widget-header {
+    background: #b0de78;
+    border: 0;
+    color: #fff;
+    font-weight: normal;
+}
+
+.ui-dialog.rma-policy-dialog .ui-dialog-titlebar {
+    padding: 0.1em .5em;
+    position: relative;
+    font-size: 1em;
+}
+</style>

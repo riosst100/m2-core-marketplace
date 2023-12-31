@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://landofcoder.com/license
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category   Landofcoder
+ * @package    Lofmp_PriceComparison
+ * @copyright  Copyright (c) 2017 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+    	<add id="Lofmp_PriceComparison::price" title="Price Comparison" module="Lofmp_PriceComparison" sortOrder="190" icon="fa fa-usd" resource="Lofmp_PriceComparison::price" dependsOnConfig="lofmppricecomparison/general_settings/allow_seller_manage"/>
+    	<add id="Lofmp_PriceComparison::product" title="Assign Product" module="Lofmp_PriceComparison" action="lofmppricecomparison/product/view" sortOrder="10" resource="Lofmp_PriceComparison::product" parent="Lofmp_PriceComparison::price"  dependsOnConfig="lofmppricecomparison/general_settings/allow_seller_manage"/>
+    	<add id="Lofmp_PriceComparison::product_index" title="Assign Product List" module="Lofmp_PriceComparison" action="lofmppricecomparison/product/index" sortOrder="20"  resource="Lofmp_PriceComparison::product_index" parent="Lofmp_PriceComparison::price" dependsOnConfig="lofmppricecomparison/general_settings/allow_seller_manage"/>
+    </menu>
+</config>

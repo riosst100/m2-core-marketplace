@@ -1,0 +1,158 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_Quickrfq
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+?>
+<?php $expiry = $block->getCartExpiry(); ?>
+<?php $request = $block->getProduct(); ?>
+<?php $quote = $block->getQuote();  ?>
+<form action="<?= $block->getUpdateFormLink() ?>"
+                            autocomplete="off" data-action="product-form" method="post" id="manage-request-rfq-form">
+<section id="order-items" class="admin__page-section order-items">
+    <div class="admin__page-section-title">
+        <strong class="title"><?= __("Product Information");?></strong>
+    </div>
+    <div class="admin__table-wrapper" style="border-bottom: 1px solid #ccc">
+            <table class="admin__table-primary">
+                <tr>
+                    <th><?= $block->escapeHtml(__('Name & SKU')) ?></th>
+                    <th><?= $block->escapeHtml(__('Thumnail'))?></th>
+                    <th><?= $block->escapeHtml(__('Product Price')) ?></th>
+                    <th><?= $block->escapeHtml(__('Expected Price')) ?></th>
+                    <th><?= $block->escapeHtml(__('Quantity')) ?></th>
+                    <th><?= $block->escapeHtml(__('Total Price')) ?></th>
+                </tr>
+                <tr>
+                    <td>
+                        <span>
+                            <a href="<?= $block->getEditProductUrl($quote->getData("product_id"));?>" target="_BLANK"><?= $block->escapeHtml(__($request->getName())) ?></a>
+                        </span>
+                        <p style="padding-top: 5px"> <?= 'SKU: ' . $block->escapeHtml(__($request->getSku())) ?></p>
+                    </td>
+                    <td>
+                        <span>
+                            <div class="image-thumnail"/>
+                        </span>
+                    </td>
+                    <td>
+                        <span>
+                        <?= $block->escapeHtml(__($block->getProductPriceHtml($request->getData('price'),$request->getData('currency_code')))) ?>
+                        </span>
+                    </td>
+                    <td>
+                        <span>
+                            <span><?= __("Request Price: "); ?></span>    
+                            <strong><?= $block->escapeHtml(__($block->getProductPriceHtml($quote->getData('price_per_product')))) ?></strong>
+                        </span>
+                        <br/>
+                        <span>
+                            <span><?= __("Admin Item Price: "); ?></span>
+                            <input type="text" name="admin_price" class="input-text admin__control-text" placeholder="<?= $block->escapeHtml(__("Input your price"));?>" value="<?= $quote->getData('admin_price')?(float)$quote->getData('admin_price'):(float)$quote->getData('price_per_product'); ?>" />
+                        </span>
+                    </td>
+                    <td>
+                        <span>
+                            <span><?= __("Request Quantity: "); ?></span>    
+                            <strong><?= $block->escapeHtml(__($quote->getData('quantity'))) ?></strong>
+                        </span>
+                        <br/>
+                        <span>
+                            <span><?= __("Admin Quantity: "); ?></span>
+                            <input type="text" name="admin_quantity" class="input-text admin__control-text" placeholder="<?= $block->escapeHtml(__("Input your quantity"));?>" value="<?= $quote->getData('admin_quantity')?(int)$quote->getData('admin_quantity'):(int)$quote->getData('quantity'); ?>" />
+                        </span>
+                    </td>
+                    <td>
+                        <span>
+                            <strong><?= $block->escapeHtml(__($block->getProductPriceHtml($block->getTotalPrice(), $quote->getData("currency_code")))) ?></strong>
+                        </span>
+                        <?php if ($admin_total = $block->getAdminTotalPrice()) : ?>
+                        <br/>
+                        <span class="small small-text">
+                            <span><?= __("Admin Total: "); ?></span>
+                            <strong><?= $block->escapeHtml(__($block->getProductPriceHtml($admin_total, $quote->getData("currency_code")))) ?></strong>
+                        </span>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+            </table>
+    </div>
+</section>
+<section id="order-update-items" class="admin__page-section order-items">
+    <div class="admin__page-section-title">
+        <strong class="title"><?= __("Process Quote");?></strong>
+    </div>
+    <div class="admin__table-wrapper" style="border-bottom: 1px solid #ccc">
+        <table class="admin__table-primary">
+            <tr>
+                <td>
+                    <span class="quote-status">
+                        <span><?= __("Quote Status: "); ?></span>
+                        <strong><?= $quote->getData("status"); ?></strong>
+                    </span>
+                </td>
+            </tr>
+            <?php if($quote->getData("seller_name")) : ?>
+            <tr>
+                <td>
+                    <span class="quote-seller">
+                        <span><?= __("Seller Name: "); ?></span>
+                        <span><?= $quote->getData("seller_name") ?></span>
+                    </span>
+                </td>
+            </tr>
+            <?php endif; ?>
+            <tr>
+                <td>
+                    <span class="quote-coupon-code">
+                        <span><?= __("Add Coupon Code: "); ?></span>
+                        <input type="text" class="input-text admin__control-text" name="coupon_code" placeholder="<?= $block->escapeHtml(__("Input Coupon Code"));?>" value="<?= $quote->getData('coupon_code'); ?>" />
+                    </span>
+                </td>
+            </tr>
+            <?php if($expiry) : ?>
+            <tr>
+                <td>
+                    <span class="quote-expiry-date">
+                        <span><?= __("Cart Expiry Date: "); ?></span>
+                        <span><?= $expiry ? $block->formatTheDate($expiry, "Y-m-d") : '' ?></span>
+                    </span>
+                </td>
+            </tr>
+            <?php endif; ?>
+            <tr>
+                <td>
+                    <input type="hidden" name="quickrfq_id" value="<?= $quote->getData("quickrfq_id");?>"/>
+                    <button id="submit-update-button" type="submit" class="submit primary"><?= $block->escapeHtml(__('Update Quote')) ?></button>
+                    <?= $block->getBlockHtml('formkey') ?>
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+</form>
+<style>
+    .image-thumnail {
+        background-image: url("<?= $this->helper('Magento\Cms\Helper\Wysiwyg\Images')->getBaseUrl().'catalog/product'.$request->getImage();?>");
+        width: 65px;
+        height: 65px;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover
+    }
+</style>

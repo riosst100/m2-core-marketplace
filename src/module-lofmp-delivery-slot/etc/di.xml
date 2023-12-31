@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Lofmp\DeliverySlot\Api\Data\SlotInterface" type="Lofmp\DeliverySlot\Model\Data\Slot"/>
+    <preference for="Lofmp\DeliverySlot\Api\Data\SellerDeliverySlotInterface" type="Lofmp\DeliverySlot\Model\Data\SellerDeliverySlot"/>
+    <preference for="Lofmp\DeliverySlot\Api\Data\SellerDeliverySlotSearchResultsInterface" type="Lofmp\DeliverySlot\Model\Data\SellerDeliverySlotSearchResults"/>
+
+    <type name="Magento\Checkout\Api\PaymentInformationManagementInterface">
+        <plugin name="delivery_slot_plugin"
+                type="Lofmp\DeliverySlot\Plugin\PaymentInformationManagementPlugin"
+                sortOrder="1"
+                disabled="false"/>
+    </type>
+
+    <!-- plugin on OrderRepositoryInterface -->
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="delivery_slot_my_orders_plugin"
+                type="Lofmp\DeliverySlot\Plugin\OrderRepositoryPlugin"
+                sortOrder="1"
+                disabled="false"/>
+    </type>
+
+    <!-- Lofmp DeliverySlot Interface Implementation -->
+    <preference for="Lofmp\DeliverySlot\Api\DeliverySlotInterface"
+                type="Lofmp\DeliverySlot\Model\DeliverySlot"/>
+    <preference for="Lofmp\DeliverySlot\Api\SellerDeliverySlotInterface"
+                type="Lofmp\DeliverySlot\Model\SellerDeliverySlot"/>
+    <preference for="Lofmp\DeliverySlot\Api\SellerDeliverySlotInterface"
+                type="Lofmp\DeliverySlot\Model\SellerDeliverySlot"/>
+    <preference for="Lofmp\DeliverySlot\Api\GuestSellerDeliverySlotInterface"
+                type="Lofmp\DeliverySlot\Model\GuestSellerDeliverySlot"/>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\Reporting">
+        <plugin name="sales_grid_collection"
+                type="Lofmp\DeliverySlot\Plugin\Sales\Order\Grid"
+                disabled="false"/>
+    </type>
+
+ <!-- Lofmp Pdf Overwrite for Delivery Slot Implementation -->
+    <preference for="Magento\Sales\Model\Order\Pdf\Invoice"
+                type="Lofmp\DeliverySlot\Model\Order\Pdf\Invoice"/>
+    <preference for="Magento\Sales\Model\Order\Pdf\Shipment"
+                type="Lofmp\DeliverySlot\Model\Order\Pdf\Shipment"/>
+
+
+    <!-- Grid To dispaly Delivery Slots -->
+    <type name="Lofmp\DeliverySlot\Model\ResourceModel\DeliverySlots\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">delivery_slot</argument>
+            <argument name="eventPrefix" xsi:type="string">lofmp_delivery_slot_data_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">slot_data_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Lofmp\DeliverySlot\Model\ResourceModel\DeliverySlots</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="delivery_slots_grid_data_source" xsi:type="string">
+                    Lofmp\DeliverySlot\Model\ResourceModel\DeliverySlots\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+<!-- Lofmp DeliverySlotGroup Grid -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="delivery_slot_group_data_source" xsi:type="string">
+                    Lofmp\DeliverySlot\Model\ResourceModel\DeliverySlotGroup\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Lofmp\DeliverySlot\Model\ResourceModel\DeliverySlotGroup\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">delivery_slot_group</argument>
+            <argument name="eventPrefix" xsi:type="string">lofmp_delivery_slot_group_data_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">slot_group_data_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Lofmp\DeliverySlot\Model\ResourceModel\DeliverySlotGroup</argument>
+        </arguments>
+    </type>
+
+<!-- Pending Delivery Orders -->
+
+    <virtualType name="DeliverySlotSellerGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="DeliverySlotOrderGridDataProvider" type="Lofmp\DeliverySlot\Ui\DataProvider\Seller\OrderDataProvider">
+        <arguments>
+            <argument name="filterPool" xsi:type="object" shared="false">DeliverySlotSellerGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- plugin on shipping section view form -->
+    <type name="Magento\Shipping\Block\Adminhtml\View\Form">
+        <plugin type="Lofmp\DeliverySlot\Plugin\Block\Adminhtml\View\Form"
+                name="shipping_delivery_info"
+                disabled="false" />
+    </type>
+    <!--Magento\Sales\Block\Order\Email\Items\DefaultItems -->
+    <!-- plugin on Invoice Email items default -->
+    <type name="Magento\Sales\Block\Order\Email\Invoice\Items">
+        <plugin type="Lofmp\DeliverySlot\Plugin\Block\Invoice\Items\ItemsPlugin"
+                name="delivery_info_invoice"
+                disabled="false" />
+    </type>
+
+    <type name="Magento\Sales\Block\Order\Email\Items">
+        <plugin type="Lofmp\DeliverySlot\Plugin\Block\Order\Email\DefaultOrderPlugin"
+                name="delivery_info_order"
+                disabled="false" />
+    </type>
+
+</config>

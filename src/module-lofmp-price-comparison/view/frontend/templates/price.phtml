@@ -1,0 +1,21 @@
+<?php
+    $productId = $block->getProduct()->getId();
+    $helper = $this->helper("Lofmp\PriceComparison\Helper\Data");
+    $assignProducts = $helper->getAllAssignedProducts($productId);
+    $totalSellers = count($assignProducts);
+    
+    
+?>
+<?php if ($totalSellers > 0): ?>
+    <div class="lofmp-ap-price-block">
+        <?php if ($helper->showMinimumPrice()): ?>
+            <div class="lofmp-ap-from-price">
+                <span><?php echo __('from'); ?> :</span>
+                <span class="lofmp-ap-minimum-price"><?php echo $helper->getMinimumPriceHtml($productId);?></span>
+            </div>
+        <?php endif; ?>
+        <div class="lofmp-ap-available-sellers">
+            <a href="#product_list"><?php echo __('Available from %1 more seller(s)', $totalSellers);  ?></a>
+        </div>
+    </div>
+<?php endif; ?>

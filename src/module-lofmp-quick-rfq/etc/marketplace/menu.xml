@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2020 Landofcoder.com. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+    	<add 
+            id="Lofmp_Quickrfq::quickrfq" 
+            icon="fa fa-envelope-o" 
+            title="Quick RFQ" 
+            module="Lofmp_Quickrfq"
+            sortOrder="50" 
+            resource="Lofmp_Quickrfq::quickrfq"
+            dependsOnConfig="lofmp_quickrfq/general/enabled"
+        />
+    	<add 
+            id="Lofmp_Quickrfq::manager_quickrfq" 
+            title="Manager Quote" 
+            module="Lofmp_Quickrfq"
+            action="quickrfq/quickrfq/index" 
+            sortOrder="51" 
+            parent="Lofmp_Quickrfq::quickrfq" 
+            resource="Lofmp_Quickrfq::manager_quickrfq"
+            dependsOnConfig="lofmp_quickrfq/general/enabled"
+        />
+    </menu>
+</config>

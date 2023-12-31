@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lofmp_MultiShipping
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Lofmp_MultiShipping::multishipping" title="Multi Shipping" module="Lofmp_MultiShipping" sortOrder="10" resource="Lofmp_MultiShipping::config" parent="Lof_MarketPlace::marketplace"/>
+        <add id="Lofmp_MultiShipping::configuration" title="Configuration" module="Lofmp_MultiShipping" sortOrder="90" parent="Lofmp_MultiShipping::multishipping" action="adminhtml/system_config/edit/section/lofmp_multishipping/" resource="Lofmp_MultiShipping::config"/>
+    </menu>
+</config>

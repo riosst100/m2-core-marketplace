@@ -1,0 +1,14 @@
+.cart-container .form-cart {
+    margin-bottom: 50px;
+}
+
+.totals .sub {
+    font-size: 1.8rem;
+}
+
+.lofmp-cart-summary .title {
+    font-size: 2.4rem;
+    font-weight: 300;
+    margin: 12px 0;
+    display: block;
+}

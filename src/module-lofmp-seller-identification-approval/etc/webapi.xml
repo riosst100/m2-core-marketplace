@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<route url="/V1/selleridentificationapproval/attachment" method="POST">
+		<service class="Lofmp\SellerIdentificationApproval\Api\AttachmentRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lofmp_SellerIdentificationApproval::Attachment_save"/>
+		</resources>
+	</route>
+	<route url="/V1/selleridentificationapproval/attachment/search" method="GET">
+		<service class="Lofmp\SellerIdentificationApproval\Api\AttachmentRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Lofmp_SellerIdentificationApproval::Attachment_view"/>
+		</resources>
+	</route>
+	<route url="/V1/selleridentificationapproval/attachment/:id" method="GET">
+		<service class="Lofmp\SellerIdentificationApproval\Api\AttachmentRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="Lofmp_SellerIdentificationApproval::Attachment_view"/>
+		</resources>
+	</route>
+	<route url="/V1/selleridentificationapproval/attachment/:id" method="PUT">
+		<service class="Lofmp\SellerIdentificationApproval\Api\AttachmentRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lofmp_SellerIdentificationApproval::Attachment_update"/>
+		</resources>
+	</route>
+	<route url="/V1/selleridentificationapproval/attachment/:id" method="DELETE">
+		<service class="Lofmp\SellerIdentificationApproval\Api\AttachmentRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Lofmp_SellerIdentificationApproval::Attachment_delete"/>
+		</resources>
+	</route>
+</routes>

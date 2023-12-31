@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="print" />
+    <body>
+        <attribute name="class" value="account"/>
+        <referenceContainer name="content">
+            <block name="rma.guestrma.print" class="Lofmp\Rma\Block\Guest\View" template="Lofmp_Rma::guest/print.phtml" cacheable="false" ifconfig="rma/general/enable_guest_rma">
+            </block>
+        </referenceContainer>
+    </body>
+</page>

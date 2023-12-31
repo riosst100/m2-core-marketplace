@@ -1,0 +1,55 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_PreOrder
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+?>
+<div class="lof-loading-mask lof-display-none">
+    <div class="lof-loader"></div>
+</div>
+<?php
+$helper    = $this->helper('Lof\PreOrder\Helper\Data');
+$product   = $this->getProduct();
+$productId = $product->getId();
+$flag      = 0;
+if ($helper->isPreorder($productId, $product)) {
+    $flag = 1;
+}
+$payHtml                = $helper->getPayPreOrderHtml();
+$msg                    = $helper->getPreOrderInfoBlock($productId, $product);
+$url                    = $helper->getCheckConfigUrl();
+$addtocart_button_text  = $helper->getAddtocartButtonText();
+$preorder_text          = $helper->getProductPreorderText();
+$preorder_text_position = $helper->getProductPreorderTextPosition();
+
+$data = json_encode([
+    "payHtml"              => $payHtml,
+    "preorderText"         => $preorder_text,
+    "preorderTextPosition" => $preorder_text_position,
+    "msg"                  => $msg,
+    "flag"                 => $flag,
+    "url"                  => $url,
+    "productId"            => $productId,
+    "buttonText"           => $addtocart_button_text,
+]);
+?>
+<script type="text/javascript">
+    require(['jquery', 'Lof_PreOrder/js/view'], function ($) {
+        $widget = $.preorder.view(<?php echo $data ?>)
+    })
+</script>

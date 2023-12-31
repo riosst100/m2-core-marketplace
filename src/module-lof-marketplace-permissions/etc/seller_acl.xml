@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPermissions
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Lof_MarketPlace::index" title="All" translate="title" sortOrder="100">
+                <resource id="Lof_MarketPlace::dashboard" title="Dashboard" translate="title" sortOrder="100">
+                    <resource id="Lof_MarketPlace::dashboard_view" title="View Dashboard" translate="title" sortOrder="100"/>
+                </resource>
+                <resource id="Lof_MarketPlace::profile" title="Profile" translate="title" sortOrder="200">
+                    <resource id="Lof_MarketPlace::profile_view" title="View Seller Profile" translate="title" sortOrder="100"/>
+                    <resource id="Lof_MarketPlace::profile_edit" title="Edit Seller Profile" translate="title" sortOrder="200"/>
+                </resource>
+                <resource id="Lof_MarketPlace::sales" title="Sales" translate="title" sortOrder="300">
+                    <resource id="Lof_MarketPlace::order" title="Orders" translate="title" sortOrder="100">
+                        <resource id="Lof_MarketPlace::orders_view" title="View Orders" translate="title" sortOrder="200"/>
+                        <resource id="Lof_MarketPlace::orders_edit" title="Edit Orders" translate="title" sortOrder="300"/>
+                        <resource id="Lof_MarketPlace::orders_send_email" title="Send Email" translate="title" sortOrder="400"/>
+                        <resource id="Lof_MarketPlace::orders_create_invoice" title="Create Invoice" translate="title" sortOrder="500"/>
+                        <resource id="Lof_MarketPlace::orders_create_ship" title="Create Ship" translate="title" sortOrder="600"/>
+                    </resource>
+                    <resource id="Lof_MarketPlace::invoice" title="Invoice" translate="title" sortOrder="300">
+                        <resource id="Lof_MarketPlace::invoice_view" title="View Invoices" translate="title" sortOrder="100"/>
+                        <resource id="Lof_MarketPlace::invoice_edit" title="Edit Invoices" translate="title" sortOrder="200"/>
+                    </resource>
+                    <resource id="Lof_MarketPlace::shipment" title="Shipment" translate="title" sortOrder="400">
+                        <resource id="Lof_MarketPlace::shipments_view" title="View Shipments" translate="title" sortOrder="100"/>
+                        <resource id="Lof_MarketPlace::shipments_edit" title="Edit Shipments" translate="title" sortOrder="200"/>
+                    </resource>
+                    <resource id="Lof_MarketPlace::amounttransaction" title="Amount Transaction" translate="title" sortOrder="500">
+                        <resource id="Lof_MarketPlace::amounttransaction_view" title="View Amount Transactions" translate="title" sortOrder="100"/>
+                    </resource>
+                </resource>
+                <resource id="Lof_MarketPlace::catalog" title="Catalog" translate="title" sortOrder="400">
+                    <resource id="Lof_MarketPlace::manager_product" title="Manager Product" translate="title" sortOrder="100">
+                        <resource id="Lof_MarketPlace::manager_product_view" title="View Products" translate="title" sortOrder="200"/>
+                        <resource id="Lof_MarketPlace::manager_product_edit" title="Edit Product" translate="title" sortOrder="300"/>
+                        <resource id="Lof_MarketPlace::manager_product_add" title="Add Product" translate="title" sortOrder="400"/>
+                        <resource id="Lof_MarketPlace::manager_product_delete" title="Delete Product" translate="title" sortOrder="500"/>
+                        <resource id="Lof_MarketPlace::manager_product_save" title="Save Product" translate="title" sortOrder="600"/>
+                        <resource id="Lof_MarketPlace::manager_product_status" title="Change Product Status" translate="title" sortOrder="700"/>
+                    </resource>
+                </resource>
+                <resource id="Lof_MarketPlace::withdrawals" title="Withdrawals" translate="title" sortOrder="500">
+                    <resource id="Lof_MarketPlace::withdrawals_view" title="View Withdrawals" translate="title" sortOrder="100"/>
+                    <resource id="Lof_MarketPlace::withdrawals_request" title="Withdrawals Request" translate="title" sortOrder="200"/>
+                    <resource id="Lof_MarketPlace::withdrawals_history" title="View Withdrawals History" translate="title" sortOrder="300"/>
+                </resource>
+                <resource id="Lof_MarketPlace::message" title="Messages" translate="title" sortOrder="600">
+                    <resource id="Lof_MarketPlace::message_customer" title="Manage Message Customer" translate="title" sortOrder="100">
+                        <resource id="Lof_MarketPlace::message_customer_view" title="View Message Customer" translate="title" sortOrder="100"/>
+                        <resource id="Lof_MarketPlace::message_customer_send" title="Send Message Customer" translate="title" sortOrder="200"/>
+                    </resource>
+                    <resource id="Lof_MarketPlace::message_admin" title="Manage Message Admin" translate="title" sortOrder="200">
+                        <resource id="Lof_MarketPlace::message_admin_view" title="View Message Admin" translate="title" sortOrder="100"/>
+                        <resource id="Lof_MarketPlace::message_admin_send" title="Send Message Admin" translate="title" sortOrder="200"/>
+                    </resource>
+                    <resource id="Lof_MarketPlace::send_admin" title="Send Message Admin" translate="title" sortOrder="300"/>
+                </resource>
+                <resource id="Lof_MarketPlace::review" title="Reviews" translate="title" sortOrder="700">
+                    <resource id="Lof_MarketPlace::review_view" title="View Review" translate="title" sortOrder="100"/>
+                    <resource id="Lof_MarketPlace::review_edit" title="Edit Review" translate="title" sortOrder="200"/>
+                </resource>
+                <resource id="Lof_MarketPlace::rating" title="Ratings" translate="title" sortOrder="800">
+                    <resource id="Lof_MarketPlace::rating_view" title="View Rating" translate="title" sortOrder="100"/>
+                    <resource id="Lof_MarketPlace::rating_edit" title="Edit Rating" translate="title" sortOrder="200"/>
+                </resource>
+                <resource id="Lof_MarketPlace::vacation" title="Vacation" translate="title" sortOrder="700">
+                    <resource id="Lof_MarketPlace::vacation_save" title="Save Vacation" translate="title" sortOrder="100"/>
+                </resource>
+                <resource id="Lof_MarketPlace::upload" title="Mass Import/Export" translate="title" sortOrder="900">
+                    <resource id="Lof_MarketPlace::uploadimage" title="Manage Upload Image" translate="title" sortOrder="100">
+                        <resource id="Lof_MarketPlace::uploadimage_image" title="Save Image" translate="title" sortOrder="100"/>
+                        <resource id="Lof_MarketPlace::uploadimage_imagezip" title="Save Image Zip" translate="title" sortOrder="200"/>
+                    </resource>
+                    <resource id="Lof_MarketPlace::import" title="Manage Import" translate="title" sortOrder="200">
+                        <resource id="Lof_MarketPlace::import_validate" title="Check Data" translate="title" sortOrder="100"/>
+                    </resource>
+                    <resource id="Lof_MarketPlace::export" title="Manage Export" translate="title" sortOrder="300">
+                        <resource id="Lof_MarketPlace::export_file" title="Export" translate="title" sortOrder="100"/>
+                    </resource>
+                </resource>
+                <resource id="Lof_MarketPlace::report" title="Advanced Report" translate="title" sortOrder="1000">
+                    <resource id="Lof_MarketPlace::report_view" title="View Advanced Report" translate="title" sortOrder="100"/>
+                </resource>
+                <resource id="Lof_MarketPermissions::permissions" title="Permissions" translate="title" sortOrder="9999">
+                    <resource id="Lof_MarketPermissions::permissions_role" title="Roles and Permissions" translate="title" sortOrder="100">
+                        <resource id="Lof_MarketPermissions::roles_view" title="View Roles and Permissions" translate="title" sortOrder="100">
+                            <resource id="Lof_MarketPermissions::roles_edit" title="Manage Roles and Permissions" translate="title" sortOrder="200"/>
+                        </resource>
+                    </resource>
+                    <resource id="Lof_MarketPermissions::users_structure" title="Users and Structure" translate="title" sortOrder="200">
+                        <resource id="Lof_MarketPermissions::permissions_users" title="Manage Users" translate="title" sortOrder="100"/>
+                        <resource id="Lof_MarketPermissions::permissions_structure" title="Manage Structure" translate="title" sortOrder="200"/>
+                        <resource id="Lof_MarketPermissions::users_view" title="View Users and Teams" translate="title" sortOrder="300">
+                            <resource id="Lof_MarketPermissions::users_edit" title="Manage Users and Teams" translate="title" sortOrder="400"/>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,30 @@
+<?php
+/**
+ * negotiate-tabs
+ *
+ * @copyright Copyright © 2020 landofcoder. All rights reserved.
+ * @author    landofcoder@gmail.com
+ */
+?>
+<section class="admin__page-section">
+    <div class="admin__page-section-title">
+        <span class="title"><?= $block->escapeHtml(__('Contact And Message')) ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item manage-request-message-history">
+            <div class="admin__page-section-item-title">
+                <span class="title"><?= $block->escapeHtml(__('Message')) ?></span>
+            </div>
+            <?= $block->getChildHtml('manage.request.message') ?>
+        </div>
+
+        <div class="admin__page-section-item customer-info">
+            <div class="admin__page-section-item-title">
+                <span class="title"><?= $block->escapeHtml(__('Customer Info')) ?></span>
+            </div>
+            <?= $block->getChildHtml('negotiable.quote.customerinfo') ?>
+        </div>
+    </div>
+</section>
+
+

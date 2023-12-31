@@ -1,0 +1,38 @@
+<?php
+$sellerId = $block->getSellerId();
+if ($block->checkCustomerLoggedIn() && $sellerId != 0 && $sellerId != null) :
+    $customerId = $block->getCustomerId();
+?>
+    <?php if ($block->isSubscribed()) : ?>
+        <button id="add-favorite-seller" class="action primary" disabled="true"><?= $block->escapeHtml("Added As Favorite Seller");?></button>
+    <?php else : ?>
+        <button id="add-favorite-seller" class="action primary"><?= $block->escapeHtml("Add As Favorite Seller");?></button>
+
+        <script type="text/javascript">
+            require(["jquery"],function($) {
+                $(document).on('click','#add-favorite-seller',function() {
+                    var url = "<?= $block->getUrl().'favoriteseller/action/add'?>";
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            "customer_id":<?= (int)$customerId ?>,
+                            "seller_id":<?= (int)$sellerId ?>
+                        },
+                        complete: function(response) {
+                            var responseStatus = response.responseJSON.status;
+                            if(responseStatus === 'success'){
+                                $('#add-favorite-seller').html('<?= $block->escapeHtmlAttr("Added As Favorite Seller");?>').prop("disabled", true);
+                            }
+                        },
+                        error: function (xhr, status, errorThrown) {
+                            console.log('<?= $block->escapeHtmlAttr("Error happens. Try again.");?>');
+                        }
+                    });
+                });
+            });
+        </script>
+    <?php endif; ?>
+
+<?php endif; ?>

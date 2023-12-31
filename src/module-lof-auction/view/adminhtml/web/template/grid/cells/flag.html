@@ -1,0 +1,28 @@
+<!--
+  ~ Landofcoder
+  ~
+  ~ NOTICE OF LICENSE
+  ~
+  ~ This source file is subject to the Landofcoder.com license that is
+  ~ available through the world-wide-web at this URL:
+  ~ https://landofcoder.com/terms
+  ~
+  ~ DISCLAIMER
+  ~
+  ~ Do not edit or add to this file if you wish to upgrade this extension to newer
+  ~ version in the future.
+  ~
+  ~ @category   Landofcoder
+  ~ @package    Lof_Auction
+  ~ @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  ~ @license    https://landofcoder.com/terms
+  -->
+
+<!-- ko if: $row().flag === 'WIN' -->
+<div class="data-grid-cell-content lofau-status-box lofau-status-win" text="$col.getLabel($row())"></div>
+<!-- /ko -->
+
+<!-- ko if: $row().flag === 'PENDING' -->
+<div class="data-grid-cell-content lofau-status-box lofau-status-pending" text="$col.getLabel($row())"></div>
+<!-- /ko -->
+

@@ -1,0 +1,53 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_SellerBadge
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+?>
+
+<?php
+/**
+ * Badge Tab
+ *
+ * @var $block \Lofmp\SellerBadge\Block\Adminhtml\Seller\Edit\Tab\BadgeTab
+ * @var $helper \Lofmp\SellerBadge\Helper\Data
+ */
+
+$_badgeCollection = $block->getBadgeCollection();
+
+if (!$_badgeCollection->count()) {
+    return;
+}
+?>
+
+<fieldset class="fieldset admin__fieldset">
+    <legend class="admin__legend legend">
+        <span><?= $block->escapeHtml(__('Seller Badge(s)')) ?></span>
+    </legend>
+    <?php if (!$_badgeCollection->count()) : ?>
+        <div class="info notify empty">
+            <div><?= $block->escapeHtml(__('Badge not found on this seller account!')) ?></div>
+        </div>
+    <?php else: ?>
+    <div class="lofmp-badges lofmp-badges--medium">
+        <?= $this->getLayout()->createBlock(\Lofmp\SellerBadge\Block\Adminhtml\Seller\Edit\Tab\BadgeTab::class)
+            ->setBadgeCollection($_badgeCollection)
+            ->setTemplate("Lofmp_SellerBadge::seller/items.phtml")->toHtml(); ?>
+        <?php endif; ?>
+    </div>
+</fieldset>

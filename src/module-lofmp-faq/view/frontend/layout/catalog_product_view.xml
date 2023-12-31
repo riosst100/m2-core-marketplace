@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://landofcoder.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_Faq
+ * @copyright  Copyright (c) 2017 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+		<css src="Lof_All::lib/fancybox/jquery.fancybox.css"/>
+		<css src="Lof_All::lib/bootstrap/css/bootstrap-tiny.css"/>
+		<css src="Lofmp_Faq::css/styles.css" />
+        <css src="Lofmp_Faq::css/font-awesome.min.css" />
+        <css src="Lofmp_Faq::css/animate.css" />
+	</head>
+    <body>
+        <referenceBlock name="product.info.details">
+            <block class="Lofmp\Faq\Block\Product\View\Faq" ifconfig="lofmpfaq/general_settings/enable" name="product.info.mpfaq" template="Lofmp_Faq::product/faq.phtml" group="detailed_info" after="-">
+                <arguments><argument translate="true" name="title" xsi:type="string">FAQ</argument></arguments>
+                <block class="Lofmp\Faq\Block\Toolbar" name="lofmpfaq_toolbar" template="Lofmp_Faq::toolbar.phtml">
+                    <block class="Magento\Theme\Block\Html\Pager" name="lofmpfaq_toolbar_pager"/>
+                </block>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

@@ -1,0 +1,84 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_Quickrfq
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+/**
+ * @var \Lof\Quickrfq\Block\Adminhtml\Rfq\Message $block
+ */
+
+$message = $block->getMessageCollection();
+$msgChanged = $block->escapeHtmlAttr(__('The information in this tab has been changed.'));
+$msgError = $block->escapeHtmlAttr(__('This tab contains invalid data. Please resolve this before saving.'));
+$msgLoader = $block->escapeHtmlAttr(__('Loading...'));
+?>
+<section class="admin__page-section">
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item">
+            <div class="product data items" data-mage-init='{"tabs":{}}'>
+
+                <div id="message">
+                    <div class="message-block-list">
+                        <div class="message-block-list">
+                            <?php foreach ($block->getMessageCollection() as $message): ?>
+                                <div class="message-block-item">
+                                <span class="message-block-item-date-time">
+                                    <span>
+                                        <?= $block->formatDate($message->getCreatedAt(), \IntlDateFormatter::MEDIUM, true) ?>
+                                         (<?= ' ' . $block->escapeHtml($block->getSendertName($message)) ?>)
+                                    </span>
+                                </span>
+                                    <div
+                                        class="message-block"><?= $block->escapeHtml($message->getMessage()) ?>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+
+                    <div class="message-field field-row quote-message-block" data-role="attach-wrapper">
+                        <form action="<?= $block->getSendMessageLink() ?>"
+                              enctype='multipart/form-data' autocomplete="off"  data-action="message-form" method="post" id="manage-request-message-form">
+                            <label class="message-field-label" for="message">
+                                <?= $block->escapeHtml(__('Add your message')) ?>
+                            </label>
+                            <textarea name="message" rows="5" id="manage-request-message-textarea"></textarea>
+
+                            <button id="message-send-button" type="submit" class="submit primary"><?= $block->escapeHtml(__('Send')) ?></button>
+                            <?= $block->getBlockHtml('formkey') ?>
+                        </form>
+                    </div>
+                </div>
+                <div id="history" class="no-display">
+                    <?= $block->getChildHtml('manage.request.history') ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+
+    require([
+        'jquery'
+    ], function ($) {
+        $('#message-send-button').on('click',function () {
+            $(this).addClass('submitting');
+        })
+    })
+</script>

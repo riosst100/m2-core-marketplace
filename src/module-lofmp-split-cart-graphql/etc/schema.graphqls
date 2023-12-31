@@ -1,0 +1,44 @@
+# Copyright © Magento, Inc. All rights reserved.
+# See COPYING.txt for license details.
+
+type StoreConfig @doc(description: "The type contains information about a store config") {
+    lofmp_splitcart_enabled : String @doc(description: "Indicates whether split cart are enabled. Possible values: 1 (Yes) and 0 (No)")
+}
+
+type Mutation {
+    initCheckoutSplitCart(input: SubmitSplitCartInput!): SplitCart! @doc(description: "Submit init split cart before checkout") @resolver(class: "Lofmp\\SplitCartGraphQl\\Model\\Resolver\\InitSplitCart")
+
+    removeSplitCart(input: removeSplitCartInput!): Boolean! @doc(description: "Remove split cart query, use when canel checkout, customer logout.") @resolver(class: "Lofmp\\SplitCartGraphQl\\Model\\Resolver\\RemoveSplitCart")
+
+    placeOrderSplitCart(
+        sellerUrl: String!
+        input: PlaceOrderInput
+    ): PlaceOrderOutput @resolver(class: "Lofmp\\SplitCartGraphQl\\Model\\Resolver\\PlaceOrder")
+}
+
+interface CartItemInterface {
+    seller: SplitCartSellerInfo @resolver(class: "\\Lofmp\\SplitCartGraphQl\\Model\\Resolver\\SellerInfo")
+}
+
+type SplitCartSellerInfo {
+    seller_id: Int @doc(description: "Seller ID.")
+    seller_url: String @doc(description: "Seller Url Key.")
+    seller_name: String @doc(description: "Seller Name.")
+}
+
+type SplitCart {
+    id: Int
+    parent_id: Int @doc(description: "Parent Quote Id.")
+    quote_id: Int @doc(description: "Child Quote ID.")
+    is_active: Int @doc(description: "Is Active.")
+    is_ordered: Int @doc(description: "Is ordered for this quote.")
+}
+
+input SubmitSplitCartInput {
+    seller_url: String! @doc(description: "Seller Url Key.")
+    cart_id: String! @doc(description: "Cart Marked ID.")
+}
+
+input removeSplitCartInput {
+    cart_id: String! @doc(description: "Cart Marked ID.")
+}

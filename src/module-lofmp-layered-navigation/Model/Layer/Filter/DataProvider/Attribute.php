@@ -1,0 +1,1 @@
+<?phpnamespace Lofmp\LayeredNavigation\Model\Layer\Filter\DataProvider;class Attribute extends \Magento\Catalog\Model\Layer\Filter\Attribute{}

@@ -1,0 +1,43 @@
+<form data-bind="attr: { action: getAuctionBidUrl($parent) } " enctype="multipart/form-data" method="post" class="mp_bidding_form form-biddings-amount">
+    <!-- ko ifnot: isDisableManual() -->
+        <!-- ko if: (isAutoEnable() && getAuctionFieldValue('auto_auction_opt', $parent)) -->
+        <div class="input-box auto-bid hidden">
+            <input type="checkbox" value="1" name="auto_bid_allowed">
+            <span data-bind="i18n: 'Place Bid as Automatic'"></span>
+        </div>
+        <!-- /ko -->
+        <div class="input-box hidden">
+            <input
+                type="number"
+                data-bind="attr:{id: getBidAmountId($parent), value: getRangePrice($parent), placeholder: $t('Enter Bid Amount')}"
+                name="bidding_amount"
+                class="input-text required-entry mpbidding_amount range_price field-input"
+                required="required" step=".01" oncut="return false;" oncopy="return false;" onpaste="return false;"/>
+        </div>
+    <!-- /ko -->
+    <!-- ko if: isDisableManual() -->
+        <input type="hidden" value="1" name="auto_bid_allowed"/>
+        <input type="hidden" class="range_price field-input" data-bind="attr: { value: getRangePrice($parent) }" name="bidding_amount" id="auction_amount" oncut="return false;" oncopy="return false;"
+                onpaste="return false;"/>
+    <!-- /ko -->
+    <input type="hidden" name="data_auction" data-bind="attr:{value: getAuctionDataStr($parent)}">
+    <button class="action primary hidden" data-bind="attr: {id: getBtnSubmitId($parent) , 'title': $t('Bidding')}" type="submit">
+      <span data-bind="i18n: 'Place Bid'"></span>
+    </button>
+    <!-- ko ifnot: isDisableManual() -->
+    <div class="auc-bid-note">
+      <span>
+        <span data-bind="i18n: 'Enter '"></span>
+        <span class="price">
+          <span class="range_price format-price price" data-bind="text: formatPrice(getRangePrice($parent))"></span>
+        </span>
+        <span data-bind="i18n: ' or more.'"></span>
+      </span>
+      <!-- ko if: ($parent.step && getAuctionFieldValue('increment_opt', $parent)) -->
+      <div>
+        <span data-bind="text: getBidNote($parent)"></span>
+      </div>
+      <!-- /ko -->
+    </div>
+    <!-- /ko -->
+</form>

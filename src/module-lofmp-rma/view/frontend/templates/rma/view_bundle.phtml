@@ -1,0 +1,377 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_Rma
+ * @copyright  Copyright (c) 2019 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+/* @var $block \Lof\Rma\Block\Rma\View */
+$rma = $block->getRma();
+$order =  $block->getOrder();
+$parent_increment_id = $order->getIncrementId();
+$items = $order->getAllItems();
+$tmp_items = [];
+foreach ($items as $_item) {
+    $_item->setData("rma_id", $rma->getId());
+    $tmp_items[$_item->getData("item_id")] = $_item;
+}
+$child_rma_items = $block->getChildRmaOrderItems($rma->getId());
+if ($child_rma_items) {
+    $items = array_merge($tmp_items, $child_rma_items);
+}
+
+$helperRma = $this->helper('Lof\Rma\Helper\Data');
+$helper = $this->helper('Lof\Rma\Helper\Help');
+$allow = $helper->getConfig($block->getStoreId(), 'rma/general/file_allowed_extensions');
+$allowfile = str_replace(',', '|', $allow);
+$allowfileAR = explode(',', $allow);
+$sizeLimit = $helper->getConfig($store = null, 'rma/general/file_size_limit');
+?>
+<style type="text/css">
+    .rma-message-list{
+       list-style: none;
+        padding: 0;
+
+    }
+   .message-list .message-item{
+   background: #f4feff;
+    border: 1px solid #a2d7e1;
+    border-radius: 6px;
+    padding: 15px 10px;
+    margin-bottom: 15px;
+    position: relative;
+    width: 90%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    clear: both;
+}
+    .message-list .message-item.internal {
+    background: #6FA7D6;
+        }
+    .message-list .message-item.admin {
+    border: 1px solid #b5eaab;
+    float: right;
+        }
+</style>
+<!--   echo $block->getChildHtml('rma.view.buttons') -->
+<script>
+    function myFunction() {
+                var popup = document.getElementById("rma-confirmation-form");
+                //popup.classList.toggle("show");
+                if(popup.style['display'] == ''){
+                    popup.style['display'] = 'none';
+                }else {
+                    popup.style['display'] = '';
+                }
+            }
+
+</script>
+
+<div class="rma-control-buttons">
+    <?php if ($block->isShowShipping()): ?>
+        <button onclick="var win = window.open('<?= $block->getPrintUrl() ?>', '_blank');win.focus();">
+            <span><?= __('Print RMA Packing Slip') ?></span></button>
+        <?php if ($block->getReturnlabel()): ?>
+            <button onclick="var win = window.open('<?= $block->getPrintLabelUrl() ?>', '_blank');win.focus();">
+                <span><?= __('Print RMA Shipping Label') ?></span>
+            </button>
+        <?php endif ?>
+        <?php if ($block->isShowShippingConfirm()): ?>
+            <button data-role="confirm-shipping" class="action primary" onclick="myFunction()">
+                <span><?= __('Confirm Shipping') ?></span></button>
+        <?php endif ?>
+    <?php endif ?>
+</div>
+
+<?php if ($block->isShowShippingConfirm()): ?>
+<!--    <div id="rma-confirmation-form" style="display:none; background-color: #F3F3F3; padding:15px border-radius: 25px; " class="rma-dialog">-->
+    <div id="rma-confirmation-form" style=" background-color: #F3F3F3; padding:15px border-radius: 25px; " class="show rma-dialog">
+     <div class="page-title">
+          <h2><?= __("Shipping Confirm");?></h2>
+     </div>
+        <form action="<?= $block->getConfirmationUrl() ?>" method="POST" enctype="multipart/form-data"
+              id="rma-confirmation-form-validate">
+            <fieldset class="fieldset">
+                <div class="field">
+                    <div class="control">
+                        <p><?= $block->getShippingConfirm() ?></p>
+                    </div>
+                </div>
+            </fieldset>
+
+            <?php $fields = $block->getShippingConfirmFields(); ?>
+            <?php if (count($fields)): ?>
+                <fieldset class="fieldset">
+                    <?php foreach ($fields as $field): ?>
+                        <div class="field">
+                            <label for="<?= $field->getCode() ?>" class="label
+                                       <?php if ($field->IsCustomerRequired()): ?> required<?php endif ?>">
+                                <span><?= __($field->getName()) ?></span>
+                            </label>
+
+                            <div class="control">
+                                <?= $block->getFieldInputHtml($field) ?>
+                                <p class="small"><?= $field->getDescription() ?></p>
+                            </div>
+                        </div>
+                    <?php endforeach ?>
+                </fieldset>
+            <?php endif; ?>
+            <!--<input name="replyConfirmShipping" type="hidden" value="<?=$block->getShippingConfirm()?>">  -->
+            <!--<input name="replyConfirmShipping" type="hidden" value="<?= __('I confirm that I have sent the package to the RMA department.')?>">  -->
+            <div class="actions-toolbar">
+                <div class="primary" style="float: right;">
+                    <button type="submit" class="action primary" title="<?= __('Confirm Shipping') ?>">
+                        <span><?= __('Confirm Shipping') ?></span></button>
+                </div>
+            </div>
+        </form>
+    </div>
+<?php endif ?>
+
+<div class="rma-confirmation-form-overlay" id="rma-confirmation-form-overlay" style="display:none;">&nbsp;</div>
+   <div class="block">
+    <div class="block-title">
+        <strong><?= __('Request Information') ?></strong>
+    </div>
+    <div class="block-content">
+          <div class="box">
+               <div class="box-content">
+                    <?php /* @escapeNotVerified */ echo __('<b>Order   : </b> # %1', $block->getOrder()->getRealOrderId()) ?>
+
+                    <br>
+                    <b><?= __('Order Date  ');?>:</b> <?= $block->getOrderDate(); ?>
+                    <br>
+                    <b><?= __('Order Status '); ?>:</b> <?= $block->getOrder()->getStatusLabel(); ?>
+                    <br>
+                    <b><?= __('Rma Status '); ?>:</b> <?= $block->getStatusname($rma->getStatusId()); ?>
+                    <br><b><?= __('Rma Date  '); ?>:</b> <?= $block->getRmaDate(); ?>
+                    <?php foreach ($helperRma->getVisibleFields($rma->getStatusId(), true, true) as $field): ?>
+                            <?php if ($value = $helperRma->getFieldValue($rma, $field)) {
+                                ?>
+                            <br><b><?= __($field->getName()) ?> : </b>   <?= $value ?>
+                    <?php }
+                        endforeach ?>
+                    <br/><b><?= __("Return Address:") ?></b> <?= $helperRma->getAddressHtml($rma); ?>
+               </div>
+           </div>
+            <?php
+                $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                $blockCustomer = $objectManager->get("Magento\Customer\Block\Account\Dashboard\Address");
+            ?>
+            <div class="box box-order-shipping-information">
+                    <strong class="box-title">
+                        <?= __('Shipping Address') ?>:
+                        <div class="actions pr-di"><a id="address-edit" href="<?= $blockCustomer->escapeUrl($blockCustomer->getPrimaryBillingAddressEditUrl()) ?>">Edit</a></div>
+                    </strong>
+
+                    <div class="box-content">
+                        <?= $block->getFormattedAddress(); ?>
+                    </div>
+            </div>
+    </div>
+</div>
+<div class="block">
+    <div class="block-title">
+        <strong><?= __('Items ') ?></strong>
+    </div>
+    <div class="block-content">
+        <div class="table-wrapper">
+            <table class="data table table-wrapper rma-items">
+                <thead>
+                <tr>
+                    <th scope="col" class="col name"><?= __('# Order ID') ?></th>
+                    <th scope="col" class="col name"><?= __('Product Information') ?></th>
+                    <th scope="col" class="col qty"><?= __('Quantity Return') ?></th>
+                    <th scope="col" class="col reason"><?= __('Reason') ?></th>
+                    <th scope="col" class="col condition"><?= __('Condition') ?></th>
+                    <th scope="col" class="col resolution"><?= __('Resolution') ?></th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($items as $item):
+                    if ($item->getData('product_type') == 'bundle'): ?>
+                        <tr class="even">
+                            <td></td>
+                            <td><?= $item->getData('name') ?><?= __('(Bundled Product)') ?></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <?php continue;
+endif;
+                    $itemData =  $block->getRmaItemData($item);
+
+                    if (!$itemData || (isset($itemData['qty_requested']) && $itemData['qty_requested']==0)) {
+                        continue;
+                    }
+                    if ($item['rma_id'] == $rma->getId()) {
+                        $itemData['order_increment_id'] = $parent_increment_id;
+                    }
+                    ?>
+                    <tr>
+                        <td data-th="<?= __('Order ID #') ?>" class="col order-id">
+                            <?= "#".(isset($itemData['order_increment_id'])?$itemData['order_increment_id']:$block->getRmaOrderId($itemData['rma_id']));?>
+                        </td>
+                        <td data-th="Product" class="col image">
+                            <div class="product-title"><?= $item->getData('name');?></div>
+                          <div class="product-sku-block"><span><?= __('SKU');?>:</span><?= $item->getData('sku');?></div>
+
+                          <?php
+                            if (isset($item->getData('product_options')['attributes_info'])) {
+                                echo '<dl class="item-options">';
+                                foreach ($item->getData('product_options')['attributes_info'] as $key => $attributes_info) {
+                                    echo '<dt>'.$attributes_info['label'].'</dt>';
+                                    echo '<dd>'.$attributes_info['value'].'</dd>';
+                                }
+                                echo '</dl>';
+                            }
+                            ?>
+                            <img id="image"
+                                 src="<?= $block->initImage($item)->resize(150)->getUrl() ?>"
+                                 width="150px"/>
+                        </td>
+                        <td data-th="<?= __('QTY') ?>" class="col qty">
+                            <?= $itemData['qty_requested'] ?>
+                        </td>
+                        <td data-th="<?= __('Reason') ?>" class="col reason">
+                                <?= __($itemData['reason_name']) ?>
+                        </td>
+                        <td data-th="<?= __('Condition') ?>" class="col condition">
+                                <?= __($itemData['condition_name']) ?>
+                        </td>
+                        <td data-th="<?= __('Resolution') ?>" class="col resolution">
+                                <?= __($itemData['resolution_name']) ?>
+                        </td>
+                    </tr>
+                <?php endforeach ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="block">
+              <div class="block-title">
+                  <strong><?= __('Comment') ?></strong>
+              </div>
+              <div class="block-content">
+              <form action="<?= $block->PostUrl($rma->getId()) ?>" method="POST" enctype="multipart/form-data" data-hasrequired="<?= __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+              <input name="id" type="hidden" value="<?= $block->getRmaId() ?>">
+                  <fieldset class="fieldset">
+                      <div class="field">
+                          <div class="control">
+                              <textarea name="reply" id="reply" class="input-text required-entry" style="width: 100%"></textarea>
+                          </div>
+                      </div>
+
+                      <div class="field">
+                          <label class="label">
+                              <span><?= __('Upload files') ?></span>
+                          </label>
+
+                          <div class="control">
+                            <input type='file' class='multi' name='attachment[]' id='attachment' accept='<?= $allowfile ?>'>
+                          </div>
+
+                      </div>
+                  </fieldset>
+                  <div class="actions-toolbar">
+                        <div class="primary">
+                            <button type="submit" class="action primary" data-role="rma-submit">
+                                <span><?= __('Submit Request') ?></span>
+                            </button>
+                        </div>
+                  </div>
+                  </form>
+
+    <legend class="admin__legend legend">
+        <span><?= __('RMA Message') ?></span>
+    </legend>
+
+    <div class="message-list">
+    <?php foreach ($helperRma->getMessages($rma, true) as $message): ?>
+
+          <div class="message-item <?= $block->getMessageType($message) ?> <?= $block->getSender($message)?>">
+            <div class="rma-message__header">
+                <strong>
+                    <?php if ($message->getCustomerId()): ?>
+                        <?= $message->getCustomerName() ?>
+                        <?php if ($helperRma->getCustomerEmail($message->getCustomerId()) != ''): ?>
+                            , <?= $helperRma->getCustomerEmail($message->getCustomerId()) ?>
+                        <?php endif ?>
+                    <?php elseif ($message->getUserId()): ?>
+                        <?= $helperRma->getUserName($message->getUserId()) ?>
+                     <?php endif ?>
+                </strong>
+                <span  style="float: right;" ><?= $block->formatDate($message->getCreatedAt(), \IntlDateFormatter::MEDIUM) ?> <?= $block->formatTime($message->getCreatedAt(), \IntlDateFormatter::SHORT) ?></span>
+            </div>
+
+            <div
+                class="rma-message__body">
+                <?php if ($message->getText()):
+                    if ($message->getIsHtml()): ?>
+                            <?= $message->getText() ?>
+                        <?php else: ?>
+                             <?= nl2br($message->getText()) ?>
+                <?php endif ?>
+                <?php endif ?>
+                <?php $attachments = $helperRma->getAttachments('message', $message->getId()) ?>
+                <?php if (count($attachments)): ?>
+                    <div class="rma-message__attachments">
+                        <?php /** @var \Lof\Rma\Api\Data\AttachmentInterface $attachment */?>
+                        <?php foreach ($attachments as $attachment):
+                            ?>
+                            <a href="<?= $block->getAttachmentUrl($attachment->getUid()) ?>"><?= $attachment->getName() ?></a>
+                        <?php endforeach ?>
+                    </div>
+                <?php endif ?>
+            </div>
+        </div>
+    <?php endforeach ?>
+     </div>
+   </div>
+</div>
+<script type="text/javascript">
+    require([
+        "jquery"
+    ], function ($) {
+      $('#attachment').bind('change', function() {
+          if(this.files[0].size/1024/1024 ><?= isset($sizeLimit)?$sizeLimit:0 ?>){
+            alert("max file allow is <?= $sizeLimit ?> MB.Please choose another file ");
+          }
+
+
+            var type = this.files[0].name.split('.').pop().toLowerCase();
+
+            var k = 0;
+          <?php
+            foreach ($allowfileAR as $allowfile) {
+                ?>
+                if(type == '<?= $allowfile ?>' )
+                  k=1;
+                <?php
+            }
+            ?>
+
+          if(k==0)
+            alert('Wrong file type.Please upload another file');
+        });
+    });
+    </script>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="customer_edit_tabs">
+            <block name="rma_rma" class="Lofmp\Rma\Block\Adminhtml\Customer\Edit\Tab\Rma"/>
+        </referenceContainer>
+    </body>
+</page>

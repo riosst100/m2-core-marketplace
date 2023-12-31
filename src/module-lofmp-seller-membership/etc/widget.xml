@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lofmp_SellerMembership
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="lofmp_sellermembership" class="Lofmp\SellerMembership\Block\Widget\Membership">
+        <label translate="true">Lofmp SellerMembership: List Membership</label>
+        <description translate="true">Show a list seller membership</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" visible="true" required="false">
+                <label translate="true">Title</label>
+            </parameter>
+        </parameters>
+    </widget>
+
+</widgets>

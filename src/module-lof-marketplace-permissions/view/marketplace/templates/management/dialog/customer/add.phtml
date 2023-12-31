@@ -1,0 +1,99 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPermissions
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+?>
+<?php
+/** @var Lof\MarketPermissions\Block\Marketplace\Management\Add $block */
+/** @var Lof\MarketPermissions\ViewModel\Customer $viewModel */
+$viewModel = $block->getData('viewModel');
+?>
+<form class="form form-add-user" method="post" id="add-user-form"
+      action="<?= $block->escapeUrl($block->getUrl('*/customer/manage')) ?>"
+      data-mage-init='{"validation":{}}'>
+    <input type="hidden" name="target_id" />
+    <input type="hidden" name="customer_id" />
+    <fieldset class="fieldset info">
+        <div class="field jobtitle required">
+            <label class="label" for="jobtitle">
+                <span><?= $block->escapeHtml(__('Job Title')) ?></span>
+            </label>
+            <div class="control">
+                <input type="text" name="extension_attributes[seller_attributes][job_title]"
+                       id="jobtitle" value=""
+                       title="<?= $block->escapeHtmlAttr(__('Job Title')) ?>"
+                       class="input-text" data-validate="{required:true}">
+            </div>
+        </div>
+        <div class="field role required">
+            <label class="label" for="jobtitle">
+                <span><?= $block->escapeHtml(__('User Role')) ?></span>
+            </label>
+            <div class="control">
+                <select data-role="role-select" name="role" id="role">
+                    <?php foreach ($block->getRoles() as $role) : ?>
+                        <option value="<?= (int) $role->getId() ?>"><?= $block->escapeHtml($role->getRoleName()) ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+        <?= $viewModel->getCustomerNameHtml(); ?>
+        <div class="field email required">
+            <label class="label" for="email">
+                <span><?= $block->escapeHtml(__('Email')) ?></span>
+            </label>
+            <div class="control">
+                <input type="email" name="email" id="email" value=""
+                       title="<?= $block->escapeHtmlAttr(__('Email')) ?>"
+                       data-role="email"
+                       data-url-validate="<?= $block->escapeUrl($block->getUrl('*/customer/check')) ?>"
+                       class="input-text" data-validate="{required:true, 'validate-email':true}"
+                       pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$">
+            </div>
+        </div>
+        <div class="field telephone required">
+            <label class="label" for="telephone">
+                <span><?= $block->escapeHtml(__('Phone Number')) ?></span>
+            </label>
+            <div class="control">
+                <input type="text" name="extension_attributes[seller_attributes][telephone]" id="telephone" value=""
+                       title="<?= $block->escapeHtmlAttr(__('Phone Number')) ?>"
+                       pattern="\(?\+?(\d{1,4})?\)?\(?\d{3,4}\)?[\s.-]?\d{3,4}[\s.-]?(\d{3,6})?"
+                       class="input-text" data-validate="{required:true}">
+            </div>
+        </div>
+        <div class="field status">
+            <label class="label" for="status">
+                <span><?= $block->escapeHtml(__('Status')) ?></span>
+            </label>
+            <div class="control">
+                <select data-role="status-select" name="extension_attributes[seller_attributes][status]" id="status">
+                    <option value="1"><?= $block->escapeHtml(__('Active')) ?></option>
+                    <option value="0"><?= $block->escapeHtml(__('Inactive')) ?></option>
+                </select>
+            </div>
+        </div>
+    </fieldset>
+    <div id="additional_fields_create" data-role="create-additional-fields" class="_hidden additional-fields">
+        <?= $block->getChildHtml('customer_form_user_attributes_create') ?>
+    </div>
+    <div id="additional_fields_edit" data-role="edit-additional-fields" class="_hidden additional-fields">
+        <?= $block->getChildHtml('customer_form_user_attributes_edit') ?>
+    </div>
+</form>

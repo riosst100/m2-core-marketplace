@@ -1,0 +1,47 @@
+<?php if ($block->isRequiredLoggedIn() && ! $block->isLoggedIn()): ?>
+    <div id="rfq-button-template" class="hidden" style="height:0;width:0;opacity:0">
+        <a href="<?= $block->escapeUrl($block->getLoginUrl()); ?>" class="action lof-quote-request-button"><span><?= $block->escapeHtml(__('Request a Quote')) ?></span></a>
+    </div>
+<?php else: ?>
+    <div id="rfq-button-template" class="hidden" style="height:0;width:0;opacity:0">
+        <button type="button"
+                id="lof-quote-request-button-PRODUCTID"
+                data-productid="PRODUCTID"
+                data-role="lof-create-quote"
+                title="<?= $block->escapeHtmlAttr(__('Request a Quote')) ?>"
+                class="action lof-quote-request-button">
+            <span><?= $block->escapeHtml(__('Request a Quote')) ?></span>
+        </button>
+    </div>
+<?php endif; ?>
+<script type="text/javascript">
+    require(['jquery'], function ($) {
+        let productAddtocartForms = $('.product-item-info form[data-role="tocart-form"]');
+        if($('#rfq-button-template') && $('#rfq-button-template').length > 0 && productAddtocartForms && productAddtocartForms.length > 0 ) {
+          let template = $('#rfq-button-template').html();
+          productAddtocartForms.each((index, el) => {
+            let formElement = el;
+            const productIdField = $(formElement).find('input[name="product"]');
+            const productId = productIdField?productIdField.val():0;
+            let template2 = template.replace('PRODUCTID', productId);
+            template2 = template2.replace('PRODUCTID', productId);
+            template2 = template2.replace('&lt;', "<").replace('&gt;','>').replace("\\","");
+            let element1 = $('<span></span>');
+            $(formElement).parent().append(element1);
+            element1.attr('id',  'rfq-button-'+productId)
+            element1.html(template2);
+            $("#lof-quote-request-button-"+productId).on("click", function(){
+                const productId = $(this).data("productid");
+                let new_action = $("#add-quote-form").attr("action");
+                new_action = new_action.replace("/product_id/0","/product_id/"+productId)
+                $("#add-quote-form").attr("action", new_action)
+                $("#lof-quote-popup").lofquickrfqCreateQuote({
+                    "createQuoteUrl": "<?= $block->escapeUrl($block->getUrl("quickrfq/quickrfq/save")) ?>/product_id/"+productId,
+                    "lofFormButtonSelector": '#lof-quote-request-button-'+productId
+                });
+                $("#lof-quote-popup").modal("openModal");
+            })
+          })
+        }
+    })
+</script>

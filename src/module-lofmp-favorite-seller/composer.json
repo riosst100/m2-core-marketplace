@@ -1,0 +1,29 @@
+{
+  "name": "landofcoder/module-favorite-seller",
+  "description": "Favorite Sellers for Marketplace Extension",
+  "require": {
+      "landofcoder/module-marketplace":"*"
+  },
+  "suggest": {
+  },
+  "authors": [
+    {
+      "name": "Landofcoder",
+      "homepage": "https://landofcoder.com",
+      "email": "landofcoder@gmail.com",
+      "role": "Magento 2 Extension Provider"
+    }
+  ],
+  "type": "magento2-module",
+  "version": "1.0.2",
+  "license": [
+      "OSL-3.0",
+      "AFL-3.0"
+  ],
+  "autoload": {
+      "files": [ "registration.php" ],
+      "psr-4": {
+          "Lofmp\\FavoriteSeller\\": ""
+      }
+  }
+}

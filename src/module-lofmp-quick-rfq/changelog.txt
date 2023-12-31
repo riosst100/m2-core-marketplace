@@ -1,0 +1,11 @@
+= 1.0.8 - 2021-23-08 =
+* New settings about process quote steps
+* Refactor coding standard
+* New table columns as: product_sku, coupon_code, store_id, admin_price, admin_quantity, store_currency_code, expiry, user_id, user_name,..
+* Allow admin update quote data info: price, qty, add coupon coupon_code
+* Allow admin close, approve, re-new quote
+* Notify customers when quote was approved, closed, re-new
+* Refactor listing quote view, view quote detail on customer dashboard with more information
+* Allow customer add approved RFQ quote item to shopping cart to complete checkout
+* Disable send message on frontend when the quote is done or close
+* Update frontend REST API allow customer get quote, messages, request quote

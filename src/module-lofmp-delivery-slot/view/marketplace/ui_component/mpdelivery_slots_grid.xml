@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">mpdelivery_slots_grid.mpdelivery_slots_grid_data_source</item>
+		</item>
+	</argument>
+	<settings>
+		<spinner>delivery_slots_columns</spinner>
+		<deps>
+			<dep>mpdelivery_slots_grid.mpdelivery_slots_grid_data_source</dep>
+		</deps>
+		<buttons>
+			<button name="add">
+				<url path="*/*/newslot"/>
+				<class>primary</class>
+				<label translate="true">Add New Slot</label>
+			</button>
+		</buttons>
+	</settings>
+    <dataSource name="mpdelivery_slots_grid_data_source" component="Magento_Ui/js/grid/provider">
+		<settings>
+			<updateUrl path="mui/index/render"/>
+		</settings>
+		<dataProvider name="mpdelivery_slots_grid_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+			<settings>
+				<requestFieldName>slot_id</requestFieldName>
+				<primaryFieldName>slot_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+
+    <listingToolbar name="listing_top">
+		<settings>
+			<sticky>true</sticky>
+		</settings>
+		<bookmark name="bookmarks">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="namespace" xsi:type="string">mpdelivery_slots_grid</item>
+                    </item>
+                </item>
+            </argument>
+        </bookmark>
+		<columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="provider" xsi:type="string">mpdelivery_slots_grid.mpdelivery_slots_grid_data_source</item>
+                    <item name="chipsProvider" xsi:type="string">mpdelivery_slots_grid.mpdelivery_slots_grid.listing_top.listing_filters_chips</item>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="provider" xsi:type="string">mpdelivery_slots_grid.mpdelivery_slots_grid.listing_top.bookmarks</item>
+                        <item name="namespace" xsi:type="string">current.search</item>
+                    </item>
+                </item>
+            </argument>
+        </filterSearch>
+		<filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="columnsProvider" xsi:type="string">mpdelivery_slots_grid.mpdelivery_slots_grid.delivery_slots_columns</item>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="provider" xsi:type="string">mpdelivery_slots_grid.mpdelivery_slots_grid.listing_top.bookmarks</item>
+                        <item name="namespace" xsi:type="string">current.filters</item>
+                    </item>
+                    <item name="childDefaults" xsi:type="array">
+                        <item name="provider" xsi:type="string">mpdelivery_slots_grid.mpdelivery_slots_grid.listing_top.listing_filters</item>
+                        <item name="imports" xsi:type="array">
+                            <item name="visible" xsi:type="string">mpdelivery_slots_grid.mpdelivery_slots_grid.delivery_slots_columns.${ $.index }:visible</item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </filters>
+
+        <massaction name="listing_massaction">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="selectProvider" xsi:type="string">mpdelivery_slots_grid.mpdelivery_slots_grid.delivery_slots_columns.ids</item>
+                    <item name="indexField" xsi:type="string">slot_id</item>
+                </item>
+            </argument>
+            <action name="delete">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">delete</item>
+                        <item name="label" xsi:type="string" translate="true">Delete</item>
+                        <item name="url" xsi:type="url" path="deliveryslot/deliveryslot/massDelete"/>
+                    </item>
+                </argument>
+            </action>
+        </massaction>
+
+		<paging name="listing_paging"/>
+	</listingToolbar>
+    
+    <columns name="delivery_slots_columns">
+        <argument name="data" xsi:type="array">
+            <item name="editorConfig" xsi:type="array">
+
+                <item name="selectProvider" xsi:type="string">mpdelivery_slots_grid.mpdelivery_slots_grid.delivery_slots_columns.ids</item>
+
+                <item name="enabled" xsi:type="boolean">true</item>
+
+                <item name="indexField" xsi:type="string">slot_id</item>
+            </item>
+        </argument>
+        <!-- this is columns section name, used above in spinner -->
+        <selectionsColumn name="ids">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">slot_id</item>
+                </item>
+            </argument>
+        </selectionsColumn>
+        <column name="slot_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">ID</item>
+                </item>
+            </argument>
+        </column>
+        <column name="parent_id" class="Lofmp\DeliverySlot\Ui\Component\Listing\Column\SlotGroup">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Lofmp_DeliverySlot/js/grid/columns/link</item>
+                    <item name="sortOrder" xsi:type="number">3</item>
+                </item>
+            </argument>
+            <settings>
+                <options class="Lofmp\DeliverySlot\Model\Config\Source\DeliverySlot\SellerSlotGroupOptions"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Slot Group</label>
+            </settings>
+        </column>
+        <column name="day">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">Day</item>
+
+                </item>
+            </argument>
+        </column>
+        <column name="start_time">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">Start Time</item>
+                </item>
+            </argument>
+        </column>
+        <column name="end_time">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">End Time</item>
+                </item>
+            </argument>
+        </column>
+        <column name="status"  class="Lofmp\DeliverySlot\Ui\Component\Listing\Column\Status">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">Status</item>
+                </item>
+            </argument>
+        </column>
+        <column name="allocation">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">Allocation</item>
+                </item>
+            </argument>
+        </column>
+        <actionsColumn name="actions" class="Lofmp\DeliverySlot\Ui\Component\Listing\Column\DeliverySlot\EditAction">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="editUrlPath" xsi:type="string">deliveryslot/deliveryslot/edit</item>
+                    <item name="urlEntityParamName" xsi:type="string">slot_id</item>
+                </item>
+            </argument>
+            <settings>
+                <indexField>slot_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+
+</listing>

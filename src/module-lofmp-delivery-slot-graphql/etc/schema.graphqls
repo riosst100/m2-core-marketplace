@@ -1,0 +1,27 @@
+
+type Query {
+    
+    getDeliverySlots (
+        cart_id: String! @doc(description: "Query by cart_id."),
+        zip_code: String! @doc(description: "Query by zip_code."),
+        target_date: String! @doc(description: "Query by target_date.")
+    ) : DeliverySlots @resolver( class: "Lofmp\\DeliverySlotGraphQl\\Model\\Resolver\\DeliverySlots") @doc(description: "Query by Get Delivery Slot Config for Guest.") 
+}
+
+type DeliverySlots {
+    date  : String  @doc(description: "Query by date.") 
+    seller_name  : String  @doc(description: "Query by seller_name.") 
+    slots  : [Slots]  @doc(description: "Query by slots.") 
+}
+
+type Slots {
+    seller_id  : Int  @doc(description: "Query by seller_id.") 
+    slot_id  : Int  @doc(description: "Query by slot_id.") 
+    start_time  : String  @doc(description: "Query by start_time.")
+    end_time  : String  @doc(description: "Query by end_time.")
+    parent_id  : Int  @doc(description: "Query by parent_id.") 
+    status  : String  @doc(description: "Query by status.") 
+    day  : String  @doc(description: "Query by day.") 
+    allocation  : Int  @doc(description: "Query by allocation.")
+    current_status  : Int  @doc(description: "Query by current_status.")
+}

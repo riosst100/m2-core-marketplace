@@ -1,0 +1,24 @@
+{
+    "name": "landofcoder/module-seller-invoice",
+    "description": "Seller Invoice Extension",
+    "require": {
+        "landofcoder/module-marketplace":"*",
+        "dompdf/dompdf": "^1.2",
+        "mpdf/mpdf": "^8.0"
+    },
+    "suggest": {
+      "magento/module-webapi": "1.0.0-beta"
+    },
+    "type": "magento2-module",
+     "version": "1.1.0",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [ "registration.php" ],
+        "psr-4": {
+            "Lof\\SellerInvoice\\": ""
+        }
+    }
+}

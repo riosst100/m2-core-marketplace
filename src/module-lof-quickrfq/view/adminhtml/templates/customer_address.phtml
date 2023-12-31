@@ -1,0 +1,86 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_Quickrfq
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+?>
+<?php $quote = $block->getQuote(); ?>
+<?php $attachments = $block->getAttachFiles() ?>
+<?php $helper = $this->helper('Lof\Quickrfq\Helper\Data'); ?>
+<div class="admin__table-secondary">
+    <div class="admin__page-section-item-content">
+        <table class="admin__table-secondary lof-cp-table">
+            <tr>
+                <th>
+                    <span><?= $block->escapeHtml(__('Request From Store')) ?></span>
+                </th>
+                <td>
+                    <span><?= $block->escapeHtml(__($helper->getStoreName($quote->getStoreId()))) ?></span>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <span><?= $block->escapeHtml(__('Customer Name')) ?></span>
+                </th>
+                <td>
+                    <span><?= $block->escapeHtml(__($quote->getContactName())) ?></span>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <span><?= $block->escapeHtml(__('Email Address')) ?></span>
+                </th>
+                <td>
+                    <span><?= $block->escapeHtml(__($quote->getEmail())) ?></span>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <span><?= $block->escapeHtml(__('Phone Number ')) ?></span>
+                </th>
+                <td>
+                    <span><?= $block->escapeHtml(__($quote->getPhone())) ?></span>
+                </td>
+            </tr>
+            <?php if ($attachments && $attachments->getSize()): ?>
+            <tr>
+                <th>
+                    <span><?= $block->escapeHtml(__('Attachment')) ?></span>
+                </th>
+                <td>
+                    <span>
+                        <div class="attachment-list">
+                            <div class="attachments-list">
+                                <?php foreach ($attachments as $file): ?>
+                                    <div class="quote-parent-info-item">
+                                        <div class="attachments-item">
+                                            <a href="<?= $block->escapeUrl($block->getAttachmentUrl($file->getEntityId())) ?>"
+                                               title="<?= $block->escapeHtmlAttr($file->getFileName()) ?>"><?= $block->escapeHtml($file->getFileName()) ?>
+                                            </a>
+                                        </div>
+                                    </div>
+                                <?php endforeach ?>
+                            </div>
+                        </div>
+                    </span>
+                </td>
+            </tr>
+            <?php endif; ?>
+        </table>
+    </div>
+</div>

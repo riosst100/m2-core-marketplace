@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://landofcoder.com/license
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category   Landofcoder
+ * @package    Lofmp_StoreLocator
+ * @copyright  Copyright (c) 2016 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="Magento_Backend::storelocator_elements" title="Lof StoreLocator">
+					<resource id="Lofmp_StoreLocator::storelocator" title="StoreLocator" sortOrder="10">
+						<resource id="Lofmp_StoreLocator::storelocator_edit" title="Edit StoreLocator" sortOrder="10" />
+						<resource id="Lofmp_StoreLocator::storelocator_save" title="Save StoreLocator" sortOrder="20" />
+						<resource id="Lofmp_StoreLocator::storelocator_delete" title="Delete StoreLocator" sortOrder="30" />
+
+						<resource id="Lofmp_StoreLocator::tag_edit" title="Edit Tag" sortOrder="30" />
+						<resource id="Lofmp_StoreLocator::tag_save" title="Save Tag" sortOrder="40" />
+						<resource id="Lofmp_StoreLocator::tag_delete" title="Delete Tag" sortOrder="50" />
+
+						<resource id="Lofmp_StoreLocator::category_edit" title="Edit Category" sortOrder="60" />
+						<resource id="Lofmp_StoreLocator::category_save" title="Save Category" sortOrder="70" />
+						<resource id="Lofmp_StoreLocator::category_delete" title="Delete Category" sortOrder="80" />
+					</resource>
+				</resource>
+				<resource id="Magento_Backend::stores">
+					<resource id="Magento_Backend::stores_settings">
+						<resource id="Magento_Config::config">
+							<resource id="Lofmp_StoreLocator::config_storelocator" title="Lof StoreLocator" />
+						</resource>
+					</resource>
+				</resource>
+			</resource>
+		</resources>
+	</acl>
+</config>

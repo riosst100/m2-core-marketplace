@@ -1,0 +1,145 @@
+<!--
+/**
+ * Landofcoder
+ *
+ * @package Lofmp_MultiShipping
+ * @author Landofcoder
+ * @copyright Copyright by Landofcoder (https://landofcoder.com/)
+ */
+-->
+<li id="shipping" class="checkout-shipping-address" data-bind="fadeVisible: visible()">
+    <div class="step-title" data-bind="i18n: 'Shipping Address'" data-role="title"></div>
+    <div id="checkout-step-shipping"
+         class="step-content"
+         data-role="content">
+
+        <!-- ko if: (!quoteIsVirtual) -->
+        <!-- ko foreach: getRegion('customer-email') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+        <!--/ko-->
+
+        <!-- ko foreach: getRegion('address-list') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+
+        <!-- ko foreach: getRegion('address-list-additional-addresses') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+
+        <!-- Address form pop up -->
+        <!-- ko if: (!isFormInline) -->
+        <button type="button"
+                data-bind="click: showFormPopUp, visible: !isNewAddressAdded()"
+                class="action action-show-popup">
+            <span data-bind="i18n: 'New Address'"></span></button>
+        <div id="opc-new-shipping-address" data-bind="visible: isFormPopUpVisible()">
+            <!-- ko template: 'Magento_Checkout/shipping-address/form' --><!-- /ko -->
+        </div>
+        <!-- /ko -->
+
+        <!-- ko foreach: getRegion('before-form') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+
+        <!-- Inline address form -->
+        <!-- ko if: (isFormInline) -->
+        <!-- ko template: 'Magento_Checkout/shipping-address/form' --><!-- /ko -->
+        <!-- /ko -->
+    </div>
+</li>
+
+<!--Shipping method template-->
+<li id="opc-shipping_method"
+    class="checkout-shipping-method"
+    data-bind="fadeVisible: visible(), blockLoader: isLoading"
+    role="presentation">
+    <div class="checkout-shipping-method">
+        <div class="step-title" data-bind="i18n: 'Shipping Methods'" data-role="title"></div>
+        <!-- ko foreach: getRegion('before-shipping-method-form') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!-- /ko -->
+        <div id="checkout-step-shipping_method"
+             class="step-content"
+             data-role="content"
+             role="tabpanel"
+             aria-hidden="false">
+            <!-- ko if: rates().length  -->
+            <form class="form methods-shipping" id="co-shipping-method-form" data-bind="submit: setShippingInformation"
+                  novalidate="novalidate">
+                <div id="checkout-shipping-method-load">
+                    <div class="table-checkout-shipping-method">
+                        <div class="tbody-checkout-shipping-method">
+                            <label class="label" id="total-price"></label>
+                            <div class="items methods" data-bind="foreach: shippingRateGroups">
+                                <div class="seller-multishipping-method">
+                                    <div class="item-title">
+                                        <span class="lofmp-multishipping-seller-name"
+                                              data-bind="text: $parent.getSellerName($data)"></span>
+                                    </div>
+                                    <div class="item-products">
+                                        <!-- ko foreach: $parent.getProductBySeller($data) -->
+                                        <div class="item-product"><span data-bind="text: $data"></span></div>
+                                        <!-- /ko -->
+                                    </div>
+                                    <div class="item-options seller-rates"
+                                         data-bind="foreach: $parent.getRatesForGroup($data)">
+                                        <!-- ko if: carrier_code == 'seller_rates'  -->
+                                        <div
+                                            data-bind="css: {'field choice item': available, 'message error': !available}">
+                                            <!-- ko ifnot: (available) -->
+                                            <div data-bind="text: error_message"></div>
+                                            <!-- /ko -->
+                                            <!-- ko if: (available) -->
+                                            <input
+                                                type="radio"
+                                                class="radio"
+                                                data-bind="click: $parents[1].selectVirtualMethod,
+												attr: {
+														value: carrier_code + '_' + method_code,
+														id: carrier_code + '_' + method_code + $parentContext.$index(),
+														name: 'estimate_method' + $parentContext.$index(),
+                                                        price: amount
+													}
+												" required/>
+                                            <label class="label"
+                                                   data-bind="attr: {for: carrier_code + '_' + method_code + $parentContext.$index()}">
+                                                <span class="lofmp-multishipping-price"
+                                                      data-bind="text: $parents[1].getFormattedPrice(amount)"></span>
+                                                <span class="lofmp-multishipping-method"
+                                                      data-bind="text: method_title"></span>
+                                            </label>
+                                            <!-- /ko -->
+                                        </div>
+                                        <!-- /ko -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="onepage-checkout-shipping-method-additional-load">
+                    <!-- ko foreach: getRegion('shippingAdditional') -->
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                    <!-- /ko -->
+                </div>
+                <!-- ko if: errorValidationMessage().length > 0 -->
+                <div class="message notice">
+                    <span><!-- ko text: errorValidationMessage()--><!-- /ko --></span>
+                </div>
+                <!-- /ko -->
+                <div class="actions-toolbar" id="shipping-method-buttons-container">
+                    <div class="primary">
+                        <button data-role="opc-continue" type="submit" class="button action continue primary">
+                            <span><!-- ko i18n: 'Next'--><!-- /ko --></span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <!-- /ko -->
+            <!-- ko ifnot: rates().length > 0 -->
+            <div class="no-quotes-block"><!-- ko i18n: 'Sorry, no quotes are available for this order at this time'-->
+                <!-- /ko --></div><!-- /ko -->
+        </div>
+    </div>
+</li>

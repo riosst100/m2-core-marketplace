@@ -1,0 +1,203 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_Quickrfq
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+use Lof\Quickrfq\Block\Product\Popup;
+
+/**
+ * @var Popup $block
+ * @see \Lof\Quickrfq\Block\Product\Popup
+ */
+$customer = $block->getCustomer();
+$helper = $this->helper('Lof\Quickrfq\Helper\Data');
+$isEnabledFileUpload = $helper->getConfig("upload/enabled");
+$currentProduct = $block->getCurrentProduct();
+$enabledPopup = true;
+$defaultPrice = "";
+if($currentProduct){
+    if ($isEnabledFileUpload && $currentProduct->hasData('quickrfq_disable_upload_file') && $currentProduct->getData('quickrfq_disable_upload_file')) {
+        $isEnabledFileUpload = false;
+    }
+    if($currentProduct->hasData('quickrfq_disable') && $currentProduct->getData('quickrfq_disable')){
+        $enabledPopup = false;
+    }
+    $defaultPrice = $currentProduct->getFinalPrice();
+}
+if($enabledPopup):
+?>
+<div id="lof-quote-popup" data-mage-init='{
+    "Lof_Quickrfq/js/create-quote": {
+        "createQuoteUrl": "<?= $block->escapeUrl($block->getCreateQuoteUrl()) ?>"
+        }
+    }' data-role="lof-quote-popup" class="modal-container">
+    <div class="negotiable-quote-errors messages">
+        <div class="message error-wrap error" data-role="error-wrap"></div>
+    </div>
+    <form class="form form-quote-popup"
+          id="add-quote-form"
+          method="post"
+          data-actionurl="<?= $block->escapeUrl($block->getCreateQuoteUrl()) ?>"
+          action="<?= $block->escapeUrl($block->getCreateQuoteUrl()) ?>"
+          data-action="create-lof-quote-form"
+          enctype="multipart/form-data"
+          data-mage-init='{"validation": {"errorClass": "mage-error"}}'>
+        <fieldset class="fieldset fieldset-cols info">
+            <legend class="legend"><span><?= $block->escapeHtml(__('Quote Information')) ?></span></legend>
+            <div class="field field-side quote-price-per-unit required">
+                <label class="label" for="quote-price-per-unit">
+                    <span><?= $block->escapeHtml(__('Quote Price Per Unit')) ?></span>
+                </label>
+                <div class="control">
+                    <input type="number" name="price_per_product" id="quote-price-per-unit" value="<?= $defaultPrice; ?>"
+                           title="<?= $block->escapeHtmlAttr(__('Quote Price Per Quantity')) ?>" class="input-text"
+                           data-validate="{required:true, 'validate-number':true}">
+                </div>
+            </div>
+            <div class="field field-side quote-qty required">
+                <label class="label" for="quote-qty">
+                    <span><?= $block->escapeHtml(__('Quote Quantity')) ?></span>
+                </label>
+                <div class="control">
+                    <input type="number" min="1" name="quantity" id="quote-qty" value=""
+                           title="<?= $block->escapeHtmlAttr(__('Product Quantity')) ?>" class="input-text"
+                           data-validate="{required:true, 'validate-number':true}">
+                </div>
+            </div>
+            <div class="field field-side date_need_quote required">
+                <label class="label" for="date_need_quote">
+                    <span><?= $block->escapeHtml(__('Date Need Quote')) ?></span>
+                </label>
+                <div class="control">
+                    <input type="date" name="date_need_quote" id="date_need_quote" value=""
+                           title="<?= $block->escapeHtmlAttr(__('Date Need Quote')) ?>" class="input-text"
+                           data-validate="{required:true}">
+                </div>
+            </div>
+            <div class="field field-side customer_phone required">
+                <label class="label" for="customer_phone">
+                    <span><?= $block->escapeHtml(__('Phone number')) ?></span>
+                </label>
+                <div class="control">
+                    <input type="number" name="customer_phone" id="customer_phone" value="<?php echo !empty($customer) ?  $block->getTelephone($customer): '';?>"
+                           title="<?= $block->escapeHtmlAttr(__('Phone number')) ?>" class="input-text"
+                           data-validate="{required:true}">
+                </div>
+            </div>
+
+            <?php if (! $block->isRequiredLoggedIn()): ?>
+                <div class="field field-side customer_name required">
+                    <label class="label" for="customer_name">
+                        <span><?= $block->escapeHtml(__('Customer Name')) ?></span>
+                    </label>
+                    <div class="control">
+                        <input type="text" name="customer_name" id="customer_name" value="<?php echo !empty($customer) ? $customer->getFirstName()." ".$customer->getLastName() : '';?>"
+                               title="<?= $block->escapeHtmlAttr(__('Customer Name')) ?>" class="input-text"
+                               data-validate="{required:true}">
+                    </div>
+                </div>
+                <div class="field field-side customer_email required">
+                    <label class="label" for="customer_email">
+                        <span><?= $block->escapeHtml(__('Customer Email')) ?></span>
+                    </label>
+                    <div class="control">
+                        <input type="email" name="customer_email" id="customer_email" value="<?php echo !empty($customer) ? $customer->getEmail() : '';?>"
+                               title="<?= $block->escapeHtmlAttr(__('Customer Email')) ?>" class="input-text"
+                               data-validate="{required:true}">
+                    </div>
+                </div>
+            <?php endif; ?>
+        </fieldset>
+        <fieldset class="fieldset info">
+            <div class="field quote-message required">
+                <label class="label" for="quote-message">
+                    <span><?= $block->escapeHtml(__('Add your comment')) ?></span>
+                </label>
+                <div class="control">
+                        <textarea name="comment" id="message"
+                                  rows="4"
+                                  class="textarea"
+                                  data-validate="{required:true, 'validate-no-html-tags':true}"></textarea>
+                </div>
+            </div>
+            <?php if($isEnabledFileUpload): ?>
+            <div class="field quote-attach-file" data-role="attach-wrapper">
+                <div data-mage-init='{"Lof_Quickrfq/js/quote/add-files": {
+                                    "maxSizeB" : "<?= $block->escapeJs($block->getMaxFileSize()) ?>",
+                                    "maxSizeMb" : "<?= $block->escapeJs($block->getMaxFileSizeMb()) ?>",
+                                    "extensions" : "<?= $block->escapeJs($block->getAllowedExtensions()) ?>"
+                                    }}' class="field-attachment" data-role="send-files">
+                    <label tabindex="0" data-mage-init='{"Lof_Quickrfq/js/quote/add-file": {}}' for="add-file-0">
+                        <input name="files[0]" data-role="add-file" id="add-file-0" type="file">
+                        <?= $block->escapeHtml(__('Attach file')) ?>
+                    </label>
+                </div>
+                <div class="attachments-list" data-role="added-files"></div>
+                <div class="attachments-list" data-role="history-added-files"></div>
+            </div>
+            <?php endif; ?>
+            <?php if (!empty($block->getTerms())): ?>
+                <div class="field choice">
+                    <div class="form-group">
+                        <input type="checkbox" name="terms" class="checkbox-terms"
+                               data-validate="{required:true}">
+                        <a id="click">
+                            <?php echo $this->getTermsLabel() ?>
+                        </a>
+                    </div>
+                </div>
+            <?php endif ?>
+
+            <div class="field">
+                <?php if ($block->isCaptchaEnable()): ?>
+                    <div class="g-recaptcha"  name="recaptcha" id="recaptcha" data-sitekey="<?php echo $block->getPublicKey(); ?>"></div>
+                    <div ><p style="
+cursor: auto;
+/* text-decoration: underline; */
+color: #9b9b9b;
+padding-left: 235px;
+font-family: Roboto,helvetica,arial,sans-serif;
+font-size: 8px;
+font-weight: 400;
+margin-top: -35px;
+"><?= __("by");?> <a style="color: #9b9b9b;" rel="no-follow" target="_Blank" href="https://www.landofcoder.com"><?= __("Landofcoder.com");?></a></p>  </div>
+                    <br>
+                <?php endif; ?>
+            </div>
+        </fieldset>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button type="submit" class="action save primary" data-action="save-quote"
+                        title="<?= $block->escapeHtmlAttr(__('Send Request')) ?>">
+                    <span><?= $block->escapeHtml(__('Send Request')) ?></span>
+                </button>
+            </div>
+            <div class="secondary">
+                <button class="cancel-quote-request action"
+                        title="<?= $block->escapeHtmlAttr(__('Cancel')) ?>">
+                    <span><?= $block->escapeHtml(__('Cancel')) ?></span>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="popup-terms">
+    <?= $this->getTerms(); ?>
+</div>
+<?php endif; ?>

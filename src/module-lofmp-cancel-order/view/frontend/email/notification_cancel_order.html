@@ -1,0 +1,47 @@
+<!--@subject Order {{trans "#%increment_id" increment_id=$order.increment_id |raw}} was cancelled by {{var cancel_by_name}}  @-->
+<!--@vars {
+"var this.getUrl($store, 'admin')":"Warehouse Account URL",
+"var $order": "Order Information",
+"var reciever_name": "reciever_name",
+"var reciever_email": "reciever_email",
+"var cancel_by_name": "cancel_by_name"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<table>
+    <tr class="email-intro">
+        <td>
+            <p class="greeting">{{trans "Dear "}} {{var reciever_name}},</p>
+            <p>
+                {{trans 'This is to inform you that the order was cancelled.'}}
+            </p>
+            <p>
+                {{trans "Order was cancelled by: "}} <strong>{{var cancel_by_name}}</strong>
+            </p>
+            <p>{{trans "Please review accordingly. Details are as below."}}</p>
+        </td>
+    </tr>
+    <tr class="email-information">
+        <td>
+            <table class="email-items">
+                <thead>
+                <tr>
+                    <th class="item-info">{{trans "Order Id"}}</th>
+                    <th class="item-info">{{trans "Customer Name"}}</th>
+                    <th class="item-info">{{trans "Customer Email"}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th class="item-info">{{trans "#%increment_id" increment_id=$order.increment_id |raw}}</th>
+                    <th class="item-info">{{trans "%customer_name" customer_name=$order.getCustomerName()}}</th>
+                    <th class="item-info">{{trans "%customer_email" customer_email=$order.getCustomerEmail()}}</th>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}} <!--footer of template-->

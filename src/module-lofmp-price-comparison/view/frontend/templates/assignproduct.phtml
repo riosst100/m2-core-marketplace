@@ -1,0 +1,250 @@
+<?php
+$productId = $block->getProduct()->getId();
+$helper = $this->helper(\Lofmp\PriceComparison\Helper\Data::class);
+$cartHelper = $this->helper(\Magento\Checkout\Helper\Cart::class);
+$product = $helper->getProduct($productId);
+$url = $cartHelper->getAddUrl($product);
+$formKey = $helper->getFormKey();
+$assignProducts = $helper->getAllAssignedProducts($productId);
+$totalSellers = count($assignProducts);
+
+$show_seller = $helper->getConfig('product_view/show_seller');
+$show_image = $helper->getConfig('product_view/show_image');
+$show_description = $helper->getConfig('product_view/show_description');
+$show_condition = $helper->getConfig('product_view/show_condition');
+$show_price = $helper->getConfig('product_view/show_price');
+$show_addtocart = $helper->getConfig('product_view/show_action');
+$show_review = $helper->getConfig('product_view/show_review');
+$show_qty = $helper->getConfig('product_view/show_qty');
+?>
+<?php if ($totalSellers > 0): ?>
+    <div class="lof-loading-mask" style="display: none;">
+        <div class="loading-mask">
+            <div class="loader">
+                <img src="<?= $this->getViewFileUrl('images/loader-1.gif'); ?>" alt="Loading..."
+                     style="position: absolute;">
+            </div>
+        </div>
+    </div>
+    <div id="product_list" class="lofmp-product-list seller_assign_product">
+        <table>
+            <tbody>
+            <tr>
+                <td colspan="7">
+                    <span class="olp-padding-right">
+                        <span class="a-color-condition condition-used"><?= __(
+                            'Available from %1 more seller(s)',
+                            $totalSellers
+                                                                       ); ?><?= __(' from'); ?> <?= '<span class="price">' . $helper->getMinimumPriceHtml($productId) . '</span>'; ?>
+                        </span>
+                    </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="data table lof-table-product-list condition-used-product">
+            <thead>
+            <?php if ($show_seller) { ?>
+                <th><?= __('Seller Info'); ?></th>
+            <?php } ?>
+            <?php if ($show_image) { ?>
+                <th><?= __('Product Image'); ?></th>
+            <?php } ?>
+            <?php if ($show_description) { ?>
+                <th><?= __('Description'); ?></th>
+            <?php } ?>
+            <?php if ($show_condition) { ?>
+                <th><?= __('Condition'); ?></th>
+            <?php } ?>
+            <?php if ($show_qty) { ?>
+                <th><?= __('Qty'); ?></th>
+            <?php } ?>
+            <?php if ($show_price) { ?>
+                <th><?= __('Price'); ?></th>
+            <?php } ?>
+            <?php if ($show_addtocart) { ?>
+                <th><?= __('Action'); ?></th>
+            <?php } ?>
+            </thead>
+            <?php foreach ($assignProducts as $product): ?>
+                <?php
+                $price = $this->helper(\Magento\Framework\Pricing\Helper\Data::class)->currency(
+                    $product['price'],
+                    true,
+                    false
+                );
+                $sellerId = $product['seller_id'];
+                $qty = $product['qty'];
+                $sellerDetails = $helper->getSellerDetails($sellerId);
+                if (!$sellerDetails || !$sellerDetails->getData()) {
+                    continue;
+                }
+                $shopTitle = $sellerDetails->getName();
+                if (!$shopTitle) {
+                    $shopTitle = $sellerDetails->getShopUrl();
+                }
+                $logo = $sellerDetails->getThumbnail() != '' ? $sellerDetails->getImage() : "images/user.png";
+                $logo = $this->getUrl('pub/media/') . '' . $logo;
+                $shopUrl = $sellerDetails->getUrl();
+                $rating = $helper->getRating($sellerId);
+                $totalRatingCount = count($rating);
+                $total_rating = 0;
+                foreach ($rating as $key => $_rating) {
+                    $total_rating = $total_rating + $_rating->getrating();
+                }
+                $avg_rating = 0;
+                if ($totalRatingCount >= 1) {
+                    $avg_rating = $total_rating / $totalRatingCount;
+                }
+                $reviewPercentage = (($avg_rating * 100) / 5);
+                $reviewText = "";
+                if ($totalRatingCount >= 1) {
+                    $reviewText = $totalRatingCount . " Reviews";
+                } else {
+                    $reviewText = $totalRatingCount . " Review";
+                }
+                $image = $product['image'];
+                $flag = 1;
+                if ($image == "") {
+                    $flag = 0;
+                    $image = "user.jpg";
+                }
+                $image = $helper->getImageUrl($image);
+                $condition = $product['condition'];
+                if ($condition == 1) {
+                    $condition = "New";
+                } else {
+                    $condition = "Used";
+                }
+
+                ?>
+                <tr>
+                    <?php if ($show_seller) { ?>
+                        <td class="col lofmp-img-col2">
+                            <div class="lofmp-seller-info">
+                                <a class="lofmp-shop-link" title="<?= $shopTitle; ?>" target="_blank"
+                                   href="<?= $shopUrl; ?>">
+                                    <?= $shopTitle; ?>
+                                </a>
+                                </br>
+                                <a class="lofmp-shop-link" title="<?= $shopTitle; ?>" target="_blank"
+                                   href="<?= $shopUrl; ?>">
+                                    <img src="<?= $logo; ?>" style="width: 100px"/>
+                                </a>
+                            </div>
+                            <?php if ($show_review) { ?>
+                                <div class="lofmp-seller-review-info">
+                                    <?php if ($totalRatingCount > 0): ?>
+                                        <div class="review-average-info">
+                                            <div class="average-rating">
+                                                <div class="ratings">
+                                                    <div class="rating-box">
+                                                        <div class="rating"
+                                                             style="width: <?= $reviewPercentage; ?>%;"></div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                    <div class="rating-links">
+                                                        <?= $reviewText; ?>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            <?php } ?>
+                        </td>
+                    <?php } ?>
+                    <?php if ($show_image) { ?>
+                        <td class="col col lofmp-img-col2"><img class="lofmp-img" src="<?= $image; ?>"
+                                                                style="width: 100px"/></td>
+                    <?php } ?>
+                    <?php if ($show_description) { ?>
+                        <td class="col seller-product-description"><?= $product['description']; ?></td>
+                    <?php } ?>
+                    <?php if ($show_condition) { ?>
+                        <td class="col"><?= __($condition); ?></td>
+                    <?php } ?>
+                    <?php if ($show_qty) { ?>
+                        <td class="col"><?= $qty; ?></td>
+                    <?php } ?>
+                    <?php if ($show_price) { ?>
+                        <td class="col"><?= $price; ?></td>
+                    <?php } ?>
+                    <?php if ($show_addtocart) { ?>
+                        <td class="col lofmp-action-col" data-sellerid="<?= $sellerId; ?>">
+                            <form data-product-sku="" method="post" enctype="multipart/form-data"
+                                  id="product_addtocart_form_<?= $sellerId; ?>" action="<?= $url; ?>">
+                                <input type="hidden" name="product" value="<?= $productId; ?>"/>
+                                <input type="hidden" name="selected_configurable_option" value=""/>
+                                <input type="hidden" name="item" value="<?= $productId; ?>"/>
+                                <input type="hidden" name="form_key" value="<?= $formKey; ?>"/>
+                                <input type="hidden" name="mpassignproduct_id" value="<?= $product["assign_id"]; ?>"/>
+                                <div class="seller-product-options" data-sellerid="<?= $sellerId; ?>"></div>
+                                <div class="fieldset">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="number" class="lofmp-qty input-text qty" title="Qty" value="1"
+                                                   maxlength="12" id="qty" name="qty">
+                                        </div>
+                                    </div>
+                                    <div class="actions">
+                                        <button data-sellerid="<?= $sellerId; ?>"
+                                                data-id="<?= $product['assign_id']; ?>"
+                                                class="lofmp-add-to-cart action primary tocart" title="Add to Cart"
+                                                type="button">
+                                            <span><?= __('Add to Cart'); ?></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </td>
+                    <?php } ?>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+    </div>
+    <script type="text/javascript">
+        require(['jquery'], function ($) {
+            $(document).ready(function () {
+                if ($("#product-options-wrapper").length > 0) {
+                    $(".seller-product-options").each((index, el) => {
+                        let clonedProductOptions = $("#product-options-wrapper").clone();
+                        const sellerId = $(el).data("sellerid");
+                        clonedProductOptions.attr("id", "product-options-wrapper" + sellerId)
+                        clonedProductOptions.find(".options-list").each((index, o) => {
+                            $(o).attr("id", $(o).attr("id") + sellerId)
+                            let optionInput = $(o).find("input")
+                            if (optionInput.length) {
+                                optionInput.each((index, oInput) => {
+                                    $(oInput).attr("id", $(oInput).attr("id") + sellerId)
+                                })
+                            }
+                        })
+                        clonedProductOptions.find("label").each((index, o) => {
+                            $(o).attr("for", $(o).attr("for") + sellerId)
+                        })
+                        $(el).append(clonedProductOptions);
+                    })
+                }
+                $(document).on('click', '.lofmp-add-to-cart', function (event) {
+                    var assignId = $(this).attr("data-id");
+                    var sellerId = $(this).attr("data-sellerid");
+                    let formData = $("#product_addtocart_form_" + sellerId).serialize();
+                    $(".lof-loading-mask").css("display", "block");
+                    $.ajax({
+                        url: "<?= $url; ?>",
+                        type: 'POST',
+                        data: formData,
+                        success: function (data) {
+                            if ("backUrl" in data) {
+                                location.reload();
+                            }
+                            $(".lof-loading-mask").css("display", "none");
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+<?php endif; ?>

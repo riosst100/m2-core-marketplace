@@ -1,0 +1,89 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPermissions
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+?>
+<?php /** @var $block Lof\MarketPermissions\Block\Marketplace\Management */ ?>
+<?php if ($block->hasCustomerSeller()) : ?>
+    <div class="lof-mp-page-title page-title">
+        <h3><?= $block->escapeHtml(__('Seller Structure')) ?></h3>
+    </div>
+    <div class="fieldset-wrapper seller-structure">
+        <div id="seller-management" class="admin__fieldset-wrapper-content">
+            <fieldset class="admin__fieldset">
+                <div class="box-actions">
+                    <button class="action" data-action="expand-tree" type="button">
+                        <span><?= $block->escapeHtml(__('Expand All')) ?></span>
+                    </button>
+                    <button class="action" data-action="collapse-tree" type="button">
+                        <span><?= $block->escapeHtml(__('Collapse All')) ?></span>
+                    </button>
+                    <?php if ($block->isSuperUser()) : ?>
+                        <button class="action add" id="add-customer" type="button" data-action="add-user">
+                            <?= $block->escapeHtml(__('Add User')) ?>
+                        </button>
+                        <button class="action add" id="add-team" type="button" data-action="add-team">
+                            <?= $block->escapeHtml(__('Add Team')) ?>
+                        </button>
+                        <button class="action edit" id="edit-selected" type="button"
+                                data-action="edit-selected-node"
+                                data-edit-team-url="<?= $block->escapeUrl($block->getUrl('*/team/get')) ?>"
+                                data-edit-customer-url="<?= $block->escapeUrl($block->getUrl('*/customer/get')) ?>">
+                            <?= $block->escapeHtml(__('Edit Selected')) ?>
+                        </button>
+                        <button class="action delete" id="delete-selected" type="button"
+                                data-action="delete-selected-node"
+                                data-delete-team-url="<?= $block->escapeUrl($block->getUrl('*/team/delete')) ?>"
+                                data-delete-customer-url="<?= $block->escapeUrl($block->getUrl('*/customer/delete')) ?>">
+                            <?= $block->escapeHtml(__('Delete Selected')) ?>
+                        </button>
+                        <button class="action _hidden" data-action="alert-modal" type="button">
+                            <?= $block->escapeHtml(__('Error')) ?>
+                        </button>
+                    <?php endif; ?>
+                </div>
+                <?php
+                // This is a temporary solution for backward compatibility because we cannot modify block public api methods
+                // Modify getTreeJsOptions methods in minor version for it to return array without hierarchyTree key
+                $treeJsOptions = $block->getTreeJsOptions();
+                $treeOptions = $treeJsOptions['hierarchyTree'];
+                ?>
+                <div class="tree x-tree" id="seller-tree" data-role="hierarchy-tree"
+                     data-mage-init='{"hierarchyTree":<?= /* @noEscape */
+                     $block->getJsonHelper()->jsonEncode($treeOptions) ?>}'>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
+    <div id="new-customers-container">
+        <div data-role="add-customer-dialog" class="modal-container">
+            <?= $block->getChildHtml('dialog.customer.add') ?>
+        </div>
+        <div data-role="add-team-dialog" class="modal-container">
+            <?= $block->getChildHtml('dialog.team.add') ?>
+        </div>
+        <div data-role="del-dialog" class="modal-container">
+            <?= $block->getChildHtml('dialog.delete.del') ?>
+        </div>
+        <div data-role="alert-dialog" class="modal-container">
+            <?= $block->getChildHtml('dialog.alert.alert') ?>
+        </div>
+    </div>
+<?php endif; ?>

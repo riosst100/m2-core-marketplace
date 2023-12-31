@@ -1,0 +1,51 @@
+<?php
+$currencySymbol          = $this->getCurrencySymbol();
+$quote = $mageQuote = $block->getMageQuote();
+if($quote){
+$grand_total = $mageQuote->getData('grand_total');
+$subtotal = $mageQuote->getData('subtotal');
+$subtotal_with_discount = $mageQuote->getData('subtotal_with_discount');
+$discount = $subtotal - $subtotal_with_discount;
+$adjustment_total = 0.00;
+$qty = $mageQuote->getData('items_qty');
+$coupon_code = $quote->getData('coupon_code');
+$shipping_amount = $quote->getData('shipping_amount');
+$shipping_amount = $shipping_amount?(float)$shipping_amount:'';
+$shipping_note = $quote->getData('shipping_note');
+$shipping_note = $shipping_note?$shipping_note:'';
+$rate_id    = $quote->getData('rate_id');
+$tax_amount = $quote->getData('tax_amount');
+$tax_amount = $tax_amount?(float)$tax_amount:'';
+
+$tax_amount2 = $tax_amount?$tax_amount:($grand_total - $subtotal_with_discount);
+$tax = $currencySymbol . $tax_amount2;
+?>
+<!--
+<tr>
+    <td colspan="5"></td>
+    <td align="right"><?=__("Original Subtotal:"); ?></td>
+    <td align="right">$1635.00</td>
+</tr>-->
+<tr>
+    <td colspan="5"></td>
+    <td align="right"><?=__("Quoted Subtotal:");?></td>
+    <td align="right"><?= $currencySymbol . $subtotal; ?></td>
+</tr>
+<!--
+<tr>
+    <td colspan="5"></td>
+    <td align="right"><?=__("Quote Adjustment:");?></td>
+    <td align="right"><?= $currencySymbol . $adjustment_total; ?></td>
+</tr>
+-->
+<tr>
+    <td colspan="5"></td>
+    <td align="right"><?=__("Tax");?></td>
+    <td align="right"><?= $currencySymbol; ?><?= $tax_amount2; ?></td>
+</tr>
+<tr>
+    <td colspan="5"></td>
+    <td align="right"><?=__("Grand Total");?></td>
+    <td align="right" class="gray"><?= $currencySymbol . $grand_total; ?></td>
+</tr>
+<?php } ?>

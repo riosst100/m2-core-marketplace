@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Magento/Store/etc/config.xsd">
+    <default>
+        <lofmppricecomparison>
+            <general_settings>
+                <allow_seller_manage>1</allow_seller_manage>
+                <enable_pricecomparison>1</enable_pricecomparison>
+                <minimun>1</minimun>
+                <add_product>1</add_product>
+                <edit_product>0</edit_product>
+            </general_settings>
+            <product_view>
+                <show_seller>1</show_seller>
+                <show_price>1</show_price>
+                <show_action>1</show_action>
+                <show_qty>1</show_qty>
+            </product_view>
+        </lofmppricecomparison>
+    </default>
+</config>

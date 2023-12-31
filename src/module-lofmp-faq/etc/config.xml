@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <lofmpfaq>
+            <general_settings>
+                <enable>1</enable>
+                <allow_seller_manage>1</allow_seller_manage>
+                <enable_all_seller>1</enable_all_seller>
+                <enable_recaptcha/>
+            </general_settings>
+            <recaptcha_settings>
+                <site_key/>
+                <secret_key/>
+            </recaptcha_settings>
+        </lofmpfaq>
+    </default>
+</config>

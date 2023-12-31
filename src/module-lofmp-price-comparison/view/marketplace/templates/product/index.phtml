@@ -1,0 +1,93 @@
+<?php
+$helper = $this->helper("Lofmp\PriceComparison\Helper\Data");
+$queryString = $helper->getQueryString();
+$collection = $this->getAllProducts();
+$_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
+
+$url = $this->getUrl('lofmppricecomparison/product/massdelete');
+?>
+<div class="page-title">
+  <div class="title_left">
+    <h3><?php echo __('Assign Product List'); ?></h3>
+  </div>
+</div>
+<div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+              <div class="x_content">
+                <table id="datatable" class="table table-striped table-bordered">
+                      <thead>
+                          <tr class="headings">
+                              <th class="column-title"><?php echo __('Id');?> </th>
+                            <th class="column-title"><?php echo __('Image');?> </th>
+                            <th class="column-title"><?php echo __('Name');?> </th>
+                            <th class="column-title"><?php echo __('Description');?> </th>
+                            <th class="column-title"><?php echo __('Price');?> </th>
+                            <th class="column-title"><?php echo __('Qty');?> </th>
+                            <th class="column-title"><?php echo __('Status');?> </th>
+                            <th class="column-title"><?php echo __("Condition"); ?></th>
+                            <th class="column-title no-link last"><span class="nobr"><?php echo __('Action'); ?></span>
+                            </th>
+                          </tr>
+                    </thead>
+                    <tbody>
+        
+                        <?php foreach ($collection as $product) {
+                            $editAction = $this->getUrl('lofmppricecomparison/product/edit', ['id' => $product->getId()]);
+                            $deleteAction = $this->getUrl('lofmppricecomparison/product/delete', ['id' => $product->getId()]);
+                            $_product = $helper->getProduct($product->getProductId());
+                            $name = $_product->getName();
+                            $price = $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($product->getPrice(), true, false);
+                            $condition = $product->getCondition();
+                            if ($condition == 1) {
+                                $condition = "New";
+                            } else {
+                                $condition = "Used";
+                            }
+                            $status = $product->getStatus();
+                            if ($status == 1) {
+                                $status = "Approved";
+                            } else {
+                                $status = "Unapproved";
+                            }
+                            $fullDescription = $product->getDescription();
+                            if (strlen($fullDescription) > 20) {
+                                $description = substr($fullDescription, 0, 19)."...";
+                            } else {
+                                $description = $fullDescription;
+                            }
+                            $image = $product->getImage();
+                            $flag = 1;
+                            if ($image == "") {
+                                $flag = 0;
+                                $image = "noimage.jpg";
+                            }
+                            $image = $helper->getImageUrl($image);
+                            ?>
+                        <tr>
+                            <td class="col"><input class="lof-ap-del-chkbox" type="checkbox" name="lof_delete[]" value="<?php echo $product->getId(); ?>"></td>
+                            <td class="col"><img width="100px" src="<?php echo $image; ?>" /></td>
+                            <td class="col"><a  href="<?php echo $_product->getProductUrl(); ?>" target="_blank"><?php echo $name; ?></a></td>
+                            <td class="col" title="<?php echo $fullDescription; ?>"><?php echo $description; ?></td>
+                            <td class="col"><?php echo $price; ?></td>
+                            <td class="col"><?php echo $product->getQty(); ?></td>
+                            <td class="col"><?php echo __($status); ?></td>
+                            <td class="col"><?php echo __($condition); ?></td>
+                            <td class="col">
+                                <div class="row">
+                                    <div class="col-md-6 col-centered fa-lg">
+                                        <a href="<?php echo $editAction;?>"><i class="fa fa-pencil" aria-hidden="true" data-id="<?php echo $product->getId(); ?>"></i></a>
+                                    </div>    
+                                    <div class="col-md-6 col-centered fa-lg">    
+                                        <a href="<?php echo $deleteAction;?>"><i class="fa fa-trash" aria-hidden="true" data-id="<?php echo $product->getId(); ?>"></i></a>
+                                    </div>    
+                                </div>
+                            </td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>    
+                </table>
+              </div>
+        </div>      
+    </div>
+ </div>

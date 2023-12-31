@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Lofmp_Rma::rma" title="RMA" sortOrder="70">
+                    <resource id="Lofmp_Rma::rma_rma" title="RMA" sortOrder="10">
+                        <resource id="Lofmp_Rma::rma_rma_save" title="Save" sortOrder="10"/>
+                        <resource id="Lofmp_Rma::rma_rma_delete" title="Delete" sortOrder="20"/>
+                    </resource>
+                    <resource id="Lofmp_Rma::rma_status" title="RMA Status" sortOrder="15">
+                        <resource id="Lofmp_Rma::rma_status_save" title="Save" sortOrder="10"/>
+                        <resource id="Lofmp_Rma::rma_status_delete" title="Delete" sortOrder="20"/>
+                    </resource>
+                    <resource id="Lofmp_Rma::rma_reason" title="RMA Reason" sortOrder="20">
+                        <resource id="Lofmp_Rma::rma_reason_save" title="Save" sortOrder="10"/>
+                        <resource id="Lofmp_Rma::rma_reason_delete" title="Delete" sortOrder="20"/>
+                    </resource>
+                    <resource id="Lofmp_Rma::rma_condition" title="RMA Condition" sortOrder="25">
+                        <resource id="Lofmp_Rma::rma_condition_save" title="Save" sortOrder="10"/>
+                        <resource id="Lofmp_Rma::rma_condition_delete" title="Delete" sortOrder="20"/>
+                    </resource>
+                    <resource id="Lofmp_Rma::rma_resolution" title="RMA Resolution" sortOrder="30">
+                        <resource id="Lofmp_Rma::rma_resolution_save" title="Save" sortOrder="10"/>
+                        <resource id="Lofmp_Rma::rma_resolution_delete" title="Delete" sortOrder="20"/>
+                    </resource>
+                    <resource id="Lofmp_Rma::rma_field" title="RMA Field" sortOrder="35">
+                        <resource id="Lofmp_Rma::rma_field_save" title="Save" sortOrder="10"/>
+                        <resource id="Lofmp_Rma::rma_field_delete" title="Delete" sortOrder="20"/>
+                    </resource>
+                    <resource id="Lofmp_Rma::rma_template" title="RMA Template" sortOrder="40">
+                        <resource id="Lofmp_Rma::rma_template_save" title="Save" sortOrder="10"/>
+                        <resource id="Lofmp_Rma::rma_template_delete" title="Delete" sortOrder="20"/>
+                    </resource>
+                    <resource id="Lofmp_Rma::rma_message" title="RMA Message" sortOrder="45">
+                        <resource id="Lofmp_Rma::rma_message_save" title="Save" sortOrder="10"/>
+                        <resource id="Lofmp_Rma::rma_message_delete" title="Delete" sortOrder="20"/>
+                    </resource>
+                    <resource id="Lofmp_Rma::rma_address" title="RMA Address" sortOrder="50">
+                        <resource id="Lofmp_Rma::rma_address_save" title="Save" sortOrder="10"/>
+                        <resource id="Lofmp_Rma::rma_address_delete" title="Delete" sortOrder="20"/>
+                    </resource>
+                    <resource id="Lofmp_Rma::rma_rule" title="RMA Rules" sortOrder="55">
+                        <resource id="Lofmp_Rma::rma_rule_save" title="Save" sortOrder="10"/>
+                        <resource id="Lofmp_Rma::rma_rule_delete" title="Delete" sortOrder="20"/>
+                    </resource>
+                    <resource id="Lofmp_Rma::rma_report" title="Reports" sortOrder="60">
+                        <resource id="Lofmp_Rma::rma_report_report_rma" title="RMA" sortOrder="10"/>
+                        <resource id="Lofmp_Rma::rma_report_report_rma_product" title="RMA by Product" sortOrder="20"/>
+                        <resource id="Lofmp_Rma::rma_report_report_rma_brand" title="RMA by Brand" sortOrder="30"/>
+                        <resource id="Lofmp_Rma::rma_report_detail" title="RMA Detail" sortOrder="30"/>
+                    </resource>
+                    <resource id="Lofmp_Rma::rma_dictionary" title="Dictionaries" sortOrder="20">
+                        <resource id="Lofmp_Rma::rma_dictionary_status" title="Statuses" sortOrder="10"/>
+                        <resource id="Lofmp_Rma::rma_dictionary_reason" title="Reasons" sortOrder="20"/>
+                        <resource id="Lofmp_Rma::rma_dictionary_condition" title="Conditions" sortOrder="30"/>
+                        <resource id="Lofmp_Rma::rma_dictionary_resolution" title="Resolutions" sortOrder="40"/>
+                        <resource id="Lofmp_Rma::rma_dictionary_field" title="Custom Fields" sortOrder="50"/>
+                        <resource id="Lofmp_Rma::rma_dictionary_template" title="Quick Responses" sortOrder="60"/>
+                        <resource id="Lofmp_Rma::rma_return_addresses" title="Return Addresses" sortOrder="70"/>
+                    </resource>
+                    <resource id="Lofmp_Rma::rma_settings" title="Settings" sortOrder="50"/>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Lofmp_Rma::config_rma" title="Lofmp RMA Section" sortOrder="1000"/>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

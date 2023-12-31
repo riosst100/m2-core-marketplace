@@ -1,0 +1,40 @@
+<?php
+/* @var $block \Lof\Rma\Block\Rma\View\Items */
+ $helper_Rma = $this->helper('Lofmp\Rma\Helper\Data');
+?>
+<table  class="email-items" width="100%">
+        <thead>
+            <tr>
+                <th width="20%" style="font-size:12px"><?= __("Product Name") ?></th>
+                <th width="10%" style="font-size:12px"><?= __("SKU") ?></th>
+                <th width="10%" style="font-size:12px;text-align: center;"><?= __("Qty") ?></th>
+                <th width="20%" style="font-size:12px;text-align: center;"><?= __("Reason") ?></th>
+                <th width="20%" style="font-size:12px;text-align: center;"><?= __("Condition") ?></th>
+                <th width="20%" style="font-size:12px;text-align: center;"><?= __("Resolution") ?></th>
+            </tr>
+        </thead>
+        <tbody>
+<?php
+if ($rma = $block->getRma()): //when we preview template, rma is not set
+    /** @var \Lof\Rma\Api\Data\ItemInterface $item */
+    foreach ($helper_Rma->getItems($rma) as $item):
+        $product_id = $item->getData('product_id');
+        $product = $helper_Rma->getProductById($product_id);
+        $data = $item->getCollection()->getFirstItem()->getData();
+
+        ?>
+            <tr>
+                <td valign="top" style="font-size:12px; text-align: center;"><?php echo $product->getName() ?></td>
+                <td valign="top" style="font-size:12px; text-align: center;" nowrap="true"><?php echo $product->getSKU() ?></td>
+                <td valign="top" style="font-size:12px; text-align: center;" nowrap="true"><?php echo $item->getData('qty_requested') ?></td>
+                <td valign="top" style="font-size:12px; text-align: center;" nowrap="true"><?php echo $data['reason_name'] ?></td>
+                <td valign="top" style="font-size:12px; text-align: center;" nowrap="true"><?php echo $data['condition_name'] ?></td>
+                <td valign="top" style="font-size:12px; text-align: center;" nowrap="true"><?php echo $data['resolution_name'] ?></td>
+                
+            </tr>
+        <?php
+endforeach;
+endif;
+?>
+        </tbody>
+</table>

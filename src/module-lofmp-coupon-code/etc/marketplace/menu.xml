@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+    	<add id="Lofmp_CouponCode::coupon" icon="fa fa-gift" title="Coupons &amp; Promotions" module="Lofmp_CouponCode" sortOrder="50" resource="Lofmp_CouponCode::coupon" dependsOnConfig="lofmpcouponcode/general_settings/allow_seller_manage"/>
+    	<add id="Lofmp_CouponCode::manager_coupon" title="Manage Coupons" module="Lofmp_CouponCode" action="lofmpcouponcode/coupon/index" sortOrder="51" parent="Lofmp_CouponCode::coupon" resource="Lofmp_CouponCode::manager_coupon" dependsOnConfig="lofmpcouponcode/general_settings/allow_seller_manage"/>
+    	<add id="Lofmp_CouponCode::rule" title="Manage Coupon Rules" module="Lofmp_CouponCode" action="lofmpcouponcode/rule/index" sortOrder="51" parent="Lofmp_CouponCode::coupon" resource="Lofmp_CouponCode::manager_coupon" dependsOnConfig="lofmpcouponcode/general_settings/allow_seller_manage"/>
+		<add id="Lofmp_CouponCode::generate_coupon" title="Generate Coupons" module="Lofmp_CouponCode" action="lofmpcouponcode/generate/index" sortOrder="52" parent="Lofmp_CouponCode::coupon" resource="Lofmp_CouponCode::generate" dependsOnConfig="lofmpcouponcode/general_settings/allow_seller_manage"/>
+    </menu>
+</config>

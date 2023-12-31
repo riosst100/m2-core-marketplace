@@ -1,0 +1,108 @@
+
+type Query {
+
+    lofAuctionById (
+        auction_id: String! @doc(description: "Query by id.")
+    ) : Auction @resolver( class: "Lof\\Auction\\Model\\Resolver\\Auction") @doc(description: "Query by get auction by id.")
+
+    lofAuctionList (
+        search: String @doc(description: "Performs a full-text search using the specified key words."),
+        filter: AuctionFilterInput @doc(description: "Identifies which product attributes to search for and return."),
+        pageSize: Int = 20 @doc(description: "Specifies the maximum number of results to return at once. This attribute is optional."),
+        currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1."),
+    ) : Auctions @resolver( class: "Lof\\Auction\\Model\\Resolver\\Auctions") @doc(description: "Query get all auctions.")
+
+    lofMySubscribedAuctionList (
+        search: String @doc(description: "Performs a full-text search using the specified key words."),
+        filter: SubscribedAuctionFilterInput @doc(description: "Identifies which product attributes to search for and return."),
+        pageSize: Int = 20 @doc(description: "Specifies the maximum number of results to return at once. This attribute is optional."),
+        currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1."),
+    ) : SubscribedAuctions @resolver( class: "Lof\\Auction\\Model\\Resolver\\SubscribedAuctions") @doc(description: "Query get all subscribed auctions - list of max absentee bids.")
+}
+
+type Mutation {
+
+    lofAuctionBid (
+        product_id: String!
+        amount: Float
+        is_auto: Boolean!
+    ): AuctionRes @resolver( class: "Lof\\Auction\\Model\\Resolver\\PlaceBid") @doc(description: "Place bid.")
+
+    lofMaxAbsenteeBid (
+        product_id: String!
+        amount: Float!
+    ): AuctionRes @resolver( class: "Lof\\Auction\\Model\\Resolver\\MaxAbseteeBid") @doc(description: "Add/Update MaxAbsentee bid.")
+
+    lofDeleteMaxAbsenteeBid (
+        auction_id: Int!
+    ): AuctionRes @resolver( class: "Lof\\Auction\\Model\\Resolver\\DeleteSubscription") @doc(description: "Delete max absetee bid - subscribed auction.")
+}
+
+type Auction {
+
+    entity_id  : String  @doc(description: "Query by entity_id.")
+    product_id  : String  @doc(description: "Query by product_id.")
+    customer_id  : String  @doc(description: "Query by customer_id.")
+    min_amount  : String  @doc(description: "Query by min_amoun.")
+    starting_price  : String  @doc(description: "Query by starting_price.")
+    reserve_price  : String  @doc(description: "Query by reserve_price.")
+    auction_status  : String  @doc(description: "Query by auction_status.")
+    days  : String  @doc(description: "Query by days.")
+    min_qty  : String  @doc(description: "Query by min_qty.")
+    max_qty  : String  @doc(description: "Query by max_qty.")
+    start_auction_time  : String  @doc(description: "Query by start_auction_time.")
+    stop_auction_time  : String  @doc(description: "Query by stop_auction_time.")
+    increment_opt  : String  @doc(description: "Query by increment_opt.")
+    increment_price  : String  @doc(description: "Query by increment_price.")
+    auto_auction_opt  : String  @doc(description: "Query by auto_auction_opt.")
+    status  : String  @doc(description: "Query by status.")
+    featured_auction  : String  @doc(description: "Query by featured_auction.")
+    buy_it_now  : String  @doc(description: "Query by buy_it_now.")
+    created_at  : String  @doc(description: "Query by created_at.")
+    max_amount  : String  @doc(description: "Query by max_amount.")
+    limit_bids : Int @doc(description: "Query by limit_bids max bids can place for this auction.")
+}
+
+type SubscribedAuctions {
+    entity_id  : Int  @doc(description: "Query by entity_id.")
+    auction_id  : Int  @doc(description: "Query by auction_id.")
+    product_id  : Int  @doc(description: "Query by product_id.")
+    customer_id  : Int  @doc(description: "Query by customer_id.")
+    max_absentee_amount  : Float  @doc(description: "Query by max_absentee_amount.")
+    status  : String  @doc(description: "Query by status.")
+    created_at  : String  @doc(description: "Query by created_at.")
+    updated_at  : String  @doc(description: "Query by updated_at.")
+}
+
+input SubscribedAuctionFilterInput {
+    auction_id: FilterTypeInput @doc(description: "Auction ID")
+    product_id: FilterTypeInput @doc(description: "product_id")
+    start_auction_time: FilterTypeInput @doc(description: "start_auction_time")
+    stop_auction_time: FilterTypeInput @doc(description: "stop_auction_time")
+    or: SubscribedAuctionFilterInput @doc(description: "The keyword required to perform a logical OR comparison")
+}
+
+input AuctionFilterInput {
+    auction_id: FilterTypeInput @doc(description: "Auction ID")
+    product_id: FilterTypeInput @doc(description: "product_id")
+    customer_id: FilterTypeInput @doc(description: "customer_id")
+    featured_auction: FilterTypeInput @doc(description: "featured_auction")
+    start_auction_time: FilterTypeInput @doc(description: "start_auction_time")
+    stop_auction_time: FilterTypeInput @doc(description: "stop_auction_time")
+    or: AuctionFilterInput @doc(description: "The keyword required to perform a logical OR comparison")
+}
+
+type SubscribedAuctions {
+    total_count: Int @doc(description: "The number of auctions returned")
+    items: [Auction] @doc(description: "An array of auctions that match the specified search criteria")
+}
+
+type Auctions {
+    total_count: Int @doc(description: "The number of subscribed auctions returned")
+    items: [SubscribedAuctions] @doc(description: "An array of subscribed auctions that match the specified search criteria")
+}
+
+type AuctionRes {
+    code: Int
+    message: String
+}

@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+    	<add 
+			id="Lofmp_Faq::faq" 
+			icon="fa fa-question-circle" 
+			title="FAQ" 
+			module="Lofmp_Faq" 
+			sortOrder="50" 
+			resource="Lofmp_Faq::faq"
+			dependsOnConfig="lofmpfaq/general_settings/allow_seller_manage"
+			/>
+    	<add 
+			id="Lofmp_Faq::manager_category" 
+			title="Manager Category" 
+			module="Lofmp_Faq" 
+			action="catalog/faqcategory/index" 
+			sortOrder="51" 
+			parent="Lofmp_Faq::faq" 
+			resource="Lofmp_Faq::manager_category" 
+			dependsOnConfig="lofmpfaq/general_settings/allow_seller_manage"
+			/>
+    	<add 
+			id="Lofmp_Faq::new_category" 
+			title="New Category" 
+			module="Lofmp_Faq"  
+			action="catalog/faqcategory/new" 
+			sortOrder="52" 
+			parent="Lofmp_Faq::faq" 
+			resource="Lofmp_Faq::new_category" 
+			dependsOnConfig="lofmpfaq/general_settings/allow_seller_manage"
+		/>
+    	<add 
+			id="Lofmp_Faq::manager_question" 
+			title="Manager Question" 
+			module="Lofmp_Faq"  
+			action="catalog/faqquestion/index" 
+			sortOrder="53" 
+			parent="Lofmp_Faq::faq" 
+			resource="Lofmp_Faq::manager_question" 
+			dependsOnConfig="lofmpfaq/general_settings/allow_seller_manage"
+			/>
+    	<add 
+			id="Lofmp_Faq::new_question" 
+			title="New Question"
+			module="Lofmp_Faq" 
+			action="catalog/faqquestion/new" 
+			sortOrder="54" 
+			parent="Lofmp_Faq::faq" 
+			resource="Lofmp_Faq::new_question" 
+			dependsOnConfig="lofmpfaq/general_settings/allow_seller_manage"
+			/>
+    	<add 
+			id="Lofmp_Faq::setting" 
+			title="Setting" 
+			module="Lofmp_Faq" 
+			action="catalog/faqsetting/index" 
+			sortOrder="55" 
+			parent="Lofmp_Faq::faq" 
+			resource="Lofmp_Faq::setting" 
+			dependsOnConfig="lofmpfaq/general_settings/allow_seller_manage"
+			/>
+    </menu>
+</config>

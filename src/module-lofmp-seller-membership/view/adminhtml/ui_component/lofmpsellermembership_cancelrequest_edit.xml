@@ -1,0 +1,316 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lof_SellerMembership
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">lofmpsellermembership_cancelrequest_edit.lofmpsellermembership_cancelrequest_listing_data_source</item>
+            <item name="deps" xsi:type="string">lofmpsellermembership_cancelrequest_edit.lofmpsellermembership_cancelrequest_listing_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Cancel Request</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">lofmpsellermembership_cancelrequest_edit</item>
+        </item>
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="string">Lofmp\SellerMembership\Block\Adminhtml\Cancelrequest\Edit\Button\BackButton</item>
+            <item name="reset" xsi:type="string">Lofmp\SellerMembership\Block\Adminhtml\Cancelrequest\Edit\Button\ResetButton</item>
+            <item name="save" xsi:type="string">Lofmp\SellerMembership\Block\Adminhtml\Cancelrequest\Edit\Button\SaveButton</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+
+    <dataSource name="lofmpsellermembership_cancelrequest_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Lofmp\SellerMembership\Model\CancelrequestDataProvider</argument>
+            <argument name="name" xsi:type="string">lofmpsellermembership_cancelrequest_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
+            <argument name="requestFieldName" xsi:type="string">entity_id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="*/*/save"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+
+    <fieldset name="cancelrequest_details">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">false</item>
+                <item name="label" xsi:type="string" translate="true">Cancel Request Details</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+            </item>
+        </argument>
+        <field name="entity_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="label" xsi:type="string" translate="true">Entity Id</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">cancelrequest</item>
+                    <item name="dataScope" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+        </field>
+<!--        <field name="membership_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">membership_id</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">cancelrequest</item>
+                    <item name="dataScope" xsi:type="string">membership_id</item>
+                </item>
+            </argument>
+        </field>-->
+
+
+        <field name="status" formElement="select">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Status</label>
+                <dataScope>status</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options>
+                            <option name="0" xsi:type="array">
+                                <item name="value" xsi:type="string">0</item>
+                                <item name="label" xsi:type="string">Pending</item>
+                            </option>
+                            <option name="1" xsi:type="array">
+                                <item name="value" xsi:type="string">1</item>
+                                <item name="label" xsi:type="string">Approved</item>
+                            </option>
+<!--                            <option name="2" xsi:type="array">
+                                <item name="value" xsi:type="string">2</item>
+                                <item name="label" xsi:type="string">Checking</item>
+                            </option>-->
+                            <option name="3" xsi:type="array">
+                                <item name="value" xsi:type="string">3</item>
+                                <item name="label" xsi:type="string">Declided</item>
+                            </option>
+                        </options>
+                        <caption translate="true">-- Please Select --</caption>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+<!--        <field name="admin_comment">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">admin_comment</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">cancelrequest</item>
+                    <item name="dataScope" xsi:type="string">admin_comment</item>
+                </item>
+            </argument>
+        </field>-->
+
+<!--    sai
+        <field name="customer_id" class="Lofmp\SellerMembership\Ui\Component\Listing\Column\Customer">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Lof_SellerMembership/js/grid/columns/link</item>
+                    <item name="label" xsi:type="string" translate="true">Customer</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                </item>
+            </argument>
+        </field>-->
+
+
+<!--        <field name="customer_id">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Lofmp\SellerMembership\Ui\Component\Listing\Column\Customer</item>
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Lof_SellerMembership/js/grid/columns/link</item>
+                    <item name="dataType" xsi:type="string">text</item>
+
+                    <item name="label" xsi:type="string" translate="true">Customer</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">customer_id</item>
+                    <item name="dataScope" xsi:type="string">customer_id</item>
+
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        -->
+
+<!--        <field name="customer_id">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Lofmp\SellerMembership\Ui\Component\Listing\Column\Options</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="label" xsi:type="string" translate="true">Store View</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="source" xsi:type="string">customer_id</item>
+                    <item name="sortOrder" xsi:type="number">121</item>
+                    <item name="dataScope" xsi:type="string">customer_id</item>
+                    <item name="default" xsi:type="string">0</item>
+                    <item name="notice" xsi:type="string">Assign the warehouse to the store view(s). All store views are selected by default</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="tooltip" xsi:type="array">
+                        <item name="description" xsi:type="string"><![CDATA[Please make sure this criteria for choosing the warehouse is active at Stores > Configuration > AMASTY EXTENSIONS > Inventory > 'Choose Warehouse based on' setting]]></item>
+                    </item>
+                </item>
+            </argument>
+        </field>-->
+
+        <field name="admin_comment" formElement="wysiwyg">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                   <item name="source" xsi:type="string">block</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                   <class name="admin__field-wide">true</class>
+                </additionalClasses>
+                <validation>
+                   <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+                <label/>
+                <dataScope>admin_comment</dataScope>
+            </settings>
+            <formElements>
+                <wysiwyg>
+                    <settings>
+                        <wysiwyg>true</wysiwyg>
+                    </settings>
+                </wysiwyg>
+            </formElements>
+        </field>
+        <field name="customer_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Customer Name</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">cancelrequest</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/html</item>
+                    <item name="dataScope" xsi:type="string">customer_name</item>
+                </item>
+            </argument>
+        </field>
+        <field name="group_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Group Name</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">cancelrequest</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/html</item>
+                    <item name="dataScope" xsi:type="string">group_name</item>
+                </item>
+            </argument>
+        </field>
+        <field name="name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Package</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">cancelrequest</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/html</item>
+                    <item name="dataScope" xsi:type="string">name</item>
+                </item>
+            </argument>
+        </field>
+        <field name="price">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Price</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">cancelrequest</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/html</item>
+                    <item name="dataScope" xsi:type="string">price</item>
+                </item>
+            </argument>
+        </field>
+        <field name="duration">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Duration</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">cancelrequest</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/html</item>
+                    <item name="dataScope" xsi:type="string">duration</item>
+                </item>
+            </argument>
+        </field>
+        <field name="expiration_date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Expiration Date</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">cancelrequest</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/html</item>
+                    <item name="dataScope" xsi:type="string">expiration_date</item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="customer_comment">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Customer comment</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">cancelrequest</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/text</item>
+                    <item name="dataScope" xsi:type="string">customer_comment</item>
+                </item>
+            </argument>
+        </field>
+        <field name="creation_time">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Creation time</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">cancelrequest</item>
+<!--                    <item name="disabled" xsi:type="boolean">true</item>-->
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/text</item>
+                    <item name="dataScope" xsi:type="string">creation_time</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+</form>

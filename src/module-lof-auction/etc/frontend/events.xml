@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!--*
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lof_Auction
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  *-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_action_predispatch_checkout_cart_add">
+        <observer name="lof_auction_predispatch_checkout_cart_add" instance="Lof\Auction\Observer\ControllerActionPredispatchCheckoutCartAdd" />
+    </event>
+    <event name="controller_action_postdispatch_checkout_cart_add">
+        <observer name="lof_auction_postdispatch_checkout_cart_add" instance="Lof\Auction\Observer\ControllerActionPostdispatchCheckoutCartAdd" />
+    </event>
+    <event name="catalog_controller_product_view">
+        <observer name="lof_auction_product_view" instance="Lof\Auction\Observer\CatalogControllerProductView" />
+    </event>
+    <event name="sales_quote_add_item">
+        <observer name="lof_quote_add_item" instance="Lof\Auction\Observer\SalesQuoteAddItem" />
+    </event>
+    <event name="checkout_cart_product_add_after">
+        <observer name="lof_cart_product_add_after" instance="Lof\Auction\Observer\CheckoutCartProductAddAfter" />
+    </event>
+    <event name="checkout_cart_update_items_after">
+        <observer name="lof_cart_update_items_after" instance="Lof\Auction\Observer\CheckoutCartUpdateItemsAfter" />
+    </event>
+    <event name="checkout_cart_update_item_complete">
+        <observer name="lof_cart_update_items_complete" instance="Lof\Auction\Observer\CheckoutCartUpdateItemsAfter" />
+    </event>
+</config>

@@ -1,0 +1,10 @@
+<!--@subject Your seller account will be expired soon @-->
+
+{{template config_path="design/email/header_template"}}
+
+<p>{{trans "Hi %seller_name," seller_name=$data.name}}</p>
+
+<p>{{trans "Your your seller account will be expired on %expiration_date" expiration_date=$data.expiration_date}}</p>
+<p>{{trans "You can review your seller account at:"}}<a href="{{var pricing_url}}">{{var data.pricing_url}}</a></p>
+
+{{template config_path="design/email/footer_template"}}

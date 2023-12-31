@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lof_PreOrder
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+    <system>
+        <section id="lofpreorder" translate="label" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Pre Order</label>
+            <tab>landofcoder</tab>
+            <resource>Lof_PreOrder::config_preorder</resource>
+            <group id="settings" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Preorder Settings</label>
+                <field id="enabled" translate="label comment" sortOrder="0" type="select" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable Pre Orders</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Affects new orders with products set to be pre-ordered. Please note! Products on "Pre Order" must be set to <strong>"In Stock"</strong>.]]></comment>
+                </field>
+                <field id="preorder_type" translate="label comment" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Preorder Type</label>
+                    <source_model>Lof\PreOrder\Model\Config\Source\PreorderType</source_model>
+                </field>
+                <field id="preorder_percent" translate="label comment" sortOrder="15" type="text" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Preorder Percent (%)</label>
+                    <depends>
+                        <field id="preorder_type">1</field>
+                    </depends>
+                    <validate>validate-number validate-not-negative-number</validate>
+                </field>
+                <field id="preorder_email_type" translate="label comment" sortOrder="30" type="select" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable Automatic Email</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="in_stock_notify_template" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="32" translate="label comment" type="select" canRestore="1">
+					<label>Product In Stock Notification Template</label>
+					<source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+				</field>
+                <field id="preorder_email" translate="label comment" sortOrder="35" type="text" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Sender Store Email Address</label>
+                </field>
+                <field id="enable_check_availbility" translate="label comment" sortOrder="36" type="select" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable Check Preorder Availbility Date for Manually Mode</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="preorder_auto_before_manual" translate="label comment" sortOrder="40" type="select" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable Automatic Pre Order before setting in Product Item</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[If set to "Yes", the setting auto apply/disable preorder will been applied before config preorder in product. Choose "No" to move it after.]]></comment>
+                </field>
+                <field id="preorder_auto" translate="label comment" sortOrder="42" type="select" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable Automatic Pre Order when product Out of Stock</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="preorder_auto_qty_bellow_zero" translate="label comment" sortOrder="45" type="select" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Allow Pre Orders for Products with Zero and Below Zero Qty</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[If set to "No", it is possible to pre order products that have quantity set to 1 or higher only. This way you can limit number of products available for pre order.]]></comment>
+                </field>
+                <field id="preorder_disable_qty_above_zero" translate="label comment" sortOrder="50" type="select" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Disable Pre Order for Items with Qty Above Zero</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[If set to "Yes", pre orders will take effect only for products with quantity 0 or lower.]]></comment>
+                </field>
+            </group>
+            <group id="display_option" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Display Options</label>
+                <field id="addtocart_button_text" translate="label comment" sortOrder="0" type="text" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Add To Cart Button Text</label>
+                </field>
+                <field id="product_preorder_text" translate="label comment" sortOrder="5" type="text" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Pre-Order Text in Product Page</label>
+                </field>
+                <field id="product_preorder_text_position" translate="label comment" sortOrder="8" type="text" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Pre-Order Text Output Place in Product Page</label>
+                    <comment><![CDATA[Specify the selector to display the Pre-Order Note in. It replaces .stock if empty.]]></comment>
+                </field>
+                <field id="preorder_msg" translate="label comment" sortOrder="10" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Default Pre-Order Note</label>
+                    <comment><![CDATA[You can use product attributes like {sku} or {delivery_time}]]></comment>
+                </field>
+                <field id="show_preorder_on_category" translate="label comment" sortOrder="15" type="select" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show Pre-Order Note on Category Pages</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="preorder_warning_in_order" translate="label comment" sortOrder="20" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Pre-Order Warning in Order</label>
+                    <comment><![CDATA[Message to be displayed with order information]]></comment>
+                </field>
+                <field id="preorder_warning_in_cart" translate="label comment" sortOrder="25" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Pre-Order Warning in Shopping Cart</label>
+                    <comment><![CDATA[This warning is shown only when there is no enough quantity of ordered product. Here the '%1$s' is the product name and the '%2$s' is the pre-ordered product qty.]]></comment>
+                </field>
+                <field id="preorder_warning_bellow_zero" translate="label comment" sortOrder="30" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Pre-Order Warning for Below Zero Qty</label>
+                    <comment><![CDATA[This warning is shown on product page only when there is not enough quantity of ordered product and pre-order not allowed for products with zero and below zero qty. Here the '%1$s' is the product name and the '%2$s' is the available product qty.]]></comment>
+                </field>
+                <field id="show_availbility_date" translate="label comment" sortOrder="40" type="select" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show Availbility Date</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

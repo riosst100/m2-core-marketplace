@@ -1,0 +1,479 @@
+<?php
+$helper      		= $this->helper("Lofmp\Faq\Helper\Data");
+$seller           = $block->getCurrentSeller();
+$collection        = $block->getCollection();
+$categories        = $block->getCategories();
+$sellerSettings    = $block->getSellerSettings();
+$gridColumn        = $sellerSettings->getGridColumn();
+$answerSlide       = $sellerSettings->getAnswerSlide();
+$answerListSlide   = $sellerSettings->getAnswerListSlide();
+$isEnablePopupForm = $sellerSettings->isEnablePopupForm();
+$isEnableRecaptcha = $sellerSettings->isEnableRecaptcha();
+$adminEnableRecaptcha = $block->getConfig('general_settings/enable_recaptcha');
+$reCaptchaSiteKey  = $block->getConfig('recaptcha_settings/site_key');
+$layout            = $sellerSettings['layout'];
+$showAuthor        = isset($sellerSettings['show_author'])?(int)$sellerSettings['show_author']:0;
+$showDate        = isset($sellerSettings['show_date'])?(int)$sellerSettings['show_date']:0;
+?>
+<div class="block block-seller-faq">
+<h3 class="block-heading"><?= $block->escapeHtml(__("Frequently asked questions"));?></h3>
+<div class="block-cotnent">
+    <?php if($isEnablePopupForm): ?>
+    <div class="ask-question-row">
+        <a style="margin-bottom: 5px" href="javascript:void(0);" class="mpfaq-btnfancy"><?= __('Ask a Question') ?></a>
+        <div class="submited-message" id="mpfaq-popupmessage" style="display: none">
+            <h3><?= __("Thanks you for sumitting Questions!"); ?></h3>
+            <div class="popup-msg success-message"><?= __("We will check and get back to you quickly!"); ?></div>
+            <div class="popup-msg error-messsage"><?= __("Some error when submit the question. Please try later!"); ?></div>
+        </div>
+        <div id="mpfaq-poquestion" class="popquestion" style="display: none">
+            <div class="ask-question-form">
+                <div class="mpfaqform-loading"></div>
+                <form action="#" id="mpfaqform" name="popup-ask-question-form" method="post" data-mage-init='{"validation":{}}'>
+                    <input name="seller_id" value="<?= (int)$seller->getId() ?>" type="hidden">
+                    <div class="fieldset">
+                        <h2 class="legend"><?= __('Ask a Question'); ?><a class="btn-slide" id="fme-faq-btn-slide-close" href="javascript:" style="display: none; float:right;"></a>
+                        </h2>
+                        <ul class="form-list">
+                            <li class="fields">
+                                <div class="field">
+                                    <label for="customer_name" class="required"><?= __('Name'); ?><em>*</em></label>
+                                    <div class="input-box">
+                                        <input name="customer_name" id="customer_name" title="<?= $block->escapeHtmlAttr(__("Customer Name")); ?>" value="" class="required-entry input-text" type="text">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label for="customer_email" class="required"><?= __('Email'); ?><em>*</em></label>
+                                    <div class="input-box">
+                                        <input name="customer_email" id="customer_email" title="<?= $block->escapeHtmlAttr(__('Email')); ?>" value="" class="required-entry validate-email input-text" type="text">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label for="categories" class="required"><?= __('Category'); ?><em>*</em></label>
+                                    <div class="input-box">
+                                        <select name="category_id" id="category_id" class="required-entry input-select">
+                                            <?php foreach ($categories as $category) { ?>
+                                                <option value="<?= (int)$category->getId() ?>"><?= $category->getTitle() ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="wide">
+                                <label for="title" class="required"><?= __('Question'); ?><em>*</em></label>
+                                <div class="input-box">
+                                    <textarea name="title" id="title" title="<?= $block->escapeHtmlAttr(__('Question')); ?>" class="required-entry input-text" rows="5"></textarea>
+                                </div>
+                            </li>
+                            <?php if($adminEnableRecaptcha && $isEnableRecaptcha && $reCaptchaSiteKey!=''){ ?>
+                                <li class="wide">
+                                    <div class="field col-sm-12"><div class="g-recaptcha" data-sitekey="<?= $reCaptchaSiteKey ?>" data-callback="enableSubmitButton"></div></div>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                        <button  style="float: right;" type="submit" id="submit-button" class="button" <?php if($isEnableRecaptcha) echo 'disabled' ?> ><span><span><?= __('Submit'); ?></span></span></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+    <?php $toolbarHtml = trim($block->getChildHtml('toolbar')); ?>
+    <div class="list-questions-row lof-mpfaq">
+        <div id="mpfaqpage" class="faq-<?= $layout ?>">
+            <?php if($layout == '1-column'){
+                $gridStyle = "col-lg-$gridColumn col-md-$gridColumn col-sm-$gridColumn col-xs-$gridColumn";
+                $count = 0;
+                foreach($collection as $item){
+
+                    $category = $item['category'];
+                    $questions = $item['questions'];
+                    $count++;
+
+                    $categoryId              = $category->getId();
+                    $categoryTitle           = $category->getTitle();
+                    $categoryTitleSize       = $category->getTitleSize();
+                    $categoryTitleColor      = $category->getTitleColor();
+                    $categoryTitleBackground = $category->getTitleBackground();
+                    $categoryBorderWidth     = $category->getBorderWidth();
+                    $categoryBorderColor     = $category->getBorderColor();
+                    $categoryBorderRadius    = $category->getBorderRadius();
+                    $categoryMarginBottom    = $category->getMarginBottom();
+                    $categoryMarginLeft      = $category->getMarginLeft();
+                    $categoryIcon            = $category->getIcon();
+
+                    $categoryTitleFontStyle = "";
+                    if($categoryTitleSize){
+                        $categoryTitleFontStyle .= "font-size: " . $categoryTitleSize . "px;";
+                    }
+                    if($categoryTitleColor){
+                        $categoryTitleFontStyle .= "color: " . $categoryTitleColor . ";";
+                    }
+
+                    $categoryTitleStyle = "";
+                    if($categoryBorderColor || $categoryBorderWidth || $categoryBorderRadius || $categoryMarginBottom || $categoryMarginLeft || $categoryTitleBackground){
+                        $categoryTitleStyle .="border-style: solid;";
+                        if($categoryBorderColor){
+                            $categoryTitleStyle .= "border-color:"      . $categoryBorderColor . ";";
+                        }
+                        if($categoryBorderWidth){
+                            $categoryTitleStyle .= "border-width:"      . $categoryBorderWidth . "px;";
+                        }
+                        if($categoryBorderRadius){
+                            $categoryTitleStyle .= "border-radius:"      . $categoryBorderRadius . "px;";
+                        }
+                        if($categoryMarginBottom){
+                            $categoryTitleStyle .= "margin-bottom:"      . $categoryMarginBottom . "px;";
+                        }
+                        if($categoryMarginLeft){
+                            $categoryTitleStyle .= "margin-left:"      . $categoryMarginLeft . "px;";
+                        }
+                        if($categoryTitleBackground){
+                            $categoryTitleStyle .= "background-color:"      . $categoryTitleBackground . ";";
+                        }
+                    }
+            ?>
+
+            <div class="row">
+                <div class="<?= $gridStyle ?>">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h4  id="category-<?= $count ?>" class="panel-title category" style="<?= $categoryTitleStyle ?>">
+                                <i class="<?= $categoryIcon ?>" style="<?= $categoryTitleFontStyle ?>" aria-hidden="true"></i>
+                                <strong><span style="<?= $categoryTitleFontStyle ?>"><?= $categoryTitle ?></span></strong>
+                            </h4>
+                        </div>
+                        <div class="questions-container panel-collapse collapse" id="questions-container-<?= $count ?>" style="display:block">
+                            <div id="question-list-<?= $count ?>" class="panel-body question-list">
+                                <?php foreach($questions as $question){
+                                    $questionId           = $question->getId();
+                                    $questionTitle        = $question->getTitle();
+                                    $questionSize         = $question->getTitleSize();
+                                    $questionColor        = $question->getTitleColor();
+                                    $questionBackground   = $question->getTitleBackground();
+                                    $questionBorderWidth  = $question->getBorderWidth();
+                                    $questionBorderColor  = $question->getBorderColor();
+                                    $questionBorderRadius = $question->getBorderRadius();
+                                    $questionMarginLeft   = $question->getMarginLeft();
+                                    $questionMarginBottom = $question->getMarginBottom();
+                                    $bodyColor            = $question->getBodyColor();
+                                    $bodyBackground       = $question->getBodyBackground();
+
+                                    $questionFontStyle = "";
+                                    if($questionSize){
+                                        $questionFontStyle .= "font-size: " . $questionSize . "px;";
+                                    }
+                                    if($questionColor){
+                                        $questionFontStyle .= "color: " . $questionColor . ";";
+                                    }
+
+                                    $questionTitleStyle = $questionBackground?"background-color: " . $questionBackground:"";
+
+                                    $questionContainerStyle = "";
+                                    if($questionBorderColor || $questionBorderWidth || $questionBorderRadius || $questionMarginLeft || $categoryMarginLeft || $categoryTitleBackground){
+                                        $questionContainerStyle .="border-style: solid;";
+                                        if($questionBorderColor){
+                                            $questionContainerStyle .= "border-color:"      . $questionBorderColor . ";";
+                                        }
+                                        if($questionBorderWidth){
+                                            $questionContainerStyle .= "border-width:"      . $questionBorderWidth . "px;";
+                                        }
+                                        if($questionBorderRadius){
+                                            $questionContainerStyle .= "border-radius:"      . $questionBorderRadius . "px;";
+                                        }
+                                        if($questionMarginLeft){
+                                            $questionContainerStyle .= "margin-left:"      . $questionMarginLeft . "px;";
+                                        }
+                                        if($questionMarginBottom){
+                                            $questionContainerStyle .= "margin-bottom:"      . $questionMarginBottom . "px;";
+                                        }
+                                        if($categoryTitleBackground){
+                                            $questionContainerStyle .= "background-color:"      . $categoryTitleBackground . ";";
+                                        }
+                                    }
+
+                                    $bodyFontStyle = $bodyColor?("color: " . $bodyColor):"";
+                                    $bodyStyle = $bodyBackground?"background-color: " . $bodyBackground:"";
+                                ?>
+                                <div class="pane question-item" style="<?= $questionContainerStyle ?>">
+                                    <div class="question-title panel-heading question" id="question-title-<?= $questionId ?>" style="<?= $questionTitleStyle ?>" data-target="#question<?= $questionId ?>">
+                                        <h4 class="question-name">
+                                            <span><i class="<?= $question->getIcon() ?>" aria-hidden="true" style="<?= $questionFontStyle ?>"></i></span>
+                                            <span href="#" style="<?= $questionFontStyle ?>"><?= $questionTitle ?></span>
+                                        </h4>
+                                    </div>
+                                    <div id="question<?= $questionId ?>" class="answer panel-body question-body hidden" style="<?= $bodyStyle; ?>">
+                                        <div class="panel-body" style="<?= $bodyFontStyle ?>">
+                                            <?= $question->getAnswer() ?>
+                                            <div class="question-meta">
+                                                <?php if( $showAuthor && ($authorName = $question->getCustomerName())){ ?>
+                                                <span class="post-author">
+                                                    <?= __('Created by: %1', $authorName); ?>
+                                                </span>
+                                                <?php } ?>
+                                                <?php if($showDate && ($question->getCreationTime()!='')){ ?>
+                                                <span class="post-date">
+                                                <i><?= __('on %1', $helper->getFormatDate($question->getCreationTime(), 'medium')); ?></i>
+                                                </span>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php } ?>
+            <?php } ?>
+
+            <?php if($layout == '1-column-leftbar'){
+                $gridStyle = "col-lg-$gridColumn col-md-$gridColumn col-sm-$gridColumn col-xs-$gridColumn";
+            ?>
+            <div class="">
+                <div class="category-tab" style="float: left; width: 20%">
+                    <?php
+                    $count = 0;
+                    foreach ($collection as $item){
+                        $count++;
+                        $category = $item['category'];
+                        $categoryId              = $category->getId();
+                        $categoryTitle           = $category->getTitle();
+                        $categoryTitleSize       = $category->getTitleSize();
+                        $categoryTitleColor      = $category->getTitleColor();
+                        $categoryTitleBackground = $category->getTitleBackground();
+                        $categoryBorderWidth     = $category->getBorderWidth();
+                        $categoryBorderColor     = $category->getBorderColor();
+                        $categoryBorderRadius    = $category->getBorderRadius();
+                        $categoryMarginBottom    = $category->getMarginBottom();
+                        $categoryMarginLeft      = $category->getMarginLeft();
+                        $categoryIcon            = $category->getIcon();
+                        $categoryIconActive      = $category->getIconActive();
+                        $animationClass          = $category->getAnimationClass();
+
+                        $categoryTitleFontStyle = "";
+                        if($categoryTitleSize){
+                            $categoryTitleFontStyle .= "font-size: " . $categoryTitleSize . "px;";
+                        }
+                        if($categoryTitleColor){
+                            $categoryTitleFontStyle .= "color: " . $categoryTitleColor . ";";
+                        }
+
+                        $categoryTitleStyle = "";
+                        if($categoryBorderColor || $categoryBorderWidth || $categoryBorderRadius || $categoryMarginBottom || $categoryMarginLeft || $categoryTitleBackground){
+                            $categoryTitleStyle .="border-style: solid;";
+                            if($categoryBorderColor){
+                                $categoryTitleStyle .= "border-color:"      . $categoryBorderColor . ";";
+                            }
+                            if($categoryBorderWidth){
+                                $categoryTitleStyle .= "border-width:"      . $categoryBorderWidth . "px;";
+                            }
+                            if($categoryBorderRadius){
+                                $categoryTitleStyle .= "border-radius:"      . $categoryBorderRadius . "px;";
+                            }
+                            if($categoryMarginBottom){
+                                $categoryTitleStyle .= "margin-bottom:"      . $categoryMarginBottom . "px;";
+                            }
+                            if($categoryMarginLeft){
+                                $categoryTitleStyle .= "margin-left:"      . $categoryMarginLeft . "px;";
+                            }
+                            if($categoryTitleBackground){
+                                $categoryTitleStyle .= "background-color:"      . $categoryTitleBackground . ";";
+                            }
+                        }
+                        ?>
+
+                        <div id="category-<?= $count ?>" class="category" style="<?= $categoryTitleStyle ?>">
+                            <i class="<?= $categoryIcon ?>" style="<?= $categoryTitleFontStyle ?>" aria-hidden="true"></i>
+                            <span style="<?= $categoryTitleFontStyle ?>"> <?= $categoryTitle ?> </span>
+                        </div>
+
+                    <?php } ?>
+                </div>
+                <div style="float:left; width: 80%">
+                    <div class="row">
+                        <div class="questions-container <?= $gridStyle ?>">
+                            <?php
+                            $count = 0;
+                            foreach ($collection as $item){
+                                $questions = $item['questions'];
+                                $count++;
+                                ?>
+                                <ul id="question-list-<?= $count ?>" class="question-list" style="display: block">
+                                    <?php foreach($questions as $question){
+                                        $questionId           = $question->getId();
+                                        $questionTitle        = $question->getTitle();
+                                        $questionSize         = $question->getTitleSize();
+                                        $questionColor        = $question->getTitleColor();
+                                        $questionBackground   = $question->getTitleBackground();
+                                        $questionBorderWidth  = $question->getBorderWidth();
+                                        $questionBorderColor  = $question->getBorderColor();
+                                        $questionBorderRadius = $question->getBorderRadius();
+                                        $questionMarginLeft   = $question->getMarginLeft();
+                                        $questionMarginBottom = $question->getMarginBottom();
+                                        $bodyColor            = $question->getBodyColor();
+                                        $bodyBackground       = $question->getBodyBackground();
+
+                                        $questionContainerStyle     = "border-style: solid;" .
+                                            "border-color:"   . $questionBorderColor  . ";"   .
+                                            "border-width: "  . $questionBorderWidth  . "px;" .
+                                            "border-radius: " . $questionBorderRadius . "px;" .
+                                            "margin-left: "   . $questionMarginLeft . "px;"   .
+                                            "margin-bottom: " . $questionMarginBottom . "px;";
+
+                                        $questionFontStyle = "";
+                                        if($questionSize){
+                                            $questionFontStyle .= "font-size: " . $questionSize . "px;";
+                                        }
+                                        if($questionColor){
+                                            $questionFontStyle .= "color: " . $questionColor . ";";
+                                        }
+
+                                        $questionTitleStyle = $questionBackground?"background-color: " . $questionBackground:"";
+
+                                        $questionContainerStyle = "";
+                                        if($questionBorderColor || $questionBorderWidth || $questionBorderRadius || $questionMarginLeft || $categoryMarginLeft){
+                                            $questionContainerStyle .="border-style: solid;";
+                                            if($questionBorderColor){
+                                                $questionContainerStyle .= "border-color:"      . $questionBorderColor . ";";
+                                            }
+                                            if($questionBorderWidth){
+                                                $questionContainerStyle .= "border-width:"      . $questionBorderWidth . "px;";
+                                            }
+                                            if($questionBorderRadius){
+                                                $questionContainerStyle .= "border-radius:"      . $questionBorderRadius . "px;";
+                                            }
+                                            if($questionMarginLeft){
+                                                $questionContainerStyle .= "margin-left:"      . $questionMarginLeft . "px;";
+                                            }
+                                            if($questionMarginBottom){
+                                                $questionContainerStyle .= "margin-bottom:"      . $questionMarginBottom . "px;";
+                                            }
+                                        }
+
+                                        $bodyFontStyle = $bodyColor?("color: " . $bodyColor):"";
+                                        $bodyStyle = $bodyBackground?"background-color: " . $bodyBackground:"";
+                                        ?>
+                                        <li class="question-item" id="question-<?= $questionId ?>" style="<?= $questionContainerStyle ?>">
+                                            <div class="question panel-heading question-title" id="question-title-<?= $questionId ?>" style="<?= $questionTitleStyle ?>" data-target="#question-answer-<?= $questionId ?>">
+                                                <span><i class="<?= $question->getIcon() ?>" aria-hidden="true" style="<?= $questionFontStyle ?>"></i></span>
+                                                <span style="<?= $questionFontStyle ?>"><?= $questionTitle ?></span>
+                                            </div>
+                                            <div class="answer question-body panel-body hidden" id="question-answer-<?= $questionId ?>" style="<?= $bodyStyle ?>">
+                                                <div style="<?= $bodyFontStyle ?>">
+                                                    <?= $question->getAnswer() ?>
+                                                    <div class="question-meta">
+                                                        <?php if( $showAuthor && ($authorName = $question->getCustomerName())){ ?>
+                                                        <span class="post-author">
+                                                            <?= __('Created by: %1', $authorName); ?>
+                                                        </span>
+                                                        <?php } ?>
+                                                        <?php if($showDate && ($question->getCreationTime()!='')){ ?>
+                                                        <span class="post-date">
+                                                        <i><?= __('on %1', $helper->getFormatDate($question->getCreationTime(), 'medium')); ?></i>
+                                                        </span>
+                                                        <?php } ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    <?php } ?>
+                                </ul>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php } ?>
+        </div>
+        <?php if($toolbarHtml): ?>
+            <div class="faq-toolbar toolbar">
+                <?= $toolbarHtml; ?>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+<?php if ($isEnableRecaptcha || $adminEnableRecaptcha) : ?>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<?php endif; ?>
+
+<script type="text/javascript">
+    require(['jquery'], function($){
+        $("#mpfaqpage .question-item > .question-title").click(function(){
+            var target = $(this).data("target");
+            $(target).slideToggle('<?= $answerListSlide ?>')
+            $(target).removeClass("hidden")
+        });
+    });
+</script>
+
+
+<script type="text/javascript">
+    var enableSubmitButton = function(){
+        document.getElementById("submit-button").disabled = false;
+    }
+</script>
+
+<script type="text/javascript">
+    require([
+        'jquery',
+        'Lof_All/lib/fancybox/jquery.fancybox.pack',
+        'mage/validation'
+    ], function($){
+        jQuery(document).ready(function($) {
+            jQuery(".mpfaq-btnfancy").fancybox({
+                'href'   : '#mpfaq-poquestion',
+                'titleShow'  : false,
+                'transitionIn'  : 'elastic',
+                'transitionOut' : 'elastic',
+                'minWidth'  : 600,
+            });
+        });
+    });
+</script>
+<script type="text/javascript">
+    require([
+        'jquery',
+        'Lof_All/lib/fancybox/jquery.fancybox.pack'
+    ],function() {
+        jQuery('#mpfaqform').submit(function(e){
+            e.preventDefault();
+            if(jQuery(this).validation('isValid') == true) {
+                jQuery('.mpfaqform-loading').addClass('ajax-loading');
+                ajaxurl  =  '<?= $this->getUrl('lofmpfaq/question/save', ["_secure" => $this->getRequest()->isSecure()]); ?>';
+                jQuery.ajax({
+                    url: ajaxurl,
+                    type:'POST',
+                    dataType: 'json',
+                    data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+                    contentType: false,       // The content type used when sending data to the server.
+                    cache: false,             // To unable request pages to be cached
+                    processData:false,        // To send DOMDocument or non processed data file it is set to false
+                    success: function(data) {
+                        jQuery('#mpfaqform')[0].reset();
+                        jQuery('.mpfaqform-loading').removeClass('ajax-loading');
+                        parent.jQuery.fancybox.close();
+
+                        jQuery(".popup-msg").hide();
+
+                        if (data.message == "OK") {
+                            jQuery(".success-message").show();
+                        } else {
+                            jQuery(".error-message").show();
+                        }
+                        jQuery.fancybox({
+                            'href'   : '#mpfaq-popupmessage',
+                            'titleShow'  : false,
+                            'transitionIn'  : 'elastic',
+                            'transitionOut' : 'elastic',
+                            'minWidth'  : 600,
+                        });
+                    }
+                });
+            }
+        });
+    });
+</script>
+</div>

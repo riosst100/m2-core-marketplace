@@ -1,0 +1,196 @@
+<?php
+$helper = $this->helper("Lof\MarketPlace\Helper\Data");
+$url = $block->getUrl('*/*/sendmail');
+$current_quote = $block->getQuickrfqByID();
+$sellerId = $current_quote['seller_id'];
+
+if (isset($current_quote['image'])) {
+    $image_url = $current_quote['image'];
+}
+?>
+<form data-mage-init='{"validation": {}}' class="entry-edit form-inline" action="<?php echo $block->getUrl('*/*/save');?>" enctype="multipart/form-data" method="post" autocomplete="off">
+	<?php
+    if (isset($current_quote["quickrfq_id"])) { ?>
+		<input type="hidden" name="quickrfq_id" class="admin__control-text" value="<?php echo $current_quote["quickrfq_id"]; ?>" />
+	<?php } ?>
+	<input type="hidden" name="status" class="admin__control-text" value="0" />
+	<div class="lof-mp-page-title page-title">
+		<h2><?php echo __('Edit Quote')?></h2>
+		<div class="page-actions-buttons">
+			 <div class="actions-split save primary" title="Save">
+				<button class="action-default primary" title="<?php echo __('Save ') ?>" type="submit">
+					<span><span><?php echo __('Save Quote') ?></span></span>
+				</button>
+			</div>
+		</div>
+	</div>
+	<div class="admin__fieldset-wrapper-content">
+		<fieldset class="admin__fieldset">
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Status"); ?>
+				</label>
+				<div class="admin__field-control">
+                    <select class="admin__control-select" name="status" id="status">
+                        <option value="New" <?php echo ($current_quote['status'] == 'New')? "selected" : ""?>><?php echo __("New") ?></option>
+                        <option value="Under Process" <?php echo ($current_quote['status'] == 'Under Process')? "selected" : ""?>><?php echo __("Under Process") ?></option>
+                        <option value="Pending" <?php echo ($current_quote['status'] == 'Pending')? "selected" : ""?>><?php echo __("Pending") ?></option>
+                        <option value="Done" <?php echo ($current_quote['status'] == 'Done')? "selected" : ""?>><?php echo __("Done") ?></option>
+                    </select>
+				</div>
+			</div>
+
+            <div class="admin__field">
+                <label class="admin__field-label">
+                    <?php echo __("Created date"); ?>
+                </label>
+                <div class="admin__field-control">
+                    <input type="text"
+                           class="input-text required-entry hasDatepicker"
+                           id="create_date"
+                           value="<?php echo isset($current_quote['create_date'])? $current_quote['create_date'] : '' ?>"
+                           name="create_date"
+                           aria-required="true" />
+                </div>
+            </div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Date need Quote"); ?>
+				</label>
+				<div class="admin__field-control">
+                    <input type="text"
+                           class="input-text required-entry hasDatepicker"
+                           id="date_need_quote"
+                           value="<?php echo isset($current_quote['date_need_quote'])? $current_quote['date_need_quote'] : '' ?>"
+                           name="date_need_quote"
+                           aria-required="true" />
+                </div>
+			</div>
+            <div class="admin__field">
+                <label class="admin__field-label">
+                    <?php echo __("Company"); ?>
+                </label>
+                <div class="admin__field-control">
+                    <input type="text" value="<?php echo isset($current_quote['company'])? $current_quote['company'] : '' ?>" name="company" class="admin__control-text validate-no-html-tags" required />
+                </div>
+            </div>
+            <div class="admin__field">
+                <label class="admin__field-label">
+                    <?php echo __("Contact Name"); ?>
+                </label>
+                <div class="admin__field-control">
+                    <input type="text" value="<?php echo isset($current_quote['contact_name'])? $current_quote['contact_name'] : '' ?>" name="contact_name" class="admin__control-text validate-no-html-tags" required />
+                </div>
+            </div>
+            <div class="admin__field">
+                <label class="admin__field-label">
+                    <?php echo __("Phone"); ?>
+                </label>
+                <div class="admin__field-control">
+                    <input type="number" value="<?php echo isset($current_quote['phone'])? $current_quote['phone'] : '' ?>" name="phone" class="admin__control-text validate-no-html-tags" required />
+                </div>
+            </div>
+            <div class="admin__field">
+                <label class="admin__field-label">
+                    <?php echo __("Email"); ?>
+                </label>
+                <div class="admin__field-control">
+                    <input type="email" value="<?php echo isset($current_quote['email'])? $current_quote['email'] : '' ?>" name="email" class="admin__control-text validate-no-html-tags" required />
+                </div>
+            </div>
+            <div class="admin__field">
+                <label class="admin__field-label">
+                    <?php echo __("Product"); ?>
+                </label>
+                <div class="admin__field-control">
+                    <input type="text" value="<?php echo isset($current_quote['product_name'])? $current_quote['product_name'] : '' ?>" name="product_name" class="admin__control-text validate-no-html-tags" required />
+                </div>
+            </div>
+            <div class="admin__field">
+                <label class="admin__field-label">
+                    <?php echo __(" Quantity Products"); ?>
+                </label>
+                <div class="admin__field-control">
+                    <input type="number" value="<?php echo isset($current_quote['quantity'])? $current_quote['quantity'] : '' ?>" name="quantity" class="admin__control-text validate-no-html-tags" required />
+                </div>
+            </div>
+            <div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Image"); ?>
+				</label>
+				<div class="admin__field-control" id="image">
+                    <image src="<?php echo($helper->getMediaUrl() . $image_url)?>"></image>
+                </div>
+			</div>
+            <div class="admin__field">
+                <label class="admin__field-label">
+                    <?php echo __("Customer Comment"); ?>
+                </label>
+                <div class="admin__field-control">
+                    <input type="text" value="<?php echo isset($current_quote['comment'])? $current_quote['comment'] : '' ?>" name="comment" class="admin__control-text validate-no-html-tags" required />
+                </div>
+            </div>
+            <div class="admin__field">
+                <label class="admin__field-label">
+                    <?php echo __("Reply to Customer"); ?>
+                </label>
+                <div class="admin__field-control">
+                    <textarea placeholder="Reply To Customer *" id="email-content" name="content" class="admin__control-text validate-no-html-tags"></textarea>
+                </div>
+                <div>
+                    <button id="btn-send-mail" translate="yes" type="submit" class="btn btn-primary submit">Send Mail</button>
+                </div>
+            </div>
+		</fieldset>
+	</div>
+</form>
+<script>
+    require([
+        'jquery',
+        'mage/mage',
+        'mage/calendar'
+    ], function($){
+        $('#date_need_quote').datetimepicker({
+            dateFormat: 'yy-mm-dd',
+            timeFormat: 'hh:mm:ss',
+            changeMonth: true,
+            changeYear: true,
+            showsTime: true
+        });
+        $('#create_date').datetimepicker({
+            dateFormat: 'yy-mm-dd',
+            timeFormat: 'hh:mm:ss',
+            changeMonth: true,
+            changeYear: true,
+            showsTime: true
+        });
+        $('#btn-send-mail').click(function(e) {
+            e.preventDefault();
+            $("#email-content").prop('required',true);
+            var customurl = "<?php echo $url?>";
+            var seller = "<?php echo $sellerId?>";
+            var content = $("#email-content").val();
+            var customeremail = $("[name='email']").val();
+            var contactname = $("[name='contact_name']").val();
+            $.ajax({
+                url: customurl,
+                type: 'POST',
+                dataType: 'json',
+                showLoader: 'true',
+                data: {
+                    content: content,
+                    contact: contactname,
+                    email: customeremail,
+                    seller_id : seller,
+                },
+                success: function(response) {
+                    alert('You have sent email to '+contactname);
+                    location.reload();
+                },
+                error: function (xhr, status, errorThrown) {
+                    alert('Error happens. Try again.');
+                }
+            });
+        });
+    });
+</script>

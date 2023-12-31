@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lofmp_SellerMembership
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="lofmarketplace_buy_membership_page_expiry_notification" label="Membership Expiry Notification" file="membership_expiry.html" type="html" module="Lofmp_Membership" area="frontend"/>
+
+    <template id="lofmarketplace_cancel_request_approve" label="Approve Canncel Request" file="cancel_request_approve.html" type="html" module="Lofmp_Membership" area="frontend"/>
+    <template id="lofmarketplace_cancel_request_declide" label="Declide Canncel Request" file="cancel_request_declide.html" type="html" module="Lofmp_Membership" area="frontend"/>
+</config>

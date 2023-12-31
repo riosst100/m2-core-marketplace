@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lofmp_MultiShipping
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="lofmp_multishipping" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+            <class>separator-top</class>
+            <label>Multi Shipping</label>
+            <tab>landofcoder</tab>
+            <resource>Lofmp_MultiShipping::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0"
+                   showInStore="0">
+                <label>General</label>
+                <frontend_model>Lofmp\MultiShipping\Block\Adminhtml\System\Config\Frontend\Fieldset</frontend_model>
+                <field id="activation_multishipping" translate="label" type="select" sortOrder="1" showInDefault="1"
+                       showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Enabled</label>
+                    <config_path>lofmp_multishipping/general/activation</config_path>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[Select <strong>"Yes"</strong> to enable the multi shipping feature per seller.<br/>
+                        Note: This feature <strong>SHOULD NOT</strong> be enabled when the site is using the <a href="https://landofcoder.com/magento-2-marketplace-split-cart.html" target="_blank">MAGENTO 2 MARKETPLACE SPLIT CART Addon</a></br>
+                        You can visit its settings and disable split cart addon or use the command:<br/>
+                         <code><strong>php bin/magento module:disable Lofmp_SplitCart</strong></code>
+                        ]]>
+                    </comment>
+                </field>
+                <field id="use_admin_shipping" translate="label" type="select" sortOrder="1" showInDefault="1"
+                       showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Use Admin Shipping for Seller Products</label>
+                    <comment><![CDATA[If select <strong>"Yes"</strong>, shipping methods of Admin site are allowed for seller products.]]></comment>
+                    <config_path>lofmp_multishipping/general/use_admin_shipping</config_path>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <frontend_model>Lofmp\MultiShipping\Block\Adminhtml\System\Config\Frontend\Enable</frontend_model>
+                </field>
+                <field id="carrier_title" translate="label" type="text" sortOrder="2" showInDefault="1"
+                       showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Carrier Title</label>
+                    <comment>Seller MultiShipping Carrier Title</comment>
+                    <config_path>lofmp_multishipping/general/carrier_title</config_path>
+                    <frontend_model>Lofmp\MultiShipping\Block\Adminhtml\System\Config\Frontend\Enable</frontend_model>
+                </field>
+                <field id="method_title" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1"
+                       showInStore="0" canRestore="1">
+                    <label>Method Title</label>
+                    <comment>Seller MultiShipping Method Title</comment>
+                    <config_path>lofmp_multishipping/general/method_title</config_path>
+                    <frontend_model>Lofmp\MultiShipping\Block\Adminhtml\System\Config\Frontend\Enable</frontend_model>
+                </field>
+                <field id="carriers_heading" translate="label" type="text" sortOrder="3" showInDefault="1"
+                       showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Shipping Carriers Heading</label>
+                    <comment>Seller Shipping Carriers Heading</comment>
+                    <config_path>lofmp_multishipping/general/carriers_heading</config_path>
+                    <frontend_model>Lofmp\MultiShipping\Block\Adminhtml\System\Config\Frontend\Enable</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

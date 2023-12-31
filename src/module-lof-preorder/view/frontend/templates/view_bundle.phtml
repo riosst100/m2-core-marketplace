@@ -1,0 +1,84 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_PreOrder
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+?>
+<div class="lof-loading-mask lof-display-none">
+    <div class="lof-loader"></div>
+</div>
+<?php
+    $helper = $this->helper('Lof\PreOrder\Helper\Data');
+    $product = $block->getProduct();
+    $stripSelection = $product->getConfigureMode() ? true : false;
+    $options = $block->decorateArray($block->getOptions($stripSelection));
+    $_hasAssociatedProducts = count($options) > 0;
+    $productId = $product->getId();
+    $flag = 0;
+if ($helper->isPreorder($productId)) {
+    $flag = 1;
+}
+    $payHtml = $helper->getPayPreOrderHtml();
+    $msg = $helper->getPreOrderInfoBlock($productId, $product);
+    $url = $helper->getCheckConfigUrl();
+    $addtocart_button_text = $helper->getAddtocartButtonText();
+    $preorder_text = $helper->getProductPreorderText();
+    $preorder_text_position = $helper->getProductPreorderTextPosition();
+    $map = [];//sample: [123 => [note => msg, cartLabel=>'Add to Cart']]
+    $optionsData = [];
+if ($_hasAssociatedProducts) {
+    $i = 1;
+    foreach ($options as $_option) {
+        $_selections  = $_option->getSelections();
+        $_option_cartLabel  = __('Add to Cart');
+        $_option_flag = 0;
+        foreach ($_selections as $_selection) {
+            $cartLabel = __('Add to Cart');
+            $_product_id = $_selection->getId();
+            $_flag = 0;
+            $_item_msg = "";
+            if ($helper->isPreorder($_product_id)) {
+                $_flag = 1;
+                $cartLabel = $addtocart_button_text;
+                $_option_cartLabel = $addtocart_button_text;
+                $_option_flag = 1;
+                $_item_msg = $helper->getPreOrderInfoBlock($_product_id, null, 'lof-msg-box-child lof-info');
+                $_item_map = ['flag' => $_flag,'msg' => $_item_msg, 'buttonText' => $cartLabel ];
+                $map[$_option->getId()."-".$_selection->getSelectionId()] = $_item_map;
+            }
+        }
+        $_optionData = ["isSingle" => (count($_selections) == 1 && $_option->getRequired()),
+                        "isMultiSelection" => (("multi" == $_option->getType())?true:false),
+                        "isRequired" => (bool)$_option->getRequired(),
+                        "selectionCount" => count($_selections),
+                        "isPreorder" => (bool)$_option_flag,
+                        "message" => $_option_cartLabel,
+                        "selectionId" => (int)$_selections[0]->getSelectionId()
+                        ];
+        $optionsData[$i] = $_optionData;
+        $i++;
+    }
+}
+    //$optionsDataString = $helper->getJsonEncode($optionsData);
+    $data = json_encode(["payHtml" => $payHtml, "preorderText"=>$preorder_text, "preorderTextPosition"=> $preorder_text_position, "msg" => $msg, "flag" => $flag, "url" => $url, "productId" => $productId, "buttonText" => $addtocart_button_text, "map" => $map, "optionsData"=>$optionsData]);
+?>
+<script type="text/javascript">
+    require(['jquery', 'Lof_PreOrder/js/view_bundle'], function($) {
+        $widget = $.preorder.viewBundle(<?php echo $data ?>);
+    });
+</script>

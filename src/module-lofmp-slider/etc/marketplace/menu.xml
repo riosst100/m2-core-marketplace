@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Lof_MarketPlace:etc/menu.xsd">
+    <menu>
+    	<add id="Lofmp_Slider::slider" icon="fa fa-sliders" title="Sliders" module="Lofmp_Slider" sortOrder="50" resource="Lofmp_Slider::slider" dependsOnConfig="lofmpslider/general_settings/enable" translate="title"/>
+    	<add id="Lofmp_Slider::manager_slider" title="Manage Sliders" module="Lofmp_Slider" action="catalog/slider/index" sortOrder="51" parent="Lofmp_Slider::slider" resource="Lofmp_Slider::manager_slider" dependsOnConfig="lofmpslider/general_settings/enable" translate="title"/>
+    	<add id="Lofmp_Slider::add_slider" title="Add Slider" module="Lofmp_Slider" action="catalog/slider/new" sortOrder="51" parent="Lofmp_Slider::slider" resource="Lofmp_Slider::manager_slider" dependsOnConfig="lofmpslider/general_settings/enable" translate="title"/>
+    </menu>
+</config>

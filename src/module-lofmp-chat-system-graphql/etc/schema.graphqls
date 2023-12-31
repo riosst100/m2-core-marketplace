@@ -1,0 +1,133 @@
+# Landofcoder
+#
+# NOTICE OF LICENSE
+#
+# This source file is subject to the Landofcoder.com license that is
+# available through the world-wide-web at this URL:
+# https://landofcoder.com/LICENSE.txt
+#
+# DISCLAIMER
+#
+# Do not edit or add to this file if you wish to upgrade this extension to newer
+# version in the future.
+#
+# @category    Landofcoder
+# @package     Lofmp_ChatSystemGraphQl
+# @copyright   Copyright (c) 2022 Landofcoder (https://landofcoder.com/)
+# @license     https://landofcoder.com/LICENSE.txt
+
+type Mutation {
+
+    customerSendChat(input: CustomerChatMessageInput!): SellerChatMessage @resolver(class:"\\Lof\\ChatSystemGraphQl\\Model\\Resolver\\Customer\\SendChat") @doc(description: "Customer send chat message to seller")
+
+    sellerReplyChat(input: SellerChatMessageInput!): SellerChatMessage @resolver(class:"\\Lof\\ChatSystemGraphQl\\Model\\Resolver\\Seller\\SendChat") @doc(description: "Seller send chat Messaage to customer")
+
+    sellerSetBlacklist(chat_id: Int! @doc(description: "A Chat ID.")): SellerChatOutput @resolver(class:"\\Lof\\ChatSystemGraphQl\\Model\\Resolver\\Seller\\AddBlacklist") @doc(description: "Seller set blacklist for a chat")
+
+    sellerDeleteChat(input: DeleteChatInput! @doc(description: "Input field for delete chat.")): SellerChatOutput @resolver(class:"\\Lof\\ChatSystemGraphQl\\Model\\Resolver\\Seller\\DeleteChat") @doc(description: "Seller delete a chat")
+
+}
+
+type Customer {
+
+    customerSellerChatMessages (
+        sellerUrl: String! @doc(description: "Filter for sellerUrl.")
+        filter: SellerChatFilterInput @doc(description: "Identifies which seller messages filter inputs to search for and return.")
+        pageSize: Int = 20 @doc(description: "Specifies the maximum number of results to return at once. This attribute is optional.")
+        currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1.")
+        sort: SellerChatSortInput @doc(description: "Specifies which attributes to sort on, and whether to return the results in ascending or descending seller message.")
+    ) : SellerChatMessages @resolver(class: "\\Lofmp\\ChatSystemGraphQl\\Model\\Resolver\\Customer\\Messages") @doc(description: "The customer query seller chat messages searches for sellers that match the criteria specified in the search and filter attributes")
+
+    sellerChatMessages (
+        filter: SellerChatFilterInput @doc(description: "Identifies which seller messages filter inputs to search for and return.")
+        pageSize: Int = 20 @doc(description: "Specifies the maximum number of results to return at once. This attribute is optional.")
+        currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1.")
+        sort: SellerChatSortInput @doc(description: "Specifies which attributes to sort on, and whether to return the results in ascending or descending seller message.")
+    ) : SellerChatMessages @resolver(class: "\\Lofmp\\ChatSystemGraphQl\\Model\\Resolver\\Seller\\Messages") @doc(description: "The seller query chat messages searches for sellers that match the criteria specified in the search and filter attributes")
+}
+
+type SellerChatMessages {
+  total_count: Int @doc(description: "The number of seller chat messages returned")
+  items: [SellerChatMessage] @doc(description: "An array of items that match the specified search criteria")
+  page_info: SearchResultPageInfo @doc(description: "An object that includes the page_info and currentPage values specified in the query.")
+}
+
+type SellerChatMessageDetails {
+  total_count: Int @doc(description: "The number of seller chat messages details returned")
+  items: [SellerChatMessageDetail] @doc(description: "An array of items that match the specified search criteria")
+  page_info: SearchResultPageInfo @doc(description: "An object that includes the page_info and currentPage values specified in the query.")
+}
+
+type SellerChatMessage {
+    chat_id: Int @doc(description: "The number of seller chat message returned")
+    customer_email: String @doc(description: "customer_email field")
+    customer_name: String @doc(description: "customer_name field")
+    user_name: String @doc(description: "customer_name field")
+    created_at: String @doc(description: "created_at field")
+    status: Int @doc(description: "status field")
+    is_read: Int @doc(description: "is_read field")
+    answered: Int @doc(description: "answered field")
+    customer_id: Int @doc(description: "customer_id field")
+    seller_id: Int @doc(description: "seller_id field")
+    number_message: Int @doc(description: "number_message field")
+    current_url: String @doc(description: "current_url field")
+    messages (
+        pageSize: Int = 20 @doc(description: "Specifies the maximum number of results to return at once. This attribute is optional.")
+        currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1.")
+    ): SellerChatMessageDetails @doc(description: "List of message details by chat_id.") @resolver(class: "\\Lof\\ChatSystemGraphQl\\Model\\Resolver\\ChatMessageDetail")
+}
+
+type SellerChatMessageDetail {
+    body_msg: String @doc(description: "An chat message content.")
+    customer_email: String @doc(description: "customer_email field")
+    customer_name: String @doc(description: "customer_name field.")
+    sender_name: String @doc(description: "sender_name field.")
+    is_read: Int @doc(description: "is_read field")
+    customer_id: Int @doc(description: "customer_id field")
+    seller_id: Int @doc(description: "seller_id field")
+    created_at: String @doc(description: "created_at field")
+}
+
+input SellerChatFilterInput {
+    chat_id: FilterEqualTypeInput @deprecated(reason: "Filter Seller Chat chat_id")
+    customer_email: FilterTypeInput @deprecated(reason: "Filter Seller Message customer_email")
+    customer_name: FilterTypeInput @deprecated(reason: "Filter Seller Message customer_name")
+    customer_id: FilterEqualTypeInput @deprecated(reason: "Filter Seller Message sender_id")
+    status: FilterEqualTypeInput @deprecated(reason: "Filter Seller Message status")
+    is_read: FilterEqualTypeInput @deprecated(reason: "Filter Seller Message is_read"
+    answered: FilterEqualTypeInput @deprecated(reason: "Filter Seller Message answered")
+    created_at: FilterTypeInput @deprecated(reason: "Filter Seller Message created_at")
+    or: SellerChatFilterInput @deprecated(reason: "Filter Seller Message condition OR")
+}
+
+input SellerChatSortInput {
+    chat_id: SortEnum @doc(description: "Sort by the chat_id assigned to each message (default).")
+    customer_id: SortEnum @doc(description: "Sort by the customer_id.")
+    customer_name: SortEnum @doc(description: "Sort by the customer_name.")
+    customer_email: SortEnum @doc(description: "Sort by the customer_email assigned to each order.")
+    status: SortEnum @doc(description: "Sort by the status assigned to each message.")
+    is_read: SortEnum @doc(description: "Sort by the is_read assigned to each message.")
+    answered: SortEnum @doc(description: "Sort by the answered assigned to each message.")
+    created_at: SortEnum @doc(description: "Sort by the created_at assigned to each message.")
+}
+
+input CustomerChatMessageInput {
+    seller_url: String! @doc(description: "Current seller_url Key")
+    message: String! @doc(description: "Message Content.")
+}
+
+input SellerChatMessageInput {
+    chat_id: Int! @doc(description: "Current message_id")
+    message: String! @doc(description: "Message Content.")
+}
+
+input DeleteChatInput {
+    chat_id: Int @doc(description: "The Chat Id. Will delete chat by chat_id")
+    customer_email: String @doc(description: "The Customer Email address. will delete all chat by customer email")
+}
+
+type SellerChatOutput {
+    code: String @doc(description: "The response code")
+    message: String @doc(description: "The response message")
+}
+

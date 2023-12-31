@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+
+	<route url="/V1/favoriteseller/add/:seller_id" method="POST">
+        <service class="Lofmp\FavoriteSeller\Api\SellerCustomerRepositoryInterface" method="addSeller"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customer_id" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+	<route url="/V1/favoriteseller/remove" method="POST">
+        <service class="Lofmp\FavoriteSeller\Api\SellerCustomerRepositoryInterface" method="removeSellers"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customer_id" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+	<route url="/V1/favoriteseller/list" method="GET">
+        <service class="Lofmp\FavoriteSeller\Api\SellerCustomerRepositoryInterface" method="customerGetList"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customer_id" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+    <route url="/V1/favoriteseller/checkseller/:seller_id" method="GET">
+        <service class="Lofmp\FavoriteSeller\Api\SellerCustomerRepositoryInterface" method="checkSeller"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customer_id" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+    <route url="/V1/favoriteseller/sellerlist" method="GET">
+        <service class="Lofmp\FavoriteSeller\Api\SellerCustomerRepositoryInterface" method="sellerGetList"/>
+        <resources>
+           <resource ref="self"/>
+        </resources>
+       <data>
+           <parameter name="customer_id" force="true">%customer_id%</parameter>
+       </data>
+    </route>
+
+</routes>

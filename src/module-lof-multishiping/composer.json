@@ -1,0 +1,19 @@
+{
+    "name": "landofcoder/module-seller-multishipping-fix",
+    "description": "Enable shipping rate define functionality for Seller",
+    "type": "magento2-module",
+    "version": "1.0.2",
+    "require": {
+        "landofcoder/module-seller-multishipping" : "1.*",
+        "landofcoder/module-marketplace" : "1.*"
+      },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Lof\\MultiShippingFix\\": ""
+        }
+    }
+}
+

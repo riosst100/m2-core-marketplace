@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lof_Quickrfq
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="styles"/>
+    <update handle="editor"/>
+    <head>
+        <css src="Lof_Quickrfq::css/quickrfq.css"></css>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Lof\Quickrfq\Block\Adminhtml\Rfq\QuickrfqButton"
+                   name="manage.requestproducts.button"/>
+            <block class="Lof\Quickrfq\Block\Adminhtml\Rfq\ProductInfo"
+                   template="Lof_Quickrfq::productinfo.phtml"
+                   name="manage.quote.productinfo"/>
+            <block class="Magento\Framework\View\Element\Template" name="manage.quote.layout"
+                   template="Lof_Quickrfq::layout.phtml">
+                <block class="Lof\Quickrfq\Block\Adminhtml\Rfq\Message"
+                       name="manage.request.message"
+                       template="Lof_Quickrfq::message.phtml"/>
+                <block class="Lof\Quickrfq\Block\Adminhtml\Rfq\CustomerAddress"
+                       name="negotiable.quote.customerinfo"
+                       template="Lof_Quickrfq::customer_address.phtml"/>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

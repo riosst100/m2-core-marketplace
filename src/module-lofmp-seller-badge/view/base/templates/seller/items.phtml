@@ -1,0 +1,44 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_SellerBadge
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+?>
+
+<?php
+/**
+ * item
+ *
+ * @var $block \Lofmp\SellerBadge\Block\AbstractBadge
+ */
+
+$_badgeCollection = $block->getData('badge_collection');
+?>
+
+<ul>
+    <?php foreach ($_badgeCollection as $_badge) : ?>
+        <li>
+            <span class="lofmp-badges__wrapper hint--top"
+                  aria-label="<?= $block->escapeHtmlAttr($block->getBadgeTitle($_badge)) ?>">
+                <img class="lofmp-badges__wrapper__image"
+                     src="<?= $block->escapeHtmlAttr($block->getBadgeImage($_badge)) ?>"
+                     alt="<?= $block->escapeHtmlAttr($_badge->getBadgeName()) ?>">
+            </span>
+        </li>
+    <?php endforeach; ?>
+</ul>

@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lof_PreOrder
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <lofpreorder>
+        	<settings>
+            <enabled>1</enabled>
+            <preorder_type>0</preorder_type>
+            <preorder_email_type>1</preorder_email_type>
+            <in_stock_notify_template>lofpreorder_in_stock_notify</in_stock_notify_template>
+            <enable_check_availbility>1</enable_check_availbility>
+            <preorder_auto_before_manual>0</preorder_auto_before_manual>
+            <preorder_auto_qty_bellow_zero>1</preorder_auto_qty_bellow_zero>
+            <preorder_disable_qty_above_zero>1</preorder_disable_qty_above_zero>
+        	</settings>
+          <display_option>
+            <addtocart_button_text>Pre Order</addtocart_button_text>
+            <product_preorder_text>Pre Order</product_preorder_text>
+            <product_preorder_text_position>.stock span</product_preorder_text_position>
+            <preorder_msg>Pre-order message</preorder_msg>
+            <show_preorder_on_category>1</show_preorder_on_category>
+            <preorder_warning_in_order>Please be aware this is a preorder. The products will be shipped to you once they become available.</preorder_warning_in_order>
+            <preorder_warning_in_cart>We don't have as many "%1$s" as you requested, but we'll back order the remaining %2$s.</preorder_warning_in_cart>
+            <preorder_warning_bellow_zero>The requested qty for "%1$s" is not available, only %2$s left.</preorder_warning_bellow_zero>
+            <show_availbility_date>1</show_availbility_date>
+          </display_option>
+        </lofpreorder>
+    </default>
+</config>

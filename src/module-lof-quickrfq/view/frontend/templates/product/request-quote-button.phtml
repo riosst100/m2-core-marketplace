@@ -1,0 +1,41 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_Quickrfq
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+/**
+ * @var \Lof\Quickrfq\Block\Product\Link $block
+ * @see \Lof\Quickrfq\Block\Product\Link
+ */
+$currentProduct = $block->getCurrentProduct();
+if(!$currentProduct->hasData('quickrfq_disable') || ($currentProduct->hasData('quickrfq_disable') && !$currentProduct->getData('quickrfq_disable'))):
+?>
+
+<?php if ($block->isRequiredLoggedIn() && ! $block->isLoggedIn()): ?>
+    <a href="<?= $block->escapeUrl($block->getLoginUrl()); ?>" class="action lof-quote-request-button"><span><?= $block->escapeHtml(__('Request a Quote')) ?></span></a>
+<?php else: ?>
+    <button type="button"
+            id="lof-quote-request-button"
+            data-role="lof-create-quote"
+            title="<?php $block->escapeHtmlAttr(__('Request a Quote')) ?>"
+            class="action lof-quote-request-button">
+        <span><?= $block->escapeHtml(__('Request a Quote')) ?></span>
+    </button>
+<?php endif; ?>
+<?php endif; ?>

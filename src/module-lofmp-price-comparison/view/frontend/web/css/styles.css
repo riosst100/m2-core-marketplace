@@ -1,0 +1,16 @@
+.seller_assign_product {
+    width: 100%;
+    float: left;
+    border: 1px solid silver;
+    margin: 15px 0px;
+}
+.seller_assign_product .qty {
+    text-align: center;
+    width: 60px;
+}
+.seller_assign_product .price {
+    color: red;
+}
+.seller_assign_product .lofmp-seller-review-info {
+    float: left;
+}

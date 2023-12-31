@@ -1,0 +1,14 @@
+<!--@subject {{var store.getFrontendName()}}: Return #{{var rma.increment_id}} @-->
+{{template config_path="design/email/header_template"}}
+
+{{var hidden_separator | raw}}
+
+<br>
+
+<br><br>
+{{block class="Lofmp\\Rma\\Block\\Rma\\View" area='frontend' template='Lofmp_Rma::email/rma/rmalist.phtml' rmaList=$rmaList }}
+
+<br><br>
+{{var hidden_code | raw}}
+
+{{template config_path="design/email/footer_template"}}

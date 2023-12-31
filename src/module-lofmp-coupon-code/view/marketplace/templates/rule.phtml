@@ -1,0 +1,228 @@
+<?php
+$helper 	   = $this->helper("Lof\MarketPlace\Helper\Data");
+
+$objectManager =  \Magento\Framework\App\ObjectManager::getInstance();        
+$storeManager  = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$store_id      = $storeManager->getStore()->getStoreId();
+
+$customer_group  = $block->getCustomerGroups();
+
+$codeFormat_model = $objectManager->get('\Magento\SalesRule\Helper\Coupon');
+$code_format = $codeFormat_model->getFormatsList();
+
+$rule_data = $block->getRuleByID(); 
+?>
+
+<form data-mage-init='{"validation": {}}' class="entry-edit form-inline" action="<?php echo $block->getUrl('*/*/saverule');?>" enctype="multipart/form-data" method="post" autocomplete="off">
+	<div class="lof-mp-page-title page-title">
+		<h2><?php echo __('Add New Rule')?></h2>
+		<div class="page-actions-buttons">
+			 <div class="actions-split save primary" title="Save">
+				<button class="action-default primary" title="<?php echo __('Save ') ?>" type="submit">
+					<span><span><?php echo __('Save Rule') ?></span></span>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="admin__fieldset-wrapper-content">
+		<fieldset class="admin__fieldset">
+
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Rule Name:"); ?><span style="color:red">*</span>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" value="<?php echo isset($rule_data['name'])? $rule_data['name'] : '';?>" name="name" class="admin__control-text required validate-no-html-tags" />
+				</div>
+			</div>
+
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Rule Identifier Key:"); ?><span style="color:red">*</span>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" value="<?php echo isset($rule_data['rule_key'])? $rule_data['rule_key'] : '';?>" name="rule_key" class="admin__control-text required validate-no-html-tags"  />
+				</div>
+			</div>
+
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Customer Groups :"); ?><span style="color:red">*</span>
+				</label>
+				<div class="admin__field-control">
+					<select id="rule_customer_group_ids" name="customer_group_ids[]" title="Customer Groups" size="10" class=" required-entry _required select multiselect admin__control-multiselect" data-ui-id="adminhtml-rule-edit-tab-main-0-fieldset-element-select-customer-group-ids" multiple="multiple" aria-required="true">
+						<?php foreach ($customer_group as $value): ?>
+							<option <?php echo (isset($rule_data["customer_group_ids"]) && in_array($value["value"], $rule_data["customer_group_ids"]))? 'selected' : ''?> value="<?php echo $value["value"]?>"><?php echo $value["label"]?></option>
+						<?php endforeach; ?>
+					</select>
+				</div>
+			</div>
+
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("From :"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input name="from_date" id="rule_from_date" value="<?php echo isset($rule_data['from_date'])? $rule_data['from_date'] : '';?>" title="From" type="text" class="admin__control-text">
+				</div>
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("To :"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input name="to_date" id="rule_to_date" value="<?php echo isset($rule_data['to_date'])? $rule_data['to_date'] : '';?>" title="To" type="text" class="admin__control-text">
+				</div>
+			</div>
+
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Uses Per Customer :"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="uses_per_customer" value="<?php echo isset($rule_data['uses_per_customer'])? $rule_data['uses_per_customer'] : '';?>" class="admin__control-text validate-number" />
+				</div>
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Uses per Coupon :"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="uses_per_coupon" value="<?php echo isset($rule_data['uses_per_coupon'])? $rule_data['uses_per_coupon'] : '';?>" class="admin__control-text validate-number" />
+				</div>
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Code Length :"); ?><span style="color:red">*</span>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="coupons_length" value="<?php echo isset($rule_data['coupons_length'])? $rule_data['coupons_length'] : '';?>" class="admin__control-text required validate-number" />
+				</div>
+			</div>
+
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Code Format :"); ?><span style="color:red">*</span>
+				</label>
+				<div class="admin__field-control">
+					<select id="rule_coupons_format" name="coupons_format" class=" required-entry _required select admin__control-select" data-ui-id="adminhtml-rule-edit-tab-couponinfo-0-fieldset-element-select-coupons-format" aria-required="true">
+					<?php foreach($code_format as $key => $val){ ?>
+						<option <?php echo (isset($rule_data["coupons_format"]) && $rule_data["coupons_format"] == $key)? 'selected' : ''?> value="<?php echo $key; ?>"><?php echo $val->getText(); ?></option>
+					<?php } ?>
+					</select>
+				</div>
+			</div>
+
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Apply :"); ?><span style="color:red">*</span>
+				</label>
+				<div class="admin__field-control">
+					<select id="rule_simple_action" name="simple_action" class="select admin__control-select" data-ui-id="adminhtml-rule-edit-tab-actions-0-fieldset-element-select-simple-action">
+						<option <?php echo (isset($rule_data["simple_action"]) && $rule_data["simple_action"] == \Magento\SalesRule\Model\Rule::BY_PERCENT_ACTION)? 'selected' : ''?> value="<?php echo \Magento\SalesRule\Model\Rule::BY_PERCENT_ACTION ?>">
+							<?php echo __('Percent of product price discount') ?>
+						</option>
+						<option <?php echo (isset($rule_data["simple_action"]) && $rule_data["simple_action"] == \Magento\SalesRule\Model\Rule::BY_FIXED_ACTION )? 'selected' : ''?> value="<?php echo \Magento\SalesRule\Model\Rule::BY_FIXED_ACTION ?>">
+							<?php echo __('Fixed amount discount') ?>
+						</option>
+						<option <?php echo (isset($rule_data["simple_action"]) && $rule_data["simple_action"] == \Magento\SalesRule\Model\Rule::CART_FIXED_ACTION )? 'selected' : ''?> value="<?php echo \Magento\SalesRule\Model\Rule::CART_FIXED_ACTION ?>">
+							<?php echo __('Fixed amount discount for whole cart') ?>
+						</option>
+						<option <?php echo (isset($rule_data["simple_action"]) && $rule_data["simple_action"] == \Magento\SalesRule\Model\Rule::BUY_X_GET_Y_ACTION )? 'selected' : ''?> value="<?php echo \Magento\SalesRule\Model\Rule::BUY_X_GET_Y_ACTION ?>">
+							<?php echo __('Buy X get Y free (discount amount is Y)'); ?>
+						</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Value :"); ?><span style="color:red">*</span>
+				</label>
+				<div class="admin__field-control">
+					<input id="rule_discount_amount" name="discount_amount" data-ui-id="adminhtml-rule-edit-tab-actions-0-fieldset-element-text-discount-amount" value="<?php echo (isset($rule_data['discount_amount']))? $rule_data['discount_amount'] : 0 ?>" class="validate-not-negative-number input-text admin__control-text required-entry _required" type="text" aria-required="true">
+				</div>
+			</div>
+
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Check customer email :"); ?>
+				</label>
+				<div class="admin__field-control">
+					<select id="is_check_email" name="is_check_email" class="select admin__control-select" data-ui-id="adminhtml-rule-edit-tab-actions-0-fieldset-element-select-simple-action">
+						<option <?php echo (isset($rule_data["is_check_email"]) && $rule_data["is_check_email"] == 1)? "selected" : ""?> value="1">
+							<?php echo __('YES'); ?>
+						</option>
+						<option <?php echo (isset($rule_data["is_check_email"]) && $rule_data["is_check_email"] == 0)? "selected" : ""?> value="0">
+							<?php echo __('NO'); ?>
+						</option>
+					</select>
+				</div>
+			</div>
+			<div class="admin__field">
+			   	<label class="admin__field-label">
+					<?php echo __("Status :"); ?>
+				</label>
+			   	<div class="admin__field-control control">
+			      	<select id="rule_is_active" name="is_active" title="Coupon Code Status" class=" select admin__control-select" data-ui-id="adminhtml-rule-edit-tab-main-0-fieldset-element-select-is-active">
+			        	<option <?php echo (isset($rule_data["is_active"]) && $rule_data["is_active"] == 1)? "selected" : ""?> value="1">Enabled</option>
+			        	<option <?php echo (isset($rule_data["is_active"]) && $rule_data["is_active"] == 0)? "selected" : ""?> value="0">Disabled</option>
+			      	</select>
+			   	</div>
+			</div>
+			
+			<input type="hidden" name="seller_id" value="<?php echo $helper->getSellerId(); ?>">
+			<input type="hidden" name="website_ids" value="<?php echo $store_id; ?>">
+			<?php 
+				if(count($rule_data) > 0){
+			?>
+				<input type="hidden" name="coupon_rule_id" value="<?php echo $rule_data['coupon_rule_id']; ?>">
+			<?php } ?>
+		</fieldset>
+	</div>
+
+</form>
+
+<script type="text/javascript">
+    require([
+        "jquery",
+        "mage/calendar"
+        ], function($){
+			$('#rule_from_date').datepicker({
+		       prevText: '&#x3c;zurück', prevStatus: '',
+		        prevJumpText: '&#x3c;&#x3c;', prevJumpStatus: '',
+		        nextText: 'Vor&#x3e;', nextStatus: '',
+		        nextJumpText: '&#x3e;&#x3e;', nextJumpStatus: '',
+		        monthNames: ['Januar','Februar','März','April','Mai','Juni',
+		        'Juli','August','September','Oktober','November','Dezember'],
+		        monthNamesShort: ['Jan','Feb','Mär','Apr','Mai','Jun',
+		        'Jul','Aug','Sep','Okt','Nov','Dez'],
+		        dayNames: ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'],
+		        dayNamesShort: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+		        dayNamesMin: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+		      showMonthAfterYear: false,
+		      dateFormat:'yy-mm-dd'
+		    });
+		    $('#rule_to_date').datepicker({
+		       prevText: '&#x3c;zurück', prevStatus: '',
+		        prevJumpText: '&#x3c;&#x3c;', prevJumpStatus: '',
+		        nextText: 'Vor&#x3e;', nextStatus: '',
+		        nextJumpText: '&#x3e;&#x3e;', nextJumpStatus: '',
+		        monthNames: ['Januar','Februar','März','April','Mai','Juni',
+		        'Juli','August','September','Oktober','November','Dezember'],
+		        monthNamesShort: ['Jan','Feb','Mär','Apr','Mai','Jun',
+		        'Jul','Aug','Sep','Okt','Nov','Dez'],
+		        dayNames: ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'],
+		        dayNamesShort: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+		        dayNamesMin: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+		      showMonthAfterYear: false,
+		      dateFormat:'yy-mm-dd'
+		    });
+
+		    $('#rule_discount_amount').change(function(){
+		    	$('#rule_discount_amount').val(parseFloat(this.val()).toFixed(2));
+			});
+        });
+</script>
+

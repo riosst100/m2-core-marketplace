@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
+    <body>
+        <referenceContainer name="content">
+            <block name="rma.rma.list" class="Lofmp\Rma\Block\Rma\RmaList" template="rma/list.phtml" cacheable="false" ifconfig="rma/general/is_active_frontend">
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,52 @@
+<div class="page-title">
+  <div class="title_left">
+    <h3><?= 'Please Sellect Order'; ?></h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2><?= 'Table Order'; ?></h2>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <div class="table-responsive">
+          <table id="datatable" class="table table-striped table-bordered">
+            <thead>
+              <tr class="headings">
+                <th class="hidden"></th>
+                <th class="column-title"><?= __('Order');?></th>
+                <th class="column-title"><?= __('Grand Total');?></th>
+                <th class="column-title"><?= __('Discount Amount');?></th>
+                <th class="column-title"><?= __('Admin Commission');?></th>
+                <th class="column-title"><?= __('Seller Amount'); ?></th>
+                <th class="column-title"><?= __('Currency');?></th>
+                <th class="column-title"><?= __('Status');?></th>
+                <th class="column-title no-link last"><span class="nobr"><?= __('Action'); ?></span></th>
+                <th class="bulk-actions" colspan="7"><a class="antoo" style="color:#fff; font-weight:500;"><?= __('Bulk Actions');?> ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a></th>
+              </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($block->getOrder()->setOrder('order_id', 'desc') as $key => $order):
+                $admin_commission = $order->getData('seller_product_total')-$order->getData('discount_amount') - $order->getData('seller_amount');
+                ?>
+            <tr class="even pointer">
+              <td class="hidden"></td>
+              <td class=" ">#<?= $order->getData('order_id'); ?></td>
+              <td class=" "><?= $order->getData('seller_product_total'); ?></i></td>
+              <td class=" "><?= $order->getData('discount_amount'); ?></i></td>
+              <td class=" "><?= $admin_commission; ?></td>
+              <td class="a-right a-right "><?= $order->getData('seller_amount'); ?></td>
+              <td class=" "><?= $order->getData('order_currency_code'); ?></td>
+              <td class=" "><?= $order->getData('status'); ?></td>
+              <td class=" last"><a href="<?= $block->getUrl('catalog/sales/orderview', ['view' => $order->getData('order_id')]); ?>"><?= __('View'); ?></a>|<a href="<?= $block->getUrl('catalog/rma/add', ['order_id' => $order->getData('order_id')]); ?>"><?= __('Return'); ?></a></td>
+            </tr>
+            <?php endforeach; ?>  
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

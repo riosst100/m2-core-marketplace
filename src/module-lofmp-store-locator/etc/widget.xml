@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="seller_locator" class="Lofmp\StoreLocator\Block\StoreLocator\Index" is_email_compatible="false" placeholder_image="Magento_Widget::placeholder.gif">
+        <label translate="true">Seller Locator</label>
+        <description translate="true">Seller Locator And Product Locator</description>
+        <parameters>
+            <parameter	name="template"	xsi:type="select"	required="true" visible="true">
+                <label	translate="true">Template</label>
+                <options>
+                    <option	name="default"	value="productlocator.phtml"
+                               selected="true">
+                        <label	translate="true">ProductLocator</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

@@ -1,0 +1,87 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_Rma
+ * @copyright  Copyright (c) 2019 Landofcoder (https://landofcoder.com/)
+ * @license    https://landofcoder.com/LICENSE-1.0.html
+ */
+/* @var $block \Lofmp\Rma\Block\Rma\RmaList */
+$helper_Rma = $this->helper('Lofmp\Rma\Helper\Help');
+?>
+<div>
+    <button onclick="window.location.href='<?= $block->getNewRmaUrl() ?>';" class="action primary new-rma-button" style="clear:both; float: right; margin-top: -45px" >
+        <span ><?= __('Request New RMA') ?></span>
+    </button>
+<?php
+$list = $block->getRmaList();
+?>
+<?php if (count($list)): ?>
+    <div class="table-wrapper">
+        <table class="data table history">
+            <caption class="table-caption"><?=__('RMA') ?></caption>
+            <thead>
+            <tr class="first last">
+                <th scope="col" class="col"><?= __('RMA') ?></th>
+                <th scope="col" class="col"><?= __('Date') ?></th>
+                <th scope="col" class="col"><?= __('Order #') ?></th>
+                <th scope="col" class="col"><?= __('Status') ?></th>
+                <th scope="col" class="col actions"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($list as $rma):
+                $children_rma_list = $block->getChildrenRmaList($rma->getId());
+                ?>
+                <tr>
+                    <td data-th="<?= __('RMA') ?>" class="col">
+                        <?= $rma->getIncrementId() ?>
+
+                    </td>
+                    <td data-th="<?= __('Date') ?>" class="col">
+                        <?= $block->formatDate($rma->getCreatedAt(), \IntlDateFormatter::MEDIUM) ?>
+                    </td>
+                    <td data-th="<?= __('Order #') ?>" class="col">
+                        <a href="<?= $block->getUrl('sales/order/view', ['order_id' => $rma->getOrderId()]) ?>">
+                            <?= $rma->getData("order_increment_id"); ?>
+                        </a>
+                        <?php if ($children_rma_list) {
+                            foreach ($children_rma_list as $_child_rma) {
+                                ?>
+                            <br/><a href="#"><?= $_child_rma->getData("order_increment_id") ?></a>
+                                <?php
+                            }
+                        } ?>
+                    </td>
+                    <td data-th="<?= __('Status') ?>" class="col">
+                        <?= $block->getStatusname($rma->getStatusId()) ?>
+                    </td>
+                    <td data-th="<?= __('Actions') ?>" class="col">
+                        <a href="<?= $block->getBaseUrl().'returns/guest/view/id/'.$rma["rma_id"]?>"><?= __('View Return') ?></a>
+                    </td>
+                </tr>
+            <?php endforeach?>
+            </tbody>
+        </table>
+    </div>
+<?php else: ?>
+    <div class="message info empty">
+        <span><?= __('There are no Returns') ?></span>
+    </div>
+<?php endif ?>
+<div class="action-bottom">
+<a href="<?= $block->getUrl("rma/guest/logout");?>" class="lof_rma_logout_btn"><button type="reset" class="button action subscribe primary"><span><span><?= __("logout");?></span></span></button></a>
+</div>
+</div>

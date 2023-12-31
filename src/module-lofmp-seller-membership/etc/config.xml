@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lofmp_SellerMembership
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+    	<lofmarketplace>
+    		<seller_settings>
+    			<default_seller_group>1</default_seller_group>
+    		</seller_settings>
+            <buy_membership_page>
+                <enabled>1</enabled>
+                <keep_cart>1</keep_cart>
+                <route>sellermembership</route>
+                <page_title></page_title>
+                <expiry_notification>lofmarketplace_buy_membership_page_expiry_notification</expiry_notification>
+                <expiry_day_before>7</expiry_day_before>
+                <sender_email_identity>general</sender_email_identity>
+                <debug_mode>1</debug_mode>
+            </buy_membership_page>
+    	</lofmarketplace>
+    </default>
+</config>

@@ -1,0 +1,17 @@
+<?php
+$collection = $this->getCategoryCollection();
+?>
+<?php if ( $collection->count() ) : ?>
+<div class="block widget lof-widget seller-widget">
+	<div class="block-title">
+		<strong><?= $block->escapeHtml(__('Category')) ?></strong>
+	</div>
+	<div class="block-content">
+		<ul>
+			<?php foreach ($collection as $_group) : ?>
+			<li><a href="<?= $block->escapeUrl($_group->getUrl()); ?>" title="<?= $block->escapeHtmlAttr($_group->getName()); ?>" ><?= $block->escapeHtml($_group->getName()); ?></a></li>
+			<?php endforeach; ?>
+		</ul>
+	</div>
+</div>
+<?php endif; ?>

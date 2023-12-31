@@ -1,0 +1,43 @@
+.tbody-checkout-shipping-method {
+    padding: 15px 0;
+}
+
+.tbody-checkout-shipping-method #total-price {
+    display: block;
+    font-weight: 600;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+
+.seller-multishipping-method .item-products {
+    margin-bottom: 15px;
+}
+
+.seller-multishipping-method .item-product {
+    font-style: italic
+}
+
+.seller-multishipping-method .item-title {
+    font-weight: 600;
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.seller-multishipping-method .seller-rates .choice {
+    border-top: 1px solid #ccc;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.seller-multishipping-method {
+    background: #f5f5f5;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.lofmp-multishipping-price {
+    font-weight: 600;
+    display: inline-block;
+    min-width: 60px;
+    margin-left: 10px;
+}

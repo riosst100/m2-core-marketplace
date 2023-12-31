@@ -1,0 +1,166 @@
+<style type="text/css">
+.rma-message-list{
+    list-style: none;
+    padding: 0;
+
+}
+.message-list .message-item{
+    background: #f4feff;
+    border: 1px solid #a2d7e1;
+    border-radius: 6px;
+    padding: 15px 10px;
+    margin-bottom: 15px;
+    position: relative;
+    width: 90%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    clear: both;
+}
+.message-list .message-item.internal {
+    background: #6FA7D6;
+}
+.message-list .message-item.admin {
+    border: 1px solid #b5eaab;
+    float: right;
+}
+</style>
+<script type="text/javascript">
+    require(['jquery'], function ($) {
+        var $replyArea = $('[data-role=reply-area]');
+    var $replyNote = $('[data-role=reply-note]');
+
+     $('#internalcheck').change(function() {
+        if(this.checked) {
+           $replyNote.html('<?= $block->escapeHtmlAttr(__("Only store managers will see this message"));?>');
+        }
+         else{
+             $replyNote.html('');
+         }
+        
+    });
+    $('[data-role=quick_reply]').on('change', function () {
+        var id = $(this).val();
+        if (id != 0) {
+            var template = $('#htmltemplate-' + id).html();
+            var val = $replyArea.val();
+            if (val != '') {
+                val = val + '\n';
+            }
+            $replyArea.val(val + template);
+            $(this).val(0);
+            updateSaveBtn();
+        }
+    });
+
+    $replyArea.on('keyup', function () {
+        updateSaveBtn();
+    });
+
+    var updateSaveBtn = function () {
+        if ($replyArea.val() == '') {
+            $('#update-split-button-update-button,#update-split-button-button').html('Save');
+            $('#update-split-button-update-continue-button').html('Save & Continue Edit');
+        } else {
+            $('#update-split-button-update-button,#update-split-button-button').html('Save & Send Message');
+            $('#update-split-button-update-continue-button').html('Send & Continue Edit');
+        }
+    }
+});
+</script>
+<?php
+/** @var \Lofmp\Rma\Block\Adminhtml\Rma\Edit\Form\History $block */
+/** @var \Lofmp\Rma\Model\Rma $rma */
+$helper_rma = $this->helper('Lofmp\Rma\Helper\Data');
+$helper_message = $this->helper('Lofmp\Rma\Helper\Message');
+$rma = $block->getCurrentRma();
+$responses = $helper_message->getOptionsList();
+?>
+<legend class="admin__legend legend">
+    <span><?= __('RMA Message') ?></span>
+    <div class="actions _primary " style="float: right;">
+    </div>
+</legend>
+<div class="field admin__field">
+    <label class="label admin__field-label" for="quick_reply"><?= __('Insert Quick Response') ?></label>
+    <div class="control admin__field-control">
+        <select name="quick_reply" class="admin__control-select" data-role="quick_reply">
+            <?php $templatesHtml = ''; ?>
+            <?php foreach ($responses as $response): ?>
+                <option value="<?= $response->getId() ?>">
+                    <?= $response->getName() ?>
+                </option>
+                <?php
+                if ($response->getId() > 0) {
+                    $templatesHtml .= '<div id="htmltemplate-' . $response->getId() . '" style="display: none;">' .
+                        $response->getTemplate() .
+                        '</div>';
+                }
+                ?>
+            <?php endforeach ?>
+        </select>
+        <?php echo $templatesHtml; ?>
+    </div>
+</div>
+<div class="field admin__field">
+    <div class="control admin__field-control">
+        <input type="checkbox" id="internalcheck" name="internalcheck" value="1" ><label for="internalcheck"><?= __('Internal Note') ?></label><br>
+        <div data-role="reply-note"></div>
+    </div>
+</div>
+<div class="field admin__field rma-add-message__reply-area">
+    <div class="control admin__field-control">
+        <textarea name="reply" rows="2" cols="30" class="admin__control-textarea"
+                        style="width:100%" data-role="reply-area"></textarea>
+    </div>
+</div>
+<div class="field admin__field rma-add-message__attachments">
+    <div class="control admin__field-control" data-mage-init='{"jqueryMultiFile": {}}'>
+        <input id="attachment" name="attachment[]" value="" class="multi" type="file"/>
+    </div>
+</div>
+<hr/>
+<div class="message-list">
+<?php if ($rma = $block->getCurrentRma()): ?>
+<?php foreach ($helper_rma->getMessages($rma) as $message):
+        if ($message->getInternal()==2):
+            continue;
+        endif;
+?>
+        <div class="message-item <?= $message->getIsVisibleInFrontend()?'':'iternal' ?> <?= $message->getUserId()?'admin':'customer'?>">
+            <div class="rma-message__header">
+                <strong>
+                    <?php if ($message->getCustomerId()): ?>
+                        <?= $message->getCustomerName() ?>
+                        <?php if ($helper_rma->getCustomerEmail($message->getCustomerId()) != ''): ?>
+                            , <?= $helper_rma->getCustomerEmail($message->getCustomerId()) ?>
+                        <?php endif ?>
+                    <?php elseif ($message->getUserId()): ?>
+                        <?= $helper_rma->getUserName($message->getUserId()) ?>
+                    <?php elseif ($message->getSellerId()): ?>
+                        <?=$helper_rma->getSellerName($message->getSellerId()) ?>
+                    <?php endif ?>
+                </strong>
+                <span style="float: right;" ><?= $message->getCreatedAt() ?></span>
+            </div>
+            <div class="rma-message__body">
+                <?php if ($message->getText()):
+                        if ($message->getIsHtml()): ?>
+                            <?= $message->getText() ?>
+                        <?php else: ?>
+                            <?= nl2br($message->getText()) ?>
+                        <?php endif ?>
+                    <?php endif ?>
+                <?php $attachments = $helper_rma->getAttachments('message', $message->getId()) ?>
+                <?php if (count($attachments)): ?>
+                    <div class="rma-message__attachments">
+                        <?php /** @var \Lofmp\Rma\Api\Data\AttachmentInterface $attachment */?>
+                        <?php foreach ($attachments as $attachment): ?>
+                            <a href="<?= $block->getAttachmentUrl($attachment) ?>"><?= $attachment->getName() ?></a>
+                        <?php endforeach ?>
+                    </div>
+                <?php endif ?>
+            </div>
+        </div>
+    <?php endforeach;
+    endif;?>
+</div>

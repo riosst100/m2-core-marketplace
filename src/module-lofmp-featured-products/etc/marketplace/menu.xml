@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.landofcoder.com/license-agreement.html
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_FeaturedProducts
+ * @copyright  Copyright (c) 2018 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Lof_MarketPlace:etc/menu.xsd">
+    <menu>
+        <add id="Lofmp_FeaturedProducts::featured_products" icon="fa fa-crosshairs" title="Featured Products" module="Lofmp_FeaturedProducts" sortOrder="90" resource="Lofmp_FeaturedProducts::featured_products" translate="title"/>
+        <add id="Lofmp_FeaturedProducts::add" title="Add Featured Product" module="Lofmp_FeaturedProducts" action="featuredproducts/product/add" sortOrder="10" parent="Lofmp_FeaturedProducts::featured_products" resource="Lofmp_FeaturedProducts::add" translate="title"/>
+        <add id="Lofmp_FeaturedProducts::manager" title="Manage Featured Products" module="Lofmp_FeaturedProducts" action="featuredproducts/index/index" sortOrder="20" parent="Lofmp_FeaturedProducts::featured_products" resource="Lofmp_FeaturedProducts::manager" translate="title"/>
+    </menu>
+</config>

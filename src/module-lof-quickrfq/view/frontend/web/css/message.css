@@ -1,0 +1,279 @@
+/*
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_Quickrfq
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+
+.lof-message-page-wrap {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.lof-message-page-content {
+    max-height: 650px;
+    padding: 15px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column-reverse;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+}
+
+.lof-message-wrap {
+    float: left;
+    margin-bottom: 15px;
+}
+
+.lof-message-wrap:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.lof-message-content {
+    display: inline-block;
+    max-width: 80%;
+    background-color: #e4e6eb;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid #c2c2c2;
+}
+
+.lof-message-wrap.self {
+    float: right;
+    text-align: right;
+}
+
+.lof-message-wrap.self .lof-message-content {
+    background: #006bb4;
+    color: #fff;
+}
+
+.lof-message-created-at {
+    padding: 0 10px;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.contact-form-content {
+    margin-bottom: 15px;
+}
+
+.action.active {
+    font-weight: 700;
+}
+
+.message-title {
+    font-size: 2rem;
+    font-weight: 400;
+}
+.fieldset-wrapper {
+    margin-top: 30px;
+}
+
+.thread-info {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+
+}
+
+.product-info {
+    padding: 15px;
+    border-right: 1px solid #ccc;
+    text-align: center;
+    width: 30%;
+}
+
+.quote-info {
+    padding: 15px;
+    width: 70%;
+}
+
+.product-image {
+    margin-bottom: 15px;
+}
+
+.product-name {
+    margin: 10px 0;
+}
+
+.product-price {
+    font-style: italic;
+    font-weight: 700;
+}
+
+.quote-info-row {
+    margin-bottom: 10px;
+}
+
+.quote-parent-info-item {
+    margin: 15px;
+    font-size: 15px;
+}
+
+.quote-info label {
+    display: inline-block;
+    font-weight: 700;
+    margin-right: 5px;
+}
+
+
+.quote-author {
+    display: flex;
+    margin-left: -58px;
+    margin-bottom: 15px;
+}
+
+
+.quote-wrap {
+    border: 1px solid #ccc;
+    padding: 0 15px;
+    margin-bottom: 15px;
+}
+
+.quote-message-wrap {
+    margin-bottom: 15px;
+}
+
+.quote-author-name {
+    margin: 5px 0;
+}
+
+.quote-author-name span {
+    display: inline-block;
+    color: #fff;
+    padding: 2px 5px;
+    background-color: #ff5501;
+    font-size: 11px;
+    margin-left: 5px;
+}
+
+.quote-author-avatar {
+    margin-right: 15px;
+}
+
+.quote-author-avatar img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #575757;
+}
+
+.quote-created-at {
+    color: #575757;
+    font-weight: 700;
+}
+
+.thread-info {
+    margin-bottom: 30px;
+}
+
+h3.quote-head {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.quote-total-price {
+    font-weight: 700;
+    font-size: 18px;
+}
+.quote-span {
+    float: right;
+    margin-right: 150px;
+}
+
+.approve-quote-form,
+.reject-quote-form {
+    display: inline-block;
+}
+
+.quote-message.message-type-approve {
+    margin: 0 0 10px;
+    padding: 12px 20px 12px 25px;
+    display: inline-block;
+    font-size: 1.3rem;
+    background: #e5efe5;
+    color: #006400;
+    padding-left: 45px;
+    position: relative;
+}
+
+.quote-message.message-type-approve:before {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 24px;
+    line-height: 24px;
+    color: #006400;
+    content: '\e60e';
+    font-family: 'luma-icons';
+    margin: -12px 0 0;
+    vertical-align: middle;
+    display: inline-block;
+    font-weight: normal;
+    overflow: hidden;
+    speak: none;
+    left: 0;
+    top: 22px;
+    width: 45px;
+    position: absolute;
+    text-align: center;
+}
+
+.quote-message.message-type-reject {
+    margin: 0 0 10px;
+    padding: 12px 20px 12px 25px;
+    display: inline-block;
+    font-size: 1.3rem;
+    background: #e5efe5;
+    color: #e02b27;
+    padding-left: 45px;
+    position: relative;
+}
+
+.quote-message.message-type-reject:before {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 24px;
+    line-height: 24px;
+    color: #b30000;
+    content: '\e60e';
+    font-family: 'luma-icons';
+    margin: -12px 0 0;
+    vertical-align: middle;
+    display: inline-block;
+    font-weight: normal;
+    overflow: hidden;
+    speak: none;
+    left: 0;
+    top: 22px;
+    width: 45px;
+    position: absolute;
+    text-align: center;
+}
+#message {
+    border-radius: 15px;
+    border-radius: 15px;
+}
+.action-convert-cart {
+    margin-top: 10px;
+}
+.request-quote-info .text-success{
+    color: #f3793b;
+}

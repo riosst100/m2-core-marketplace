@@ -1,0 +1,300 @@
+<?php
+// get config
+$helperImage = $this->helper("Lofmp\StoreLocator\Helper\Image");
+$helper = $this->helper("Lofmp\StoreLocator\Helper\Data");
+$api_key = $helper->getConfig('general/api_key');
+// path template
+$blockObj= $block->getLayout()->createBlock('Magento\Catalog\Block\Product\ListProduct');
+$blockObj2= $block->getLayout()->createBlock('Magento\Catalog\Block\Product\ProductList\Toolbar');
+$pub = $block->getViewFileUrl('Lofmp_StoreLocator/js/plugins/storelocator/templates');
+$infoTemplate = $pub.'/infowindow-description.html';
+$locationTemplate = $pub.'/location-list-description.html';
+
+$back = $this->getMediaUrl().'storelocator/';
+$sellerid = $helper->getSellerIDByStorelocator($data['storelocator_id']);
+$show_seller_info = $helper->getConfig('general/show_seller_info');
+$_seller = null;
+if($show_seller_info){
+	$_seller = $helper->getSellerInfo($sellerid);
+	$show_seller_name = $helper->getConfig('general/show_seller_name');
+	$show_seller_name = (int)$show_seller_name;
+}
+$unit 					= "km"; //m or km
+$unit_label				= "Mi"; //Mi or Km
+if($unit == "km") {
+	$unit_label = "Km";
+}	
+?>
+
+<div class="storelocator bh-sl-container">
+
+	<div id="bh-sl-map-container" class="bh-sl-map-container">
+
+		<div class="map-box-container col-sm-8 col-xs-12 pull-left">
+			<div id="bh-sl-map" class="bh-sl-map"></div>
+			<div class="list-store-box box-more-info pull-left">
+				<div class="page-title">
+					<h2 class="title">
+						<span class="fa fa-rocket" aria-hidden="true"></span>
+						<span><?php echo __('More Infomation');?></span><span class="number-store pull-right"></span>
+					</h2>
+				</div>
+				<div class="list-store padding col-xs-12">
+					<div class="box-thumb">
+						<img src="<?php echo $helperImage->resizeImage($data['image'], 300, 220); ?>" />
+					</div>
+					<div class="box-description">
+						<div class="store-description"><?php echo $data['description']; ?></div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+		<div class="list-store-box col-sm-4 col-xs-12 pull-right">
+			<div class="box-social">
+				<div class="page-title">
+					<h2 class="title">
+						<span class="fa fa-share" aria-hidden="true"></span>
+						<span><?php echo __('Store Social');?></span>
+					</h2>
+				</div>
+				<div class="list-store padding col-xs-12">
+					<div id="social">
+						<a target="_blank" class="facebookBtn smGlobalBtn" href="<?php echo $data['facebook']; ?>" ><i class="fa fa-facebook" aria-hidden="true"></i>
+</a>
+						<a target="_blank" class="twitterBtn smGlobalBtn" href="<?php echo $data['twitter']; ?>" ><i class="fa fa-twitter" aria-hidden="true"></i></a>
+						<a target="_blank" class="googleplusBtn smGlobalBtn" href="<?php echo $data['googleplus']; ?>" ><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+						<a target="_blank" class="linkedinBtn smGlobalBtn" href="<?php echo $data['linkedin']; ?>" ><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+						<a target="_blank" class="youtubeBtn smGlobalBtn" href="<?php echo $data['youtube']; ?>" ><i class="fa fa-youtube" aria-hidden="true"></i></a>
+						<a target="_blank" class="vimeoBtn smGlobalBtn" href="<?php echo $data['vimeo']; ?>" ><i class="fa fa-vimeo" aria-hidden="true"></i></a>
+					</div>
+					
+				</div>
+			</div>
+			<div class="box-search">
+				<div class="page-title">
+					<h2 class="title">
+						<span class="fa fa-search" aria-hidden="true"></span>
+						<span><?php echo __('Store Infomation');?></span>
+					</h2>
+				</div>
+				<div class="list-store padding col-xs-12">
+					<div class="box-detail">
+						<!-- Address -->
+							<p class="col-full">
+								<strong><?php echo __('Address:'); ?></strong>
+								<span><?php echo $data['address']; ?></span>
+								<span><?php echo $data['city'].', ',$data['country']; ?></span><br>
+
+								<?php /*
+								<?php if ($data['address2']): ?>
+									<strong><?php echo __('Other Address:'); ?></strong>
+									<span><?php echo $data['address2']; ?></span><br>
+								<?php endif ?>
+								<span><?php echo $data['city'].', ',$data['country']; ?></span><br>
+
+								<strong><?php echo __('Zipcode:'); ?></strong>
+								<span><?php echo $data['zipcode']; ?></span><br>
+								*/?>
+
+								<strong><?php echo __('Website:'); ?></strong>
+								<span><a href="<?php echo $data['website']; ?>"><?php echo $data['website']; ?></a></span><br>
+
+								<strong><?php echo __('Phone:'); ?></strong>
+								<span><?php echo $data['telephone']; ?></span><br>
+
+								<strong><?php echo __('Email:'); ?></strong>
+								<span><?php echo $data['email']; ?></span><br>
+								
+							</p>
+							<div class="tab_content col-full">
+								<div class="option-direction custom-popup col-xs-12" style="padding: 0;">
+									<ul id="mode" class="vertical text-center">
+										<li class="travel car active" data-traveling="DRIVING"><span>A</span></li>
+										<li class="travel bus" data-traveling="TRANSIT"><span>A</span></li>
+										<li class="travel walk" data-traveling="WALKING"><span>A</span></li>
+										<li class="travel bicycle" data-traveling="BICYCLING"><span>A</span></li>
+									</ul>
+									<div id="directions-tool" class="col-xs-12 directions-tool">
+										<div class="widget-directions-searchbox-handle">
+											<div class="widget-directions-icon waypoint-handle"><label for="origin">A</label></div>
+											<div class="widget-directions-icon waypoint-to"><label for="origin">C</label></div>
+											<div class="widget-directions-icon waypoint-bullet"><label for="origin">B</label></div>
+										</div>
+										<div class="form-inputs">
+											<input id="origin-input" class="form-control origin originA start" name="originA" placeholder="Enter a location" type="text">
+											<!-- isstart="true" -->
+											<input id="destination-input" class="form-control origin originB end" name="originB" placeholder="Enter a location" value="<?php echo $data['address']; ?>" type="text">
+											<!-- readonly="true"	-->
+										</div>
+										<div class="widget-directions-right-overlay">
+											<button type="button" onclick="" class="swap-locations" title="Swap locations A-B"><?= __("Swap locations A-B");?></button>
+										</div>
+										<div class="directions-panel"></div>
+									</div>
+									<div class="box-input form-group col-xs-12">
+										<button class="get-direction action primary pull-right" id="get_direction" title="Get Directions" type="submit">
+											<span><?= __("Go");?></span>
+										</button>
+									</div>
+								</div>
+								<div id="displaying-direction"></div>
+								<!-- direction -->
+							</div>
+					</div>
+				</div>
+				
+			</div>
+			<div class="box-hours">
+				<div class="page-title">
+					<h2 class="title">
+						<span class="fa fa-clock-o" aria-hidden="true"></span>
+						<span><?php echo __('Opening hours');?></span>
+					</h2>
+				</div>
+				<div class="list-store padding col-xs-12">
+					<div class="tab_content open">
+						<div class="table-responsive">
+							<table class="table table-hover table-striped">
+								<tr>
+									<td class="time-label" style="text-align: center; width: 20%;"><?php echo __('Sun'); ?>:</td>
+									<td></td><td><?php echo $data['hours']; ?></td>
+								</tr>
+								<tr>
+									<td class="time-label" style="text-align: center; width: 20%;"><?php echo __('Mon'); ?>:</td>
+									<td></td><td><?php echo $data['hours1']; ?></td>
+								</tr>
+								<tr>
+									<td class="time-label" style="text-align: center; width: 20%;"><?php echo __('Tue'); ?>:</td>
+									<td></td><td><?php echo $data['hours2']; ?></td>
+								</tr>
+								<tr>
+									<td class="time-label" style="text-align: center; width: 20%;"><?php echo __('Wed'); ?>:</td>
+									<td></td><td><?php echo $data['hours3']; ?></td>
+								</tr>
+								<tr>
+									<td class="time-label" style="text-align: center; width: 20%;"><?php echo __('Thur'); ?>:</td>
+									<td></td><td><?php echo $data['hours4']; ?></td>
+								</tr>
+								<tr>
+									<td class="time-label" style="text-align: center; width: 20%;"><?php echo __('Fri'); ?>:</td>
+									<td></td><td><?php echo $data['hours5']; ?></td>
+								</tr>
+								<tr>
+									<td class="time-label" style="text-align: center; width: 20%;"><?php echo __('Sat'); ?>:</td>
+									<td></td><td><?php echo $data['hours6']; ?></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<?php if($_seller): ?>
+				<div class="box-seller seller-info seller-item">
+					<div class="page-title">
+						<h2 class="title">
+							<span><?php echo __('Seller Info');?></span>
+						</h2>
+					</div>
+					<div class="list-store padding col-xs-12">
+						<div class="tab_content open">
+							<div class="seller-image"><a href="<?= $_seller->getUrl(); ?>" title="<?= $_seller->getName(); ?>"><img src="<?= $_seller->getThumbnailUrl(); ?>" alt="<?= $_seller->getName(); ?>"/></a></div>
+							<?php if ($show_seller_name): ?>
+							<div class="seller-name"><a href="<?= $_seller->getUrl(); ?>" title="<?= $_seller->getName(); ?>"><?= $_seller->getName() ?></a></div>
+							<?php endif; ?>
+						</div>
+					</div>
+				</div>
+			<?php endif; ?>
+		</div>
+
+		
+
+	</div>
+	
+
+
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<?php echo $api_key; ?>&sensor=false&libraries=places"></script>
+
+<script>
+
+        var current_location_lat = 0;
+        var current_location_long = 0;
+        var current_lat_long = "";
+        function getStoreCurrentLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showCurrentPosition);
+            } else {
+                console.log("\n<?php echo __('Geolocation is not supported by this browser.');?>");
+            }
+        }
+        function showCurrentPosition(position) {
+            current_location_lat = position.coords.latitude;
+            current_location_long = position.coords.longitude;
+            current_lat_long = {lat: parseFloat(current_location_lat), lng: parseFloat(current_location_long)};
+
+            geocodeGetCurrentAddress('#origin-input');
+        }
+
+        function geocodeGetCurrentAddress(input_selector) {
+            require(['jquery'],function ($) {
+                var geocoder = new google.maps.Geocoder;
+                if(geocoder && current_lat_long && ($(input_selector).length > 0)) {
+                    geocoder.geocode({'location': current_lat_long}, function(results, status) {
+                        if (status === 'OK') {
+                            if (results[0]) {
+                               var current_address = results[0].formatted_address;
+                               $(input_selector).val(current_address);
+                            } else {
+                              console.log('\n<?php echo __('No results found');?>');
+                            }
+                          } else {
+                            console.log('\n<?php echo __('Geocoder failed due to: ');?>' + status);
+                          }
+                        });
+                }
+            });
+        }
+
+
+	require(['jquery', 'handlebars', 'markerwithlabel', 'storelocator'],function ($) {
+		$(document).ready(function ($) {
+			$('#bh-sl-map-container').storeLocator({
+				'waypoint' : true,
+				'defaultLat' : <?php echo $data['lat']; ?>,
+				'defaultLng' : <?php echo $data['lng']; ?>,
+
+				'color' : '<?php echo $data['color']; ?>',
+        		'fontClass' : '<?php echo $data['fontClass']; ?>',
+
+        		'dataType' : 'json',
+				// template
+				'infowindowTemplatePath' : '<?php echo $infoTemplate; ?>',
+				'listTemplatePath' : '<?php echo $locationTemplate; ?>',
+				'lengthUnit': '<?php echo $unit; ?>',
+				// bind data
+				's_link' : '<?php echo $data['link']; ?>',
+				's_address' : '<?php echo $data['address']; ?>',
+				's_address2' : '<?php echo $data['address2']; ?>', 
+				's_city' : '<?php echo $data['city']; ?>', 
+				's_country' : '<?php echo $data['country']; ?>', 
+				's_image' : '<?php echo $helperImage->resizeImage($data['image'], 128, 128); ?>',
+				's_lat' : '<?php echo $data['lat']; ?>', 
+				's_lng' : '<?php echo $data['lng']; ?>', 
+				's_name' : '<?php echo $data['name']; ?>', 
+				's_telephone' : '<?php echo $data['telephone']; ?>', 
+				's_website' : '<?php echo $data['website']; ?>', 
+				's_zipcode' : '<?php echo $data['zipcode']; ?>', 
+
+			});
+
+			if(typeof(google) != "undefined") {
+				//var geocoder = new google.maps.Geocoder;
+				getStoreCurrentLocation();
+			}
+		});
+	});
+</script>
+</div>

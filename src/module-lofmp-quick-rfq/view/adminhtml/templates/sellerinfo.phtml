@@ -1,0 +1,43 @@
+<?php
+/**
+ * customeraddress
+ *
+ * @copyright Copyright © 2020 landofcoder. All rights reserved.
+ * @author    landofcoder@gmail.com
+ * @var \Lofmp\Quickrfq\Block\Adminhtml\Rfq\SellerInfo $block
+ */
+?>
+<?php $seller = $block->getSeller(); ?>
+<?php if ($seller): ?>
+
+<div class="admin__table-secondary">
+    <div class="admin__page-section-item-content">
+        <table class="admin__table-secondary lof-cp-table">
+            <tr>
+                <th>
+                    <span><?= $block->escapeHtml(__('Seller Name')) ?></span>
+                </th>
+                <td>
+                    <span><?= $block->escapeHtml(__($seller->getName())) ?></span>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <span><?= $block->escapeHtml(__('Email Address')) ?></span>
+                </th>
+                <td>
+                    <span><?= $block->escapeHtml(__($seller->getEmail())) ?></span>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <span><?= $block->escapeHtml(__('Phone Number ')) ?></span>
+                </th>
+                <td>
+                    <span><?= $block->escapeHtml(__($seller->getContactNumber())) ?></span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<?php endif; ?>

@@ -1,0 +1,181 @@
+<?php
+
+$isEnableFaq = $block->_settings->isEnableFaq();
+$layout = $block->_settings->getLayout();
+$gridColumn = $block->_settings->getGridColumn();
+$answerSlide = $block->_settings->getAnswerSlide();
+$answerListSlide = $block->_settings->getAnswerListSlide();
+$isShowAuthor = $block->_settings->isShowAuthor();
+$isShowDate = $block->_settings->isShowDate();
+$isShowRecentTab = $block->_settings->isEnableRecentTab();
+$isEnablePopupForm = $block->_settings->isEnablePopupForm();
+$isEnableRecaptcha = $block->_settings->isEnableRecaptcha();
+
+?>
+<form class="entry-edit form-inline" action="<?php echo $block->getUrl('catalog/faqsetting/save', ["_secure" => $block->getRequest()->isSecure()]) ?>" method="post" data-role="form-profile-validate" data-mage-init='{"validation":{}}'>
+    <div class="lof-mp-page-title page-title">
+        <h2><?php echo __('FAQ Configuration') ?></h2>
+        <div class="page-actions-buttons">
+            <div class="actions-split save primary" title="Save">
+                <button class="action-default primary" title="<?php echo __('Save Configuration') ?>" type="submit">
+                    <span><span><?php echo __('Save Configuration') ?></span></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <fieldset class="admin__fieldset">
+        <div class="admin__field">
+            <label class="admin__field-label">
+                <?php echo __("Enable FAQ"); ?>
+            </label>
+            <div class="admin__field-control">
+                <select name="enable" class="admin__control-text required-entry _required">
+                    <option value="1" <?php if($isEnableFaq == 1) echo "selected"?> >Yes</option>
+                    <option value="0" <?php if($isEnableFaq == 0) echo "selected"?> >No</option>
+                </select>
+            </div>
+        </div>
+        <div class="admin__field">
+            <label class="admin__field-label">
+                <?php echo __("Layout"); ?>
+            </label>
+            <div class="admin__field-control">
+                <div class="admin__field-control">
+                    <select name="layout" class="admin__control-text required-entry _required">
+                        <option value="1-column" <?php if($layout == '1-column') echo "selected"?>>1 Column</option>
+                        <option value="1-column-leftbar" <?php if($layout == '1-column-leftbar') echo "selected"?>>1 Column Left Bar</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="admin__field">
+            <label class="admin__field-label">
+                <?php echo __("Grid Column"); ?>
+            </label>
+            <div class="admin__field-control">
+                <div class="admin__field-control">
+                    <select name="grid_column" class="admin__control-text required-entry _required">
+                        <?php
+                            for($count=12; $count >= 1; $count--){
+                                if($count == $gridColumn) echo "<option value='".(int)$count."' selected>".(int)$count."</option>";
+                                else echo "<option value='".(int)$count."' >".(int)$count."</option>";
+                            }
+                        ?>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="admin__field">
+            <label class="admin__field-label">
+                <?php echo __("Answer Slide Speed"); ?>
+            </label>
+            <div class="admin__field-control">
+                <div class="admin__field-control">
+                    <select name="answer_slide" class="admin__control-text required-entry _required">
+                        <option value='fast'>Fast</option>
+                        <option value='slow' <?php if($answerSlide == 'slow') echo 'selected'; ?>>Slow</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="admin__field">
+            <label class="admin__field-label">
+                <?php echo __("Answer List Slide Speed"); ?>
+            </label>
+            <div class="admin__field-control">
+                <div class="admin__field-control">
+                    <select name="answer_list_slide" class="admin__control-text required-entry _required">
+                        <option value='fast'>Fast</option>
+                        <option value='slow' <?php if($answerListSlide == 'slow') echo 'selected'; ?>>Slow</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="admin__field">
+            <label class="admin__field-label">
+                <?php echo __("Show Author"); ?>
+            </label>
+            <div class="admin__field-control">
+                <select name="show_author" class="admin__control-text required-entry _required">
+                    <option value="1" <?php if($isShowAuthor == 1) echo "selected"?> >Yes</option>
+                    <option value="0" <?php if($isShowAuthor == 0) echo "selected"?> >No</option>
+                </select>
+            </div>
+        </div>
+        <div class="admin__field">
+            <label class="admin__field-label">
+                <?php echo __("Show Date"); ?>
+            </label>
+            <div class="admin__field-control">
+                <select name="show_date" class="admin__control-text required-entry _required">
+                    <option value="1" <?php if($isShowDate == 1) echo "selected"?>>Yes</option>
+                    <option value="0" <?php if($isShowDate == 0) echo "selected"?>>No</option>
+                </select>
+            </div>
+        </div>
+        <div class="admin__field">
+            <label class="admin__field-label">
+                <?php echo __("Enable FAQ Popup Form"); ?>
+            </label>
+            <div class="admin__field-control">
+                <select name="popup_form" class="admin__control-text required-entry _required">
+                    <option value="1" <?php if($isEnablePopupForm == 1) echo "selected"?> >Yes</option>
+                    <option value="0" <?php if($isEnablePopupForm == 0) echo "selected"?> >No</option>
+                </select>
+            </div>
+        </div>
+        <div class="admin__field">
+            <label class="admin__field-label">
+                <?php echo __("Enable reCaptcha"); ?>
+            </label>
+            <div class="admin__field-control">
+                <select name="enable_recaptcha" class="admin__control-text required-entry _required">
+                    <option value="1" <?php if($isEnableRecaptcha == 1) echo "selected"?> >Yes</option>
+                    <option value="0" <?php if($isEnableRecaptcha == 0) echo "selected"?> >No</option>
+                </select>
+            </div>
+        </div>
+    </fieldset>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2><?php echo __('Product'); ?></h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <table id="datatable" class="table table-striped table-bordered">
+                        <thead>
+                        <tr class="headings">
+                            <th class=""></th>
+                            <th class="column-title"><?php echo __('Name');?> </th>
+                            <th class="column-title"><?php echo __('SKU');?> </th>
+                            <th class="column-title"><?php echo __('Price');?> </th>
+                            <th class="column-title"><?php echo __('Status');?> </th>
+                            <th class="column-title"><?php echo __('FAQ Status');?> </th>
+                            <th class="column-title"><?php echo __('Action');?> </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+
+                        foreach ($block->_productList as $item) {
+                            $productId = $item->getEntityID()
+                            ?>
+                            <tr class="even pointer">
+                                <td class=" "><input type="checkbox" name ="productIds[]" value="<?php echo $productId ?>"></td>
+                                <td class=" "><?php echo $item->getName(); ?></td>
+                                <td class=" "><?php echo $item->getSKU(); ?></i></td>
+                                <td class=" "><?php echo $item->getPrice(); ?></td>
+                                <td class=" "><?php echo $item->getStatus() == 1 ? __('Enabled') : __('Disable'); ?></td>
+                                <td class=" "><?php echo $item->getData('faq_status') == 1 ? __('Enabled') : __('Disable'); ?></td>
+                                <td class=" "><a href="<?php echo $block->getUrl('catalog/faqsetting/enableproduct/id/' . $productId, ['_secure' => $block->getRequest()->isSecure()]); ?>"><?php echo $item->getData('faq_status') == 1 ? __('Disable FAQ') : __('Enable FAQ'); ?></a></td>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

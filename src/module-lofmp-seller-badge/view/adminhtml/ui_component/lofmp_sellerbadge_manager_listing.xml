@@ -1,0 +1,139 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_SellerBadge
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">lofmp_sellerbadge_manager_listing.lofmp_sellerbadge_manager_listing_data_source</item>
+		</item>
+	</argument>
+	<settings>
+		<spinner>lofmp_sellerbadge_manager_columns</spinner>
+		<deps>
+			<dep>lofmp_sellerbadge_manager_listing.lofmp_sellerbadge_manager_listing_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="lofmp_sellerbadge_manager_listing_data_source" component="Magento_Ui/js/grid/provider">
+		<settings>
+			<storageConfig>
+				<param name="indexField" xsi:type="string">manager_id</param>
+			</storageConfig>
+			<updateUrl path="mui/index/render"/>
+		</settings>
+        <aclResource>Lofmp_SellerBadge::SellerBadgeManager_view</aclResource>
+		<dataProvider name="lofmp_sellerbadge_manager_listing_data_source" class="Lofmp\SellerBadge\Ui\Component\DataProvider\BadgeManagerDataProvider">
+			<settings>
+				<requestFieldName>id</requestFieldName>
+				<primaryFieldName>manager_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<listingToolbar name="listing_top">
+		<settings>
+			<sticky>true</sticky>
+		</settings>
+        <filterSearch name="fulltext"/>
+        <bookmark name="bookmarks"/>
+		<columnsControls name="columns_controls"/>
+		<filters name="listing_filters"/>
+		<paging name="listing_paging"/>
+        <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to delete selected items?</message>
+                        <title translate="true">Delete items</title>
+                    </confirm>
+                    <url path="lofmp_sellerbadge/sellerbadgemanager/massdelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+        </massaction>
+	</listingToolbar>
+	<columns name="lofmp_sellerbadge_manager_columns">
+		<selectionsColumn name="ids">
+			<settings>
+				<indexField>manager_id</indexField>
+			</settings>
+		</selectionsColumn>
+        <column name="seller_id" sortOrder="10">
+            <settings>
+                <filter>text</filter>
+                <sorting>asc</sorting>
+                <sortable>false</sortable>
+                <label translate="true">Seller ID</label>
+            </settings>
+        </column>
+        <column name="image" class="Lofmp\SellerBadge\Ui\Component\Listing\Column\Thumbnail" sortOrder="30">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/thumbnail</item>
+                    <item name="sortable" xsi:type="boolean">false</item>
+                    <item name="has_preview" xsi:type="string">1</item>
+                    <item name="label" xsi:type="string" translate="true">Badge(s)</item>
+                </item>
+            </argument>
+            <settings>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+		<column name="seller_name" class="Lofmp\SellerBadge\Ui\Component\Listing\Column\SellerName" sortOrder="40">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Seller Name</label>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+				<editor>
+					<editorType>text</editorType>
+				</editor>
+                <sortable>false</sortable>
+            </settings>
+		</column>
+        <column name="badge_name" class="Lofmp\SellerBadge\Ui\Component\Listing\Column\BadgeName" sortOrder="50">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Badge Name</label>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <editor>
+                    <editorType>text</editorType>
+                </editor>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+		<column name="email" sortOrder="60">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Email</label>
+				<editor>
+					<editorType>text</editorType>
+				</editor>
+                <sortable>false</sortable>
+            </settings>
+		</column>
+        <actionsColumn name="actions" class="Lofmp\SellerBadge\Ui\Component\Listing\Column\SellerBadgeManagerActions" sortOrder="200">
+            <settings>
+                <indexField>manager_id</indexField>
+                <sortable>true</sortable>
+            </settings>
+        </actionsColumn>
+	</columns>
+</listing>

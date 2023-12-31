@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://landofcoder.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_TimeDiscount
+ * @copyright  Copyright (c) 2017 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="checkout_onepage_controller_success_action">
+        <observer name="afterplaceorderTimediscount" instance="Lofmp\TimeDiscount\Observer\AfterPlaceOrder" />
+    </event>
+    <event name="sales_quote_remove_item">
+        <observer name="removeitemTimediscount" instance="Lofmp\TimeDiscount\Observer\AfterRemoveItem" />
+    </event>
+    <event name="checkout_cart_product_add_after">
+        <observer name="cartaddproductafterTimediscount" instance="Lofmp\TimeDiscount\Observer\CheckoutCartProductAddAfter" />
+    </event>
+    <event name="checkout_cart_update_items_after">
+        <observer name="cartupdateitemafterTimediscount" instance="Lofmp\TimeDiscount\Observer\CheckoutCartUpdateItemsAfter" />
+    </event>
+    <event name="checkout_cart_update_item_complete">
+        <observer name="cartupdateitemcompleteTimediscount" instance="Lofmp\TimeDiscount\Observer\CheckoutCartUpdateItemsAfter" />
+    </event>
+</config>

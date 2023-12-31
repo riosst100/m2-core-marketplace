@@ -1,0 +1,303 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_TableRateShipping
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// phpcs:disable
+/**
+ * @var $block \Lofmp\TableRateShipping\Block\Shipping\Shipping
+ */
+$helper = $this->helper(\Lof\MarketPlace\Helper\Data::class);
+$sellerHelper = $this->helper(\Lof\MarketPlace\Helper\Seller::class);
+$_directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
+$seller = $sellerHelper->getSellerByCustomer();
+$shippingMethodCollection = $block->getShippingMethodCollection();
+$shippingMethodCollectionsize = count($shippingMethodCollection);
+$data = $this->getRequest()->getPostValue();
+$shipping = $this->getShipping($this->getShippingId())->getFirstItem();
+$shipping_method = $this->getShippingMethod()->load($shipping->getData('shipping_method_id'), 'entity_id');
+$formUploadAction = $block->getUrl(
+    'lofmptablerateshipping/shipping/save',
+    ["_secure" => $this->getRequest()->isSecure()]
+);
+
+$formDataAction = $block->getUrl(
+    'lofmptablerateshipping/shipping/save',
+    ["_secure" => $this->getRequest()->isSecure()]
+);
+?>
+<form class="entry-edit form-inline" action="<?= $block->escapeHtmlAttr($formUploadAction) ?>"
+      enctype="multipart/form-data" method="post"
+      data-role="form-profile-validate" data-mage-init='{"validation":{}}'>
+    <div class="lof-mp-page-title page-title">
+        <h2><?= $block->escapeHtml(__('Upload Shipping Detail')) ?></h2>
+        <div class="page-actions-buttons">
+            <div class="actions-split save primary">
+                <button class="action-default primary"
+                        title="<?= $block->escapeHtmlAttr(__('Upload')) ?>"
+                        type="submit">
+                    <span><span><?= $block->escapeHtml(__('Upload')) ?></span></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="admin__fieldset-wrapper-content">
+        <div class="admin__fieldset-wrapper-content">
+            <fieldset class="admin__fieldset">
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <span class="no-display" id="sample-file-span" style="display: inline;">
+                            <a href="<?= $this->getViewFileUrl('Lofmp_TableRateShipping::shippinginfo.csv'); ?>"
+                               id="sample-file-link">
+                                <?= $block->escapeHtml(__('Download Sample File')) ?>
+                            </a>
+                        </span>
+                    </label>
+                </div>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?= $block->escapeHtml(__('CSV file')) ?>
+                    </label>
+                    <div class="admin__field-control">
+                        <input type="file" name="import_file"/>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</form>
+<form class="entry-edit form-inline" action="<?= $block->escapeHtmlAttr($formDataAction) ?>"
+      enctype="multipart/form-data" method="post"
+      data-role="form-profile-validate" data-mage-init='{"validation":{}}'>
+    <div class="lof-mp-page-title page-title">
+        <h2><?= __('Add shipping record') ?></h2>
+        <div class="page-actions-buttons">
+            <div class="actions-split save primary">
+                <button class="action-default primary" title="<?= $block->escapeHtmlAttr(__('Save')) ?>"
+                        type="submit">
+                    <span><span><?= $block->escapeHtml(__('Save')) ?></span></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="admin__fieldset-wrapper-content">
+        <div class="admin__fieldset-wrapper-content">
+            <fieldset class="admin__fieldset">
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?= $block->escapeHtml(__('Shipping Method Name')) ?>
+                    </label>
+                    <div class="admin__field-control">
+                        <input type="text" list="browsers" name="shipping_method"
+                               value="<?= $shipping_method->getData('method_name'); ?>" class="admin__control-text"
+                               placeholder="<?= $block->escapeHtmlAttr(__('Ex: Standard delivery or Special delivery')) ?>"/>
+                        <datalist id="browsers">
+                            <select>
+                                <?php foreach ($shippingMethodCollection as $_shipping) { ?>
+                                    <option
+                                        value="<?= $block->escapeHtmlAttr($_shipping->getData('method_name')); ?>">
+                                        <?= $block->escapeHtml($_shipping->getData('method_name')); ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                        </datalist>
+                    </div>
+                </div>
+                <div class="admin__field required _required">
+                    <label class="admin__field-label">
+                        <span><?= $block->escapeHtml(__('Country Code')) ?></span>
+                    </label>
+                    <div class="admin__field-control">
+                        <select name="dest_country_id" id="seller_country_id"
+                                class="required-entry _required select admin__control-select">
+                            <?php $countryList = $block->getCountryOptionArray();
+                            foreach ($countryList as $_country) : ?>
+                                <option
+                                    value="<?= $block->escapeHtmlAttr($_country["value"]); ?>" <?= $_country["value"] == $seller["country_id"] ? 'selected="selected"' : ''; ?>><?= $block->escapeHtml($_country["label"]); ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="admin__field field field-region_id required _required">
+                    <label class="admin__field-label">
+                        <span><?= $block->escapeHtml(__('Region/State')) ?></span>
+                    </label>
+                    <div class="admin__field-control">
+                        <select id="seller_region_id_id" name="region_id"
+                                title="<?= $block->escapeHtmlAttr(__("State/Province")); ?>"
+                                class="select admin__control-select" style="display:none;">
+                            <option value=""><?= $block->escapeHtml(__('Please Select...')); ?></option>
+                        </select>
+                        <script>
+                            require(["jquery", "prototype", "mage/adminhtml/form"], function ($jQ) {
+                                var old_region_name = $jQ("#region_code").val();
+                                var seller_region_id = "<?= isset($seller["region_id"]) ? (int)$seller["region_id"] : 0;?>"
+                                $("seller_region_id_id").setAttribute("defaultValue", seller_region_id);
+                                new regionUpdater("seller_country_id", "seller_region_id", "seller_region_id_id", <?= $_directoryHelper->getRegionJson();?>);
+                                $jQ("#seller_region_id_id").on("change", function () {
+                                    if ($jQ(this).val() && $jQ("#region_code").length > 0) {
+                                        $jQ("#region_code").val($jQ("#seller_region_id_id option:selected").text());
+                                    } else if ($jQ("#region_code").length > 0) {
+                                        $jQ("#region_code").val(old_region_name);
+                                    }
+                                })
+                            })
+                        </script>
+                    </div>
+                </div>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?= $block->escapeHtml(__('Region Code')) ?>
+                    </label>
+                    <div class="admin__field-control">
+                        <input type="text" id="region_code" name="dest_region_id" class="admin__control-text"
+                               value="<?= $block->escapeHtmlAttr($seller['region']) ?>"
+                               placeholder="<?= $block->escapeHtmlAttr(__('Enter specific region code or enter * for all')); ?>"/>
+                    </div>
+                </div>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?= $block->escapeHtml(__('Weight from')) ?>
+                    </label>
+                    <div class="admin__field-control">
+                        <input type="text"
+                               class="required-entry validate-number admin__control-text"
+                               name="weight_from"
+                               id="weight_from"
+                               value="<?= $block->escapeHtmlAttr($shipping->getData('weight_from')) ?>"
+                               placeholder="<?= $block->escapeHtmlAttr(__('Enter weight from to calculate shipping')) ?>"
+                        />
+                    </div>
+                </div>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?= $block->escapeHtml(__('Weight to')) ?>
+                    </label>
+                    <div class="admin__field-control">
+                        <input type="text"
+                               class="required-entry validate-number admin__control-text"
+                               name="weight_to"
+                               id="weight_to"
+                               value="<?= $block->escapeHtmlAttr($shipping->getData('weight_to')) ?>"
+                               placeholder="<?= $block->escapeHtmlAttr(__('Enter weight to to calculate shipping')) ?>"
+                        />
+                    </div>
+                </div>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?= $block->escapeHtml(__('Zip from')) ?>
+                    </label>
+                    <div class="admin__field-control">
+                        <div class="input-box">
+                            <input type="text"
+                                   class="required-entry admin__control-text"
+                                   name="dest_zip"
+                                   id="zip_from"
+                                   value="<?= $block->escapeHtmlAttr($shipping->getData('dest_zip')) ?>"
+                                   placeholder="<?= $block->escapeHtmlAttr(__('Enter specific zip or * for all')) ?>"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?= $block->escapeHtmlAttr(__('Zip to')) ?>
+                    </label>
+                    <div class="admin__field-control">
+                        <div class="input-box">
+                            <input type="text"
+                                   class="required-entry admin__control-text"
+                                   name="dest_zip_to"
+                                   id="zip_to"
+                                   value="<?= $block->escapeHtmlAttr($shipping->getData('dest_zip_to')) ?>"
+                                   placeholder="<?= $block->escapeHtmlAttr(__('Enter specific zip or * for all')) ?>"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?= $block->escapeHtml(__('Free Shipping')) ?>
+                    </label>
+                    <div class="admin__field-control">
+                        <div class="input-box">
+                            <input type="text"
+                                   class="validate-number validate-greater-than-zero admin__control-text"
+                                   name="free_shipping"
+                                   id="free_shipping"
+                                   value="<?= $block->escapeHtmlAttr($shipping->getData('free_shipping')) ?>"
+                                   placeholder="<?= $block->escapeHtmlAttr(__('Minimum cart total amount for free shipping. Keep empty if not offering free shipping.')); ?>"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?= $block->escapeHtml(__('Minimum Cart Total Amount Condition')) ?>
+                    </label>
+                    <div class="admin__field-control">
+                        <div class="input-box">
+                            <input type="text"
+                                   class="validate-number validate-greater-than-zero admin__control-text"
+                                   name="cart_total"
+                                   id="cart_total"
+                                   value="<?= $block->escapeHtmlAttr($shipping->getData('cart_total')) ?>"
+                                   placeholder="<?= $block->escapeHtmlAttr(__('Minimum cart total amount will check condition for rate. Keep empty for zero and above.')); ?>"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?= $block->escapeHtml(__('Price')) ?>
+                    </label>
+                    <div class="admin__field-control">
+                        <div class="input-box">
+                            <input type="text"
+                                   class="required-entry validate-number validate-greater-than-zero admin__control-text"
+                                   name="price"
+                                   id="price"
+                                   value="<?= $block->escapeHtmlAttr($shipping->getData('price')) ?>"
+                                   placeholder="<?= $block->escapeHtmlAttr(__('Enter shipping price')) ?>"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <?php /**
+                 * <div class="admin__field">
+                 * <label class="admin__field-label">
+                 * <?= $block->escapeHtml(__('Cost')) ?>
+                 * </label>
+                 * <div class="admin__field-control">
+                 * <div class="input-box">
+                 * <input type="text"
+                 * class="validate-number validate-greater-than-zero admin__control-text"
+                 * name="cost"
+                 * id="cost"
+                 * value="<?= $block->escapeHtmlAttr($shipping->getData('cost')) ?>"
+                 * placeholder="<?= $block->escapeHtml(__('Enter shipping cost')) ?>"
+                 * />
+                 * </div>
+                 * </div>
+                 * </div>
+                 */ ?>
+            </fieldset>
+        </div>
+    </div>
+</form>

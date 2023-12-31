@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://landofcoder.com/license
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category   Landofcoder
+ * @package    Lofmp_PriceComparison
+ * @copyright  Copyright (c) 2017 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+	<event name="checkout_cart_product_add_after">
+		<observer name="customprice" instance="Lofmp\PriceComparison\Observer\CustomPrice" />
+	</event>
+	<event name="checkout_onepage_controller_success_action">
+		<observer name="afterplaceorder" instance="Lofmp\PriceComparison\Observer\AfterPlaceOrder" />
+	</event>
+	<event name="checkout_cart_add_product_complete">
+		<observer name="afteraddproducttocart" instance="Lofmp\PriceComparison\Observer\AfterAddProductToCart" />
+	</event>
+	<event name="sales_quote_remove_item">
+		<observer name="removeitem" instance="Lofmp\PriceComparison\Observer\AfterRemoveItem" />
+	</event>
+	<event name="controller_action_predispatch_checkout_cart_index">
+		<observer name="beforeviewcart" instance="Lofmp\PriceComparison\Observer\BeforeViewCart" />
+	</event>
+	<event name="controller_action_predispatch_checkout_index_index">
+		<observer name="beforeviewcart" instance="Lofmp\PriceComparison\Observer\BeforeViewCart" />
+	</event>
+	<event name="catalog_product_delete_after_done">
+		<observer name="assignseller" instance="Lofmp\PriceComparison\Observer\AssignSeller" />
+	</event>
+	<event name="controller_action_catalog_product_save_entity_after">
+		<observer name="savesellerproduct" instance="Lofmp\PriceComparison\Observer\SaveSellerProduct" />
+	</event>
+</config>

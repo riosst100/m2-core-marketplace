@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--*
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lof_Auction
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  *-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="lofauction_emails_admin_notify_email_template" label="Notify to admin on new bid" file="admin_notification.html" type="html" module="Lof_Auction" area="frontend"/>
+    <template id="lofauction_emails_winner_notify_email_template" label="Winner Notification" file="winner_notification.html" type="html" module="Lof_Auction" area="frontend"/>
+    <template id="lofauction_emails_outbid_notify_email_template" label="Notify to bidder's when higher bid arrive" file="outbid_notification.html" type="html" module="Lof_Auction" area="frontend"/>
+    <template id="lofauction_emails_confirm_email_template" label="Notify to bidder when they have created an auction" file="confirm_notification.html" type="html" module="Lof_Auction" area="frontend"/>
+    <template id="lofauction_emails_min_day_notify_email_template" label="Min days Notification" file="min_day_notification.html" type="html" module="Lof_Auction" area="frontend"/>
+</config>

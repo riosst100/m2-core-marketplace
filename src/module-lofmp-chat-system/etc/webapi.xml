@@ -1,0 +1,187 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<!-- Admin Endpoints -->
+	<route url="/V1/adminChatsystem/chat" method="POST">
+		<service class="Lofmp\ChatSystem\Api\ChatRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lofmp_ChatSystem::chat_save"/>
+		</resources>
+	</route>
+	<route url="/V1/adminChatsystem/chat/search" method="GET">
+		<service class="Lofmp\ChatSystem\Api\ChatRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Lofmp_ChatSystem::chat"/>
+		</resources>
+	</route>
+	<route url="/V1/adminChatsystem/chat/:chatId" method="GET">
+		<service class="Lofmp\ChatSystem\Api\ChatRepositoryInterface" method="getById"/>
+		<resources>
+			<resource ref="Lofmp_ChatSystem::chat"/>
+		</resources>
+	</route>
+	<route url="/V1/adminChatsystem/chat/:chatId" method="PUT">
+		<service class="Lofmp\ChatSystem\Api\ChatRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lofmp_ChatSystem::chat_save"/>
+		</resources>
+	</route>
+	<route url="/V1/adminChatsystem/chat/:chatId" method="DELETE">
+		<service class="Lofmp\ChatSystem\Api\ChatRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Lofmp_ChatSystem::chat_delete"/>
+		</resources>
+	</route>
+	<route url="/V1/adminChatsystem/chat/clear" method="DELETE">
+		<service class="Lofmp\ChatSystem\Api\ChatRepositoryInterface" method="clear"/>
+		<resources>
+			<resource ref="Lofmp_ChatSystem::chat_clear"/>
+		</resources>
+	</route>
+
+	<!-- Seller Endpoints -->
+	<route url="/V1/sellerChatsystem/chat/:chatId" method="PUT">
+		<service class="Lofmp\ChatSystem\Api\ChatRepositoryInterface" method="sellerSendMessage"/>
+		<resources>
+			<resource ref="self" />
+		</resources>
+		<data>
+			<parameter name="customerId" force="true">%customer_id%</parameter>
+		</data>
+	</route>
+	<route url="/V1/sellerChatsystem/chat/search" method="GET">
+		<service class="Lofmp\ChatSystem\Api\ChatRepositoryInterface" method="sellerGetList"/>
+		<resources>
+			<resource ref="self" />
+		</resources>
+		<data>
+			<parameter name="customerId" force="true">%customer_id%</parameter>
+		</data>
+	</route>
+	<route url="/V1/sellerChatsystem/chat/:chatId" method="GET">
+		<service class="Lofmp\ChatSystem\Api\ChatRepositoryInterface" method="sellerGetChat"/>
+		<resources>
+			<resource ref="self" />
+		</resources>
+		<data>
+			<parameter name="customerId" force="true">%customer_id%</parameter>
+		</data>
+	</route>
+	<route url="/V1/sellerChatsystem/chat/:chatId" method="DELETE">
+		<service class="Lofmp\ChatSystem\Api\ChatRepositoryInterface" method="sellerDeleteById"/>
+		<resources>
+			<resource ref="self" />
+		</resources>
+		<data>
+			<parameter name="customerId" force="true">%customer_id%</parameter>
+		</data>
+	</route>
+	<route url="/V1/sellerChatsystem/chat/clear" method="DELETE">
+		<service class="Lofmp\ChatSystem\Api\ChatRepositoryInterface" method="sellerClear"/>
+		<resources>
+			<resource ref="self" />
+		</resources>
+		<data>
+			<parameter name="customerId" force="true">%customer_id%</parameter>
+		</data>
+	</route>
+
+	<!-- Customer logged in Endpoints -->
+
+	<route url="/V1/sellerChatsystem/me/chats/:sellerUrl" method="POST">
+		<service class="Lofmp\ChatSystem\Api\ChatRepositoryInterface" method="customerSendMessage"/>
+		<resources>
+			<resource ref="self" />
+		</resources>
+		<data>
+			<parameter name="customerId" force="true">%customer_id%</parameter>
+		</data>
+	</route>
+
+	<route url="/V1/sellerChatsystem/me/chats" method="GET">
+		<service class="Lofmp\ChatSystem\Api\ChatRepositoryInterface" method="customerChatList"/>
+		<resources>
+			<resource ref="self" />
+		</resources>
+		<data>
+			<parameter name="customerId" force="true">%customer_id%</parameter>
+		</data>
+	</route>
+
+	<route url="/V1/sellerChatsystem/me/chats/:chatId" method="GET">
+		<service class="Lofmp\ChatSystem\Api\ChatRepositoryInterface" method="customerChatById"/>
+		<resources>
+			<resource ref="self" />
+		</resources>
+		<data>
+			<parameter name="customerId" force="true">%customer_id%</parameter>
+		</data>
+	</route>
+
+<!--	Chat Message-->
+	<route url="/V1/sellerChatsystem/me/chatmessage/:messageId" method="GET">
+		<service class="Lofmp\ChatSystem\Api\ChatMessageRepositoryInterface" method="sellerGetChatMessage"/>
+		<resources>
+			<resource ref="self" />
+		</resources>
+		<data>
+			<parameter name="customerId" force="true">%customer_id%</parameter>
+		</data>
+	</route>
+
+	<route url="/V1/sellerChatsystem/me/chatmessage/:chatId" method="POST">
+		<service class="Lofmp\ChatSystem\Api\ChatMessageRepositoryInterface" method="sellerSendCustomerChatMessage"/>
+		<resources>
+			<resource ref="self" />
+		</resources>
+		<data>
+			<parameter name="customerId" force="true">%customer_id%</parameter>
+		</data>
+	</route>
+	<route url="/V1/sellerChatsystem/me/chatmessage/:messageId" method="DELETE">
+		<service class="Lofmp\ChatSystem\Api\ChatMessageRepositoryInterface" method="sellerDeleteByMessageId"/>
+		<resources>
+			<resource ref="self" />
+		</resources>
+		<data>
+			<parameter name="customerId" force="true">%customer_id%</parameter>
+		</data>
+	</route>
+
+	<route url="/V1/sellerChatsystem/me/chatmessage/:chatId" method="GET">
+		<service class="Lofmp\ChatSystem\Api\ChatMessageRepositoryInterface" method="sellerGetListByChatId"/>
+		<resources>
+			<resource ref="self" />
+		</resources>
+		<data>
+			<parameter name="customerId" force="true">%customer_id%</parameter>
+		</data>
+	</route>
+
+	<route url="/V1/sellerChatsystem/me/chatmessage/:messageId" method="GET">
+		<service class="Lofmp\ChatSystem\Api\ChatMessageRepositoryInterface" method="sellerGetChatMessage"/>
+		<resources>
+			<resource ref="self" />
+		</resources>
+		<data>
+			<parameter name="customerId" force="true">%customer_id%</parameter>
+		</data>
+	</route>
+	<route url="/V1/sellerChatsystem/me/chatmessage/:chatId" method="POST">
+		<service class="Lofmp\ChatSystem\Api\ChatMessageRepositoryInterface" method="sellerSendCustomerChatMessage"/>
+		<resources>
+			<resource ref="self" />
+		</resources>
+		<data>
+			<parameter name="customerId" force="true">%customer_id%</parameter>
+		</data>
+	</route>
+	<route url="/V1/sellerChatsystem/me/chatmessage/:messageId" method="DELETE">
+		<service class="Lofmp\ChatSystem\Api\ChatMessageRepositoryInterface" method="sellerDeleteByMessageId"/>
+		<resources>
+			<resource ref="self" />
+		</resources>
+		<data>
+			<parameter name="customerId" force="true">%customer_id%</parameter>
+		</data>
+	</route>
+</routes>

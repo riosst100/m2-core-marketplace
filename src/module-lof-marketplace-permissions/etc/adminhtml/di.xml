@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPermissions
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Customer\Model\ResourceModel\Grid\Collection">
+        <plugin name="lof_marketpermissions_customer_collection" type="Lof\MarketPermissions\Plugin\Customer\Model\ResourceModel\Grid\CollectionPlugin"/>
+    </type>
+    <type name="Magento\Customer\Model\ResourceModel\Online\Grid\Collection">
+        <plugin name="lof_marketpermissions_customer_online_collection" type="Lof\MarketPermissions\Plugin\Customer\Model\ResourceModel\Online\Grid\CollectionPlugin"/>
+    </type>
+</config>

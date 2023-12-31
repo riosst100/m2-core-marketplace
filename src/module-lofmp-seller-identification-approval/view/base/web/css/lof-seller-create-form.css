@@ -1,0 +1,117 @@
+/*
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_SellerIdentificationApproval
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+@media all and (min-width: 769px), print {
+    .field-attachment label {
+        display: inline-block;
+        text-decoration: none;
+        color: #1979C3;
+        cursor: pointer;
+        font-size: 1.4rem;
+        margin-left: 20px;
+        margin-top: 10px;
+        position: relative;
+    }
+    input[type="file" i] {
+        appearance: initial;
+        background-color: initial;
+        cursor: default;
+        align-items: baseline;
+        color: inherit;
+        text-overflow: ellipsis;
+        white-space: pre;
+        text-align: start !important;
+        padding: initial;
+        border: initial;
+        overflow: hidden;
+    }
+    .field-attachment label {
+        display: inline-block;
+        text-decoration: none;
+        color: #1979c3;
+        cursor: pointer;
+        font-size: 1.4rem;
+        margin-left: 2rem;
+        margin-top: 1rem;
+        position: relative;
+    }
+    .field-attachment {
+        padding-bottom: 1rem;
+    }
+    .field-attachment label:before {
+        left: -2rem;
+        position: absolute;
+    }
+    .field-attachment input {
+        display: none;
+    }
+    .field-attachment label:before {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-size: 1.4rem;
+        line-height: 1.4;
+        color: #1979c3;
+        content: '\e9cd';
+        font-family: 'seller_upload';
+        vertical-align: middle;
+        display: inline-block;
+        font-weight: normal;
+        overflow: hidden;
+        speak: none;
+        text-align: center;
+    }
+    .action-delete:before {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-size: 1.4rem;
+        line-height: 1.2;
+        color: #8F8F8F;
+        content: '\e9ac';
+        font-family: 'seller_upload';
+        vertical-align: middle;
+        display: inline-block;
+        font-weight: normal;
+        overflow: hidden;
+        speak: none;
+        text-align: center;
+    }
+    .action-delete {
+        display: inline-block;
+        text-decoration: none;
+        background: none;
+        border: none;
+        padding: 0;
+    }
+    .action-delete span {
+        display: none;
+    }
+    .action-delete:before {
+        position: relative;
+        top: -.2rem;
+    }
+    #recaptcha {
+        display: inline-block;
+        position: relative;
+    }
+}
+
+.negotiable-quote-errors .error-wrap {
+    display: none;
+}

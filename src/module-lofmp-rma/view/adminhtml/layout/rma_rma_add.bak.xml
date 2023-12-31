@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Lofmp\Rma\Block\Adminhtml\Rma\Create" name="rma_adminhtml_rma_create">
+                <block class="Lofmp\Rma\Block\Adminhtml\Rma\Create\Form" template="rma/create/form.phtml" name="form">
+                    <block class="Lofmp\Rma\Block\Adminhtml\Rma\Create\Order\Grid" name="grid" />
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

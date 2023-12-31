@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <listingToolbar name="listing_top">
+        <massaction name="listing_massaction">
+            <action name="enable_seller_faq">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure to enabled FAQ feature to selected sellers?</message>
+                        <title translate="true">Enable Faq</title>
+                    </confirm>
+                    <url path="lofmpfaq/seller/MassEnable"/> <!-- your custom controller to handle request -->
+                    <type>enablesellerfaq</type>
+                    <label translate="true">Enable Faq</label>
+                </settings>
+            </action>
+            <action name="disable_seller_faq">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure to Disable FAQ feature to selected sellers?</message>
+                        <title translate="true">Disable Faq</title>
+                    </confirm>
+                    <url path="lofmpfaq/seller/MassDisable"/> <!-- your custom controller to handle request -->
+                    <type>disablesellerfaq</type>
+                    <label translate="true">Disable Faq</label>
+                </settings>
+            </action>
+        </massaction>
+    </listingToolbar>
+</listing>

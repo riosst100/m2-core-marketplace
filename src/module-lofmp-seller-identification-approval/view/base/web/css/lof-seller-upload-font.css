@@ -1,0 +1,46 @@
+/*
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_SellerIdentificationApproval
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+@font-face {
+    font-family: 'seller_upload';
+    src:  url('fonts/seller_upload.eot?jgujqb');
+    src:  url('fonts/seller_upload.eot?jgujqb#iefix') format('embedded-opentype'),
+    url('fonts/seller_upload.ttf?jgujqb') format('truetype'),
+    url('fonts/seller_upload.woff?jgujqb') format('woff'),
+    url('fonts/seller_upload.svg?jgujqb#seller_upload') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+[class^="seller_upload-"], [class*=" seller_upload-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'seller_upload' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lofmp_SellerMembership
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+		<add id="Lofmp_SellerMembership::membership" title="Seller Membership" module="Lofmp_SellerMembership" sortOrder="210" parent="Lof_MarketPlace::marketplace" resource="Lofmp_SellerMembership::membership"/>
+		<add id="Lofmp_SellerMembership::product" title="Packet Membership" module="Lofmp_SellerMembership" sortOrder="10" parent="Lofmp_SellerMembership::membership" action="lofmpsellermembership/product/index" resource="Lofmp_SellerMembership::product"/>
+		<add id="Lofmp_SellerMembership::transaction" title="Membership Transactions" module="Lofmp_SellerMembership" sortOrder="20" parent="Lofmp_SellerMembership::membership" action="lofmpsellermembership/transaction/index" resource="Lofmp_SellerMembership::transaction"/>
+		<add id="Lofmp_SellerMembership::seller_membership" title="Membership Seller" module="Lofmp_SellerMembership" sortOrder="30" parent="Lofmp_SellerMembership::membership" action="lofmpsellermembership/seller/index" resource="Lofmp_SellerMembership::seller"/>
+        <!-- <add id="Lofmp_SellerMembership::cancelrequest" title="Cancel Membership Requests" module="Lofmp_SellerMembership" sortOrder="40" parent="Lofmp_SellerMembership::membership" action="lofmpsellermembership/cancelrequest/index" resource="Lofmp_SellerMembership::cancelrequest"/> -->
+	</menu>
+</config>

@@ -1,0 +1,71 @@
+<?php
+/**
+ * Landofcoder
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://landofcoder.com/license
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2016 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+$helper       = $this->helper("Lof\MarketPlace\Helper\Data");
+$sellerId = $helper->getSellerId();
+$helper1                 = $this->helper("Lofmp\StoreLocator\Helper\Data");
+?>
+
+<form class="entry-edit form-inline" action="<?php echo $block->getUrl('catalog/tag/save', ["_secure" => $this->getRequest()->isSecure()]) ?>" enctype="multipart/form-data" method="post" data-role="form-profile-validate" data-mage-init='{"validation":{}}'>
+
+<input type="hidden" name="status" class="admin__control-text" value="0" />
+	<div class="lof-mp-page-title page-title">
+		<h2><?php echo __('Add new tag') ?></h2>
+		<div class="page-actions-buttons">
+			 <div class="actions-split save primary" title="Save">
+				<button class="action-default primary" title="<?php echo __('Save ') ?>" type="submit">
+					<span><span><?php echo __('Save Profile') ?></span></span>
+				</button>
+			</div>
+		</div>
+	</div>
+	<div class="admin__fieldset-wrapper-content">
+		<fieldset class="admin__fieldset">
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Name"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="name" class="admin__control-text"  />
+				</div>
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("description"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="description" class="admin__control-text"  />
+				</div>
+			</div>
+			<input type="hidden" name="seller_id" class="admin__control-text" value="<?php echo $sellerId ?>" />
+
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Position"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="position" class="admin__control-text"  />
+				</div>
+			</div>
+
+
+		</fieldset>
+	</div>
+</form>	

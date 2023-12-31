@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * LandofCoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   LandofCoder
+ * @package    Lofmp_CouponCode
+ * @copyright  Copyright (c) 2016 Landofcoder (https://landofcoder.com/)
+ * @license    https://landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Lofmp_CouponCode::lofmpcouponcode" title="Coupon Code" module="Lofmp_CouponCode" sortOrder="10" resource="Lofmp_CouponCode::lofmpcouponcode" parent="Lof_MarketPlace::marketplace"/>
+		<add id="Lofmp_CouponCode::rule" title="Manage Rules" module="Lofmp_CouponCode" sortOrder="10" action="lofmpcouponcode/rule/index" resource="Lofmp_CouponCode::rule" parent="Lofmp_CouponCode::lofmpcouponcode"/>
+		<add id="Lofmp_CouponCode::coupon" title="Manage Coupon Codes" module="Lofmp_CouponCode" sortOrder="20" action="lofmpcouponcode/coupon/index" resource="Lofmp_CouponCode::coupon" parent="Lofmp_CouponCode::lofmpcouponcode"/>
+		<add id="Lofmp_CouponCode::log" title="Manage Coupon Logs" module="Lofmp_CouponCode" sortOrder="25" action="lofmpcouponcode/log/index" resource="Lofmp_CouponCode::log" parent="Lofmp_CouponCode::lofmpcouponcode"/>
+		<add id="Lofmp_CouponCode::coupon_import" title="Import Coupon Codes" module="Lofmp_CouponCode" sortOrder="30" action="lofmpcouponcode/import/index" resource="Lofmp_CouponCode::coupon_import" parent="Lofmp_CouponCode::lofmpcouponcode"/>
+		<add id="Lofmp_CouponCode::generate" title="Generate Coupon Codes" module="Lofmp_CouponCode" sortOrder="40" action="lofmpcouponcode/generate/index" resource="Lofmp_CouponCode::generate" parent="Lofmp_CouponCode::lofmpcouponcode"/>
+		<add id="Lofmp_CouponCode::salesreport" title="Report" module="Lofmp_CouponCode" sortOrder="50" action="lofmpcouponcode/report_sales/coupon" resource="Lofmp_CouponCode::salesreport" parent="Lofmp_CouponCode::lofmpcouponcode"/>
+		<add id="Lofmp_CouponCode::configuration" title="Configuration" module="Lofmp_CouponCode" sortOrder="60" parent="Lofmp_CouponCode::lofmpcouponcode" action="adminhtml/system_config/edit/section/lofmpcouponcode" resource="Lofmp_CouponCode::config_couponcode"/>
+
+	</menu>
+</config>

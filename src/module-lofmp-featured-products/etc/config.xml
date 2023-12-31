@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.landofcoder.com/license-agreement.html
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_FeaturedProducts
+ * @copyright  Copyright (c) 2018 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <featured_products_config>
+            <general>
+                <enable>1</enable>
+                <title>Featured Products</title>
+                <show_wishlist>1</show_wishlist>
+                <show_compare>1</show_compare>
+                <show_cart>1</show_cart>
+            </general>
+            <owl_carousel_setting>
+                <number_desktop_item>5</number_desktop_item>
+                <number_tablet_item>3</number_tablet_item>
+                <number_mobile_item>1</number_mobile_item>
+                <autoplay>1</autoplay>
+                <autoplay_hover_pause>0</autoplay_hover_pause>
+                <autoplay_timeout>5000</autoplay_timeout>
+                <loop>0</loop>
+                <margin>30</margin>
+                <show_dot_navigation>1</show_dot_navigation>
+                <show_next_prev_buttons>1</show_next_prev_buttons>
+                <mouse_drag>1</mouse_drag>
+                <touch_drag>1</touch_drag>
+                <rtl_layout>0</rtl_layout>
+            </owl_carousel_setting>
+        </featured_products_config>
+    </default>
+</config>

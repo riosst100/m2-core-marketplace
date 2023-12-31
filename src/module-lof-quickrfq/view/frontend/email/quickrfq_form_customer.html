@@ -1,0 +1,92 @@
+<!--
+  ~ Landofcoder
+  ~
+  ~ NOTICE OF LICENSE
+  ~
+  ~ This source file is subject to the Landofcoder.com license that is
+  ~ available through the world-wide-web at this URL:
+  ~ https://landofcoder.com/terms
+  ~
+  ~ DISCLAIMER
+  ~
+  ~ Do not edit or add to this file if you wish to upgrade this extension to newer
+  ~ version in the future.
+  ~
+  ~ @category   Landofcoder
+  ~ @package    Lof_Quickrfq
+  ~ @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  ~ @license    https://landofcoder.com/terms
+  -->
+
+<!--@subject {{trans "You sent a request for quote to %receiver_name" receiver_name=$data.receiver_name}} @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"skin url=\"images/logo_email.gif\" _area='frontend'":"Email Logo Image",
+"var data.customer_name":"Sender Name",
+"var data.email":"Sender Email",
+"var data.phone":"Sender Telephone",
+"var data.overview":"Overview"}
+@-->
+<!--@styles
+body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
+
+{{template config_path="design/email/header_template"}}
+
+<table>
+    <tr class="email-intro">
+        <td>
+            <h1>
+                Request For Quote.
+            </h1>
+
+        </td>
+    </tr>
+    <tr class="email-summary">
+        <td>
+            <p>
+                Hello {{var data.customer_name}},
+            </p>
+            <p>
+                You have requested a quote for product {{var data.product_name}}. Please following details:
+            </p>
+        </td>
+    </tr>
+    <tr class="email-information">
+        <td>
+            <table class="message-info">
+                <tr>
+                    <td align="center" style="text-align:left;width:40%;font-weight:bold;">Telephone:</td>
+                    <td align="center" style="padding-left:5px;text-align:left;width:60%;"> {{var data.customer_phone}}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="center" style="text-align:left;width:40%;font-weight:bold;">Date need quote:</td>
+                    <td align="center" style="padding-left:5px;text-align:left;width:60%;"> {{var data.date_need_quote}}
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" style="text-align:left;width:40%;font-weight:bold;">Quantity Request </td>
+                    <td align="center" style="padding-left:5px;text-align:left;width:60%;">{{var data.quantity}}</td>
+                </tr>
+                <tr>
+                    <td align="center" style="text-align:left;width:40%;font-weight:bold;">Price per Product:</td>
+                    <td align="center" style="padding-left:5px;text-align:left;width:60%;">{{var data.price_per_product}}</td>
+                </tr>
+                <tr>
+                    <td align="center" style="text-align:left;width:40%;">&nbsp;</td>
+                    <td align="center" style="padding-left:5px;text-align:left;width:60%;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td align="center" style="text-align:left;width:40%;font-weight:bold;">Regards,</td>
+                    <td align="center" style="padding-left:5px;text-align:left;width:60%;">&nbsp;</td>
+                </tr>
+            </table>
+
+
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}

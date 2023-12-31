@@ -1,0 +1,101 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_SellerIdentificationApproval
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+use Lofmp\SellerIdentificationApproval\Block\Seller\Register;
+
+/**
+ * @var Register $block
+ */
+
+$listType = $block->getIdentificationTypes();
+$ids = [];
+?>
+<div class="negotiable-quote-errors messages">
+    <div class="message error-wrap error" data-role="error-wrap"></div>
+</div>
+<?php foreach ($listType as $key => $label) : ?>
+    <?php if ($block->isEnable($key)) : ?>
+        <?php $files = $block->getFileUpload($key);
+        $count = $files ? count($files) + 1 : 1; ?>
+        <div class="admin__field field field-name">
+        <label for="identification" class="label admin__field-label"><?= $block->escapeHtml($label); ?></label>
+        <div class="admin__field-control control additional_upload" id="field_<?= $key ?>" data-role="attach-wrapper">
+            <div data-mage-init='{"Lofmp_SellerIdentificationApproval/js/upload/add-files": {
+                                    "maxSizeB" : "<?= $block->escapeJs($block->getMaxFileSize($key)) ?>",
+                                    "maxSizeMb" : "<?= $block->escapeJs($block->getMaxFileSizeMb($key)) ?>",
+                                    "extensions" : "<?= $block->escapeJs($block->getAllowedExtensions($key)) ?>",
+                                    "typeUpload" : "<?= $block->escapeJs($key) ?>",
+                                    "idFiles" : "<?= $count ?>"
+                                    }}' class="field-attachment" id="field-attachment-<?= $key ?>" data-role="send-files">
+
+                <label tabindex="0" data-mage-init='{"Lofmp_SellerIdentificationApproval/js/upload/add-file": {}}' for="<?= $key ?>-add-file-0">
+                    <input name="<?= $key ?>-files[0]" data-role="<?= $key ?>-add-file" id="<?= $key ?>-add-file-0" type="file">
+                    <?= $block->escapeHtml(__('Attach file')) ?>
+                </label>
+                <?php if ($files):
+                    $index = 1;
+                    foreach ($files as $file) :?>
+                        <label tabindex="0" data-mage-init='{"Lofmp_SellerIdentificationApproval/js/upload/add-file": {}}'
+                               for="<?= $key ?>-add-file-<?= $index ?>" style="display:none">
+                            <input name="<?= $key ?>-files[<?= $index ?>]" data-role="<?= $key ?>-add-file" id="<?= $key ?>-add-file" type="file">
+                            <?= $block->escapeHtml(__('Attach file')) ?>
+                        </label>
+                        <?php $index++; ?>
+                    <?php endforeach;
+                endif; ?>
+            </div>
+            <div class="attachments-list added-files" data-role="<?= $key ?>-added-files">
+                <?php if ($files):
+                    foreach ($files as $file) :?>
+                        <div class="attachments-item" data-role="attached-item">
+                            <a href="<?= $block->escapeUrl($block->getAttachmentUrl($file->getEntityId())) ?>"
+                               title="<?= $block->escapeHtmlAttr($file->getFileName()) ?>"><?= $block->escapeHtml($file->getFileName()) ?>
+                            </a>
+                            <button type="button" id="<?=$file->getEntityId()?>" class="action-delete delete-old" data-role="delete-button">
+                                <span>Delete</span>
+                            </button>
+                        </div>
+                        <?php $ids[] = $file->getEntityId();
+                    endforeach;
+                endif; ?>
+            </div>
+            <div class="attachments-list" data-role="<?= $key ?>-history-added-files"></div>
+        </div>
+    </div>
+    <?php endif; ?>
+<?php endforeach; ?>
+<input type="hidden" name="delete_ids">
+
+<script>
+    require([
+        "jquery"
+    ], function ($) {
+        $(document).ready(function () {
+            var ids = [];
+            $('.delete-old').on('click', function () {
+                var deleteId = $(this).attr('id');
+                ids.push(deleteId);
+                $('[name="delete_ids"]').val(ids.toString());
+                $(this).closest('[data-role="attached-item"]').remove();
+            })
+        })
+    });
+</script>

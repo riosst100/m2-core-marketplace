@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lofmp_SellerMembership
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+
+    <!-- Membership - BEGIN ******************** -->
+    <route method="GET" url="/V1/lofmp-membership/memberships">
+        <service class="Lofmp\SellerMembership\Api\MembershipRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Lofmp_SellerMembership::membership"/>
+        </resources>
+    </route>
+
+    <route method="GET" url="/V1/lofmp-membership/membership/:membershipId">
+        <service class="Lofmp\SellerMembership\Api\MembershipRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="Lofmp_SellerMembership::membership"/>
+        </resources>
+    </route>
+
+   <route method="DELETE" url="/V1/lofmp-membership/membership/:membershipId">
+        <service class="Lofmp\SellerMembership\Api\MembershipRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Lofmp_SellerMembership::membership"/>
+        </resources>
+    </route>
+
+    <route method="PUT" url="/V1/lofmp-membership/membership">
+        <service class="Lofmp\SellerMembership\Api\MembershipRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Lofmp_SellerMembership::membership"/>
+        </resources>
+    </route>
+    <!-- Membership - END -->
+
+
+    <!-- Transaction - BEGIN ******************** -->
+    <route method="GET" url="/V1/lofmp-membership/transactions">
+        <service class="Lofmp\SellerMembership\Api\TransactionRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Lofmp_SellerMembership::transaction"/>
+        </resources>
+    </route>
+
+    <route method="GET" url="/V1/lofmp-membership/transaction/:transactionId">
+        <service class="Lofmp\SellerMembership\Api\TransactionRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="Lofmp_SellerMembership::transaction"/>
+        </resources>
+    </route>
+
+   <route method="DELETE" url="/V1/lofmp-membership/transaction/:transactionId">
+        <service class="Lofmp\SellerMembership\Api\TransactionRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Lofmp_SellerMembership::transaction"/>
+        </resources>
+    </route>
+
+    <route method="PUT" url="/V1/lofmp-membership/transaction">
+        <service class="Lofmp\SellerMembership\Api\TransactionRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Lofmp_SellerMembership::transaction"/>
+        </resources>
+    </route>
+    <!-- Transaction - END -->
+
+
+    <!-- CancelRequest - BEGIN ******************** -->
+    <route method="GET" url="/V1/lofmp-membership/cancelrequests">
+        <service class="Lofmp\SellerMembership\Api\CancelrequestRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Lofmp_SellerMembership::cancelrequest"/>
+        </resources>
+    </route>
+
+    <route method="GET" url="/V1/lofmp-membership/cancelrequest/:entityId">
+        <service class="Lofmp\SellerMembership\Api\CancelrequestRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="Lofmp_SellerMembership::cancelrequest"/>
+        </resources>
+    </route>
+
+   <route method="DELETE" url="/V1/lofmp-membership/cancelrequest/:entityId">
+        <service class="Lofmp\SellerMembership\Api\CancelrequestRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Lofmp_SellerMembership::cancelrequest"/>
+        </resources>
+    </route>
+
+    <route method="PUT" url="/V1/lofmp-membership/cancelrequest">
+        <service class="Lofmp\SellerMembership\Api\CancelrequestRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Lofmp_SellerMembership::cancelrequest"/>
+        </resources>
+    </route>
+
+    <route method="PUT" url="/V1/lofmp-membership/customerCancelrequest">
+        <service class="Lofmp\SellerMembership\Api\CancelrequestRepositoryInterface" method="saveByCustomer"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <!-- CancelRequest - END -->
+
+    <!-- ProducMembership - BEGIN ******************** -->
+    <route method="GET" url="/V1/lofmp-membership/customerProductMembership">
+        <service class="Lofmp\SellerMembership\Api\ProductMembershipRepositoryInterface" method="getByCustomer"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+    <route method="GET" url="/V1/lofmp-membership/myMembership">
+        <service class="Lofmp\SellerMembership\Api\ProductMembershipRepositoryInterface" method="getByCustomer"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+    <route method="GET" url="/V1/lofmp-membership/customerProductMemberships">
+        <service class="Lofmp\SellerMembership\Api\ProductMembershipRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Lofmp_SellerMembership::membership"/>
+        </resources>
+    </route>
+    <!-- ProducMembership - END -->
+
+</routes>

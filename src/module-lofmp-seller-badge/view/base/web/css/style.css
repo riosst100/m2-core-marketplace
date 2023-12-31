@@ -1,0 +1,34 @@
+.lofmp-badges ul li {
+    margin-right: 5px;
+    list-style: none;
+    display: inline-block;
+}
+
+
+.x_panel{
+    margin-top: 10px;
+}
+
+.lofmp-badges--medium .lofmp-badges__wrapper__image {
+    width: 80px;
+    height: 80px;
+}
+
+.lofmp-badges--small .lofmp-badges__wrapper__image {
+    width: 40px;
+    height: 40px;
+}
+
+.lofmp-badges--small .lofmp-badges__title strong{
+    font-size: 18px;
+    font-weight: 300;
+    vertical-align: middle;
+}
+
+.lofmp-badges--small  {
+    margin-bottom: 50px;
+}
+
+.lofmp-badges--small .lofmp-badges__title{
+    margin-bottom: 15px;
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Venustheme.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.venustheme.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category   Landofcoder 
+ * @package    Lofmp_StoreLocator
+ * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+	<menu>
+		<!-- location -->
+		<add id="Lofmp_StoreLocator::storelocator" sortOrder="80" title="StoreLocator" module="Lofmp_StoreLocator" resource="Lofmp_StoreLocator::storelocator" parent="Lof_All::lof_all"/>
+		
+		<add id="Lofmp_StoreLocator::storelocator_new" title="Add New StoreLocator" module="Lofmp_StoreLocator" sortOrder="2" parent="Lofmp_StoreLocator::storelocator" action="storelocator/storelocator/new" resource="Lofmp_StoreLocator::storelocator_edit"/>
+		<add id="Lofmp_StoreLocator::storelocator_manage" title="Manage StoreLocators" module="Lofmp_StoreLocator" sortOrder="3" parent="Lofmp_StoreLocator::storelocator" action="storelocator/storelocator/index" resource="Lofmp_StoreLocator::storelocator"/>
+
+		<!-- category -->
+		<add id="Lofmp_StoreLocator::category_new" title="Add New Category" module="Lofmp_StoreLocator" sortOrder="4" parent="Lofmp_StoreLocator::storelocator" action="storelocator/category/new" resource="Lofmp_StoreLocator::category_edit"/>
+		<add id="Lofmp_StoreLocator::category_manage" title="Manage Category" module="Lofmp_StoreLocator" sortOrder="5" parent="Lofmp_StoreLocator::storelocator" action="storelocator/category/index" resource="Lofmp_StoreLocator::category"/>
+
+		<add id="Lofmp_StoreLocator::tag_new" title="Add New Tag" module="Lofmp_StoreLocator" sortOrder="4" parent="Lofmp_StoreLocator::storelocator" action="storelocator/tag/new" resource="Lofmp_StoreLocator::tag_edit"/>
+		<add id="Lofmp_StoreLocator::tag_manage" title="Manage Tag" module="Lofmp_StoreLocator" sortOrder="5" parent="Lofmp_StoreLocator::storelocator" action="storelocator/tag/index" resource="Lofmp_StoreLocator::tag"/>
+		
+		<add id="Lofmp_StoreLocator::configuration" title="Settings" module="Lofmp_StoreLocator" sortOrder="6" parent="Lofmp_StoreLocator::storelocator" action="adminhtml/system_config/edit/section/storelocator" resource="Lofmp_StoreLocator::config_storelocator"/>
+
+	</menu>
+
+</config>

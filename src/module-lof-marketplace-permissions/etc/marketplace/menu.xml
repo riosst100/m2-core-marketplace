@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPermissions
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Lof_MarketPermissions::permissions"
+             title="Permissions"
+             icon="fa fa-users"
+             module="Lof_MarketPermissions"
+             sortOrder="9999"
+             resource="Lof_MarketPermissions::permissions"/>
+        <add id="Lof_MarketPermissions::permissions_users"
+             title="Users"
+             module="Lof_MarketPermissions"
+             action="permissions/users"
+             parent="Lof_MarketPermissions::permissions"
+             sortOrder="10"
+             resource="Lof_MarketPermissions::permissions_users"/>
+        <add id="Lof_MarketPermissions::permissions_structure"
+             title="Structure"
+             module="Lof_MarketPermissions"
+             action="permissions/index"
+             parent="Lof_MarketPermissions::permissions"
+             sortOrder="20"
+             resource="Lof_MarketPermissions::permissions_structure"/>
+        <add id="Lof_MarketPermissions::permissions_role"
+             title="Roles and Permissions"
+             module="Lof_MarketPermissions"
+             action="permissions/role"
+             parent="Lof_MarketPermissions::permissions"
+             sortOrder="30"
+             resource="Lof_MarketPermissions::permissions_role"/>
+    </menu>
+</config>

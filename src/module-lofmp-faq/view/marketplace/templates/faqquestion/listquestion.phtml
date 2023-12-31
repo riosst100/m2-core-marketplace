@@ -1,0 +1,137 @@
+<?php
+
+$questionCollection = $this->_questionFactory;
+$sellerQuestions = [];
+$customerQuestions = [];
+
+foreach($questionCollection as $question){
+    if($question->getCustomerEmail())
+        $customerQuestions[] = $question;
+    else
+        $sellerQuestions[] = $question;
+}
+
+?>
+<div class="fieldset-wrapper admin__collapsible-block-wrapper">
+    <div class="fieldset-wrapper-title" data-toggle="collapse" data-target="#seller_question">
+        <strong class="admin__collapsible-title">
+            <?php echo __("Seller Question"); ?>
+        </strong>
+    </div>
+    <div id="seller_question" class="admin__fieldset-wrapper-content admin__collapsible-content">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <table class="table table-striped table-bordered display-table">
+                            <thead>
+                            <tr class="headings">
+                                <th class="column-title"><?php echo __('Title');?> </th>
+                                <th class="column-title"><?php echo __('Category');?> </th>
+                                <th class="column-title no-sort"><?php echo __('Answer');?> </th>
+                                <th class="column-title"><?php echo __('Status');?> </th>
+                                <th class="column-title"><?php echo __('Position');?> </th>
+                                <th class="column-title"><?php echo __('Created');?> </th>
+                                <th class="column-title"><?php echo __('Modified');?> </th>
+                                <th class="column-title no-sort"></th>
+                                <th class="column-title no-sort"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+
+                            foreach ($sellerQuestions as $question) {
+
+                                ?>
+                                <tr class="even pointer">
+                                    <td class=" "><?php echo $question->getTitle(); ?></td>
+                                    <td class=" "><?php echo $question->getData('category_title'); ?></i></td>
+                                    <td class=" ">
+                                        <?php
+                                            if(strlen($question->getAnswer()) > 50 ) echo substr($question->getAnswer(), 0, 50) . "...";
+                                            else echo $question->getAnswer();
+                                        ?>
+                                    </td>
+                                    <td class=" "><?php echo $question->getStatus() == 1 ? __('Enabled') : __('Disable'); ?></td>
+                                    <td class=" "><?php echo $question->getPosition(); ?></td>
+                                    <td class=" "><?php echo $question->getCreationTime(); ?></td>
+                                    <td class=" "><?php echo $question->getUpdateTime(); ?></td>
+                                    <td class=" "><a href="<?php echo $block->getUrl('catalog/faqquestion/edit/id/' . $question->getQuestionId(), ['_secure' => $this->getRequest()->isSecure()]); ?>"><?php echo 'Edit'; ?></a></td>
+                                    <td class=" "><a href="<?php echo $block->getUrl('catalog/faqquestion/delete/id/' . $question->getQuestionId(), ['_secure' => $this->getRequest()->isSecure()]); ?>"><?php echo 'Delete'; ?></a></td>
+                                </tr>
+                            <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="fieldset-wrapper admin__collapsible-block-wrapper">
+    <div class="fieldset-wrapper-title" data-toggle="collapse" data-target="#customer_question">
+        <strong class="admin__collapsible-title">
+            <?php echo __("Customer Question"); ?>
+        </strong>
+    </div>
+    <div id="customer_question" class="admin__fieldset-wrapper-content admin__collapsible-content"><div id="customer_question" class="admin__fieldset-wrapper-content admin__collapsible-content collapse in">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <table class="table table-striped table-bordered display-table">
+                            <thead>
+                            <tr class="headings">
+                                <th class="column-title"><?php echo __('Title');?> </th>
+                                <th class="column-title"><?php echo __('Category');?> </th>
+                                <th class="column-title"><?php echo __('Name');?> </th>
+                                <th class="column-title"><?php echo __('Email');?> </th>
+                                <th class="column-title no-sort"><?php echo __('Answer');?> </th>
+                                <th class="column-title"><?php echo __('Status');?> </th>
+                                <th class="column-title"><?php echo __('Position');?> </th>
+                                <th class="column-title"><?php echo __('Created');?> </th>
+                                <th class="column-title"><?php echo __('Modified');?> </th>
+                                <th class="column-title no-sort"></th>
+                                <th class="column-title no-sort"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+
+                            foreach ($customerQuestions as $question) {
+
+                                ?>
+                                <tr class="even pointer">
+                                    <td class=" "><?php echo $question->getTitle(); ?></td>
+                                    <td class=" "><?php echo $question->getData('category_title'); ?></i></td>
+                                    <td class=" "><?php echo $question->getCustomerName(); ?></td>
+                                    <td class=" "><?php echo $question->getCustomerEmail(); ?></td>
+                                    <td class=" "><?php echo $question->getAnswer(); ?></td>
+                                    <td class=" "><?php echo $question->getStatus() == 1 ? __('Enabled') : __('Disable'); ?></td>
+                                    <td class=" "><?php echo $question->getPosition(); ?></td>
+                                    <td class=" "><?php echo $question->getCreationTime(); ?></td>
+                                    <td class=" "><?php echo $question->getUpdateTime(); ?></td>
+                                    <td class=" "><a href="<?php echo $block->getUrl('catalog/faqquestion/edit/id/' . $question->getQuestionId(), ['_secure' => $this->getRequest()->isSecure()]); ?>"><?php echo 'Edit'; ?></a></td>
+                                    <td class=" "><a href="<?php echo $block->getUrl('catalog/faqquestion/delete/id/' . $question->getQuestionId(), ['_secure' => $this->getRequest()->isSecure()]); ?>"><?php echo 'Delete'; ?></a></td>
+                                </tr>
+                            <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    require(['jquery', 'jquery/dataTables'], function($){
+        jQuery(document).ready(function($) {
+            $('.display-table').DataTable( {
+                "columnDefs": [ {
+                    "targets": 'no-sort',
+                    "orderable": false,
+                } ]
+            } );
+        });
+    });
+</script>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Magento/Store/etc/config.xsd">
+    <default>
+        <rma>
+            <general>
+                <allow_seller_manage>1</allow_seller_manage>
+                <return_address>68 nguyen co thach, tu liem, Ha Noi, HN 1000, VietNam</return_address>
+                <default_status>1</default_status>
+                <default_user>1</default_user>
+                <enable_guest_rma>1</enable_guest_rma>
+                <is_require_shipping_confirmation>1</is_require_shipping_confirmation>
+                <shipping_confirmation_text>Do you confirm, that you have sent the package to the RMA department?</shipping_confirmation_text>
+                <is_gift_active>0</is_gift_active>
+                <is_active_frontend>1</is_active_frontend>
+                <file_allowed_extensions>pdf,jpg,png</file_allowed_extensions>
+                <file_size_limit>3</file_size_limit>
+                <enable_bundle_rma_fronend>0</enable_bundle_rma_fronend>
+                <enable_bundle_rma_backend>0</enable_bundle_rma_backend>
+                <use_both_rma_type>0</use_both_rma_type>
+            </general>
+            <policy>
+                <return_period>360</return_period>
+                <outdate>60</outdate>
+                <allow_in_statuses>complete</allow_in_statuses>
+                <return_only_shipped>0</return_only_shipped>
+                <is_active>0</is_active>
+            </policy>
+            <notification>
+                <sender_email>general</sender_email>
+                <customer_email_template>rma_notification_customer_email_template</customer_email_template>
+                <seller_email_template>rma_notification_seller_email_template</seller_email_template>
+                <admin_email_template>rma_notification_admin_email_template</admin_email_template>
+                <rule_template>rma_notification_rule_template</rule_template>
+            </notification>
+            <rmafields>
+                <enable_reason>1</enable_reason>
+                <enable_condition>1</enable_condition>
+                <enable_resolution>1</enable_resolution>
+            </rmafields>
+        </rma>
+    </default>
+</config>

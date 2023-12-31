@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPermissions
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Lof\MarketPlace\Model\ResourceModel\Seller\Collection">
+        <plugin name="lof_marketpermissions_seller_collection" type="Lof\MarketPermissions\Plugin\Seller\ResourceModel\Seller\CollectionPlugin"/>
+    </type>
+    <type name="Magento\Authorization\Model\CompositeUserContext">
+        <arguments>
+            <argument name="userContexts" xsi:type="array">
+                <item name="sellerSessionUserContext" xsi:type="array">
+                    <item name="type" xsi:type="object">Lof\MarketPermissions\Model\Authorization\SellerSessionUserContext</item>
+                    <item name="sortOrder" xsi:type="string">50</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+<!--    <preference for="Magento\Customer\CustomerData\SectionPoolInterface"-->
+<!--                type="Magento\Customer\CustomerData\SectionPool"/>-->
+<!--    <type name="Magento\Customer\CustomerData\SectionPoolInterface">-->
+<!--        <arguments>-->
+<!--            <argument name="sectionSourceMap" xsi:type="array">-->
+<!--                <item name="seller" xsi:type="string">Lof\MarketPermissions\CustomerData\Seller</item>-->
+<!--                <item name="seller_authorization" xsi:type="string">Lof\MarketPermissions\CustomerData\Authorization</item>-->
+<!--            </argument>-->
+<!--        </arguments>-->
+<!--    </type>-->
+    <type name="Lof\MarketPlace\Model\Seller">
+        <plugin name="lof_marketpermissions_seller_model" type="Lof\MarketPermissions\Plugin\Seller\Model\Seller"/>
+    </type>
+    <type name="Magento\Customer\Block\Widget\Name">
+        <plugin name="lof_marketpermissions" type="Lof\MarketPermissions\Plugin\Customer\Block\Widget\Name"/>
+    </type>
+    <type name="Magento\Framework\App\Action\AbstractAction">
+        <plugin name="lof_marketpermissions_seller_validate" type="Lof\MarketPermissions\Plugin\Framework\App\Action\AbstractActionPlugin"/>
+    </type>
+    <type name="Lof\MarketPlace\Helper\Seller">
+        <plugin name="lof_marketpermissions_rename_seller_name" type="Lof\MarketPermissions\Plugin\MarketPlace\Helper\SellerPlugin"/>
+    </type>
+    <type name="Lof\MarketPlace\Block\Seller\Menu">
+        <plugin name="lof_marketpermissions_change_cache_info_menu" type="Lof\MarketPermissions\Plugin\MarketPlace\Block\Seller\MenuPlugin"/>
+    </type>
+    <preference for="Lof\MarketPlace\Model\Menu\Item" type="Lof\MarketPermissions\Model\Menu\Item"/>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="mpseller_users_listing_data_source"
+                      xsi:type="string">Lof\MarketPermissions\Model\ResourceModel\Users\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

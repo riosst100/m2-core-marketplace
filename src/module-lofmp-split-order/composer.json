@@ -1,0 +1,29 @@
+{
+    "name": "landofcoder/module-split-order",
+    "description": "This extension allows your Magento store to split the order into an order for each item in the cart.",
+    "keywords": [
+        "magento 2",
+        "magento extension",
+        "split order",
+        "magento quote",
+        "split quote",
+        "magento 2 split quote",
+        "magento 2 split order"
+    ],
+    "require": {
+        "landofcoder/module-marketplace": "*"
+    },
+    "type": "magento2-module",
+    "license": [
+        "OSL-3.0"
+    ],
+    "version": "1.1.0",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Lofmp\\SplitOrder\\": ""
+        }
+    }
+}
