@@ -47,7 +47,7 @@ class Link extends \Lof\Quickrfq\Block\Product\Link
         Session $session,
         array $data = []
     ) {
-        parent::__construct($context, $helperConfig, $registry, $data, $session);
+        parent::__construct($context, $helperConfig, $registry, $session, $data);
         $this->_helperSeller    = $helperSeller;
     }
 
