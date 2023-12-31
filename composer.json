@@ -57,7 +57,7 @@
         "Lof\\MarketProductBundle\\":"src/module-lof-marketplace-product-bundle",
         "Lof\\MarketProductConfigurable\\":"src/module-lof-marketplace-product-configurable",
         "Lof\\MarketProductDownloadable\\":"src/module-lof-marketplace-product-downloadable",
-        "Lof\\Community\\":"src/module-lof-seller-community",
+        "Lof\\SellerCommunity\\":"src/module-lof-seller-community",
         "Lof\\Setup\\":"src/module-lof-setup",
         "Lofmp\\PageBuilder\\":"src/module-lofmp-page-builder",
         "Lofmp\\Ui\\":"src/module-lofmp-ui"
