@@ -148,7 +148,7 @@ class Image extends AbstractHelper
                 $image = isset($image_array[$value - 1]) ? $image_array[$value - 1] : false;
             }
             if ($image && $image->getUrl()) {
-                $imgAlt = $this->getImg($product, $w, $h, $imgVersion, $image->getFile());
+                $imgAlt = $this->getImg($product, $h, $w, $imgVersion, $image->getFile());
                 if (! $imgAlt) {
                     return '';
                 }

@@ -57,7 +57,7 @@ $blockId = rand() . time();
                     $data_auction = json_encode($data);
                     $image_width = 240;
                     $image_height = 300;
-                    $_image = $_imgHelper->getImg($_product, $image_width, $image_height, 'category_page_grid');
+                    $_image = $_imgHelper->getImg($_product, $image_height, $image_width, 'category_page_grid');
                     $auctionData = $auction->getData();
 
                     if ($auctionData['min_amount'] < $auctionData['starting_price']) {
@@ -431,7 +431,7 @@ $blockId = rand() . time();
                     $data_auction = json_encode($data);
                     $image_width = 240;
                     $image_height = 300;
-                    $_image = $_imgHelper->getImg($_product, $image_width, $image_height, 'category_page_grid');
+                    $_image = $_imgHelper->getImg($_product, $image_height, $image_width, 'category_page_grid');
                     $auctionData = $auction->getData();
                     if ($auctionData['min_amount'] < $auctionData['starting_price']) {
                         $auctionData['min_amount'] = $auctionData['starting_price'];
@@ -773,7 +773,7 @@ $blockId = rand() . time();
                     $data_auction = json_encode($data);
                     $image_width = 240;
                     $image_height = 300;
-                    $_image = $_imgHelper->getImg($_product, $image_width, $image_height, 'category_page_grid');
+                    $_image = $_imgHelper->getImg($_product, $image_height, $image_width, 'category_page_grid');
                     $auctionData = $auction->getData();
                     $aucConfig = $helper->getAuctionConfiguration();
                     $auctionData['stop_auction_time'] = $helper->getTimezoneDateTime($auctionData['stop_auction_time']);

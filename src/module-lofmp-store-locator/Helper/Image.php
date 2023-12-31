@@ -168,7 +168,7 @@ class Image extends \Magento\Framework\App\Helper\AbstractHelper
      * @param mixed                             $file           Specific file
      * @return string
      */
-    public function getImg($product, $w=300, $h, $imgVersion='image', $file=NULL)
+    public function getImg($product, $h, $w=300, $imgVersion='image', $file=NULL)
     {
         if ($h <= 0){
             $image = $this->_imageHelper
@@ -207,7 +207,7 @@ class Image extends \Magento\Framework\App\Helper\AbstractHelper
         {
             $image = $images->getItemByColumnValue($column, $value);
             if(isset($image) && $image->getUrl()){
-                $imgAlt = $this->getImg($product, $w, $h, $imgVersion , $image->getFile());
+                $imgAlt = $this->getImg($product, $h, $w, $imgVersion , $image->getFile());
                 if(!$imgAlt) return '';
                 return $imgAlt;
             }else{

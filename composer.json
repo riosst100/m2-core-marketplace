@@ -24,7 +24,9 @@
       "google/apiclient":"^2.10",
       "hybridauth/hybridauth": "*",
       "abraham/twitteroauth": "*",
-      "janu-software/facebook-php-sdk": "^0.1"
+      "janu-software/facebook-php-sdk": "^0.1",
+      "dompdf/dompdf": "^1.2",
+      "mpdf/mpdf": "^8.0"
     },
     "autoload":{
       "files":[

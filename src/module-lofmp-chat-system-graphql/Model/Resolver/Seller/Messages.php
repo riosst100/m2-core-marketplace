@@ -29,7 +29,7 @@ use Magento\Framework\GraphQl\Query\ResolverInterface;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
 use Magento\GraphQl\Model\Query\ContextInterface;
 use Magento\Framework\GraphQl\Query\Resolver\Argument\SearchCriteria\Builder as SearchCriteriaBuilder;
-use Lofmp\ChatSystemGraphQl\Api\MessageRepositoryInterface;
+use Lof\MarketPlaceGraphQl\Api\MessageRepositoryInterface;
 use Lof\MarketPlace\Model\Seller;
 use Lof\MarketPlace\Model\ResourceModel\Seller\CollectionFactory;
 

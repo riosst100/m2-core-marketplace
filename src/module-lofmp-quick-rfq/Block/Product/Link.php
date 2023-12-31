@@ -36,16 +36,16 @@ class Link extends \Lof\Quickrfq\Block\Product\Link
      * @param Data $helperConfig
      * @param \Lofmp\Quickrfq\Helper\Data                      $helperSeller
      * @param Registry $registry
-     * @param array                                            $data
      * @param Session $session
+     * @param array                                            $data
      */
     public function __construct(
         \Lofmp\Quickrfq\Helper\Data $helperSeller,
         Context $context,
         Data $helperConfig,
         Registry $registry,
-        array $data = [],
-        Session $session
+        Session $session,
+        array $data = []
     ) {
         parent::__construct($context, $helperConfig, $registry, $data, $session);
         $this->_helperSeller    = $helperSeller;
