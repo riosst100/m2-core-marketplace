@@ -24,8 +24,7 @@
       "google/apiclient":"^2.10",
       "hybridauth/hybridauth": "*",
       "abraham/twitteroauth": "*",
-      "janu-software/facebook-php-sdk": "^0.1",
-      "landofcoder/markettheme": "*"
+      "janu-software/facebook-php-sdk": "^0.1"
     },
     "autoload":{
       "files":[
@@ -99,6 +98,7 @@
         "Lof\\MarketProductBundle\\":"src/module-lof-marketplace-product-bundle",
         "Lof\\MarketProductConfigurable\\":"src/module-lof-marketplace-product-configurable",
         "Lof\\MarketProductDownloadable\\":"src/module-lof-marketplace-product-downloadable",
+        "Lof\\MarketTheme\\":"src/module-lof-marketplace-theme",
         "Lof\\SellerCommunity\\":"src/module-lof-seller-community",
         "Lof\\Setup\\":"src/module-lof-setup",
         "Lof\\PreOrder\\":"src/module-lof-preorder",
