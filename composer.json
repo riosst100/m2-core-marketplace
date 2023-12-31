@@ -36,10 +36,12 @@
         "src/module-lof-all/registration.php",
         "src/module-lof-marketplace/registration.php",
         "src/module-lof-marketplace-graphql/registration.php",
+        "src/module-lof-marketplace-product-bundle/registration.php",
         "src/module-lof-marketplace-product-configurable/registration.php",
         "src/module-lof-marketplace-product-downloadable/registration.php",
         "src/module-lof-marketplace-theme/registration.php",
         "src/module-lof-seller-community/registration.php",
+        "src/module-lof-setup/registration.php",
         "src/module-lofmp-page-builder/registration.php",
         "src/module-lofmp-ui/registration.php"
       ],
@@ -55,7 +57,7 @@
         "Lof\\MarketProductBundle\\":"src/module-lof-marketplace-product-bundle",
         "Lof\\MarketProductConfigurable\\":"src/module-lof-marketplace-product-configurable",
         "Lof\\MarketProductDownloadable\\":"src/module-lof-marketplace-product-downloadable",
-        "Lof\\SellerCommunity\\":"src/module-lof-seller-community",
+        "Lof\\Community\\":"src/module-lof-seller-community",
         "Lof\\Setup\\":"src/module-lof-setup",
         "Lofmp\\PageBuilder\\":"src/module-lofmp-page-builder",
         "Lofmp\\Ui\\":"src/module-lofmp-ui"
