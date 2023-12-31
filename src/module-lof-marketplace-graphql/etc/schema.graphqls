@@ -1,0 +1,616 @@
+# Landofcoder
+#
+# NOTICE OF LICENSE
+#
+# This source file is subject to the Landofcoder.com license that is
+# available through the world-wide-web at this URL:
+# https://landofcoder.com/LICENSE.txt
+#
+# DISCLAIMER
+#
+# Do not edit or add to this file if you wish to upgrade this extension to newer
+# version in the future.
+#
+# @category    Landofcoder
+# @package     Lof_MarketplaceGraphQl
+# @copyright   Copyright (c) Landofcoder (https://landofcoder.com/)
+# @license     https://landofcoder.com/LICENSE.txt
+
+enum UrlRewriteEntityTypeEnum {
+    LOF_MARKETPLACE
+}
+
+interface ProductInterface {
+    seller: Seller @doc(description: "Seller who sell this product") @resolver(class: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\Seller")
+}
+
+type StoreConfig {
+
+    lofmarketplace_general_enable  : String  @doc(description: "Query by lofmarketplace_general_enable.")
+    lofmarketplace_general_rating_approval  : String  @doc(description: "Query by lofmarketplace_general_rating_approval.")
+    lofmarketplace_general_seller_approval  : String  @doc(description: "Query by lofmarketplace_general_seller_approval.")
+    lofmarketplace_product_view_seller_info  : String  @doc(description: "Query by lofmarketplace_product_view_seller_info.")
+    lofmarketplace_product_view_seller_name  : String  @doc(description: "Query by lofmarketplace_product_view_seller_name.")
+    lofmarketplace_product_view_seller_image  : String  @doc(description: "Query by lofmarketplace_product_view_seller_image.")
+    lofmarketplace_product_view_seller_address  : String  @doc(description: "Query by lofmarketplace_product_view_seller_address.")
+    lofmarketplace_product_view_seller_sale  : String  @doc(description: "Query by lofmarketplace_product_view_seller_sale.")
+    lofmarketplace_product_view_seller_phone  : String  @doc(description: "Query by lofmarketplace_product_view_seller_phone.")
+    lofmarketplace_product_view_seller_contact  : String  @doc(description: "Query by lofmarketplace_product_view_seller_contact.")
+    lofmarketplace_product_view_seller_contact_text  : String  @doc(description: "Query by lofmarketplace_product_view_seller_contact_text.")
+    lofmarketplace_list_show_seller_name  : String  @doc(description: "Query by lofmarketplace_list_show_seller_name.")
+    lofmarketplace_list_item_per_page  : String  @doc(description: "Query by lofmarketplace_list_item_per_page.")
+    lofmarketplace_list_page_title  : String  @doc(description: "Query by lofmarketplace_list_page_title.")
+    lofmarketplace_list_meta_description  : String  @doc(description: "Query by lofmarketplace_list_meta_description.")
+    lofmarketplace_list_meta_keywords  : String  @doc(description: "Query by lofmarketplace_list_meta_keywords.")
+    lofmarketplace_group_show_seller_name  : String  @doc(description: "Query by lofmarketplace_group_show_seller_name.")
+    lofmarketplace_group_item_per_page  : String  @doc(description: "Query by lofmarketplace_group_item_per_page.")
+    lofmarketplace_group_seller_enable : String  @doc(description: "Query by lofmarketplace_group_seller_enable.")
+    lofmarketplace_group_seller_available : String  @doc(description: "Query by lofmarketplace_group_seller_available.")
+    lofmarketplace_available_countries_enable : String  @doc(description: "Query by lofmarketplace_available_countries_enable.")
+    lofmarketplace_available_countries : String  @doc(description: "Query by lofmarketplace_available_countries.")
+}
+
+type Query {
+    sellerById(
+        seller_id: Int! @doc(description: "Seller id")
+        get_other_info: Boolean = false @doc(description: "Get other info: reviews, ratings, total sales, vacation")
+        get_products: Boolean = false @doc(description: "Get Latest Products")
+    ): Seller @resolver(class: "\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\SellerById") @doc(description: "Get Seller by ID") @cache( cacheIdentity: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\SellerById\\Identity")
+
+    sellerByUrl(
+        seller_url: String! @doc(description: "Seller Url Key")
+        get_other_info: Boolean = false @doc(description: "Get other info: reviews, ratings, total sales, vacation")
+        get_products: Boolean = false @doc(description: "Get Latest Products")
+    ): Seller @resolver(class: "\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\SellerByUrl") @doc(description: "Get Seller by Url key") @cache( cacheIdentity: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\SellerByUrl\\Identity")
+
+    lofSellerByProduct(
+        product_sku: String! @doc(description: "Product SKU")
+        get_other_info: Boolean = false @doc(description: "Get other info: reviews, ratings, total sales, vacation")
+        get_products: Boolean = false @doc(description: "Get Latest Products")
+    ): Seller @resolver(class: "\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\SellerByProduct") @doc(description: "Get Seller by ID")  @cache( cacheIdentity: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\SellerByProduct\\Identity")
+
+    productsBySellerId(
+        seller_id: Int! @doc(description: "Seller id")
+        search: String = "" @doc(description: "Performs a full-text search using the specified key words.")
+        filter: ProductAttributeFilterInput @doc(description: "Identifies which product attributes to search for and return.")
+        pageSize: Int = 20 @doc(description: "Specifies the maximum number of results to return at once. This attribute is optional."),
+        currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1.")
+        sort: ProductAttributeSortInput @doc(description: "Specifies which attributes to sort on, and whether to return the results in ascending or descending order.")
+    ): Products @resolver(class: "\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\ProductBySellerId") @doc(description: "Get Product by Seller ID")
+
+    productsBySellerUrl(
+        seller_url: String! @doc(description: "Seller id")
+        search: String = "" @doc(description: "Performs a full-text search using the specified key words.")
+        filter: ProductAttributeFilterInput @doc(description: "Identifies which product attributes to search for and return.")
+        pageSize: Int = 20 @doc(description: "Specifies the maximum number of results to return at once. This attribute is optional.")
+        currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1.")
+        sort: ProductAttributeSortInput @doc(description: "Specifies which attributes to sort on, and whether to return the results in ascending or descending order.")
+    ): Products @resolver(class: "\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\ProductBySellerUrl") @doc(description: "Get Product by Seller Url key")
+
+    lofProductList(
+        search: String = "" @doc(description: "Performs a full-text search using the specified key words.")
+        filter: ProductAttributeFilterInput @doc(description: "Identifies which product attributes to search for and return.")
+        pageSize: Int = 20 @doc(description: "Specifies the maximum number of results to return at once. This attribute is optional.")
+        currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1.")
+        sort: ProductAttributeSortInput @doc(description: "Specifies which attributes to sort on, and whether to return the results in ascending or descending order.")
+    ):Products @resolver(class: "\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\ProductSellers") @doc(description: "The seller product query searches for seller products that match the criteria specified in the search and filter attributes")
+
+    sellers(
+       filter: SellerFilterInput @doc(description: "Identifies which question attributes to search for and return.")
+       pageSize: Int = 5 @doc(description: "Specifies the maximum number of results to return at once. This attribute is optional.")
+       currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1.")
+       sort: SellerSortInput @doc(description: "Specifies which attributes to sort on, and whether to return the results in ascending or descending order.")
+   ):Sellers @resolver(class: "\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\Sellers") @doc(description: "The seller query searches for sellers that match the criteria specified in the search and filter attributes") @cache( cacheIdentity: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\Sellers\\Identity")
+
+   sellerCollection(
+       filter: SellerGroupFilterInput @doc(description: "Identifies which question attributes to search for and return.")
+       pageSize: Int = 5 @doc(description: "Specifies the maximum number of results to return at once. This attribute is optional.")
+       currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1.")
+       sort: SellerGroupSortInput @doc(description: "Specifies which attributes to sort on, and whether to return the results in ascending or descending order.")
+   ):SellerGroups @resolver(class: "\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\SellerGroups") @doc(description: "The seller query searches for sellers that match the criteria specified in the search and filter attributes") @cache( cacheIdentity: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\SellerGroups\\Identity")
+
+   sellerRatings(
+       seller_url: String! @doc(description: "Seller Url Key")
+       filter: SellerRatingFilterInput @doc(description: "Identifies which seller ratings attributes to search for and return.")
+       pageSize: Int = 5 @doc(description: "Specifies the maximum number of results to return at once. This attribute is optional.")
+       currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1.")
+       sort: SellerRatingSortInput @doc(description: "Specifies which attributes to sort on, and whether to return the results in ascending or descending order.")
+   ):SellerRates @resolver(class: "\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\SellerRates") @doc(description: "The seller rates query searches for seller ratings that match the criteria specified in the search and filter attributes") @cache( cacheIdentity: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\Sellers\\Identity")
+
+}
+
+type Mutation {
+
+    registerSeller(input: SellerMutationInput!): MarketplaceOuput @resolver(class: "\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\CreateSeller") @doc(description: "Register a new Seller Account, create new seller account")
+
+    becomeSeller (
+        input: SellerInput @doc(description: "Query by BecomeSellerMutationInput.")
+    ) : MarketplaceOuput @resolver( class: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\BecomeSeller") @doc(description: "Query by Mutation Become Seller.")
+
+    reviewSeller(input: ReviewInput!): MarketplaceOuput @resolver(class: "\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\ReviewSeller") @doc(description: "Review Seller")
+
+    customerSendMessage(input: CustomerMessageInput!): SellerMessage @resolver(class:"\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\Customer\\SendMessage") @doc(description: "Customer send message to seller")
+
+    customerReplyMessage(input: ReplyMessageInput!): SellerMessageDetail @resolver(class:"\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\Customer\\ReplyMessage") @doc(description: "Customer reply Messaage")
+
+    customerDeleteMessage(message_id: Int!): MarketplaceOuput @resolver(class:"\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\Customer\\DeleteMessage") @doc(description: "Customer delete Messaage by id")
+
+    sellerReplyMessage(input: SellerReplyMessageInput!): SellerMessageDetail @resolver(class:"\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\Seller\\ReplyMessage") @doc(description: "Seller reply Messaage")
+}
+
+type Customer {
+    seller: Seller @resolver( class: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\Customer\\Seller") @doc(description: "Query seller profile of current logged in customer account.")
+
+    sellerMessages (
+        filter: SellerMessageFilterInput @doc(description: "Identifies which seller messages filter inputs to search for and return.")
+        pageSize: Int = 20 @doc(description: "Specifies the maximum number of results to return at once. This attribute is optional.")
+        currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1.")
+        sort: SellerMessageSortInput @doc(description: "Specifies which attributes to sort on, and whether to return the results in ascending or descending seller message.")
+    ): SellerMessages @resolver( class: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\Customer\\Messages") @doc(description: "Query by Query Customer Messages.")
+}
+
+type SellerRate {
+    rating_id: Int @doc(description: "Rating ID")
+    seller_id: Int @doc(description: "Seller ID")
+    customer_id: Int @doc(description: "Customer ID")
+    rate1: Int @doc(description: "Rate 1")
+    rate2: Int @doc(description: "Rate 2")
+    rate3: Int @doc(description: "Rate 3")
+    rate4: Int @doc(description: "Rate 4")
+    rate5: Int @doc(description: "Rate 5")
+    rating: Int @doc(description: "Total Rate")
+    email: String @doc(description: "Email")
+    title: String @doc(description: "Title")
+    status: String @doc(description: "Status")
+    detail: String @doc(description: "Detail")
+    nickname: String @doc(description: "Nick Name")
+    created_at: String @doc(description: "Created At")
+    verified_buyer: String @doc(description: "Query Verified Buyer")
+    is_recommended: String @doc(description: "Query is_recommended")
+    is_hidden: String @doc(description: "Query is_hidden")
+    answer: String @doc(description: "Query answer")
+    admin_note: String @doc(description: "Query admin_note")
+    like_about: String @doc(description: "Query like_about")
+    not_like_about: String @doc(description: "Query not_like_about")
+    guest_email: String @doc(description: "Query guest_email")
+    plus_review: String @doc(description: "Query plus_review")
+    minus_review: String @doc(description: "Query minus_review")
+    report_abuse: String @doc(description: "Query report_abuse")
+    country: String @doc(description: "Query country")
+}
+
+type Seller {
+    seller_id: Int @doc(description: "Seller ID")
+    contact_number: String @doc(description: "Phone Number")
+    shop_title: String @doc(description: "Shop Title")
+    company_locality: String @doc(description: "Company Locality")
+    company_description: String @doc(description: "Company Description")
+    return_policy: String @doc(description: "Return Policy")
+    shipping_policy: String @doc(description: "Shipping Policy")
+    address: String @doc(description: "Address")
+    country: String @doc(description: "Country")
+    image: String @doc(description: "Image")
+    thumbnail: String @doc(description: "Thumbnail")
+    city: String @doc(description: "City")
+    region: String @doc(description: "Region")
+    group: String @doc(description: "Group")
+    group_id: Int @doc(description: "Group")
+    url: String @doc(description: "Shop Url")
+    customer_id: Int @doc(description: "Customer Id")
+    email: String @doc(description: "Email")
+    name: String @doc(description: "Name")
+    sale: String @doc(description: "Sale")
+    commission_id: String @doc(description: "Commission Id")
+    page_layout: String @doc(description: "Page Layout")
+    status: Int @doc(description: "Status")
+    position: Int @doc(description: "Position")
+    twitter_id: String @doc(description: "Twitter Id")
+    facebook_id: String @doc(description: "Facebook Id")
+    gplus_id: String @doc(description: "Gplus Id")
+    youtube_id: String @doc(description: "Youtube Id")
+    vimeo_id: String @doc(description: "Vimeo Id")
+    instagram_id: String @doc(description: "Instagram Id")
+    pinterest_id: String @doc(description: "Pinterest Id")
+    linkedin_id: String @doc(description: "Linkedin Id")
+    tw_active: Int @doc(description: "Tw Active")
+    fb_active: Int @doc(description: "Fb Active")
+    gplus_active: Int @doc(description: "Gplus Active")
+    vimeo_active: Int @doc(description: "Vimeo Active")
+    instagram_active: Int @doc(description: "Instagram Active")
+    pinterest_active: Int @doc(description: "Pinterest Active")
+    linkedin_active: Int @doc(description: "Linkedin Active")
+    banner_pic: String @doc(description: "Banner Pic")
+    shop_url: String @doc(description: "Shop Url")
+    url_key: String @doc(description: "Shop url_key")
+    logo_pic: String @doc(description: "Logo Pic")
+    verify_status: Int @doc(description: "verify_status")
+    product_count: Int @doc(description: "product_count")
+    telephone: String @doc(description: "telephone")
+    creation_time: String @doc(description: "creation_time")
+    update_time: String @doc(description: "update_time")
+    country_id: String @doc(description: "country_id")
+    total_sold: String @doc(description: "total_sold")
+    operating_time: String @doc(description: "operating_time")
+    order_processing_time: String @doc(description: "order_processing_time")
+    shipping_partners: String @doc(description: "shipping_partners")
+    offers: String @doc(description: "offers")
+    benefits: String @doc(description: "benefits")
+    product_shipping_info: String @doc(description: "product_shipping_info")
+    prepare_time: String @doc(description: "prepare_time")
+    response_ratio: String @doc(description: "response_ratio")
+    response_time: String @doc(description: "response_time")
+    store_id: [Int] @doc(description: "Store Id")
+    seller_rates: SellerRates @doc(description: "Seller Rates")
+    products: Products @doc(description: "Products")
+}
+type Sellers {
+    total_count: Int @doc(description: "The number of sellers returned")
+    items: [Seller] @doc(description: "An array of sellers that match the specified search criteria")
+    page_info: SearchResultPageInfo @doc(description: "An object that includes the page_info and currentPage values specified in the query.")
+    sort_fields: SortFields @doc(description: "An object that includes the default sort field and all available sort fields.") @resolver(class: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\Sellers\\SortFields")
+}
+
+type Products {
+    total_count: Int @doc(description: "The number of seller products returned")
+    page_info: SearchResultPageInfo @doc(description: "Metadata for pagination rendering")
+    items: [ProductInterface] @doc(description: "An array of seller products that match the specified search criteria")
+}
+
+type SellerRates {
+    total_count: Int @doc(description: "The number of seller rates returned")
+    page_info: SearchResultPageInfo @doc(description: "Metadata for pagination rendering")
+    items: [SellerRate] @doc(description: "An array of seller rates")
+}
+
+input SellerSortInput @doc(description: "SellerSortInput specifies the attribute to use for sorting search results and indicates whether the results are sorted in ascending or descending order. It's possible to sort sellers using searchable attributes with enabled 'Use in Filter Options' option")
+{
+    position: SortEnum @doc(description: "Sort by the position (position).")
+    creation_time: SortEnum @doc(description: "Sort by the creation_time assigned to each seller.")
+    update_time: SortEnum @doc(description: "Sort by the update_time assigned to each seller.")
+    total_sold: SortEnum @doc(description: "Sort by the total_sold assigned to each seller.")
+    product_count: SortEnum @doc(description: "Sort by the product_count assigned to each seller.")
+    name: SortEnum @doc(description: "Sort by the name assigned to each seller.")
+    shop_title: SortEnum @doc(description: "Sort by the shop_title assigned to each seller.")
+    sale: SortEnum @doc(description: "Sort by the sale assigned to each seller.")
+    country_id: SortEnum @doc(description: "Sort by the country_id assigned to each seller.")
+    region: SortEnum @doc(description: "Sort by the region assigned to each seller.")
+    status: SortEnum @doc(description: "Sort by the status assigned to each seller.")
+}
+
+input SellerGroupSortInput @doc(description: "SellerGroupSortInput specifies the attribute to use for sorting search results and indicates whether the results are sorted in ascending or descending order. It's possible to sort sellers using searchable attributes with enabled 'Use in Filter Options' option")
+{
+    position: SortEnum @doc(description: "Sort by the position (position).")
+    name: SortEnum @doc(description: "Sort by the name assigned to each seller.")
+    group_id: SortEnum @doc(description: "Sort by the group_id assigned to each seller.")
+    shown_in_sidebar: SortEnum @doc(description: "Sort by the shown_in_sidebar assigned to each seller.")
+    status: SortEnum @doc(description: "Sort by the status assigned to each seller.")
+}
+
+input SellerRatingSortInput @doc(description: "SellerRatingSortInput specifies the attribute to use for sorting search results and indicates whether the results are sorted in ascending or descending order. It's possible to sort sellers using searchable attributes with enabled 'Use in Filter Options' option")
+{
+    rating_id: SortEnum @doc(description: "Sort by the rating_id.")
+    title: SortEnum @doc(description: "Sort by the title assigned to each seller.")
+    nickname: SortEnum @doc(description: "Sort by the nickname assigned to each seller.")
+    created_at: SortEnum @doc(description: "Sort by the created_at assigned to each seller.")
+    updated_at: SortEnum @doc(description: "Sort by the updated_at assigned to each seller.")
+    status: SortEnum @doc(description: "Sort by the status assigned to each seller.")
+    rate1: SortEnum @doc(description: "Sort by the rate1 assigned to each seller.")
+    rate2: SortEnum @doc(description: "Sort by the rate2 assigned to each seller.")
+    rate3: SortEnum @doc(description: "Sort by the rate3 assigned to each seller.")
+    rate4: SortEnum @doc(description: "Sort by the rate4 assigned to each seller.")
+    rate5: SortEnum @doc(description: "Sort by the rate5 assigned to each seller.")
+    rating: SortEnum @doc(description: "Sort by the rating assigned to each seller.")
+    verified_buyer: SortEnum @doc(description: "Sort by the verified_buyer assigned to each seller.")
+    is_recommended: SortEnum @doc(description: "Sort by the is_recommended assigned to each seller.")
+    answer: SortEnum @doc(description: "Sort by the answer assigned to each seller.")
+    like_about: SortEnum @doc(description: "Sort by the like_about assigned to each seller.")
+    not_like_about: SortEnum @doc(description: "Sort by the not_like_about assigned to each seller.")
+    plus_review: SortEnum @doc(description: "Sort by the plus_review assigned to each seller.")
+    minus_review: SortEnum @doc(description: "Sort by the minus_review assigned to each seller.")
+    report_abuse: SortEnum @doc(description: "Sort by the report_abuse assigned to each seller.")
+    country: SortEnum @doc(description: "Sort by the country assigned to each seller.")
+}
+
+input SellerRatingFilterInput {
+    rating_id: FilterTypeInput @doc(description: "Query rating_id")
+    title: FilterTypeInput @doc(description: "Query title")
+    nickname: FilterTypeInput @doc(description: "Query nickname")
+    created_at: FilterTypeInput @doc(description: "Query created_at")
+    updated_at: FilterTypeInput @doc(description: "Query updated_at")
+    status: FilterTypeInput @doc(description: "Query status")
+    rate1: FilterTypeInput @doc(description: "Query rate1")
+    rate2: FilterTypeInput @doc(description: "Query rate2")
+    rate3: FilterTypeInput @doc(description: "Query rate3")
+    rate4: FilterTypeInput @doc(description: "Query rate4")
+    rate5: FilterTypeInput @doc(description: "Query rate5")
+    rating: FilterTypeInput @doc(description: "Query rating")
+    verified_buyer: FilterTypeInput @doc(description: "Query verified_buyer")
+    is_recommended: FilterTypeInput @doc(description: "Query is_recommended")
+    answer: FilterTypeInput @doc(description: "Query answer")
+    like_about: FilterTypeInput @doc(description: "Query like_about")
+    not_like_about: FilterTypeInput @doc(description: "Query not_like_about")
+    plus_review: FilterTypeInput @doc(description: "Query plus_review")
+    minus_review: FilterTypeInput @doc(description: "Query minus_review")
+    report_abuse: FilterTypeInput @doc(description: "Query report_abuse")
+    country: FilterTypeInput @doc(description: "Query country")
+
+    or: SellerRatingFilterInput @doc(description: "The keyword required to perform a logical OR comparison")
+}
+
+input SellerFilterInput {
+    seller_id: FilterTypeInput @doc(description: "Seller ID")
+    name: FilterTypeInput @doc(description: "Name")
+    status: FilterTypeInput @doc(description: "Status")
+    email: FilterTypeInput @doc(description: "Email")
+    group_id: FilterTypeInput @doc(description: "group_id")
+    page_title: FilterTypeInput @doc(description: "page_title")
+    meta_keywords: FilterTypeInput @doc(description: "meta_keywords")
+    created_at: FilterMatchTypeInput @doc(description: "created_at")
+    address: FilterMatchTypeInput @doc(description: "address")
+    country: FilterTypeInput @doc(description: "country")
+    city: FilterTypeInput @doc(description: "city")
+    region: FilterTypeInput @doc(description: "region")
+    or: SellerFilterInput @doc(description: "The keyword required to perform a logical OR comparison")
+}
+
+input SellerGroupFilterInput {
+    group_id: FilterTypeInput @doc(description: "Seller Group ID")
+    name: FilterTypeInput @doc(description: "Name")
+    status: FilterTypeInput @doc(description: "Status")
+    url_key: FilterTypeInput @doc(description: "Url_key")
+    position: FilterTypeInput @doc(description: "position")
+    show_in_sidebar: FilterTypeInput @doc(description: "show_in_sidebar")
+    or: SellerGroupFilterInput @doc(description: "The keyword required to perform a logical OR comparison")
+}
+
+input SellerProductFilterInput {
+    name: FilterTypeInput @doc(description: "Name")
+    type_id: FilterTypeInput @doc(description: "Type")
+    price: FilterTypeInput @doc(description: "Price")
+    created_at: FilterTypeInput @doc(description: "Created At")
+    approval: FilterTypeInput @doc(description: "Approval")
+    sku: FilterTypeInput @doc(description: "SKU")
+    or: SellerFilterInput @doc(description: "The keyword required to perform a logical OR comparison")
+}
+type SellerProducts {
+    total_count: Int @doc(description: "The number of seller products returned")
+    items: [SellerProduct] @doc(description: "An array of seller products")
+}
+
+type SellerProduct {
+    product_id: Int @doc(description: "Product Id")
+    product_name: String @doc(description: "Product Name")
+    status: Int @doc(description: "Status")
+    store_id: Int @doc(description: "Store Id")
+}
+
+type SellerGroup {
+    group_id: Int @doc(description: "Group Id")
+    name: String @doc(description: "name")
+    url_key: String @doc(description: "url_key")
+    status: Int @doc(description: "Status")
+    position: Int @doc(description: "position")
+    can_add_product: Int @doc(description: "can_add_product")
+    can_use_message: Int @doc(description: "can_use_message")
+    can_use_vacation: Int @doc(description: "can_use_vacation")
+    can_use_withdrawal: Int @doc(description: "can_use_withdrawal")
+}
+
+type SellerGroups {
+    total_count: Int @doc(description: "The number of sellers returned")
+    items: [SellerGroup] @doc(description: "An array of sellers that match the specified search criteria")
+    page_info: SearchResultPageInfo @doc(description: "An object that includes the page_info and currentPage values specified in the query.")
+    sort_fields: SortFields @doc(description: "An object that includes the default sort field and all available sort fields.") @resolver(class: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\Sellers\\SortFields")
+}
+
+type MarketplaceOuput {
+    code: String @doc(description: "The response code")
+    message: String @doc(description: "The response message")
+}
+
+input SellerMutationInput {
+    seller: SellerInput! @doc(description: "Seller Input data")
+    customer: CustomerDataInput! @doc(description: "Seller Input data")
+    password: String!
+}
+
+input SellerInput {
+    group_id  : String @doc(description: "An group_id")
+    url_key  : String! @doc(description: "An seller url key.")
+}
+
+input CustomerDataInput {
+    prefix: String @doc(description: "An honorific, such as Dr., Mr., or Mrs.")
+    firstname: String! @doc(description: "The customer's first name")
+    middlename: String @doc(description: "The customer's middle name")
+    lastname: String! @doc(description: "The customer's family name")
+    suffix: String @doc(description: "A value such as Sr., Jr., or III")
+    email: String! @doc(description: "The customer's email address. Required for customer creation")
+    dob: String @doc(description: "Deprecated: Use `date_of_birth` instead")
+    date_of_birth: String @doc(description: "The customer's date of birth")
+    taxvat: String @doc(description: "The customer's Tax/VAT number (for corporate customers)")
+    gender: Int @doc(description: "The customer's gender (Male - 1, Female - 2)")
+    is_subscribed: Boolean @doc(description: "Indicates whether the customer is subscribed to the company's newsletter")
+    address: AddressInput @doc(description: "The customer's AddressInput")
+}
+
+input AddressInput {
+    region_id: String @doc(description: "The address's region_id")
+    country_id: CountryCodeEnum! @doc(description: "Deprecated: use `country_code` instead.")
+    city: String @doc(description: "The city or town")
+    street: [String] @doc(description: "An array of strings that define the street number and name")
+    company: String @doc(description: "The customer's company")
+    telephone: String @doc(description: "The telephone number")
+    postcode: String @doc(description: "The customer's ZIP or postal code")
+    fax: String @doc(description: "The fax number")
+    vat_id: String @doc(description: "The customer's Tax/VAT number (for corporate customers)")
+    custom_attributes: [CustomerAddressAttributeInput] @doc(description: "Deprecated: Custom attributes should not be put into container.")
+}
+
+input SellerReplyMessageInput {
+    message_id: Int! @doc(description: "Current message_id")
+    content: String! @doc(description: "Message Content.")
+}
+
+input SellerCustomerInput {
+    seller: SellerInput!
+    customer: CustomerDataInput!
+    password: String!
+    or: SellerCustomerInput
+}
+
+input SellerInput {
+    group_id  : String!
+    url_key  : String!
+}
+
+input ReviewInput {
+    seller_url  : String!
+    rate1  : Int!
+    rate2  : Int!
+    rate3  : Int!
+    nickname  : String!
+    email  : String!
+    title  : String!
+    detail  : String!
+    like_about: String
+    not_like_about: String
+    is_recommended: Int
+}
+
+input CustomerDataInput {
+    firstname: String!
+    lastname: String!
+    email: String!
+    address: AddressInput
+}
+
+input AddressInput {
+    region_id: String
+    country_id: String!
+    city: String!
+    street: String!
+    company: String
+    telephone: String!
+    postcode: String!
+    or: AddressInput
+}
+
+input SellerCustomerInput {
+    seller: SellerInput!
+    customer: CustomerDataInput!
+    password: String!
+    or: SellerCustomerInput
+}
+
+input SellerInput {
+    group_id  : String!
+    url_key  : String!
+}
+
+input CustomerDataInput {
+    firstname: String!
+    lastname: String!
+    email: String!
+    address: AddressInput
+}
+
+input AddressInput {
+    region_id: String
+    country_id: String!
+    city: String!
+    street: String!
+    company: String
+    telephone: String!
+    postcode: String!
+    or: AddressInput
+}
+
+type SellerMessages {
+  total_count: Int @doc(description: "The number of seller messages returned")
+  items: [SellerMessage] @doc(description: "An array of items that match the specified search criteria")
+  page_info: SearchResultPageInfo @doc(description: "An object that includes the page_info and currentPage values specified in the query.")
+}
+
+type SellerMessageDetails {
+  total_count: Int @doc(description: "The number of seller messages details returned")
+  items: [SellerMessageDetail] @doc(description: "An array of items that match the specified search criteria")
+  page_info: SearchResultPageInfo @doc(description: "An object that includes the page_info and currentPage values specified in the query.")
+}
+
+type SellerMessage {
+    message_id: Int @doc(description: "The number of seller message returned")
+    description: String @doc(description: "message description field")
+    subject: String @doc(description: "message subject field")
+    sender_email: String @doc(description: "sender_email field")
+    sender_name: String @doc(description: "sender_name field")
+    created_at: String @doc(description: "created_at field")
+    status: Int @doc(description: "status field")
+    is_read: Int @doc(description: "is_read field")
+    sender_id: Int @doc(description: "sender_id field")
+    owner_id: Int @doc(description: "owner_id field")
+    receiver_id: Int @doc(description: "receiver_id field")
+    seller_send: Int @doc(description: "seller_send field")
+    details (
+        pageSize: Int = 20 @doc(description: "Specifies the maximum number of results to return at once. This attribute is optional.")
+        currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1.")
+    ): SellerMessageDetails @doc(description: "List of message details by message_id.") @resolver(class: "\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\MessageDetail")
+}
+
+type SellerMessageDetail {
+    content: String @doc(description: "An encoded rating value id.")
+    sender_name: String @doc(description: "sender_name field.")
+    sender_email: String @doc(description: "sender_email field")
+    receiver_name: String @doc(description: "receiver_name field.")
+    is_read: Int @doc(description: "is_read field")
+    created_at: String @doc(description: "created_at field")
+}
+
+input SellerMessageFilterInput {
+    message_id: FilterEqualTypeInput @deprecated(reason: "Filter Seller Message message_id")
+    description: FilterTypeInput @deprecated(reason: "Filter Seller Message description")
+    subject: FilterTypeInput @deprecated(reason: "Filter Seller Message subject")
+    sender_email: FilterTypeInput @deprecated(reason: "Filter Seller Message sender_email")
+    sender_name: FilterTypeInput @deprecated(reason: "Filter Seller Message sender_name")
+    created_at: FilterTypeInput @deprecated(reason: "Filter Seller Message created_at")
+    status: FilterEqualTypeInput @deprecated(reason: "Filter Seller Message status")
+    is_read: FilterEqualTypeInput @deprecated(reason: "Filter Seller Message is_read")
+    sender_id: FilterEqualTypeInput @deprecated(reason: "Filter Seller Message sender_id")
+    owner_id: FilterEqualTypeInput @deprecated(reason: "Filter Seller Message owner_id")
+    receiver_id: FilterEqualTypeInput @deprecated(reason: "Filter Seller Message receiver_id")
+    seller_send: FilterEqualTypeInput @deprecated(reason: "Filter Seller Message seller_send")
+    or: SellerMessageFilterInput @deprecated(reason: "Filter Seller Message condition OR")
+}
+
+input SellerMessageSortInput {
+    message_id: SortEnum @doc(description: "Sort by the message_id assigned to each message (default).")
+    subject: SortEnum @doc(description: "Sort by the subject.")
+    sender_id: SortEnum @doc(description: "Sort by the sender_id.")
+    owner_id: SortEnum @doc(description: "Sort by the owner_id assigned to each order.")
+    sender_name: SortEnum @doc(description: "Sort by the sender_name assigned to each message.")
+    sender_email: SortEnum @doc(description: "Sort by the sender_email assigned to each message.")
+    status: SortEnum @doc(description: "Sort by the status assigned to each message.")
+    is_read: SortEnum @doc(description: "Sort by the is_read assigned to each message.")
+    seller_send: SortEnum @doc(description: "Sort by the seller_send assigned to each message.")
+}
+
+input CustomerMessageInput {
+    seller_url: String! @doc(description: "Current seller_url Key")
+    subject: String @doc(description: "Message Subject")
+    content: String! @doc(description: "Message Content.")
+}
+
+input ReplyMessageInput {
+    message_id: Int! @doc(description: "Current message_id")
+    content: String! @doc(description: "Message Content.")
+}
+
+type SortField {
+    value: String @doc(description: "Attribute code of sort field.")
+    label: String @doc(description: "Label of sort field.")
+}
+type SortFields @doc(description: "SortFields contains a default value for sort fields and all available sort fields.") {
+    default: String @doc(description: "Default value of sort fields.")
+    options: [SortField] @doc(description: "Available sort fields.")
+}
+

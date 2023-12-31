@@ -1,0 +1,144 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Magento2.Security.XssTemplate.FoundNotAllowed
+// phpcs:disable Generic.Files.LineLength.TooLong
+/**
+ * @var $block Lof\MarketPlace\Block\Account\Navigation
+ */
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$customerSession = $objectManager->get(\Magento\Customer\Model\Session::class);
+$urlInterface = $objectManager->get(\Magento\Framework\UrlInterface::class);
+
+if (!$customerSession->isLoggedIn()) {
+    $customerSession->setAfterAuthUrl(str_replace('marketplace', '', $urlInterface->getCurrentUrl()));
+    $customerSession->authenticate();
+}
+
+$_helper = $this->helper(\Lof\MarketPlace\Helper\Data::class);
+$_sellerHelper = $this->helper(\Lof\MarketPlace\Helper\Seller::class);
+$url = $this->helper(\Lof\MarketPlace\Helper\Url::class);
+$seller = $_sellerHelper->getSellerByCustomer();
+$dataseller = $objectManager->get(\Lof\MarketPlace\Model\Seller::class)->load($seller['seller_id']);
+if ($seller['thumbnail']) {
+    $imageSrc = $_helper->getMediaUrl() . $seller['thumbnail'];
+} else {
+    $imageSrc = $_helper->getMediaUrl() . 'images/user.png';
+}
+?>
+<div class="top_nav">
+    <div class="nav_menu">
+        <nav>
+            <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+            </div>
+            <?php if ($childHtml = $block->getChildHtml()): ?>
+                <div class="nav navbar-left navbar-header-block-container">
+                <?= $childHtml; ?>
+                </div>
+            <?php endif; ?>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                       aria-expanded="false">
+                        <img src="<?= $block->escapeUrl($imageSrc) ?>" alt=""><?= $block->escapeHtml($seller['name']) ?>
+                        <span class=" fa fa-angle-down"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-usermenu pull-right">
+                        <li>
+                            <a target="blank" href="<?= $block->escapeUrl($dataseller->getUrl()) ?>">
+                                <span><?= $block->escapeHtml(__('View My Store')) ?></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= $block->escapeUrl($this->getUrl('catalog/seller/index')) ?>">
+                                <span><?= $block->escapeHtml(__('Profile')) ?></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= $block->escapeUrl($url->getLogoutUrl()) ?>">
+                                <i class="fa fa-sign-out pull-right"></i><?= $block->escapeHtml(__('Log Out')) ?>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li role="presentation" class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
+                       aria-expanded="false">
+                        <i class="fa fa-envelope-o"></i>
+                        <span class="badge bg-green">
+                            <?php $count = count($this->getDetailUnRead()) + count($this->getDetailAdminUnRead()) + count($this->getMessageUnRead());
+                            echo $count; ?>
+                        </span>
+                    </a>
+                    <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                        <?php foreach ($this->getDetailUnRead() as $detail): ?>
+                            <li>
+                                <a href="<?= $block
+                                    ->getUrl('catalog/message/view', ['view' => $detail->getMessageId()]); ?>">
+                                    <span>
+                                        <span><?= $detail->getData('sender_name'); ?></span>
+                                        <span class="time">
+                                        <?= $_helper->nicetime($detail->getData('created_at')); ?>
+                                        </span>
+                                    </span>
+                                    <span class="lof-message">
+                                      <?= $detail->getData('content'); ?>
+                                    </span>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
+                        <?php foreach ($this->getDetailAdminUnRead() as $detail): ?>
+                            <li>
+                                <a href="<?= $block
+                                    ->getUrl('catalog/messageadmin/view', ['view' => $detail->getMessageId()]); ?>">
+                                    <span><?= $block->escapeHtml($detail->getData('sender_name')) ?></span>
+                                    <span class="time">
+                                        <?= $_helper->nicetime($detail->getData('created_at')); ?>
+                                    </span>
+                                    <span class="lof-message">
+                                      <?= $block->escapeHtml($detail->getData('content')) ?>
+                                    </span>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
+                        <?php foreach ($this->getMessageUnRead() as $message): ?>
+                            <li>
+                                <a href="<?= $block
+                                    ->getUrl('catalog/message/view', ['view' => $message['message_id']]); ?>">
+                                    <span><?= $block->escapeHtml($message['sender_name']) ?></span>
+                                    <span class="time">
+                                        <?= $_helper->nicetime($message['created_at']); ?>
+                                    </span>
+                                    <span class="lof-message">
+                                        <?= $block->escapeHtml($message['description']) ?>
+                                    </span>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

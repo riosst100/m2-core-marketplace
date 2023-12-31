@@ -1,0 +1,81 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// @codingStandardsIgnoreFile
+/**
+ * @var $block Lof\MarketPlace\Block\Seller\Menu
+ */
+?>
+
+<?php
+$_helper = $this->helper(\Lof\MarketPlace\Helper\Data::class);
+$_sellerHelper = $this->helper(\Lof\MarketPlace\Helper\Seller::class);
+$isSeller = $this->isSeller();
+$seller = $_sellerHelper->getSellerByCustomer();
+
+if ($seller['thumbnail']) {
+    $imageSrc = $_helper->getMediaUrl() . $seller['thumbnail'];
+} else {
+    $imageSrc = $_helper->getMediaUrl() . 'images/user.png';
+}
+$magentoCurrentUrl = $block->getCurrentUrl();
+$allow_pro_type = 'configurable';
+$isSellerGroup = 1;
+?>
+<div class="col-md-3 left_col">
+    <div class="left_col scroll-view">
+        <div class="navbar nav_title">
+            <a href="<?= $block->getUrl('catalog/dashboard', ['_secure' => $this->getRequest()->isSecure()]); ?>"
+               class="site_title"><i class="fa <?= $_helper->getConfig('design/header_icon'); ?>"></i>
+                <span>
+            <?php if ($_helper->getConfig('design/header_text')):
+                echo $block->escapeHtml($_helper->getConfig('design/header_text'));
+            else: ?>
+                <?= $block->escapeHtml(__('Landofcoder')); ?>
+            <?php endif; ?>
+          </span>
+            </a>
+        </div>
+        <div class="clearfix"></div>
+        <div class="profile clearfix">
+            <div class="profile_pic">
+                <img src="<?= $block->escapeUrl($imageSrc) ?>" alt="..." class="img-circle profile_img">
+            </div>
+            <div class="profile_info">
+                <span><?= $block->escapeHtml(__('Welcome')) . ','; ?></span>
+                <h2 class="mpk-seller-name"><?= $block->escapeHtml($seller['name']) ?></h2>
+                <?php if ($_helper->getConfig('design/show_seller_group')): ?>
+                    <p class="mpk-seller-group">
+                        <?= $block->escapeHtml(__('Group: %1', $_sellerHelper->getGroupName())) ?>
+                    </p>
+                <?php endif; ?>
+                <i class="fa fa-circle text-success"></i>&nbsp;<?= __('Online'); ?>
+            </div>
+        </div>
+        <br>
+        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section active">
+                <?php /* @escapeNotVerified */
+                echo $block->renderNavigation($block->getMenuModel(), 0, 12); ?>
+            </div>
+        </div>
+    </div>
+</div>

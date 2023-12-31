@@ -1,0 +1,35 @@
+<?php
+// @codingStandardsIgnoreFile
+?>
+<?php
+/**
+ * Product list template
+ *
+ * @var $block \Magento\Catalog\Block\Product\ListProduct|\Magento\CatalogSearch\Block\SearchResult\ListProduct
+ */
+$_productCollection = $block->getLoadedProductCollection();
+$sellerHelper = $this->helper("Lof\MarketPlace\Helper\Seller");
+$sellerVacationProducts = $sellerHelper->getSellerVacationProducts($_productCollection);
+?>
+<script type="text/javascript">
+    var sellerVacationProducts = <?= \Zend_Json::encode($sellerVacationProducts); ?>;
+    console.log(sellerVacationProducts);
+    require([
+        'jquery',
+    ], function($){
+        jQuery(document).ready(function($) {
+            let productAddtocartForms = $('.product-item-info form[data-role="tocart-form"]');
+            productAddtocartForms.each((index, el) => {
+                let formElement = el;
+                let productIdField = $(formElement).find('input[name="product"]');
+                let productId = productIdField ? productIdField.val() : 0;
+                if (sellerVacationProducts[productId]){
+                    var buttonAddTocart = $(formElement).find("button[type=submit].tocart");
+                    var title = $(buttonAddTocart).find("span");
+                    $(buttonAddTocart).addClass('disabled');
+                    $(title).html(sellerVacationProducts[productId]['text_add_cart']);
+                }
+            });
+        });
+    });
+</script>

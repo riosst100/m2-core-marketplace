@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lof_MarketPlace
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Lof_MarketPlace::marketplace" title="Lof MarketPlace">
+                    <resource id="Lof_MarketPlace::seller" title="Sellers" sortOrder="10">
+                        <resource id="Lof_MarketPlace::seller_edit" title="Edit Seller" sortOrder="10" />
+                        <resource id="Lof_MarketPlace::seller_save" title="Save Seller" sortOrder="20" />
+                        <resource id="Lof_MarketPlace::seller_delete" title="Delete Seller" sortOrder="30" />
+                        <resource id="Lof_MarketPlace::pending_seller" title="Manage Pending Sellers" sortOrder="40" />
+                        <resource id="Lof_MarketPlace::seller_message" title="Messages" sortOrder="50" />
+                    </resource>
+                    <resource id="Lof_MarketPlace::commission" title="Product Commissions" sortOrder="20">
+                        <resource id="Lof_MarketPlace::commission_edit" title="Edit Product Commission" sortOrder="10" />
+                        <resource id="Lof_MarketPlace::commission_save" title="Save Product Commission" sortOrder="20" />
+                        <resource id="Lof_MarketPlace::commission_delete" title="Delete Product Commission" sortOrder="30" />
+                    </resource>
+                    <resource id="Lof_MarketPlace::shipping_commission" title="Shipping Commissions" sortOrder="25">
+                        <resource id="Lof_MarketPlace::shipping_commission_edit" title="Edit Shipping Commission" sortOrder="10" />
+                        <resource id="Lof_MarketPlace::shipping_commission_save" title="Save Shipping Commission" sortOrder="20" />
+                        <resource id="Lof_MarketPlace::shipping_commission_delete" title="Delete Shipping Commission" sortOrder="30" />
+                    </resource>
+                    <resource id="Lof_MarketPlace::group" title="Groups" sortOrder="30">
+                        <resource id="Lof_MarketPlace::group_edit" title="Edit Group" sortOrder="10" />
+                        <resource id="Lof_MarketPlace::group_save" title="Save Group" sortOrder="20" />
+                        <resource id="Lof_MarketPlace::group_delete" title="Delete Group" sortOrder="30" />
+                    </resource>
+                    <resource id="Lof_MarketPlace::catalog" title="Catalog" sortOrder="40" >
+                        <resource id="Lof_MarketPlace::sellerproduct" title="Manage Products" sortOrder="10" />
+                        <resource id="Lof_MarketPlace::sellerproduct_pending" title="Manage Pending Products" sortOrder="20" />
+                    </resource>
+                    <resource id="Lof_MarketPlace::sales" title="Sales" sortOrder="50">
+                        <resource id="Lof_MarketPlace::order" title="Orders" sortOrder="50"/>
+                        <resource id="Lof_MarketPlace::transaction" title="Orders Transaction" sortOrder="60"/>
+                        <resource id="Lof_MarketPlace::invoice" title="Invoices" sortOrder="70" />
+                        <resource id="Lof_MarketPlace::invoice_pdf" title="Invoice PDF export" sortOrder="80" />
+                        <resource id="Lof_MarketPlace::refund" title="Refund" sortOrder="80" />
+                    </resource>
+                    <resource id="Lof_MarketPlace::payment" title="Payment and Amounts" sortOrder="60">
+                        <resource id="Lof_MarketPlace::amount_transaction" title="Manage Amount Transactions" sortOrder="10" />
+                        <resource id="Lof_MarketPlace::amount" title="Manage Seller Amounts" sortOrder="20" />
+                        <resource id="Lof_MarketPlace::paymentmethod" title="Payment Methods" sortOrder="30">
+                            <resource id="Lof_MarketPlace::payment_edit" title="Edit Payment" sortOrder="10" />
+                            <resource id="Lof_MarketPlace::payment_save" title="Save Payment" sortOrder="20" />
+                            <resource id="Lof_MarketPlace::payment_delete" title="Delete Payment" sortOrder="30" />
+                            <resource id="Lof_MarketPlace::payment_view" title="View Payment" sortOrder="40"/>
+                        </resource>
+                        <resource id="Lof_MarketPlace::withdrawal" title="Manage Withdrawal Requests" sortOrder="40">
+                            <resource id="Lof_MarketPlace::withdrawal_edit" title="Create/Edit Withdrawal Request" sortOrder="5" />
+                            <resource id="Lof_MarketPlace::withdrawal_save" title="Save Withdrawal Request" sortOrder="10" />
+                            <resource id="Lof_MarketPlace::withdrawal_submit" title="Submit Change Withdrawal" sortOrder="20" />
+                            <resource id="Lof_MarketPlace::withdrawal_delete" title="Delete Withdrawal" sortOrder="30" />
+                            <resource id="Lof_MarketPlace::withdrawal_view" title="View Withdrawal" sortOrder="40"/>
+                        </resource>
+                        <resource id="Lof_MarketPlace::amountTransaction" title="Amount Transaction" sortOrder="50">
+                            <resource id="Lof_MarketPlace::amountTransaction_save" title="Save Amount Transaction" sortOrder="10"/>
+                            <resource id="Lof_MarketPlace::amountTransaction_delete" title="Delete Amount Transaction" sortOrder="20"/>
+                            <resource id="Lof_MarketPlace::amountTransaction_update" title="Update Amount Transaction" sortOrder="30"/>
+                            <resource id="Lof_MarketPlace::amountTransaction_view" title="View Amount Transaction" sortOrder="40"/>
+                        </resource>
+                    </resource>
+                    <resource id="Lof_MarketPlace::reviewrating" title="Reviews and Ratings" sortOrder="70">
+                        <resource id="Lof_MarketPlace::review" title="Manage Reviews" sortOrder="10" />
+                        <resource id="Lof_MarketPlace::rating" title="Manage Ratings" sortOrder="20" />
+                        <resource id="Lof_MarketPlace::rating_save" title="Save Rating" sortOrder="30" />
+                        <resource id="Lof_MarketPlace::rating_delete" title="Delete Rating" sortOrder="40" />
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Lof_MarketPlace::config_seller" title="Lof MarketPlace" />
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

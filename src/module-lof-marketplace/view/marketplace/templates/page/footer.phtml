@@ -1,0 +1,46 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Magento2.Security.XssTemplate.FoundNotAllowed
+// phpcs:disable Generic.Files.LineLength.TooLong
+/**
+ * @var $block Lof\MarketPlace\Block\Account\Navigation
+ */
+$_helper = $this->helper(\Lof\MarketPlace\Helper\Data::class);
+?>
+<footer>
+    <div class="pull-right">
+        <?php if ($_helper->getConfig('design/footer_text')): ?>
+            <?= $_helper->getConfig('design/footer_text'); ?>
+        <?php else: ?>
+            <?= $block->escapeHtml(__('Marketplace - Module by')) ?> <a href="https://landofcoder.com"><?= $block->escapeHtml(__('Landofcoder')) ?></a>
+        <?php endif; ?>
+    </div>
+    <div class="clearfix"></div>
+</footer>
+<script type="text/javascript">
+    require(['jquery'], function () {
+        if (jQuery('#menu-lof-marketplace-shipping ul.child_menu').length == 0) {
+            jQuery('#menu-lof-marketplace-shipping').css('display', 'none')
+        }
+    });
+</script>

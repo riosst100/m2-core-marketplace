@@ -1,0 +1,33 @@
+{
+    "name": "landofcoder/module-marketplace",
+    "description": "Multi Vendor Marketplace Extension for Magento 2",
+    "keywords": [
+        "landofcoder",
+        "landofcoder marketplace",
+        "landofcoder multi vendor extension"
+    ],
+    "require": {
+        "landofcoder/module-all": "1.*"
+    },
+    "type": "magento2-module",
+    "version": "1.2.4",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "authors": [
+        {
+            "name": "Landofcoder",
+            "email": "landofcoder@gmail.com",
+            "role": "Magento 2 Lof Marketplace Extension"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Lof\\MarketPlace\\": ""
+        }
+    }
+}

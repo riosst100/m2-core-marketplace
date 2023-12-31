@@ -1,0 +1,199 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Generic.WhiteSpace.ScopeIndent
+// phpcs:disable Magento2.Security.XssTemplate.FoundUnescaped
+// phpcs:disable Generic.Files.LineLength.TooLong
+
+/**
+ * @var $block \Lof\MarketPlace\Block\Account\Navigation
+ */
+$_helper = $this->helper(\Lof\MarketPlace\Helper\Data::class);
+$isSeller = $this->isSeller();
+$mCurUrl = $block->getCurrentUrl();
+$allow_pro_type = 'configurable';
+$isSellerGroup = 1;
+$secure = ['_secure' => $this->getRequest()->isSecure()];
+?>
+
+<div class="block account-nav block-collapsible-nav wk-mp-main">
+    <div class="title block-collapsible-nav-title"
+         data-mage-init='{"toggleAdvanced": {"toggleContainers": "#block-collapsible-nav-seller", "selectorsToggleClass": "active"}}'>
+        <strong><?= $block->escapeHtml(__('Marketplace')) ?></strong>
+    </div>
+    <div class="content block-collapsible-nav-content" id="block-collapsible-nav-seller">
+        <nav class="account-nav">
+            <ul class="nav items">
+                <?php
+                if ($isSeller == 1): ?>
+                    <li class="nav item <?= strpos($mCurUrl, 'lofmarketplace/seller/dashboard') !== false
+                        ? "current" : ""; ?>">
+                        <?php
+                        if (strpos($mCurUrl, 'marketplace/account/dashboard') !== false): ?>
+                            <strong><?= __('Marketplace Dashboard') ?></strong>
+                        <?php
+                        else: ?>
+                            <a href="<?= $block->getUrl('lofmarketplace/seller/dashboard', $secure) ?>">
+                                <?= $block->escapeHtml(__('Marketplace Dashboard')) ?>
+                            </a>
+                        <?php
+                        endif; ?>
+                    </li>
+                    <li class="nav item <?= strpos($mCurUrl, 'lofmarketplace/account/editprofile') !== false
+                        ? "current" : ""; ?>">
+                        <?php if (strpos($mCurUrl, 'lofmarketplace/account/editprofile') !== false): ?>
+                            <strong><?= $block->escapeHtml(__('Seller Profile')) ?></strong>
+                        <?php
+                        else: ?>
+                            <a href="<?= $block->getUrl('lofmarketplace/seller/editprofile', $secure); ?>">
+                                <?= $block->escapeHtml(__('Seller Profile')) ?>
+                            </a>
+                        <?php
+                        endif; ?>
+                    </li>
+                    <li class="nav item">
+                        <a href="#">
+                            <span><?= $block->escapeHtml(__('Manage Products')) ?></span>
+                            <span class="opener"></span>
+                        </a>
+                        <ul class="dropdown">
+                            <li style="display: none" class="submenu">
+                                <a href="<?= $block->getUrl('lofmarketplace/product/index', $secure); ?>">
+                                    <?= __('Manage Products') ?>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <?php
+                    if (strpos($allow_pro_type, 'configurable') !== false): ?>
+                        <li class="nav item <?= strpos($mCurUrl, 'lofmarketplace/product/attribute') !== false
+                            ? "current" : ""; ?>">
+                            <?php if (strpos($mCurUrl, 'lofmarketplace/product/attribute') !== false): ?>
+                                <strong><?= $block->escapeHtml(__('Create Attribute')) ?></strong>
+                            <?php else: ?>
+                                <a href="<?= $block->getUrl('lofmarketplace/product/attribute', $secure); ?>">
+                                    <?= $block->escapeHtml(__('Create Attribute')) ?>
+                                </a>
+                            <?php endif; ?>
+                        </li>
+                    <?php
+                    endif;
+                    ?>
+                    <li class="nav item <?= (strpos($mCurUrl, 'lofmarketplace/product/add/set/4/type/simple') !== false)
+                        ? "current" : ""; ?>">
+                        <?php
+                        if (strpos($mCurUrl, 'lofmarketplace/product/add/set/4/type/simple') !== false): ?>
+                            <strong><?= __('New Products') ?></strong>
+                        <?php
+                        else: ?>
+                            <a href="<?= $block->getUrl('lofmarketplace/product/add/set/4/type/simple', $secure); ?>">
+                                <?= $block->escapeHtml(__('New Products')) ?>
+                            </a>
+                        <?php
+                        endif; ?>
+                    </li>
+                    <li class="nav item <?= strpos($mCurUrl, 'marketplace/product/productlist') ? "current" : ""; ?>">
+                        <?php if (strpos($mCurUrl, 'marketplace/product/productlist') !== false): ?>
+                            <strong><?= $block->escapeHtml(__('My Products List')) ?></strong>
+                        <?php else: ?>
+                            <a href="<?= $block->getUrl('marketplace/product/productlist', $secure); ?>">
+                                <?= $block->escapeHtml(__('My Products List')) ?>
+                            </a>
+                        <?php endif; ?>
+                    </li>
+                    <li class="nav item <?= strpos($mCurUrl, 'marketplace/transaction/history') ? "current" : ""; ?>">
+                        <?php
+                        if (strpos($mCurUrl, 'marketplace/transaction/history') !== false): ?>
+                            <strong><?= $block->escapeHtml(__('My Transaction List')) ?></strong>
+                        <?php
+                        else: ?>
+                            <a href="<?= $block->getUrl('marketplace/transaction/history', $secure); ?>">
+                                <?= $block->escapeHtml(__('My Transaction List')) ?>
+                            </a>
+                        <?php
+                        endif; ?>
+                    </li>
+                    <li class="nav item <?= strpos($mCurUrl, 'marketplace/order/shipping/') ? "current" : ""; ?>">
+                        <?php if (strpos($mCurUrl, 'marketplace/order/shipping') !== false): ?>
+                            <strong><?= $block->escapeHtml(__('Manage Print PDF Header Info')) ?></strong>
+                        <?php
+                        else: ?>
+                            <a href="<?= $block->getUrl('marketplace/order/shipping', $secure); ?>">
+                                <?= $block->escapeHtml(__('Manage Print PDF Header Info')) ?>
+                            </a>
+                        <?php
+                        endif; ?>
+                    </li>
+                    <?= $block->getChildHtml(); ?>
+                    <li class="nav item <?= strpos($mCurUrl, 'marketplace/order') !== false
+                    && (!strpos($mCurUrl, 'marketplace/order/shipping/')) ? "current" : ""; ?>">
+                        <?php
+                        if (strpos($mCurUrl, 'marketplace/order') !== false
+                            && strpos($mCurUrl, 'marketplace/order/shipping/') === false): ?>
+                            <strong><?= $block->escapeHtml(__('My Order History')) ?></strong>
+                        <?php
+                        else: ?>
+                            <a href="<?= $block->getUrl('marketplace/order/history', $secure); ?>">
+                                <?= $block->escapeHtml(__('My Order History')) ?>
+                            </a>
+                        <?php
+                        endif; ?>
+                    </li>
+                <?php
+                else: ?>
+                    <?= $block->getChildHtml(); ?>
+                    <li class="nav item <?= strpos($mCurUrl, 'marketplace/seller/becomepartner') ? "current" : ""; ?>">
+                        <?php if (strpos($mCurUrl, 'lofmarketplace/seller/becomeseller') !== false): ?>
+                            <strong><?= $block->escapeHtml(__('Become Seller')) ?></strong>
+                        <?php else: ?>
+                            <a href="<?= $block->getUrl('lofmarketplace/seller/becomeseller', $secure); ?>">
+                                <?= $block->escapeHtml(__('Become Seller')) ?>
+                            </a>
+                        <?php endif; ?>
+                    </li>
+                <?php
+                endif; ?>
+            </ul>
+        </nav>
+    </div>
+</div>
+<style type="text/css">
+    @media only screen and (max-width: 767px) {
+        .block-collapsible-nav.wk-mp-main {
+            top: 20px;
+        }
+    }
+</style>
+<script type="text/javascript">
+    require(['jquery'], function () {
+        jQuery(document).ready(function ($) {
+            $('.account-nav .opener').on('click', function (e) {
+                e.preventDefault();
+                $(".account-nav .nav.item").removeClass("item-active");
+                var parent = $(this).parents(".nav.item").eq(0);
+                $(this).toggleClass('item-active');
+                $(parent).find(".submenu").eq(0).slideToggle();
+                return false;
+            });
+        });
+    });
+</script>

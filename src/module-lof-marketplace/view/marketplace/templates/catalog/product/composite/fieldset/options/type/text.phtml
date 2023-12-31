@@ -1,0 +1,43 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php /* @var $block \Magento\Catalog\Block\Product\View\Options\Type\Text */ ?>
+<?php $_option = $block->getOption(); ?>
+<div class="field admin__field<?php if ($_option->getIsRequire()) echo ' required _required' ?>">
+    <label class="admin__field-label label">
+        <?=  $block->escapeHtml($_option->getTitle()) ?>
+        <?php /* @escapeNotVerified */ echo $block->getFormatedPrice() ?>
+    </label>
+    <div class="control admin__field-control">
+        <?php if ($_option->getType() == \Magento\Catalog\Model\Product\Option::OPTION_TYPE_FIELD): ?>
+            <input type="text" id="options_<?php /* @escapeNotVerified */ echo $_option->getId() ?>_text" class="input-text admin__control-text <?= $_option->getIsRequire() ? ' required-entry' : '' ?> <?php /* @escapeNotVerified */ echo $_option->getMaxCharacters() ? ' validate-length maximum-length-' . $_option->getMaxCharacters() : '' ?> product-custom-option" name="options[<?php /* @escapeNotVerified */ echo $_option->getId() ?>]" value="<?= $block->escapeHtml($block->getDefaultValue()) ?>" price="<?php /* @escapeNotVerified */ echo $block->getCurrencyPrice($_option->getPrice(true)) ?>" />
+        <?php elseif ($_option->getType() == \Magento\Catalog\Model\Product\Option::OPTION_TYPE_AREA): ?>
+            <textarea id="options_<?php /* @escapeNotVerified */ echo $_option->getId() ?>_text" class="admin__control-textarea <?= $_option->getIsRequire() ? ' required-entry' : '' ?> <?php /* @escapeNotVerified */ echo $_option->getMaxCharacters() ? ' validate-length maximum-length-' . $_option->getMaxCharacters() : '' ?> product-custom-option" name="options[<?php /* @escapeNotVerified */ echo $_option->getId() ?>]" rows="5" cols="25" price="<?php /* @escapeNotVerified */ echo $block->getCurrencyPrice($_option->getPrice(true)) ?>"><?= $block->escapeHtml($block->getDefaultValue()) ?></textarea>
+        <?php endif;?>
+
+        <?php if ($_option->getMaxCharacters()): ?>
+            <p class="note"><?php /* @escapeNotVerified */ echo __('Maximum number of characters:')?> <strong><?php /* @escapeNotVerified */ echo $_option->getMaxCharacters() ?></strong></p>
+        <?php endif; ?>
+    </div>
+</div>

@@ -1,0 +1,1078 @@
+Become A Seller,تصبح البائع
+Manage Commissions,إدارة اللجان
+Add New Commission,إضافة جنة الجديد
+Save,حفظ جنة
+Save and Continue Edit,حفظ ومتابعة تحرير
+Delete Commission,لجنة الحذف
+Edit Commission '%1',تحرير جنة '٪ 1'
+New Commission,لجنة جديدة
+Calculate Commission Using The Following Information,المفوضية حساب باستخدام المعلومات التالية
+Commission By,اللجنة بواسطة
+Fixed Amount,مبلغ ثابت
+Percent Of Product Price,في المئة من سعر المنتج
+Calculate Commission Based On,حساب اللجنة وبناء على
+Product Price (Incl. Tax),سعر المنتج (متضمنة الضرائب)
+Product Price (Excl. Tax),المنتج السعر (باستثناء الضرائب)
+Product Price After Discount (Incl. Tax),سعر المنتج بعد الخصم (متضمنة الضرائب)
+Product Price After Discount (Excl. Tax),سعر المنتج بعد الخصم (باستثناء الضرائب)
+Commission,عمولة
+Discard subsequent rules,قواعد اللاحقة تجاهل
+Yes,نعم
+No,لا
+Actions,أجراءات
+Conditions (don't add conditions if rule is applied to all products),الشروط (لا إضافة شروط إذا تم تطبيق القاعدة على جميع المنتجات)
+Apply To,تطبيق ل
+Conditions,الظروف
+Commission Information,معلومات جنة
+Title,عنوان
+Description,وصف
+Status,الحالة
+From,من عند
+To,إلى
+Priority,أفضلية
+Seller Group,المجموعة البائع
+Store View,عرض متجر
+General Information,Infomration عامة
+Preview,معاينة
+Manage Seller Groups,إدارة المجموعات البائع
+Add New Seller Group,إضافة مجموعة جديدة البائع
+Save Group,حفظ المجموعة
+Delete Group,المجموعة الحذف
+Edit Group '%1',تحرير مجموعة '٪ 1'
+New Group,مجموعة جديدة
+Group Information,معلومات عن المجموعة
+Group Name,أسم المجموعة
+URL Key,URL مفتاح
+Empty to auto create url key,تفريغ لصناعة السيارات إنشاء مفتاح عنوان url
+Page Status,الحالة الصفحة
+Option Data,الخيار البيانات
+Limit Product,حد المنتج
+Can Add New Product,يمكن إضافة منتجات جديدة
+Can Cancel Order,يمكن إلغاء إشتراك
+Can Create Invoice,يمكن إنشاء الفاتورة
+Can Create Shipment,يمكن إنشاء شحنة
+Can Create Credit Memo,يمكن إنشاء مذكرة الاعتماد
+Hide Payment Information,معلومات إخفاء الدفع
+The payment information of customer will be hidden from order.,سيتم إخفاء معلومات الدفع من العملاء من أجل.
+Can submit comments,يمكن تقديم تعليقات
+Can Use Group,استخدام مجموعة علبة
+Can Use Shipping,يمكن استخدام الشحن
+Can Use Review,يمكن استخدام مراجعة
+Can Use Rating,يمكن استخدام التصويت
+Can Import/Export Product,يمكن استيراد / تصدير المنتج
+Can Use Vacation,يمكن استخدام عطلة
+Can Use Report,استخدم تقرير يمكن
+Can Use Withdrawal,يمكن استخدام الانسحاب
+Advanced Options,خيارات متقدمة
+Message Seller,رسالة للبائع
+Add New Message,إضافة رسالة جديدة
+Save Message,حفظ رسالة
+Delete Message,حذف رسالة
+Edit Message '%1',تحرير رسالة '٪ 1'
+New Message,رسالة جديدة
+Message Information,معلومات الرسالة
+Subject,موضوع
+Message,رسالة
+added %1 (%2),وأضاف٪ 1 (٪ 2)
+Can Use Message,يمكن استخدام رسالة
+Manage Payments Method,إدارة أسلوب المدفوعات
+Add New Payment,إضافة جديد الدفع
+Save Payment,حفظ الدفع
+Delete Payment,الدفع الحذف
+Edit Payment '%1',تحرير الدفع '٪ 1'
+New Payment,الدفع الجديد
+Payment Information,معلومات الدفع
+Name,اسم
+Fee By,رسم بواسطة
+Fixed Fee,رسوم ثابتة
+Percent Fee,رسوم في المئة
+All,الكل
+Min Amount,مين المبلغ
+Max Amount,ماكس المبلغ
+Order Payment,دفع النظام
+Note Message,ملاحظة رسالة
+Manage Products,إدارة المنتجات
+Add New Product,إضافة منتج جديد
+Manage Ratings,إدارة التقييمات
+Add New Rating,إضافة تقييم جديد
+Save Rating,حفظ التصويت
+Delete Rating,التصويت حذف
+Edit Rating '%1',تحرير التصويت '٪ 1'
+New Rating,التصويت جديدة
+Rating Information,تصنيف المعلومات
+Email,البريد الإلكتروني
+Detail,التفاصيل
+Seller Id,البائع رقم
+Rate 1,معدل 1
+Rate 2,معدل 2
+Rate 3,معدل 3
+Manage Sellers,إدارة البائعين
+Add New Seller,إضافة بائع جديد
+Save Seller,حفظ البائع
+Delete Seller,بائع حذف
+Edit Seller '%1',تحرير البائع '٪ 1'
+New Seller,بائع جديد
+Page Layout,تخطيط الصفحة
+Layout,نسق
+Layout Update XML,تخطيط تحديث XML
+Design,التصميم
+Seller Information,معلومات البائع
+Seller Name,البائع اسم
+Link Seller,رابط البائع
+Contact Number,رقم الاتصال
+Shop Title,متجر عنوان
+Customer,زبون
+Company Banner,شركة راية
+Company Logo,شعار الشركة
+Company Locality,شركة محلية
+Company Description,وصف الشركة
+Return Policy,سياسة العائدات
+Shipping Policy,سياسة الشحن
+Address,عنوان
+Country,بلد
+Position,موضع
+Meta Data,البيانات الوصفية
+Page Title,عنوان الصفحة
+Keywords,الكلمات الدالة
+Meta Keywords,كلمات دلالية
+Meta Description,ميتا الوصف
+ID,هوية شخصية
+Type,نوع
+Attribute Set,تعيين السمة
+Visibility,رؤية
+SKU,SKU
+Price,السعر
+Social Infomation,Infomation و الاجتماعية
+Twitter Active,تويتر النشطة
+Twitter,تويتر
+Facebook Active,الفيسبوك النشطين
+Page Facebook Id,صفحة الفيسبوك إيد
+Facebook,موقع التواصل الاجتماعي الفيسبوك
+Google Plus Active,جوجل بلس النشطة
+Google Plus,جوجل بلس
+Youtube Active,يوتيوب نشط
+Youtube,موقع يوتيوب
+Vimeo Active,تواجد فيميو
+Vimeo,فيميو
+Linkedin Active,تابعني على تواجد
+Linkedin,تابعني على
+Instagram Active,إينستاجرام نشط
+Instagram,إينستاجرام
+Pinterest Active,بينتيريست النشطة
+Pinterest,موقع Pinterest
+Social Information,معلومات الاجتماعي
+Products,منتجات
+WYSIWYG Editor,محرر WYSIWYG
+Manage Withdrawals Method,إدارة السحوبات الطريقة
+Add New Withdrawal,إضافة الانسحاب الجديد
+Save Withdrawal,حفظ الانسحاب
+Edit Withdrawal '%1',تحرير الانسحاب '٪ 1'
+New Withdrawal,سحب جديدة
+Withdrawal Information,معلومات انسحاب
+Fee,رسوم
+Order Withdrawal,أجل الانسحاب
+Export,تصدير
+Export Settings,إعدادات التصدير
+Entity Type,كيان نوع
+Export File Format,تنسيق ملف تصدير
+Fields Enclosure,الحقول ضميمة
+We can't filter an attribute with no attribute options.,ونحن لا يمكن تصفية سمة مع عدم وجود خيارات السمة.
+Exclude,استبعد
+Attribute Label,السمة تسمية
+Attribute Code,السمة كود
+Filter,منقي
+Unknown attribute filter type,سمة غير معروفة نوع فلتر
+Home,الصفحة الرئيسية
+Go to Home Page,الذهاب إلى الصفحة الرئيسية
+Create New Product,خلق منتج جديد
+Create New Attribute,إنشاء سمة جديدة
+Export Product,تصدير المنتج
+"Images (.gif, .jpg, .png)",الصور (أو jpg، بابوا نيو غينيا)
+Import Product,استيراد المنتج
+Add Product,أضف منتج
+label,ضع الكلمة المناسبة
+Advanced Report,تقرير المتقدم
+Amount Transaction,كمية عملية
+Invoice,فاتورة
+ [deleted], [تم الحذف]
+View Invoice,عرض الفاتورة
+Order,طلب
+View Order,مشاهدة الطلب
+Custom Value,القيمة الجمركية
+View Shipment,مشاهدة شحنة
+Become a Seller,تصبح البائع
+Dashboard,لوحة القيادة
+Edit Profile,تعديل الملف الشخصي
+Seller Login,بائع الدخول
+Error!,خطأ!
+Info,معلومات
+Success,نجاح
+Alert,إنذار
+Order # %1 %2 | %3,ترتيب٪ # 1٪ 2 | 3٪
+"This order contains (%1) items and therefore cannot be edited through the admin interface. If you wish to continue editing, the (%2) items will be removed,  the order will be canceled and a new order will be placed.",هذا النظام يحتوي على (٪ 1) فقرة، وبالتالي لا يمكن تحريرها من خلال واجهة الادارة. إذا كنت ترغب في مواصلة التحرير، وسيتم إزالة (٪ 2) العناصر، وسوف يتم إلغاء النظام وسيتم وضع نظام جديد.
+Are you sure? This order will be canceled and a new one will be created instead.,هل أنت واثق؟ سيتم إلغاء هذا النظام وسيتم إنشاء واحدة جديدة بدلا من ذلك.
+Payment,دفع
+Save,حفظ
+Save & Draft,حفظ المسودة
+Save & New,حفظ وجديد
+Save & Duplicate,حفظ وتكرار
+Save & Close,حفظ وإغلاق
+Url,رابط
+Preview Image,صورة المعاينة
+Get Video Information,الحصول على معلومات عن الفيديو
+Hide from Product Page,إخفاء من صفحة المنتج
+Role,وظيفة
+YouTube and Vimeo supported.,بدعم يوتيوب وفيميو.
+"Vimeo supported.<br />To add YouTube video, please enter YouTube API Key first.",بدعم فيميو. <br /> لإضافة فيديو يوتيوب، يرجى إدخال يوتيوب API مفتاح أولا.
+Weight,وزن
+Create New Seller Account,إنشاء حساب بائع جديد
+Review,مراجعة
+Sell On Marketplace ,بيع على السوق
+Vacation Settings,إعدادات عطلة
+Pending,قيد الانتظار
+Completed,منجز
+Cancel,إلغاء
+Withdrawals,السحب
+Amounts,كميات
+Manage Seller Amount,إدارة البائع المبلغ
+Manage Amount Transaction,إدارة عملية المبلغ
+The seller has been deleted.,تم حذف البائع.
+We can't find a seller to delete.,لم نتمكن من العثور على البائع لحذف.
+Seller,تاجر
+This seller no longer exits. ,هذا البائع مخارج لم يعد.
+Edit Seller,تحرير البائع
+Sellers,الباعة
+Commissions,اللجان
+A total of %1 record(s) have been deleted.,تم حذف ما مجموعه٪ 1 سجل (ق).
+A total of %1 record(s) have been disabled.,وكان ما مجموعه٪ 1 الإجابات المعوقين.
+A total of %1 record(s) have been enabled.,تم تمكين ما مجموعه٪ 1 سجل (ق).
+You saved this commission.,يمكنك حفظ هذه اللجنة.
+Something went wrong while saving the commission.,حدث خطأ ما أثناء حفظ عمولة.
+Seller Groups,المجموعات البائع
+Groups,مجموعات
+Manage Groups,إدارة المجموعات
+Please correct the data sent.,يرجى تصحيح البيانات المرسلة.
+URL key already exists.,مفتاح URL موجود بالفعل.
+You saved this group.,يمكنك حفظ هذه المجموعة.
+Something went wrong while saving the seller.,حدث خطأ ما أثناء حفظ البائع.
+Invoices,الفواتير
+Manage Invoices,إدارة الفواتير
+The message has been deleted.,تم حذف الرسالة.
+We can't find a message to delete.,لم نتمكن من العثور على رسالة لحذف.
+Messages,رسائل
+Manage Messages,إدارة الرسائل
+You saved this message.,يمكنك حفظ هذه الرسالة.
+Orders,الطلب #٪ s
+Manage Orders,إدارة الطلبات
+Manager Payment Method,أسلوب مدير الدفع
+Manager Payment,مدير الدفع
+You saved this payment.,يمكنك حفظ هذا الدفع.
+Product has been set commission.,وكان المنتج جنة تعيين.
+Ratings,تصنيفات
+A total of %1 record(s) have been accept.,وكان ما مجموعه٪ 1 سجل (ق) قبول.
+A total of %1 record(s) have been reject.,وكان ما مجموعه٪ 1 الإجابات رفض.
+You saved this rating.,يمكنك حفظ هذا التصنيف.
+Something went wrong while saving the rating.,حدث خطأ ما أثناء حفظ تصنيف.
+Refunds,المستردة
+Manage Refunds,إدارة المردودات
+Refundrequests,Refundrequests
+Manage Refundrequests,إدارة Refundrequests
+Reviews,التعليقات
+Manage Reviews,إدارة التعليقات
+A total of %1 record(s) have been approved.,وقد تمت الموافقة على ما مجموعه٪ 1 سجل (ق).
+A total of %1 record(s) have been disapproved.,تم رفض ما مجموعه٪ 1 سجل (ق).
+The seller has been disapproved.,وقد رفض البائع.
+We can't find a seller to disapproved.,لم نتمكن من العثور على البائع لالمرفوضة.
+The seller has been approved.,تمت الموافقة على البائع.
+We can't find a seller to approved.,لم نتمكن من العثور على البائع أن الموافقة.
+Something went wrong while saving the page.,حدث خطأ ما أثناء حفظ الصفحة.
+You saved this seller.,يمكنك حفظ هذا البائع.
+SellerProducts,SellerProducts
+Manage SellerProducts,إدارة SellerProducts
+A total of %1 record(s) have been accepted.,وقد تم قبول ما مجموعه٪ 1 سجل (ق).
+A total of %1 record(s) have been rejected.,تم رفض ما مجموعه٪ 1 سجل (ق).
+Transactions,المعاملات
+Manage Transactions,إدارة المعاملات
+Withdrawal,انسحاب
+Manage Withdrawals,إدارة السحوبات
+This withdrawal no longer exits. ,هذا الانسحاب مخارج لم يعد.
+Edit Withdrawal,تحرير الانسحاب
+	Withdraw Money : Amount ,سحب المال: المبلغ
+You must have a seller account to access,يجب أن يكون لديك حساب البائع إلى الوصول
+You must have a account to access,يجب أن يكون لديك حساب في الوصول
+"Attribute ""%1"" is required.","السمة ""٪ 1"" مطلوب."
+You saved the category.,يمكنك حفظ هذه الفئة.
+Something went wrong while saving the category.,حدث خطأ ما أثناء حفظ الفئة.
+This order no longer exists.,هذا النظام لم يعد موجودا.
+You are not authorize to manage this order.,انك لم يأذن لإدارة هذا النظام.
+The invoice no longer exists.,الفاتورة لم يعد موجودا.
+You are not authorize to view this invoice.,انك لم تأذن لمشاهدة هذه الفاتورة.
+The creditmemo no longer exists.,في مذكرة الائتمان لم يعد موجودا.
+You are not authorize to view this creditmemo.,انك لم تأذن لمشاهدة هذه مذكرة الائتمان.
+The order has been cancelled.,تم إلغاء هذا الأمر.
+You are not permitted to cancel this order.,لا يسمح لك لإلغاء هذا النظام.
+We can't cancel order right now.,ونحن لا يمكن إلغاء الطلب في الوقت الحالي.
+The credit memo's total must be positive.,يجب أن يكون مجموع المذكرة الائتمان الإيجابي.
+Cannot create online refund for Refund to Store Credit.,لا يمكن إنشاء رد على الانترنت للاسترداد في مخزن الائتمان.
+You created the credit memo.,قمت بإنشاء مذكرة الائتمان.
+We can't create credit memo for order right now.,ونحن لا يمكن إنشاء مذكرة الائتمان لاجل الآن.
+You sent the order email.,يمكنك إرسال البريد الإلكتروني النظام.
+We can't send the email order right now.,لا يمكننا أن نرسل ترتيب البريد الإلكتروني في الوقت الحالي.
+Can not create invoice as order is in HOLD state,لا يمكن إنشاء فاتورة والنظام في الدولة HOLD
+We can't save the invoice right now.,ونحن لا يمكن حفظ الفاتورة في الوقت الحالي.
+You can't create an invoice without products.,لا يمكنك إنشاء فاتورة دون المنتجات.
+Invoice has been created for this order.,تم إنشاء فاتورة لهذا النظام.
+Cannot create Invoice for this order.,لا يمكن إنشاء الفاتورة لهذا النظام.
+We can't create invoice for order right now.,ونحن لا يمكن إنشاء فاتورة النظام في الوقت الحالي.
+Can not create shipment as order is in HOLD state,لا يمكن إنشاء شحنة والنظام في الدولة HOLD
+Cannot do shipment for the order separately from invoice.,لا تستطيع أن تفعل الشحن للنظام على حدة من الفاتورة.
+Cannot do shipment for the order.,لا تستطيع أن تفعل الشحن للنظام.
+The shipment has been created.,تم إنشاء الشحن.
+The shipping label has been created.,تم إنشاء بطاقة شحن.
+We can't ship order right now.,لا يمكننا أن السفينة النظام في الوقت الحالي.
+That product is not yours,هذا المنتج هو ليس لك
+This product no longer exists.,هذا المنتج لم يعد موجودا.
+Catalog,فهرس
+Default Values,قيم افتراضية
+Could not get preview image information. Please check your connection and try again.,تعذر الحصول على معلومات معاينة الصورة. يرجى التحقق من اتصالك وحاول مرة أخرى.
+Please correct the data sent value.,يرجى تصحيح قيمة البيانات المرسلة.
+Show more,أظهر المزيد
+Additional data,بيانات إضافية
+Following Error(s) has been occurred during importing process:,وعقب خطأ (ق) وقد وقعت أثناء عملية الاستيراد:
+Only the first 100 errors are shown. ,فقط تظهر الأخطاء 100 الأولى.
+in row(s):,في الصفوف):
+Please make sure to define SKU values for all processed products.,يرجى التأكد من تحديد القيم SKU لجميع المنتجات المصنعة.
+A total of %1 record(s) have been updated.,تم تحديث ما مجموعه٪ 1 سجل (ق).
+Something went wrong while updating the product(s) status.,حدث خطأ ما أثناء تحديث المنتج (ق) حالة.
+"Your product limit is %1, please upgrade the membership package",حد المنتج الخاص بك هو٪ 1، الرجاء الترقية حزمة العضوية
+There is no data for the export.,لا توجد بيانات للتصدير.
+Maximum error count has been reached or system error is occurred!,وقد تم التوصل إلى عدد الأخطاء الأقصى أو حدث خطأ في النظام!
+Import successfully done,استيراد فعلت بنجاح
+Unable to save product,غير قادر على حفظ المنتج
+You saved the product.,يمكنك حفظ المنتج.
+SKU for product %1 has been changed to %2.,تم تغيير SKU للمنتج٪ 1 إلى٪ 2.
+You duplicated the product.,يمكنك تكرار هذا المنتج.
+The image cannot be removed as it has been assigned to the other image role,لا يمكن إزالة الصورة كما تم تعيينه إلى دور صورة أخرى
+"Sorry, but the data is invalid or the file is not uploaded.",آسف، ولكن البيانات غير صالحة أو لا يتم تحميل الملف.
+The file was not uploaded.,لم يتم تحميل الملف.
+This file is empty. Please try another one.,هذا الملف فارغ. الرجاء محاولة واحدة أخرى.
+Data validation failed. Please fix the following errors and upload the file again.,فشل التحقق من صحة البيانات. يرجى تصحيح الأخطاء التالية وتحميل الملف مرة أخرى.
+"File is valid! To start import process press ""Import"" button","ملف صالحا! لبدء استيراد عملية اضغط على زر ""استيراد"""
+"The file is valid, but we can't import it for some reason.",الملف غير صحيح، لكننا لا يمكن استيراده لسبب ما.
+"Checked rows: %1, checked entities: %2, invalid rows: %3, total errors: %4",الصفوف المحددة:٪ 1، والكيانات المحددة:٪ 2، الصفوف غير صالحة:٪ 3، ومجموع الأخطاء: 4٪
+Please specify a carrier.,يرجى تحديد الناقل.
+Please enter a tracking number.,الرجاء إدخال رقم تتبع.
+Cannot add tracking number.%1,لا يمكن إضافة عدد تتبع.٪ 1
+We can't load track with retrieving identifier right now.%1,ونحن لا يمكن تحميل المسار مع استرجاع المعرف في الوقت الحالي.٪ 1
+We can't initialize shipment for adding tracking number.,ونحن لا يمكن تهيئة شحنة لإضافة عدد تتبع.
+We can't delete tracking number.,لا يمكننا حذف عدد تتبع.
+Something went wrong while saving the vacation.,حدث خطأ ما أثناء حفظ عطلة.
+"You must confirm your account. Please check your email for the confirmation link or <a href=""%1"">click here</a> for a new link.","يجب عليك تأكيد حسابك. يرجى التحقق من بريدك الالكتروني لتأكيد الصلة أو <a href=""٪1""> انقر هنا </a> لارتباط جديد."
+"There is already an account with this email address. If you are sure that it is your email address, <a href=""%1"">click here</a> to get your password and access your account.","وهناك بالفعل حساب مع عنوان البريد الإلكتروني هذا. إذا كنت على يقين من أنه هو عنوان البريد الإلكتروني الخاص بك، <a href=""٪1""> انقر هنا </a> للحصول على كلمة السر الخاصة بك والوصول إلى حسابك."
+We can't save the customer.,ونحن لا يمكن أن ينقذ العملاء.
+Please make sure your passwords match.,يرجى التأكد من تطابق كلمات السر الخاصة بك.
+"If you are a registered VAT customer, please <a href=""%1"">click here</a> to enter your shipping address for proper VAT calculation.","إذا كنت عميل VAT المسجل، يرجى <a href=""٪1""> انقر هنا </a> لإدخال عنوان الشحن الخاص بك لحساب الضريبة على القيمة المضافة السليم."
+"If you are a registered VAT customer, please <a href=""%1"">click here</a> to enter your billing address for proper VAT calculation.","إذا كنت عميل VAT المسجل، يرجى <a href=""٪1""> انقر هنا </a> لإدخال عنوان الفوترة لحساب الضريبة على القيمة المضافة السليم."
+Thank you for registering with %1.,شكرا لتسجيلك مع٪ 1.
+"This account is not confirmed. <a href=""%1"">Click here</a> to resend confirmation email.","لم يتم تأكيد هذا الحساب. <a href=""٪1""> اضغط هنا </a> لتأكيد بالبريد الإلكتروني أرسل ثانية."
+Invalid login or password.,معلومات الدخول خاطئة او كلمة المرور خاطئة.
+A login and a password are required.,وثمة حاجة إلى تسجيل الدخول وكلمة مرور.
+Close,قريب
+Open,افتح
+Processing,معالجة
+Done,منجز
+Approved,وافق
+Not Approved,غير مقبول
+Reject,رفض
+Accept,قبول
+Enabled,تمكين
+Disabled,معاق
+- Disable these emails -,- تعطيل هذه الرسائل -
+List,قائمة
+Grid,جريد
+Product was not registered,لم يتم تسجيل المنتج
+Store was not registered,لم يتم تسجيل مخزن
+URL key already exists.' .,مفتاح URL موجود بالفعل. .
+URL key for specified store already exists.,URL مفتاح مخزن المحدد مسبقا.
+Product Attribute,سمة المنتج
+Subtotal,حاصل الجمع
+Total Items Quantity,مجموع الوحدات الكمية
+Total Weight,الوزن الكلي
+Payment Method,طريقة الدفع او السداد
+Shipping Method,طريقة الشحن
+Shipping Postcode,الشحن الرمز البريدي
+Shipping Region,النقل البحري منطقة
+Shipping State/Province,الدولة / مقاطعة البريدية
+Shipping Country,بلد الشحن
+Product attribute combination,مزيج سمة المنتج
+Products subselection,منتجات subselection
+Conditions combination,مزيج الظروف
+Cart Attribute,سلة سمة
+Disapproved,المرفوضة
+Could not save the seller info: %1,لا يمكن حفظ معلومات البائع:٪ 1
+Not Submited,لا Submited
+Unapproved,غير موافق عليها
+"We can't process your request right now. Sorry, that's all we know.",لا يمكننا معالجة طلبك في الوقت الحالي. عذرا، هذا كل ما نعرفه.
+Owl Carousel,البومة كاروسيل
+Bootstrap Carousel,التمهيد كاروسيل
+Amount from order,كمية من أجل
+invoice,فاتورة
+Refunded,ردها
+Refund from order,رد من أجل
+Edit,تعديل
+View Customer,عرض العملاء
+View,رأي
+Delete,حذف
+"Delete ""${ $.$data.subject }""","حذف ""$ {$. $ data.subject}"""
+"Are you sure you wan't to delete a ""${ $.$data.subject }"" record?","هل أنت متأكد أنك wan't لحذف ""$ {$. $ data.subject}"" السجل؟"
+Unread,غير مقروء
+Read,اقرأ
+What is the reason to deny this product?,ما هو السبب لرفض هذا المنتج؟
+Deny,أنكر
+Reset,إعادة تعيين
+Do you want set commission for product?,هل تريد وضع لجنة للمنتج؟
+View Product,عرض المنتج
+View Seller,عرض بائع
+All Store Views,كل مخزن المشاهدات
+Delete ${ $.$data.name },$ حذف {$. $ data.name}
+Are you sure you want to delete a ${ $.$data.name } record?,هل أنت متأكد أنك تريد حذف {$. $ data.name} سجل $؟
+Approved ${ $.$data.name },وافق $ {$. $ data.name}
+Are you sure you want to enable a ${ $.$data.name } record?,هل أنت متأكد أنك تريد تمكين {$. $ data.name} سجل $؟
+Disapproved ${ $.$data.name },المرفوضة $ {$. $ data.name}
+Are you sure you want to disable a ${ $.$data.name } record?,هل أنت متأكد أنك تريد تعطيل {$. $ data.name} سجل $؟
+Complete Withdrawal,كامل الانسحاب
+Canceled,ألغيت
+Add Attribute,اضف ميزة
+Add Selected,اضف اختيارك
+Select Attribute,حدد السمة
+New Attribute,سمة جديدة
+New Category,فئة جديدة
+Categories,التصنيفات
+[GLOBAL],[GLOBAL]
+Customizable Options,خيارات للتخصيص
+Custom options let customers choose the product variations they want.,تتيح خيارات مخصصة للعملاء اختيار الاختلافات المنتجات التي يريدونها.
+Import Options,خيارات استيراد
+Add Option,إضافة خيار
+New Option,الخيار الجديد
+Select Product,حدد المنتج
+Import,استيراد
+Option Title,الخيار عنوان
+Add Value,إضافة قيمة
+Option Type,الخيار نوع
+-- Please select --,- الرجاء الاختيار -
+Required,مطلوب
+Price Type,السعر نوع
+Max Characters,الأحرف كحد أقصى
+Compatible File Extensions,ملحقات الملفات المتوافقة
+Maximum Image Size,أقصى حجم الصورة
+Please leave blank if it is not an image.,يرجى ترك فارغا إذا لم يكن صورة.
+px.,بكسل.
+%1,٪ 1
+[WEBSITE],[موقع الكتروني]
+[STORE VIEW],[عرض متجر]
+This item has weight,هذا البند لديها الوزن
+This item has no weight,هذا العنصر ليس لديه الوزن
+Set Product as New From,مجموعة المنتج على النحو الجديد من
+"Related Products, Up-Sells, and Cross-Sells",المنتجات ذات الصلة، يصل يبيع، وعبر يبيع
+Related products are shown to customers in addition to the item the customer is looking at.,وتظهر المنتجات ذات الصلة للعملاء بالإضافة إلى العنصر يتطلع العملاء في.
+Add Related Products,إضافة منتجات ذات صلة
+Related Products,منتجات ذات صله
+An up-sell item is offered to the customer as a pricier or higher-quality alternative to the product the customer is looking at.,يتم تقديم عنصر ما يصل بيع للعميل كبديل سعرا أو أعلى جودة للمنتج يتطلع العملاء في.
+Add Up-Sell Products,إضافة يصل بيع المنتجات
+Up-Sell Products,المنتجات ما يصل بيع
+"These ""impulse-buy"" products appear next to the shopping cart as cross-sells to the items already in the shopping cart.","هذه المنتجات ""دفعة-شراء"" تظهر بجانب عربة التسوق كما عبر تبيع لبنود بالفعل في عربة التسوق."
+Add Cross-Sell Products,إضافة عبر بيع المنتجات
+Cross-Sell Products,عبر بيع المنتجات
+Add Selected Products,إضافة منتجات مختارة
+Remove,إزالة
+Thumbnail,ظفري
+Product in Websites,المنتج في مواقع
+"If your Magento site has multiple views, you can set the scope to apply to a specific view.",إذا كان موقع الماجنتو لديه وجهات نظر متعددة، يمكنك تعيين نطاق تطبيق إلى وجهة نظر محددة.
+Websites,المواقع
+name,اسم
+Copy Data from,نسخ البيانات من
+Browse to find or drag image here,استعرض للوصول إلى العثور على أو صورة السحب هنا
+Delete image,حذف صورة
+Hidden,مخفي
+Alt Text,نص بديل
+Image Size,حجم الصورة
+{size},{بحجم}
+Image Resolution,دقة الصورة
+{width}^{height} px,{عرض} ^ {} ارتفاع بكسل
+Browse Files...,تصفح ملفات...
+Choose Affected Attribute Set,اختيار تعيين سمة المتضررين
+Confirm,تؤكد
+start typing to search attribute,ابدأ الكتابة للبحث سمة
+Title:,عنوان:
+Uploaded:,تم تحميلها:
+Uploader:,رافع:
+Duration:,المدة الزمنية:
+Basic Settings,الإعدادات الأساسية
+Advanced Settings,إعدادات متقدمة
+Changes have been made to this section that have not been saved.,تم إجراء تغييرات في هذا المقطع الذي لم يتم حفظها.
+This tab contains invalid data. Please resolve this before saving.,هذا التبويب يحتوي على بيانات غير صالحة. الرجاء حل هذا قبل الحفظ.
+Continue,استمر
+Mass Actions,تطبيقات كتلة
+Select All,اختر الكل
+Unselect All,إلغاء تحديد الكل
+Select Visible,اختر مرئي
+Unselect Visible,إلغاء تحديد مرئي
+Upload,رفع
+Upload Image Product,تحميل صورة المنتج
+Product Upload,تحميل المنتج
+Import Settings,اعدادات مهمه
+Check Data,تحقق البيانات
+Please Select,الرجاء الإختيار
+Download Sample File,تحميل الملف عينة
+Import Behavior,سلوك الاستيراد
+Add/Update,إضافة / تحديث
+Error Handling,معالجة الأخطاء
+Stop on Error,توقف عن خطأ
+Skip error entries,تخطي إدخالات خطأ
+Allowed Errors Count,عد أخطاء سمحت
+Please specify number of errors to halt import process,يرجى تحديد عدد من الأخطاء في عملية الاستيراد توقف
+Field separator,فاصل حقل
+Multiple value separator,فاصل قيمة متعددة
+File to Import,ملف لاستيراد
+Select File to Import,حدد ملف لاستيراد
+Images File Directory,دليل الصور الملف
+*Notice Import image first,* ملاحظة استيراد صورة لأول مرة
+Additional Settings,إعدادات إضافية
+records found,سجلات وجدت
+selected,المحدد
+per page,في كل صفحة
+Previous page,الصفحة السابقة
+of %1,من 1٪
+Next page,الصفحة التالية
+Export to:,تصدير الى:
+Marketplace,المتجر
+Marketplace Dashboard,السوق وحة
+Seller Profile,الملف الشخصي البائع
+Manage Products,مدير المنتج
+Create Attribute,تكوين سمة
+New Products,منتجات جديدة
+My Products List,بلدي قائمة المنتجات
+My Transaction List,قائمة عملية بلدي
+Manage Print PDF Header Info,إدارة طباعة PDF معلومات رأس
+My Order History,طلبي التاريخ
+Become Seller,تصبح البائع
+Personal Information,معلومات شخصية
+Seller General,البائع عامة
+Group,مجموعة
+Url Key,رابط مفتاح
+"Example: Insert landofcoder,url shop will ",مثال: إدراج landofcoder، متجر رابط الإرادة
+Address Information,معلومات العنوان
+Company,شركة
+Phone Number,رقم الهاتف
+Street Address,عنوان الشارع
+Street Address %1,عنوان الشارع 1
+City,مدينة
+State/Province,/ مقاطعة الدولة
+"Please select a region, state or province.",يرجى تحديد منطقة أو ولاية أو محافظة.
+Zip/Postal Code,الرمز البريدي / الرمز البريدي
+* Required Fields,* الحقول المطلوبة
+Sign-in Information,تسجيل الدخول معلومات
+Password,كلمه السر
+Password Strength,قوة كلمة المرور
+No Password,لا توجد كلمة مرور
+Confirm Password,تأكيد كلمة المرور
+Privacy Policy,سياسة الخصوصية
+I agree the Terms and Condition,أوافق على شروط والحالة
+Terms and Conditions,الأحكام والشروط
+Create an Account,انشئ حساب
+Back,عودة
+Sold By,تم بيعها من قبل
+Visit Shop,زيارة متجر
+We can't find seller matching the selection.,لم نتمكن من العثور مطابقة البائع التحديد.
+Created At,أنشئت في
+Post Reply Message,آخر رسالة الرد
+Message ,رسالة
+Post Reply,الرد آخر
+History Message,التاريخ رسالة
+We can't find products matching the selection.,لا يمكننا العثور على منتجات مطابقة مع الاختيارات.
+Add to Cart,أضف إلى السلة
+In stock,في المخزن
+Out of stock,إنتهى من المخزن
+Learn More,أعرف أكثر
+Qty,الكمية
+ Sales, مبيعات
+ Sale, تخفيض السعر
+Joined since ,انضم منذ
+What’s on your mind?,في ماذا تفكر؟
+Submit,إرسال
+Customer Name,اسم الزبون
+Customer Email,العملاء البريد الإلكتروني
+"Turn in to a seller today and enjoy some incredible benefits like
+				adding logo to your profile page for better branding, setting up
+				multiple products to improve conversions, etc.","بدوره الى بائع اليوم والتمتع ببعض المزايا لا يصدق مثل
+إضافة شعار لصفحة ملفك الشخصي عن العلامات التجارية أفضل، وإقامة
+منتجات متعددة لتحسين التحويلات، الخ"
+Click the button to become a Seller,انقر فوق الزر لتصبح البائع
+"Example: Insert landofcoder,url shop will",مثال: إدراج landofcoder، متجر رابط الإرادة
+"I
+						agree the  Terms and Conditions","أنا
+توافق على الشروط والأحكام"
+Admin Approval is required. Please wait until admin confirms your seller account.,مطلوب مشرف الموافقة. يرجى الانتظار حتى يؤكد المشرف حساب البائع الخاص.
+Returns Policies,عودة السياسات
+Shipping Policies,الشحن السياسات
+Edit Profile Information,معلومات الملف تحرير
+Save Profile,احفظ الملف
+Twitter ID,تويتر ID
+Facebook ID,الفيسبوك ID
+Instagram ID,إينستاجرام ID
+Google Plus ID,جوجل بلس ID
+Youtube ID,يوتيوب ID
+Vimeo ID,فيميو ID
+Pinterest ID,بينتيريست ID
+Rating(s),تصنيف (ق)
+Registered Sellers,البائعين المسجلين
+"If you have an account, sign in with your email address.",إذا كان لديك حساب، تسجيل الدخول باستخدام عنوان البريد الإلكتروني الخاص بك.
+Login,تسجيل الدخول
+Forgot Your Password?,نسيت رقمك السري؟
+"Creating an account has many benefits: check out faster, keep more than one address, track orders and more.",إنشاء حساب له فوائد عديدة: تحقق من أسرع، والحفاظ على أكثر من عنوان واحد، وتتبع أوامر وأكثر من ذلك.
+Customer ratings,تصنيفات العملاء
+star,نجمة
+Write Your Own Review,إرسال مراجعتك
+You're rating,كنت تقييم
+How do you rate this seller,كيف تقيم هذا البائع
+Value,القيمة
+Quality,جودة
+What's your nickname?,ما هو اسم الشهرة الخاص بك؟
+What's your Email?,ما هو بريدك الإلكتروني؟
+Summary of Your Rating,ملخص تقييمك
+Let us know your thoughts,إعلامنا أفكارك
+Submit Rating,إرسال التصويت
+By,بواسطة
+ Rating(s), تصنيف (ق)
+We can't find sellers matching the selection.,لم نتمكن من العثور الباعة مطابقة مع الاختيارات.
+Items,العناصر
+of,من
+%1 Item,٪ 1 تفاصيل
+%1 Items,٪ 1 فرد
+Previous,السابق
+Next,التالى
+This operation can take a long time,هذه العملية يمكن أن تستغرق وقتا طويلا
+Collapse All,انهيار جميع
+Expand All,توسيع الكل
+Please confirm site switching. All data that hasn't been saved will be lost.,يرجى تحويل الموقع تأكيد. سيتم فقدان جميع البيانات التي لم يتم حفظها.
+None,لا شيء
+Use Default Value,استخدام القيمة الافتراضية
+"Manage Titles (Size, Color, etc.)",إدارة العناوين (الحجم واللون، وما إلى ذلك)
+Manage Options (Values of Your Attribute),إدارة خيارات (قيم السمة الخاصة بك)
+Is Default,هو افتراضي
+Sort Option,نوع الخيار
+Double click on a group to rename it.,انقر مرتين على مجموعة لتسميته.
+Unassigned Attributes,سمات غير المعينة
+A name is required.,مطلوب اسم.
+This group contains system attributes. Please move system attributes to another group and try again.,تحتوي هذه المجموعة سمات النظام. الرجاء نقل سمات النظام إلى مجموعة أخرى وحاول مرة أخرى.
+Please enter a new group name.,يرجى إدخال اسم المجموعة الجديدة.
+"An attribute group named ""/name/"" already exists"".","مجموعة سمة اسمه ""/ اسم /"" موجود بالفعل ""."
+"Sorry, we're unable to complete this request.",عذرا، لكننا غير قادرين على إكمال هذا الطلب.
+You can't remove attributes from this attribute set.,لا يمكنك إزالة السمات من هذه المجموعة السمة.
+Empty,فارغة
+Custom Options,خيارات مخصصة
+This is a required option.,هذا هو الخيار المطلوب.
+The field isn't complete.,حقل ليست كاملة.
+Change,يتغيرون
+Compatible file extensions to upload,ملحقات الملفات المتوافقة مع لتحميل
+Maximum image width,عرض صورة الأقصى
+Maximum image height,ارتفاع الصورة الحد الأقصى
+Maximum number of characters:,الحد الأقصى لعدد الأحرف:
+Quantity,كمية
+start typing to search template,ابدأ الكتابة للبحث القالب
+Product online,المنتج على الانترنت
+Product offline,منتج حاليا
+Product online status,حالة المنتج عبر الإنترنت
+Advanced Inventory,جرد المتقدمة
+Manage Stock,إدارة المخزون
+Use Config Settings,استخدام إعدادات التكوين
+Out-of-Stock Threshold,الخروج من الأسهم عتبة
+Minimum Qty Allowed in Shopping Cart,الحد الأدنى من الكمية المسموح بها في سلة التسوق
+Maximum Qty Allowed in Shopping Cart,أقصى الكمية المسموح بها في سلة التسوق
+Qty Uses Decimals,الكمية يستخدم الكسور العشرية
+Backorders,Backorders
+Notify for Quantity Below,إبلاغ عن الكمية أدناه
+Enable Qty Increments,تمكين الكمية الزيادات
+Qty Increments,الكمية الزيادات
+Stock Availability,الاسهم التوفر
+In Stock,في المخزن
+Out of Stock,إنتهى من المخزن
+Add Product To Websites,إضافة مواقع المنتج ل
+Remove Product From Websites,إزالة المنتج من مواقع
+"To hide an item in catalog or search results, set the status to ""Disabled"".","لإخفاء عنصر في كتالوج أو نتائج البحث، تعيين الحالة إلى ""معطل""."
+Step 2: Attribute Values,الخطوة 2: قيم السمة
+Select values from each attribute to include in this product. Each unique combination of values creates a unigue product SKU.,تحديد القيم من كل سمة لتشمل في هذا المنتج. كل مزيج فريد من القيم يخلق المنتجات unigue SKU.
+Sort Variations,الاختلافات ترتيب
+Options,خيارات
+Deselect All,الغاء تحديد الكل
+Remove Attribute,إزالة السمة
+Save Option,حفظ الخيار
+Remove Option,إزالة الخيار
+"Step 3: Bulk Images, Price and Quantity",الخطوة 3: السائبة الصور والسعر والكمية
+Based on your selections %1 new products will be created. Use this step to customize images and price for your new products.,واستنادا إلى التحديدات أن تنشأ٪ 1 منتجات جديدة. استخدم هذه الخطوة لتخصيص الصور والأسعار للمنتجات الجديدة.
+Images,صور
+Apply single set of images to all SKUs,تطبيق مجموعة واحدة من الصور لجميع طرازات
+Apply unique images by attribute to each SKU,تطبيق صور فريدة من نوعها من قبل السمة إلى كل SKU
+Skip image uploading at this time,تخطي صورة تحميل في هذا الوقت
+Remove image,إزالة الصورة
+Select attribute,حدد السمة
+Select,تحديد
+Apply single price to all SKUs,تطبيق سعر واحد لجميع طرازات
+Apply unique prices by attribute to each SKU,تطبيق أسعار الفريدة التي السمة إلى كل SKU
+Skip price at this time,تخطي السعر في هذا الوقت
+Apply single quantity to each SKUs,تطبيق كمية واحدة لكل طرازات
+Apply unique quantity by attribute to each SKU,تطبيق كمية الفريدة التي السمة إلى كل SKU
+Skip quantity at this time,تخطي الكمية في هذا الوقت
+Step 1: Select Attributes,الخطوة 1: تحديد سمات
+Selected Attributes:,السمات المختارة:
+Step 4: Summary,الخطوة 4: ملخص
+We can't save custom-defined options for bundles with dynamic pricing.,ونحن لا يمكن حفظ خيارات محددة خصيصا حزم مع التسعير الديناميكي.
+Delete Custom Option,حذف الخيار مخصص
+Sort Custom Options,فرز خيارات مخصصة
+Input Type,الإدخال نوع
+%1 <span>x</span> %2 <span>px.</span>,٪ 1 <SPAN> س </ SPAN>٪ 2 <SPAN> بكسل. </ SPAN>
+Sort Custom Option,فرز الخيار مخصص
+Web Site,موقع الكتروني
+Customer Group,مجموعة العملاء
+Item Price,العنصر السعر
+Action,عمل
+and above,و ما فوق
+Delete Tier,الفئة الحذف
+Product In Websites,المنتج في مواقع
+(Copy data from: %1),(نسخ البيانات من:٪ 1)
+Add Video,إضافة فيديو
+Delete video,فيديو حذف
+Product Alerts,تنبيهات المنتج
+Allow Multiple Boxes for Shipping,تسمح صناديق متعددة للشحن
+Save success,حفظ النجاح
+Marketplace - Module by,السوق - وحدة من قبل
+Landofcoder,Landofcoder
+View My Store,عرض متجر بلدي
+Profile,الملف الشخصي
+Log Out,تسجيل خروج
+Upload Image Zip,تحميل صورة الرمز البريدي
+Upload Images Zip,تحميل صور الرمز البريدي
+Images Zip,صور الرمز البريدي
+Credit Amount,الائتمان المبلغ
+Total Sales,إجمالي المبيعات
+Total Orders,مجموع الطلبات
+Total Products,عدد المنتجات
+Sales Report Day ,يوم تقرير مبيعات
+Sales Report Month,تقرير مبيعات شهر
+Sales Report Year,تقرير مبيعات السنة
+Your top countries,أعلى بلدانكم
+Earning amount from country countries,كسب مبلغ من بلدان البلاد
+Total Order,من أجل الكاملة
+Total Earning,مجموع الأرباح
+Last Orders,مشاركة أوامر
+Best Seller,الأكثر مبيعا
+Most Viewed Products,المنتجات الأكثر مشاهدة
+Order Date,تاريخ الطلب
+Product,المنتج
+Id,هوية شخصية
+Amount,كمية
+Seller Blance,البائع Blance
+Order Design,أجل تصميم
+Create At,إنشاء في
+Billing Address,عنوان وصول الفواتير
+Shipping Address,عنوان الشحن
+<b>Order:</b> # %1,<ب> ترتيب: </ B> # 1٪
+Order Status,حالة الطلب
+Purchased From,تم شراؤها من
+Account Information ,معلومات الحساب
+Return to Stock,عودة إلى أسهم
+Qty to Refund,الكمية لاسترداد الأموال
+Tax Amount,قيمة الضريبة
+Discount Amount,مقدار الخصم
+Row Total,صف إجمالي
+Admin Commission,اللجنة الادارية
+Seller Total,البائع إجمالي
+Ordered,أمر
+Invoiced,مفوترة
+Payment Methods,طرق الدفع
+The order was placed using,وقد وضعت من اجل استخدام
+Credit Memo Comments,مذكرة الائتمان تعليقات
+Comment Text,نص التعليق
+Order Totals,المجاميع ترتيب
+Tax,ضريبة
+Discount,خصم
+Refund Shipping,استرداد شحن
+Adjustment Refund,تعديل مبلغ معاد
+Adjustment Fee,تعديل رسوم
+Grand Total,المجموع الكلي
+Append Comments,إلحاق تعليقات
+Visible on Frontend,مرئية على الواجهة
+Email Copy of Credit Memo,أرسل نسخة من مذكرة الائتمان
+Refund Offline,برد غير متصل
+Refund Online,برد على الانترنت
+Refund,إعادة مال
+Invoice Date,تاريخ الفاتورة
+Bill to Name,مشروع قانون لاسم
+Grand Total (Base),المجموع الكلي (قاعدة)
+Grand Total (Purchased),المجموع الكلي (اشترى)
+Bulk Actions,إجراءات جملة
+Invoice Design,تصميم فاتورة
+Export Pdf file,ملف التصدير قوات الدفاع الشعبي
+<b>Invoice</b> # %1,<ب> الفاتورة </ B> # 1٪
+Invoice Totals,المجاميع فاتورة
+Shipping & Handling,شحن وتسليم
+Seller Amount,البائع المبلغ
+Date,تاريخ
+Currency,عملة
+Cancel Order,الغاء الطلب
+Are you sure you want to cancel this order?,هل أنت متأكد أنك تريد إلغاء هذا النظام؟
+Send Email,ارسل بريد الكتروني
+Are you sure you want to send an order email to customer?,هل أنت متأكد أنك تريد إرسال رسالة بريد إلكتروني أجل العملاء؟
+Are you sure you want to create invoice?,هل أنت متأكد أنك تريد إنشاء فاتورة؟
+Credit Memo,ملاحظة ائتمانية
+Are you sure you want to create credit memo for order?,هل أنت متأكد أنك تريد إنشاء مذكرة الائتمان لاجل؟
+Ship,سفينة
+Are you sure you want to create ship for order?,هل أنت متأكد أنك تريد إنشاء السفينة النظام؟
+Item Status,حالة العنصر
+Tax Percent,نسبة الضريبة
+Shipped,شحنها
+Track information,معلومات المسار
+Shipped By,شحنها بواسطة
+Tracking Number,أرقام التتبع
+No shipping information available,أي معلومات الشحن المتاحة
+Carrier,الناقل
+Refund Total,برد إجمالي
+Shipment,شحنة
+Table Shipment,الجدول شحن
+Ship Date,تاريخ الشحن
+Order #,طلب #
+Ship to Name,السفينة الى اسم
+Total Quantity,الكمية الإجمالية
+Shipment Design,شحنة التصميم
+<b>Shipment</b> # %1,<ب> الشحن </ B> # 1٪
+Shipping and Tracking Information,الشحن وتتبع المعلومات
+Track this shipment,تتبع هذه الشحنة
+Number,رقم
+Add,إضافة
+Items Shipped,البنود التي تم شحنها
+Product Name,اسم المنتج
+Qty Shipped,الكمية يشحن
+Today's Sales,مبيعات اليوم
+Today's Earnings,أرباح اليوم
+Current Month's Sales,مبيعات شهر الحالي
+Current Month's Earnings,الأرباح شهر الحالي
+Sales Report,تقرير المبيعات
+Browse to find or drag image here(Size 1240x400),استعرض للوصول إلى العثور على أو سحب صورة هنا (حجم 1240x400)
+Browse to find or drag image here(Size 200x200),استعرض للوصول إلى العثور على أو سحب صورة هنا (حجم الصور 200x200)
+Social Media,وسائل الاعلام الاجتماعية
+Facebook Name,اسم الفيسبوك
+Facebook Page ID,الفيسبوك ID الصفحة
+Linkedin ID,تابعني على ID
+Printerest ID,Printerest ID
+Welcome,أهلا بك
+Online,عبر الانترنت
+Sender Name,اسم المرسل
+Sender Email,البريد الإلكتروني المرسل
+Post a Reply,اكتب ردا
+Message History,تاريخ الرسالة
+Sales,مبيعات
+Manage Product,إدارة المنتج
+Simple Product,بسيط المنتج
+Virtual Product,الظاهري المنتج
+Configurable Product,شكلي المنتج
+Vacation Setting,إعداد عطلة
+Mass Import/Export,كتلة الاستيراد / التصدير
+Upload Image,تحميل الصور
+ Withdrawal, انسحاب
+You can withdraw up to,يمكنك سحب ما يصل الى
+Min amount ,كمية دقيقة
+Fee ,رسوم
+Amount to withdraw,مبلغ للسحب
+ email account, حساب البريد الإلكتروني
+  Info,  معلومات
+You do not have the minimum amount to withdraw,ليس لديك أدنى مبلغ للانسحاب
+Nick Name,كنية
+Rating,تقييم
+Comment,تعليق
+All Review,كل مراجعة
+Author,مؤلف
+Guest,زائر
+Summary Rating,ملخص التقييم
+Summary of Review,ملخص المراجعة
+Vacation Status,الحالة عطلة
+Turn ON,شغله
+Turn OFF,يطفىء
+Vacation Message,عطلة رسالة
+Vacation Date From,تاريخ اجازة من
+Vacation Date To,عطلة التاريخ إلى
+Add Cart button text,عرض النص على زر إضافة إلى السلة عندما البائع في إجازة
+Select Date,حدد تاريخ
+Withdrawal information,معلومات السحب
+ Email Account, حساب البريد الإلكتروني
+Net Amount,كمية الشبكة
+Admin Message,المشرف رسالة
+Withdrawal Request,طلب سحب
+Your balance,رصيدك
+Method,طريقة
+Withdrawals History,سحب التاريخ
+Total Amount Received,إجمالي المبلغ المتلقى
+Created,خلقت
+Store View:,عرض متجر:
+Stores Configuration,تكوين مخازن
+Please confirm scope switching. All data that hasn't been saved will be lost.,يرجى التبديل نطاق تأكيد. سيتم فقدان جميع البيانات التي لم يتم حفظها.
+Insert Widget...,إدراج القطعة ...
+We don't recognize or support this file extension type.,نحن لا نعترف أو دعم هذا الملف نوع التمديد.
+Insert Variable...,إدراج متغير ...
+Select All on This Page,اختار الكل في هذه الصفحة
+Deselect All on This Page,إلغاء تحديد الكل في هذه الصفحة
+Go to Details Page,الذهاب الى صفحة التفاصيل
+We could not detect a size.,لم نتمكن من الكشف عن الحجم.
+Image Detail,تفاصيل الصورة
+Warning message,رسالة تحذير
+New Product Review,استعراض المنتجات الجديدة
+Here are the products you're about to create.,وهنا هي المنتجات التي كنت على وشك خلق.
+Associated Products,المنتجات المرتبطة بها
+You created these products for this configuration.,قمت بإنشائه هذه المنتجات لهذا التكوين.
+Disassociated Products,نأت المنتجات
+These products are not associated.,لا ترتبط هذه المنتجات.
+Ok,حسنا
+Add Products to New Option,إضافة المنتجات إلى الخيار الجديد
+"Add Products to Option ""%1""","إضافة المنتجات إلى الخيار ""٪ 1"""
+Video Error,خطأ الفيديو
+Unknown video type,غير معروف نوع الفيديو
+Invalid video url,رابط الفيديو غير صالح
+Youtube API key is invalid,مفتاح API يوتيوب هو باطل
+Video cant be shown due to the following reason: ,غير قادر على أن يظهر الفيديو للسبب التالي:
+Video not found,فيديو لم يتم العثور
+New Video,فيديو جديد
+Edit Video,تحرير الفيديو
+Images and Videos,صور وفيديو
+Select...,تحديد...
+Attributes,سمات
+"Lof All - <a href=""http://landofcoder.com"" target=""_BLANK"" title=""""Magento Marketplace, Opencart Marketplace, Magento 2 Extension, Free Magento Extension, Opencart Advanced Reports"">landofcoder.com</a>","LOF جميع - <a href=""http://landofcoder.com"" target=""_BLANK"" title=""""Magento Marketplace، Opencart Marketplace، الماجنتو 2 Extension، الحرة الماجنتو Extension، Opencart المتقدم Reports""> landofcoder.com </ أ >"
+Market Place,المتجر
+General Settings,الاعدادات العامة
+Seller List Url,قائمة البائع رابط
+Seller Url Prefix,البائع رابط البادئة
+Seller Url Suffix,البائع رابط لاحقة
+Rating Approval Required,تصنيف الموافقة المطلوبة
+Seller Approval Required,البائع الموافقة المطلوبة
+Seller Settings,إعدادات البائع
+Need Admin Approval Product,تحتاج المسؤول الموافقة المنتج
+Seller Commission(%),لجنة البائع (٪)
+Enter global commission for sellers.If you don't using commission in http://yourdomain.com/admin/lofmarketplace/commission/index,أدخل اللجنة العالمية لsellers.If كنت لا تستخدم اللجنة في http://yourdomain.com/admin/lofmarketplace/commission/index
+Sales Settings,إعدادات المبيعات
+Can Send Email,يمكن إرسال البريد الإلكتروني
+Email admin,البريد الإلكتروني المشرف
+Can Create Ship,يمكن إنشاء السفن
+Can Create Refund,يمكن إنشاء رد
+Seller Panel,لوحة البائع
+Favicon Icon,فافيكون أيقونة
+Default Title,افتراضي عنوان
+Header Icon,رأس أيقونة
+Header Text,نص رأس
+Footer Text,نص تذييل
+Email Settings,إعدادات البريد الإلكتروني
+Enable Send Email,تمكين إرسال البريد الإلكتروني
+Email Sender,البريد الإلكتروني المرسل
+Choose template for emailing customer,اختيار نموذج لمراسلة العملاء
+Choose template for emailing seller,اختيار نموذج لمراسلة البائع
+Choose template for email reply,اختيار قالب للرد البريد الإلكتروني
+Choose email template for new rating,اختيار قالب البريد الإلكتروني للتصنيف الجديد
+Choose email template for new order,اختيار قالب البريد الإلكتروني لنظام جديد
+Choose email template for new invoice,اختيار قالب البريد الإلكتروني لفاتورة جديدة
+Choose email template for new shipment,اختيار قالب البريد الإلكتروني لشحنة جديدة
+Choose email template for new seller register,اختيار قالب البريد الإلكتروني لتسجيل بائع جديد
+Choose email template for approve seller,اختيار قالب البريد الإلكتروني للموافقة البائع
+Choose email template for unapprove seller,اختيار قالب البريد الإلكتروني للبائع إلغاء الموافقة
+Choose email template for approve product,اختيار قالب البريد الإلكتروني للموافقة على المنتج
+Choose email template for unapprove product,اختيار قالب البريد الإلكتروني للمنتج إلغاء الموافقة
+Seller Info On Product View Page,معلومات البائع على المنتج عرض الصفحة
+Enabled Seller Block,تمكين البائع بلوك
+Show Seller Title,مشاهدة البائع عنوان
+Show Seller Logo,مشاهدة البائع الشعار
+Show Seller Name,مشاهدة اسم البائع
+Show Seller Address,مشاهدة البائع عنوان
+Show Seller Sales,مشاهدة البائع المبيعات
+Show Seller Phone,مشاهدة البائع الهاتف
+Show Seller Contact,مشاهدة البائع الاتصال
+Text Contact,نص الاتصال
+Seller List Page,قائمة البائع الصفحة
+Number Seller Per Page,عدد البائع لكل صفحة
+Empty to show all item,فارغة لعرض كل بند
+SEO - Search Engine Optimization,SEO - محرك البحث الأمثل
+Grid Layout,شبكة تخطيط
+Number Column on Large Desktop,عدد الأعمدة على سطح المكتب كبير
+Large devices Desktops (≥1200px),أجهزة الكمبيوتر المكتبية أجهزة كبيرة (≥1200px)
+Number Column on Desktop,عدد الأعمدة على سطح المكتب
+Medium devices Desktops (≥992px),الأجهزة المكتبية المتوسطة (≥992px)
+Number Column on Tablets,عدد العمود على الأجهزة اللوحية
+Small devices Tablets (≥768px),أجهزة لوحية صغيرة (≥768px)
+Number Column on Phones,عدد العمود على الهواتف
+Extra small devices Phones (<768px),المزيد من الأجهزة الصغيرة خلوية (<768px)
+Group Page,المجموعة الصفحة
+Seller Multi Shipping,بائع موضوع شحن
+MarketPlace Seller List,السوق قائمة البائع
+Get seller list,الحصول على قائمة البائع
+Select Static Block,اختر ساكنة بلوك
+Number of Seller to Display,عدد من البائع لعرض
+Number Item per Column,البند رقم في العمود
+Addtion Class,ادايشن الفئة
+Carousel Layout,دائري تخطيط
+Number Columns On Page (Phones),عدد الأعمدة في الصفحة (هواتف)
+Show number items when screen size bellow 480px,مشاهدة عدد العناصر عند حجم الشاشة رفع الصوت عاليا 480px
+Number Columns On Page (Phones to Small tablets),عدد الأعمدة في الصفحة (هواتف إلى أقراص صغيرة)
+Show number items when screen size between 641px and 480px,إظهار عناصر الرقم عند حجم الشاشة بين 641px و480px
+Number Columns On Page (Phones to tablets),عدد الأعمدة في الصفحة (هواتف لأقراص)
+Show number items when screen size between 768px and 641px,إظهار عناصر الرقم عند حجم الشاشة بين 768px و641px
+Number Columns On Page (Portrait tablets),عدد الأعمدة في الصفحة (أقراص صورة)
+Show number items when screen size between 979px and 769px,إظهار عناصر الرقم عند حجم الشاشة بين 979px و769px
+Number Columns On Page (Default),عدد الأعمدة في الصفحة (افتراضي)
+Show number items when screen size between 1199px and 980px,إظهار عناصر الرقم عند حجم الشاشة بين 1199px و980px
+Number Columns On Page (Large display),عدد الأعمدة في الصفحة (عرض كبيرة)
+Show number items when screen size 1200px and up,إظهار عناصر الرقم عند حجم الشاشة 1200px وتصل
+Autoplay,تشغيل تلقائي
+Autoplay Timeout,التشغيل التلقائي مهلة
+Item Per Page,البند لكل صفحة
+Interval,فترة
+RTL,RTL
+Loop,عقدة
+Show dots navigations,تظهر النقاط الملاحة
+Show next/prev buttons.,تظهر أزرار / سابق المقبلة.
+Nav Prev Text,نص التنقل السابق
+Nav Next Text,نص التنقل التالي
+Template,قالب
+Seller ID,اسم المستخدم
+Updated At,تم التحديث في
+ ID, هوية شخصية
+Seller Balance,بائع الرصيد
+Delete items,حذف العناصر
+Are you sure you want to delete selected items?,هل أنت متأكد أنك تريد حذف العناصر المحددة؟
+Disable,تعطيل
+Enable,ممكن
+Active,نشيط
+Add New Group,إضافة مجموعة جديدة
+Bill-to Name,مشروع قانون لاسم
+Seller Email,بائع البريد الإلكتروني
+Is Read,غير مقروءة
+Order ID,رقم التعريف الخاص بالطلب
+Increment ID,الاضافة ID
+Currency Code,رمز العملة
+Sort Order,امر ترتيب
+Product ID,معرف المنتج
+Review ID,مراجعة ID
+Image,صورة
+Shop URL Key,متجر URL مفتاح
+Product Price,سعر المنتج
+Payment ID,معرف الدفع
+Method Payment,طريقة الدفع
+Pay Action,العمل الأجر
+List Seller,قائمة البائع
+Marketplace 1column,السوق 1column
+Marketplace 2columns Left,السوق 2columns اليسار
+AttributeSetText,AttributeSetText
+StatusText,StatusText
+PDF Invoices,PDF الفواتير
+Category Name,اسم التصنيف
+Parent Category,القسم الرئيسي
+Images And Videos,الصور ومقاطع الفيديو
+Minimum Qty,الحد الأدنى من الكمية
+Use Deferred Stock Update,استخدام المؤجلة اسهم تحديث
+Stock Status,حالة الرصيد، وضع مخزون
+Delete selected items?,حذف العناصر المحددة؟
+Change status,تغيير الوضع

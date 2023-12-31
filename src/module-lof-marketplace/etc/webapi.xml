@@ -1,0 +1,711 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lof_MarketPlace
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <!-- ====== Logged in customer manage seller api ====== -->
+    <!-- Sellers -->
+    <route url="/V1/sellers/me" method="GET">
+        <service class="Lof\MarketPlace\Api\SellersRepositoryInterface" method="getCurrentSellers"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="PUT" url="/V1/saveprofile/me">
+        <service class="Lof\MarketPlace\Api\SellersRepositoryInterface" method="saveProfile"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="PUT" url="/V1/sellers">
+        <service class="Lof\MarketPlace\Api\SellersRepositoryInterface" method="saveSeller"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <!-- END SELLERS -->
+    <!-- Sales -->
+    <route url="/V1/getsellerorders" method="GET">
+        <service class="Lof\MarketPlace\Api\SalesRepositoryInterface" method="getSellerOrders"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/sellerordersbyid/:id" method="GET">
+        <service class="Lof\MarketPlace\Api\SalesRepositoryInterface" method="getSellerOrderById"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/sellerorders/:orderId/cancel" method="GET">
+        <service class="Lof\MarketPlace\Api\SalesRepositoryInterface" method="orderCancel"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/sellerinvoices" method="GET">
+        <service class="Lof\MarketPlace\Api\SalesInvoicesRepositoryInterface" method="getSellerInvoices"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/sellerinvoices/:InvoiceId" method="GET">
+        <service class="Lof\MarketPlace\Api\SalesInvoicesRepositoryInterface" method="getSellerInvoiceById"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+    <!-- Seller, Admin manage Ratings -->
+    <route url="/V1/seller/myRatings" method="GET">
+        <service class="Lof\MarketPlace\Api\SellerRatingsRepositoryInterface" method="sellerGetList"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/seller/myRatings/:ratingId" method="GET">
+        <service class="Lof\MarketPlace\Api\SellerRatingsRepositoryInterface" method="getMyRating"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/seller/myRatings/:ratingId" method="PUT">
+        <service class="Lof\MarketPlace\Api\SellerRatingsRepositoryInterface" method="saveMyRating"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/sellerRatings/:ratingId" method="GET">
+        <service class="Lof\MarketPlace\Api\SellerRatingsRepositoryInterface" method="get"/>
+        <resources>
+			<resource ref="Lof_MarketPlace::rating"/>
+		</resources>
+    </route>
+    <route url="/V1/sellerRatings/search" method="GET">
+        <service class="Lof\MarketPlace\Api\SellerRatingsRepositoryInterface" method="getRatingsList"/>
+        <resources>
+			<resource ref="Lof_MarketPlace::rating"/>
+		</resources>
+    </route>
+    <route url="/V1/sellerRatings/:ratingId" method="PUT">
+        <service class="Lof\MarketPlace\Api\SellerRatingsRepositoryInterface" method="save"/>
+        <resources>
+			<resource ref="Lof_MarketPlace::rating_save"/>
+		</resources>
+    </route>
+    <route url="/V1/sellerRatings/:ratingId" method="DELETE">
+        <service class="Lof\MarketPlace\Api\SellerRatingsRepositoryInterface" method="deleteById"/>
+        <resources>
+			<resource ref="Lof_MarketPlace::rating_delete"/>
+		</resources>
+    </route>
+
+    <!-- Seller Manage Messages API -->
+    <route url="/V1/seller/messages" method="GET">
+        <service class="Lof\MarketPlace\Api\SellerMessageRepositoryInterface" method="sellerGetList"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/seller/messages/:messageId" method="GET">
+        <service class="Lof\MarketPlace\Api\SellerMessageRepositoryInterface" method="sellerGetDetails"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="PUT" url="/V1/seller/messages/:messageId">
+        <service class="Lof\MarketPlace\Api\SellerMessageRepositoryInterface" method="sellerReplyMessage"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="PUT" url="/V1/seller/isReadMessage/:messageId">
+        <service class="Lof\MarketPlace\Api\MessageRepositoryInterface" method="setIsRead"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="DELETE" url="/V1/seller/messages/:messageId">
+        <service class="Lof\MarketPlace\Api\SellerMessageRepositoryInterface" method="sellerDeleteMessage"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+    <!-- Seller Manage Admin Messages API -->
+    <route url="/V1/seller/adminmessages" method="GET">
+        <service class="Lof\MarketPlace\Api\AdminMessageRepositoryInterface" method="getMyList"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+     <route url="/V1/seller/adminmessages/:messageId" method="GET">
+        <service class="Lof\MarketPlace\Api\AdminMessageRepositoryInterface" method="getMyDetails"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="POST" url="/V1/seller/adminmessages">
+        <service class="Lof\MarketPlace\Api\AdminMessageRepositoryInterface" method="sendMessage"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="PUT" url="/V1/seller/adminmessages/:messageId">
+        <service class="Lof\MarketPlace\Api\AdminMessageRepositoryInterface" method="replyMessage"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="PUT" url="/V1/seller/isReadAdminMessage/:messageId">
+        <service class="Lof\MarketPlace\Api\AdminMessageRepositoryInterface" method="setIsRead"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <!-- END SALES -->
+
+    <!--    seller manage his products, update stock, update product price -->
+    <route url="/V1/sellerproduct/updateStock" method="PUT">
+        <service class="Lof\MarketPlace\Api\UpdateStockRepositoryInterface" method="saveSellerStock" />
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/sellerproduct/updatePrice" method="PUT">
+        <service class="Lof\MarketPlace\Api\UpdateStockRepositoryInterface" method="saveSellerProductPrice" />
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+    <!-- Seller Settings -->
+    <route url="/V1/seller/setting" method="POST">
+		<service class="Lof\MarketPlace\Api\SettingRepositoryInterface" method="saveMySetting"/>
+		<resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+	<route url="/V1/seller/setting/search" method="GET">
+		<service class="Lof\MarketPlace\Api\SettingRepositoryInterface" method="getMyList"/>
+		<resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+	<route url="/V1/seller/setting/:settingId" method="GET">
+		<service class="Lof\MarketPlace\Api\SettingRepositoryInterface" method="getMySetting"/>
+		<resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+	<route url="/V1/seller/setting/:settingId" method="PUT">
+		<service class="Lof\MarketPlace\Api\SettingRepositoryInterface" method="saveMySetting"/>
+		<resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+    <!--=============. Seller Manage His Products .==============-->
+    <route url="/V1/createproduct" method="POST">
+        <service class="Lof\MarketPlace\Api\SellerProductInterface" method="createProduct"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/sellerproduct/:sku" method="PUT">
+        <service class="Lof\MarketPlace\Api\SellerProductManagementInterface" method="sellerSave"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/sellerproduct/:sku" method="GET">
+        <service class="Lof\MarketPlace\Api\SellerProductManagementInterface" method="sellerGet"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/sellerproducts" method="GET">
+        <service class="Lof\MarketPlace\Api\SellerProductManagementInterface" method="sellerGetList"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <!-- END Seller's product -->
+    <!-- API Seller get Transactions-->
+    <route url="/V1/seller/transactions" method="GET">
+        <service class="Lof\MarketPlace\Api\AmountTransactionRepositoryInterface" method="getSellerTransactions" />
+        <resources>
+            <resource ref="self" />
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+    <route url="/V1/sellervacation" method="GET">
+        <service class="Lof\MarketPlace\Api\SellerVacationRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/sellervacation" method="PUT">
+        <service class="Lof\MarketPlace\Api\SellerVacationRepositoryInterface" method="putSellerVacation"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <!-- API Seller Group -->
+	<route url="/V1/lofmarketplace/groups" method="GET">
+		<service class="Lof\MarketPlace\Api\SellerGroupRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Lof_MarketPlace::group"/>
+		</resources>
+	</route>
+	<route url="/V1/lofmarketplace/group/:entityId" method="GET">
+		<service class="Lof\MarketPlace\Api\SellerGroupRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="Lof_MarketPlace::group_edit"/>
+		</resources>
+	</route>
+
+    <!--   ====== Admin Manager ====== -->
+    <route url="/V1/assignproducts/:productId/:storeId/:sellerId" method="POST">
+        <service class="Lof\MarketPlace\Api\SellerProductInterface" method="assignProduct"/>
+        <resources>
+            <resource ref="Lof_MarketPlace::sellerproduct"/>
+        </resources>
+    </route>
+    <route url="/V1/setcommission/:productId/:commission/:seller_id" method="POST">
+        <service class="Lof\MarketPlace\Api\SellerProductInterface" method="setCommissionForSpecialProduct"/>
+        <resources>
+            <resource ref="Lof_MarketPlace::sellerproduct"/>
+        </resources>
+    </route>
+	<route url="/V1/lofmarketplace/group/:entityId" method="DELETE">
+		<service class="Lof\MarketPlace\Api\SellerGroupRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Lof_MarketPlace::delete"/>
+		</resources>
+	</route>
+    <route url="/V1/lofmarketplace/amounttransaction" method="POST">
+		<service class="Lof\MarketPlace\Api\AmountTransactionRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lof_MarketPlace::amountTransaction_save"/>
+		</resources>
+	</route>
+	<route url="/V1/lofmarketplace/amounttransaction/search" method="GET">
+		<service class="Lof\MarketPlace\Api\AmountTransactionRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Lof_MarketPlace::amountTransaction_view"/>
+		</resources>
+	</route>
+	<route url="/V1/lofmarketplace/amounttransaction/:id" method="GET">
+		<service class="Lof\MarketPlace\Api\AmountTransactionRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="Lof_MarketPlace::amountTransaction_view"/>
+		</resources>
+	</route>
+	<route url="/V1/lofmarketplace/amounttransaction/:id" method="PUT">
+		<service class="Lof\MarketPlace\Api\AmountTransactionRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lof_MarketPlace::amountTransaction_update"/>
+		</resources>
+	</route>
+	<route url="/V1/lofmarketplace/amounttransaction/:id" method="DELETE">
+		<service class="Lof\MarketPlace\Api\AmountTransactionRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Lof_MarketPlace::amountTransaction_delete"/>
+		</resources>
+	</route>
+
+    <!-- ====== Admin Manage Sellers ====== -->
+    <route method="GET" url="/V1/sellers">
+        <service class="Lof\MarketPlace\Api\SellersManagementInterface" method="getList"/>
+        <resources>
+            <resource ref="Lof_MarketPlace::seller"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/sellers/:sellerId">
+        <service class="Lof\MarketPlace\Api\SellersManagementInterface" method="get"/>
+        <resources>
+            <resource ref="Lof_MarketPlace::seller"/>
+        </resources>
+    </route>
+    <route method="PUT" url="/V1/sellers/changeStatus">
+        <service class="Lof\MarketPlace\Api\SellersManagementInterface" method="updateSellerStatus"/>
+        <resources>
+            <resource ref="Lof_MarketPlace::seller_save"/>
+        </resources>
+    </route>
+    <route method="PUT" url="/V1/sellers/verify">
+        <service class="Lof\MarketPlace\Api\SellersManagementInterface" method="verify"/>
+        <resources>
+            <resource ref="Lof_MarketPlace::seller_save"/>
+        </resources>
+    </route>
+    <!-- Manage Withdrawl request -->
+    <route url="/V1/lofmarketplace/withdrawal" method="POST">
+		<service class="Lof\MarketPlace\Api\WithdrawalRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lof_MarketPlace::withdrawal_save"/>
+		</resources>
+	</route>
+    <route url="/V1/seller/withdrawal" method="POST">
+		<service class="Lof\MarketPlace\Api\WithdrawalRepositoryInterface" method="requestWithdrawal"/>
+		<resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+	<route url="/V1/lofmarketplace/withdrawal/search" method="GET">
+		<service class="Lof\MarketPlace\Api\WithdrawalRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Lof_MarketPlace::withdrawal_view"/>
+		</resources>
+	</route>
+    <route url="/V1/seller/withdrawal/search" method="GET">
+		<service class="Lof\MarketPlace\Api\WithdrawalRepositoryInterface" method="getMyList"/>
+		<resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+	<route url="/V1/lofmarketplace/withdrawal/:withdrawalId" method="GET">
+		<service class="Lof\MarketPlace\Api\WithdrawalRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="Lof_MarketPlace::withdrawal_view"/>
+		</resources>
+	</route>
+	<route url="/V1/lofmarketplace/withdrawal/:withdrawalId" method="PUT">
+		<service class="Lof\MarketPlace\Api\WithdrawalRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lof_MarketPlace::withdrawal_update"/>
+		</resources>
+	</route>
+	<route url="/V1/lofmarketplace/withdrawal/:withdrawalId" method="DELETE">
+		<service class="Lof\MarketPlace\Api\WithdrawalRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Lof_MarketPlace::withdrawal_delete"/>
+		</resources>
+	</route>
+	<route url="/V1/llofmarketplace/payment" method="POST">
+		<service class="Lof\MarketPlace\Api\PaymentRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lof_MarketPlace::payment_save"/>
+		</resources>
+	</route>
+	<route url="/V1/lofmarketplace/payment/search" method="GET">
+		<service class="Lof\MarketPlace\Api\PaymentRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Lof_MarketPlace::payment_view"/>
+		</resources>
+	</route>
+    <route url="/V1/seller/payment/search" method="GET">
+		<service class="Lof\MarketPlace\Api\PaymentRepositoryInterface" method="getPublicList"/>
+		<resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+	</route>
+	<route url="/V1/lofmarketplace/payment/:paymentId" method="GET">
+		<service class="Lof\MarketPlace\Api\PaymentRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="Lof_MarketPlace::payment_view"/>
+		</resources>
+	</route>
+	<route url="/V1/lofmarketplace/payment/:paymentId" method="PUT">
+		<service class="Lof\MarketPlace\Api\PaymentRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lof_MarketPlace::payment_update"/>
+		</resources>
+	</route>
+	<route url="/V1/lofmarketplace/payment/:paymentId" method="DELETE">
+		<service class="Lof\MarketPlace\Api\PaymentRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Lof_MarketPlace::payment_delete"/>
+		</resources>
+	</route>
+
+     <!-- ====. Frontend .=== -->
+     <!-- API get seller groups -->
+    <route url="/V1/seller/groups" method="GET">
+		<service class="Lof\MarketPlace\Api\SellerGroupRepositoryInterface" method="getPublicList"/>
+		<resources>
+			<resource ref="anonymous"/>
+		</resources>
+	</route>
+    <!-- API create seller order by order increment_id -->
+    <route url="/V1/seller/createorder/:orderId" method="POST">
+        <service class="Lof\MarketPlace\Api\SalesRepositoryInterface" method="createSellerOrder"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <!-- API get seller products -->
+    <route url="/V1/seller/products/:sellerUrl" method="GET">
+        <service class="Lof\MarketPlace\Api\SellerProductsRepositoryInterface" method="getListSellersProduct"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/seller/products" method="GET">
+        <service class="Lof\MarketPlace\Api\SellerProductsRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <!-- API Register New Seller Account -->
+    <route url="/V1/seller/register" method="POST">
+        <service class="Lof\MarketPlace\Api\SellersRepositoryInterface" method="registerNewSeller"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/seller/becomeSeller" method="POST">
+        <service class="Lof\MarketPlace\Api\SellersRepositoryInterface" method="becomeSeller"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/seller/search" method="GET">
+        <service class="Lof\MarketPlace\Api\SellersFrontendRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/seller/:sellerUrl" method="GET">
+        <service class="Lof\MarketPlace\Api\SellersFrontendRepositoryInterface" method="getByUrl"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <!-- API Seller Reviews and Ratings -->
+    <route url="/V1/seller/:sellerUrl/reviews" method="GET">
+        <service class="Lof\MarketPlace\Api\SellerReviewRepositoryInterface" method="getListByUrl"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/seller/:sellerUrl/ratings" method="GET">
+        <service class="Lof\MarketPlace\Api\SellerRatingsRepositoryInterface" method="getListByUrl"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/seller/:sellerUrl/summaryRatings" method="GET">
+        <service class="Lof\MarketPlace\Api\SellerRatingsRepositoryInterface" method="getSummaryRatings"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/seller/ratings/:ratingId" method="GET">
+        <service class="Lof\MarketPlace\Api\SellerRatingsRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/seller/ratings/:ratingId" method="PUT">
+        <service class="Lof\MarketPlace\Api\SellerRatingsRepositoryInterface" method="updateRating"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/seller/:sellerUrl/ratings" method="POST">
+        <service class="Lof\MarketPlace\Api\SubmitSellerReviewRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+    <route url="/V1/seller/getSellerInfoBySku/:sku" method="GET">
+        <service class="Lof\MarketPlace\Api\SellersFrontendRepositoryInterface" method="getSellerByProductSku"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+   <!--  API Seller Vacation -->
+   <route url="/V1/seller/:sellerUrl/vacation" method="GET">
+        <service class="Lof\MarketPlace\Api\SellerVacationRepositoryInterface" method="getSellerVacation"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <!-- Customer Manage Messages API -->
+    <route method="POST" url="/V1/me/sendmessage/:sellerUrl">
+        <service class="Lof\MarketPlace\Api\CustomerMessageRepositoryInterface" method="sendMessage"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/me/sellermessages" method="GET">
+        <service class="Lof\MarketPlace\Api\CustomerMessageRepositoryInterface" method="getMyList"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/me/sellermessages/:messageId" method="GET">
+        <service class="Lof\MarketPlace\Api\CustomerMessageRepositoryInterface" method="getMyDetails"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="POST" url="/V1/me/sellermessages/:messageId">
+        <service class="Lof\MarketPlace\Api\CustomerMessageRepositoryInterface" method="replyMessage"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="DELETE" url="/V1/me/sellermessages/:messageId">
+        <service class="Lof\MarketPlace\Api\CustomerMessageRepositoryInterface" method="deleteMessage"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+</routes>

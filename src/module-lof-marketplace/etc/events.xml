@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lof_MarketPlace
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <!-- <event name="catalog_product_edit_action">
+        <observer name="lof_marketplace_loadproductmarketplace" instance="Lof\MarketPlace\Observer\LoadProductMarketPlace" />
+    </event> -->
+    <!-- <event name="customer_login">
+        <observer name="customer_login_observer" instance="Lof\MarketPlace\Observer\CustomerLogin"/>
+    </event> -->
+    <event name="controller_action_catalog_product_save_entity_after">
+        <observer name="lof_marketplace_saveproductseller" instance="Lof\MarketPlace\Observer\SaveProductSeller"/>
+    </event>
+    <event name="sales_order_creditmemo_refund">
+        <observer name="lof_marketplace_order_refund" instance="Lof\MarketPlace\Observer\OrderRefund"/>
+    </event>
+    <event name="sales_order_invoice_save_after">
+        <observer name="lof_marketplace_order_invoice" instance="Lof\MarketPlace\Observer\OrderInvoice"/>
+    </event>
+    <event name="sales_order_shipment_save_after">
+        <observer name="lof_marketplace_order_shipment" instance="Lof\MarketPlace\Observer\OrderShipment"/>
+    </event>
+    <event name="sales_order_save_after">
+        <observer name="lof_marketplace_create_order" instance="Lof\MarketPlace\Observer\Admin\OrderSaveAfter"/>
+    </event>
+    <event name="seller_register_success">
+        <observer name="lof_marketplace_seller_save_after" instance="Lof\MarketPlace\Observer\SaveSellerExtraInfo"/>
+    </event>
+
+    <event name="sales_quote_item_save_before">
+        <observer name="lof_marketplace_set_seller_id" instance="Lof\MarketPlace\Observer\QuoteItem\SetSellerId" />
+    </event>
+
+</config>

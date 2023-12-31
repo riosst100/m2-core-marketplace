@@ -1,0 +1,26 @@
+{
+    "name": "landofcoder/module-marketplace-graphql",
+    "description": "Magento 2 Marketplace GraphQl extension",
+    "type": "magento2-module",
+    "license": "OSL-3.0",
+    "authors": [
+        {
+            "name": "landofcoder",
+            "email": "info@landofcoder.com",
+            "homepage": "https://landofcoder.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "version": "1.0.5",
+    "require": {
+        "landofcoder/module-marketplace": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lof\\MarketplaceGraphQl\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

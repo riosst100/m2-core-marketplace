@@ -1,0 +1,42 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Magento2.Security.XssTemplate.FoundNotAllowed
+/**
+ * @var \Magento\Customer\Block\SectionConfig $block
+ */
+?>
+<script type="text/x-magento-init">
+<?= $this->helper(\Magento\Framework\Json\Helper\Data::class)->jsonEncode([
+        '*' => [
+            'Magento_Customer/js/section-config' => [
+                'sections' => $block->getSections(),
+                'clientSideSections' => $block->getClientSideSections(),
+                'baseUrls' => array_unique([
+                    $block->getUrl(null, ['_secure' => true]),
+                    $block->getUrl(null, ['_secure' => false]),
+                ]),
+            ]
+        ],
+    ]);
+?>
+</script>

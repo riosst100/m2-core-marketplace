@@ -1,0 +1,76 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+/**
+ * @var $block Lof\MarketPlace\Block\Seller\Message
+ */
+?>
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2><?= $block->escapeHtml(__('Post a Reply')) ?></h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <form id="form-message" data-parsley-validate=""
+                  action="<?= $block->escapeHtmlAttr($this->getUrl('catalog/message/save')) ?>"
+                  class="form-horizontal form-label-left" method="post"
+                  data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+                  data-mage-init='{"validation":{}}'>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                           for="content"><?= $block->escapeHtml(__('Subject')) ?> <span
+                            class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input name="subject" rows="10" id="subject" required="required"
+                               class="form-control col-md-7 col-xs-12">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">
+                        <?= $block->escapeHtml(__('Message')) ?>
+                        <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <textarea name="description" rows="10" id="description" required="required"
+                                  class="form-control col-md-7 col-xs-12"> </textarea>
+                    </div>
+                </div>
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <input type="hidden" name="seller_id"
+                               value="<?= $block->escapeHtmlAttr($this->getSeller()->getSellerId()) ?>"/>
+                        <input type="hidden" name="seller_send" value="1"/>
+                        <input type="hidden" name="seller_name"
+                               value="<?= $block->escapeHtmlAttr($this->getSeller()->getName()) ?>"/>
+                        <input type="hidden" name="seller_email"
+                               value="<?= $block->escapeHtmlAttr($this->getSeller()->getEmail()) ?>"/>
+                        <button class="btn btn-primary" type="reset"><?= $block->escapeHtml(__('Reset')) ?></button>
+                        <button type="submit" class="btn btn-success"><?= $block->escapeHtml(__('Submit')) ?></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

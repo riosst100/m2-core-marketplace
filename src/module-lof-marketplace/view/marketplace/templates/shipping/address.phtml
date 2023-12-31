@@ -1,0 +1,108 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/license-agreement.html
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://landofcoder.com/)
+ * @license    https://landofcoder.com/LICENSE-1.0.html
+ */
+
+//phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+//phpcs:disable Magento2.Templates.ThisInTemplate.FoundHelper
+//phpcs:disable Magento2.Security.XssTemplate.FoundUnescaped
+/**
+ * @var $block \Lof\MarketPlace\Block\Shipping\Address
+ */
+
+$helper = $this->helper(\Magento\Directory\Helper\Data::class);
+?>
+
+<div class="row">
+    <div class="col-md-12" style="margin-top:10px;">
+        <div class="panel panel-default">
+            <div class="panel-heading col-md-12 uptransform" style="font-weight:bold;padding:4px 15px;">
+                <div class="col-md-6 panel_product_heading" style="line-height:31px;font-size:17px;padding-left:0;">
+                    <?= $block->escapeHtml(__('Shipping Settings')) ?>
+                </div>
+                <div class="buttons-set col-md-6 buttons_scb" style="text-align:right;padding-right:0;">
+                    <button class="btn btn-success uptransform product-button" title="Save" type="submit"
+                            onClick="document.getElementById('form-validate').submit();" id="save_butn"
+                            style="float: none;">
+                        <span><?= $block->escapeHtml(__('Save')) ?></span>
+                    </button>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <div class="panel-body">
+                <?= $block->getFormHtml(); ?>
+                <div class="buttons-set">
+                    <p class="required"><?= $block->escapeHtml(__('* Required Fields')) ?></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    require([
+        'jquery',
+        'jquery/ui',
+        'regionUpdater'
+    ], function ($) {
+
+    });
+</script>
+<script type="text/x-magento-init">
+    {
+        "#form-validate": {
+            "validation": {}
+        },
+        "#address-country_id": {
+            "regionUpdater": {
+                "optionalRegionAllowed": "true",
+                "regionListId": "#address-region_id",
+                "regionInputId": "#address-region",
+                "postcodeId": "#address-postcode",
+                "form": "#form-validate",
+                "regionJson": <?= $helper->getRegionJson() ?>,
+                "defaultRegion": "<?= $block->getRegionId() ?>",
+                "countriesWithOptionalZip": <?= $helper->getCountriesWithOptionalZip(true) ?>
+            }
+        }
+    }
+
+</script>
+<script type="text/javascript">
+    require([
+        "jquery"
+    ], function ($) {
+        if ($("h2").length > 0) {
+            $("h2").addClass("lof_shipping");
+        }
+    });
+</script>
+<style>
+    h2.legend.lof_shipping {
+        margin-left: 0;
+    }
+
+    .field-address-region {
+        margin-top: -54px !important;
+    }
+
+    .box-header .fa.fa-bars{
+       display: none;
+    }
+</style>

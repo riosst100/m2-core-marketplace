@@ -1,0 +1,39 @@
+<!--
+  ~ Landofcoder
+  ~
+  ~ NOTICE OF LICENSE
+  ~
+  ~ This source file is subject to the Landofcoder.com license that is
+  ~ available through the world-wide-web at this URL:
+  ~ https://landofcoder.com/terms
+  ~
+  ~ DISCLAIMER
+  ~
+  ~ Do not edit or add to this file if you wish to upgrade this extension to newer
+  ~ version in the future.
+  ~
+  ~ @category   Landofcoder
+  ~ @package    Lof_MarketPlace
+  ~ @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  ~ @license    https://landofcoder.com/terms
+  -->
+
+<div class="admin__field-control">
+    <div class="file-uploader" data-role="drop-zone" css="_loading: isLoading">
+        <each args="data: value, as: '$file'">
+            <div class="file-uploader-summary">
+                <div class="file-uploader-filename">
+                    <!-- ko if: $file.url --><a attr="href: $file.url" target="_blank" text="$file.name"></a><!-- /ko -->
+                    <!-- ko if: !$file.url --><text args="$file.name"></text><!-- /ko -->
+                    (<text args="$parent.formatSize($file.size)"></text>)
+                </div>
+            </div>
+        </each>
+        <div class="file-uploader-area">
+            <input type="file" afterRender="onElementRender" attr="id: uid, name: fileInputName, multiple: isMultipleFiles"/>
+            <label class="file-uploader-button action-secondary" attr="for: uid" translate="'Browse Files...'"></label>
+
+            <span class="file-uploader-spinner"></span>
+        </div>
+    </div>
+</div>

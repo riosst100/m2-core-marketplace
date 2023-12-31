@@ -1,0 +1,279 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Generic.WhiteSpace.ScopeIndent
+// phpcs:disable Magento2.Security.XssTemplate.FoundUnescaped
+/**
+ * @var $block \Lof\MarketPlace\Block\Seller\Editprofile
+ */
+foreach ($block->getSellerCollection() as $key => $_seller):
+    $seller = $_seller->getData();
+    $sellerId = $seller['seller_id'];
+    $twitter_id = $seller['twitter_id'];
+    $twitter_id = $seller['facebook_id'];
+    $action = $block->getUrl(
+        'lofmarketplace/seller/editProfileSave',
+        ["_secure" => $this->getRequest()->isSecure()]
+    );
+    ?>
+    <form action="<?= $block->escapeHtmlAttr($action) ?>" enctype="multipart/form-data" method="post"
+          data-role="form-profile-validate" data-mage-init='{"validation":{}}'>
+        <div class="wk-mp-page-title page-title">
+            <h2><?= $block->escapeHtml(__('Edit Profile Information')) ?></h2>
+            <button class="button wk-mp-btn" title="<?= $block->escapeHtmlAttr(__('Save Profile')) ?>" type="submit"
+                    id="save-btn">
+                <span><span><?= $block->escapeHtml(__('Save Profile')) ?></span></span>
+            </button>
+        </div>
+        <input type="hidden" id="seller_id" name="seller_id" title="Seller ID"
+               value="<?= $block->escapeHtmlAttr($sellerId) ?>"/>
+        <div class="form-list row">
+            <div class="field col-sm-6">
+                <div class="response-field-text">
+                    <div class="subtemplate-wrapper">
+                        <label for="twitter_id">
+                            <?= $block->escapeHtml(__('Twitter ID')) ?>
+                            <input type="checkbox" name="tw_active" <?= ($seller['tw_active'] == 1) ? 'checked ' : '' ?>
+                                   value="<?= $block->escapeHtmlAttr($seller['tw_active']) ?>" style="margin: 5px;">
+                        </label>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="subtemplate-inner">
+                                    <input type="text" id="twitter_id" name="twitter_id"
+                                           title="<?= $block->escapeHtmlAttr(__('Twitter ID')) ?>"
+                                           value="<?= $block->escapeHtmlAttr($seller['twitter_id']) ?>"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field col-sm-6">
+                <div class="response-field-text">
+                    <div class="subtemplate-wrapper">
+                        <label for="facebook_id">
+                            <?= $block->escapeHtml(__('Facebook ID')) ?>
+                            <input type="checkbox" name="fb_active" <?= ($seller['fb_active'] == 1) ? 'checked ' : '' ?>
+                                   value="<?= $block->escapeHtmlAttr($seller['fb_active']) ?>"
+                                   style="margin: 5px;">
+                        </label>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="subtemplate-inner">
+                                    <input type="text" id="facebook_id" name="facebook_id"
+                                           title="<?= $block->escapeHtmlAttr(__('Facebook ID')) ?>"
+                                           value="<?= $block->escapeHtmlAttr($seller['facebook_id']) ?>"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field col-sm-6">
+                <div class="response-field-text">
+                    <div class="subtemplate-wrapper">
+                        <label for="instagram_id">
+                            <?= $block->escapeHtml(__('Instagram ID')) ?>
+                            <input type="checkbox"
+                                   name="instagram_active" <?= ($seller['instagram_active'] == 1) ? 'checked ' : '' ?>
+                                   value="<?= $block->escapeHtmlAttr($seller['instagram_active']) ?>"
+                                   style="margin: 5px;">
+                        </label>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="subtemplate-inner">
+                                    <input type="text" id="instagram_id" name="instagram_id"
+                                           title="<?= $block->escapeHtmlAttr(__('Instagram ID')) ?>"
+                                           value="<?= $block->escapeHtmlAttr($seller['instagram_id']) ?>"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field col-sm-6">
+                <div class="response-field-text">
+                    <div class="subtemplate-wrapper">
+                        <label for="gplus_id">
+                            <?= __('Google Plus ID') ?>
+                            <input type="checkbox"
+                                   name="gplus_active" <?= ($seller['gplus_active'] == 1) ? 'checked ' : '' ?>
+                                   value="<?= $block->escapeHtmlAttr($seller['gplus_active']) ?>"
+                                   style="margin: 5px;">
+                        </label>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="subtemplate-inner">
+                                    <input type="text" id="gplus_id" name="gplus_id"
+                                           title="<?= $block->escapeHtmlAttr(__('Google Plus ID')) ?>"
+                                           value="<?= $block->escapeHtmlAttr($seller['gplus_id']) ?>"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field col-sm-6">
+                <div class="response-field-text">
+                    <div class="subtemplate-wrapper">
+                        <label for="youtube_id">
+                            <?= __('Youtube ID') ?>
+                            <input type="checkbox"
+                                   name="youtube_active" <?= ($seller['youtube_active'] == 1) ? 'checked ' : '' ?>
+                                   value="<?= $block->escapeHtmlAttr($seller['youtube_active']) ?>"
+                                   style="margin: 5px;">
+                        </label>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="subtemplate-inner">
+                                    <input type="text" id="youtube_id" name="youtube_id"
+                                           title="<?= $block->escapeHtmlAttr(__('Youtube ID')) ?>"
+                                           value="<?= $block->escapeHtmlAttr($seller['youtube_id']) ?>"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field col-sm-6">
+                <div class="response-field-text">
+                    <div class="subtemplate-wrapper">
+                        <label for="vimeo_id">
+                            <?= __('Vimeo ID') ?>
+                            <input type="checkbox"
+                                   name="vimeo_active" <?= ($seller['vimeo_active'] == 1) ? 'checked' : '' ?>
+                                   value="<?= $block->escapeHtmlAttr($seller['vimeo_active']) ?>" style="margin: 5px;">
+                        </label>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="subtemplate-inner">
+                                    <input type="text" id="vimeo_id" name="vimeo_id"
+                                           title="<?= $block->escapeHtmlAttr(__('Vimeo ID')) ?>"
+                                           value="<?= $block->escapeHtmlAttr($seller['vimeo_id']) ?>"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field col-sm-6">
+                <div class="response-field-text">
+                    <div class="subtemplate-wrapper">
+                        <label for="pinterest_id">
+                            <?= __('Pinterest ID') ?>
+                            <input type="checkbox"
+                                   name="pinterest_active" <?= ($seller['pinterest_active'] == 1) ? 'checked ' : '' ?>
+                                   value="<?= $block->escapeHtmlAttr($seller['pinterest_active']) ?>"
+                                   style="margin: 5px;">
+                        </label>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="subtemplate-inner">
+                                    <input type="text" id="pinterest_id" name="pinterest_id"
+                                           title="<?= $block->escapeHtmlAttr(__('Printerest ID')) ?>"
+                                           value="<?= $block->escapeHtmlAttr($seller['pinterest_id']) ?>"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field col-sm-6">
+                <div class="response-field-text">
+                    <div class="subtemplate-wrapper">
+                        <label for="contact_number">
+                            <?= $block->escapeHtml(__('Contact Number')) ?>
+                        </label>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="subtemplate-inner">
+                                    <input type="text" id="contact_number" name="contact_number"
+                                           title="<?= $block->escapeHtmlAttr(__('Contact Number')) ?>"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field col-sm-12">
+                <div class="response-field-file_upload">
+                    <div class="subtemplate-wrapper">
+                        <label for="image">
+                            <?= $block->escapeHtml(__('Company Banner')) ?>
+                        </label>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="input-box">
+                                    <input type="file" id="image" name="image"
+                                           title="<?= $block->escapeHtmlAttr(__('Company Banner')) ?>"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field col-sm-12">
+                <div class="response-field-file_upload">
+                    <div class="subtemplate-wrapper">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="input-box">
+                                    <img src="<?= $block->escapeUrl($_seller->getImageUrl()) ?>"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field col-sm-12">
+                <div class="response-field-file_upload">
+                    <div class="subtemplate-wrapper">
+                        <label for="thumbnail">
+                            <?= $block->escapeHtml(__('Company Logo')) ?>
+                        </label>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="input-box">
+                                    <input type="file" id="thumbnail" name="thumbnail"
+                                           title="<?= $block->escapeHtmlAttr(__('Company Logo')) ?>"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field col-sm-12">
+                <div class="response-field-file_upload">
+                    <div class="subtemplate-wrapper">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="input-box">
+                                    <img src="<?= $block->escapeUrl($_seller->getThumbnailUrl()) ?>"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+<?php endforeach; ?>

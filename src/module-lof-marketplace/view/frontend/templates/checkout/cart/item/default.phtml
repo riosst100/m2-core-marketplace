@@ -1,0 +1,73 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+/**
+ * @var $block \Magento\Checkout\Block\Cart\Additional\Info
+ * @var $sellerHelper \Lof\MarketPlace\Helper\Seller
+ * @var $helper \Lof\MarketPlace\Helper\Data
+ */
+?>
+<?php
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Generic.WhiteSpace.ScopeIndent
+$_item = $block->getItem();
+$product = $_item->getProduct();
+$helper = $this->helper(\Lof\MarketPlace\Helper\Data::class);
+$sellerHelper = $this->helper(\Lof\MarketPlace\Helper\Seller::class);
+$_product = $product;
+$seller_id = '';
+$priceComparison = $helper->isEnableModule('Lofmp_PriceComparison');
+if ($priceComparison) {
+    $assignHelper = $this->helper(\Lofmp\PriceComparison\Helper\Data::class);
+    $quote = $assignHelper->getOfferProduct($_product['entity_id'], $_item->getId());
+    if ($quote && $quote->getSellerId()) {
+        $seller_id = $quote->getSellerId();
+    } else {
+        $seller_id = $_item->getLofSellerId();
+    }
+} else {
+    $seller_id = $_item->getLofSellerId();
+}
+
+if ($seller_id != '' && !empty($seller_id)):
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $seller = $objectManager->create(\Lof\MarketPlace\Model\Seller::class)->load((int)$seller_id, 'seller_id');
+    $url = $seller->getUrl();
+    $shoptitle = $seller->getName();
+    $vacation = $sellerHelper->getVacationBySellerId($seller_id);
+    ?>
+    <div class="lof-seller-block lof-block" id="mp-lof-block">
+        <div>
+            <span class="lof-block-font-bold-up"><?= $block->escapeHtml(__('Sold By')) ?></span>
+            <span class="lof-block-title-css">
+                <a href="<?= $block->escapeUrl($url) ?>"
+                   title="<?= $block->escapeHtmlAttr(__('Visit Shop')) ?>" id="profileconnect">
+                    <?= $block->escapeHtml($shoptitle) ?>
+                </a>
+            </span>
+            <?php if ($vacation->getTextShippingMethod() && !!$vacation->getStatus()) : ?>
+                <div class="lof-block-vacation message notice">
+                    <?= $block->escapeHtml($vacation->getTextShippingMethod()) ?>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+    <?php
+endif;

@@ -1,0 +1,48 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+/** @var \Lof\MarketPlace\Block\Adminhtml\Catalog\Form\SellerContent $block */
+
+$seller = $block->getSeller();
+?>
+
+<div class="admin__field-label">
+    <label><?= $block->escapeHtml(__('Seller')); ?></label>
+</div>
+<div class="admin__field-control">
+    <?php if ($seller) : ?>
+        <div class="admin__actions-switch">
+            <span class="seller-name">
+                <b><?= $block->escapeHtml($seller->getName() ?: __('No name')) ?></b>
+            </span>
+        </div>
+    <?php else: ?>
+        <div class="admin__actions-switch">
+            <?= $block->escapeHtml(__('The product has not been added by a seller.')) ?>
+        </div>
+    <?php endif; ?>
+</div>
+<?php if ($seller): ?>
+    <div class="admin__field admin__field-group-additional">
+        <a class="admin__field--action-link-view" target="_blank" href="<?= $block->escapeHtmlAttr($block->getSellerShopUrl()) ?>"><?= $block->escapeHtml(__('View')) ?></a>
+        <a class="admin__field--action-link-edit" target="_blank" href="<?= $block->escapeHtmlAttr($block->getSellerDashboardUrl()) ?>"><?= $block->escapeHtml(__('Edit')) ?></a>
+    </div>
+<?php endif; ?>

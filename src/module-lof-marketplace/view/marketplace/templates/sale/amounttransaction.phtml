@@ -1,0 +1,72 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+/**
+ * @var $block Lof\MarketPlace\Block\Sale\Amounttransaction
+ */
+?>
+<div class="page-title">
+    <div class="title_left">
+        <h3><?= $block->escapeHtml(__('Amount Transactions')) ?></h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_content">
+                <table id="datatable" class="table table-striped table-bordered amount-transaction">
+                    <thead>
+                    <tr class="headings">
+                        <th class="hidden"></th>
+                        <th class="column-title"><?= $block->escapeHtml(__('ID')) ?> </th>
+                        <th class="column-title"><?= $block->escapeHtml(__('Amount')) ?> </th>
+                        <th class="column-title"><?= $block->escapeHtml(__('Balance')) ?> </th>
+                        <th class="column-title"><?= $block->escapeHtml(__('Description')) ?> </th>
+                        <th class="column-title"><?= $block->escapeHtml(__('Created At')) ?> </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $trans = $block->getAmounttransaction()->setOrder('created_at', 'desc');
+                    ?>
+                    <?php foreach ($trans as $key => $amount):
+                        if ($amount->getData('amount') >= 0) {
+                            $class = 'amount';
+                        } else {
+                            $class = 'refund';
+                        } ?>
+                        <tr class="even pointer">
+                            <td class="hidden"></td>
+                            <td><?= $block->escapeHtml($amount->getData('transaction_id')) ?></td>
+                            <td class="<?= $block->escapeHtmlAttr($class) ?>">
+                                <?= $block->escapeHtml($amount->getData('amount')) ?>
+                            </td>
+                            <td><?= $block->escapeHtml($amount->getData('balance')) ?></td>
+                            <td><?= $block->escapeHtml($amount->getData('description')) ?></td>
+                            <td><?= $block->escapeHtml($amount->getData('created_at')) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

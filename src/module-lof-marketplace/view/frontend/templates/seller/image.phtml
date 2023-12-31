@@ -1,0 +1,49 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://landofcoder.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2016 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+/**
+ * @var $block \Lof\MarketPlace\Block\Seller\View
+ */
+$_helper = $this->helper(\Lof\MarketPlace\Helper\Data::class);
+$_seller = $block->getCurrentSeller();
+$_img = '';
+if ($_seller->getImageUrl()): ?>
+    <div class="seller-image">
+        <img src="<?= $block->escapeUrl($_seller->getImageUrl()) ?>"
+             alt="<?= $block->escapeHtmlAttr($_seller->getName()) ?>" class="image"/>
+    </div>
+<?php else: ?>
+    <div class="seller-image">
+        <img src="<?= $block->escapeUrl($_helper->getMediaUrl() . 'images/banner-seller.png') ?>"
+             alt="<?= $block->escapeHtmlAttr($_seller->getName()) ?>"
+             class="image"/>
+    </div>
+<?php endif; ?>
+<style>
+    .seller-image .image {
+        width: 100%;
+    }
+
+    .seller-image {
+        margin-bottom: 10px;
+    }
+</style>

@@ -1,0 +1,117 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Generic.WhiteSpace.ScopeIndent
+// phpcs:disable Magento2.Security.XssTemplate.FoundUnescaped
+// phpcs:disable Generic.Files.LineLength.TooLong
+/**
+ * @var \Lof\MarketPlace\Block\Seller\Rating\ListRating $block
+ */
+$helper = $this->helper(\Lof\MarketPlace\Helper\Data::class);
+$seller = $block->getCurrentSeller();
+$formActionUrl = $block->getUrl('lofmarketplace/seller/saverating');
+$currPageUrl = $helper->getCurrentUrls();
+$per_rate = round($block->getRate()['average'] / 5 * 100);
+$ratings = $block->getCustomCollection();
+?>
+<div class="box-collateral box-reviews" id="customer-reviews">
+    <div class="reviews-container">
+        <?php foreach ($ratings as $rating): ?>
+            <?php /** @var \Lof\MarketPlace\Model\Rating $rating */ ?>
+            <div class="row review-row no-margin">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+                    <div class="title">
+                        <?= $rating->getData('title') ?>
+                    </div>
+                </div>
+                <div class="review-dd col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+                    <div class="value-review-attr description">
+                        <?= $rating->getData('detail') ?>
+                        <div class="seller-review-meta small-text">
+                            <div class="good-exp">
+                                <span><?= $rating->getLikeAbout(); ?></span>
+                            </div>
+                            <div class="bad-exp">
+                                <span><?= $rating->getNotLikeAbout(); ?></span>
+                            </div>
+                            <?php if ($rating->getIsRecommended()) : ?>
+                            <div class="is-recommended">
+                                <strong><?= __("Recommended"); ?></strong>
+                            </div>
+                            <?php endif; ?>
+                        </div>
+                        <?php if ($rating->getAnswer()) : ?>
+                        <div class="seller-review-answers small-text">
+                            <span>
+                                <strong><i><?= __("Seller Reply: ");?></i></strong>
+                                <span class="seller-answer"><i><?= $block->escapeHtml($rating->getAnswer()); ?></i></span>
+                            </span>
+                        </div>
+                        <?php endif; ?>
+                    </div>
+                    <div class="info">
+                        <span class="date"><?= $rating->getData('created_at') ?></span>
+                        <span class="nickname">
+                            <span class="lable"><?= __('By'); ?> </span>
+                            <span>
+                                <?= $rating->getData('nickname') ?>
+                                <?php if ($rating->getVerifiedBuyer()) : ?>
+                                <span class="is-verified"><?= __(" (verified) "); ?></span>
+                                <?php endif; ?>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+                    <ul class="ratings-table">
+                        <li>
+                            <span><?= __('Price'); ?></span>
+                            <div class="rating-box">
+                                <div class="rating"
+                                        style="width:<?= ((int)$rating->getData('rate1') / 5 * 100); ?>%;"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <span><?= __('Value'); ?></span>
+                            <div class="rating-box">
+                                <div class="rating"
+                                        style="width:<?= ((int)$rating->getData('rate2') / 5 * 100); ?>%;"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <span><?= __('Quality'); ?></span>
+                            <div class="rating-box">
+                                <div class="rating"
+                                        style="width:<?= ((int)$rating->getData('rate3') / 5 * 100); ?>%;"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <?php endforeach; ?>
+            <?php if ($block->getPagerHtml()): ?>
+                <div class="order-products-toolbar toolbar bottom custom-pager"><?php echo $block->getPagerHtml();?></div>
+            <?php else: ?>
+                <div class="message info empty"><span><?php echo __('grid records not available.'); ?></span></div>
+            <?php endif ?>
+        </div>
+</div>

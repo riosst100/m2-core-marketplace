@@ -1,0 +1,92 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Generic.WhiteSpace.ScopeIndent
+// phpcs:disable Magento2.Security.XssTemplate.FoundUnescaped
+// phpcs:disable Magento2.Security.XssTemplate.FoundNotAllowed
+// phpcs:disable Generic.Files.LineLength.TooLong
+/**
+ * @var \Lof\MarketPlace\Block\Seller\Product\Head $block
+ */
+$editorConfig = $block->getEditorConfig();
+?>
+<script>
+    window.tinyMCE_GZ = window.tinyMCE_GZ || {};
+    window.tinyMCE_GZ.loaded = true;
+    require([
+        "jquery",
+        "mage/translate",
+        "mage/adminhtml/events",
+        "mage/adminhtml/wysiwyg/tiny_mce/setup",
+        "mage/adminhtml/wysiwyg/widget"
+    ], function (jQuery) {
+
+        var config = {
+            "enabled": true,
+            "hidden": false,
+            "use_container": true,
+            "add_variables": false,
+            "add_widgets": false,
+            "no_display": false,
+            "add_directives": false,
+            "width": "99%",  // defined width of editor
+            "height": "200px", // height of editor
+            "plugins": [
+                {
+                    "name": "image"
+                }
+            ],
+            "container_class": "hor-scroll",
+            "add_images": true,
+            "files_browser_window_width": "1000",
+            "files_browser_window_height": "600",
+            "tinymce": {
+                "toolbar": "formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist | link table charmap",
+                "plugins": "advlist autolink lists link charmap media noneditable table contextmenu paste code help table colorpicker"
+            },
+            'content_css': "<?= $block->getAssetRepoUrl('mage/adminhtml/wysiwyg/tiny_mce/themes/ui.css'); ?>"
+        }, editor;
+            jQuery('.main_container').click(function () {
+                if (jQuery(".wysiwygEditor").length > 0) {
+                    jQuery(".wysiwygEditor").each (function() {
+                        if (jQuery(this).find("> textarea")) {
+                            if (jQuery(this).find("> textarea").data("wysiwygEditor") === undefined || jQuery(this).find("> textarea").data("wysiwygEditor") == null) {
+                                const fieldEditorId = jQuery(this).find("> textarea").attr("id");
+                                let wysiwygcompany_description1 = new wysiwygSetup(fieldEditorId, config);
+                                wysiwygcompany_description1.setup("exact");
+
+                                jQuery(this).find("> textarea")
+                                    .addClass('wysiwyg-editor')
+                                    .data(
+                                        'wysiwygEditor',
+                                        wysiwygcompany_description1
+                                    );
+
+                                const editorShortDescriptionFormValidationHandler = wysiwygcompany_description1.onFormValidation.bind(wysiwygcompany_description1);
+                                varienGlobalEvents.attachEventHandler("formSubmit", editorShortDescriptionFormValidationHandler);
+                            }
+                        }
+                    })
+                }
+            });
+    });
+</script>

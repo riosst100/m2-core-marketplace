@@ -1,0 +1,110 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+/**
+ * @var $block Lof\MarketPlace\Block\Seller\Rating\View
+ */
+$helper = $this->helper(\Lof\MarketPlace\Helper\Data::class);
+$formActionUrl = $this->getUrl('catalog/seller/saverating');
+$currPageUrl = $helper->getCurrentUrls();
+?>
+<div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><?= $block->escapeHtml($block->getRating()->getTitle()) ?></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <table class="tile_info">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <b><?= $block->escapeHtml(__('Nick Name')) ?></b>
+                        </td>
+                        <td><p><?= $block->escapeHtml($block->getRating()->getNickname()) ?></p></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b><?= $block->escapeHtml(__('Email')) ?></b>
+                        </td>
+                        <td><p><?= $block->escapeHtml($block->getRating()->getEmail()) ?></p></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b><?= $block->escapeHtml(__('Price')) ?></b>
+                        </td>
+                        <td><p><?= $block->escapeHtml($block->getRating()->getData('rate1')) ?></p></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b><?= $block->escapeHtml(__('Value')) ?></b>
+                        </td>
+                        <td><p><?= $block->escapeHtml($block->getRating()->getData('rate2')) ?></p></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b><?= $block->escapeHtml(__('Qty')) ?></b>
+                        </td>
+                        <td><p><?= $block->escapeHtml($block->getRating()->getData('rate3')) ?></p></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b><?= $block->escapeHtml(__('Status')) ?></b>
+                        </td>
+                        <td><?= $block->escapeHtml($block->getStatus($block->getRating()->getStatus())) ?></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><?= $block->escapeHtml(__('Comment')) ?></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <form id="form-message" data-parsley-validate="" action="<?= $block->escapeHtmlAttr($formActionUrl) ?>"
+                      class="form-horizontal form-label-left" method="post"
+                      data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+                      data-mage-init='{"validation":{}}'>
+                    <div class="form-group">
+                        <label class=" col-md-2 col-sm-2 col-xs-12"><?= $block->escapeHtml(__('Title')) ?></label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <?= $block->escapeHtml($block->getRating()->getTitle()) ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class=" col-md-2 col-sm-2 col-xs-12"><?= $block->escapeHtml(__('Detail')) ?></label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <?= $block->escapeHtml($block->getRating()->getDetail()) ?>
+                        </div>
+                    </div>
+                    <div class="ln_solid"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

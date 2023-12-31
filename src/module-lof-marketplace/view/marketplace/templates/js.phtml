@@ -1,0 +1,140 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Generic.WhiteSpace.ScopeIndent
+// phpcs:disable Magento2.Security.XssTemplate.FoundUnescaped
+// phpcs:disable Magento2.Security.XssTemplate.FoundNotAllowed
+// phpcs:disable Generic.Files.LineLength.TooLong
+/**
+ * @var $block Lof\MarketPlace\Block\Seller\Product\Head
+ */
+
+$type = $block->getTypeProduct();
+if ($type && is_numeric($type)) {
+    $product = $block->getProductFromType($type);
+    $type = $product->getTypeId();
+}
+$editorConfig = $block->getEditorConfig();
+?>
+<style type="text/css">
+    <?php if ($type == 'configurable'): ?>
+    div[data-index="configurable"] {
+        display: block;
+    }
+
+    <?php else: ?>
+    div[data-index="configurable"] {
+        display: none;
+    }
+
+    <?php endif; ?>
+    <?php if (!$block->getProductId()): ?>
+    div[data-index="status"] {
+        display: none;
+    }
+
+    <?php else:
+        $product = $block->getProduct();
+        $approval = $product->getApproval();
+        if ($approval != 2): ?>
+    div[data-index="status"] {
+        display: none;
+    }
+
+    <?php endif;
+    endif;?>
+</style>
+<script>
+    window.tinyMCE_GZ = window.tinyMCE_GZ || {};
+    window.tinyMCE_GZ.loaded = true;
+    require([
+        "jquery",
+        "mage/translate",
+        "mage/adminhtml/events",
+        "mage/adminhtml/wysiwyg/tiny_mce/setup",
+        "mage/adminhtml/wysiwyg/widget"
+    ], function (jQuery) {
+        (function ($) {
+            $.mage.translate.add({
+                "Insert Image...": "Insert Image...",
+                "Insert Media...": "Insert Media...",
+                "Insert File...": "Insert File..."
+            })
+        })(jQuery);
+        var config = {
+            "enabled": true,
+            "hidden": false,
+            "use_container": true,
+            "add_variables": false,
+            "add_widgets": false,
+            "no_display": false,
+            "add_directives": false,
+            "width": "99%",  // defined width of editor
+            "height": "200px", // height of editor
+            "plugins": [
+                {
+                    "name": "image"
+                }
+            ],
+            "container_class": "hor-scroll",
+            "add_images": true,
+            "files_browser_window_width": "1000",
+            "files_browser_window_height": "600",
+            "tinymce": {
+                "toolbar": "formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist | link table charmap",
+                "plugins": "advlist autolink lists link charmap media noneditable table contextmenu paste code help table colorpicker"
+            },
+            'content_css': "<?= $block->getAssetRepoUrl('mage/adminhtml/wysiwyg/tiny_mce/themes/ui.css'); ?>"
+        }, editor;
+
+        jQuery('.main_container').click(function () {
+            if (jQuery('#product_form_description').data("wysiwygEditor") === undefined || jQuery('#product_form_description').data("wysiwygEditor") == null) {
+                let wysiwygcompany_description = new wysiwygSetup("product_form_description", config);
+                wysiwygcompany_description.setup("exact");
+
+                jQuery('#product_form_description')
+                    .addClass('wysiwyg-editor')
+                    .data(
+                        'wysiwygEditor',
+                        wysiwygcompany_description
+                    );
+
+                const editorDescriptionFormValidationHandler = wysiwygcompany_description.onFormValidation.bind(wysiwygcompany_description);
+                varienGlobalEvents.attachEventHandler("formSubmit", editorDescriptionFormValidationHandler);
+            }
+            if (jQuery('#product_form_short_description').data("wysiwygEditor") === undefined || jQuery('#product_form_short_description').data("wysiwygEditor") == null) {
+                let wysiwygcompany_description1 = new wysiwygSetup("product_form_short_description", config);
+                wysiwygcompany_description1.setup("exact");
+
+                jQuery('#product_form_short_description')
+                    .addClass('wysiwyg-editor')
+                    .data(
+                        'wysiwygEditor',
+                        wysiwygcompany_description1
+                    );
+
+                const editorShortDescriptionFormValidationHandler = wysiwygcompany_description1.onFormValidation.bind(wysiwygcompany_description1);
+                varienGlobalEvents.attachEventHandler("formSubmit", editorShortDescriptionFormValidationHandler);
+            }
+        });
+    });
+</script>

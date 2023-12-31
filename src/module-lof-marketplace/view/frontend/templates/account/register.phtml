@@ -1,0 +1,600 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Generic.WhiteSpace.ScopeIndent
+// phpcs:disable Magento2.Security.XssTemplate.FoundUnescaped
+// phpcs:disable Generic.Files.LineLength.TooLong
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$url = $this->helper(\Lof\MarketPlace\Helper\Url::class);
+$helper = $this->helper(\Lof\MarketPlace\Helper\Data::class);
+$helperBlock = $objectManager->get(\Magento\Customer\Block\Widget\Name::class);
+$enableSellerMembership = $helper->isEnableModule('Lofmp_SellerMembership');
+$helpAddress = $this->helper(\Magento\Customer\Helper\Address::class);
+/** @var $block Lof\MarketPlace\Block\Seller\Register */
+/** @var \Lof\MarketPlace\ViewModel\SellerRegisterDataProvider $viewModel */
+$viewModel = $block->getViewModel();
+$_directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
+$countries = $block->getCountries($viewModel->getCountryId());
+?>
+<?= $block->getChildHtml('form_fields_before'); ?>
+<?= $block->getChildHtml('customer.form.register.extra'); ?>
+<form class="form create account form-create-account"
+      action="<?= $block->escapeHtmlAttr($block->getPostActionUrl()) ?>"
+      method="post" id="seller-form-validate" enctype="multipart/form-data"
+      autocomplete="off">
+    <fieldset class="fieldset create info">
+        <legend class="legend">
+            <span><?= $block->escapeHtml(__('Personal Information')) ?></span>
+        </legend>
+        <br> <input type="hidden" name="success_url" value="<?= $block->getSuccessUrl() ?>">
+        <input type="hidden" name="error_url" value="<?= $block->getErrorUrl() ?>">
+        <?php
+        /*
+        <?= $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Name')
+           ->setObject($block->getAddress())
+           ->toHtml() ?>
+
+        For checkout/onepage/shipping.phtml:
+
+        <?= $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Name')
+           ->setObject($block->getAddress())
+           ->setFieldIdFormat('shipping:%s')
+           ->setFieldNameFormat('shipping[%s]')
+           ->toHtml() ?>
+        */
+
+        $prefix = $helperBlock->showPrefix();
+        $middle = $helperBlock->showMiddlename();
+        $suffix = $helperBlock->showSuffix();
+        ?>
+        <?php if (($prefix || $middle || $suffix) && !$helperBlock->getNoWrap()) : ?>
+        <div class="field required fullname <?= $block->escapeHtmlAttr($helperBlock->getContainerClassName()) ?>">
+            <label for="<?= $block->escapeHtmlAttr($helperBlock->getFieldId('firstname')) ?>" class="label"><span><?= $block->escapeHtml(__('Name')) ?></span></label>
+            <div class="control">
+                <fieldset class="fieldset fieldset-fullname">
+                    <div class="fields">
+                        <?php endif; ?>
+
+                        <?php if ($prefix) : ?>
+                            <div class="field field-name-prefix<?= $helperBlock->isPrefixRequired() ? ' required' : '' ?>">
+                                <label class="label" for="<?= $block->escapeHtmlAttr($helperBlock->getFieldId('prefix')) ?>"><span><?= $block->escapeHtml($helperBlock->getStoreLabel('prefix')) ?></span></label>
+                                <div class="control">
+                                    <?php if ($helperBlock->getPrefixOptions() === false) : ?>
+                                        <input type="text" id="<?= $block->escapeHtmlAttr($helperBlock->getFieldId('prefix')) ?>"
+                                               name="<?= $block->escapeHtmlAttr($helperBlock->getFieldName('prefix')) ?>"
+                                               value="<?= $block->escapeHtmlAttr($viewModel->getPrefix()) ?>"
+                                               title="<?= $block->escapeHtmlAttr($helperBlock->getStoreLabel('prefix')) ?>"
+                                               class="input-text <?= $block->escapeHtmlAttr($block->getAttributeValidationClass('prefix')) ?>" <?= $block->isPrefixRequired() ? ' data-validate="{required:true}"' : '' ?>>
+                                    <?php else : ?>
+                                        <select id="<?= $block->escapeHtmlAttr($helperBlock->getFieldId('prefix')) ?>"
+                                                name="<?= $block->escapeHtmlAttr($helperBlock->getFieldName('prefix')) ?>"
+                                                title="<?= $block->escapeHtmlAttr($helperBlock->getStoreLabel('prefix')) ?>"
+                                                class="<?= $block->escapeHtmlAttr($helperBlock->getAttributeValidationClass('prefix')) ?>" <?= $helperBlock->isPrefixRequired() ? ' data-validate="{required:true}"' : '' ?> >
+                                            <?php foreach ($helperBlock->getPrefixOptions() as $_option) : ?>
+                                                <option value="<?= $block->escapeHtmlAttr($_option) ?>"<?php if ($viewModel->getPrefix() == $_option) : ?> selected="selected"<?php endif; ?>>
+                                                    <?= $block->escapeHtml(__($_option)) ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                        <div class="field field-name-firstname required">
+                            <label class="label" for="<?= $block->escapeHtmlAttr($helperBlock->getFieldId('firstname')) ?>"><span><?= $block->escapeHtml($helperBlock->getStoreLabel('firstname')) ?></span></label>
+                            <div class="control">
+                                <input type="text" id="<?= $block->escapeHtmlAttr($helperBlock->getFieldId('firstname')) ?>"
+                                       name="<?= $block->escapeHtmlAttr($helperBlock->getFieldName('firstname')) ?>"
+                                       value="<?= $block->escapeHtmlAttr($viewModel->getUserFirstName()) ?>"
+                                       title="<?= $block->escapeHtmlAttr($helperBlock->getStoreLabel('firstname')) ?>"
+                                       class="input-text <?= $block->escapeHtmlAttr($helperBlock->getAttributeValidationClass('firstname')) ?>" <?= ($helperBlock->getAttributeValidationClass('firstname') == 'required-entry') ? ' data-validate="{required:true}"' : '' ?>>
+                            </div>
+                        </div>
+                        <?php if ($middle) : ?>
+                            <?php $isMiddlenameRequired = $helperBlock->isMiddlenameRequired(); ?>
+                            <div class="field field-name-middlename<?= $isMiddlenameRequired ? ' required' : '' ?>">
+                                <label class="label" for="<?= $block->escapeHtmlAttr($helperBlock->getFieldId('middlename')) ?>"><span><?= $block->escapeHtml($helperBlock->getStoreLabel('middlename')) ?></span></label>
+                                <div class="control">
+                                    <input type="text" id="<?= $block->escapeHtmlAttr($helperBlock->getFieldId('middlename')) ?>"
+                                           name="<?= $block->escapeHtmlAttr($helperBlock->getFieldName('middlename')) ?>"
+                                           value="<?= $block->escapeHtmlAttr($viewModel->getMiddlename()) ?>"
+                                           title="<?= $block->escapeHtmlAttr($helperBlock->getStoreLabel('middlename')) ?>"
+                                           class="input-text <?= $block->escapeHtmlAttr($helperBlock->getAttributeValidationClass('middlename')) ?>" <?= $isMiddlenameRequired ? ' data-validate="{required:true}"' : '' ?>>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                        <div class="field field-name-lastname required">
+                            <label class="label" for="<?= $block->escapeHtmlAttr($helperBlock->getFieldId('lastname')) ?>"><span><?= $block->escapeHtml($helperBlock->getStoreLabel('lastname')) ?></span></label>
+                            <div class="control">
+                                <input type="text" id="<?= $block->escapeHtmlAttr($helperBlock->getFieldId('lastname')) ?>"
+                                       name="<?= $block->escapeHtmlAttr($helperBlock->getFieldName('lastname')) ?>"
+                                       value="<?= $block->escapeHtmlAttr($viewModel->getUserLastName()) ?>"
+                                       title="<?= $block->escapeHtmlAttr($helperBlock->getStoreLabel('lastname')) ?>"
+                                       class="input-text <?= $block->escapeHtmlAttr($helperBlock->getAttributeValidationClass('lastname')) ?>" <?= ($helperBlock->getAttributeValidationClass('lastname') == 'required-entry') ? ' data-validate="{required:true}"' : '' ?>>
+                            </div>
+                        </div>
+                        <?php if ($suffix) : ?>
+                            <div class="field field-name-suffix<?= $helperBlock->isSuffixRequired() ? ' required' : '' ?>">
+                                <label class="label" for="<?= $block->escapeHtmlAttr($helperBlock->getFieldId('suffix')) ?>"><span><?= $block->escapeHtml($helperBlock->getStoreLabel('suffix')) ?></span></label>
+                                <div class="control">
+                                    <?php if ($helperBlock->getSuffixOptions() === false) : ?>
+                                        <input type="text" id="<?= $block->escapeHtmlAttr($helperBlock->getFieldId('suffix')) ?>"
+                                               name="<?= $block->escapeHtmlAttr($helperBlock->getFieldName('suffix')) ?>"
+                                               value="<?= $block->escapeHtmlAttr($viewModel->getSuffix()) ?>"
+                                               title="<?= $block->escapeHtmlAttr($helperBlock->getStoreLabel('suffix')) ?>"
+                                               class="input-text <?= $block->escapeHtmlAttr($helperBlock->getAttributeValidationClass('suffix')) ?>" <?= $helperBlock->isSuffixRequired() ? ' data-validate="{required:true}"' : '' ?>>
+                                    <?php else : ?>
+                                        <select id="<?= $block->escapeHtmlAttr($helperBlock->getFieldId('suffix')) ?>"
+                                                name="<?= $block->escapeHtmlAttr($helperBlock->getFieldName('suffix')) ?>"
+                                                title="<?= $block->escapeHtmlAttr($helperBlock->getStoreLabel('suffix')) ?>"
+                                                class="<?= $block->escapeHtmlAttr($helperBlock->getAttributeValidationClass('suffix')) ?>" <?= $helperBlock->isSuffixRequired() ? ' data-validate="{required:true}"' : '' ?>>
+                                            <?php foreach ($helperBlock->getSuffixOptions() as $_option) : ?>
+                                                <option value="<?= $block->escapeHtmlAttr($_option) ?>"<?php if ($viewModel->getSuffix() == $_option) : ?> selected="selected"<?php endif; ?>>
+                                                    <?= $block->escapeHtml(__($_option)) ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if (($prefix || $middle || $suffix) && !$helperBlock->getNoWrap()) : ?>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    <?php endif; ?>
+
+        <div class="field required">
+            <label for="email_address" class="label"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+            <div class="control">
+                <input type="email" name="email" id="email_address"
+                       value="<?= $block->escapeHtmlAttr($viewModel->getUserEmail()) ?>"
+                       title="<?= $block->escapeHtmlAttr(__('Email')) ?>"
+                       class="input-text"
+                       data-validate="{required:true, 'validate-email':true}">
+            </div>
+        </div>
+        <?php $_dob = $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Dob::class) ?>
+        <?php if ($_dob->isEnabled()): ?>
+            <?= $_dob->setDate($block->getFormData()->getDob())->toHtml() ?>
+        <?php endif ?>
+
+        <?php $_taxvat = $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Taxvat::class) ?>
+        <?php if ($_taxvat->isEnabled()): ?>
+            <?= $_taxvat->setTaxvat($block->getFormData()->getTaxvat())->toHtml() ?>
+        <?php endif ?>
+
+        <?php $_gender = $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Gender::class) ?>
+        <?php if ($_gender->isEnabled()): ?>
+            <?= $_gender->setGender($block->getFormData()->getGender())->toHtml() ?>
+        <?php endif ?>
+    </fieldset>
+    <fieldset id="fieldset-seller" class="fieldset create seller">
+        <legend class="legend">
+            <span><?= $block->escapeHtml(__('Seller General')) ?></span>
+        </legend>
+        <?php if (!$enableSellerMembership && $helper->getConfig('group_seller/enable_group_seller')): ?>
+            <div class="field required">
+                <label for="group" class="label"><?= $block->escapeHtml(__('Group')) ?></label>
+                <div class="control">
+                    <select id="group" name="group" data-validate="{required:true}">
+                        <?php foreach ($block->getGroupCollection() as $group): ?>
+                            <option value="<?= $block->escapeHtmlAttr($group->getGroupId()) ?>">
+                                <?= $block->escapeHtml($group->getName()) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            </div>
+        <?php endif; ?>
+        <div class="field shop-title required">
+            <label class="label" for="shop_title">
+                <span><?= $block->escapeHtml(__('Shop Title')) ?></span>
+            </label>
+            <div class="control">
+                <input type="text" name="shop_title"
+                       class="admin__control-text"
+                       value="<?= $block->escapeHtmlAttr($viewModel->getShopTitle()) ?>"
+                       data-validate="{required:true}" />
+            </div>
+        </div>
+        <div class="field required">
+            <label for="url" class="label">
+                <span><?= $block->escapeHtml(__('Store URL')) ?></span>
+            </label>
+            <div class="control">
+                <input type="text" id="url" name="url"
+                       class="input-text required-entry"
+                       value="<?= $block->escapeHtmlAttr($viewModel->getSellerUrl()) ?>"
+                       data-validate="{required:true, 'validate-xml-identifier':true}"/>
+                <span class="help-block">
+                    <?= $block->escapeHtml(__('Please enter a valid Store URL (Ex: "seller-name").')) ?>
+                    </br>
+                    <?= $block->escapeHtml(
+                        __(
+                            'Your Store URL will be <i>%1</i>',
+                            $block->escapeUrl($block->getSellerUrl('seller-name'))
+                        ),
+                        ['i']
+                    ) ?>
+                </span>
+            </div>
+        </div>
+        <?= $block->getChildHtml('additional_fields'); ?>
+    </fieldset>
+    <?php if ($block->getShowAddressFields()): ?>
+        <fieldset class="fieldset address">
+            <legend class="legend">
+                <span><?= $block->escapeHtml(__('Address Information')) ?></span>
+            </legend>
+            <br> <input type="hidden" name="create_address" value="1"/>
+            <div class="field company">
+                <label for="company" class="label">
+                    <span><?= $block->escapeHtml(__('Company')) ?></span>
+                </label>
+                <div class="control">
+                    <input type="text" name="company" id="company"
+                           value="<?= $block->escapeHtmlAttr($viewModel->getCompany()) ?>"
+                           title="<?= $block->escapeHtmlAttr(__('Company')) ?>"
+                           class="input-text <?= $helpAddress->getAttributeValidationClass('company') ?>">
+                </div>
+            </div>
+            <input type="hidden" name="country_dial_code" id="country_dial_code" aria-required="true" value="">
+            <div class="field telephone required">
+                <label for="telephone" class="label">
+                    <span><?= $block->escapeHtml(__('Phone Number')) ?></span>
+                </label>
+                <div class="control">
+                    <input type="text" name="telephone" id="telephone"
+                           value="<?= $block->escapeHtmlAttr($viewModel->getTelephone()) ?>"
+                           title="<?= $block->escapeHtmlAttr(__('Phone Number')) ?>"
+                           class="input-text <?= $helpAddress->getAttributeValidationClass('telephone') ?>">
+                    <span class="help-block">
+                        <?= $block->escapeHtml(__('Please enter your phone number.')) ?>
+                    </span>
+                </div>
+            </div>
+            <div id="seller-register-phone-number">
+                <input id="telephone-input" name="telephone-input" type="tel"
+                       data-validate="{required:true}"
+                       class="input-text mobile-number required-entry mage-error"
+                       value="<?= $block->escapeHtmlAttr($viewModel->getTelephone()) ?>"
+                       pattern="\(?\+?(\d{1,4})?\)?\(?\d{3,4}\)?[\s.-]?\d{3,4}[\s.-]?(\d{3,6})?" />
+                <input type="hidden" name="telephone_number" id="telephone-number" aria-required="true" value="" />
+                <input type="hidden" name="country_code" id="country_code" aria-required="true" value="" />
+            </div>
+
+            <?php $_streetValidationClass = $helpAddress->getAttributeValidationClass('street'); ?>
+            <div class="field street required">
+                <label for="street_1" class="label">
+                    <span><?= __('Street Address') ?></span>
+                </label>
+                <div class="control">
+                    <input type="hidden" name="post_street" id="post_street" value="">
+                    <input type="text" name="street[]"
+                           value="<?= $block->escapeHtmlAttr($viewModel->getStreet()) ?>"
+                           title="<?= $block->escapeHtmlAttr(__('Street Address')) ?>"
+                           id="street_1"
+                           class="input-text <?= $_streetValidationClass ?>">
+                    <div class="nested">
+                        <?php $_streetValidationClass =
+                            trim(str_replace('required-entry', '', $_streetValidationClass)); ?>
+                        <?php for ($_i = 2, $_n = $helpAddress->getStreetLines(); $_i <= $_n; $_i++): ?>
+                            <div class="field additional">
+                                <label class="label"
+                                       for="street_<?= $_i ?>"> <span><?= $block->escapeHtml(__('Address')) ?></span>
+                                </label>
+                                <div class="control">
+                                    <input type="text" name="street[]"
+                                           value="<?= $block->escapeHtmlAttr($block->getFormData()->getStreetLine($_i - 1)) ?>"
+                                           title="<?= $block->escapeHtmlAttr(__('Street Address %1', $_i)) ?>"
+                                           id="street_<?= $_i ?>"
+                                           class="input-text <?= $_streetValidationClass ?>">
+                                </div>
+                            </div>
+                        <?php endfor; ?>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field required">
+                <label class="label">
+                    <span><?= $block->escapeHtml(__('Country')) ?></span>
+                </label>
+                <div class="control">
+                    <select name="country_id" id="seller_country_id"
+                            class="required-entry _required select control-select">
+                        <?php if ($countries) : ?>
+                            <?php foreach ($countries as $_country) : ?>
+                                <option
+                                    value="<?= $block->escapeHtmlAttr($_country["value"]); ?>" <?= $_country["value"] == $viewModel->getCountryId() ? 'selected="selected"' : ''; ?>><?= $block->escapeHtml($_country["label"]); ?></option>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </select>
+                </div>
+            </div>
+            <div class="field required">
+                <label class="label">
+                    <span><?= $block->escapeHtml(__('State/Province')) ?></span>
+                </label>
+                <div class="control">
+                    <input type="text" id="region-unavailable" name="region"
+                           class="required-entry _required control-text"
+                           value="<?= $block->escapeHtmlAttr($viewModel->getRegion()) ?>"/>
+                    <select id="seller_region_id_id" name="region_id"
+                            title="<?= $block->escapeHtmlAttr(__("State/Province")); ?>"
+                            class="required-entry select control-select" style="display:none;">
+                        <option value=""><?= $block->escapeHtml(__('Please select')); ?></option>
+                    </select>
+                </div>
+            </div>
+            <div class="field zip required">
+                <label for="zip" class="label">
+                    <span><?= $block->escapeHtml(__('Zip/Postal Code')) ?></span>
+                </label>
+                <div class="control">
+                    <input type="text" name="postcode"
+                           value="<?= $block->escapeHtmlAttr($viewModel->getPostcode()) ?>"
+                           title="<?= $block->escapeHtmlAttr(__('Zip/Postal Code')) ?>"
+                           id="zip"
+                           data-validate="{required:true}"
+                           class="input-text validate-zip-international <?= $helpAddress->getAttributeValidationClass('postcode') ?>">
+                </div>
+            </div>
+            <div class="field required">
+                <label for="city" class="label">
+                    <span><?= $block->escapeHtml(__('City')) ?></span>
+                </label>
+                <div class="control">
+                    <input type="text" name="city"
+                           value="<?= $block->escapeHtmlAttr($viewModel->getCity()) ?>"
+                           title="<?= $block->escapeHtmlAttr(__('City')) ?>"
+                           class="input-text <?= $helpAddress->getAttributeValidationClass('city') ?>"
+                           id="city">
+                </div>
+            </div>
+            <?php $addressAttributes = $block->getChildBlock('customer_form_address_user_attributes'); ?>
+            <?php if ($addressAttributes): ?>
+                <?php $addressAttributes->setEntityType('customer_address'); ?>
+                <?php $addressAttributes->setFieldIdFormat('address:%1$s')->setFieldNameFormat('address[%1$s]'); ?>
+                <?php $block->restoreSessionData($addressAttributes->getMetadataForm(), 'address'); ?>
+                <?= $addressAttributes->setShowContainer(false)->toHtml() ?>
+            <?php endif; ?>
+            <input type="hidden" name="default_billing" value="1">
+            <input type="hidden" name="default_shipping" value="1">
+        </fieldset>
+    <?php endif; ?>
+
+    <fieldset class="fieldset create account" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
+        <legend class="legend">
+            <span><?= $block->escapeHtml(__('Sign-in Information')) ?></span>
+        </legend>
+        <br>
+
+        <div class="field password required">
+            <label for="password" class="label"><span><?= $block->escapeHtml(__('Password')) ?></span></label>
+            <div class="control">
+                <input type="password" name="password" id="password"
+                       title="<?= $block->escapeHtmlAttr(__('Password')) ?>"
+                       class="input-text"
+                       data-password-min-length="8"
+                       data-password-min-character-sets="3"
+                       data-validate="{required:true, 'validate-customer-password':true}"
+                       autocomplete="off">
+                <div id="password-strength-meter-container" data-role="password-strength-meter" aria-live="polite">
+                    <div id="password-strength-meter" class="password-strength-meter">
+                        <?= $block->escapeHtml(__('Password Strength')) ?>:
+                        <span id="password-strength-meter-label" data-role="password-strength-meter-label">
+                            <?= $block->escapeHtml(__('No Password')) ?>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field confirmation required">
+            <label for="password-confirmation"
+                   class="label"><span><?= $block->escapeHtml(__('Confirm Password')) ?></span></label>
+            <div class="control">
+                <input type="password" name="password_confirmation"
+                       title="<?= $block->escapeHtmlAttr(__('Confirm Password')) ?>" id="password-confirmation"
+                       class="input-text" data-validate="{required:true, equalTo:'#password'}" autocomplete="off">
+            </div>
+        </div>
+        <div class="privacy_policy">
+            <div class="control">
+                <input type="checkbox" name="privacy_policy"
+                       title="<?= $block->escapeHtmlAttr(__('Privacy Policy')) ?>" id="privacy_policy"
+                       class="input-text" data-validate="{required:true}">
+                <label for="privacy_policy" class="label">
+                    <?= $block->escapeHtml(__('I agree the Terms and Condition')) ?> (<a
+                        href="<?= $block->getUrl('privacy-policy-cookie-restriction-mode'); ?>"
+                        target="_blank"><?= $block->escapeHtml(__('Terms and Conditions')) ?></a>)
+                </label>
+            </div>
+        </div>
+
+        <input type="hidden" name="is_seller" value="1"/>
+        <?= $block->getChildHtml('form_additional_info'); ?>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action submit primary"
+                    title="<?= $block->escapeHtmlAttr(__('Create an Account')) ?>">
+                <span><?= $block->escapeHtml(__('Create an Account')) ?></span>
+            </button>
+        </div>
+        <div class="secondary">
+            <a class="action back"
+               href="<?= $block->escapeUrl($block->getBackUrl()) ?>"><span><?= $block->escapeHtml(__('Back')) ?></span></a>
+        </div>
+    </div>
+</form>
+<script>
+    require(["jquery", "prototype", "mage/adminhtml/form"], function ($jQ) {
+        var seller_region_id = "<?= $viewModel->getRegionId() ? (int)$viewModel->getRegionId() : 0;?>";
+        $("seller_region_id_id").setAttribute("defaultValue", seller_region_id);
+        new regionUpdater("seller_country_id", "seller_region_id", "seller_region_id_id", <?= $_directoryHelper->getRegionJson();?>);
+        if (!$jQ("#seller_region_id_id:visible").length) {
+            $jQ("#region-unavailable").show();
+        } else {
+            $jQ("#region-unavailable").hide();
+        }
+        $jQ("#seller_country_id").on("change", function () {
+            if (!$jQ("#seller_region_id_id:visible").length) {
+                $jQ("#region-unavailable").show();
+            } else {
+                $jQ("#region-unavailable").hide();
+            }
+        })
+    })
+</script>
+
+<script type="text/javascript">
+    require([
+        'jquery',
+        'Magento_Ui/js/modal/modal',
+        'Magento_Ui/js/modal/alert',
+        'Lof_MarketPlace/js/intlTelInput.min',
+        'Lof_MarketPlace/js/utils',
+        'mage/mage',
+        'mage/validation',
+        'loader',
+        'domReady!'
+    ],function($, modal, alert){
+        var dataForm = $('#seller-form-validate');
+        var ignore = <?= $_dob->isEnabled() ? '\'input[id$="full"]\'' : 'null'; ?>;
+        dataForm.mage('validation', {
+            messages: {
+                'url': {
+                    'validate-xml-identifier': '<?= $block->escapeJs(__('Please enter a valid Store URL (Ex: "seller-name").')) ?>'
+                },
+            },
+            <?php if ($_dob->isEnabled()): ?>
+            errorPlacement: function (error, element) {
+                if (element.prop('id').search('full') !== -1) {
+                    var dobElement = $(element).parents('.customer-dob'),
+                        errorClass = error.prop('class');
+                    error.insertAfter(element.parent());
+                    dobElement.find('.validate-custom').addClass(errorClass)
+                        .after('<div class="' + errorClass + '"></div>');
+                } else {
+                    error.insertAfter(element);
+                }
+            },
+            ignore: ':hidden:not(' + ignore + ')'
+            <?php else: ?>
+            ignore: ignore ? ':hidden:not(' + ignore + ')' : ':hidden'
+            <?php endif; ?>
+        }).find('input:text').attr('autocomplete', 'off');
+
+        $(document).ready(function(){
+            $("#street_1").keyup(function (){
+                var street1 = $(this).val();
+                $("#post_street").val(street1);
+            })
+            var streetline1 = $("#street_1").val();
+            $("#post_street").val(streetline1);
+            
+            $("#telephone-input").keyup(function(){
+                $("#telephone").val($("#telephone-input").val());
+            });
+        });
+        function initMobileInput(){
+            $("#telephone-input").intlTelInput({
+                initialCountry: 'auto',
+                geoIpLookup: function(callback) {
+                    $.get("https://ipinfo.io?token=d9a48054457087", function() {}, "jsonp").always(function(resp) {
+                        var countryCode = (resp && resp.country) ? resp.country : "";
+                        callback(countryCode);
+                    });
+                },
+                onlyCountries: [],
+                preferredCountries:[],
+            }).done(function() {
+                if($("#telephone")){
+                    $("#seller-register-phone-number").appendTo($("#telephone").parent());
+                }
+                $("#telephone").attr("type", "hidden");
+                $('#telephone-number').val($("#telephone-input").intlTelInput("getNumber"));
+                var countryData = $("#telephone-input").intlTelInput("getSelectedCountryData");
+                $('#country_code').val(countryData.iso2);
+                $('#country_dial_code').val($('#country_code').val());
+                $('#telephone-input').val($("#telephone-input").val());
+                $('#telephone-input').on('keyup', function() {
+                    validatePhoneNum();
+                }).on("countrychange", function(e, countryData) {
+                    validatePhoneNum();
+                    $('#country_code').val(countryData.iso2);
+                    $('#country_dial_code').val($('#country_code').val());
+                    $('#telephone-input').val($("#telephone-input").val());
+                });
+            });
+        }
+
+        /**
+         * Validate phone number
+         */
+        function validatePhoneNum(){
+            var number = $("#telephone-input").intlTelInput("getNumber");
+            $('#telephone-input').removeClass('otp-validated');
+            $('#telephone-number').val(number);
+        }
+
+        initMobileInput();
+    });
+</script>
+<script type="text/x-magento-init">
+    {
+        ".field.password": {
+            "passwordStrengthIndicator": {
+                "formSelector": "form.form-create-account"
+            }
+        },
+        "*": {
+            "Magento_Customer/js/block-submit-on-send": {
+                "formId": "form-validate"
+            }
+        }
+    }
+</script>
+<?php if ($block->getShowAddressFields()): ?>
+    <script type="text/x-magento-init">
+    {
+        "#country": {
+            "regionUpdater": {
+                "optionalRegionAllowed": <?= ($block->getConfig('general/region/display_all') ? 'true' : 'false'); ?>,
+                "regionListId": "#region_id",
+                "regionInputId": "#region",
+                "postcodeId": "#zip",
+                "privacy_policy":"#privacy_policy",
+                "form": "#form-validate",
+                "regionJson": <?= $_directoryHelper->getRegionJson() ?>,
+                "defaultRegion": "<?= $viewModel->getRegionId() ?>",
+                "countriesWithOptionalZip": <?= $_directoryHelper->getCountriesWithOptionalZip(true) ?>
+            }
+        }
+    }
+    </script>
+<?php endif; ?>

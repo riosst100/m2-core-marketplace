@@ -1,0 +1,24 @@
+<?php
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Generic.WhiteSpace.ScopeIndent
+// phpcs:disable Magento2.Security.XssTemplate.FoundUnescaped
+// phpcs:disable Generic.Files.LineLength.TooLong
+/**
+ * @var $block \Magento\Swatches\Block\Product\Renderer\Configurable
+ */
+?>
+<div class="swatch-opt-<?= $block->escapeHtmlAttr($block->getType()) ?><?= $block->escapeHtmlAttr($block->getProduct()->getId()) ?>">
+</div>
+<script>
+    require(["jquery", "jquery/ui", "Magento_Swatches/js/swatch-renderer"], function ($) {
+        $('.swatch-opt-<?= $block->getType(); ?><?= $block->getProduct()->getId() ?>').SwatchRenderer({
+            selectorProduct: '.product-item-details',
+            onlySwatches: true,
+            enableControlLabel: false,
+            numberToShow: <?= $block->getNumberSwatchesPerProduct(); ?>,
+            jsonConfig: <?= $block->getJsonConfig(); ?>,
+            jsonSwatchConfig: <?= $block->getJsonSwatchConfig(); ?>,
+            mediaCallback: '<?= $block->getMediaCallback() ?>'
+        });
+    });
+</script>

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lof_MarketplaceGraphQl
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\GraphQl\Query\Resolver\Argument\FieldEntityAttributesPool">
+        <arguments>
+            <argument name="attributesInstances" xsi:type="array">
+                <item name="lof_marketplace_seller" xsi:type="object">\Lof\MarketplaceGraphQl\Model\Resolver\FilterArgumentSeller</item>
+                <item name="lof_marketplace_seller_group" xsi:type="object">\Lof\MarketplaceGraphQl\Model\Resolver\FilterArgumentSellerGroup</item>
+                <item name="lof_marketplace_seller_ratings" xsi:type="object">Lof\MarketplaceGraphQl\Model\Resolver\FilterArgumentRatings</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\GraphQl\Query\Resolver\Argument\FieldEntityAttributesPool">
+        <arguments>
+            <argument name="attributesInstances" xsi:type="array">
+                <item name="lof_marketplace_product" xsi:type="object">\Lof\MarketplaceGraphQl\Model\Resolver\FilterArgumentProduct</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\GraphQl\Query\Resolver\Argument\FieldEntityAttributesPool">
+        <arguments>
+            <argument name="attributesInstances" xsi:type="array">
+                <item name="lof_seller_messages" xsi:type="object">\Lof\MarketplaceGraphQl\Model\Resolver\Messages\FilterArgument</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <preference type="Lof\MarketplaceGraphQl\Model\Resolver\Products\Query\Search" for="Lof\MarketplaceGraphQl\Model\Resolver\Products\Query\ProductQueryInterface"/>
+
+    <preference type="Lof\MarketplaceGraphQl\Model\Resolver\Products\DataProvider\Sellers" for="Lof\MarketplaceGraphQl\Model\Resolver\Products\Query\SellerQueryInterface"/>
+
+    <preference for="Lof\MarketplaceGraphQl\Api\Data\MessageInterface" type="Lof\MarketplaceGraphQl\Model\Data\Message"/>
+	<preference for="Lof\MarketplaceGraphQl\Api\Data\MessageSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+
+    <preference for="Lof\MarketplaceGraphQl\Api\MessageRepositoryInterface" type="Lof\MarketplaceGraphQl\Model\MessageRepository"/>
+
+</config>

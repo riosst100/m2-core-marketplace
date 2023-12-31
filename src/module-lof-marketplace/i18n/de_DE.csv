@@ -1,0 +1,1078 @@
+Become A Seller,Wird ein Verkäufer
+Manage Commissions,verwalten Kommissionen
+Add New Commission,In New Kommission
+Save,Speichern Kommission
+Save and Continue Edit,Speichern und weiter bearbeiten
+Delete Commission,Löschen Kommission
+Edit Commission '%1',Bearbeiten Kommission ‚% 1‘
+New Commission,neue Kommission
+Calculate Commission Using The Following Information,Berechnen Kommission mit den folgenden Informationen
+Commission By,Kommission von
+Fixed Amount,Fester Betrag
+Percent Of Product Price,Prozent des Produktpreises
+Calculate Commission Based On,Berechnen Kommission Gestützt auf
+Product Price (Incl. Tax),Produktpreis (inkl. Steuer)
+Product Price (Excl. Tax),Produktpreis (exkl.)
+Product Price After Discount (Incl. Tax),Produkt Preis nach Rabatt (inkl. Steuern)
+Product Price After Discount (Excl. Tax),Produkt Preis nach Rabatt Preis (exkl.)
+Commission,Kommission
+Discard subsequent rules,Verwerfen Regeln ignorieren
+Yes,Ja
+No,Nein
+Actions,Aktionen
+Conditions (don't add conditions if rule is applied to all products),"Bedingungen (keine Bedingungen hinzufügen, wenn die Regel auf alle Produkte angewendet wird)"
+Apply To,Gelten
+Conditions,Bedingungen
+Commission Information,Kommission Informationen
+Title,Titel
+Description,Beschreibung
+Status,Status
+From,Von
+To,Zu
+Priority,Priorität
+Seller Group,Verkäufer-Gruppe
+Store View,Store View
+General Information,Allgemein infomration
+Preview,Vorschau
+Manage Seller Groups,Verwalten Verkäufer Gruppen
+Add New Seller Group,In Neu Verkäufer Gruppe
+Save Group,Save Group
+Delete Group,Gruppe löschen
+Edit Group '%1',Gruppe bearbeiten ‚% 1‘
+New Group,Neue Gruppe
+Group Information,Gruppen-Informationen
+Group Name,Gruppenname
+URL Key,URL Key
+Empty to auto create url key,Leeren Sie die automatische Erstellen url Schlüssel
+Page Status,Seitenstatus
+Option Data,Option Daten
+Limit Product,Limit Produkt
+Can Add New Product,Kann Neues Produkt hinzufügen
+Can Cancel Order,Kann Bestellung stornieren
+Can Create Invoice,Kann Rechnung erstellen
+Can Create Shipment,Kann erstellen Versand
+Can Create Credit Memo,Kann erstellen Gutschrift
+Hide Payment Information,Verbergen Zahlungsinformationen
+The payment information of customer will be hidden from order.,Die Zahlungsinformationen des Kunden werden von der Bestellung ausgeblendet werden.
+Can submit comments,Kann einreichen Kommentare
+Can Use Group,Can Usegroup
+Can Use Shipping,Can versenden
+Can Use Review,Can Verwenden Bewertung
+Can Use Rating,Can Verwenden Bewertung
+Can Import/Export Product,Can Import / Export-Produkt
+Can Use Vacation,Kann Urlaub nutzen
+Can Use Report,Can Mit dem Report
+Can Use Withdrawal,Can Verwenden Rücktritt
+Advanced Options,Erweiterte Optionen
+Message Seller,Nachricht des Verkäufers
+Add New Message,Neue Nachricht hinzufügen
+Save Message,Nachricht speichern
+Delete Message,Nachricht löschen
+Edit Message '%1',Nachr.Editieren ‚% 1‘
+New Message,Neue Nachricht
+Message Information,Nachrichteninformationen
+Subject,Gegenstand
+Message,Botschaft
+added %1 (%2),hinzugefügt% 1 (% 2)
+Can Use Message,Can Verwenden Nachricht
+Manage Payments Method,Zahlungen verwalten Methode
+Add New Payment,In New Payment
+Save Payment,Außer Zahlungs
+Delete Payment,Löschen Zahlung
+Edit Payment '%1',Bearbeiten Zahlung ‚% 1‘
+New Payment,neue Zahlungs
+Payment Information,Zahlungsinformationen
+Name,Name
+Fee By,Fee von
+Fixed Fee,Festpreis
+Percent Fee,Percent Fee
+All,Alle
+Min Amount,min Betrag
+Max Amount,Max Betrag
+Order Payment,Bestellung Zahlung
+Note Message,Hinweis Nachricht
+Manage Products,Produkte verwalten
+Add New Product,Neues Produkt
+Manage Ratings,verwalten Bewertungen
+Add New Rating,Neu hinzufügen Bewertung
+Save Rating,Speichern Bewertung
+Delete Rating,Löschen Bewertung
+Edit Rating '%1',Bearbeiten Rating '% 1'
+New Rating,neue Bewertung
+Rating Information,Rating Informationen
+Email,Email
+Detail,Detail
+Seller Id,Verkäufer Id
+Rate 1,Rate 1
+Rate 2,Rate 2
+Rate 3,Rate 3
+Manage Sellers,verwalten Sellers
+Add New Seller,In Neu Verkäufer
+Save Seller,Speichern Verkäufer
+Delete Seller,Löschen Verkäufer
+Edit Seller '%1',Bearbeiten Verkäufer ‚% 1‘
+New Seller,Verkäufer
+Page Layout,Seitenlayout
+Layout,Layout
+Layout Update XML,Layout-Update XML
+Design,Design
+Seller Information,Angaben zum Verkäufer
+Seller Name,Name des Verkäufers
+Link Seller,Link Verkäufer
+Contact Number,Kontakt Nummer
+Shop Title,Shop Titel
+Customer,Kunde
+Company Banner,Unternehmen Banner
+Company Logo,Firmenlogo
+Company Locality,Unternehmen Ort
+Company Description,Firmen Beschreibung
+Return Policy,Rücknahmegarantie
+Shipping Policy,Versandbedingungen
+Address,Adresse
+Country,Land
+Position,Position
+Meta Data,Meta-Daten
+Page Title,Seitentitel
+Keywords,Schlüsselwörter
+Meta Keywords,Meta-Keywords
+Meta Description,Meta Description
+ID,ICH WÜRDE
+Type,Art
+Attribute Set,Attribut Set
+Visibility,Sichtweite
+SKU,SKU
+Price,Preis
+Social Infomation,Social Infomation
+Twitter Active,Twitter aktiv
+Twitter,zwitschern
+Facebook Active,Facebook aktiv
+Page Facebook Id,Seite Facebook Id
+Facebook,Facebook
+Google Plus Active,Google Plus Aktiv
+Google Plus,Google Plus
+Youtube Active,Youtube Aktiv
+Youtube,Youtube
+Vimeo Active,Vimeo Aktiv
+Vimeo,Vimeo
+Linkedin Active,Linkedin Aktiv
+Linkedin,Linkedin
+Instagram Active,instagram Aktiv
+Instagram,instagram
+Pinterest Active,Pinterest Aktive
+Pinterest,Pinterest
+Social Information,soziale Informationen
+Products,Produkte
+WYSIWYG Editor,WYSIWYG-Editor
+Manage Withdrawals Method,Verwalten Auszahlungsmethode
+Add New Withdrawal,In New Rücktritt
+Save Withdrawal,Speichern Rückzug
+Edit Withdrawal '%1',Bearbeiten Rückzug ‚% 1‘
+New Withdrawal,New Rücktritt
+Withdrawal Information,Rücktritt Informationen
+Fee,Gebühr
+Order Withdrawal,bestellen Rücktritt
+Export,Export
+Export Settings,Exporteinstellungen
+Entity Type,Entitätstyp
+Export File Format,Export-Dateiformat
+Fields Enclosure,Felder Enclosure
+We can't filter an attribute with no attribute options.,Wir können nicht ein Attribut ohne Attribut Optionen filtern.
+Exclude,Ausschließen
+Attribute Label,Attribut Etikett
+Attribute Code,Attribut-Code
+Filter,Filter
+Unknown attribute filter type,Unbekanntes Attribut Filterart
+Home,Zuhause
+Go to Home Page,Zurück zur Homepage
+Create New Product,Neues Produkt anlegen
+Create New Attribute,Erstellen Sie Neues Attribut
+Export Product,Export Produkt
+"Images (.gif, .jpg, .png)","Bilder (GIF, JPG, PNG)"
+Import Product,Import Artikel
+Add Product,Produkt hinzufügen
+label,Etikette
+Advanced Report,advanced Report
+Amount Transaction,Menge Transaktion
+Invoice,Rechnung
+ [deleted], [Gestrichen]
+View Invoice,Ansicht Rechnung
+Order,Auftrag
+View Order,Bestellung anzeigen
+Custom Value,Benutzerdefinierten Wert
+View Shipment,Ansicht Shipment
+Become a Seller,Werden Sie ein Verkäufer
+Dashboard,Instrumententafel
+Edit Profile,Profil bearbeiten
+Seller Login,Verkäufer Anmeldung
+Error!,Error!
+Info,Die Info
+Success,Erfolg
+Alert,Warnen
+Order # %1 %2 | %3,Order #% 1% 2 | %3
+"This order contains (%1) items and therefore cannot be edited through the admin interface. If you wish to continue editing, the (%2) items will be removed,  the order will be canceled and a new order will be placed.","Dieser Auftrag beinhaltet (% 1) Elemente und kann daher nicht über das Admin-Interface bearbeitet werden. Wenn Sie mit der Bearbeitung fortfahren möchten, werden die (% 2) Elemente entfernt, wird die Bestellung storniert und eine neue Bestellung aufgegeben wird."
+Are you sure? This order will be canceled and a new one will be created instead.,Bist du sicher? Die Bestellung wird abgebrochen und ein neues wird stattdessen erstellt werden.
+Payment,Zahlung
+Save,speichern
+Save & Draft,Save & Entwurf
+Save & New,Speichern & Neu
+Save & Duplicate,Save & Duplizieren
+Save & Close,Speichern & Schließen
+Url,URL
+Preview Image,Vorschaubild
+Get Video Information,Get Video Informationen
+Hide from Product Page,Verbergen von Produktseite
+Role,Rolle
+YouTube and Vimeo supported.,YouTube und Vimeo unterstützt.
+"Vimeo supported.<br />To add YouTube video, please enter YouTube API Key first.","Vimeo unterstützt. <br /> YouTube-Video hinzuzufügen, bitte zuerst YouTube API-Schlüssel eingeben."
+Weight,Gewicht
+Create New Seller Account,Erstellen neuer Verkäuferkonto
+Review,Rezension
+Sell On Marketplace ,Verkaufen auf Marktplatz
+Vacation Settings,Urlaub Einstellungen
+Pending,steht aus
+Completed,Abgeschlossen
+Cancel,Stornieren
+Withdrawals,Abhebungen
+Amounts,Beträge
+Manage Seller Amount,Verwalten Verkäufer Betrag
+Manage Amount Transaction,Verwalten Betrag Transaktionen
+The seller has been deleted.,Der Verkäufer wird gelöscht.
+We can't find a seller to delete.,Wir können nicht ein Verkäufer löschen finden.
+Seller,Verkäufer
+This seller no longer exits. ,Dieser Verkäufer nicht mehr verlässt.
+Edit Seller,Bearbeiten Verkäufer
+Sellers,Sellers
+Commissions,Kommissionen
+A total of %1 record(s) have been deleted.,Insgesamt% 1 Datensatz (n) gelöscht wurden.
+A total of %1 record(s) have been disabled.,Insgesamt% 1 Datensatz (n) deaktiviert wurde.
+A total of %1 record(s) have been enabled.,Insgesamt% 1 Datensatz (n) aktiviert wurden.
+You saved this commission.,Sie speicherten diesen Auftrag.
+Something went wrong while saving the commission.,"Etwas ist schief gelaufen, während die Provision sparen."
+Seller Groups,Verkäufer Gruppen
+Groups,Gruppen
+Manage Groups,Gruppen verwalten
+Please correct the data sent.,Bitte korrigieren Sie die gesendeten Daten.
+URL key already exists.,URL Schlüssel bereits vorhanden ist.
+You saved this group.,Sie sparte diese Gruppe.
+Something went wrong while saving the seller.,"Etwas ist schief gelaufen, während der Verkäufer zu sparen."
+Invoices,Rechnungen
+Manage Invoices,verwalten von Rechnungen
+The message has been deleted.,Die Nachricht wird gelöscht.
+We can't find a message to delete.,Wir können nicht eine Nachricht löschen finden.
+Messages,Mitteilungen
+Manage Messages,verwalten Sie Nachrichten
+You saved this message.,Sie speicherten diese Meldung.
+Orders,Aufträge
+Manage Orders,Bestellungen verwalten
+Manager Payment Method,Manager Zahlungsmethode
+Manager Payment,Manager Payment
+You saved this payment.,Sie speicherten diese Zahlung.
+Product has been set commission.,Das Produkt wurde Set Kommission.
+Ratings,Bewertungen
+A total of %1 record(s) have been accept.,Insgesamt% 1 Datensatz (S) akzeptieren haben.
+A total of %1 record(s) have been reject.,"Insgesamt% 1 Platte (n) haben, verwerfen sind."
+You saved this rating.,Sie speicherten diese Bewertung.
+Something went wrong while saving the rating.,"Etwas ist schief gelaufen, während die Bewertung zu speichern."
+Refunds,Rückerstattungen
+Manage Refunds,verwalten Rückerstattungen
+Refundrequests,Refundrequests
+Manage Refundrequests,verwalten Refundrequests
+Reviews,Bewertungen
+Manage Reviews,Manage Bewertungen
+A total of %1 record(s) have been approved.,Insgesamt% 1 Eintragung (en) genehmigt worden.
+A total of %1 record(s) have been disapproved.,Insgesamt% 1 Platte (n) haben abgelehnt.
+The seller has been disapproved.,Der Verkäufer wurde abgelehnt.
+We can't find a seller to disapproved.,Wir können nicht einen Verkäufer zu abgelehnten finden.
+The seller has been approved.,Der Verkäufer wird genehmigt.
+We can't find a seller to approved.,Wir können nicht ein Verkäufer genehmigt finden.
+Something went wrong while saving the page.,"Etwas ist schief gelaufen, während die Seite zu speichern."
+You saved this seller.,Sie speicherte diesen Verkäufer.
+SellerProducts,SellerProducts
+Manage SellerProducts,verwalten SellerProducts
+A total of %1 record(s) have been accepted.,Insgesamt% 1 Datensatz (n) angenommen.
+A total of %1 record(s) have been rejected.,Insgesamt% 1 Datensatz (n) zurückgewiesen worden sind.
+Transactions,Transaktionen
+Manage Transactions,Transaktionen verwalten
+Withdrawal,Rückzug
+Manage Withdrawals,verwalten Entnahmen
+This withdrawal no longer exits. ,Dieser Rückzug nicht mehr verlässt.
+Edit Withdrawal,Bearbeiten Rückzug
+	Withdraw Money : Amount ,Geld abheben: Betrag
+You must have a seller account to access,Sie müssen ein Verkäuferkonto Zugang haben
+You must have a account to access,Sie müssen ein Konto für den Zugriff haben
+"Attribute ""%1"" is required.",Attribut „% 1“ ist nicht erforderlich.
+You saved the category.,Sie speicherten die Kategorie.
+Something went wrong while saving the category.,"Etwas ist schief gelaufen, während die Kategorie zu speichern."
+This order no longer exists.,Die Bestellung ist nicht mehr vorhanden.
+You are not authorize to manage this order.,"Sie genehmigen nicht, diesen Auftrag zu verwalten."
+The invoice no longer exists.,Die Rechnung ist nicht mehr vorhanden.
+You are not authorize to view this invoice.,Sie autorisieren nicht diese Rechnung anzuzeigen.
+The creditmemo no longer exists.,Die creditmemo nicht mehr existiert.
+You are not authorize to view this creditmemo.,Sie autorisieren nicht diese creditmemo anzuzeigen.
+The order has been cancelled.,Der Auftrag wird abgebrochen.
+You are not permitted to cancel this order.,Sie sind nicht abbrechen diesen Auftrag nicht gestattet.
+We can't cancel order right now.,Wir können nicht um jetzt abzubrechen.
+The credit memo's total must be positive.,Die Gesamt der Gutschrift muss positiv sein.
+Cannot create online refund for Refund to Store Credit.,Kann nicht online Erstattung für Rückerstattung zu Gutschrift erstellen.
+You created the credit memo.,Sie erstellt die Gutschrift.
+We can't create credit memo for order right now.,Wir können keine Gutschrift für den Auftrag jetzt erstellen.
+You sent the order email.,Sie schickte die Bestellung E-Mail.
+We can't send the email order right now.,Wir können nicht die E-Mail-Bestellung jetzt direkt senden.
+Can not create invoice as order is in HOLD state,"Kann nicht Rechnung erstellen, wie Ordnung in HOLD-Zustand ist"
+We can't save the invoice right now.,Wir können jetzt nicht die Rechnung speichern.
+You can't create an invoice without products.,Sie können nicht eine Rechnung ohne Produkte schaffen.
+Invoice has been created for this order.,Rechnung wurde für diesen Auftrag erstellt.
+Cannot create Invoice for this order.,Kann nicht Rechnung für diesen Auftrag erstellen.
+We can't create invoice for order right now.,Wir können jetzt nicht Rechnung für Bestellung erstellen.
+Can not create shipment as order is in HOLD state,Kann nicht schaffen Sendung als Auftrag im HOLD-Zustand ist
+Cannot do shipment for the order separately from invoice.,Kann nicht Versand tut separat für den Auftrag aus der Rechnung.
+Cannot do shipment for the order.,Kann nicht für den Auftrag tun Sendung.
+The shipment has been created.,Die Sendung wird erstellt.
+The shipping label has been created.,Das Versandetikett erstellt wurde.
+We can't ship order right now.,Wir können nicht um gerade jetzt versenden.
+That product is not yours,Das Produkt ist nicht verkaufen
+This product no longer exists.,Dieses Produkt ist nicht mehr vorhanden ist.
+Catalog,Katalog
+Default Values,Standardwerte
+Could not get preview image information. Please check your connection and try again.,Kann nicht Vorschaubild Informationen erhalten. Bitte überprüfen sie ihre Verbindung und versuchen sie es erneut.
+Please correct the data sent value.,Bitte korrigieren Sie die Daten abgeschickt Wert.
+Show more,Zeig mehr
+Additional data,Zusätzliche Daten
+Following Error(s) has been occurred during importing process:,Nach Error (s) wurde beim Import aufgetreten:
+Only the first 100 errors are shown. ,Nur die ersten 100 Fehler gezeigt.
+in row(s):,in Reihen):
+Please make sure to define SKU values for all processed products.,"Bitte stellen Sie sicher, SKU-Werte für alle verarbeiteten Produkte zu definieren."
+A total of %1 record(s) have been updated.,Insgesamt% 1 Eintragung (en) wurden aktualisiert.
+Something went wrong while updating the product(s) status.,"Ging etwas schief, während das Produkt (e) Status zu aktualisieren."
+"Your product limit is %1, please upgrade the membership package","Ihr Produkt Limit ist% 1, aktualisieren Sie bitte die Mitgliedschaft Paket"
+There is no data for the export.,Es gibt keine Daten für den Export.
+Maximum error count has been reached or system error is occurred!,Die maximale Fehlerzahl erreicht worden ist oder Systemfehler ist aufgetreten!
+Import successfully done,Import erfolgreich durchgeführt
+Unable to save product,"Nicht imstande, ein Produkt zu sparen"
+You saved the product.,Sie retteten das Produkt.
+SKU for product %1 has been changed to %2.,SKU für das Produkt% 1 wurde in% 2 geändert.
+You duplicated the product.,Sie dupliziert das Produkt.
+The image cannot be removed as it has been assigned to the other image role,"Das Bild kann nicht entfernt werden, da es auf die anderen Bild Rolle zugewiesen wurde"
+"Sorry, but the data is invalid or the file is not uploaded.","Sorry, aber die Daten sind ungültig oder die Datei hochgeladen wird nicht."
+The file was not uploaded.,Die Datei wurde nicht hochgeladen.
+This file is empty. Please try another one.,Diese Datei ist leer. Bitte versuchen Sie einen anderen.
+Data validation failed. Please fix the following errors and upload the file again.,Datenvalidierung fehlgeschlagen. Bitte korrigieren Sie die folgenden Fehler und die Datei erneut hochladen.
+"File is valid! To start import process press ""Import"" button",Die Datei ist gültig! Zum Import drücken Schaltfläche „Import“ starten
+"The file is valid, but we can't import it for some reason.","Die Datei ist gültig, aber wir können es aus irgendeinem Grund nicht importieren."
+"Checked rows: %1, checked entities: %2, invalid rows: %3, total errors: %4","Geprüft Zeilen:% 1, geprüft Einheiten: 2%, ungültige Zeilen:% 3, Gesamtfehler: 4%"
+Please specify a carrier.,Bitte geben Sie einen Träger.
+Please enter a tracking number.,Bitte geben Sie eine Tracking-Nummer.
+Cannot add tracking number.%1,"Kann hinzufügen, nicht Tracking-Nummer.% 1"
+We can't load track with retrieving identifier right now.%1,Wir können nicht den Überblick laden mit der Kennung jetzt abgerufen werden.% 1
+We can't initialize shipment for adding tracking number.,Wir können nicht Versand initialisieren zum Hinzufügen von Tracking-Nummer.
+We can't delete tracking number.,Wir können nicht gelöscht werden Tracking-Nummer.
+Something went wrong while saving the vacation.,"Etwas ist schief gelaufen, während der Urlaub zu sparen."
+"You must confirm your account. Please check your email for the confirmation link or <a href=""%1"">click here</a> for a new link.","Sie müssen Ihr Konto bestätigen. Bitte überprüfen Sie Ihre E-Mail für den Bestätigungslink oder <a href=""%1""> für einen neuen Link klicken Sie hier </a>."
+"There is already an account with this email address. If you are sure that it is your email address, <a href=""%1"">click here</a> to get your password and access your account.","Es ist bereits ein Konto mit dieser E-Mail-Adresse. Wenn Sie sicher sind, dass es Ihre E-Mail-Adresse, <a href=""%1""> hier klicken </a> Ihr Passwort und Zugang zu Ihrem Konto zu erhalten."
+We can't save the customer.,Wir können die Kunden nicht speichern.
+Please make sure your passwords match.,"Bitte stellen Sie sicher, dass Ihre Kennwörter übereinstimmen."
+"If you are a registered VAT customer, please <a href=""%1"">click here</a> to enter your shipping address for proper VAT calculation.","Wenn Sie ein registrierter MwSt-Kunde sind, bitte <a href=""%1""> hier klicken </a> Ihre Lieferadresse für die richtige Wertsteuerberechnung eingeben."
+"If you are a registered VAT customer, please <a href=""%1"">click here</a> to enter your billing address for proper VAT calculation.","Wenn Sie ein registrierter MwSt-Kunde sind, bitte <a href=""%1""> hier klicken </a> Ihre Rechnungsadresse für die richtige Wertsteuerberechnung eingeben."
+Thank you for registering with %1.,Vielen Dank für Ihre Registrierung bei% 1.
+"This account is not confirmed. <a href=""%1"">Click here</a> to resend confirmation email.","Dieses Konto wird nicht bestätigt. <a href=""%1""> Klicken Sie hier </a> resend Bestätigungsemail."
+Invalid login or password.,Ungültiger Anmeldename oder Passwort.
+A login and a password are required.,Ein Login und ein Passwort erforderlich.
+Close,Schließen
+Open,Öffnen
+Processing,wird bearbeitet
+Done,Erledigt
+Approved,Genehmigt
+Not Approved,Nicht bestätigt
+Reject,Ablehnen
+Accept,Akzeptieren
+Enabled,aktiviert
+Disabled,Behindert
+- Disable these emails -,- Deaktivieren Sie diese E-Mails -
+List,Liste
+Grid,Gitter
+Product was not registered,Das Produkt wurde nicht registriert
+Store was not registered,Shop wurde nicht registriert
+URL key already exists.' .,URL Schlüssel ist bereits vorhanden.‘ .
+URL key for specified store already exists.,URL Schlüssel für bestimmten Speicher sind bereits vorhanden.
+Product Attribute,Produkteigenschaft
+Subtotal,Zwischensumme
+Total Items Quantity,Artikel insgesamt Menge
+Total Weight,Gesamtgewicht
+Payment Method,Bezahlverfahren
+Shipping Method,Versandart
+Shipping Postcode,Versand Postleitzahl
+Shipping Region,Versand Region
+Shipping State/Province,Versand Staat / Provinz
+Shipping Country,Lieferungsland
+Product attribute combination,Produktattributkombination
+Products subselection,Produkte subselection
+Conditions combination,Bedingungen Kombination
+Cart Attribute,Wagen Attribut
+Disapproved,Abgelehnte
+Could not save the seller info: %1,Kann den Verkäufer info speichern:% 1
+Not Submited,nicht Submited
+Unapproved,Unapproved
+"We can't process your request right now. Sorry, that's all we know.","Wir können Ihre Anfrage jetzt nicht verarbeiten. Sorry, das ist alles, was wir wissen."
+Owl Carousel,Owl Karussell
+Bootstrap Carousel,Bootstrap-Karussell
+Amount from order,Betrag von der Bestellung
+invoice,Rechnung
+Refunded,Refunded
+Refund from order,Erstattung von der Bestellung
+Edit,Bearbeiten
+View Customer,Bild Kunden
+View,Aussicht
+Delete,Löschen
+"Delete ""${ $.$data.subject }""","Delete ""$ {$. $ Data.subject}"""
+"Are you sure you wan't to delete a ""${ $.$data.subject }"" record?","Sind Sie sicher, dass Sie wan't eine löschen ""$ {$. $ Data.subject}"" record?"
+Unread,Ungelesen
+Read,Lesen
+What is the reason to deny this product?,"Was ist der Grund, um dieses Produkt zu leugnen?"
+Deny,Verweigern
+Reset,Reset
+Do you want set commission for product?,Wollen Sie Provision für das Produkt eingestellt?
+View Product,Produkt anzeigen
+View Seller,Verkäufer
+All Store Views,Alle Store-Ansichten
+Delete ${ $.$data.name },Löschen $ {$. $ Data.name}
+Are you sure you want to delete a ${ $.$data.name } record?,"Sind Sie sicher, dass Sie einen $ {$. $ Data.name} Datensatz löschen?"
+Approved ${ $.$data.name },Genehmigt $ {$. $ Data.name}
+Are you sure you want to enable a ${ $.$data.name } record?,"Sind Sie sicher, dass Sie einen $ {$. $ Data.name} Datensatz aktivieren?"
+Disapproved ${ $.$data.name },Abgelehnt $ {$. $ Data.name}
+Are you sure you want to disable a ${ $.$data.name } record?,"Sind Sie sicher, dass Sie einen $ {$. $ Data.name} Datensatz deaktivieren?"
+Complete Withdrawal,vollständiger Rückzug
+Canceled,Abgebrochen
+Add Attribute,Attribute hinzufügen
+Add Selected,Auswahl hinzufügen
+Select Attribute,Wählen Sie Attribut
+New Attribute,neues Attribut
+New Category,Neue Kategorie
+Categories,Kategorien
+[GLOBAL],[GLOBAL]
+Customizable Options,Optionen-
+Custom options let customers choose the product variations they want.,Benutzerdefinierte Optionen können Kunden die Produktvariationen sie wollen wählen.
+Import Options,Importoptionen
+Add Option,Add Option
+New Option,neue Option
+Select Product,Ausgewähltes Produkt
+Import,Importieren
+Option Title,Option Titel
+Add Value,Mehrwert
+Option Type,Option Typ
+-- Please select --,-- Bitte auswählen --
+Required,Erforderlich
+Price Type,Preis Art
+Max Characters,Max Characters
+Compatible File Extensions,Kompatible Dateierweiterungen
+Maximum Image Size,Maximale Bildgröße
+Please leave blank if it is not an image.,"Bitte leer lassen, wenn es nicht ein Bild ist."
+px.,px.
+%1,1%
+[WEBSITE],[WEBSEITE]
+[STORE VIEW],[STORE VIEW]
+This item has weight,Dieser Artikel hat Gewicht
+This item has no weight,Dieser Artikel hat kein Gewicht
+Set Product as New From,Set Product as New Von
+"Related Products, Up-Sells, and Cross-Sells","Verwandte Produkte, Up-Sells und Cross-Sells"
+Related products are shown to customers in addition to the item the customer is looking at.,Verwandte Produkte werden den Kunden neben dem Produkt entspricht der Kunde sucht.
+Add Related Products,Hinzufügen ähnliche Produkte
+Related Products,Verwandte Produkte
+An up-sell item is offered to the customer as a pricier or higher-quality alternative to the product the customer is looking at.,Ein Up-Selling-Artikel wird als teurer oder höherwertiger Alternative zum Produkt an den Kunden angeboten der Kunde sucht.
+Add Up-Sell Products,Up-Sell Produkte
+Up-Sell Products,Up-Sell Produkte
+"These ""impulse-buy"" products appear next to the shopping cart as cross-sells to the items already in the shopping cart.","Diese „impulse-buy“ Produkte erscheinen neben den Warenkorb als Quer verkauft, um die Elemente bereits in der Warenkorb legen."
+Add Cross-Sell Products,In Cross-Selling Produkte
+Cross-Sell Products,Cross-Selling Produkte
+Add Selected Products,Ausgewählte Produkte
+Remove,Entfernen
+Thumbnail,Miniaturansicht
+Product in Websites,Produkt in Websites
+"If your Magento site has multiple views, you can set the scope to apply to a specific view.","Wenn Ihr Magento-Website mehrere Ansichten hat, können Sie den Bereich auf eine bestimmte Ansicht zu übernehmen."
+Websites,Webseiten
+name,Name
+Copy Data from,Kopieren von Daten aus
+Browse to find or drag image here,Wechseln Sie zu finden oder Drag-Bild hier
+Delete image,Lösche Bild
+Hidden,Versteckt
+Alt Text,Alt-Text
+Image Size,Bildgröße
+{size},{Größe}
+Image Resolution,Bildauflösung
+{width}^{height} px,{Width} ^ {height} px
+Browse Files...,Dateien durchsuchen...
+Choose Affected Attribute Set,Wählen Sie Betroffene Attribut Set
+Confirm,Bestätigen
+start typing to search attribute,Eingabe starten Attribut suchen
+Title:,Titel:
+Uploaded:,hochgeladen:
+Uploader:,Sender:
+Duration:,Dauer:
+Basic Settings,Grundeinstellungen
+Advanced Settings,Erweiterte Einstellungen
+Changes have been made to this section that have not been saved.,"Änderungen wurden an diesem Abschnitt gemacht, die nicht gespeichert wurden."
+This tab contains invalid data. Please resolve this before saving.,Dieses Register enthält ungültige Daten. Bitte lösen Sie dieses Problem vor dem Speichern.
+Continue,Fortsetzen
+Mass Actions,Massenaktionen
+Select All,Wählen Sie Alle
+Unselect All,Alles wiederufen
+Select Visible,wählen Sie Sichtbar
+Unselect Visible,Unselect Visible
+Upload,Hochladen
+Upload Image Product,Bild hochladen Produkt
+Product Upload,Artikel hochladen
+Import Settings,Importeinstellungen
+Check Data,Daten prüfen
+Please Select,Bitte auswählen
+Download Sample File,Download Beispieldatei
+Import Behavior,Importverhalten
+Add/Update,Hinzufügen / Aktualisieren
+Error Handling,Fehlerbehandlung
+Stop on Error,Stop on Error
+Skip error entries,Überspringen Fehlereinträge
+Allowed Errors Count,Erlaubt Fehler Count
+Please specify number of errors to halt import process,Bitte geben Sie die Anzahl von Fehlern zu stoppen Import
+Field separator,Feldtrenn
+Multiple value separator,Mehrfachwert-Trenn
+File to Import,Datei zu importieren
+Select File to Import,Wählen Sie Datei zu importieren
+Images File Directory,Bilder Dateiverzeichnis
+*Notice Import image first,* Hinweis Import Bild zuerst
+Additional Settings,Zusätzliche Einstellungen
+records found,Datensätze gefunden
+selected,ausgewählt
+per page,pro Seite
+Previous page,Vorherige Seite
+of %1,von 1%
+Next page,Nächste Seite
+Export to:,Exportieren nach:
+Marketplace,Marktplatz
+Marketplace Dashboard,Marktplatz-Dashboard
+Seller Profile,Verkäuferprofil
+Manage Products,Manager Produkt
+Create Attribute,Attribut erstellen
+New Products,Neue Produkte
+My Products List,Meine Produkte
+My Transaction List,Meine Transaktionsliste
+Manage Print PDF Header Info,Verwalten Druck PDF Kopf-Info
+My Order History,Meine Aufträge
+Become Seller,werden Sie Verkäufer
+Personal Information,Persönliche Angaben
+Seller General,Verkäufer Allgemein
+Group,Gruppe
+Url Key,URL Key
+"Example: Insert landofcoder,url shop will ","Beispiel: Insert landofcoder, URL-Shop finden"
+Address Information,Adresse
+Company,Unternehmen
+Phone Number,Telefonnummer
+Street Address,Adresse
+Street Address %1,Adresse 1
+City,Stadt
+State/Province,Staat / Provinz
+"Please select a region, state or province.","Bitte wählen Sie eine Region, Staat oder Provinz."
+Zip/Postal Code,PLZ / Postleitzahl
+* Required Fields,* Benötigte Felder
+Sign-in Information,Log-in Informationen
+Password,Passwort
+Password Strength,Passwortstärke
+No Password,Kein Passwort
+Confirm Password,Kennwort bestätigen
+Privacy Policy,Datenschutz-Bestimmungen
+I agree the Terms and Condition,Ich stimme den Bedingungen und Zustand
+Terms and Conditions,Geschäftsbedingungen
+Create an Account,Ein Konto erstellen
+Back,Zurück
+Sold By,Verkauft durch
+Visit Shop,Besuchen Geschäft
+We can't find seller matching the selection.,Wir können nicht Verkäufer entsprechend der Auswahl finden.
+Created At,Hergestellt in
+Post Reply Message,Antwort schreiben Nachricht
+Message ,Botschaft
+Post Reply,Briefantwort
+History Message,Geschichte Meldung
+We can't find products matching the selection.,Wir können keine Produkte entsprechend der Auswahl bereit.
+Add to Cart,in den Warenkorb legen
+In stock,Auf Lager
+Out of stock,Ausverkauft
+Learn More,Erfahren Sie mehr
+Qty,Anz
+ Sales, Der Umsatz
+ Sale, Verkauf
+Joined since ,Registriert seit
+What’s on your mind?,Was haben Sie auf dem Herzen?
+Submit,einreichen
+Customer Name,Kundenname
+Customer Email,Kunden-eMail
+"Turn in to a seller today and enjoy some incredible benefits like
+				adding logo to your profile page for better branding, setting up
+				multiple products to improve conversions, etc.","Biegen Sie in an einen Verkäufer heute und genießen Sie einige unglaubliche Vorteile wie
+Hinzufügen Logo für eine bessere Branding Ihrer Profilseite, Einrichten
+mehr Produkte Umwandlungen zu verbessern, usw."
+Click the button to become a Seller,Klicken Sie auf die Schaltfläche ein Verkäufer werden
+"Example: Insert landofcoder,url shop will","Beispiel: Insert landofcoder, URL-Shop finden"
+"I
+						agree the  Terms and Conditions","ich
+stimmen die Allgemeinen Geschäftsbedingungen"
+Admin Approval is required. Please wait until admin confirms your seller account.,"Admin Zustimmung erforderlich ist. Bitte warten Sie, bis Admin Ihr Verkäuferkonto bestätigt."
+Returns Policies,Returns Richtlinien
+Shipping Policies,Lieferbedingungen
+Edit Profile Information,Profilinformationen bearbeiten
+Save Profile,Profil speichern
+Twitter ID,Twitter-ID
+Facebook ID,Facebook id
+Instagram ID,instagram ID
+Google Plus ID,Google Plus ID
+Youtube ID,Youtube ID
+Vimeo ID,Vimeo ID
+Pinterest ID,Pinterest ID
+Rating(s),Bewertung (en)
+Registered Sellers,registrierte Verkäufer
+"If you have an account, sign in with your email address.","Wenn Sie ein Konto haben, melden Sie sich mit Ihrer E-Mail-Adresse."
+Login,Anmeldung
+Forgot Your Password?,Passwort vergessen?
+"Creating an account has many benefits: check out faster, keep more than one address, track orders and more.","Die Erstellung eines Kontos hat viele Vorteile: Check out schneller, halten mehr als eine Adresse, verfolgen Aufträge und mehr."
+Customer ratings,Kundenbewertungen
+star,Star
+Write Your Own Review,schreibe deine eigene Rückmeldung
+You're rating,Du bist ne
+How do you rate this seller,Wie bewerten Sie diesen Verkäufer
+Value,Wert
+Quality,Qualität
+What's your nickname?,Was ist dein Spitzname?
+What's your Email?,Wie ist deine E-Mailadresse?
+Summary of Your Rating,Zusammenfassung Ihrer Bewertung
+Let us know your thoughts,Teilen Sie uns Ihre Gedanken
+Submit Rating,Bewertung senden
+By,Durch
+ Rating(s), Bewertung (en)
+We can't find sellers matching the selection.,Wir können nicht die Verkäufer die Auswahl bereit.
+Items,Artikel
+of,von
+%1 Item,%1 Artikel
+%1 Items,% 1 Artikel
+Previous,Bisherige
+Next,Nächster
+This operation can take a long time,Dieser Vorgang kann sehr lange dauern
+Collapse All,Alles schließen
+Expand All,Alle erweitern
+Please confirm site switching. All data that hasn't been saved will be lost.,"Bitte bestätigen Website-Umschaltung. Alle Daten, die nicht gespeichert wurde, gehen verloren."
+None,Keiner
+Use Default Value,Verwenden Sie Standardwert
+"Manage Titles (Size, Color, etc.)","Verwalten Titel (Größe, Farbe, etc.)"
+Manage Options (Values of Your Attribute),Verwalten Optionen (Werte des Attributs)
+Is Default,ist Standard
+Sort Option,Sort Option
+Double click on a group to rename it.,Klicken Sie doppelt auf eine Gruppe umzubenennen.
+Unassigned Attributes,Nicht zugeordnete Attribute
+A name is required.,Ein Name ist erforderlich.
+This group contains system attributes. Please move system attributes to another group and try again.,Diese Gruppe enthält Systemattribute. Bitte bewegen Sie Systemattribute in eine andere Gruppe und versuchen Sie es erneut.
+Please enter a new group name.,Bitte geben Sie einen neuen Gruppennamen ein.
+"An attribute group named ""/name/"" already exists"".",Eine Attributgruppe mit dem Namen „/ name /“ existiert bereits“.
+"Sorry, we're unable to complete this request.",Leider können wir Ihnen derzeit keine Anfrage abzuschließen.
+You can't remove attributes from this attribute set.,Sie können keine Attribute aus diesem Attribut entfernen.
+Empty,Leeren
+Custom Options,benutzerdefinierte Optionen
+This is a required option.,Dies ist eine erforderliche Option.
+The field isn't complete.,Das Feld ist nicht vollständig.
+Change,Veränderung
+Compatible file extensions to upload,Kompatible Dateierweiterungen zum hochladen
+Maximum image width,Maximale Bildbreite
+Maximum image height,Maximale Bildhöhe
+Maximum number of characters:,Maximale Anzahl Zeichen:
+Quantity,Menge
+start typing to search template,Eingabe starten Vorlage suchen
+Product online,Produkt online
+Product offline,Produkt offline
+Product online status,Produkt online status
+Advanced Inventory,Erweiterte Bestands
+Manage Stock,verwalten Auf
+Use Config Settings,Verwenden Config-Einstellungen
+Out-of-Stock Threshold,Out-of-Stock-Schwelle
+Minimum Qty Allowed in Shopping Cart,Minimum-Menge in Einkaufswagen erlaubt
+Maximum Qty Allowed in Shopping Cart,Maximale Anzahl im Warenkorb erlaubt
+Qty Uses Decimals,Menge Verwendet Decimals
+Backorders,Rückständige Aufträge
+Notify for Quantity Below,Benachrichtigen für Menge Below
+Enable Qty Increments,Aktivieren Anzahl Stufung
+Qty Increments,Anzahl Stufung
+Stock Availability,Lager Verfügbarkeit
+In Stock,Auf Lager
+Out of Stock,Nicht vorrättig
+Add Product To Websites,Produkt in Webseiten
+Remove Product From Websites,Entfernen Artikel von Webseiten
+"To hide an item in catalog or search results, set the status to ""Disabled"".","Um ein Element im Katalog zu verstecken oder Ergebnisse suchen, setzen Sie den Status auf „Disabled“."
+Step 2: Attribute Values,Schritt 2: Attributwerte
+Select values from each attribute to include in this product. Each unique combination of values creates a unigue product SKU.,Wählen Sie Werte aus jedem Attribut in diesem Produkt enthalten. Jede eindeutige Kombination von Werten schafft eine unigue Produkt SKU.
+Sort Variations,Sortieren Variations
+Options,Optionen
+Deselect All,Alle abwählen
+Remove Attribute,entfernen Attribut
+Save Option,Speichern Option
+Remove Option,entfernen Option
+"Step 3: Bulk Images, Price and Quantity","Schritt 3: Bulk Bilder, Preis und Menge"
+Based on your selections %1 new products will be created. Use this step to customize images and price for your new products.,Basierend auf Ihrer Auswahl% 1 neue Produkte geschaffen werden. Verwenden Sie diesen Schritt Bilder und den Preis für Ihre neue Produkte anpassen.
+Images,Bilder
+Apply single set of images to all SKUs,Übernehmen einzelner Satz von Bildern alle SKUs
+Apply unique images by attribute to each SKU,Wenden Sie einzigartige Bilder von Attribut jeder SKU
+Skip image uploading at this time,Weiter Bild-Upload zu diesem Zeitpunkt
+Remove image,Entferne Bild
+Select attribute,Wählen Sie Attribut
+Select,Wählen
+Apply single price to all SKUs,Bewerben einzigen Preis für alle SKUs
+Apply unique prices by attribute to each SKU,Tragen Sie einzigartige Preise durch Attribut jeder SKU
+Skip price at this time,Überspringen Preis zu diesem Zeitpunkt
+Apply single quantity to each SKUs,Wenden Einzelmenge an jedem SKUs
+Apply unique quantity by attribute to each SKU,Tragen Sie einzigartige Menge von Attribut jeder SKU
+Skip quantity at this time,Überspringen Menge zu diesem Zeitpunkt
+Step 1: Select Attributes,Schritt 1: Wählen Sie Attribute
+Selected Attributes:,Ausgewählte Attribute:
+Step 4: Summary,Schritt 4: Zusammenfassung
+We can't save custom-defined options for bundles with dynamic pricing.,Wir können nicht speziell definierte Optionen für Bundles mit dynamischem Preis speichern.
+Delete Custom Option,Löschen von benutzerdefinierten Option
+Sort Custom Options,Sortieren Sie Benutzerdefinierte Optionen
+Input Type,Eingabetyp
+%1 <span>x</span> %2 <span>px.</span>,% 1 <span> x </ span>% 2 <span> px. </ Span>
+Sort Custom Option,Sortieren Sie kundenspezifische Wahl
+Web Site,Webseite
+Customer Group,Kundengruppe
+Item Price,Stückpreis
+Action,Aktion
+and above,und darüber
+Delete Tier,Löschen Tier
+Product In Websites,Produkt in Websites
+(Copy data from: %1),(Kopieren von Daten aus: 1%)
+Add Video,Video hinzufügen
+Delete video,Delete Video
+Product Alerts,Produkt-Warnungen
+Allow Multiple Boxes for Shipping,Lassen Sie Mehrere Kästen für Versand
+Save success,Speichern Erfolg
+Marketplace - Module by,Marktplatz - Modul von
+Landofcoder,Landofcoder
+View My Store,Schau Dir mein Geschäft an
+Profile,Profil
+Log Out,Ausloggen
+Upload Image Zip,Bild hochladen Zip
+Upload Images Zip,Hochladen von Fotos Zip
+Images Zip,Fotos Zip
+Credit Amount,Kreditbetrag
+Total Sales,Gesamtumsatz
+Total Orders,Gesamtaufträge
+Total Products,insgesamt Produkte
+Sales Report Day ,Sales Report Day
+Sales Report Month,Verkaufsbericht Monat
+Sales Report Year,Verkaufsbericht Jahr
+Your top countries,Ihre Top-Länder
+Earning amount from country countries,Earning Menge von Land Länder
+Total Order,Gesamtbestellung
+Total Earning,Gesamtverdienst
+Last Orders,Letzte Bestellungen
+Best Seller,"Bestseller, Verkaufsschlager, Spitzenreiter"
+Most Viewed Products,Die meisten angesehene Produkte
+Order Date,Bestelldatum
+Product,Produkt
+Id,Ich würde
+Amount,Menge
+Seller Blance,Verkäufer Blance
+Order Design,bestellen Design
+Create At,erstellen Sie
+Billing Address,Rechnungsadresse
+Shipping Address,Lieferanschrift
+<b>Order:</b> # %1,<B> Bestellen Sie: </ b> #% 1
+Order Status,Bestellstatus
+Purchased From,gekauft von
+Account Information ,Kontoinformationen
+Return to Stock,Zurück zur Vektor
+Qty to Refund,Anzahl an Rückerstattung
+Tax Amount,Steuerbetrag
+Discount Amount,Rabattbetrag
+Row Total,Zeilensumme
+Admin Commission,Admin Kommission
+Seller Total,Verkäufer Gesamt
+Ordered,bestellt
+Invoiced,Fakturierte
+Payment Methods,Zahlungsmethoden
+The order was placed using,Der Auftrag wurde gelegt mit
+Credit Memo Comments,Kommentare Gutschrift
+Comment Text,Kommentar Text
+Order Totals,bestellen Totals
+Tax,MwSt
+Discount,Rabatt
+Refund Shipping,Erstattung Lieferung
+Adjustment Refund,Adjustment Rückerstattung
+Adjustment Fee,Adjustment Fee
+Grand Total,Gesamtsumme
+Append Comments,anfügen Kommentare
+Visible on Frontend,Visible auf Frontend
+Email Copy of Credit Memo,Eine E-Mail Kopie des Gutschrifts
+Refund Offline,Rückerstattung offline
+Refund Online,Rückerstattung-Online
+Refund,Rückerstattung
+Invoice Date,Rechnungsdatum
+Bill to Name,Bill auf Namen
+Grand Total (Base),Endsumme (Basis)
+Grand Total (Purchased),Endsumme (gekauften)
+Bulk Actions,Bulk-Aktionen
+Invoice Design,Rechnung Entwurf
+Export Pdf file,Export als pdf-Datei
+<b>Invoice</b> # %1,<B> Rechnung </ b> #% 1
+Invoice Totals,Rechnungs Totals
+Shipping & Handling,Versand & Bearbeitung
+Seller Amount,Verkäufer Betrag
+Date,Datum
+Currency,Währung
+Cancel Order,Bestellung stornieren
+Are you sure you want to cancel this order?,"Sind Sie sicher, dass Sie diese Bestellung stornieren?"
+Send Email,E-Mail senden
+Are you sure you want to send an order email to customer?,"Sind Sie sicher, dass Sie eine Bestellung E-Mail an Kunden schicken?"
+Are you sure you want to create invoice?,"Sind Sie sicher, dass Sie Rechnung erstellen?"
+Credit Memo,Gutschrift
+Are you sure you want to create credit memo for order?,"Sind Sie sicher, dass Sie Gutschrift erstellen?"
+Ship,Schiff
+Are you sure you want to create ship for order?,"Sind Sie sicher, dass Sie Schiff erstellen?"
+Item Status,Einzelteil-Status
+Tax Percent,Steuer Percent
+Shipped,versendet
+Track information,Titelinformationen
+Shipped By,Verschifft von
+Tracking Number,"Auftragsnummer, Frachtnummer, Sendungscode"
+No shipping information available,Keine Versandinformationen
+Carrier,Träger
+Refund Total,Rückerstattung Gesamt
+Shipment,Sendung
+Table Shipment,Tabelle Shipment
+Ship Date,Versanddatum
+Order #,Bestellung #
+Ship to Name,Versende nach Namen
+Total Quantity,Gesamtstückzahl
+Shipment Design,Versand Entwurf
+<b>Shipment</b> # %1,<B> Versand </ b> #% 1
+Shipping and Tracking Information,Versand und Tracking-Informationen
+Track this shipment,Verfolgen Sie diese Sendung
+Number,Nummer
+Add,Hinzufügen
+Items Shipped,Artikel geliefert
+Product Name,Produktname
+Qty Shipped,Menge geliefert
+Today's Sales,Die heutige Verkauf
+Today's Earnings,Das heutige Ergebnis
+Current Month's Sales,Aktuelle Monats Sales
+Current Month's Earnings,Aktuelle Monats Ergebnis
+Sales Report,Verkaufsbericht
+Browse to find or drag image here(Size 1240x400),Wechseln Sie zu finden oder Drag-Bild hier (Größe 1240x400)
+Browse to find or drag image here(Size 200x200),Wechseln Sie zu finden oder Drag-Bild hier (Größe 200x200)
+Social Media,Sozialen Medien
+Facebook Name,Facebook Name
+Facebook Page ID,Facebook-Seite ID
+Linkedin ID,Linkedin ID
+Printerest ID,Printerest ID
+Welcome,Herzlich willkommen
+Online,Online
+Sender Name,Absender
+Sender Email,Absender E-Mail
+Post a Reply,Antwort schreiben
+Message History,Nachrichtenverlauf
+Sales,Der Umsatz
+Manage Product,verwalten Produkt
+Simple Product,einfaches Produkt
+Virtual Product,virtuelle Produkt
+Configurable Product,konfigurierbare Produkt
+Vacation Setting,Urlaub Rahmen
+Mass Import/Export,Masse Import / Export
+Upload Image,Bild hochladen
+ Withdrawal, Rückzug
+You can withdraw up to,Sie können bis entziehen
+Min amount ,min Menge
+Fee ,Gebühr
+Amount to withdraw,Betrag zurückzuziehen
+ email account, Email-Konto
+  Info,  Die Info
+You do not have the minimum amount to withdraw,Sie haben nicht den Mindestbetrag muss zurücktreten
+Nick Name,Spitzname
+Rating,Wertung
+Comment,Kommentar
+All Review,alle Bewertungen
+Author,Autor
+Guest,Gast
+Summary Rating,Zusammenfassung Bewertung
+Summary of Review,Zusammenfassung der Bewertung
+Vacation Status,Urlaub-Status
+Turn ON,Anschalten
+Turn OFF,Abschalten
+Vacation Message,Urlaubsnachricht
+Vacation Date From,Urlaub Datum Ab
+Vacation Date To,Urlaubstermin zu
+Add Cart button text,"Textanzeige auf der Schaltfläche In der Warenkorb, wenn Verkäufer im Urlaub"
+Select Date,Datum auswählen
+Withdrawal information,Rückzug Informationen
+ Email Account, Email-Konto
+Net Amount,Netto-Betrag
+Admin Message,Admin Nachricht
+Withdrawal Request,Auszahlungsantrag
+Your balance,Dein Kontostand
+Method,Methode
+Withdrawals History,Entnahmen Geschichte
+Total Amount Received,Gesamtbetrag Received
+Created,Erstellt
+Store View:,Store View:
+Stores Configuration,speichert Konfiguration
+Please confirm scope switching. All data that hasn't been saved will be lost.,"Bitte bestätigen Umfang Umschaltung. Alle Daten, die nicht gespeichert wurde, gehen verloren."
+Insert Widget...,Insert Widget ...
+We don't recognize or support this file extension type.,Erkennen wir nicht an oder unterstützen diese Dateierweiterung Typ.
+Insert Variable...,Variable einfügen ...
+Select All on This Page,Alle auf dieser Seite
+Deselect All on This Page,Abwahl Alle auf dieser Seite
+Go to Details Page,Zum Detail Seite
+We could not detect a size.,Wir konnten nicht mit einer Größe erkennen.
+Image Detail,Bild vergrößern
+Warning message,Warnmeldung
+New Product Review,New Product Review
+Here are the products you're about to create.,"Hier sind die Produkte, Sie sind dabei, zu erstellen."
+Associated Products,Zugehörige Produkte
+You created these products for this configuration.,Sie erstellt diese Produkte für diese Konfiguration.
+Disassociated Products,losgelöst Produkte
+These products are not associated.,Diese Produkte sind nicht verbunden.
+Ok,OK
+Add Products to New Option,In Produkten auf neue Option
+"Add Products to Option ""%1""",In Produkten auf Option „% 1“
+Video Error,Video-Fehler
+Unknown video type,Unbekannt Videotyp
+Invalid video url,Ungültige Video-URL
+Youtube API key is invalid,Youtube-API-Schlüssel ist ungültig
+Video cant be shown due to the following reason: ,Video kann nicht aufgrund des folgenden Grundes zu sehen:
+Video not found,Video nicht gefunden
+New Video,Neues Video
+Edit Video,Video bearbeiten
+Images and Videos,Bilder und Videos
+Select...,Wählen...
+Attributes,Attribute
+"Lof All - <a href=""http://landofcoder.com"" target=""_BLANK"" title=""""Magento Marketplace, Opencart Marketplace, Magento 2 Extension, Free Magento Extension, Opencart Advanced Reports"">landofcoder.com</a>","Lof All - <a target=""_blank"" href=""http://landofcoder.com"" title=""""Magento Marketplace, Opencart Marketplace, Magento 2 Extension, Kostenlose Magento Extension, Opencart Erweiterte Reports""> landofcoder.com </ a >"
+Market Place,Marktplatz
+General Settings,Allgemeine Einstellungen
+Seller List Url,Verkäufer-Liste URL
+Seller Url Prefix,Verkäufer URL-Präfix
+Seller Url Suffix,Verkäufer URL Suffix
+Rating Approval Required,Rating Genehmigung erforderlich
+Seller Approval Required,Verkäufer Genehmigung erforderlich
+Seller Settings,Verkäufer Einstellungen
+Need Admin Approval Product,Sie benötigen Administratorgenehmigungsprodukt
+Seller Commission(%),Verkäufer Kommission (%)
+Enter global commission for sellers.If you don't using commission in http://yourdomain.com/admin/lofmarketplace/commission/index,Geben Sie globale Kommission für sellers.If Sie verwenden keine Provision in http://yourdomain.com/admin/lofmarketplace/commission/index
+Sales Settings,Verkaufseinstellungen
+Can Send Email,Kann E-Mail schicken
+Email admin,E-Mail-Server-Betreiber
+Can Create Ship,Kann erstellen Schiff
+Can Create Refund,Kann erstellen Rückerstattung
+Seller Panel,Verkäufer-Panel
+Favicon Icon,Favicon Icon
+Default Title,Standardtitel
+Header Icon,Header Icon
+Header Text,Überschrift
+Footer Text,Fusszeile
+Email Settings,Email Einstellungen
+Enable Send Email,Aktivieren Sie E-Mail schicken
+Email Sender,Email Sender
+Choose template for emailing customer,Wählen Sie Vorlage für Kunden per E-Mail
+Choose template for emailing seller,Wählen Sie Vorlage für den Verkäufer per E-Mail
+Choose template for email reply,Wählen Sie Vorlage für E-Mail-Antwort
+Choose email template for new rating,Wählen Sie E-Mail-Vorlage für neue Bewertung
+Choose email template for new order,Wählen Sie E-Mail-Vorlage für die neue Ordnung
+Choose email template for new invoice,Wählen Sie E-Mail-Vorlage für neue Rechnung
+Choose email template for new shipment,Wählen Sie E-Mail-Vorlage für neue Sendung
+Choose email template for new seller register,Wählen Sie E-Mail-Vorlage für neue Anbieter registrieren
+Choose email template for approve seller,Wählen Sie E-Mail-Vorlage für genehmigen Verkäufer
+Choose email template for unapprove seller,Wählen Sie E-Mail-Vorlage für Genehmigung aufheben Verkäufer
+Choose email template for approve product,Wählen Sie E-Mail-Vorlage für genehmigen Produkt
+Choose email template for unapprove product,Wählen Sie E-Mail-Vorlage für Genehmigung aufheben Produkt
+Seller Info On Product View Page,Verkäufer Info Auf Produktansicht Seite
+Enabled Seller Block,Aktiviert Verkäufer blockieren
+Show Seller Title,Show Verkäufer Titel
+Show Seller Logo,Show Verkäufer Logo
+Show Seller Name,Show kontaktieren Name
+Show Seller Address,Show Verkäufer Anschrift
+Show Seller Sales,Show Seller Sales
+Show Seller Phone,Show Verkäufer Telefon
+Show Seller Contact,Anzeigen Verkäufer kontaktieren
+Text Contact,Text Kontakt
+Seller List Page,Verkäufer Liste Seite
+Number Seller Per Page,Anzahl Verkäufer pro Seite
+Empty to show all item,"Leeren Sie alle Artikel zu zeigen,"
+SEO - Search Engine Optimization,SEO - Search Engine Optimization
+Grid Layout,Gitterstruktur
+Number Column on Large Desktop,Anzahl Spalte auf großen Desktop
+Large devices Desktops (≥1200px),Große Geräte Desktops (≥1200px)
+Number Column on Desktop,Anzahl Spalte auf dem Desktop
+Medium devices Desktops (≥992px),Medium Geräte Desktops (≥992px)
+Number Column on Tablets,Anzahl Spalte auf Tablets
+Small devices Tablets (≥768px),Kleine Geräte Tablets (≥768px)
+Number Column on Phones,Anzahl Spalte auf Handys
+Extra small devices Phones (<768px),Extra kleine Geräte Phones (<768px)
+Group Page,Gruppe Page
+Seller Multi Shipping,Verkäufer Multi Versand
+MarketPlace Seller List,Market Verkäufer Liste
+Get seller list,Erhalten Verkäufer Liste
+Select Static Block,Wählen Sie Static Block
+Number of Seller to Display,Anzahl der Verkäufer zur Anzeige
+Number Item per Column,Anzahl Artikel pro Spalte
+Addtion Class,addtion Klasse
+Carousel Layout,Karussell-Layout
+Number Columns On Page (Phones),Anzahl Spalten auf der Seite (Phones)
+Show number items when screen size bellow 480px,"Zeige Anzahl Elemente, wenn Bildschirmgröße unten 480px"
+Number Columns On Page (Phones to Small tablets),Anzahl Spalten auf der Seite (Phones Kleine Tabletten)
+Show number items when screen size between 641px and 480px,"Zeige Anzahl Elemente, wenn Bildschirmgröße zwischen 641px und 480px"
+Number Columns On Page (Phones to tablets),Anzahl Spalten auf Seite (Phones zu Tabletten)
+Show number items when screen size between 768px and 641px,"Zeige Anzahl Elemente, wenn Bildschirmgröße zwischen 768px und 641px"
+Number Columns On Page (Portrait tablets),Anzahl Spalten auf der Seite (Portrait Tabletten)
+Show number items when screen size between 979px and 769px,"Zeige Anzahl Elemente, wenn Bildschirmgröße zwischen 979px und 769px"
+Number Columns On Page (Default),Anzahl Spalten auf Seite (Default)
+Show number items when screen size between 1199px and 980px,"Zeige Anzahl Elemente, wenn Bildschirmgröße zwischen 1199px und 980px"
+Number Columns On Page (Large display),Anzahl Spalten auf der Seite (großes Display)
+Show number items when screen size 1200px and up,"Zeige Anzahl Elemente, wenn Bildschirmgröße 1200px und bis"
+Autoplay,Automatisches Abspielen
+Autoplay Timeout,Automatische Wiedergabe Timeout
+Item Per Page,Artikel pro Seite
+Interval,Intervall
+RTL,RTL
+Loop,Schleife
+Show dots navigations,Zeigen Punkte Navigations
+Show next/prev buttons.,Zeige nächste / zurück-Schaltflächen.
+Nav Prev Text,Nav Prev Text
+Nav Next Text,Nav Next Text
+Template,Vorlage
+Seller ID,Verkäufer-ID
+Updated At,Aktualisiert am
+ ID, ICH WÜRDE
+Seller Balance,Verkäufer Gleichgewicht
+Delete items,Löschen Artikel
+Are you sure you want to delete selected items?,"Sind Sie sicher, dass Sie ausgewählte Objekte löschen?"
+Disable,Deaktivieren
+Enable,Aktivieren
+Active,Aktiv
+Add New Group,Neue Gruppe hinzufügen
+Bill-to Name,Bill-to-Name
+Seller Email,Verkäufer E-Mail
+Is Read,Ist gelesen
+Order ID,Auftragsnummer
+Increment ID,Inkrement ID
+Currency Code,Währungscode
+Sort Order,Sortierreihenfolge
+Product ID,Produkt ID
+Review ID,Bewertungs-ID
+Image,Bild
+Shop URL Key,Shop URL Key
+Product Price,Produktpreis
+Payment ID,Zahlungs-ID
+Method Payment,Methode Zahlung
+Pay Action,Pay Aktion
+List Seller,Liste Verkäufer
+Marketplace 1column,Markt 1column
+Marketplace 2columns Left,Markt 2columns Links
+AttributeSetText,AttributeSetText
+StatusText,Statustext
+PDF Invoices,PDF-Rechnungen
+Category Name,Kategoriename
+Parent Category,Eltern-Kategorie
+Images And Videos,Bilder und Videos
+Minimum Qty,Minimum-Menge
+Use Deferred Stock Update,Verwenden Latente Lager Update
+Stock Status,Lagerbestand
+Delete selected items?,Löscht ausgewählte Elemente?
+Change status,Status ändern

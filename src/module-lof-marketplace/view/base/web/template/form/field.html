@@ -1,0 +1,56 @@
+<!--
+  ~ Landofcoder
+  ~
+  ~ NOTICE OF LICENSE
+  ~
+  ~ This source file is subject to the Landofcoder.com license that is
+  ~ available through the world-wide-web at this URL:
+  ~ https://landofcoder.com/terms
+  ~
+  ~ DISCLAIMER
+  ~
+  ~ Do not edit or add to this file if you wish to upgrade this extension to newer
+  ~ version in the future.
+  ~
+  ~ @category   Landofcoder
+  ~ @package    Lof_MarketPlace
+  ~ @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  ~ @license    https://landofcoder.com/terms
+  -->
+<div class="admin__field"
+     visible="visible"
+     css="$data.additionalClasses"
+     attr="'data-index': index">
+    <label class="admin__field-label" if="$data.label" visible="$data.labelVisible" attr="for: uid">
+        <span translate="label" attr="'data-config-scope': $data.scopeLabel"></span>
+    </label>
+    <div class="admin__field-control"
+         css="'_with-tooltip': $data.tooltip, '_with-reset': $data.showFallbackReset && $data.isDifferedFromDefault">
+        <render args="elementTmpl" ifnot="hasAddons()"></render>
+
+        <div class="admin__control-addon" if="hasAddons()">
+            <render args="elementTmpl"></render>
+
+            <label class="admin__addon-prefix" if="addBefore()" attr="for: uid">
+                <span text="addBefore()"></span>
+            </label>
+            <label class="admin__addon-suffix" if="$data.addafter" attr="for: uid">
+                <span text="addafter"></span>
+            </label>
+        </div>
+
+        <render args="tooltipTpl" if="$data.tooltip"></render>
+
+        <render args="fallbackResetTpl" if="$data.showFallbackReset && $data.isDifferedFromDefault"></render>
+
+        <label class="admin__field-error" if="error" attr="for: uid" text="error"></label>
+
+        <div class="admin__field-note" if="$data.notice" attr="id: noticeId">
+            <span translate="notice"></span>
+        </div>
+
+        <div class="admin__additional-info" if="$data.additionalInfo" html="$data.additionalInfo"></div>
+
+        <render args="$data.service.template" if="$data.hasService()"></render>
+    </div>
+</div>

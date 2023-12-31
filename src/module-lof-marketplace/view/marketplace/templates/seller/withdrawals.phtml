@@ -1,0 +1,123 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// phpcs:disable Magento2.Security.XssTemplate.FoundNotAllowed
+// phpcs:disable Generic.Files.LineLength.TooLong
+/**
+ * @var $block Lof\MarketPlace\Block\Seller\Withdrawals
+ */
+?>
+<div>
+    <div class="page-title">
+        <div class="title_left">
+            <h3><?= $block->escapeHtml(__('Withdrawals')) ?></h3>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <p>
+                    <strong><?= $block->escapeHtml(__('Your balance')) ?>:</strong>
+                    <b class="value" style="color: #ff3333;">
+                        <?= $block->getPriceFomat($block->getAmount(), $block->getCurrentCurrencyCode()); ?>
+                    </b>
+                </p>
+                <div class="x_content">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Method')) ?></th>
+                            <th><?= $block->escapeHtml(__('Description')) ?></th>
+                            <th><?= $block->escapeHtml(__('Fee')) ?></th>
+                            <th><?= $block->escapeHtml(__('Action')) ?></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php if ($block->getPayment()->getSize()): ?>
+                        <?php foreach ($block->getPayment() as $key => $payment): ?>
+                            <?php
+                            $paymentView = $block
+                                ->getUrl(
+                                    'catalog/withdrawals/payment',
+                                    ['id' => $payment->getData('payment_id')]
+                                );
+                            $priceFormat = $block->getPriceFomat(
+                                $payment->getData('fee'),
+                                $block->getCurrentCurrencyCode()
+                            );
+                            ?>
+                            <tr>
+                                <td>
+                                    <strong><?= $block->escapeHtml($payment->getData('name')) ?></strong>
+                                </td>
+                                <td><?= $block->escapeHtml($payment->getData('description')) ?></td>
+                                <td>
+                                    <?php
+                                    if ($payment->getData('fee_by') == 'all') {
+                                        echo $priceFormat . " + " . $payment->getData('fee_percent') . '%';
+                                    } elseif ($payment->getData('fee_by') == 'by_fixed') {
+                                        echo $priceFormat;
+                                    } else {
+                                        echo $payment->getData('fee_percent') . '%';
+                                    }
+                                    ?>
+                                </td>
+                                <td>
+                                    <a href="<?= $block->escapeUrl($paymentView) ?>"
+                                       title="<?= $block->escapeHtmlAttr(__('Withdraw using this method')) ?>">
+                                        <?= $block->escapeHtml(__('Withdraw')) ?>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="4">
+                                    <div class="message message-notice">
+                                        <?= $block->escapeHtml(__('No payment methods found. Please contact Admin.')) ?>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2><?= $block->escapeHtml(__('Withdrawals History')) ?></h2>
+                    <div class="clearfix"></div>
+                </div>
+                <p>
+                    <strong><?= $block->escapeHtml(__('Total Amount Received')) ?>:</strong>
+                    <b class="value" style="color: #ff3333;">
+                        <?= $block->getPriceFomat($block->getTotalAmount(), $block->getCurrentCurrencyCode()); ?>
+                    </b>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

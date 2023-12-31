@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<type name="Magento\StoreGraphQl\Model\Resolver\Store\StoreConfigDataProvider">
+		<arguments>
+			<argument name="extendedConfigData" xsi:type="array">
+				<item name="lofmarketplace_general_enable" xsi:type="string">lofmarketplace/general_settings/enable</item>
+				<item name="lofmarketplace_general_rating_approval" xsi:type="string">lofmarketplace/general_settings/rating_approval</item>
+				<item name="lofmarketplace_general_seller_approval" xsi:type="string">lofmarketplace/general_settings/seller_approval</item>
+				<item name="lofmarketplace_product_view_seller_info" xsi:type="string">lofmarketplace/product_view_page/enable_seller_info</item>
+				<item name="lofmarketplace_product_view_seller_name" xsi:type="string">lofmarketplace/general_settings/show_seller_name</item>
+				<item name="lofmarketplace_product_view_seller_image" xsi:type="string">lofmarketplace/general_settings/show_seller_image</item>
+				<item name="lofmarketplace_product_view_seller_address" xsi:type="string">lofmarketplace/general_settings/show_seller_address</item>
+				<item name="lofmarketplace_product_view_seller_sale" xsi:type="string">lofmarketplace/general_settings/show_seller_sale</item>
+				<item name="lofmarketplace_product_view_seller_phone" xsi:type="string">lofmarketplace/general_settings/show_seller_phone</item>
+				<item name="lofmarketplace_product_view_seller_contact" xsi:type="string">lofmarketplace/general_settings/show_seller_contact</item>
+				<item name="lofmarketplace_product_view_seller_contact_text" xsi:type="string">lofmarketplace/general_settings/text_contact</item>
+				<item name="lofmarketplace_list_show_seller_name" xsi:type="string">lofmarketplace/seller_list_page/show_seller_name</item>
+				<item name="lofmarketplace_list_item_per_page" xsi:type="string">lofmarketplace/seller_list_page/item_per_page</item>
+				<item name="lofmarketplace_list_page_title" xsi:type="string">lofmarketplace/seller_list_page/page_title</item>
+				<item name="lofmarketplace_list_meta_description" xsi:type="string">lofmarketplace/seller_list_page/meta_description</item>
+				<item name="lofmarketplace_list_meta_keywords" xsi:type="string">lofmarketplace/seller_list_page/meta_keywords</item>
+				<item name="lofmarketplace_group_show_seller_name" xsi:type="string">lofmarketplace/group_page/show_seller_name</item>
+				<item name="lofmarketplace_group_seller_enable" xsi:type="string">lofmarketplace/group_seller/enable_group_seller</item>
+				<item name="lofmarketplace_group_seller_available" xsi:type="string">lofmarketplace/group_seller/group_seller</item>
+				<item name="lofmarketplace_available_countries_enable" xsi:type="string">lofmarketplace/available_countries/enable_available_countries</item>
+				<item name="lofmarketplace_available_countries" xsi:type="string">lofmarketplace/available_countries/available_countries</item>
+			</argument>
+		</arguments>
+	</type>
+</config>

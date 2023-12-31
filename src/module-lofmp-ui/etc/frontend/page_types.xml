@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page_types xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_types.xsd">
+    <type id="lofmarketplace_seller_becomeseller" label="Customer Become Seller Form"/>
+    <type id="lofmarketplace_seller_create" label="Seller Account Create Form"/>
+    <type id="lofmarketplace_index_index" label="Sellers Listing Page"/>
+    <type id="lofmarketplace_group_view" label="Seller Group Page"/>
+    <type id="lofmarketplace_customer_message" label="Customer Manage Messages"/>
+    <type id="lofmarketplace_customer_viewmessage" label="Customer View Message"/>
+    <type id="lofmarketplace_seller_login" label="Seller Account Login Form"/>
+    <type id="lofmarketplace_seller_view" label="Seller View Detail Page"/>
+</page_types>

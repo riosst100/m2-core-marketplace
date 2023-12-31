@@ -32,14 +32,33 @@
         "src/module-product-attributes-link/registration.php",
         "src/module-category-importexport/registration.php",
         "src/module-geoip/registration.php",
-        "src/module-geoip-graphql/registration.php"
+        "src/module-geoip-graphql/registration.php",
+        "src/module-lof-all/registration.php",
+        "src/module-lof-marketplace/registration.php",
+        "src/module-lof-marketplace-graphql/registration.php",
+        "src/module-lof-marketplace-product-configurable/registration.php",
+        "src/module-lof-marketplace-product-downloadable/registration.php",
+        "src/module-lof-marketplace-theme/registration.php",
+        "src/module-lof-seller-community/registration.php",
+        "src/module-lofmp-page-builder/registration.php",
+        "src/module-lofmp-ui/registration.php"
       ],
       "psr-4":{
         "CoreMarketplace\\SellerRegistration\\":"src/module-seller-registration",
         "CoreMarketplace\\ProductAttributesLink\\":"src/module-product-attributes-link",
         "Webcastle\\CategoryImportExport\\":"src/module-category-importexport",
         "Magefan\\GeoIp\\":"src/module-geoip",
-        "CoreMarketplace\\GeoIpGraphQl\\":"src/module-geoip-graphql"
+        "CoreMarketplace\\GeoIpGraphQl\\":"src/module-geoip-graphql",
+        "Lof\\All\\":"src/module-lof-all",
+        "Lof\\MarketPlace\\":"src/module-lof-marketplace",
+        "Lof\\MarketplaceGraphQl\\":"src/module-lof-marketplace-graphql",
+        "Lof\\MarketProductBundle\\":"src/module-lof-marketplace-product-bundle",
+        "Lof\\MarketProductConfigurable\\":"src/module-lof-marketplace-product-configurable",
+        "Lof\\MarketProductDownloadable\\":"src/module-lof-marketplace-product-downloadable",
+        "Lof\\SellerCommunity\\":"src/module-lof-seller-community",
+        "Lof\\Setup\\":"src/module-lof-setup",
+        "Lofmp\\PageBuilder\\":"src/module-lofmp-page-builder",
+        "Lofmp\\Ui\\":"src/module-lofmp-ui"
       }
     }
 }

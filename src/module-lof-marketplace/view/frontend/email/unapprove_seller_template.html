@@ -1,0 +1,27 @@
+<!--
+  ~ Landofcoder
+  ~
+  ~ NOTICE OF LICENSE
+  ~
+  ~ This source file is subject to the Landofcoder.com license that is
+  ~ available through the world-wide-web at this URL:
+  ~ https://landofcoder.com/terms
+  ~
+  ~ DISCLAIMER
+  ~
+  ~ Do not edit or add to this file if you wish to upgrade this extension to newer
+  ~ version in the future.
+  ~
+  ~ @category   Landofcoder
+  ~ @package    Lof_MarketPlace
+  ~ @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  ~ @license    https://landofcoder.com/terms
+  -->
+
+<!--@subject  You have not approve Seller {{var data.name}} @-->
+{{template config_path="design/email/header_template"}}
+<p> {{trans "Sorry"}} {{var data.name}}, </p>
+<p>{{trans "You have not approve to become seller."}}</p>
+<p style="padding:20px 0 0 0;margin:0"><b>{{trans "Do not reply to this email!"}}</b></p>
+<br>
+{{template config_path="design/email/footer_template"}}

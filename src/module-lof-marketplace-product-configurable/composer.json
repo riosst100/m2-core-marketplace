@@ -1,0 +1,33 @@
+{
+    "name": "landofcoder/module-market-product-configurable",
+    "description": "Supports product type: Downloadable for MarketPlace.",
+    "require": {
+      "landofcoder/module-all" : "1.*",
+      "landofcoder/module-marketplace" : "1.*"
+    },
+    "keywords": [
+      "landofcoder",
+      "landofcoder marketplace",
+      "Multil vendor extension",
+      "landofcoder multi vendor marketplace magento 2 extension"
+    ],
+    "license": [
+      "OSL-3.0",
+      "AFL-3.0"
+    ],
+    "version": "1.0.0",
+    "type": "magento2-module",
+    "authors": [
+        {
+            "name": "Landofcoder",
+            "email": "landofcoder@gmail.com",
+            "role": "Magento 2 Lof Marketplace Configurable product Extension"
+        }
+    ],
+    "autoload": {
+      "files": [ "registration.php" ],
+      "psr-4": {
+        "Lof\\MarketProductConfigurable\\": ""
+      }
+    }
+  }

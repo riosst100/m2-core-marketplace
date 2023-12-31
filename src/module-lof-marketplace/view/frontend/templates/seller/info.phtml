@@ -1,0 +1,330 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Generic.WhiteSpace.ScopeIndent
+// phpcs:disable Magento2.Security.XssTemplate.FoundUnescaped
+/**
+ * @var $block \Lof\MarketPlace\Block\Seller\Info
+ */
+$currentSeller = $block->getCurrentSeller();
+$seller = $currentSeller;
+$sellerId = $seller->getData('seller_id');
+$sellerUrl = $seller->getData('url_key');
+/** @var \Lof\MarketPlace\Helper\Data $data */
+$data = $this->helper(\Lof\MarketPlace\Helper\Data::class);
+$show_seller_contact = $data->getConfig("product_view_page/show_seller_contact");
+$text_contact = $data->getConfig("product_view_page/text_contact");
+$formActionUrl = $block->getUrl('lofmarketplace/seller/savemessage');
+$currPageUrl = $data->getCurrentUrls();
+$per_rate = round($block->getRate()['average'] / 5 * 100);
+$href = '#';
+if ($currentSeller->getThumbnailUrl()) {
+    $thumbnailUrl = $currentSeller->getThumbnailUrl();
+} else {
+    $thumbnailUrl = $data->getMediaUrl() . 'images/avartar-seller.png';
+}
+$countryName = !empty($currentSeller->getCountry()) ? $currentSeller->getCountry() : $data->getCountryname($currentSeller->getCountryId());
+?>
+<div class="lof_marketplace_wrapper">
+    <div class="block block-multivendor">
+        <div class="block-content">
+            <div class="fieldset item-wrapp">
+                <div class="mkpl-image">
+                    <img src="<?= $block->escapeUrl($thumbnailUrl) ?>"
+                         alt="<?= $block->escapeHtmlAttr($currentSeller->getName()) ?>">
+                </div>
+                <div class="mkpl-title">
+                    <span><?= $block->escapeHtml($currentSeller->getName()) ?></span>
+                </div>
+                <?php if ($seller->getVerifyStatus() == '1'): ?>
+                    <div class="seller-verify" align="center">
+                        <i class="mkpl-verify"></i><span><?= $block->escapeHtml(__('Verified')) ?></span>
+                    </div>
+                <?php endif; ?>
+                <?php if ($currentSeller->getCompany()): ?>
+                    <div class="mkpl-company">
+                        <span><?= $block->escapeHtml(__('Company:')) ?></span>
+                        <?= $block->escapeHtml($currentSeller->getCompany()) ?>
+                    </div>
+                <?php endif; ?>
+                <?php if ($currentSeller->getCompanyUrl()): ?>
+                    <div class="mkpl-company-url">
+                        <span><?= $block->escapeHtml(__('Company URL:')) ?></span>
+                        <a href="<?= $block->escapeUrl($currentSeller->getCompanyUrl()) ?>" target="_blank">
+                            <?= $block->escapeHtml($currentSeller->getCompanyUrl()) ?>
+                        </a>
+                    </div>
+                <?php endif; ?>
+                <?php if ($currentSeller->getCompanyLocality()): ?>
+                    <div class="mkpl-company-locality">
+                        <span><?= $block->escapeHtml(__('Company Locality:')) ?></span>
+                        <?= $block->escapeHtml($currentSeller->getCompanyLocality()) ?>
+                    </div>
+                <?php endif; ?>
+                <?php if ($currentSeller->getCompanyDescription()): ?>
+                    <div class="mkpl-description">
+                        <?= /* @noEscape */ $currentSeller->getCompanyDescription() ?>
+                    </div>
+                <?php endif; ?>
+                <?php if ($currentSeller->getAddress()): ?>
+                    <div class="mkpl-address seller-info">
+                        <i class="fa fa-map-marker"></i>
+                        <?= $block->escapeHtml($currentSeller->getAddress()) ?>
+                        , <?= $countryName; ?>
+                    </div>
+                <?php endif; ?>
+                <div class="mkpl-sale seller-info">
+                    <i class="fa fa-shopping-cart"></i>
+                    <?php
+                    if ($block->getTotalSales() > 1) {
+                        echo __('%1 Sales', $block->getTotalSales());
+                    } else {
+                        echo __('%1 Sale', $block->getTotalSales());
+                    }
+                    ?>
+                </div>
+                <div class="mkpl-join-date seller-info">
+                    <i class="fa fa-calendar"></i>
+                    <?= __("Joined since ")
+                    . $block->formatDate(
+                        $currentSeller->getCreationTime(),
+                        \IntlDateFormatter::MEDIUM
+                    ); ?>
+                </div>
+                <?php if ($currentSeller->getContactNumber()): ?>
+                    <div class="mkpl-join-date seller-info">
+                        <i class="fa fa-phone"></i>
+                        <?= $block->escapeHtml($currentSeller->getContactNumber()) ?>
+                    </div>
+                <?php endif; ?>
+                <div class="mkpl-review">
+                    <div class="review-average-info">
+                        <div class="average-rating">
+                            <div class="ratings">
+                                <div class="rating-box">
+                                    <div class="rating" style="width: <?= $per_rate; ?>%;"></div>
+                                </div>
+                                <div class="rating-links">
+                                    <a id="lof-rating" href="javascript:;">
+                                        <?= $block->escapeHtml(__('%1 Rating(s)', (int)$block->getCountRating())) ?>
+                                    </a>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mkpl-socialnetworks">
+                    <ul class="list-social">
+                        <?php if ($block->isAllowedSocial('facebook') && $seller->getData('fb_active')): ?>
+                            <li class="icon-social">
+                                <a class="facebook" href="<?= $block->escapeUrl($seller->getData('facebook_id')) ?>">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if ($block->isAllowedSocial('google') && $seller->getData('gplus_active')): ?>
+                            <li class="icon-social">
+                                <a class="google" href="<?= $block->escapeHtml($seller->getData('gplus_id')) ?>">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if ($block->isAllowedSocial('twitter') && $seller->getData('tw_active')): ?>
+                            <li class="icon-social">
+                                <a class="twitter" href="<?= $block->escapeUrl($seller->getData('twitter_id')) ?>">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if ($block->isAllowedSocial('youtube') && $seller->getData('youtube_active')): ?>
+                            <li class="icon-social">
+                                <a class="youtube" href="<?= $block->escapeUrl($seller->getData('youtube_id')) ?>">
+                                    <i class="fa fa-youtube"></i>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if ($block->isAllowedSocial('linkedin') && $seller->getData('linkedin_active')): ?>
+                            <li class="icon-social">
+                                <a class="linkedin" href="<?= $block->escapeUrl($seller->getData('linkedin_id')) ?>">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if ($block->isAllowedSocial('vimeo') && $seller->getData('vimeo_active')): ?>
+                            <li class="icon-social">
+                                <a class="vimeo" href="<?= $block->escapeUrl($seller->getData('vimeo_id')) ?>">
+                                    <i class="fa fa-vimeo"></i>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if ($block->isAllowedSocial('instagram') && $seller->getData('instagram_active')): ?>
+                            <li class="icon-social">
+                                <a class="instagram" href="<?= $block->escapeUrl($seller->getData('instagram_id')) ?>">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if ($block->isAllowedSocial('pinterest') && $seller->getData('pinterest_active')): ?>
+                            <li class="icon-social">
+                                <a class="pinterest" href="<?= $block->escapeUrl($seller->getData('pinterest_id')) ?>">
+                                    <i class="fa fa-pinterest"></i>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+                <?php if ($show_seller_contact): ?>
+                    <div class="mkpl-contact  message-contact seller-info">
+                        <a class="btn" id="seller-contact" href="<?= $block->escapeUrl($href) ?>">
+                            <i class="fa fa-envelope-o"></i><?= $block->escapeHtml($text_contact) ?>
+                        </a>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>
+<?php if ($data->isLoggedIn()): ?>
+    <div class="contact-seller" id="contact-seller" style="display: none;">
+        <form class="form contact" action="<?= $block->escapeHtmlAttr($formActionUrl) ?>"
+              id="contact-form"
+              method="post"
+              data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+              data-mage-init='{"validation":{}}'>
+            <fieldset class="fieldset">
+                <legend class="legend"><span><?= $block->escapeHtml($text_contact) ?></span></legend>
+                <input name="owner_id" type="hidden" value="<?= $block->escapeHtmlAttr($sellerUrl) ?>"/>
+                <div class="field name required">
+                    <label class="label" for="subject"><span><?= $block->escapeHtml(__('Subject')) ?></span></label>
+                    <div class="control">
+                        <input name="subject" id="subject" title="<?= $block->escapeHtmlAttr(__('Subject')) ?>"
+                               class="input-text" type="text"
+                               data-validate="{required:true}"/>
+                    </div>
+                </div>
+                <div class="field description required">
+                    <label class="label"
+                           for="description"><span><?= $block->escapeHtml(__('What’s on your mind?')) ?></span>
+                    </label>
+                    <div class="control">
+                        <textarea name="description" id="description"
+                                  title="<?= $block->escapeHtmlAttr(__('What’s on your mind?')) ?>"
+                                  class="input-text" cols="5" rows="3"
+                                  data-validate="{required:true}"></textarea>
+                    </div>
+                </div>
+
+            </fieldset>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <input type="hidden" name="currUrl" value="<?= $block->escapeHtmlAttr($currPageUrl) ?>"/>
+                    <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>"
+                            class="action submit primary">
+                        <span><?= $block->escapeHtml(__('Submit')) ?></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+<?php else: ?>
+    <div class="contact-seller" id="contact-seller" style="display: none;">
+        <form class="form contact" action="<?= $block->escapeHtmlAttr($formActionUrl) ?>"
+              id="contact-form"
+              method="post"
+              data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+              data-mage-init='{"validation":{}}'>
+            <fieldset class="fieldset">
+                <legend class="legend"><span><?= $block->escapeHtml($text_contact); ?></span></legend>
+                <br/>
+                <input name="owner_id" type="hidden" value="<?= $block->escapeHtmlAttr($sellerUrl) ?>"/>
+                <div class="field name required">
+                    <label class="label" for="sender_name">
+                        <span><?= $block->escapeHtml(__('Customer Name')) ?></span>
+                    </label>
+                    <div class="control">
+                        <input name="sender_name" id="sender_name"
+                               title="<?= $block->escapeHtmlAttr(__('Customer Name')) ?>" class="input-text"
+                               type="text" data-validate="{required:true}"/>
+                    </div>
+                </div>
+                <div class="field name required">
+                    <label class="label" for="sender_email">
+                        <span><?= $block->escapeHtml(__('Customer Email')) ?></span>
+                    </label>
+                    <div class="control">
+                        <input name="sender_email" id="sender_email"
+                               title="<?= $block->escapeHtmlAttr(__('Customer Email')) ?>"
+                               class="input-text" type="text" data-validate="{required:true}"/>
+                    </div>
+                </div>
+                <div class="field name required">
+                    <label class="label" for="subject"><span><?= $block->escapeHtml(__('Subject')) ?></span></label>
+                    <div class="control">
+                        <input name="subject" id="subject" title="<?= $block->escapeHtmlAttr(__('Subject')) ?>"
+                               class="input-text" type="text"
+                               data-validate="{required:true}"/>
+                    </div>
+                </div>
+                <div class="field description required">
+                    <label class="label" for="description">
+                        <span><?= $block->escapeHtml(__('What’s on your mind?')) ?></span>
+                    </label>
+                    <div class="control">
+                        <textarea name="description" id="description"
+                                  title="<?= $block->escapeHtmlAttr(__('What’s on your mind?')) ?>"
+                                  class="input-text" cols="5" rows="3"
+                                  data-validate="{required:true}"></textarea>
+                    </div>
+                </div>
+
+            </fieldset>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <input type="hidden" name="currUrl" value="<?= $block->escapeHtmlAttr($currPageUrl) ?>"/>
+                    <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>"
+                            class="action submit primary">
+                        <span><?= $block->escapeHtml(__('Submit')) ?></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+<?php endif; ?>
+<script type="text/javascript">
+    require(
+        [
+            'jquery',
+            'Lof_All/lib/fancybox/jquery.fancybox.pack',
+            'mage/validation'
+        ], function ($) {
+            jQuery(document).ready(function ($) {
+                jQuery("#seller-contact").fancybox({
+                    'href': '#contact-seller',
+                    'titleShow': false,
+                    'transitionIn': 'elastic',
+                    'transitionOut': 'elastic',
+                    'minWidth': 420
+                });
+            });
+        });
+</script>
