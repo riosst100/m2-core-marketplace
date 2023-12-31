@@ -50,15 +50,15 @@ class Link extends AbstractView
      * @param \Magento\Framework\View\Element\Template\Context $context
      * @param \Lof\Quickrfq\Helper\Data                        $helperConfig
      * @param \Magento\Framework\Registry                      $registry
-     * @param array                                            $data
      * @param \Magento\Customer\Model\Session                  $session
+     * @param array                                            $data
      */
     public function __construct(
         Context $context,
         Data $helperConfig,
         Registry $registry,
-        array $data = [],
-        Session $session
+        Session $session,
+        array $data = []
     ) {
         parent::__construct($context, $registry, $helperConfig, $data);
         $this->_helperConfig    = $helperConfig;

@@ -24,7 +24,8 @@
       "google/apiclient":"^2.10",
       "hybridauth/hybridauth": "*",
       "abraham/twitteroauth": "*",
-      "janu-software/facebook-php-sdk": "^0.1"
+      "janu-software/facebook-php-sdk": "^0.1",
+      "landofcoder/markettheme": "*"
     },
     "autoload":{
       "files":[
