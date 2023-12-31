@@ -1,0 +1,380 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Magento2.Security.XssTemplate.FoundNotAllowed
+// phpcs:disable Generic.Files.LineLength.TooLong
+/**
+ * @var $block Lof\MarketPlace\Block\Sale\Shipment\View
+ */
+$orderId = $order_id = $this->getOrder()->getId();
+$shipmentId = $this->getShipmentId();
+$items = $this->getOrder()->getAllItems();
+$sellerProducts = $block->getSellerProducts();
+$helper = $this->helper(\Lof\MarketPlace\Helper\Data::class);
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$orderitems = $objectManager->get(\Lof\MarketPlace\Model\Orderitems::class);
+$calculate = $objectManager->get(\Lof\MarketPlace\Model\CalculateCommission::class);
+$order = $this->getOrder();
+$tracking = $helper->getTracking($order_id);
+?>
+<style type="text/css">
+    #invoice_content {
+        background-color: white;
+    }
+</style>
+<div class="row lof_marketplace">
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><?= $block->escapeHtml(__('Shipment #%1', $this->getShipment()->getData('increment_id'))) ?></h2>
+                <!-- <div class="page-actions-buttons">
+              <div class="actions-split save primary" title="Order">
+                  <button type="button" class="btn btn-primary lof_invoice" id="cmd"><?= __('Export Pdf file'); ?></button>
+              </div>
+          </div> -->
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content" id="invoice_content">
+                <div class="content invoice">
+                    <div class="row">
+                        <div class="col-xs-12 invoice-header">
+                            <h1>
+                                <i class="fa fa-globe"></i> <?= $block->escapeHtml(__('Shipment')) ?>
+                                <small class="pull-right">
+                                    <?= $block->escapeHtml(__('Created At')) ?>
+                                    : <?= $this->getShipment()->getData('created_at'); ?>
+                                </small>
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="row invoice-info">
+                        <div class="col-sm-3 invoice-col">
+                            <b><?= $block->escapeHtml(__('Billing Address')) ?></b>
+                            <br>
+                            <address>
+                                <?= $this->getFormattedAddress(); ?>
+                            </address>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-3 invoice-col">
+                            <b><?= $block->escapeHtml(__('Shipping Address')) ?></b>
+                            <br>
+                            <address>
+                                <?= $this->getBillingAddress(); ?>
+                            </address>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-3 invoice-col">
+                            <?= __('<b>Shipment</b> #%1', $this->getShipment()->getData('increment_id')) ?>
+                            <br>
+
+                            <?= __('<b>Order:</b> #%1', $this->getOrder()->getRealOrderId()) ?>
+                            <br>
+                            <b><?= __('Order Date'); ?>:</b> <?= $this->getOrderDate(); ?>
+                            <br>
+                            <b><?= __('Order Status'); ?>:</b> <?= $this->getOrder()->getStatusLabel(); ?>
+                            <br>
+                            <b><?= __('Purchased From'); ?>:</b> <?= $this->getOrderStoreName(); ?>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-3 invoice-col">
+                            <b><?= __('Account Information '); ?></b>
+                            <br>
+                            <b><?= __('Customer Name'); ?>:</b> <?= $this->getOrder()->getCustomerName(); ?>
+                            <br>
+                            <b><?= __('Email'); ?>:</b> <?= $this->getOrder()->getCustomerEmail(); ?>
+                            <br>
+                            <b><?= __('Customer Group'); ?>:</b> <?= $this->getCustomerGroupName(); ?>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- accepted payments column -->
+                        <div class="col-xs-6">
+                            <p class="lead"><?= __('Payment Methods'); ?>:</p>
+                            <img src="<?= $block->getViewFileUrl('Lof_MarketPlace::images/visa.png') ?>" alt="Visa">
+                            <img src="<?= $block->getViewFileUrl('Lof_MarketPlace::images/mastercard.png') ?>"
+                                 alt="Mastercard">
+                            <img src="<?= $block->getViewFileUrl('Lof_MarketPlace::images/american_express.png') ?>"
+                                 alt="American Express">
+                            <img src="<?= $block->getViewFileUrl('Lof_MarketPlace::images/paypal.png') ?>" alt="Paypal">
+                            <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+                                <?= $this->getOrder()->getPayment()->getMethodInstance()->getTitle(); ?>
+                            </p>
+                            <p><?= __('The order was placed using'); ?> <?= $this->getOrder()->getData('order_currency_code'); ?>
+                                .</p>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-xs-6">
+                            <?php if (!$order->getIsVirtual()): ?>
+                                <div class="box-order-shipping-method lof-box">
+                                    <strong class="box-title">
+                                        <span><?= __('Shipping and Tracking Information') ?></span>
+                                    </strong>
+                                    <div class="box-content">
+                                        <?php if ($order->getShippingDescription()): ?>
+                                            <?= $block->escapeHtml($order->getShippingDescription()) ?>
+                                        <?php else: ?>
+                                            <?= __('No shipping information available'); ?>
+                                        <?php endif; ?>
+                                        <?php
+                                        if ($tracking && $tracking->getData('track_number')) {
+                                            ?>
+                                            <p>
+                                                <a href="<?= $this->helper(\Magento\Shipping\Helper\Data::class)->getTrackingPopupUrlBySalesModel($block->getShipment()) ?>"
+                                                   title="<?= __('Track this shipment') ?>" target="blank">
+                                                    <?= __('Track this shipment') ?>
+                                                </a>
+                                            </p>
+                                            <div class="admin__control-table-wrapper">
+                                                <table class="data-table admin__control-table lof-mp-list-table"
+                                                       id="lof-mp-shipment-tracking-info">
+                                                    <thead>
+                                                    <tr class="headings">
+                                                        <th><?= __('Carrier') ?></th>
+                                                        <th><?= __('Title') ?></th>
+                                                        <th><?= __('Number') ?></th>
+                                                        <th><?= __('Action') ?></th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tfoot>
+                                                    <tr>
+                                                        <td>
+                                                            <select name="carrier"
+                                                                    class="admin__control-select"
+                                                                    id="lof-mp-tracking-carrier">
+                                                                <?php foreach ($block->getCarriers() as $_code => $_name): ?>
+                                                                    <option value="<?= $_code ?>">
+                                                                        <?= $block->escapeHtml($_name) ?>
+                                                                    </option>
+                                                                <?php endforeach; ?>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <input class="admin__control-text"
+                                                                   type="text"
+                                                                   id="lof-mp-tracking-title"
+                                                                   name="title"
+                                                                   value=""/>
+                                                        </td>
+                                                        <td>
+                                                            <input class="admin__control-text"
+                                                                   type="text"
+                                                                   id="lof-mp-tracking-number"
+                                                                   name="number"
+                                                                   value=""/>
+                                                        </td>
+                                                        <td>
+                                                            <button id="lof-mp-tracking-add">
+                                                        <span>
+                                                            <?= __('Add') ?>
+                                                        </span>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    </tfoot>
+                                                    <?php if ($_tracks = $block->getShipment()->getAllTracks()): ?>
+                                                        <tbody id="lof-mp-shipment-tracking-info-tbody">
+                                                        <?php $i = 0; ?>
+                                                        <?php foreach ($_tracks as $_track):
+                                                            $i++ ?>
+                                                            <tr>
+                                                                <td><?= $block->escapeHtml($block->getCarrierTitle($_track->getCarrierCode())) ?></td>
+                                                                <td><?= $block->escapeHtml($_track->getTitle()) ?></td>
+                                                                <td>
+                                                                    <?php if ($_track->isCustom()): ?>
+                                                                        <?= $block->escapeHtml($_track->getNumber()) ?>
+                                                                    <?php else: ?>
+                                                                        <a href="<?= $this->helper(\Magento\Shipping\Helper\Data::class)->getTrackingPopupUrlBySalesModel($_track) ?>"
+                                                                           target="blank">
+                                                                            <?= $block->escapeHtml($_track->getNumber()) ?>
+                                                                        </a>
+                                                                        <div
+                                                                            id="shipment_tracking_info_response_<?= $_track->getId() ?>"></div>
+                                                                    <?php endif; ?>
+                                                                </td>
+                                                                <td class="col-delete">
+                                                                    <?php
+                                                                    $btnDataUrl = $block
+                                                                        ->trackingDeleteUrl(
+                                                                            $orderId,
+                                                                            $shipmentId,
+                                                                            $_track->getId()
+                                                                        ); ?>
+                                                                    <button
+                                                                        class="lof-mp-tracking-action-delete action-delete"
+                                                                        data-url="<?= $btnDataUrl ?>">
+                                                                        <span>
+                                                                            <?= __('Delete') ?>
+                                                                        </span>
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        <?php endforeach; ?>
+                                                        </tbody>
+                                                    <?php endif; ?>
+                                                </table>
+                                            </div>
+                                            <?php
+                                        } ?>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <div class="row">
+                        <div class="order-details-items ordered">
+                            <div class="order-title x_title">
+                                <h2><?= __('Items Shipped'); ?></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="table-wrapper order-items">
+                                <table class="data table table-order-items" id="my-orders-table"
+                                       summary="Items Shipped">
+                                    <thead>
+                                    <tr>
+                                        <th class="col name"><?= __('Product Name'); ?></th>
+                                        <th class="col sku"><?= __('SKU'); ?></th>
+                                        <th class="col qty"><?= __('Qty Shipped'); ?></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php foreach ($items as $item) { ?>
+                                        <tr class="border" id="order-item-row-138">
+                                            <td class="col name" data-th="Product Name">
+                                                <strong class="product name product-item-name">
+                                                    <?= $item->getData('name'); ?>
+                                                    <?php
+                                                    if (isset($item->getData('product_options')['attributes_info'])) {
+                                                        echo '<dl class="item-options">';
+                                                        foreach ($item->getData('product_options')['attributes_info'] as $key => $attributes_info) {
+                                                            echo '<dt>' . $attributes_info['label'] . '</dt>';
+                                                            echo '<dd>' . $attributes_info['value'] . '</dd>';
+                                                        }
+                                                        echo '</dl>';
+                                                    }
+                                                    if (isset($item->getData('product_options')['options'])) {
+                                                        echo '<dl class="item-options">';
+                                                        foreach ($item->getData('product_options')['options'] as $key => $options) {
+                                                            echo '<dt>' . $options['label'] . '</dt>';
+                                                            echo '<dd>' . $options['value'] . '</dd>';
+                                                        }
+                                                        echo '</dl>';
+                                                    }
+                                                    ?>
+                                                </strong>
+                                            </td>
+                                            <td class="col sku" data-th="SKU"><?= $item->getData('sku'); ?></td>
+                                            <td class="col qty" data-th="Qty Shipped">
+                                                <?php if ($item->getData('qty_shipped') > 0) { ?>
+                                                    <?= (int)$item->getData('qty_shipped'); ?>
+                                                <?php } ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                    </tbody>
+                                    <tfoot></tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- this row will not appear when printing -->
+                    <div class="row no-print">
+                        <div class="col-xs-12">
+                            <button class="btn btn-default" onclick="window.print();">
+                                <i class="fa fa-print"></i> <?= $block->escapeHtml(__('Print')) ?>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    require([
+        "jquery",
+        "mage/mage"
+    ], function ($) {
+        var dataForm = $('#marketplace-shipping-form');
+        dataForm.mage('validation', {});
+
+        $('#mp-create-shipment-btn').click(function () {
+            dataForm.submit();
+        });
+    });
+</script>
+<script id="sellerOrderShipmentTemplate" type="text/x-jquery-tmpl">
+    <tr>
+        <td><%- data.carrier %></td>
+        <td><%- data.title %></td>
+        <td class="<%- data.numberclass %>">
+            <%- data.number %>
+        </td>
+        <td class="<%- data.numberclasshref %>">
+            <a href="<%- data.trackingPopupUrl %>" target="blank">
+                <%- data.number %>
+            </a>
+        </td>
+        <td class="col-delete">
+            <button class="wk-mp-tracking-action-delete action-delete" data-url="<%- data.trackingDeleteUrl %>">
+                <span>
+                    <?= __('Delete') ?>
+                </span>
+            </button>
+        </td>
+    </tr>
+</script>
+<?php
+$formData = [
+    'addTrackingAjaxUrl' => $block->trackingAddUrl($orderId, $shipmentId)
+];
+$serializedFormData = $this->helper(\Magento\Framework\Json\Helper\Data::class)->jsonEncode($formData);
+?>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "sellerOrderShipment": <?= $serializedFormData; ?>
+        }
+    }
+</script>
+
+<!-- <script>
+    require([
+    'jquery',
+    'jspdf',
+    'html2canvas'
+    ], function(jQuery, jsPdf) {
+        jQuery(document).ready(function() {
+            jQuery('#cmd').click(function () {
+                var d = new Date();
+                var n = d.getTime();
+                var doc = new jsPdf('l', 'pt', 'a4');
+                doc.setFontSize(10);
+                doc.addHTML(jQuery("#invoice_content")[0], 10, 10, {pagesplit: false, margin: {top: 10, right: 10, bottom: 10, left: 20, useFor: 'page'}}, function() {
+                    doc.save('invoice_'+ n +'.pdf');
+                });
+            });
+        });
+    });
+</script> -->

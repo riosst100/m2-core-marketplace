@@ -1,0 +1,51 @@
+/*
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+.mkpl-verify {
+    content: url("../image/shield.svg");
+    height: 15px;
+}
+.seller-verify span{
+    line-height: 20px;
+    margin-left: 3px;
+}
+.seller-verify {
+    line-height: 20px;
+}
+.lof-block-vacation:before{
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 24px;
+    line-height: 24px;
+    color: #c07600;
+    content: '\e602';
+    font-family: 'luma-icons';
+    margin: -12px 0 0;
+    vertical-align: middle;
+    display: inline-block;
+    font-weight: normal;
+    overflow: hidden;
+    speak: none;
+    left: 0;
+    top: 22px;
+    width: 45px;
+    position: absolute;
+    text-align: center;
+}

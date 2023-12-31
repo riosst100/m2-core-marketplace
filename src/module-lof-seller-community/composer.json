@@ -1,0 +1,14 @@
+{
+    "name": "landofcoder/module-seller-community",
+    "description": "Magento 2 seller community with common functions use for Marketplace Addons",
+    "version": "1.0.2",
+    "type": "magento2-module",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Lof\\SellerCommunity\\": ""
+        }
+    }
+}

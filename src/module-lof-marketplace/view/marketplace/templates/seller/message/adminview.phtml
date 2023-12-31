@@ -1,0 +1,123 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Magento2.Security.XssTemplate.FoundNotAllowed
+// phpcs:disable Generic.Files.LineLength.TooLong
+/**
+ * @var $block Lof\MarketPlace\Block\Seller\Message\AdminView
+ */
+$helper = $this->helper(\Lof\MarketPlace\Helper\Data::class);
+$formActionUrl = $this->getUrl('catalog/messageadmin/save');
+$currPageUrl = $helper->getCurrentUrls();
+$this->isRead();
+
+?>
+<div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><?= $block->escapeHtml($this->getMessage()->getSubject()) ?></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <p><?= $block->escapeHtml($this->getMessage()->getDescription()) ?></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><?= $block->escapeHtml(__('Post a Reply')) ?></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <form id="form-message" data-parsley-validate="" action="<?= $block->escapeUrl($formActionUrl) ?>"
+                      class="form-horizontal form-label-left" method="post"
+                      data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+                      data-mage-init='{"validation":{}}'>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="content">
+                            <?= $block->escapeHtml(__('Message')) ?>
+                            <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <textarea name="content" rows="10" id="content" required="required"
+                                      class="form-control col-md-7 col-xs-12"> </textarea>
+                        </div>
+                    </div>
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <input type="hidden" name="sender_id"
+                                   value="<?= $block->escapeHtmlAttr($this->getSeller()->getSellerId()) ?>"/>
+                            <input type="hidden" name="seller_send" value="1"/>
+                            <input type="hidden" name="sender_name"
+                                   value="<?= $block->escapeHtmlAttr($this->getSeller()->getName()) ?>"/>
+                            <input type="hidden" name="sender_email"
+                                   value="<?= $block->escapeHtmlAttr($this->getSeller()->getEmail()) ?>"/>
+                            <input type="hidden" name="message_id"
+                                   value="<?= $block->escapeHtmlAttr($this->getMessage()->getMessageId()) ?>"/>
+                            <input type="hidden" name="currUrl" id="currUrl"
+                                   value="<?= $block->escapeHtmlAttr($currPageUrl) ?>"/>
+                            <button class="btn btn-primary" type="reset">
+                                <?= $block->escapeHtml(__('Reset')) ?>
+                            </button>
+                            <button type="submit" class="btn btn-success">
+                                <?= $block->escapeHtml(__('Submit')) ?>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><?= $block->escapeHtml(__('Message History')) ?></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <ul class="messages">
+                    <?php foreach ($this->getDetail() as $key => $detail): ?>
+                        <li>
+                            <div class="message_date">
+                                <h4 class="date text-info">
+                                    <?= $block->escapeHtml($helper->nicetime($detail->getCreatedAt())) ?>
+                                </h4>
+                                <p class="month">
+                                    <?= $block->escapeHtml($helper->getFormatDate($detail->getCreatedAt())) ?>
+                                </p>
+                            </div>
+                            <div class="message_wrapper">
+                                <h4 class="heading"><?= $block->escapeHtml($detail->getSenderName()) ?></h4>
+                                <blockquote class="contact-message">
+                                    <?= $block->escapeHtml($detail->getContent()) ?>
+                                </blockquote>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

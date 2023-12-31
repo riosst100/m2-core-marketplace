@@ -1,0 +1,228 @@
+body.rtl, body.rtl * {
+    direction: rtl;
+}
+.rtl .pull-left {
+    left: auto;
+    float: right!important;
+    text-align: left;
+}
+.rtl.nav-sm .container.body .right_col {
+    margin-left: auto;
+    margin-right: 70px;
+}
+.rtl footer {
+    margin-right: 230px;
+    margin-left: auto;
+}
+.rtl .nav-tabs>li {
+    float: right;
+}
+.rtl .col-lg-1, .rtl .col-lg-10, .rtl .col-lg-11, .rtl .col-lg-12, .rtl .col-lg-2, .rtl .col-lg-3, .rtl .col-lg-4, .rtl .col-lg-5, .rtl .col-lg-6, .rtl .col-lg-7, .rtl .col-lg-8, .rtl .col-lg-9, .rtl .col-md-1, .rtl .col-md-10, .rtl .col-md-11, .rtl .col-md-12, .rtl .col-md-2, .rtl .col-md-3, .rtl .col-md-4, .rtl .col-md-5, .rtl .col-md-55, .rtl .col-md-6, .rtl .col-md-7, .rtl .col-md-8, .rtl .col-md-9, .rtl .col-sm-1, .rtl .col-sm-10, .rtl .col-sm-11, .rtl .col-sm-12, .rtl .col-sm-2,.rtl .col-sm-3, .rtl .col-sm-4, .rtl .col-sm-5, .rtl .col-sm-6, .rtl .col-sm-7, .rtl .col-sm-8, .rtl .col-sm-9, .rtl .col-xs-1, .rtl .col-xs-10, .rtl .col-xs-11, .rtl .col-xs-12, .rtl .col-xs-2, .rtl .col-xs-3, .rtl .col-xs-4, .rtl .col-xs-5, .rtl .col-xs-6, .rtl .col-xs-7, .rtl .col-xs-8, .rtl .col-xs-9{
+    float: right;
+}
+.rtl [class*='admin__control-grouped'] > .admin__field:first-child > .admin__field-label, .rtl .admin__control-fields > .admin__field:first-child > .admin__field-label{
+    float: right;
+    margin-right: 30px;
+    margin-left: auto;
+    right: 0;
+    left: auto;
+}
+.rtl .main_container .top_nav {
+    margin-left: auto;
+    margin-right: 230px;
+}
+.rtl .nav_menu {
+    float: right;
+}
+.rtl .toggle {
+    float: right;
+}
+.rtl .close {
+    float: left;
+}
+.rtl.nav-md .container.body .right_col {
+    margin-left: auto;
+    margin-right: 230px;
+}
+.rtl .menu_section>ul {
+    padding-right: 0px;
+}
+.rtl ul.nav.child_menu {
+    padding-right: 0px;
+}
+.rtl .admin__collapsible-block-wrapper .admin__collapsible-title {
+    padding-right: 3.5rem;
+}
+.rtl .admin__fieldset > .admin__field > .admin__field-control {
+    margin-left: auto;
+    float: right;
+    margin-right: 30px;
+}
+.rtl .admin__fieldset > .admin__field > .admin__field-label {
+    margin-right: 30px;
+    float: right;
+    margin-left: auto;
+}
+.rtl.nav-sm .container.body .col-md-3.left_col {
+    float: right;
+}
+.rtl .top_nav .navbar-right li {
+    float: left;
+}
+.rtl.nav-md .container.body .right_col {
+    margin-left: auto;
+    margin-right: 230px;
+}
+.rtl .page-actions-buttons {
+    float: left;
+}
+.rtl .navbar-nav .open .dropdown-menu {
+    top: auto;
+    left: 0;
+    right: auto;
+}
+.rtl .pull-right{
+    float: left!important;
+}
+.rtl span.fa.fa-chevron-down {
+    text-align: left!important;
+    float: left;
+    margin-left: auto;
+    margin-right: 4px;
+}
+.rtl .dropdown-menu {
+    text-align: right;
+}
+.rtl .page-main-actions .page-actions._fixed,.rtl .page-main-actions .page-actions._fixed {
+    right: 230px;
+    left: auto;
+}
+/*Edit Form and Elements*/
+.rtl .page-actions {
+    float: left;
+}
+.rtl .store-switcher {
+    float: right;
+}
+.rtl .page-actions .actions-split {
+    margin-right: 1.3rem;
+    float: left;
+    margin-left: auto;
+    -ms-flex-order: 1;
+    -webkit-order: 1;
+    order: 1;
+}
+.rtl .page-actions > button.back,.rtl .page-actions .page-actions-buttons > button.back, .rtl .page-actions > button.action-back, .rtl .page-actions .page-actions-buttons > button.action-back, .rtl .page-actions > .block-footer .action-add.back, .rtl .page-actions .page-actions-buttons > .block-footer .action-add.back, .rtl .page-actions > .block-footer .action-add.action-back, .rtl .page-actions .page-actions-buttons > .block-footer .action-add.action-back {
+    float: left;
+    -ms-flex-order: 2;
+    -webkit-order: 2;
+    order: 2;
+}
+.rtl .admin__field:not(.admin__field-option) > .admin__field-label span[data-config-scope]:before, .rtl .accordion .config .label span[data-config-scope]:before{
+    right: auto;
+    left: 0;
+}
+.rtl .admin__control-radio + .admin__field-label, .rtl .admin__control-checkbox + .admin__field-label {
+    padding-right: 2.6rem;
+    padding-left: auto;
+}
+.rtl .admin__control-radio + label:before,.rtl .admin__control-checkbox + label:before, .rtl .mass-select-wrap select + label:before{
+    float: right;
+}
+.rtl .admin__control-radio + .admin__field-label:before, .rtl .admin__control-checkbox + .admin__field-label:before{
+    margin: 1px -2.6rem 0 1rem;
+}
+.rtl .abs-field-no-label, .rtl .admin__fieldset > .admin__field.admin__field-no-label > .admin__field-control, .rtl .admin__field-no-label, .rtl .admin__field-group-additional{
+    margin-right: calc( (100%) * .25 + 30px);
+    margin-left: auto;
+}
+
+.rtl .tile-stats .icon {
+    right: auto;
+    left: 53px;
+}
+.rtl .admin__field-label, .rtl label {
+    text-align: left;
+}
+.rtl .admin__collapsible-block-wrapper .admin__collapsible-title:before {
+    direction: ltr;
+    right: 0px!important;
+    left: 1.3rem!important;
+    transform: inherit;
+}
+.rtl ._has-datepicker.admin__control-text {
+    padding-left: 3.5rem;
+    padding-right: auto;
+}
+.rtl .ui-datepicker-next {
+    right: auto;
+    left: 0;
+}
+.rtl .ui-datepicker-prev {
+    left: auto;
+    right: 0;
+}
+/*Grid*/
+.rtl .selectmenu-toggle {
+    padding-left: 0px;
+    right: auto;
+    float: left;
+    left: 0;
+}
+.rtl .selectmenu-item-action {
+    padding-right: 1.2rem;
+}
+.rtl .admin__data-grid-pager {
+    margin-left: auto;
+    margin-right: 3rem;
+}
+.rtl .action-previous {
+    margin-left: 2.5rem;
+    margin-right: auto;
+}
+.rtl .action-next {
+    margin-left: auto;
+    margin-right: 1.5rem;
+}
+.rtl .action-next:before {
+    content: '\e629';
+}
+.rtl .action-previous:before {
+    content: '\e62a';
+}
+.rtl .nav.navbar-left {
+    float: right!important;
+}
+.rtl .toggle.switcher-trigger {
+    color: #2a3f54;
+    width: 100%;
+    cursor: pointer;
+    line-height: 32px;
+    padding: 13px 15px 12px;
+}
+.rtl .toggle.switcher-trigger:hover {
+    background-color: #D9DEE4;
+}
+.rtl .navbar-nav>li.active>.dropdown-menu {
+    display: block;
+}
+.rtl .switcher-trigger span.fa.fa-angle-down {
+    display: inline-block!important;
+}
+.rtl.nav-sm .main_container .top_nav {
+    margin-right: 70px;
+}
+.rtl .tile-stats .count, .rtl .tile-stats h3, .rtl .tile-stats p {
+    margin: 0 10px 0 0px;
+}
+@media (min-width: 992px){
+    .rtl.nav-sm footer{
+        margin-left: auto;
+        margin-right: 230px;
+    }
+}
+@media (min-width: 768px){
+    .rtl .navbar-right {
+        float: left!important;
+    }
+}

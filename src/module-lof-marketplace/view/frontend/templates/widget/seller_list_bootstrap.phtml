@@ -1,0 +1,169 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Generic.WhiteSpace.ScopeIndent
+// phpcs:disable Magento2.Security.XssTemplate.FoundUnescaped
+// phpcs:disable Generic.Files.LineLength.TooLong
+/**
+ * @var $block \Lof\MarketPlace\Block\Widget\Sellerlist
+ */
+
+$_sellerCollection = $block->getSellerCollection();
+$_helper = $this->helper(\Lof\MarketPlace\Helper\Data::class);
+$title = $block->getConfig('widget_title');
+$blockId = rand() . time();
+
+// Boostrap Carousel
+$itemsperpage = (int)$block->getConfig('item_per_page', 6);
+$lg_column_item = (int)$block->getConfig('lg_column_item', 6);
+$md_column_item = (int)$block->getConfig('md_column_item', 6);
+$sm_column_item = (int)$block->getConfig('sm_column_item', 6);
+$xs_column_item = (int)$block->getConfig('xs_column_item', 6);
+
+$lg_column = 12 / $lg_column_item;
+$md_column = 12 / $md_column_item;
+$sm_column = 12 / $sm_column_item;
+$xs_column = 12 / $xs_column_item;
+
+$addition_class = $block->getConfig('addition_class') ?: '';
+$show_seller_name = $block->getConfig('show_seller_name');
+$auto_play = $block->getConfig('auto_play');
+$speed = $block->getConfig('speed');
+$dots = $block->getConfig('dots', true);
+$nav = $block->getConfig('nav', true);
+$interval = $block->getConfig('interval', true) ?: 'false';
+
+?>
+<?php if ($_sellerCollection->count()): ?>
+    <?php
+    $total = $_sellerCollection->getSize();
+    $totalPage = '';
+    if ($total % $itemsperpage == 0) {
+        $totalPage = $total / $itemsperpage;
+    } else {
+        $totalPage = floor($total / $itemsperpage) + 1;
+    }
+
+    $html = '';
+    $cmsblock = $block->getConfig('cmsblock');
+    $pretext_html = $block->getConfig('pretext_html');
+    if ($cmsblock === 'pretext_html' && $pretext_html) {
+        // phpcs:ignore Magento2.Functions.DiscouragedFunction
+        $html = base64_decode($pretext_html);
+    } elseif ($cmsblock != '') {
+        $html = $this->getCmsBlockModel()->load($cmsblock)->getContent();
+    }
+    $html = $_helper->filter($html);
+    ?>
+    <div class="block widget lof-widget seller-widget <?= $block->escapeHtmlAttr($addition_class) ?>">
+        <?php if ($title): ?>
+            <div class="block-title"><strong><?= $block->escapeHtml($title) ?></strong></div>
+        <?php endif; ?>
+        <?php if ($html != ''): ?>
+            <div class="pretext-html"><?= $block->escapeHtml($html) ?></div>
+        <?php endif; ?>
+        <div id="productcarousel-<?= $block->escapeHtmlAttr($blockId) ?>"
+             class="block-content carousel slide"
+             data-ride="carousel"
+             data-interval="<?= $block->escapeHtmlAttr($interval) ?>">
+            <!-- Indicators -->
+            <?php if ($dots && $totalPage > 0): ?>
+                <ol class="carousel-indicators">
+                    <?php
+                    for ($i = 0; $i < $totalPage; $i++): ?>
+                        <li data-target="#productcarousel-<?= $block->escapeHtmlAttr($blockId) ?>"
+                            data-slide-to="<?= $block->escapeHtmlAttr($i) ?>">
+                        </li>
+                    <?php endfor; ?>
+                </ol>
+            <?php endif; ?>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <?php
+                $i = 1;
+                $x = 0;
+                ?>
+                <?php foreach ($_sellerCollection as $_seller): ?>
+                    <?php if ($itemsperpage == 1 || $i % $itemsperpage == 1): ?>
+                        <div class="item <?php if ($i == 1) { ?>active<?php } ?>">
+                    <?php endif; ?>
+                    <?php if ($lg_column_item == 1 || $x % $lg_column_item == 0 || $x % $itemsperpage == 0): ?>
+                    <div class="row">
+                <?php endif; ?>
+                    <div
+                        class="col-lg-<?= $lg_column ?> col-md-<?= $md_column ?> col-sm-<?= $sm_column ?> col-xs-<?= $xs_column ?>">
+                        <div class="seller-item">
+                            <div class="seller-image">
+                                <a href="<?= $block->escapeUrl($_seller->getUrl()) ?>"
+                                   title="<?= $block->escapeHtmlAttr($_seller->getName()) ?>">
+                                    <img src="<?= $block->escapeUrl($_seller->getThumbnailUrl()) ?>"
+                                         alt="<?= $block->escapeHtmlAttr($_seller->getName()) ?>"/>
+                                </a>
+                            </div>
+                            <?php if ($show_seller_name) { ?>
+                                <div class="seller-name">
+                                    <a href="<?= $block->escapeUrl($_seller->getUrl()) ?>"
+                                       title="<?= $block->escapeHtmlAttr($_seller->getName()) ?>">
+                                        <?= $block->escapeHtml($_seller->getName()) ?>
+                                    </a>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    </div>
+                    <?php if ($lg_column_item == 1 || ($x + 1) % $lg_column_item == 0 || $i == $total || ($x > 0 && ($x + 1) % $itemsperpage == 0)): ?>
+                    </div>
+                <?php endif; ?>
+                    <?php if ($itemsperpage == 1 || ($i + 1) % $itemsperpage == 1 || $i == $total):
+                        $x = -1; ?>
+                        </div>
+                    <?php endif; ?>
+                    <?php $i++;
+                    $x++; ?>
+                <?php endforeach; ?>
+            </div>
+
+            <?php if ($nav && $total > $xs_column_item): ?>
+                <div class="carousel-controls">
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#productcarousel-<?= $block->escapeHtmlAttr($blockId) ?>"
+                       role="button"
+                       data-slide="prev">
+                        <?= __('Previous'); ?>
+                    </a>
+                    <a class="right carousel-control" href="#productcarousel-<?= $block->escapeHtmlAttr($blockId) ?>"
+                       role="button"
+                       data-slide="next">
+                        <?= __('Next'); ?>
+                    </a>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+<?php endif; ?>
+
+<script type="text/javascript">
+    require([<?php if ($this->helper(\Lof\All\Helper\Data::class)->getConfig("enable_bootstrap_js")): ?>
+        "Lof_All/lib/bootstrap/js/bootstrap.min",
+        <?php endif; ?>
+    ], function () {
+    });
+</script>

@@ -1,0 +1,135 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Magento2.Security.XssTemplate.FoundUnescaped
+// phpcs:disable Generic.Files.LineLength.TooLong
+/**
+ * @var $block \Lof\MarketPlace\Block\Seller\Becomeseller
+ */
+
+$url = $this->helper(\Lof\MarketPlace\Helper\Url::class);
+$approval = $this->getRequest()->getPost('approval');
+$helper = $this->helper(\Lof\MarketPlace\Helper\Data::class);
+$seller_membership = $helper->isEnableModule('Lofmp_SellerMembership');
+?>
+<?php if (!$block->isSeller()): ?>
+    <div class="col-main">
+        <div class="my-account">
+            <div class="box-account box-info">
+                <p><?= $block->escapeHtml(__('Turn in to a seller today and enjoy some incredible benefits like
+				adding logo to your profile page for better branding, setting up
+				multiple products to improve conversions, etc.')) ?></p>
+                <form data-mage-init='{"validation":{}}' name="buyer-seller" id="buyer-seller"
+                      action="<?= $block->escapeUrl($block->getUrl('*/*/saveseller')) ?>" method="post">
+                    <fieldset class="fieldset info">
+                        <?php if (!$seller_membership && $helper->getConfig('group_seller/enable_group_seller')): ?>
+                            <div class="field field-name-group required">
+                                <label class="label"
+                                       for="group"><span><?= $block->escapeHtml(__('Group')) ?></span></label>
+                                <div class="control">
+                                    <select id="group" name="group" data-validate="{required:true}">
+                                        <?php foreach ($block->getGroupCollection() as $group): ?>
+                                            <option value="<?= $block->escapeHtmlAttr($group->getGroupId()) ?>">
+                                                <?= $block->escapeHtml($group->getName()) ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+
+                        <div class="field field-name-url required">
+                            <label class="label"
+                                   for="url"><span><?= $block->escapeHtml(__('Store URL')) ?></span></label>
+                            <div class="control">
+                                <input type="text" id="url" name="url" class="input-text required-entry"
+                                       data-validate="{required:true, 'validate-xml-identifier':true}"/>
+                                <span class="help-block">
+                                    <?= $block->escapeHtml(__('Please enter a valid Store URL (Ex: "seller-name").')) ?>
+                                    </br>
+                                    <?= $block->escapeHtml(
+                                        __(
+                                            'Your Store URL will be <i>%1</i>',
+                                            $block->escapeUrl($block->getSellerUrl('seller-name'))
+                                        ),
+                                        ['i']
+                                    ) ?>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field field-name-privacy_policy required">
+                            <div class="privacy_policy">
+                                <div class="control">
+                                    <input type="checkbox" name="privacy_policy"
+                                           title="<?= $block->escapeHtmlAttr(__('Privacy Policy')) ?>"
+                                           id="privacy_policy"
+                                           class="input-text" data-validate="{required:true}">
+                                    <label for="privacy_policy" class="label">
+                                        <?= $block->escapeHtml(__('I agree the Terms and Condition')) ?> (<a
+                                            href="<?= $block->getUrl('privacy-policy-cookie-restriction-mode'); ?>"
+                                            target="_blank"><?= $block->escapeHtml(__('Terms and Conditions')) ?></a>)
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+
+                    <div class="actions-toolbar">
+                        <div class="primary">
+                            <button type="submit" class="action submit primary">
+                                <span><?= $block->escapeHtml(__('Submit')) ?></span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php elseif ($block->isSeller() || $approval == 0): ?>
+    <p class="lof-approval-required-message">
+        <?=
+        $block->escapeHtml(
+            __('Admin Approval is required. Please wait until admin confirms your seller account.')
+        );
+        ?>
+    </p>
+<?php endif; ?>
+
+<script>
+    require([
+        'jquery',
+        'mage/mage'
+    ], function ($) {
+
+        var dataForm = $('#buyer-seller');
+
+        dataForm.mage('validation', {
+            messages: {
+                'url': {
+                    'validate-xml-identifier': '<?= $block->escapeJs(__('Please enter a valid Store URL (Ex: "seller-name").')) ?>'
+                },
+            }
+        }).find('input:text').attr('autocomplete', 'off');
+
+    });
+</script>

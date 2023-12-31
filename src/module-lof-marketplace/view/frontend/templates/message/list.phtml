@@ -1,0 +1,129 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Magento2.Security.XssTemplate.FoundUnescaped
+// phpcs:disable Generic.Files.LineLength.TooLong
+/**
+ * @var $block Lof\MarketPlace\Block\Message\ListMessage
+ */
+$helper = $this->helper(\Lof\MarketPlace\Helper\Data::class);
+$collection = $block->getMessages();
+$count = $collection->count();
+$size = $collection->getSize();
+$limit = $block->getLimit();
+$currentPage = $block->getCurrentPage();
+$start = $size - (($currentPage - 1) * $limit);
+$modId = time() . rand();
+?>
+<?php if ($count): ?>
+    <div class="block lrw-block lrw-account-summary-listing">
+        <div class="block-content">
+            <div class="table-wrapper orders-recent">
+                <div class="header-toolbar">
+                    <a href="<?= $block->escapeUrl($this->getNewActionUrl()) ?>"
+                       class="action new-message primary"><?= $block->escapeHtml(__('New Message')) ?>
+                    </a>
+                </div>
+                <table class="data-table table">
+                    <thead>
+                    <tr>
+                        <th><?= $block->escapeHtml(__('ID')) ?></th>
+                        <th><?= $block->escapeHtml(__('Subject')) ?></th>
+                        <th><?= $block->escapeHtml(__('Description')) ?></th>
+                        <th><?= $block->escapeHtml(__('Created At')) ?></th>
+                        <th><?= $block->escapeHtml(__('Read')) ?></th>
+                        <th><?= $block->escapeHtml(__('Status')) ?></th>
+                        <th><?= $block->escapeHtml(__('Action')) ?></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php $i = 0; ?>
+                    <?php foreach ($collection as $_ticket):
+                        $read = $this->getUnreadMessage($_ticket->getData('message_id'));
+                        ?>
+                        <tr class="<?= $i % 2 ? 'odd' : 'even' ?> <?= ($i == $count - 1) ? 'last' : '' ?>">
+                            <td><?= ($start - $i) ?></td>
+                            <?php
+                            $viewLink = $block
+                                ->getUrl(
+                                    'lofmarketplace/customer/viewmessage',
+                                    ['message_id' => $_ticket->getData('message_id')]
+                                );
+                            ?>
+                            <td><a class="box-body"
+                                   href="<?= $block->escapeUrl($viewLink) ?>">
+                                    <?= $block->escapeHtml($_ticket->getSubject()) ?>
+                                </a>
+                            </td>
+                            <td><?= $block->escapeHtml($_ticket->getDescription()) ?>
+                            </td>
+                            <td><?= $block->escapeHtml($_ticket->getCreatedAt()) ?></td>
+                            <td class="<?= strtolower($read); ?>"><?= $block->escapeHtml($read) ?></td>
+                            <td class="lrw-status-<?= str_replace(" ", "-", strtolower($_ticket->getStatus())) ?>">
+                                <?= $block->escapeHtml($helper->getStatus($_ticket->getStatus())) ?>
+                            </td>
+                            <?php
+                            $deleteLink = $block
+                                ->getUrl(
+                                    'lofmarketplace/customer/deletemsg',
+                                    ['message_id' => $_ticket->getData('message_id')]
+                                );
+                            ?>
+                            <td class="row-actions">
+                                <a data-actionurl="<?= $block->escapeUrl($deleteLink) ?>" href="javascript:;"
+                                   onClick="confirmDeleteRow(this)"
+                                   class="action delete-message secondary">
+                                    <?= $block->escapeHtml(__("Delete Message")) ?>
+                                </a>
+                            </td>
+                        </tr>
+                        <?php $i++; ?>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <script type="text/javascript">
+                require([
+                        'jquery',
+                    ], function ($) {
+                        window.confirmDeleteRow = function (obj) {
+                            let confirmAction = confirm("<?= __("Are you sure to delete this message?")?>");
+                            if (confirmAction) {
+                                const actionUrl = $(obj).data("actionurl");
+                                window.location.href = actionUrl;
+                            }
+                        }
+                    }
+                )
+            </script>
+            <?php if ($pagerHtml = $block->getPagerHtml()): ?>
+                <div class="messsage-products-toolbar toolbar bottom"><?= $pagerHtml; ?></div>
+            <?php endif ?>
+        </div>
+    </div>
+<?php else: ?>
+    <div class="message info empty">
+        <span>
+            <?= $block->escapeHtml(__('You have no messages')) ?>
+        </span>
+    </div>
+<?php endif; ?>

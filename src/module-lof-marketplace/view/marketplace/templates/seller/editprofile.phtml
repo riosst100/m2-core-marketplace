@@ -1,0 +1,543 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Generic.WhiteSpace.ScopeIndent
+// phpcs:disable Magento2.Security.XssTemplate.FoundUnescaped
+// phpcs:disable Magento2.Security.XssTemplate.FoundNotAllowed
+// phpcs:disable Generic.Files.LineLength.TooLong
+/**
+ * @var $block Lof\MarketPlace\Block\Seller\Editprofile
+ */
+$helper = $this->helper(\Lof\MarketPlace\Helper\Data::class);
+$seller = $block->getSeller();
+$customer = $block->getCustomer();
+$placeHolderImageSrc = $helper->getMediaUrl() . 'images/user.png';
+$actionUrl = $block->getUrl('catalog/saveprofile', ["_secure" => $this->getRequest()->isSecure()]);
+$_directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
+$country_id = isset($seller['country_id']) ? $seller['country_id'] : 'US';
+$countries = $block->getCountries($country_id);
+?>
+<form class="entry-edit form-inline editprofile"
+      action="<?= $block->escapeHtmlAttr($actionUrl) ?>"
+      enctype="multipart/form-data" method="post" data-role="form-profile-validate" data-mage-init='{"validation":{}}'>
+    <input type="hidden" name="store_id" class="admin__control-text"
+           value="<?= $block->escapeHtmlAttr($helper->getCurrentStoreId()) ?>"/>
+    <div class="lof-mp-page-title page-title">
+        <h2><?= $block->escapeHtml(__('Edit Profile Information')) ?></h2>
+        <div class="page-actions-buttons">
+            <div class="actions-split save primary" title="Save">
+                <button class="action-default primary" title="<?= $block->escapeHtmlAttr(__('Save Profile')) ?>"
+                        type="submit">
+                    <span><span><?= $block->escapeHtml(__('Save Profile')) ?></span></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <?= $block->getChildHtml('additional_fields_before'); ?>
+    <div class="fieldset-wrapper admin__collapsible-block-wrapper">
+        <div class="fieldset-wrapper-title" data-toggle="collapse" data-target="#general">
+            <strong class="admin__collapsible-title">
+                <?= $block->escapeHtml(__('General')) ?>
+            </strong>
+        </div>
+        <div id="general" class="admin__fieldset-wrapper-content">
+            <fieldset class="admin__fieldset" name="general">
+                <div class="admin__field required _required">
+                    <label class="admin__field-label">
+                        <span><?= $block->escapeHtml(__('Name')) ?></span>
+                    </label>
+                    <div class="admin__field-control">
+                        <input type="text" name="name" class="admin__control-text"
+                               value="<?= $block->escapeHtmlAttr($seller['name']) ?>"
+                               data-validate="{required:true}"/>
+                    </div>
+                </div>
+                <div class="admin__field required _required">
+                    <label class="admin__field-label">
+                        <span><?= $block->escapeHtml(__('Email')) ?></span>
+                    </label>
+                    <div class="admin__field-control">
+                        <input type="email" name="email" class="admin__control-text"
+                               disabled="disabled"
+                               value="<?= $block->escapeHtmlAttr($seller['email']) ?>"/>
+                    </div>
+                </div>
+                <div class="admin__field required _required">
+                    <label class="admin__field-label">
+                        <span><?= $block->escapeHtml(__('Phone Number')) ?></span>
+                    </label>
+                    <div class="admin__field-control">
+                        <input type="text" pattern="\(?\+?(\d{1,4})?\)?\(?\d{3,4}\)?[\s.-]?\d{3,4}[\s.-]?(\d{3,6})?"
+                               name="telephone" class="admin__control-text"
+                               value="<?= $block->escapeHtmlAttr($seller['telephone']) ?>"
+                               data-validate="{required:true}"/>
+                    </div>
+                </div>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <span><?= $block->escapeHtml(__('Shop Title')) ?></span>
+                    </label>
+                    <div class="admin__field-control">
+                        <input type="text" name="shop_title" class="admin__control-text"
+                               value="<?= $block->escapeHtmlAttr($seller['shop_title']) ?>"/>
+                    </div>
+                </div>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?= $block->escapeHtml(__('Company')) ?>
+                    </label>
+                    <div class="admin__field-control">
+                        <input type="text" name="company" class="admin__control-text"
+                               value="<?= $block->escapeHtmlAttr($seller['company']) ?>"/>
+                    </div>
+                </div>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <span><?= $block->escapeHtml(__('Company URL')) ?></span>
+                    </label>
+                    <div class="admin__field-control">
+                        <input type="text" name="company_url" class="admin__control-text"
+                               value="<?= $block->escapeHtmlAttr($seller['company_url']) ?>"/>
+                    </div>
+                </div>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <span><?= $block->escapeHtml(__('Company Locality')) ?></span>
+                    </label>
+                    <div class="admin__field-control">
+                        <input type="text" name="company_locality" class="admin__control-text"
+                               value="<?= $block->escapeHtmlAttr($seller['company_locality']) ?>"/>
+                    </div>
+                </div>
+                <?php $_taxvat = $block->getLayout()->createBlock(\Lof\MarketPlace\Block\Widget\Taxvat::class) ?>
+                <?php if ($_taxvat->isEnabled()): ?>
+                <?php $taxvatValue = $customer->getTaxvat(); ?>
+                <div class="admin__field">
+                    <label class="admin__field-label" for="<?= $block->escapeHtmlAttr($_taxvat->getFieldId('taxvat')) ?>"><span><?= $block->escapeHtml($_taxvat->getStoreLabel('taxvat')) ?></span></label>
+                    <div class="admin__field-control">
+                        <?= $_taxvat->setTaxvat($taxvatValue)->toHtml() ?>
+                    </div>
+                </div>
+                <?php endif ?>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?= $block->escapeHtml(__('Address')) ?>
+                    </label>
+                    <div class="admin__field-control">
+                        <input type="text" name="address" class="admin__control-text"
+                               value="<?= $block->escapeHtmlAttr($seller['address']) ?>"/>
+                    </div>
+                </div>
+                <div class="admin__field required _required">
+                    <label class="admin__field-label">
+                        <span><?= $block->escapeHtml(__('Country')) ?></span>
+                    </label>
+                    <div class="admin__field-control">
+                        <select name="country_id" id="seller_country_id"
+                                class="required-entry _required select admin__control-select">
+                            <?php if ($countries) : ?>
+                                <?php foreach ($countries as $_country) : ?>
+                                    <option
+                                        value="<?= $block->escapeHtmlAttr($_country["value"]); ?>" <?= $_country["value"] == $seller["country_id"] ? 'selected="selected"' : ''; ?>><?= $block->escapeHtml($_country["label"]); ?></option>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="admin__field field field-region_id required _required">
+                    <label class="admin__field-label"  id="region-unavailable">
+                        <span><?= $block->escapeHtml(__('State/Province')) ?></span>
+                    </label>
+                    <div class="admin__field-control">
+                        <select id="seller_region_id_id" name="region_id"
+                                title="<?= $block->escapeHtmlAttr(__("State/Province")); ?>"
+                                class="select admin__control-select" style="display:none;">
+                            <option value=""><?= $block->escapeHtml(__('Please select')); ?></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?= $block->escapeHtml(__('Region')) ?>
+                    </label>
+                    <div class="admin__field-control">
+                        <input type="text" id="seller_region" name="region" class="admin__control-text"
+                               value="<?= $block->escapeHtmlAttr($seller['region']) ?>"/>
+                    </div>
+                </div>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?= $block->escapeHtml(__('Zip/Postal Code')) ?>
+                    </label>
+                    <div class="admin__field-control">
+                        <input type="text" name="postcode" class="admin__control-text"
+                               value="<?= $block->escapeHtmlAttr($seller['postcode']) ?>"/>
+                    </div>
+                </div>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?= $block->escapeHtml(__('City')) ?>
+                    </label>
+                    <div class="admin__field-control">
+                        <input type="text" name="city" class="admin__control-text"
+                               value="<?= $block->escapeHtmlAttr($seller['city']) ?>"/>
+                    </div>
+                </div>
+
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?= $block->escapeHtml(__('Company Description')) ?>
+                    </label>
+                    <div class="admin__field-control">
+                        <textarea rows="7" id="company_description" type="text" name="company_description"
+                                  class="admin__control-text"
+                                  value=""><?= $helper->filter($seller['company_description']); ?></textarea>
+                    </div>
+                </div>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?= $block->escapeHtml(__('Return Policy')) ?>
+                    </label>
+                    <div class="admin__field-control">
+                        <textarea rows="7" id="return_policy" type="text" name="return_policy"
+                                  class="admin__control-text"
+                                  value=""><?= $helper->filter($seller['return_policy']); ?></textarea>
+                    </div>
+                </div>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?= $block->escapeHtml(__('Shipping Policy')) ?>
+                    </label>
+                    <div class="admin__field-control">
+                        <textarea rows="7" id="shipping_policy" type="text" name="shipping_policy"
+                                  class="admin__control-text"
+                                  value=""><?= $helper->filter($seller['shipping_policy']); ?></textarea>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
+    <div class="fieldset-wrapper admin__collapsible-block-wrapper">
+        <div class="fieldset-wrapper-title" data-toggle="collapse" data-target="#images">
+            <strong class="admin__collapsible-title">
+                <?= $block->escapeHtml(__('Images')) ?>
+            </strong>
+        </div>
+        <div id="images" class="admin__fieldset-wrapper-content admin__collapsible-content">
+            <fieldset class="admin__fieldset">
+                <fieldset class="admin__field">
+                    <label class="admin__field-label">
+                        <span><?= $block->escapeHtml(__('Company Banner')) ?></span>
+                    </label>
+                    <div class="admin__field-control">
+                        <div class="image image-placeholder">
+                            <div class="uploader">
+                                <div class="fileinput-button form-buttons button">
+                                    <input type="file" id="image" name="image"
+                                           title="<?= $block->escapeHtmlAttr(__('Company Banner')) ?>"
+                                           onchange="document.getElementById('banner_preview').src = window.URL.createObjectURL(this.files[0])"/>
+                                </div>
+                            </div>
+                            <div class="product-image-wrapper">
+                                <p class="image-placeholder-text">
+                                    <?= $block->escapeHtml(__('Browse to find or drag image here(Size 1240x400)')) ?>
+                                </p>
+                            </div>
+                        </div>
+                        <?php if ($seller['image']): ?>
+                            <div class="image">
+                                <img src="<?= $block->escapeUrl($helper->getMediaUrl() . $seller['image']) ?>"
+                                     title="<?= $block->escapeHtmlAttr($seller['image']) ?>"
+                                     alt="<?= $block->escapeHtmlAttr($seller['image']) ?>" width="150"
+                                     class="small-image-preview v-middle"
+                                     id="banner_preview"
+                                     data-ui-id="adminhtml-seller-edit-tab-main-0-fieldset-element-file-thumbnail">
+                            </div>
+                        <?php else: ?>
+                            <div class="image">
+                                <img src="<?= $block->escapeUrl($placeHolderImageSrc) ?>"
+                                     width="150"
+                                     class="small-image-preview v-middle no-image"
+                                     id="banner_preview"
+                                     data-ui-id="adminhtml-seller-edit-tab-main-0-fieldset-element-file-thumbnail">
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </fieldset>
+                <fieldset class="admin__field">
+                    <label class="admin__field-label">
+                        <span><?= $block->escapeHtml(__('Company Logo')) ?></span>
+                    </label>
+                    <div class="admin__field-control">
+                        <div class="image image-placeholder">
+                            <div class="uploader">
+                                <div class="fileinput-button form-buttons button">
+                                    <input type="file" id="thumbnail" name="thumbnail"
+                                           title="<?= $block->escapeHtmlAttr(__('Company Logo')) ?>"
+                                           onchange="document.getElementById('logo_preview').src = window.URL.createObjectURL(this.files[0])"/>
+                                </div>
+                            </div>
+                            <div class="product-image-wrapper">
+                                <p class="image-placeholder-text">
+                                    <?= $block->escapeHtml(__('Browse to find or drag image here(Size 200x200)')) ?>
+                                </p>
+                            </div>
+                        </div>
+                        <?php if ($seller['thumbnail']): ?>
+                            <div class="image">
+                                <img src="<?= $block->escapeUrl($helper->getMediaUrl() . $seller['thumbnail']) ?>"
+                                     title="<?= $block->escapeHtmlAttr($seller['thumbnail']) ?>"
+                                     alt="<?= $block->escapeHtmlAttr($seller['thumbnail']) ?>" width="150"
+                                     class="small-image-preview v-middle"
+                                     id="logo_preview"
+                                     data-ui-id="adminhtml-seller-edit-tab-main-0-fieldset-element-file-thumbnail">
+                            </div>
+                        <?php else: ?>
+                            <div class="image">
+                                <img src="<?= $block->escapeUrl($placeHolderImageSrc) ?>"
+                                     width="150"
+                                     class="small-image-preview v-middle no-image"
+                                     id="logo_preview"
+                                     data-ui-id="adminhtml-seller-edit-tab-main-0-fieldset-element-file-thumbnail">
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </fieldset>
+            </fieldset>
+        </div>
+    </div>
+    <div class="fieldset-wrapper admin__collapsible-block-wrapper">
+        <div class="fieldset-wrapper-title" data-toggle="collapse" data-target="#social">
+            <strong class="admin__collapsible-title">
+                <?= $block->escapeHtml(__('Social Information')) ?>
+            </strong>
+        </div>
+        <div id="social" class="admin__fieldset-wrapper-content admin__collapsible-content">
+            <fieldset class="admin__fieldset">
+                <?php if ($helper->isAllowedSocial('twitter')): ?>
+                    <fieldset class="admin__field">
+                        <label class="admin__field-label">
+                            <span><?= $block->escapeHtml(__('Twitter')) ?></span>
+                            <input type="checkbox" name="tw_active"
+                                   value="<?= $seller['tw_active']; ?>" <?= ($seller['tw_active'] == 1) ? 'checked' : '' ?>
+                                   style="margin: 5px;">
+                        </label>
+                        <div class="admin__field-control">
+                            <input type="text" name="twitter_id" id="twitter_id" class="admin__control-text"
+                                   title="Twitter" value="<?= $block->escapeHtmlAttr($seller['twitter_id']) ?>">
+                            <p><?= __('Please enter a full URL. Ex: https://www.twitter.com/page') ?></p>
+                        </div>
+                    </fieldset>
+                <?php endif; ?>
+                <?php if ($helper->isAllowedSocial('facebook')): ?>
+                    <fieldset class="admin__field">
+                        <label class="admin__field-label">
+                            <span><?= $block->escapeHtml(__('Facebook')) ?></span>
+                            <input type="checkbox" name="fb_active" <?= ($seller['fb_active'] == 1) ? 'checked ' : '' ?>
+                                   value="<?= $block->escapeHtmlAttr($seller['fb_active']) ?>" style="margin: 5px;">
+                        </label>
+                        <div class="admin__field-control">
+                            <input type="text" name="facebook_id" id="facebook_id" class="admin__control-text"
+                                   title="Facebook" value="<?= $block->escapeHtmlAttr($seller['facebook_id']) ?>">
+                            <p><?= __('Please enter a full URL. Ex: https://www.facebook.com/page') ?></p>
+                        </div>
+                    </fieldset>
+                <?php endif; ?>
+                <?php if ($helper->isAllowedSocial('instagram')): ?>
+                    <fieldset class="admin__field">
+                        <label class="admin__field-label">
+                            <span><?= $block->escapeHtml(__('Instagram')) ?></span>
+                            <input type="checkbox"
+                                   name="instagram_active" <?= ($seller['instagram_active'] == 1) ? 'checked ' : '' ?>
+                                   value="<?= $seller['instagram_active']; ?>" style="margin: 5px;">
+                        </label>
+                        <div class="admin__field-control">
+                            <input type="text" name="instagram_id" id="instagram_id" class="admin__control-text"
+                                   title="Instagram" value="<?= $block->escapeHtmlAttr($seller['instagram_id']) ?>">
+                            <p><?= __('Please enter a full URL. Ex: https://www.instagram.com/page') ?></p>
+                        </div>
+                    </fieldset>
+                <?php endif; ?>
+                <?php if ($helper->isAllowedSocial('google')): ?>
+                    <fieldset class="admin__field">
+                        <label class="admin__field-label">
+                            <span><?= $block->escapeHtml(__('Google Plus')) ?></span>
+                            <input type="checkbox"
+                                   name="gplus_active" <?= ($seller['gplus_active'] == 1) ? 'checked ' : '' ?>
+                                   value="<?= $block->escapeHtmlAttr($seller['gplus_active']) ?>" style="margin: 5px;">
+                        </label>
+                        <div class="admin__field-control">
+                            <input type="text" name="gplus_id" id="gplus_id" class="admin__control-text"
+                                   title="Google Plus" value="<?= $block->escapeHtmlAttr($seller['gplus_id']) ?>">
+                            <p><?= __('Please enter a full URL. Ex: https://plus.google.com/page') ?></p>
+                        </div>
+                    </fieldset>
+                <?php endif; ?>
+                <?php if ($helper->isAllowedSocial('youtube')): ?>
+                    <fieldset class="admin__field">
+                        <label class="admin__field-label">
+                            <span><?= $block->escapeHtml(__('Youtube')) ?></span>
+                            <input type="checkbox"
+                                   name="youtube_active" <?= ($seller['youtube_active'] == 1) ? 'checked ' : '' ?>
+                                   value="<?= $block->escapeHtmlAttr($seller['youtube_active']) ?>" style="margin: 5px;">
+                        </label>
+                        <div class="admin__field-control">
+                            <input type="text" name="youtube_id" id="youtube_id" class="admin__control-text"
+                                   title="Youtube" value="<?= $block->escapeHtmlAttr($seller['youtube_id']) ?>">
+                            <p><?= __('Please enter a full URL. Ex: https://www.youtube.com/page') ?></p>
+                        </div>
+                    </fieldset>
+                <?php endif; ?>
+                <?php if ($helper->isAllowedSocial('linkedin')): ?>
+                    <fieldset class="admin__field">
+                        <label class="admin__field-label">
+                            <span><?= $block->escapeHtml(__('Linkedin')) ?></span>
+                            <input type="checkbox"
+                                   name="linkedin_active" <?= ($seller['linkedin_active'] == 1) ? 'checked ' : '' ?>
+                                   value="<?= $block->escapeHtmlAttr($seller['linkedin_active']) ?>" style="margin: 5px;">
+                        </label>
+                        <div class="admin__field-control">
+                            <input type="text" name="linkedin_id" id="linkedin_id" class="admin__control-text"
+                                   title="Linkedin" value="<?= $block->escapeHtmlAttr($seller['linkedin_id']) ?>">
+                            <p><?= __('Please enter a full URL. Ex: https://www.linkedin.com/page') ?></p>
+                        </div>
+                    </fieldset>
+                <?php endif; ?>
+                <?php if ($helper->isAllowedSocial('vimeo')): ?>
+                    <fieldset class="admin__field">
+                        <label class="admin__field-label">
+                            <span><?= $block->escapeHtml(__('Vimeo')) ?></span>
+                            <input type="checkbox"
+                                   name="vimeo_active" <?= ($seller['vimeo_active'] == 1) ? 'checked ' : '' ?>
+                                   value="<?= $block->escapeHtmlAttr($seller['vimeo_active']) ?>" style="margin: 5px;">
+                        </label>
+                        <div class="admin__field-control">
+                            <input type="text" name="vimeo_id" id="vimeo_id" class="admin__control-text" title="Vimeo"
+                                   value="<?= $block->escapeHtmlAttr($seller['vimeo_id']) ?>">
+                            <p><?= __('Please enter a full URL. Ex: https://www.vimeo.com/page') ?></p>
+                        </div>
+                    </fieldset>
+                <?php endif; ?>
+                <?php if ($helper->isAllowedSocial('printerest')): ?>
+                    <fieldset class="admin__field">
+                        <label class="admin__field-label">
+                            <span><?= $block->escapeHtml(__('Printerest')) ?></span>
+                            <input type="checkbox"
+                                   name="pinterest_active" <?= ($seller['pinterest_active'] == 1) ? 'checked ' : '' ?>
+                                   value="<?= $block->escapeHtmlAttr($seller['pinterest_active']) ?>" style="margin: 5px;">
+                        </label>
+                        <div class="admin__field-control">
+                            <input type="text" name="pinterest_id" id="pinterest_id" class="admin__control-text"
+                                   title="Printerest" value="<?= $block->escapeHtmlAttr($seller['pinterest_id']) ?>">
+                            <p><?= __('Please enter a full URL. Ex: https://www.printerest.com/page') ?></p>
+                        </div>
+                    </fieldset>
+                <?php endif; ?>
+            </fieldset>
+        </div>
+    </div>
+    <?= $block->getChildHtml('additional_fields'); ?>
+</form>
+<script>
+    require(["jquery", "prototype", "mage/adminhtml/form"], function ($jQ) {
+        var old_region_name = $jQ("#seller_region").val();
+        var seller_region_id = "<?= isset($seller["region_id"]) ? (int)$seller["region_id"] : 0;?>"
+        $("seller_region_id_id").setAttribute("defaultValue", seller_region_id);
+        new regionUpdater("seller_country_id", "seller_region_id", "seller_region_id_id", <?= $_directoryHelper->getRegionJson();?>);
+        if (!$jQ("#seller_region_id_id:visible").length) {
+            $jQ("#region-unavailable").hide();
+        } else {
+            $jQ("#region-unavailable").show();
+        }
+        $jQ("#seller_country_id").on("change", function () {
+            if (!$jQ("#seller_region_id_id:visible").length) {
+                $jQ("#region-unavailable").hide();
+            } else {
+                $jQ("#region-unavailable").show();
+            }
+        })
+        $jQ("#seller_region_id_id").on("change", function () {
+            if ($jQ(this).val() && $jQ("#seller_region").length > 0) {
+                $jQ("#seller_region").val($jQ("#seller_region_id_id option:selected").text());
+            } else if ($jQ("#seller_region").length > 0) {
+                $jQ("#seller_region").val(old_region_name);
+            }
+        })
+    })
+</script>
+<script type="text/javascript">
+    require([
+        'jquery',
+        'mage/adminhtml/wysiwyg/tiny_mce/setup'
+    ], function (jQuery) {
+        jQuery(document).ready(function () {
+            jQuery('input[type="checkbox"]').each(function () {
+                jQuery(this).bind('change', function () {
+                    if (jQuery(this).prop('checked')) {
+                        jQuery(this).val(1);
+                    } else {
+                        jQuery(this).val(0);
+                    }
+                });
+            });
+            jQuery(window).on("load resize", function (e) {
+                console.log(jQuery(window).width());
+                if (jQuery(window).width() >= 768) {
+                    wysiwygcompany_description = new wysiwygSetup("company_description", {
+                        "width": "99%",  // defined width of editor
+                        "height": "200px", // height of editor
+                        "plugins": [{"name": "image"}], // for image
+                        "tinymce": {
+                            "toolbar": "formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist | link table charmap",
+                            "plugins": "advlist autolink lists link charmap media noneditable table contextmenu paste code help table",
+                        }
+                    });
+                    wysiwygcompany_description.setup("exact");
+
+                    wysiwygcompany_description = new wysiwygSetup("return_policy", {
+                        "width": "99%",  // defined width of editor
+                        "height": "200px", // height of editor
+                        "plugins": [{"name": "image"}], // for image
+                        "tinymce": {
+                            "toolbar": "formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist | link table charmap",
+                            "plugins": "advlist autolink lists link charmap media noneditable table contextmenu paste code help table",
+                        }
+                    });
+                    wysiwygcompany_description.setup("exact");
+
+                    wysiwygcompany_description = new wysiwygSetup("shipping_policy", {
+                        "width": "99%",  // defined width of editor
+                        "height": "200px", // height of editor
+                        "plugins": [{"name": "image"}], // for image
+                        "tinymce": {
+                            "toolbar": "formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist | link table charmap",
+                            "plugins": "advlist autolink lists link charmap media noneditable table contextmenu paste code help table",
+                        }
+                    });
+                    wysiwygcompany_description.setup("exact");
+
+                }
+            });
+        });
+    });
+</script>

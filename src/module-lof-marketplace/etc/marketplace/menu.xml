@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lof_MarketPlace
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Lof_MarketPlace:etc/menu.xsd">
+    <menu>
+        <add id="Lof_MarketPlace::dashboard" icon="fa fa-dashboard" title="Dashboard" module="Lof_MarketPlace" action="catalog/dashboard" sortOrder="10" resource="Lof_MarketPlace::dashboard" translate="title"/>
+
+        <add id="Lof_MarketPlace::profile" icon="fa fa-user-md" title="Profile" module="Lof_MarketPlace" action="catalog/seller/index" sortOrder="20" resource="Lof_MarketPlace::profile" translate="title"/>
+
+        <add id="Lof_MarketPlace::sales" icon="fa fa-cart-plus" title="Sales" module="Lof_MarketPlace" sortOrder="30" resource="Lof_MarketPlace::sales" translate="title"/>
+        <add id="Lof_MarketPlace::order" title="Orders" module="Lof_MarketPlace" action="catalog/sales/order" sortOrder="31" parent="Lof_MarketPlace::sales" resource="Lof_MarketPlace::order" translate="title"/>
+        <add id="Lof_MarketPlace::invoice" title="Invoices" module="Lof_MarketPlace" action="catalog/sales" sortOrder="32" parent="Lof_MarketPlace::sales" resource="Lof_MarketPlace::invoice" translate="title"/>
+        <add id="Lof_MarketPlace::shipment" title="Shipments" module="Lof_MarketPlace" action="catalog/sales/shipment" sortOrder="33" parent="Lof_MarketPlace::sales" resource="Lof_MarketPlace::shipment" translate="title"/>
+        <add id="Lof_MarketPlace::amounttransaction" title="Amount Transactions" module="Lof_MarketPlace" action="catalog/sales/amounttransaction" sortOrder="34" parent="Lof_MarketPlace::sales" resource="Lof_MarketPlace::amounttransaction" translate="title"/>
+
+        <add id="Lof_MarketPlace::catalog" icon="fa fa-cubes" title="Catalog" module="Lof_MarketPlace" sortOrder="40" resource="Lof_MarketPlace::catalog"/>
+        <add id="Lof_MarketPlace::manager_product" title="Manage Products" module="Lof_MarketPlace" action="catalog/product" sortOrder="41" parent="Lof_MarketPlace::catalog" resource="Lof_MarketPlace::manager_product" translate="title"/>
+        <add id="Lof_MarketPlace::simple_product" title="Add Simple Product" module="Lof_MarketPlace"  action="catalog/product/new/set/0/type/simple" sortOrder="43" parent="Lof_MarketPlace::catalog" resource="Lof_MarketPlace::simple_product" translate="title"/>
+        <add id="Lof_MarketPlace::virtual_product" title="Add Virtual Product" module="Lof_MarketPlace"  action="catalog/product/new/set/0/type/virtual" sortOrder="44" parent="Lof_MarketPlace::catalog" resource="Lof_MarketPlace::virtual_product" dependsOnConfig="lofmarketplace/seller_settings/allow_add_virtual" translate="title"/>
+        <add id="Lof_MarketPlace::configurable_product" title="Add Configurable Product" module="Lof_MarketPlace"  action="catalog/product/new/set/0/type/configurable" sortOrder="45" parent="Lof_MarketPlace::catalog" resource="Lof_MarketPlace::configurable_product" dependsOnConfig="lofmarketplace/seller_settings/allow_add_configurable" translate="title"/>
+        <add id="Lof_MarketPlace::bundle_product" title="Add Bundle Product" module="Lof_MarketPlace"  action="catalog/product/new/set/0/type/bundle" sortOrder="46" parent="Lof_MarketPlace::catalog" resource="Lof_MarketPlace::bundle_product" dependsOnConfig="lofmarketplace/seller_settings/allow_add_bundle" translate="title"/>
+        <add id="Lof_MarketPlace::downloadable_product" title="Add Downloadable Product" module="Lof_MarketPlace"  action="catalog/product/new/set/0/type/downloadable" sortOrder="46" parent="Lof_MarketPlace::catalog" resource="Lof_MarketPlace::downloadable_product" dependsOnConfig="lofmarketplace/seller_settings/allow_add_downloadable" translate="title"/>
+
+        <add id="Lof_MarketPlace::withdrawals" icon="fa fa-usd" title="Withdrawals" module="Lof_MarketPlace" action="catalog/withdrawals" sortOrder="50" resource="Lof_MarketPlace::withdrawals" dependsOnConfig="lofmarketplace/seller_settings/allow_withdrawl" translate="title"/>
+
+        <add id="Lof_MarketPlace::message" icon="fa fa-envelope-o" title="Messages" module="Lof_MarketPlace" sortOrder="60" resource="Lof_MarketPlace::message"/>
+        <add id="Lof_MarketPlace::message_customer" title="Manage Customer Messages" module="Lof_MarketPlace" action="catalog/message" parent="Lof_MarketPlace::message" sortOrder="61" resource="Lof_MarketPlace::message_customer" translate="title"/>
+        <add id="Lof_MarketPlace::message_admin" title="Manage Admin Messages" module="Lof_MarketPlace" action="catalog/message/admin" parent="Lof_MarketPlace::message" sortOrder="62" resource="Lof_MarketPlace::message_admin" translate="title"/>
+        <add id="Lof_MarketPlace::send_admin" title="Send Admin Message" module="Lof_MarketPlace" action="catalog/message/send" parent="Lof_MarketPlace::message" sortOrder="63" resource="Lof_MarketPlace::send_admin" translate="title"/>
+
+        <add id="Lof_MarketPlace::review" icon="fa fa-comment-o" title="Reviews" module="Lof_MarketPlace" action="catalog/review" sortOrder="70" resource="Lof_MarketPlace::review" translate="title"/>
+
+        <add id="Lof_MarketPlace::rating" icon="fa fa-star-o" title="Ratings" module="Lof_MarketPlace" action="catalog/rating" sortOrder="80" resource="Lof_MarketPlace::rating" translate="title"/>
+
+        <add id="Lof_MarketPlace::vacation" icon="fa fa-bed" title="Vacation" module="Lof_MarketPlace" action="catalog/vacation" sortOrder="90" resource="Lof_MarketPlace::vacation" translate="title"/>
+
+        <add id="Lof_MarketPlace::upload" icon="fa fa-cloud-upload" title="Mass Import/Export" module="Lof_MarketPlace" sortOrder="100" resource="Lof_MarketPlace::upload" dependsOnConfig="lofmarketplace/seller_settings/allow_mass_import_export" translate="title"/>
+        <add id="Lof_MarketPlace::import" title="Import" module="Lof_MarketPlace"  action="catalog/product/import" sortOrder="101" parent="Lof_MarketPlace::upload" resource="Lof_MarketPlace::import" dependsOnConfig="lofmarketplace/seller_settings/allow_mass_import" translate="title"/>
+        <add id="Lof_MarketPlace::export" title="Export" module="Lof_MarketPlace"  action="catalog/product/export" sortOrder="102" parent="Lof_MarketPlace::upload" resource="Lof_MarketPlace::export" dependsOnConfig="lofmarketplace/seller_settings/allow_mass_export" translate="title"/>
+        <add id="Lof_MarketPlace::uploadimage" title="Upload Images" module="Lof_MarketPlace" action="catalog/product/uploadimage" sortOrder="103" parent="Lof_MarketPlace::upload" resource="Lof_MarketPlace::uploadimage" dependsOnConfig="lofmarketplace/seller_settings/allow_mass_upload_image" translate="title"/>
+
+        <add id="Lof_MarketPlace::report" icon="fa fa-area-chart" title="Advanced Report" module="Lof_MarketPlace" action="catalog/report" sortOrder="110" resource="Lof_MarketPlace::report" translate="title"/>
+        <add id="Lof_MarketPlace::shipping" icon="fa fa-truck" title="Shipping" module="Lof_MarketPlace" sortOrder="140" resource="Lof_MarketPlace::shipping" translate="title"/>
+        <add id="Lof_MarketPlace::shipping_address" title="Shipping Settings" module="Lof_MarketPlace" action="catalog/shipping/address" sortOrder="10" parent="Lof_MarketPlace::shipping" resource="Lof_MarketPlace::shipping" translate="title"/>
+        <add id="Lof_MarketPlace::shipping_methods" title="Manage Shipping Methods" module="Lof_MarketPlace" action="catalog/shipping/methods" sortOrder="20" parent="Lof_MarketPlace::shipping" resource="Lof_MarketPlace::shipping" translate="title"/>
+    </menu>
+</config>

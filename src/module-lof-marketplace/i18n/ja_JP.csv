@@ -1,0 +1,1078 @@
+Become A Seller,A売主になります
+Manage Commissions,コミッションを管理します
+Add New Commission,新しい委員会を追加
+Save,保存委員会
+Save and Continue Edit,保存して続行を編集
+Delete Commission,削除委員会
+Edit Commission '%1',編集委員会「％1」
+New Commission,新委員会
+Calculate Commission Using The Following Information,次の情報を使用して計算委員会
+Commission By,委員会
+Fixed Amount,定額
+Percent Of Product Price,製品価格の割合（％）
+Calculate Commission Based On,計算コミッションベースで
+Product Price (Incl. Tax),商品価格（税込）
+Product Price (Excl. Tax),商品価格（税抜）
+Product Price After Discount (Incl. Tax),ディスカウント後の製品価格（税込）
+Product Price After Discount (Excl. Tax),ディスカウント後の製品価格（税抜）
+Commission,手数料
+Discard subsequent rules,破棄以降のルール
+Yes,はい
+No,番号
+Actions,行動
+Conditions (don't add conditions if rule is applied to all products),条件（ルールはすべての製品に適用された場合に条件を追加しないでください）
+Apply To,に適用されます
+Conditions,条件
+Commission Information,委員会情報
+Title,題名
+Description,説明
+Status,状態
+From,から
+To,に
+Priority,優先
+Seller Group,出品者グループ
+Store View,ストアを見ます
+General Information,一般Infomration
+Preview,試写
+Manage Seller Groups,出品者グループの管理
+Add New Seller Group,新しい出品者グループの追加
+Save Group,グループを保存
+Delete Group,グループの削除
+Edit Group '%1',編集グループ「％1」
+New Group,新グループ
+Group Information,グループ情報
+Group Name,グループ名
+URL Key,URLキー
+Empty to auto create url key,自動車には、空のURLのキーを作成します
+Page Status,ページステータス
+Option Data,オプションデータ
+Limit Product,リミット製品
+Can Add New Product,新製品を追加することができます
+Can Cancel Order,注文をキャンセルすることができます
+Can Create Invoice,請求書を作成することができます
+Can Create Shipment,出荷を作成することができます
+Can Create Credit Memo,クレジットメモを作成することができます
+Hide Payment Information,隠すお支払い情報
+The payment information of customer will be hidden from order.,顧客の決済情報は、オーダーから隠されます。
+Can submit comments,コメントを投稿することができます
+Can Use Group,缶を使用するグループ
+Can Use Shipping,缶を使用する配送
+Can Use Review,缶の使用レビュー
+Can Use Rating,缶の使用評価
+Can Import/Export Product,缶のインポート/エクスポート製品
+Can Use Vacation,休暇を使用することができます
+Can Use Report,缶の使用レポート
+Can Use Withdrawal,缶の使用撤退
+Advanced Options,高度なオプション
+Message Seller,メッセージ売主
+Add New Message,新規メッセージを追加
+Save Message,保存メッセージ
+Delete Message,削除メッセージ
+Edit Message '%1',編集メッセージ「％1」
+New Message,新しいメッセージ
+Message Information,メッセージ情報
+Subject,主題
+Message,メッセージ
+added %1 (%2),加え％1（％2）
+Can Use Message,缶を使用するメッセージ
+Manage Payments Method,支払い方法を管理します
+Add New Payment,新しいお支払い方法を追加
+Save Payment,保存支払い
+Delete Payment,削除支払い
+Edit Payment '%1',編集支払い「％1」
+New Payment,新しいお支払い
+Payment Information,支払情報
+Name,名前
+Fee By,の手数料を
+Fixed Fee,固定料金
+Percent Fee,パーセント料金
+All,すべて
+Min Amount,最低額
+Max Amount,最大額
+Order Payment,ご注文お支払い
+Note Message,注メッセージ
+Manage Products,商品を管理します
+Add New Product,新製品を追加します
+Manage Ratings,評価を管理します
+Add New Rating,新しい評価を追加
+Save Rating,評価の保存
+Delete Rating,削除評価
+Edit Rating '%1',編集評価「％1」
+New Rating,新しい評価
+Rating Information,格付情報
+Email,Eメール
+Detail,ディテール
+Seller Id,出品者
+Rate 1,レート1
+Rate 2,レート2
+Rate 3,レート3
+Manage Sellers,売り手の管理
+Add New Seller,新しい売主を追加
+Save Seller,保存売主
+Delete Seller,削除売主
+Edit Seller '%1',編集売主「％1」
+New Seller,新売主
+Page Layout,ページレイアウト
+Layout,レイアウト
+Layout Update XML,レイアウト更新XML
+Design,設計
+Seller Information,販売者情報
+Seller Name,出品者名
+Link Seller,リンク売主
+Contact Number,連絡先番号
+Shop Title,ショップタイトル
+Customer,お客様
+Company Banner,会社のバナー
+Company Logo,会社のロゴ
+Company Locality,会社地域
+Company Description,会社概要
+Return Policy,返品規則
+Shipping Policy,配送ポリシー
+Address,住所
+Country,国
+Position,ポジション
+Meta Data,メタデータ
+Page Title,ページタイトル
+Keywords,キーワード
+Meta Keywords,メタキーワード
+Meta Description,メタ記述
+ID,ID
+Type,タイプ
+Attribute Set,属性セット
+Visibility,可視
+SKU,SKU
+Price,価格
+Social Infomation,社会インフォ
+Twitter Active,アクティブツイッター
+Twitter,ツイッター
+Facebook Active,アクティブなFacebookの
+Page Facebook Id,ページのFacebook同上
+Facebook,フェイスブック
+Google Plus Active,グーグルプラスアクティブ
+Google Plus,グーグルプラス
+Youtube Active,アクティブユーチューブ
+Youtube,ユーチューブ
+Vimeo Active,Vimeoのアクティブ
+Vimeo,Vimeoの
+Linkedin Active,アクティブLinkedInの
+Linkedin,LinkedInの
+Instagram Active,アクティブInstagramの
+Instagram,インスタグラム
+Pinterest Active,Pinterestのアクティブ
+Pinterest,Pinterestの
+Social Information,社会情報
+Products,プロダクト
+WYSIWYG Editor,WYSIWYGエディタ
+Manage Withdrawals Method,引き出し方法を管理します
+Add New Withdrawal,新しい撤退を追加
+Save Withdrawal,保存撤退
+Edit Withdrawal '%1',編集撤退「％1」
+New Withdrawal,新しい撤退
+Withdrawal Information,出金情報
+Fee,費用
+Order Withdrawal,注文撤退
+Export,書き出す
+Export Settings,エクスポート設定
+Entity Type,エンティティタイプ
+Export File Format,エクスポートファイルの形式
+Fields Enclosure,フィールドエンクロージャ
+We can't filter an attribute with no attribute options.,私たちは、無属性オプションの属性をフィルタリングすることはできません。
+Exclude,除外する
+Attribute Label,属性ラベル
+Attribute Code,属性コード
+Filter,フィルタ
+Unknown attribute filter type,不明な属性フィルタタイプ
+Home,家
+Go to Home Page,ホームページへ
+Create New Product,新製品を作成します。
+Create New Attribute,新しい属性を作成します。
+Export Product,輸出製品
+"Images (.gif, .jpg, .png)",イメージ（.GIF、JPG、PNG）
+Import Product,輸入製品
+Add Product,製品を追加
+label,ラベル
+Advanced Report,詳細レポート
+Amount Transaction,金額の取引
+Invoice,請求書
+ [deleted], [削除]
+View Invoice,請求書を見ます
+Order,注文
+View Order,表示の順序
+Custom Value,カスタム値
+View Shipment,ビュー出荷
+Become a Seller,出品者になります
+Dashboard,計器盤
+Edit Profile,プロファイル編集
+Seller Login,出品者ログイン
+Error!,エラー！
+Info,インフォ
+Success,成功
+Alert,警報
+Order # %1 %2 | %3,注文番号％1％2 | ％3
+"This order contains (%1) items and therefore cannot be edited through the admin interface. If you wish to continue editing, the (%2) items will be removed,  the order will be canceled and a new order will be placed.",この順序は（1％）の項目が含まれているため、管理インターフェイスを介して編集することができません。あなたが編集を続けたい場合（％2）の項目が削除されます、注文はキャンセルされ、新しい注文が配置されます。
+Are you sure? This order will be canceled and a new one will be created instead.,本気ですか？この注文はキャンセルされ、新しいものが代わりに作成されます。
+Payment,支払い
+Save,セーブ
+Save & Draft,下書きを保存
+Save & New,保存して新
+Save & Duplicate,保存して重複
+Save & Close,保存して閉じます
+Url,URL
+Preview Image,プレビュー画像
+Get Video Information,動画の情報を取得します
+Hide from Product Page,製品ページから隠します
+Role,役割
+YouTube and Vimeo supported.,YouTubeやVimeoのは、サポートされています。
+"Vimeo supported.<br />To add YouTube video, please enter YouTube API Key first.",Vimeoのは、サポートされています。<br /> YouTubeの動画を追加するには、まずYouTubeのAPIキーを入力してください。
+Weight,重量
+Create New Seller Account,新しい出品者アカウントを作成
+Review,レビュー
+Sell On Marketplace ,マーケットプレースで販売
+Vacation Settings,休暇の設定
+Pending,保留中
+Completed,完成しました
+Cancel,キャンセル
+Withdrawals,引き出し
+Amounts,金額
+Manage Seller Amount,売主額を管理します
+Manage Amount Transaction,金額の取引を管理します
+The seller has been deleted.,売り手は削除されました。
+We can't find a seller to delete.,私たちは、売り手が削除する見つけることができません。
+Seller,売り手
+This seller no longer exits. ,この売り手もはや終了します。
+Edit Seller,編集売主
+Sellers,売り手
+Commissions,委員会
+A total of %1 record(s) have been deleted.,％1レコード（複数可）の合計が削除されています。
+A total of %1 record(s) have been disabled.,％1つのレコード（複数可）の合計が無効になっています。
+A total of %1 record(s) have been enabled.,％1のレコード（複数可）の合計が有効になっています。
+You saved this commission.,あなたはこの手数料を救いました。
+Something went wrong while saving the commission.,手数料を節約しながら、何かが間違っていました。
+Seller Groups,出品者グループ
+Groups,グループ
+Manage Groups,グループの管理
+Please correct the data sent.,送信されたデータを修正してください。
+URL key already exists.,URLキーがすでに存在しています。
+You saved this group.,あなたはこのグループを保存しました。
+Something went wrong while saving the seller.,売り手の保存中に何かが間違っていました。
+Invoices,請求書
+Manage Invoices,請求書を管理します
+The message has been deleted.,メッセージは削除されました。
+We can't find a message to delete.,私たちは、削除するメッセージを見つけることができません。
+Messages,メッセージ
+Manage Messages,メッセージの管理
+You saved this message.,あなたは、このメッセージを保存しました。
+Orders,受注
+Manage Orders,受注管理
+Manager Payment Method,マネージャーのお支払い方法
+Manager Payment,マネージャーのお支払い
+You saved this payment.,あなたはこの支払いを救いました。
+Product has been set commission.,製品は、セットの手数料となっています。
+Ratings,評価
+A total of %1 record(s) have been accept.,％1つのレコード（複数可）の合計は、受け付けていました。
+A total of %1 record(s) have been reject.,％1つのレコード（複数可）の合計が拒否されました。
+You saved this rating.,あなたはこの評価を救いました。
+Something went wrong while saving the rating.,評価を保存中に何かが間違っていました。
+Refunds,払い戻し
+Manage Refunds,払い戻しを管理します
+Refundrequests,Refundrequests
+Manage Refundrequests,管理Refundrequests
+Reviews,レビュー
+Manage Reviews,レビューを管理します
+A total of %1 record(s) have been approved.,％1のレコード（複数可）の合計が承認されています。
+A total of %1 record(s) have been disapproved.,％1レコード（複数可）の合計は、承認されました。
+The seller has been disapproved.,売り手が承認されませんでした。
+We can't find a seller to disapproved.,私たちは、不承認に売り手を見つけることができません。
+The seller has been approved.,売り手は承認されています。
+We can't find a seller to approved.,私たちは、販売者が承認する見つけることができません。
+Something went wrong while saving the page.,ページの保存中に何かが間違っていました。
+You saved this seller.,あなたはこの販売者を救いました。
+SellerProducts,SellerProducts
+Manage SellerProducts,SellerProductsを管理します
+A total of %1 record(s) have been accepted.,％1つのレコード（複数可）の合計は、受け入れられています。
+A total of %1 record(s) have been rejected.,％1レコード（複数可）の合計が拒否されました。
+Transactions,取引
+Manage Transactions,トランザクションを管理します
+Withdrawal,撤退
+Manage Withdrawals,引き出しを管理します
+This withdrawal no longer exits. ,この撤退はもはや終了します。
+Edit Withdrawal,編集撤退
+	Withdraw Money : Amount ,お金を引き出す：金額
+You must have a seller account to access,あなたはアクセスに売り手のアカウントを持っている必要があります
+You must have a account to access,あなたはアクセスにアカウントを持っている必要があります
+"Attribute ""%1"" is required.",属性「％1」が必要です。
+You saved the category.,あなたは、カテゴリを救いました。
+Something went wrong while saving the category.,カテゴリを保存中に何かが間違っていました。
+This order no longer exists.,この順序は存在しません。
+You are not authorize to manage this order.,あなたはこの順番を管理するために認可されていません。
+The invoice no longer exists.,請求書は存在しません。
+You are not authorize to view this invoice.,あなたは、この請求書を閲覧するために認可されていません。
+The creditmemo no longer exists.,creditmemoは存在しません。
+You are not authorize to view this creditmemo.,あなたはこのcreditmemoを表示するために認可されていません。
+The order has been cancelled.,注文はキャンセルされました。
+You are not permitted to cancel this order.,あなたはこの注文をキャンセルすることはできません。
+We can't cancel order right now.,私たちは今、注文をキャンセルすることはできません。
+The credit memo's total must be positive.,クレジットメモの合計が正でなければなりません。
+Cannot create online refund for Refund to Store Credit.,ストアクレジットへの払い戻しのためのオンライン・返金を作成することはできません。
+You created the credit memo.,あなたはクレジットメモを作成しました。
+We can't create credit memo for order right now.,私たちは今、注文のクレジットメモを作成することはできません。
+You sent the order email.,あなたは、注文のメールを送りました。
+We can't send the email order right now.,私たちは今、メールオーダーを送信することはできません。
+Can not create invoice as order is in HOLD state,注文がHOLD状態にあるとして請求書を作成することはできません。
+We can't save the invoice right now.,私たちは、今請求書を保存することはできません。
+You can't create an invoice without products.,あなたは、製品のない請求書を作成することはできません。
+Invoice has been created for this order.,請求書は、この注文のために作成されています。
+Cannot create Invoice for this order.,この注文の請求書​​を作成することはできません。
+We can't create invoice for order right now.,私たちは今、注文の請求書​​を作成することはできません。
+Can not create shipment as order is in HOLD state,注文がHOLD状態にあるとして、出荷を作成することはできません
+Cannot do shipment for the order separately from invoice.,請求書とは別に注文の出荷を行うことはできません。
+Cannot do shipment for the order.,注文の出荷を行うことはできません。
+The shipment has been created.,出荷が作成されました。
+The shipping label has been created.,出荷ラベルが作成されました。
+We can't ship order right now.,私たちは今の順序を出荷することはできません。
+That product is not yours,その製品はあなたのものではありません
+This product no longer exists.,この製品は存在しません。
+Catalog,カタログ
+Default Values,デフォルト値
+Could not get preview image information. Please check your connection and try again.,プレビュー画像情報を取得できませんでした。接続を確認して、もう一度お試しください。
+Please correct the data sent value.,値送信されたデータを修正してください。
+Show more,もっと見せる
+Additional data,追加データ
+Following Error(s) has been occurred during importing process:,エラー（s）は、以下のプロセスをインポート中に発生されています：
+Only the first 100 errors are shown. ,初回のみ100のエラーが表示されます。
+in row(s):,行の（S）：
+Please make sure to define SKU values for all processed products.,すべての加工製品のためのSKU値を定義することを確認してください。
+A total of %1 record(s) have been updated.,％1のレコード（複数可）の合計が更新されました。
+Something went wrong while updating the product(s) status.,製品（s）は、ステータスを更新している間に何かが間違っていました。
+"Your product limit is %1, please upgrade the membership package",お使いの製品の上限は％1で、メンバーシップのパッケージをアップグレードしてください
+There is no data for the export.,輸出用のデータはありません。
+Maximum error count has been reached or system error is occurred!,最大エラー数に達しているか、システムエラーが発生しています！
+Import successfully done,インポートが正常に行われ
+Unable to save product,製品を保存することができません。
+You saved the product.,あなたは、製品を救いました。
+SKU for product %1 has been changed to %2.,製品％1のSKUは、％2に変更されました。
+You duplicated the product.,あなたは、製品を重複しました。
+The image cannot be removed as it has been assigned to the other image role,それは他の画像役割に割り当てられているように、画像を削除することはできません
+"Sorry, but the data is invalid or the file is not uploaded.",申し訳ありませんが、データが無効であるか、ファイルがアップロードされず。
+The file was not uploaded.,ファイルがアップロードされていませんでした。
+This file is empty. Please try another one.,このファイルは空です。別のものを試してみてください。
+Data validation failed. Please fix the following errors and upload the file again.,データ検証に失敗しました。以下のエラーを修正して、もう一度ファイルをアップロードしてください。
+"File is valid! To start import process press ""Import"" button",ファイルは有効です！インポートプロセスを押し、「インポート」ボタンを起動するには
+"The file is valid, but we can't import it for some reason.",ファイルは有効ですが、我々はいくつかの理由のためにそれをインポートすることはできません。
+"Checked rows: %1, checked entities: %2, invalid rows: %3, total errors: %4",チェック行：％1、チェックエンティティ：％2、無効な行：％3、総エラー：％4
+Please specify a carrier.,キャリアを指定してください。
+Please enter a tracking number.,追跡番号を入力してください。
+Cannot add tracking number.%1,追跡番号を追加することはできません。％1
+We can't load track with retrieving identifier right now.%1,私たちは今、識別子の取得にトラックをロードすることはできません。％1
+We can't initialize shipment for adding tracking number.,我々は追跡番号を追加するための出荷を初期化することはできません。
+We can't delete tracking number.,我々は追跡番号を削除することはできません。
+Something went wrong while saving the vacation.,休暇を節約しながら、何かが間違っていました。
+"You must confirm your account. Please check your email for the confirmation link or <a href=""%1"">click here</a> for a new link.","あなたは、あなたのアカウントを確認する必要があります。確認用のリンクをあなたの電子メールをチェックしてくださいまたは<a href=""%1"">新しいリンクはこちら</a>をクリックしてください。"
+"There is already an account with this email address. If you are sure that it is your email address, <a href=""%1"">click here</a> to get your password and access your account.","このメールアドレスのアカウントが既にあります。あなたはそれは、あなたのメールアドレスであることを確信している場合は<a href=""%1"">パスワードやアクセスしてアカウントを取得するには</a>にはこちらをクリックしてください。"
+We can't save the customer.,私たちは、顧客を保存することはできません。
+Please make sure your passwords match.,あなたのパスワードが一致していることを確認してください。
+"If you are a registered VAT customer, please <a href=""%1"">click here</a> to enter your shipping address for proper VAT calculation.","あなたが登録した付加価値税（VAT）のお客様の場合、<a href=""%1"">は、適切な付加価値税の計算のためにあなたの船積みの住所を入力する</a>をここをクリックしてください。"
+"If you are a registered VAT customer, please <a href=""%1"">click here</a> to enter your billing address for proper VAT calculation.","あなたが登録した付加価値税（VAT）のお客様の場合、<a href=""%1"">は、適切なVAT計算のための請求先住所を入力する</a>をここをクリックしてください。"
+Thank you for registering with %1.,％1を登録ありがとうございます。
+"This account is not confirmed. <a href=""%1"">Click here</a> to resend confirmation email.","このアカウントは確認されていません。 <a href=""%1"">再送確認メールに</a>にはこちらをクリックしてください。"
+Invalid login or password.,無効なログインまたはパスワード。
+A login and a password are required.,ログインとパスワードが必要です。
+Close,閉じる
+Open,開いた
+Processing,処理
+Done,完了
+Approved,承認
+Not Approved,未承認
+Reject,拒絶します
+Accept,受け入れます
+Enabled,使用可能
+Disabled,無効
+- Disable these emails -, - 無効にこれらのメール -
+List,リスト
+Grid,グリッド
+Product was not registered,製品が登録されていませんでした
+Store was not registered,店が登録されていませんでした
+URL key already exists.' .,URLキーがすでに存在しています。」 。
+URL key for specified store already exists.,指定されたストアのURLキーがすでに存在しています。
+Product Attribute,製品の属性
+Subtotal,小計
+Total Items Quantity,総アイテムの数量
+Total Weight,総重量
+Payment Method,支払方法
+Shipping Method,配送方法
+Shipping Postcode,送料郵便番号
+Shipping Region,配送地域
+Shipping State/Province,送料州/都道府県
+Shipping Country,配送国
+Product attribute combination,製品の属性の組み合わせ
+Products subselection,製品のサブセレクション
+Conditions combination,条件の組み合わせ
+Cart Attribute,カート属性
+Disapproved,不承認
+Could not save the seller info: %1,販売者情報を保存できませんでした：％1
+Not Submited,Submitedありません
+Unapproved,未承認
+"We can't process your request right now. Sorry, that's all we know.",私たちは今、あなたの要求を処理することはできません。申し訳ありませんが、それは我々が知っているすべてです。
+Owl Carousel,フクロウカルーセル
+Bootstrap Carousel,ブートストラップカルーセル
+Amount from order,注文から量
+invoice,請求書
+Refunded,払い戻し
+Refund from order,注文から返金
+Edit,編集します
+View Customer,見るカスタマー
+View,見る
+Delete,[削除]
+"Delete ""${ $.$data.subject }""","削除 ""$ {$。$ data.subject}"""
+"Are you sure you wan't to delete a ""${ $.$data.subject }"" record?","あなたが削除するwan'tてください。 ""$ {$を。$ data.subject}"" のレコード？"
+Unread,未読
+Read,読んだ
+What is the reason to deny this product?,この製品を否定する理由は何ですか？
+Deny,否定します
+Reset,リセット
+Do you want set commission for product?,あなたは、製品のための手数料を設定したいですか？
+View Product,プロダクト
+View Seller,ビュー売主
+All Store Views,すべてのストアビュー
+Delete ${ $.$data.name },削除$ {$。$のdata.name}
+Are you sure you want to delete a ${ $.$data.name } record?,あなたは$ {$。$のdata.name}レコードを削除してもよろしいですか？
+Approved ${ $.$data.name },承認された$ {$。$のdata.name}
+Are you sure you want to enable a ${ $.$data.name } record?,あなたは$ {$。$のdata.name}レコードを有効にしてもよろしいですか？
+Disapproved ${ $.$data.name },不承認$ {$。$ data.name}
+Are you sure you want to disable a ${ $.$data.name } record?,あなたは$ {$。$のdata.name}レコードを無効にしてもよろしいですか？
+Complete Withdrawal,完全撤退
+Canceled,キャンセル
+Add Attribute,属性の追加
+Add Selected,選択された追加
+Select Attribute,属性を選択
+New Attribute,新規属性
+New Category,新たなカテゴリー
+Categories,カテゴリー
+[GLOBAL],[グローバル]
+Customizable Options,カスタマイズ可能なオプション
+Custom options let customers choose the product variations they want.,カスタムオプションは、顧客が望む製品バリエーションを選択してみましょう。
+Import Options,インポートオプション
+Add Option,オプションを追加
+New Option,新しいオプション
+Select Product,製品の選択
+Import,インポート
+Option Title,オプションタイトル
+Add Value,付加価値を付けます
+Option Type,オプションタイプ
+-- Please select --, -  選んでください  -
+Required,必須
+Price Type,価格タイプ
+Max Characters,MAX文字
+Compatible File Extensions,互換性のあるファイルの拡張子
+Maximum Image Size,最大画像サイズ
+Please leave blank if it is not an image.,それはイメージでない場合は空白のままにしてください。
+px.,PX。
+%1,％1
+[WEBSITE],[ウェブサイト]
+[STORE VIEW],[STORE VIEW]
+This item has weight,こちらの商品は重量があります
+This item has no weight,こちらの商品は何の重みを持っていません
+Set Product as New From,からの新製品として設定
+"Related Products, Up-Sells, and Cross-Sells",関連製品、アップセルズ、およびクロスセルズ
+Related products are shown to customers in addition to the item the customer is looking at.,関連製品は、顧客が見ている項目に加えて、顧客に示しています。
+Add Related Products,関連製品を追加
+Related Products,関連製品
+An up-sell item is offered to the customer as a pricier or higher-quality alternative to the product the customer is looking at.,アップセルの項目は、顧客が見ている製品に高価なまたはより高品質の代替として顧客に提供されます。
+Add Up-Sell Products,アップセルの製品を追加
+Up-Sell Products,アップセル製品
+"These ""impulse-buy"" products appear next to the shopping cart as cross-sells to the items already in the shopping cart.",ショッピングカートにすでに項目にクロスは、販売しているように、これらの「衝動買い」の製品は、次のショッピングカートに表示されます。
+Add Cross-Sell Products,クロスセル製品を追加
+Cross-Sell Products,クロスセル製品
+Add Selected Products,選択した製品を追加
+Remove,削除する
+Thumbnail,サムネイル
+Product in Websites,ウェブサイトでの製品
+"If your Magento site has multiple views, you can set the scope to apply to a specific view.",あなたのMagentoのサイトには、複数のビューを持っている場合は、特定のビューに適用する範囲を設定することができます。
+Websites,ウェブサイト
+name,名前
+Copy Data from,からのデータのコピー
+Browse to find or drag image here,見つけるか、ここでドラッグイメージを参照
+Delete image,削除画像
+Hidden,隠されました
+Alt Text,代替テキスト
+Image Size,画像サイズ
+{size},{サイズ}
+Image Resolution,画像解像度
+{width}^{height} px,{幅} ^ {高} PX
+Browse Files...,ブラウズファイル...
+Choose Affected Attribute Set,影響を受ける属性セットを選択します。
+Confirm,確認
+start typing to search attribute,属性を検索するために入力を開始
+Title:,題名：
+Uploaded:,アップロード：
+Uploader:,アップローダ：
+Duration:,所要時間：
+Basic Settings,基本設定
+Advanced Settings,高度な設定
+Changes have been made to this section that have not been saved.,変更が保存されていないこのセクションに行われました。
+This tab contains invalid data. Please resolve this before saving.,このタブには、無効なデータが含まれています。保存する前にこの問題を解決してください。
+Continue,継続する
+Mass Actions,マスアクション
+Select All,すべて選択
+Unselect All,すべて選択解除
+Select Visible,可視選択
+Unselect Visible,可視選択を解除
+Upload,アップロード
+Upload Image Product,画像をアップロード製品
+Product Upload,製品のアップロード
+Import Settings,インポート設定
+Check Data,データをチェック
+Please Select,選んでください
+Download Sample File,サンプルファイルをダウンロード
+Import Behavior,インポート動作
+Add/Update,追加/更新
+Error Handling,エラー処理
+Stop on Error,エラーで停止
+Skip error entries,エラーエントリをスキップ
+Allowed Errors Count,許容されるエラー数
+Please specify number of errors to halt import process,停止インポート処理にエラーの数を指定してください
+Field separator,フィールドセパレータ
+Multiple value separator,複数の値の区切り
+File to Import,インポートするファイル
+Select File to Import,インポートするファイルを選択します
+Images File Directory,イメージ・ファイル・ディレクトリ
+*Notice Import image first,*注意事項インポート画像最初の
+Additional Settings,追加の設定
+records found,レコードが見つかりました
+selected,選択
+per page,1ページあたり
+Previous page,前のページ
+of %1,％1の
+Next page,次のページ
+Export to:,輸出：
+Marketplace,市場
+Marketplace Dashboard,Marketplaceのダッシュボード
+Seller Profile,売り手のプロフィール
+Manage Products,マネージャー製品
+Create Attribute,属性を作成します。
+New Products,新製品
+My Products List,マイ製品リスト
+My Transaction List,私の取引一覧
+Manage Print PDF Header Info,印刷PDFヘッダー情報を管理します
+My Order History,私の注文履歴
+Become Seller,となっ売主
+Personal Information,個人情報
+Seller General,出品者の一般的な
+Group,グループ
+Url Key,URLキー
+"Example: Insert landofcoder,url shop will ",例：挿入landofcoder、URL店の意志
+Address Information,住所情報
+Company,会社
+Phone Number,電話番号
+Street Address,住所
+Street Address %1,住所1
+City,市
+State/Province,州/地方
+"Please select a region, state or province.",地域、都道府県を選択してください。
+Zip/Postal Code,郵便/郵便番号
+* Required Fields,*必須項目
+Sign-in Information,サインイン情報
+Password,パスワード
+Password Strength,パスワードの強度
+No Password,パスワードなし
+Confirm Password,パスワードを認証する
+Privacy Policy,個人情報保護方針
+I agree the Terms and Condition,私は、利用規約と条件に同意します
+Terms and Conditions,規約と条件
+Create an Account,アカウントを作成する
+Back,バック
+Sold By,により販売されています
+Visit Shop,訪問ショップ
+We can't find seller matching the selection.,私たちは、選択販売者のマッチングを見つけることができません。
+Created At,で作成されました
+Post Reply Message,ポスト返信メッセージ
+Message ,メッセージ
+Post Reply,返信
+History Message,歴史のメッセージ
+We can't find products matching the selection.,私たちは選択をマッチした製品を見つけることができません。
+Add to Cart,カートに追加
+In stock,在庫あり
+Out of stock,在庫切れ
+Learn More,もっと詳しく知る
+Qty,数量
+ Sales, セールス
+ Sale, セール
+Joined since ,以来参加
+What’s on your mind?,何を考えているの？
+Submit,参加する
+Customer Name,顧客名
+Customer Email,お客様のメール
+"Turn in to a seller today and enjoy some incredible benefits like
+				adding logo to your profile page for better branding, setting up
+				multiple products to improve conversions, etc.","今日売り手に回すなど、いくつかの信じられないほどのメリットを享受
+、より良いブランディングのためのあなたのプロフィールページにロゴを追加設定
+変換を改善するための複数の製品、など"
+Click the button to become a Seller,出品者になるためにボタンをクリックしてください
+"Example: Insert landofcoder,url shop will",例：挿入landofcoder、URL店の意志
+"I
+						agree the  Terms and Conditions","私
+利用規約に同意"
+Admin Approval is required. Please wait until admin confirms your seller account.,管理者承認が必要です。管理者があなたのセラーアカウントを確認するまでお待ちください。
+Returns Policies,戻り値のポリシー
+Shipping Policies,配送ポリシー
+Edit Profile Information,編集プロファイル情報
+Save Profile,プロファイルを保存
+Twitter ID,TwitterのID
+Facebook ID,FacebookのID
+Instagram ID,InstagramのID
+Google Plus ID,グーグルプラスID
+Youtube ID,ユーチューブID
+Vimeo ID,VimeoのID
+Pinterest ID,PinterestのID
+Rating(s),評価（S）
+Registered Sellers,登録販売者
+"If you have an account, sign in with your email address.",アカウントをお持ちの場合は、メールアドレスでログインしてください。
+Login,ログインする
+Forgot Your Password?,パスワードをお忘れですか？
+"Creating an account has many benefits: check out faster, keep more than one address, track orders and more.",アカウントを作成すると、多くの利点があります。注文を追跡し、より多くの、より高速チェックアウト複数のアドレスを保持します。
+Customer ratings,カスタマー評価
+star,星
+Write Your Own Review,あなたのレビューを書きます
+You're rating,あなたの評価しています
+How do you rate this seller,あなたはこの販売者をどうのように評価しますか
+Value,値
+Quality,品質
+What's your nickname?,あなたのニックネームは何ですか？
+What's your Email?,あなたのメールは何ですか？
+Summary of Your Rating,あなたの評価の概要
+Let us know your thoughts,私たちはあなたの考えを教えてください
+Submit Rating,評価を送信
+By,沿って
+ Rating(s), 評価（S）
+We can't find sellers matching the selection.,私たちは選択をマッチング売り手を見つけることができません。
+Items,アイテム
+of,の
+%1 Item,％1つの項目
+%1 Items,％1つのアイテム
+Previous,前
+Next,次
+This operation can take a long time,この操作には長い時間がかかる場合があります
+Collapse All,すべて折りたたみます
+Expand All,すべて展開
+Please confirm site switching. All data that hasn't been saved will be lost.,サイトの切り替えをご確認ください。保存されていないすべてのデータが失われます。
+None,無し
+Use Default Value,デフォルト値を使用します
+"Manage Titles (Size, Color, etc.)",タイトル（サイズ、色など）を管理します
+Manage Options (Values of Your Attribute),オプションの管理（あなたの属性値）
+Is Default,デフォルトは
+Sort Option,並べ替えオプション
+Double click on a group to rename it.,その名前を変更するグループをダブルクリックします。
+Unassigned Attributes,未割り当ての属性
+A name is required.,名前が必要です。
+This group contains system attributes. Please move system attributes to another group and try again.,このグループには、システム属性が含まれています。別のグループにシステム属性を移動して、もう一度お試しください。
+Please enter a new group name.,新しいグループ名を入力してください。
+"An attribute group named ""/name/"" already exists"".",属性グループには、「/名前/」すでに「存在と命名します。
+"Sorry, we're unable to complete this request.",申し訳ありませんが、我々はこの要求を完了できません。
+You can't remove attributes from this attribute set.,あなたは、この属性セットから属性を削除することはできません。
+Empty,空の
+Custom Options,カスタムオプション
+This is a required option.,これは、必要なオプションです。
+The field isn't complete.,フィールドが完全ではありません。
+Change,変化する
+Compatible file extensions to upload,互換性のあるファイルの拡張子をアップロードします
+Maximum image width,最大画像幅
+Maximum image height,最大像高
+Maximum number of characters:,最大文字数：
+Quantity,量
+start typing to search template,テンプレートを検索するために入力を開始
+Product online,オンライン製品
+Product offline,製品のオフライン
+Product online status,製品のオンラインステータス
+Advanced Inventory,高度なインベントリ
+Manage Stock,証券取引を管理します
+Use Config Settings,使用コンフィグ設定
+Out-of-Stock Threshold,在庫アウトしきい値
+Minimum Qty Allowed in Shopping Cart,最小数量は、ショッピングカートに可
+Maximum Qty Allowed in Shopping Cart,最大数量は、ショッピングカートに可
+Qty Uses Decimals,数量は小数を使用します
+Backorders,バックオーダー
+Notify for Quantity Below,以下は、数量通知
+Enable Qty Increments,数量インクリメントを有効にします
+Qty Increments,数量インクリメント
+Stock Availability,在庫状況
+In Stock,在庫あり
+Out of Stock,在庫切れ
+Add Product To Websites,ウェブサイトへの製品の追加
+Remove Product From Websites,ウェブサイトから製品を削除
+"To hide an item in catalog or search results, set the status to ""Disabled"".",カタログ内の項目を非表示にしたり、結果を検索するには、「無効」にステータスを設定します。
+Step 2: Attribute Values,ステップ2：属性値
+Select values from each attribute to include in this product. Each unique combination of values creates a unigue product SKU.,本製品に含まれる各属性から値を選択します。値のそれぞれのユニークな組み合わせはunigue製品SKUを作成します。
+Sort Variations,ソートバリエーション
+Options,オプション
+Deselect All,すべての選択を解除
+Remove Attribute,削除属性
+Save Option,オプションの保存
+Remove Option,removeオプション
+"Step 3: Bulk Images, Price and Quantity",ステップ3：一括画像、価格と数量
+Based on your selections %1 new products will be created. Use this step to customize images and price for your new products.,あなたの選択に基づいて％1つの新製品が作成されます。あなたの新製品の画像や価格をカスタマイズするには、この手順を使用します。
+Images,画像
+Apply single set of images to all SKUs,すべてのSKUにイメージの単一のセットを適用します
+Apply unique images by attribute to each SKU,各SKUに属性によってユニークな画像を適用します
+Skip image uploading at this time,この時点では画像のアップロードをスキップ
+Remove image,削除画像
+Select attribute,属性を選択
+Select,選択する
+Apply single price to all SKUs,すべてのSKUに単一の価格を適用します
+Apply unique prices by attribute to each SKU,各SKUに属性によってユニークな価格を適用します。
+Skip price at this time,この時点での価格をスキップ
+Apply single quantity to each SKUs,それぞれのSKUに単一量を適用します
+Apply unique quantity by attribute to each SKU,各SKUに属性によってユニークな量を適用します
+Skip quantity at this time,この時点で数量をスキップ
+Step 1: Select Attributes,ステップ1：選択した属性
+Selected Attributes:,選択した属性：
+Step 4: Summary,ステップ4：まとめ
+We can't save custom-defined options for bundles with dynamic pricing.,私たちは、ダイナミックプライシングとのバンドルのカスタム定義のオプションを保存することはできません。
+Delete Custom Option,削除カスタムオプション
+Sort Custom Options,カスタムオプションをソート
+Input Type,入力方式
+%1 <span>x</span> %2 <span>px.</span>,％1 <スパン> X </スパン>％2 <スパン> PX </スパン>
+Sort Custom Option,カスタムオプションをソート
+Web Site,ウェブサイト
+Customer Group,顧客グループ
+Item Price,アイテムの価格
+Action,アクション
+and above,そして上記
+Delete Tier,削除ティア
+Product In Websites,ウェブサイトで製品
+(Copy data from: %1),（コピーデータから：％1）
+Add Video,動画を追加
+Delete video,削除動画
+Product Alerts,製品のアラート
+Allow Multiple Boxes for Shipping,配送のために複数のボックスを許可します
+Save success,保存成功
+Marketplace - Module by,マーケットプレース - モジュールによって
+Landofcoder,Landofcoder
+View My Store,ビューの私の店
+Profile,プロフィール
+Log Out,ログアウト
+Upload Image Zip,画像をアップロードジップ
+Upload Images Zip,アップロード画像はジップ
+Images Zip,画像はジップ
+Credit Amount,クレジット量
+Total Sales,総売上
+Total Orders,総受注
+Total Products,総製品
+Sales Report Day ,営業報告書の日
+Sales Report Month,営業報告書月
+Sales Report Year,セールスレポート年
+Your top countries,あなたのトップの国
+Earning amount from country countries,国の国々からの金額を獲得
+Total Order,全順序
+Total Earning,合計ご獲得
+Last Orders,ラストオーダー
+Best Seller,ベスト・セラー
+Most Viewed Products,ほとんど見た商品
+Order Date,注文日
+Product,製品
+Id,同上
+Amount,量
+Seller Blance,出品者Blance
+Order Design,注文デザイン
+Create At,作成
+Billing Address,請求先住所
+Shipping Address,お届け先の住所
+<b>Order:</b> # %1,<B>の注文：</ b>の＃％1
+Order Status,注文の状況
+Purchased From,から購入しました
+Account Information ,口座情報
+Return to Stock,証券へ戻ります
+Qty to Refund,返金に数量
+Tax Amount,課税額
+Discount Amount,割引額
+Row Total,行の合計
+Admin Commission,管理委員会
+Seller Total,出品者の合計
+Ordered,順序付けられました
+Invoiced,請求済み
+Payment Methods,お支払い方法
+The order was placed using,順序は、使用して配置されました
+Credit Memo Comments,クレジットメモコメント
+Comment Text,コメントテキスト
+Order Totals,注文合計
+Tax,税金
+Discount,ディスカウント
+Refund Shipping,払い戻しの配送
+Adjustment Refund,調整払い戻し
+Adjustment Fee,調整費
+Grand Total,総計
+Append Comments,追加コメント
+Visible on Frontend,フロントエンドの可視
+Email Copy of Credit Memo,クレジットメモの電子メールのコピー
+Refund Offline,返金オフライン
+Refund Online,オンライン返金
+Refund,返金
+Invoice Date,請求書の日付
+Bill to Name,名前のビル
+Grand Total (Base),総計（ベース）
+Grand Total (Purchased),総計（購入）
+Bulk Actions,一括操作
+Invoice Design,請求書のデザイン
+Export Pdf file,書き出したPDFファイル
+<b>Invoice</b> # %1,<B>請求書</ B>＃％1
+Invoice Totals,合計請求書
+Shipping & Handling,出荷処理
+Seller Amount,売主額
+Date,日付
+Currency,通貨
+Cancel Order,注文をキャンセルする
+Are you sure you want to cancel this order?,あなたはこの注文をキャンセルしてもよろしいですか？
+Send Email,メールを送る
+Are you sure you want to send an order email to customer?,あなたは顧客に注文メールを送信してもよろしいですか？
+Are you sure you want to create invoice?,あなたが請求書を作成してもよろしいですか？
+Credit Memo,クレジットメモ
+Are you sure you want to create credit memo for order?,あなたは注文のクレジットメモを作成してもよろしいですか？
+Ship,輸送する
+Are you sure you want to create ship for order?,あなたは注文の船を作成してもよろしいですか？
+Item Status,アイテムのステータス
+Tax Percent,税の割合
+Shipped,出荷されました
+Track information,トラック情報
+Shipped By,で出荷
+Tracking Number,追跡番号
+No shipping information available,利用可能な配送先情報なし
+Carrier,キャリアー
+Refund Total,返金総額
+Shipment,出荷
+Table Shipment,表の出荷
+Ship Date,出荷日
+Order #,注文番号
+Ship to Name,名前の船
+Total Quantity,総量
+Shipment Design,出荷デザイン
+<b>Shipment</b> # %1,<B>出荷</ B>＃％1
+Shipping and Tracking Information,配送とトラッキング情報
+Track this shipment,この貨物を追跡
+Number,数
+Add,追加
+Items Shipped,商品を発送しました
+Product Name,商品名
+Qty Shipped,数量出荷
+Today's Sales,今日の販売
+Today's Earnings,今日の利益
+Current Month's Sales,今月の販売
+Current Month's Earnings,今月の収益
+Sales Report,営業報告書
+Browse to find or drag image here(Size 1240x400),ブラウズは、検索またはここにドラッグイメージ（サイズ1240x400）します
+Browse to find or drag image here(Size 200x200),ブラウズは、検索またはここにドラッグ画像（サイズ200×200）にします
+Social Media,ソーシャルメディア
+Facebook Name,Facebookの名
+Facebook Page ID,FacebookのページID
+Linkedin ID,LinkedInのID
+Printerest ID,Printerest ID
+Welcome,ようこそ
+Online,オンライン
+Sender Name,送信者名
+Sender Email,送信者のメール
+Post a Reply,返信を投稿
+Message History,メッセージ履歴
+Sales,セールス
+Manage Product,製品を管理します
+Simple Product,シンプルな製品
+Virtual Product,仮想製品
+Configurable Product,設定可能な製品
+Vacation Setting,休暇の設定
+Mass Import/Export,ミサのインポート/エクスポート
+Upload Image,画像をアップロード
+ Withdrawal, 撤退
+You can withdraw up to,あなたはまで引き出すことができます
+Min amount ,最低額
+Fee ,費用
+Amount to withdraw,撤退する量
+ email account, メールアカウント
+  Info,  インフォ
+You do not have the minimum amount to withdraw,あなたは撤回する最小量を持っていません
+Nick Name,ニックネーム
+Rating,格付け
+Comment,コメント
+All Review,すべてのレビュー
+Author,著者
+Guest,ゲスト
+Summary Rating,概要評価
+Summary of Review,レビューのサマリ
+Vacation Status,バケーションステータス
+Turn ON,オンにする
+Turn OFF,消す
+Vacation Message,バケーションメッセージ
+Vacation Date From,から休暇日
+Vacation Date To,休暇日まで
+Add Cart button text,休暇の時、売主のボタン上のテキスト表示は、カートに追加します
+Select Date,日付を選択
+Withdrawal information,出金情報
+ Email Account, メールアカウント
+Net Amount,正味金額
+Admin Message,管理者メッセージ
+Withdrawal Request,出金依頼
+Your balance,あなたのバランス
+Method,方法
+Withdrawals History,引き出しの歴史
+Total Amount Received,総量は受信します
+Created,作成した
+Store View:,ストアビュー：
+Stores Configuration,店舗の設定
+Please confirm scope switching. All data that hasn't been saved will be lost.,スコープの切り替えをご確認ください。保存されていないすべてのデータが失われます。
+Insert Widget...,挿入ウィジェット...
+We don't recognize or support this file extension type.,私たちは認識したり、このファイル拡張子の種類をサポートしていません。
+Insert Variable...,挿入変数...
+Select All on This Page,このページのすべてを選択
+Deselect All on This Page,このページ上のすべて解除
+Go to Details Page,詳細ページへ
+We could not detect a size.,私たちは、大きさを検出することができませんでした。
+Image Detail,画像の詳細
+Warning message,警告メッセージ
+New Product Review,新製品レビュー
+Here are the products you're about to create.,ここでは、作成しようとしている製品があります。
+Associated Products,関連商品
+You created these products for this configuration.,あなたは、この構成のため、これらの製品を作成しました。
+Disassociated Products,解離した製品
+These products are not associated.,これらの製品は、関連付けられていません。
+Ok,OK
+Add Products to New Option,新しいオプションに製品を追加
+"Add Products to Option ""%1""",オプションに商品を追加「％1」
+Video Error,ビデオエラー
+Unknown video type,不明なビデオタイプ
+Invalid video url,無効な動画のURL
+Youtube API key is invalid,ユーチューブのAPIキーが無効です
+Video cant be shown due to the following reason: ,ビデオには、以下の理由による示すことがカント：
+Video not found,この動画は存在しません
+New Video,新しいビデオ
+Edit Video,編集動画
+Images and Videos,画像とビデオ
+Select...,選択する...
+Attributes,属性
+"Lof All - <a href=""http://landofcoder.com"" target=""_BLANK"" title=""""Magento Marketplace, Opencart Marketplace, Magento 2 Extension, Free Magento Extension, Opencart Advanced Reports"">landofcoder.com</a>","Lofのすべて -  <a href=""http://landofcoder.com"" target=""_BLANK"" title=""""Magento Marketplace, Opencart Marketplace, Magentoの2 Extension,無料MagentoのExtension, Opencart高度Reports""> landofcoder.com </ A >"
+Market Place,市場の場所
+General Settings,一般設定
+Seller List Url,出品者リストのURL
+Seller Url Prefix,売主URL接頭辞
+Seller Url Suffix,売主のURLサフィックス
+Rating Approval Required,評価の承認必要
+Seller Approval Required,出品者の承認必要
+Seller Settings,売主設定
+Need Admin Approval Product,管理者承認製品が必要
+Seller Commission(%),出品者委員会（％）
+Enter global commission for sellers.If you don't using commission in http://yourdomain.com/admin/lofmarketplace/commission/index,sellers.Ifのグローバルコミッションを入力して、http://yourdomain.com/admin/lofmarketplace/commission/indexに手数料を使用していません
+Sales Settings,販売設定
+Can Send Email,メールを送信することができます
+Email admin,電子メールの管理
+Can Create Ship,船を作成することができます
+Can Create Refund,返金を作成することができます
+Seller Panel,出品者パネル
+Favicon Icon,ファビコンアイコン
+Default Title,デフォルトのタイトル
+Header Icon,ヘッダーアイコン
+Header Text,ヘッダーテキスト
+Footer Text,フッターテキスト
+Email Settings,メール設定
+Enable Send Email,送信メールを有効にします
+Email Sender,電子メールの送信者
+Choose template for emailing customer,顧客を電子メールで送信するためのテンプレートを選択します。
+Choose template for emailing seller,売り手に電子メールで送信するためのテンプレートを選択します。
+Choose template for email reply,電子メールの返信用のテンプレートを選択します。
+Choose email template for new rating,新しい評価のための電子メールテンプレートを選択します。
+Choose email template for new order,新規注文のための電子メールテンプレートを選択します。
+Choose email template for new invoice,新しい請求書の電子メールテンプレートを選択します。
+Choose email template for new shipment,新しい出荷のための電子メールテンプレートを選択します。
+Choose email template for new seller register,新しい売り手レジスタのための電子メールテンプレートを選択します。
+Choose email template for approve seller,販売者を承認するための電子メールテンプレートを選択します。
+Choose email template for unapprove seller,不承認販売者のための電子メールテンプレートを選択します。
+Choose email template for approve product,製品を承認するための電子メールテンプレートを選択します。
+Choose email template for unapprove product,不承認の製品のための電子メールテンプレートを選択します。
+Seller Info On Product View Page,出品者の情報で製品をこのページに表示します
+Enabled Seller Block,有効売主ブロック
+Show Seller Title,ショー出品タイトル
+Show Seller Logo,出品者のロゴを表示します
+Show Seller Name,ショー出品者名
+Show Seller Address,ショー出品住所
+Show Seller Sales,ショー売主販売
+Show Seller Phone,ショー出品電話
+Show Seller Contact,出品者連絡先を表示します
+Text Contact,テキスト問い合わせ
+Seller List Page,出品者一覧ページ
+Number Seller Per Page,数売主ページごと
+Empty to show all item,すべての項目を表示するために、空
+SEO - Search Engine Optimization,SEO  - 検索エンジン最適化
+Grid Layout,グリッドレイアウト
+Number Column on Large Desktop,大規模なデスクトップ上の番号列
+Large devices Desktops (≥1200px),大型機器デスクトップ（≥1200px）
+Number Column on Desktop,デスクトップ上の数値列
+Medium devices Desktops (≥992px),ミディアム・デバイスデスクトップ（≥992px）
+Number Column on Tablets,錠の番号列
+Small devices Tablets (≥768px),小型デバイスの錠（≥768px）
+Number Column on Phones,携帯電話の番号列
+Extra small devices Phones (<768px),余分な小型デバイス電話（<768px）
+Group Page,グループのページ
+Seller Multi Shipping,売主マルチ配送
+MarketPlace Seller List,マーケットプレイス出品者一覧
+Get seller list,売り手のリストを取得します。
+Select Static Block,静的ブロックを選択
+Number of Seller to Display,売主の数表示します
+Number Item per Column,列ごとに番号項目
+Addtion Class,Addtionクラス
+Carousel Layout,カルーセルレイアウト
+Number Columns On Page (Phones),ページ上の数字列（電話）
+Show number items when screen size bellow 480px,表示番号項目画面サイズ怒鳴る480PX
+Number Columns On Page (Phones to Small tablets),ページ上の数字列（小タブレットに携帯電話）
+Show number items when screen size between 641px and 480px,641pxと480PX間の表示番号項目が時に画面サイズ
+Number Columns On Page (Phones to tablets),ページ上の数字列（タブレットへの電話）
+Show number items when screen size between 768px and 641px,768pxと641pxの間に表示する数項目は、ときに画面サイズ
+Number Columns On Page (Portrait tablets),ページ上の数字列（肖像錠）
+Show number items when screen size between 979px and 769px,979pxと769pxの間に表示する数項目は、ときに画面サイズ
+Number Columns On Page (Default),ページ上の数字列（デフォルト）
+Show number items when screen size between 1199px and 980px,1199pxと980pxの間に表示する数項目は、ときに画面サイズ
+Number Columns On Page (Large display),ページ上の数字列（大型ディスプレイ）
+Show number items when screen size 1200px and up,とき画面サイズ1200px、最大数の商品を見ます
+Autoplay,自動再生
+Autoplay Timeout,自動再生のタイムアウト
+Item Per Page,項目毎のページ
+Interval,間隔
+RTL,RTL
+Loop,ループ
+Show dots navigations,ドットのナビゲーションを表示します
+Show next/prev buttons.,次/前のボタンを表示します。
+Nav Prev Text,ナビゲーション前のテキスト
+Nav Next Text,ナビゲーション次のテキスト
+Template,テンプレート
+Seller ID,出品者ID
+Updated At,で更新
+ ID, ID
+Seller Balance,売主バランス
+Delete items,アイテムを削除
+Are you sure you want to delete selected items?,選択した項目を削除してもよろしいですか？
+Disable,無効化
+Enable,有効
+Active,アクティブ
+Add New Group,新しいグループを追加
+Bill-to Name,ビル-の名前
+Seller Email,売り手メール
+Is Read,ある読みます
+Order ID,ご注文ID
+Increment ID,インクリメントID
+Currency Code,通貨コード
+Sort Order,ソート順
+Product ID,製品番号
+Review ID,レビューID
+Image,画像
+Shop URL Key,ショップURLキー
+Product Price,製品価格
+Payment ID,支払ID
+Method Payment,メソッドの支払い
+Pay Action,ペイアクション
+List Seller,一覧売主
+Marketplace 1column,マーケットプレイス1-カラム
+Marketplace 2columns Left,マーケットプレース2columns左
+AttributeSetText,AttributeSetText
+StatusText,STATUSTEXT
+PDF Invoices,PDF請求書
+Category Name,種別名
+Parent Category,親カテゴリ
+Images And Videos,画像や動画を
+Minimum Qty,最小数量
+Use Deferred Stock Update,繰延証券のアップデートを使用してください
+Stock Status,在庫状況
+Delete selected items?,選択した項目を削除しますか？
+Change status,ステータスを変更する

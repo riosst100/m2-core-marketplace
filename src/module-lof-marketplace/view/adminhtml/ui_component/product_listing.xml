@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <columns name="product_columns">
+        <column name="seller_name" component="Lof_MarketPlace/js/grid/columns/link" class="Lof\MarketPlace\Ui\Component\Listing\Columns\SellerName" sortOrder="40">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Seller</label>
+            </settings>
+        </column>
+    </columns>
+</listing>

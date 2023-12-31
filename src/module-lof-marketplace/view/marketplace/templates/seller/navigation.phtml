@@ -1,0 +1,207 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Magento2.Security.XssTemplate.FoundNotAllowed
+// phpcs:disable Generic.Files.LineLength.TooLong
+/**
+ * @var $block Lof\MarketPlace\Block\Account\Navigation
+ */
+$_helper = $this->helper(\Lof\MarketPlace\Helper\Data::class);
+$_sellerhelper = $this->helper(\Lof\MarketPlace\Helper\Seller::class);
+$isSeller = $this->isSeller();
+$seller = $_sellerhelper->getSellerByCustomer();
+
+if ($seller['thumbnail']) {
+    $imageSrc = $_helper->getMediaUrl() . $seller['thumbnail'];
+} else {
+    $imageSrc = $_helper->getMediaUrl() . 'images/user.png';
+}
+$magentoCurrentUrl = $block->getCurrentUrl();
+$allow_pro_type = 'configurable';
+$isSellerGroup = 1;
+$secure = ['_secure' => $this->getRequest()->isSecure()];
+$headerText = $_helper->getConfig('design/header_text') ?: __('Landofcoder');
+?>
+<div class="col-md-3 left_col">
+    <div class="left_col scroll-view">
+        <div class="navbar nav_title">
+            <a href="<?= $block->escapeUrl($block->getUrl('catalog/dashboard', $secure)) ?>"
+               class="site_title">
+                <i class="fa <?= $block->escapeHtmlAttr($_helper->getConfig('design/header_icon')) ?>"></i>
+                <span><?= $block->escapeHtml($headerText) ?></span>
+            </a>
+        </div>
+        <div class="clearfix"></div>
+        <div class="profile clearfix">
+            <div class="profile_pic">
+                <img src="<?= $block->escapeUrl($imageSrc) ?>" alt="..." class="img-circle profile_img">
+            </div>
+            <div class="profile_info">
+                <span><?= $block->escapeHtml(__('Welcome,')) ?></span>
+                <h2><?= $block->escapeHtml($seller['name']) ?></h2>
+                <i class="fa fa-circle text-success"></i><?= $block->escapeHtml(__('Online')) ?>
+            </div>
+        </div>
+        <br>
+        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section active">
+                <ul class="nav side-menu" style="display: block;">
+                    <li>
+                        <a href="<?= $block->escapeUrl($block->getUrl('catalog/dashboard', $secure)) ?>">
+                            <i class="fa fa-tachometer"></i><?= $block->escapeHtml(__('Dashboard')) ?>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= $block->escapeUrl($block->getUrl('catalog/seller/profile', $secure)) ?>">
+                            <i class="fa fa-user-md"></i><?= $block->escapeHtml(__('Profile')) ?>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <i class="fa fa-cart-plus"></i>
+                            <?= $block->escapeHtml(__('Sales')) ?><span class="fa fa-chevron-down"></span>
+                        </a>
+                        <ul class="nav child_menu">
+                            <li>
+                                <a href="<?= $block->escapeUrl($block->getUrl('catalog/sales', $secure)) ?>">
+                                    <?= $block->escapeHtml(__('Invoice')) ?>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= $block->escapeUrl($block->getUrl('catalog/sales/order', $secure)) ?>">
+                                    <?= $block->escapeHtml(__('Order')) ?>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= $block->getUrl('catalog/sales/amounttransaction', $secure) ?>">
+                                    <?= $block->escapeHtml(__('Amount Transaction')) ?>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a>
+                            <i class="fa fa-cubes"></i><?= $block->escapeHtml(__('Catalog')) ?>
+                            <span class="fa fa-chevron-down"></span>
+                        </a>
+                        <ul class="nav child_menu">
+                            <li>
+                                <a href="<?= $block->getUrl('catalog/product', $secure); ?>">
+                                    <?= $block->escapeHtml(__('Manage Product')) ?>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <?= $block->escapeHtml(__('Add Product')) ?><span class="fa fa-chevron-down"></span>
+                                </a>
+                                <ul class="nav child_menu">
+                                    <li>
+                                        <a href="<?= $block->getUrl('catalog/product/new', [
+                                            'set' => 4,
+                                            'type' => 'simple'
+                                        ]); ?>">
+                                            <?= $block->escapeHtml(__('Simple Product')) ?>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?= $block->getUrl('catalog/product/new', [
+                                            'set' => 4,
+                                            'type' => 'virtual'
+                                        ]); ?>">
+                                            <?= $block->escapeHtml(__('Virtual Product')) ?>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?= $block->getUrl('catalog/product/new', [
+                                            'set' => 4,
+                                            'type' => 'configurable'
+                                        ]); ?>">
+                                            <?= $block->escapeHtml(__('Configurable Product')) ?>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="<?= $block->getUrl('catalog/withdrawals', $secure); ?>">
+                            <i class="fa fa-usd"></i>
+                            <?= $block->escapeHtml(__('Withdrawals')) ?>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= $block->getUrl('catalog/message', $secure); ?>">
+                            <i class="fa fa-envelope-o"></i>
+                            <?= $block->escapeHtml(__('Messages')) ?>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= $block->getUrl('catalog/review', $secure); ?>">
+                            <i class="fa fa-comment-o"></i>
+                            <?= $block->escapeHtml(__('Reviews')) ?>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= $block->getUrl('catalog/rating', $secure); ?>">
+                            <i class="fa fa-star-o"></i>
+                            <?= $block->escapeHtml(__('Ratings')) ?>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= $block->getUrl('catalog/vacation', $secure); ?>">
+                            <i class="fa fa-bed"></i>
+                            <?= $block->escapeHtml(__('Vacation Setting')) ?>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <i class="fa fa-cloud-upload"></i><?= $block->escapeHtml(__('Mass Import/Export')) ?>
+                            <span class="fa fa-chevron-down"></span>
+                        </a>
+                        <ul class="nav child_menu">
+                            <li>
+                                <a href="<?= $block->getUrl('catalog/product/uploadimage', $secure); ?>">
+                                    <?= $block->escapeHtml(__('Upload Image')) ?>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= $block->getUrl('catalog/product/import', $secure); ?>">
+                                    <?= $block->escapeHtml(__('Import Product')) ?>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= $block->getUrl('catalog/product/export', $secure); ?>">
+                                    <?= $block->escapeHtml(__('Export Product')) ?>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="<?= $block->getUrl('catalog/report', $secure); ?>">
+                            <i class="fa fa-area-chart"></i><?= $block->escapeHtml(__('Advanced Report')) ?>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

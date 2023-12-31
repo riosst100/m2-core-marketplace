@@ -1,0 +1,50 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Product list toolbar
+ *
+ * @var $block \Magento\Catalog\Block\Product\ProductList\Toolbar
+ */
+?>
+<p class="toolbar-amount" id="toolbar-amount">
+    <?php if ($block->getLastPageNum() > 1): ?>
+        <?= __('Items') ?>
+        <span class="toolbar-number"><?= $block->getFirstNum() ?></span>
+        <?= '-' ?>
+        <span class="toolbar-number"><?= $block->getLastNum() ?></span>
+        <?= __('of'); ?>
+        <span class="toolbar-number"><?= $block->getTotalNum() ?></span>
+    <?php elseif ($block->getTotalNum() == 1): ?>
+        <?php /* @escapeNotVerified */ echo __('%1 Item',
+        '<span class="toolbar-number ">' . $block->getTotalNum() . '</span>') ?>
+    <?php else: ?>
+        <?php /* @escapeNotVerified */ echo __('%1 Items',
+        '<span class="toolbar-number">' . $block->getTotalNum() . '</span>') ?>
+    <?php endif; ?>
+</p>
+<?php if ($block->getCollection()->getSize()): ?>
+    <?= $block->getPagerHtml() ?>
+<?php endif ?>

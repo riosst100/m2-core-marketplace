@@ -1,0 +1,110 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Magento2.Security.XssTemplate.FoundNotAllowed
+// phpcs:disable Generic.Files.LineLength.TooLong
+/**
+ * @var $block Lof\MarketPlace\Block\Seller\ViewTransaction
+ */
+?>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><?= $block->escapeHtml(__('Withdrawal Information')) ?></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="form-horizontal form-label-left">
+                    <div class="form-group">
+                        <label class=" col-md-2 col-sm-2 col-xs-12">
+                            <?= $block->escapeHtml(__('Payment Method')) ?>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <?= $block->escapeHtml($block->getPayment()->getData('name')) ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class=" col-md-2 col-sm-2 col-xs-12">
+                            <?= $block->escapeHtml($block->getPayment()->getData('name') . __(' Email Account')) ?>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <?= $block->escapeHtml($block->getWithdrawal()->getData('email')) ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class=" col-md-2 col-sm-2 col-xs-12"><?= $block->escapeHtml(__('Amount')) ?></label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <?= $block
+                                ->getPriceFomat(
+                                    $block->getWithdrawal()->getData('amount'),
+                                    $block->getCurrentCurrencyCode()
+                                ); ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class=" col-md-2 col-sm-2 col-xs-12"><?= $block->escapeHtml(__('Fee')) ?></label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <?= $block
+                                ->getPriceFomat(
+                                    $block->getWithdrawal()->getData('fee'),
+                                    $block->getCurrentCurrencyCode()
+                                ); ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class=" col-md-2 col-sm-2 col-xs-12"><?= $block->escapeHtml(__('Net Amount')) ?></label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <?= $block
+                                ->getPriceFomat(
+                                    $block->getWithdrawal()->getData('net_amount'),
+                                    $block->getCurrentCurrencyCode()
+                                ); ?>
+                        </div>
+                    </div>
+                    <?php if ($block->getWithdrawal()->getData('comment')): ?>
+                        <div class="form-group">
+                            <label class=" col-md-2 col-sm-2 col-xs-12">
+                                <?= $block->escapeHtml($block->getPayment()->getData('name') . __(' Information')) ?>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <?= $block->escapeHtml($block->getWithdrawal()->getData('comment')) ?></div>
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($block->getWithdrawal()->getData('admin_message')): ?>
+                        <div class="form-group">
+                            <label class=" col-md-2 col-sm-2 col-xs-12"><?= __('Admin Message'); ?></label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <?= $block->escapeHtml($block->getWithdrawal()->getData('admin_message')) ?></div>
+                        </div>
+                    <?php endif; ?>
+                    <div class="form-group">
+                        <label class=" col-md-2 col-sm-2 col-xs-12"><?= $block->escapeHtml(__('Created At')) ?></label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <?= $block->escapeHtml($block->formatDateTime($block->getWithdrawal()->getData('created_at'))) ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

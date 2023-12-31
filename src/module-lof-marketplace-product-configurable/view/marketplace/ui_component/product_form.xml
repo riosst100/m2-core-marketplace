@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lof_MarketProductConfigurable
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <settings>
+        <buttons>
+            <button name="save" class="Magento\ConfigurableProduct\Block\Adminhtml\Product\Edit\Button\Save"/>
+        </buttons>
+    </settings>
+    <htmlContent name="product.form.configurable.matrix.content" sortOrder="1000">
+        <argument name="data" xsi:type="array">
+            <item name="wrapper" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">false</item>
+                <item name="label" xsi:type="string" translate="true"/>
+            </item>
+        </argument>
+        <settings>
+            <wrapper>
+                <canShow>true</canShow>
+                <componentType>fieldset</componentType>
+            </wrapper>
+        </settings>
+        <block name="product.form.configurable.matrix" class="Magento\ConfigurableProduct\Block\Adminhtml\Product\Edit\Tab\Variations\Config\Matrix" template="Lof_MarketProductConfigurable::catalog/product/edit/super/wizard.phtml" as="matrix">
+            <arguments>
+                <argument name="config" xsi:type="array">
+                    <item name="collapsible" xsi:type="boolean">false</item>
+                    <item name="label" xsi:type="string" translate="true" />
+                    <item name="sortOrder" xsi:type="string">1000</item>
+                    <item name="canShow" xsi:type="boolean">true</item>
+                    <item name="componentType" xsi:type="string">fieldset</item>
+                    <item name="provider" xsi:type="string">product_form.product_form_data_source</item>
+                    <item name="form" xsi:type="string">product_form.product_form</item>
+                    <item name="modal" xsi:type="string">configurableModal</item>
+                    <item name="nameStepWizard" xsi:type="string">variation-steps-wizard</item>
+                    <item name="dataScope" xsi:type="string">productFormConfigurable</item>
+                    <item name="urlWizard" xsi:type="string">catalog/product/wizard</item>
+                </argument>
+            </arguments>
+        </block>
+    </htmlContent>
+</form>

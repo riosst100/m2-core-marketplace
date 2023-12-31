@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lof_MarketPlace
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\App\RouterList">
+        <arguments>
+            <argument name="routerList" xsi:type="array">
+                <item name="marketplace" xsi:type="array">
+                    <item name="class" xsi:type="string">Lof\MarketPlace\Controller\Router</item>
+                    <item name="disable" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="string">23</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Catalog\Model\ResourceModel\Product\Collection">
+        <plugin name="lofmp_approval_product" type="Lof\MarketPlace\Plugin\Catalog\Model\ResourceModel\Product\CollectionPlugin"/>
+    </type>
+    <type name="Magento\Review\Model\Review">
+        <plugin name="lof_marketplace_product_review" type="Lof\MarketPlace\Plugin\Review\Model\ReviewPlugin"/>
+    </type>
+    <type name="Magento\Framework\View\Element\Message\MessageConfigurationsPool">
+        <arguments>
+            <argument name="configurationsMap" xsi:type="array">
+                <item name="customerAlreadyExistsErrorMessage" xsi:type="array">
+                    <item name="renderer" xsi:type="const">\Magento\Framework\View\Element\Message\Renderer\BlockRenderer::CODE</item>
+                    <item name="data" xsi:type="array">
+                        <item name="template" xsi:type="string">Magento_Customer::messages/customerAlreadyExistsErrorMessage.phtml</item>
+                    </item>
+                </item>
+                <item name="confirmAccountSuccessMessage" xsi:type="array">
+                    <item name="renderer" xsi:type="const">\Magento\Framework\View\Element\Message\Renderer\BlockRenderer::CODE</item>
+                    <item name="data" xsi:type="array">
+                        <item name="template" xsi:type="string">Magento_Customer::messages/confirmAccountSuccessMessage.phtml</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- Do not add to cart if seller is on vacation -->
+    <type name="Magento\Quote\Model\Quote">
+        <plugin name="lof_marketplace_add_to_cart" type="Lof\MarketPlace\Plugin\Quote\Model\QuotePlugin"/>
+    </type>
+    <!-- Do not add to cart in wishlist if seller is on vacation -->
+    <type name="Magento\Wishlist\Model\Item">
+        <plugin name="lof_marketplace_add_to_cart_wishlist" type="Lof\MarketPlace\Plugin\Wishlist\Model\ItemPlugin"/>
+    </type>
+</config>

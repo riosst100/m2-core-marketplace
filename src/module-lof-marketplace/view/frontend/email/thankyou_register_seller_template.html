@@ -1,0 +1,30 @@
+<!--
+  ~ Landofcoder
+  ~
+  ~ NOTICE OF LICENSE
+  ~
+  ~ This source file is subject to the Landofcoder.com license that is
+  ~ available through the world-wide-web at this URL:
+  ~ https://landofcoder.com/terms
+  ~
+  ~ DISCLAIMER
+  ~
+  ~ Do not edit or add to this file if you wish to upgrade this extension to newer
+  ~ version in the future.
+  ~
+  ~ @category   Landofcoder
+  ~ @package    Lof_MarketPlace
+  ~ @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  ~ @license    https://landofcoder.com/terms
+  -->
+
+<!--@subject Thank You For Register Seller @-->
+
+{{template config_path="design/email/header_template"}}
+<p>{{trans"Hi "}} <strong>{{var data.name}}</strong>,</p>
+<p>{{trans "Thank you for your interest in selling products through our marketplace."}}</p>
+<p>{{trans"Your seller account is under review."}}</p>
+<p><strong>{{trans"Email:"}}</strong> {{var data.email}}</p>
+<p><strong>{{trans "Password:"}}</strong> <em>{{trans "Password you set when creating account"}}</em></p>
+<a style="color:#5ac17f" href="{{var data.url}}">Link page seller</a>
+{{template config_path="design/email/footer_template"}}

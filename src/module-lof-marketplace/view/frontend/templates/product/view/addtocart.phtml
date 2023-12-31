@@ -1,0 +1,96 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Generic.WhiteSpace.ScopeIndent
+// phpcs:disable Magento2.Security.XssTemplate.FoundUnescaped
+// phpcs:disable Generic.Files.LineLength.TooLong
+
+if ($this->getSellerCollection() && count($this->checkVacation()->getData()) > 0):
+    $vacation = $this->getVacation()->getFirstItem(); ?>
+    <div class="box-tocart">
+        <div class="fieldset">
+            <button type="submit" title="<?= $block->escapeHtmlAttr($vacation->getData('text_add_cart')) ?>"
+                    class="action primary tocart"
+                    id="product-addtocart-button">
+                <span><?= $vacation->getData('text_add_cart'); ?></span>
+            </button>
+            <div class="vacation_message">
+                <?= $block->escapeHtml($vacation->getData('vacation_message')) ?>
+            </div>
+        </div>
+    </div>
+<?php else: ?>
+    <?php $_product = $block->getProduct(); ?>
+    <?php $buttonTitle = __('Add to Cart'); ?>
+    <?php if ($_product->isSaleable()): ?>
+        <div class="box-tocart">
+            <div class="fieldset">
+                <?php if ($block->shouldRenderQuantity()): ?>
+                    <div class="field qty">
+                        <label class="label" for="qty"><span><?= $block->escapeHtml(__('Qty')) ?></span></label>
+                        <div class="control">
+                            <input type="number"
+                                   name="qty"
+                                   id="qty"
+                                   maxlength="12"
+                                   value="<?= $block->escapeHtmlAttr($block->getProductDefaultQty()) ?>"
+                                   title="<?= $block->escapeHtmlAttr(__('Qty')) ?>" class="input-text qty"
+                                   data-validate="<?= $block->escapeHtmlAttr(json_encode($block->getQuantityValidators())) ?>"
+                            />
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <div class="actions">
+                    <button type="submit"
+                            title="<?= $block->escapeHtmlAttr($buttonTitle) ?>"
+                            class="action primary tocart"
+                            id="product-addtocart-button">
+                        <span><?= $block->escapeHtml($buttonTitle) ?></span>
+                    </button>
+                    <?= $block->getChildHtml('', true) ?>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+    <script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/product/view/validation": {
+                "radioCheckboxClosest": ".nested"
+            }
+        }
+    }
+
+    </script>
+    <?php if (!$block->isRedirectToCartEnabled()): ?>
+        <script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "catalogAddToCart": {
+                "bindSubmit": false
+            }
+        }
+    }
+        </script>
+    <?php endif; ?>
+<?php endif; ?>
+
+

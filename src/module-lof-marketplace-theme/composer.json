@@ -1,0 +1,33 @@
+{
+    "name": "landofcoder/module-market-theme",
+    "description": "Magento 2 Marketplace theme Extension",
+    "require": {
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "keywords": [
+      "landofcoder",
+      "landofcoder marketplace",
+      "Multil vendor extension",
+      "landofcoder multi vendor marketplace magento 2 extension"
+    ],
+    "license": [
+      "OSL-3.0",
+      "AFL-3.0"
+    ],
+    "version": "1.0.3",
+    "type": "magento2-theme",
+    "authors": [
+        {
+            "name": "Landofcoder",
+            "email": "landofcoder@gmail.com",
+            "role": "Magento 2 Lof Marketplace theme Extension"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ]
+    }
+  }

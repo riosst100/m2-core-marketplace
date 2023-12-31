@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">marketplace_vacation_form.marketplace_vacation_data_source</item>
+            <item name="deps" xsi:type="string">marketplace_vacation_form.marketplace_vacation_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">New Vacation</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">marketplace_vacation_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="Lof\MarketPlace\Block\Seller\Form\General\SaveButton"/>
+        </buttons>
+        <namespace>marketplace_vacation_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>marketplace_vacation_form.marketplace_vacation_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="marketplace_vacation_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Lof\MarketPlace\Model\Vacation\DataProvider</argument>
+            <argument name="name" xsi:type="string">marketplace_vacation_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">vacation_id</argument>
+            <argument name="requestFieldName" xsi:type="string">vacation_id</argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="catalog/vacation/save"/>
+        </settings>
+    </dataSource>
+    <fieldset name="vacation_information_field" sortOrder="10">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">false</item>
+                <item name="label" xsi:type="string" translate="true">Vacation Information</item>
+                <item name="sortOrder" xsi:type="number">10</item>
+            </item>
+        </argument>
+        <field name="vacation_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Vacation ID</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">vacation</item>
+                    <item name="dataScope" xsi:type="string">vacation_id</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+        </field>
+        <field name="status">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="label" xsi:type="string" translate="true">Vacation Status</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="source" xsi:type="string">vacation</item>
+                    <item name="dataScope" xsi:type="string">status</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+        </field>
+        <field name="vacation_message">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Description</item>
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="source" xsi:type="string">vacation</item>
+                    <item name="dataScope" xsi:type="string">vacation_message</item>
+                    <item name="additionalInfo" xsi:type="string" translate="true"><![CDATA[Vacation message will display on frontend.]]></item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="from_date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">From Date</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="source" xsi:type="string">vacation</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="dataScope" xsi:type="string">from_date</item>
+                    <item name="notice"  xsi:type="string" translate="true">You can set a future date to schedule the rule. The rule will not be available until this date.</item>
+                </item>
+            </argument>
+        </field>
+        <field name="to_date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">To Date</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="source" xsi:type="string">vacation</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="dataScope" xsi:type="string">to_date</item>
+                    <item name="notice"  xsi:type="string" translate="true">You can set a future date to schedule the rule. The rule will not be available until this date.</item>
+                </item>
+            </argument>
+        </field>
+        <field name="text_add_cart">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Add Cart button text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">vacation</item>
+                    <item name="dataScope" xsi:type="string">text_add_cart</item>
+                </item>
+            </argument>
+        </field>
+        <field name="text_shipping_method">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Notice message for products in Cart page</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">vacation</item>
+                    <item name="dataScope" xsi:type="string">text_shipping_method</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+</form>

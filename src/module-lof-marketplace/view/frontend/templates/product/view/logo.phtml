@@ -1,0 +1,259 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Generic.WhiteSpace.ScopeIndent
+// phpcs:disable Magento2.Security.XssTemplate.FoundUnescaped
+// phpcs:disable Generic.Files.LineLength.TooLong
+/**
+ * @var $block Lof\MarketPlace\Block\Product\View
+ */
+$sellerCollection = $block->getSellerCollection();
+
+$data = $this->helper(\Lof\MarketPlace\Helper\Data::class);
+$currPageUrl = $data->getCurrentUrls();
+$show_seller_text = $data->getConfig("product_view_page/show_seller_text");
+$show_seller_image = $data->getConfig("product_view_page/show_seller_image");
+$show_seller_name = $data->getConfig("product_view_page/show_seller_name");
+$show_seller_address = $data->getConfig("product_view_page/show_seller_address");
+$show_seller_sale = $data->getConfig("product_view_page/show_seller_sale");
+$show_seller_phone = $data->getConfig("product_view_page/show_seller_phone");
+$show_seller_contact = $data->getConfig("product_view_page/show_seller_contact");
+$text_contact = $data->getConfig("product_view_page/text_contact");
+$formActionUrl = $this->getUrl('lofmarketplace/seller/savemessage');
+$href = '#';
+?>
+<?php if ($sellerCollection && $sellerCollection->count()):
+    $sellerId = $sellerCollection->getFirstItem()->getData('seller_id');
+    $total = $sellerCollection->count();
+    foreach ($sellerCollection as $_seller): ?>
+        <div class="seller-profile-container">
+            <?php if ($show_seller_image): ?>
+            <div class="seller-image col-xs-3">
+                    <a href="<?= $block->escapeUrl($_seller->getUrl()) ?>"
+                       title="<?= $block->escapeHtmlAttr($_seller->getName()) ?>">
+                        <img src="<?= $block->escapeUrl($_seller->getThumbnailUrl()) ?>"
+                             alt="<?= $block->escapeHtmlAttr($_seller->getName()) ?>"/>
+                    </a>
+            </div>
+            <?php endif; ?>
+            <div class="col-xs-<?= $show_seller_image ? '9' : '12'; ?> seller-description">
+                <?php if ($show_seller_name): ?>
+                    <h3 class="seller_title">
+                        <a href="<?= $block->escapeUrl($_seller->getUrl()) ?>"
+                           title="<?= $block->escapeHtmlAttr($_seller->getName()) ?>">
+                            <?= $block->escapeHtml($_seller->getName()) ?>
+                        </a>
+                    </h3>
+                <?php endif; ?>
+                <?php if ($_seller->getVerifyStatus() == "1"): ?>
+                    <div class="seller-verify"><i class="mkpl-verify"></i><span><?= __('Verified') ?></span></div>
+                <?php endif; ?>
+                <?php if ($show_seller_text): ?>
+                    <span class="seller-headline"><?= $block->escapeHtml($_seller->getShopTitle()) ?> </span>
+                <?php endif; ?>
+                <?php if ($show_seller_address): ?>
+                    <p class="seller-info">
+                        <span class="seller-address">
+                            <i class="fa fa-map-marker"></i>
+                            <?= $block->escapeHtml($_seller->getAddress()) ?>, <?= $block->escapeHtml($_seller->getCountry()) ?>
+                        </span>
+                    </p>
+                <?php endif; ?>
+                <?php if ($show_seller_sale): ?>
+                    <p class="seller-info">
+                    <span class="seller-sales-count">
+                        <i class="fa fa-shopping-cart"></i>
+                        <?php if ($this->getTotalSales() > 1) {
+                            echo $this->getTotalSales() . __(" Sales");
+                        } else {
+                            echo $this->getTotalSales() . __(" Sale");
+                        } ?>
+                    </span>
+                        <span class="seller-joined-date">
+                            <i class="fa fa-calendar"></i>
+                            <?= __("Joined since ")
+                            . $this->formatDate($_seller->getCreationTime(), \IntlDateFormatter::MEDIUM); ?>
+                        </span>
+                    </p>
+                <?php endif; ?>
+                <?php if ($show_seller_phone): ?>
+                    <p class="seller-info">
+                        <span class="seller-phone">
+                            <i class="fa fa-phone"></i>
+                            <?= $block->escapeHtml($_seller->getContactNumber()) ?>
+                        </span>
+                    </p>
+                <?php endif; ?>
+                <?php if ($show_seller_contact): ?>
+                    <div class="seller-info message-contact">
+                        <a class="btn" id="seller-contact" href="<?= $block->escapeUrl($href) ?>">
+                            <i class="fa fa-envelope-o"></i><?= $block->escapeHtml($text_contact) ?>
+                        </a>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    <?php endforeach; ?>
+
+    <?php if ($data->isLoggedIn()): ?>
+    <div class="contact-seller" id="contact-seller" style="display: none;">
+        <form class="form contact" action="<?= $block->escapeHtmlAttr($formActionUrl); ?>" id="contact-form"
+              method="post"
+              data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+              data-mage-init='{"validation":{}}'>
+            <fieldset class="fieldset">
+                <legend class="legend"><span><?= $block->escapeHtml($text_contact) ?></span></legend>
+                <br/>
+                <input name="sender_name" type="hidden"
+                       value="<?= $block->escapeHtmlAttr($data->getCustomerName()) ?>"/>
+                <input name="sender_email" type="hidden"
+                       value="<?= $block->escapeHtmlAttr($data->getCustomerEmail()) ?>"/>
+                <input name="sender_id" type="hidden" value="<?= $block->escapeHtmlAttr($data->getCustomerId()) ?>"/>
+                <input name="owner_id" type="hidden" value="<?= $block->escapeHtmlAttr($sellerId) ?>"/>
+                <div class="field name required">
+                    <label class="label" for="subject"><span><?= $block->escapeHtml(__('Subject')) ?></span></label>
+                    <div class="control">
+                        <input name="subject" id="subject"
+                               title="<?= $block->escapeHtmlAttr(__('Subject')) ?>"
+                               class="input-text"
+                               type="text" data-validate="{required:true}"/>
+                    </div>
+                </div>
+                <div class="field description required">
+                    <label class="label"
+                           for="description"><span><?= $block->escapeHtml(__('What’s on your mind?')) ?></span></label>
+                    <div class="control">
+                            <textarea name="description" id="description" title="<?= __('What’s on your mind?') ?>"
+                                      class="input-text" cols="5" rows="3"
+                                      data-validate="{required:true}"></textarea>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <input type="hidden" name="currUrl" id="currUrl"
+                           value="<?= $block->escapeUrl($currPageUrl) ?>"/>
+                    <button type="submit" title="<?= __('Submit') ?>" class="action submit primary">
+                        <span><?= __('Submit') ?></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+<?php else: ?>
+    <div class="contact-seller" id="contact-seller" style="display: none;">
+        <form class="form contact" action="<?= $block->escapeHtmlAttr($formActionUrl) ?>"
+              id="contact-form"
+              method="post"
+              data-hasrequired="<?= __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+            <fieldset class="fieldset">
+                <legend class="legend"><span><?= $block->escapeHtml($text_contact) ?></span></legend>
+                <br/>
+                <input name="owner_id" type="hidden" value="<?= $block->escapeHtmlAttr($sellerId) ?>"/>
+                <div class="field name required">
+                    <label class="label"
+                           for="sender_name"><span><?= $block->escapeHtml(__('Customer Name')) ?></span>
+                    </label>
+                    <div class="control">
+                        <input name="sender_name" id="sender_name"
+                               title="<?= $block->escapeHtmlAttr(__('Customer Name')) ?>"
+                               class="input-text" type="text"
+                               data-validate="{required:true}"/>
+                    </div>
+                </div>
+                <div class="field name required">
+                    <label class="label" for="sender_email"><span><?= $block->escapeHtml(__('Customer Email')) ?></span></label>
+                    <div class="control">
+                        <input name="sender_email" id="sender_email"
+                               title="<?= $block->escapeHtmlAttr(__('Customer Email')) ?>"
+                               class="input-text" type="text"
+                               data-validate="{required:true}"/>
+                    </div>
+                </div>
+                <div class="field name required">
+                    <label class="label" for="subject"><span><?= $block->escapeHtml(__('Subject')) ?></span></label>
+                    <div class="control">
+                        <input name="subject" id="subject" title="<?= $block->escapeHtmlAttr(__('Subject')) ?>"
+                               class="input-text"
+                               type="text" data-validate="{required:true}"/>
+                    </div>
+                </div>
+                <div class="field description required">
+                    <label class="label"
+                           for="description"><span><?= $block->escapeHtml(__('What’s on your mind?')) ?></span></label>
+                    <div class="control">
+                            <textarea name="description" id="description"
+                                      title="<?= $block->escapeHtmlAttr(__('What’s on your mind?')) ?>"
+                                      class="input-text" cols="5" rows="3"
+                                      data-validate="{required:true}"></textarea>
+                    </div>
+                </div>
+
+            </fieldset>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <input type="hidden" name="currUrl" id="currUrl"
+                           value="<?= $block->escapeHtmlAttr($currPageUrl) ?>"/>
+                    <button type="submit" title="<?= __('Submit') ?>" class="action submit primary">
+                        <span><?= __('Submit') ?></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+<?php endif; ?>
+    <script type="text/javascript">
+        require(
+            [
+                'jquery',
+                'Lof_All/lib/fancybox/jquery.fancybox.pack',
+                'mage/validation'
+            ], function ($) {
+                jQuery(document).ready(function ($) {
+                    jQuery("#seller-contact").fancybox({
+                        'href': '#contact-seller',
+                        'titleShow': false,
+                        'transitionIn': 'elastic',
+                        'transitionOut': 'elastic',
+                        'minWidth': 420,
+
+                    });
+                });
+            });
+    </script>
+<?php endif; ?>
+<?php
+if ($this->getSellerCollection() && count($this->checkVacation()->getData()) > 0):
+    $vacation = $this->getVacation()->getFirstItem();
+    $text_add_cart = ($vacation->getData('text_add_cart') == null) ? "This product is not available right now!" : $vacation->getData('text_add_cart');
+    $vacation->setData('text_add_cart', $text_add_cart);?>
+    <script type="text/javascript">
+        require(
+            [
+                'jquery'
+            ], function ($) {
+                $(document).ready(function ($) {
+                    $('.box-tocart').html("<div class='fieldset'><button type='submit' title='<?= $vacation->getData('text_add_cart');?>' class='action tocart primary disabled'><span><?= $vacation->getData('text_add_cart');?></span></button><div class='vacation_message'><?= $vacation->getData('vacation_message');?></div></div>");
+                });
+            });
+    </script>
+<?php endif; ?>

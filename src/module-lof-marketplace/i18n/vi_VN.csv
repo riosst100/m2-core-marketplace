@@ -1,0 +1,1078 @@
+Become A Seller,Trở thành một người bán
+Manage Commissions,quản lý hoa hồng
+Add New Commission,Thêm Ủy ban mới
+Save,Lưu Ủy ban
+Save and Continue Edit,Lưu và Tiếp tục Sửa
+Delete Commission,Ủy ban Xóa
+Edit Commission '%1',Sửa Ủy ban '% 1'
+New Commission,Ủy ban mới
+Calculate Commission Using The Following Information,Ủy ban Tính Sử dụng Các thông tin sau
+Commission By,Ủy ban Bằng
+Fixed Amount,Số tiền cố định
+Percent Of Product Price,Phần trăm sản phẩm Giá
+Calculate Commission Based On,Tính toán hoa hồng dựa trên
+Product Price (Incl. Tax),Giá sản phẩm (Incl. Thuế)
+Product Price (Excl. Tax),Giá sản phẩm (excl. Thuế)
+Product Price After Discount (Incl. Tax),Giá sản phẩm Sau khi chiết khấu (. Thuế Incl)
+Product Price After Discount (Excl. Tax),Giá sản phẩm Sau khi chiết khấu (. Thuế excl)
+Commission,Uỷ ban
+Discard subsequent rules,quy tắc tiếp theo Huỷ
+Yes,Đúng
+No,Không
+Actions,Hoạt động
+Conditions (don't add conditions if rule is applied to all products),Điều kiện (không thêm điều kiện nếu quy tắc được áp dụng cho tất cả các sản phẩm)
+Apply To,Nộp đơn
+Conditions,Điều kiện
+Commission Information,Thông tin Ủy ban
+Title,Tiêu đề
+Description,Sự miêu tả
+Status,Trạng thái
+From,Từ
+To,Đến
+Priority,Sự ưu tiên
+Seller Group,bán Nhóm
+Store View,cửa hàng Xem
+General Information,chung Infomration
+Preview,Xem trước
+Manage Seller Groups,Quản lý bán Groups
+Add New Seller Group,Add New Seller Nhóm
+Save Group,Lưu Nhóm
+Delete Group,Xóa Nhóm
+Edit Group '%1',Chỉnh sửa nhóm '% 1'
+New Group,Nhóm mới
+Group Information,Thông tin nhóm
+Group Name,Tên nhóm
+URL Key,chính URL
+Empty to auto create url key,Trống để tự động tạo khoá url
+Page Status,Tình trạng trang
+Option Data,Lựa chọn dữ liệu
+Limit Product,Giới hạn sản phẩm
+Can Add New Product,Có thể Thêm sản phẩm mới
+Can Cancel Order,Có thể Hủy bỏ theo thứ tự
+Can Create Invoice,Có thể Tạo Hóa Đơn
+Can Create Shipment,Có thể Tạo Lô hàng
+Can Create Credit Memo,Có thể Tạo Memo tín dụng
+Hide Payment Information,Thông tin thanh toán Ẩn
+The payment information of customer will be hidden from order.,Các thông tin thanh toán của khách hàng sẽ được ẩn từ trật tự.
+Can submit comments,Có thể gửi ý kiến
+Can Use Group,Thể sử dụng Group
+Can Use Shipping,Có thể sử dụng Vận Chuyển
+Can Use Review,Có thể sử dụng giá
+Can Use Rating,Có thể sử dụng Đánh giá
+Can Import/Export Product,Cần nhập khẩu sản phẩm /
+Can Use Vacation,Có thể sử dụng nghỉ
+Can Use Report,Báo cáo sử dụng có thể
+Can Use Withdrawal,Có thể sử dụng Rút
+Advanced Options,Advanced Options
+Message Seller,tin nhắn của người bán
+Add New Message,Add New nhắn
+Save Message,Lưu tin nhắn
+Delete Message,Xóa tin nhắn
+Edit Message '%1',Chỉnh sửa tin nhắn '% 1'
+New Message,Tin nhắn mới
+Message Information,Thông tin nhắn
+Subject,Môn học
+Message,Thông điệp
+added %1 (%2),đã thêm% 1 (% 2)
+Can Use Message,Có thể sử dụng tin nhắn
+Manage Payments Method,Quản lý thanh toán Phương pháp
+Add New Payment,Thêm thanh toán mới
+Save Payment,Lưu Thanh toán
+Delete Payment,Thanh toán Xóa
+Edit Payment '%1',Chỉnh sửa thanh toán '% 1'
+New Payment,Thanh toán mới
+Payment Information,Thông tin thanh toán
+Name,Tên
+Fee By,phí Bằng
+Fixed Fee,Phí cố định
+Percent Fee,Phí phần trăm
+All,Tất cả
+Min Amount,min Amount
+Max Amount,Max Số tiền
+Order Payment,Thanh toán đơn đặt hàng
+Note Message,Lưu ý nhắn
+Manage Products,Quản lý sản phẩm
+Add New Product,Thêm sản phẩm mới
+Manage Ratings,quản lý Ratings
+Add New Rating,Add New Rating
+Save Rating,Lưu Rating
+Delete Rating,Xóa Đánh giá
+Edit Rating '%1',Sửa Đánh giá '% 1'
+New Rating,New Rating
+Rating Information,Thông tin Đánh giá
+Email,E-mail
+Detail,Chi tiết
+Seller Id,Id người bán
+Rate 1,tỷ lệ 1
+Rate 2,tỷ lệ 2
+Rate 3,tỷ lệ 3
+Manage Sellers,quản lý bán
+Add New Seller,Add New Seller
+Save Seller,Lưu Seller
+Delete Seller,Người bán Xóa
+Edit Seller '%1',Sửa Seller '% 1'
+New Seller,New Seller
+Page Layout,Bố trí trang
+Layout,Bố trí
+Layout Update XML,Giao diện Cập nhật XML
+Design,thiết kế
+Seller Information,Thông tin người bán
+Seller Name,Tên người bán
+Link Seller,liên kết của người bán
+Contact Number,Số liên lạc
+Shop Title,cửa hàng Tiêu đề
+Customer,khách hàng
+Company Banner,Công ty quảng cáo
+Company Logo,Công ty Logo
+Company Locality,Công ty Địa phương
+Company Description,Thông tin công ty
+Return Policy,Chính sách trả lại
+Shipping Policy,chính sách vận chuyển
+Address,Địa chỉ
+Country,Quốc gia
+Position,Chức vụ
+Meta Data,Metadata
+Page Title,trang nhan đề
+Keywords,Từ khóa
+Meta Keywords,meta Keywords
+Meta Description,Mô tả meta
+ID,TÔI
+Type,Kiểu
+Attribute Set,thuộc tính Set
+Visibility,Hiển thị
+SKU,SKU
+Price,Giá bán
+Social Infomation,Thông tin xã hội
+Twitter Active,twitter tích cực
+Twitter,Twitter
+Facebook Active,Facebook kích hoạt
+Page Facebook Id,Id Facebook trang
+Facebook,Facebook
+Google Plus Active,Google Plus tích cực
+Google Plus,Google cộng
+Youtube Active,Youtube tích cực
+Youtube,Youtube
+Vimeo Active,Vimeo tích cực
+Vimeo,Vimeo
+Linkedin Active,Linkedin tích cực
+Linkedin,Linkedin
+Instagram Active,Instagram tích cực
+Instagram,Instagram
+Pinterest Active,Pinterest tích cực
+Pinterest,Pinterest
+Social Information,Thông tin xã hội
+Products,Các sản phẩm
+WYSIWYG Editor,WYSIWYG Editor
+Manage Withdrawals Method,Quản lý Rút Phương pháp
+Add New Withdrawal,Add New Rút
+Save Withdrawal,Lưu Rút
+Edit Withdrawal '%1',Sửa Rút '% 1'
+New Withdrawal,New Rút
+Withdrawal Information,Thông tin thu hồi
+Fee,Học phí
+Order Withdrawal,để Rút
+Export,Xuất khẩu
+Export Settings,Export Settings
+Entity Type,Entity Loại
+Export File Format,Định dạng tập tin xuất khẩu
+Fields Enclosure,Fields Enclosure
+We can't filter an attribute with no attribute options.,Chúng ta không thể lọc một thuộc tính không có tùy chọn thuộc tính.
+Exclude,Loại trừ
+Attribute Label,thuộc tính Label
+Attribute Code,thuộc tính Mã
+Filter,Lọc
+Unknown attribute filter type,loại bộ lọc Unknown thuộc tính
+Home,Trang Chủ
+Go to Home Page,Tới Trang chủ
+Create New Product,Tạo sản phẩm mới
+Create New Attribute,Tạo mới Thuộc tính
+Export Product,xuất khẩu sản phẩm
+"Images (.gif, .jpg, .png)","Hình ảnh (.gif, .jpg, .png)"
+Import Product,nhập khẩu sản phẩm
+Add Product,Thêm sản phẩm
+label,nhãn
+Advanced Report,báo cáo nâng cao
+Amount Transaction,Số tiền giao dịch
+Invoice,Hóa đơn
+ [deleted], [Đã xóa]
+View Invoice,Xem hóa đơn
+Order,Đặt hàng
+View Order,Xem đơn hàng
+Custom Value,Giá trị tùy chỉnh
+View Shipment,Xem Lô hàng
+Become a Seller,Trở thành một người bán
+Dashboard,bảng điều khiển
+Edit Profile,Sửa hồ sơ
+Seller Login,bán Login
+Error!,Lỗi!
+Info,Thông tin
+Success,Sự thành công
+Alert,báo động
+Order # %1 %2 | %3,Trật tự #% 1% 2 | % 3
+"This order contains (%1) items and therefore cannot be edited through the admin interface. If you wish to continue editing, the (%2) items will be removed,  the order will be canceled and a new order will be placed.","Đơn hàng này chứa (% 1) các mặt hàng và do đó không thể được chỉnh sửa thông qua giao diện quản trị. Nếu bạn muốn tiếp tục chỉnh sửa, (% 2) mục sẽ bị xóa, thứ tự sẽ bị hủy bỏ và một trật tự mới sẽ được đặt."
+Are you sure? This order will be canceled and a new one will be created instead.,Bạn có chắc không? Lệnh này sẽ bị hủy bỏ và một cái mới sẽ được tạo ra để thay thế.
+Payment,Thanh toán
+Save,Tiết kiệm
+Save & Draft,Lưu & Draft
+Save & New,Lưu & New
+Save & Duplicate,Lưu & Duplicate
+Save & Close,Lưu & Đóng
+Url,url
+Preview Image,Xem trước hình ảnh
+Get Video Information,Nhận thông tin video
+Hide from Product Page,Ẩn từ trang sản phẩm
+Role,Vai trò
+YouTube and Vimeo supported.,YouTube và Vimeo được hỗ trợ.
+"Vimeo supported.<br />To add YouTube video, please enter YouTube API Key first.","Vimeo được hỗ trợ. <br /> Để thêm YouTube video, vui lòng nhập YouTube API chính đầu tiên."
+Weight,Cân nặng
+Create New Seller Account,Tạo mới tài khoản người bán
+Review,Ôn tập
+Sell On Marketplace ,Bán Trên Marketplace
+Vacation Settings,Cài đặt nghỉ
+Pending,Pending
+Completed,Đã hoàn thành
+Cancel,hủy bỏ
+Withdrawals,rút tiền
+Amounts,Lượng
+Manage Seller Amount,Quản lý bán Amount
+Manage Amount Transaction,Quản lý tiền giao dịch
+The seller has been deleted.,Người bán đã bị xóa.
+We can't find a seller to delete.,Chúng tôi không thể tìm thấy một người bán xóa.
+Seller,người bán
+This seller no longer exits. ,Đây bán thoát không còn.
+Edit Seller,chỉnh sửa Người bán
+Sellers,Người bán
+Commissions,hoa hồng
+A total of %1 record(s) have been deleted.,Tổng cộng có 1% kỷ lục (s) đã bị xóa.
+A total of %1 record(s) have been disabled.,Tổng cộng có 1% kỷ lục (s) đã bị vô hiệu hoá.
+A total of %1 record(s) have been enabled.,Tổng cộng có 1% kỷ lục (s) đã được kích hoạt.
+You saved this commission.,Bạn lưu hoa hồng này.
+Something went wrong while saving the commission.,Một cái gì đó đã đi sai trong khi tiết kiệm các khoản hoa hồng.
+Seller Groups,Nhóm bán
+Groups,Các nhóm
+Manage Groups,quản lý Nhóm
+Please correct the data sent.,Xin vui lòng sửa các dữ liệu được gửi.
+URL key already exists.,chìa khóa URL đã tồn tại.
+You saved this group.,Bạn lưu nhóm này.
+Something went wrong while saving the seller.,Một cái gì đó đã đi sai trong khi tiết kiệm cho người bán.
+Invoices,hóa đơn
+Manage Invoices,quản lý hóa đơn
+The message has been deleted.,Thông điệp đã bị xóa.
+We can't find a message to delete.,Chúng tôi không thể tìm thấy một thông điệp tới xóa.
+Messages,Tin nhắn
+Manage Messages,quản lý tin nhắn
+You saved this message.,Bạn đã lưu thông báo này.
+Orders,Đơn đặt hàng
+Manage Orders,quản lý đơn đặt hàng
+Manager Payment Method,Phương pháp quản lý thanh toán
+Manager Payment,Thanh toán quản lý
+You saved this payment.,Bạn lưu thanh toán này.
+Product has been set commission.,Sản phẩm đã được thiết lập hoa hồng.
+Ratings,xếp hạng
+A total of %1 record(s) have been accept.,Tổng cộng có 1% kỷ lục (s) đã được chấp nhận.
+A total of %1 record(s) have been reject.,Tổng cộng có 1% kỷ lục (s) đã từ chối.
+You saved this rating.,Bạn lưu giá này.
+Something went wrong while saving the rating.,Một cái gì đó đã đi sai trong khi tiết kiệm các đánh giá.
+Refunds,Hoàn lại tiền
+Manage Refunds,quản lý Hoàn lại tiền
+Refundrequests,Refundrequests
+Manage Refundrequests,quản lý Refundrequests
+Reviews,Nhận xét
+Manage Reviews,quản lý Nhận xét
+A total of %1 record(s) have been approved.,Tổng cộng có 1% kỷ lục (s) đã được phê duyệt.
+A total of %1 record(s) have been disapproved.,Tổng cộng có 1% kỷ lục (s) đã được chấp thuận.
+The seller has been disapproved.,Người bán đã không được chấp thuận.
+We can't find a seller to disapproved.,Chúng tôi không thể tìm thấy một người bán để không được chấp thuận.
+The seller has been approved.,Người bán đã được phê duyệt.
+We can't find a seller to approved.,Chúng tôi không thể tìm thấy một người bán để phê duyệt.
+Something went wrong while saving the page.,Một cái gì đó đã đi sai khi đang lưu trang.
+You saved this seller.,Bạn lưu người bán này.
+SellerProducts,SellerProducts
+Manage SellerProducts,quản lý SellerProducts
+A total of %1 record(s) have been accepted.,Tổng cộng có 1% kỷ lục (s) đã được chấp nhận.
+A total of %1 record(s) have been rejected.,Tổng cộng có 1% kỷ lục (s) đã bị từ chối.
+Transactions,giao dịch
+Manage Transactions,quản lý giao dịch
+Withdrawal,sự rút lui
+Manage Withdrawals,quản lý rút tiền
+This withdrawal no longer exits. ,rút này thoát không còn.
+Edit Withdrawal,Sửa Rút
+	Withdraw Money : Amount ,Rút tiền: Số tiền
+You must have a seller account to access,Bạn phải có một tài khoản người bán để truy cập
+You must have a account to access,Bạn phải có một tài khoản để truy cập
+"Attribute ""%1"" is required.","Thuộc tính ""% 1"" là bắt buộc."
+You saved the category.,Bạn đã lưu các loại.
+Something went wrong while saving the category.,Một cái gì đó đã đi sai trong khi tiết kiệm các loại.
+This order no longer exists.,Lệnh này không còn tồn tại.
+You are not authorize to manage this order.,Bạn chưa ủy quyền để quản lý trật tự này.
+The invoice no longer exists.,Hóa đơn không còn tồn tại.
+You are not authorize to view this invoice.,Bạn đang không cho phép để xem hóa đơn này.
+The creditmemo no longer exists.,Các creditmemo không còn tồn tại.
+You are not authorize to view this creditmemo.,Bạn đang không cho phép để xem creditmemo này.
+The order has been cancelled.,Trình tự đã bị hủy.
+You are not permitted to cancel this order.,Bạn không được phép hủy bỏ lệnh này.
+We can't cancel order right now.,Chúng ta không thể hủy bỏ đặt hàng ngay bây giờ.
+The credit memo's total must be positive.,tổng các bản ghi nhớ tín dụng phải là số dương.
+Cannot create online refund for Refund to Store Credit.,Không thể tạo hoàn trực tuyến với Refund đến cửa hàng tín dụng.
+You created the credit memo.,Bạn tạo ra các bản ghi nhớ tín dụng.
+We can't create credit memo for order right now.,Chúng ta không thể tạo ra bản ghi nhớ tín dụng cho đơn đặt hàng ngay bây giờ.
+You sent the order email.,Bạn đã gửi email đặt hàng.
+We can't send the email order right now.,Chúng tôi không thể gửi thứ tự email ngay bây giờ.
+Can not create invoice as order is in HOLD state,"Không thể tạo hóa đơn, trật tự ở trạng thái GIỮ"
+We can't save the invoice right now.,Chúng tôi không thể tiết kiệm hóa đơn ngay bây giờ.
+You can't create an invoice without products.,Bạn không thể tạo một hóa đơn mà không sản phẩm.
+Invoice has been created for this order.,Hoá đơn đã được tạo ra cho đơn đặt hàng này.
+Cannot create Invoice for this order.,Không thể tạo hóa đơn cho đơn đặt hàng này.
+We can't create invoice for order right now.,Chúng ta không thể tạo ra hóa đơn cho đơn đặt hàng ngay bây giờ.
+Can not create shipment as order is in HOLD state,Không thể tạo lô hàng như trật tự ở trạng thái GIỮ
+Cannot do shipment for the order separately from invoice.,không thể làm lô hàng cho trật tự tách biệt với hóa đơn.
+Cannot do shipment for the order.,không thể làm lô hàng cho đơn đặt hàng.
+The shipment has been created.,Các lô hàng đã được tạo.
+The shipping label has been created.,Các nhãn vận chuyển đã được tạo.
+We can't ship order right now.,Chúng tôi không thể chuyển đơn đặt hàng ngay bây giờ.
+That product is not yours,sản phẩm mà không phải của mình
+This product no longer exists.,Sản phẩm này không còn tồn tại.
+Catalog,Mục lục
+Default Values,Giá trị mặc định
+Could not get preview image information. Please check your connection and try again.,Không thể lấy thông tin hình ảnh xem trước. Vui lòng kiểm tra kết nối của bạn và thử lại.
+Please correct the data sent value.,Xin vui lòng sửa các dữ liệu gửi đi giá trị.
+Show more,Cho xem nhiều hơn
+Additional data,Dữ liệu bổ sung
+Following Error(s) has been occurred during importing process:,Sau Lỗi (s) đã xảy ra trong quá trình nhập khẩu:
+Only the first 100 errors are shown. ,Chỉ có 100 lỗi đầu tiên được hiển thị.
+in row(s):,trong hàng):
+Please make sure to define SKU values for all processed products.,Hãy chắc chắn để xác định giá trị SKU cho tất cả các sản phẩm chế biến.
+A total of %1 record(s) have been updated.,Tổng cộng có 1% kỷ lục (s) đã được cập nhật.
+Something went wrong while updating the product(s) status.,Một cái gì đó đã đi sai khi cập nhật sản phẩm (s) trạng thái.
+"Your product limit is %1, please upgrade the membership package","giới hạn sản phẩm của bạn là% 1, hãy nâng cấp gói thành viên"
+There is no data for the export.,Không có dữ liệu cho xuất khẩu.
+Maximum error count has been reached or system error is occurred!,đếm lỗi tối đa đã đạt hoặc lỗi hệ thống đang xảy ra!
+Import successfully done,Nhập khẩu thực hiện thành công
+Unable to save product,Không thể lưu sản phẩm
+You saved the product.,Bạn lưu sản phẩm.
+SKU for product %1 has been changed to %2.,SKU cho sản phẩm% 1 đã được đổi thành% 2.
+You duplicated the product.,Bạn nhân đôi sản phẩm.
+The image cannot be removed as it has been assigned to the other image role,Những hình ảnh không thể được gỡ bỏ vì nó đã được giao cho vai trò hình ảnh khác
+"Sorry, but the data is invalid or the file is not uploaded.","Xin lỗi, nhưng dữ liệu không hợp lệ hoặc file không được tải lên."
+The file was not uploaded.,Các tập tin không được tải lên.
+This file is empty. Please try another one.,Tập tin này là trống. Vui lòng thử một số khác.
+Data validation failed. Please fix the following errors and upload the file again.,xác nhận dữ liệu thất bại. Hãy sửa các lỗi sau đây và tải lên các tập tin một lần nữa.
+"File is valid! To start import process press ""Import"" button","Tập tin là hợp lệ! Để bắt đầu nhập khẩu quá trình nhấn nút ""Nhập"""
+"The file is valid, but we can't import it for some reason.","Các tập tin có giá trị, nhưng chúng tôi không thể import nó đối với một số lý do."
+"Checked rows: %1, checked entities: %2, invalid rows: %3, total errors: %4","hàng kiểm tra:% 1, các đơn vị kiểm tra:% 2, hàng không hợp lệ:% 3, tổng số lỗi:% 4"
+Please specify a carrier.,Hãy xác định một tàu sân bay.
+Please enter a tracking number.,Vui lòng nhập một số theo dõi.
+Cannot add tracking number.%1,Không thể thêm theo dõi số. 1%
+We can't load track with retrieving identifier right now.%1,Chúng tôi không thể tải ca khúc với lấy định danh ngay bây giờ.% 1
+We can't initialize shipment for adding tracking number.,Chúng tôi không thể khởi tạo lô hàng để thêm số theo dõi.
+We can't delete tracking number.,Chúng ta không thể xóa theo dõi số.
+Something went wrong while saving the vacation.,Một cái gì đó đã đi sai trong khi tiết kiệm các kỳ nghỉ.
+"You must confirm your account. Please check your email for the confirmation link or <a href=""%1"">click here</a> for a new link.","Bạn phải xác nhận tài khoản của bạn. Hãy kiểm tra email của bạn để liên kết xác nhận hoặc <a href=""%1""> bấm vào đây </a> cho một liên kết mới."
+"There is already an account with this email address. If you are sure that it is your email address, <a href=""%1"">click here</a> to get your password and access your account.","Đã có một tài khoản với địa chỉ email này. Nếu bạn chắc chắn rằng nó là địa chỉ email của bạn, <a href=""%1""> nhấp vào đây </a> để có được mật khẩu và truy cập của bạn tài khoản của bạn."
+We can't save the customer.,Chúng tôi không thể tiết kiệm cho khách hàng.
+Please make sure your passwords match.,Hãy chắc chắn rằng mật khẩu của bạn phù hợp.
+"If you are a registered VAT customer, please <a href=""%1"">click here</a> to enter your shipping address for proper VAT calculation.","Nếu bạn là khách hàng đã đăng ký thuế GTGT, vui lòng <a href=""%1""> nhấp vào đây </a> để nhập địa chỉ vận chuyển của bạn để tính thuế GTGT phù hợp."
+"If you are a registered VAT customer, please <a href=""%1"">click here</a> to enter your billing address for proper VAT calculation.","Nếu bạn là khách hàng đã đăng ký thuế GTGT, vui lòng <a href=""%1""> nhấp vào đây </a> để nhập địa chỉ thanh toán của bạn để tính thuế GTGT phù hợp."
+Thank you for registering with %1.,Cảm ơn bạn đã đăng ký với% 1.
+"This account is not confirmed. <a href=""%1"">Click here</a> to resend confirmation email.","Tài khoản này không được xác nhận. <a href=""%1""> Nhấn vào đây để </a> email xác nhận gửi lại."
+Invalid login or password.,đăng nhập không hợp lệ hoặc mật khẩu.
+A login and a password are required.,Thông tin đăng nhập và mật khẩu được yêu cầu.
+Close,Đóng
+Open,Mở
+Processing,Chế biến
+Done,Làm xong
+Approved,Tán thành
+Not Approved,không được chấp thuận
+Reject,Từ chối
+Accept,Chấp nhận
+Enabled,Bật
+Disabled,Tàn tật
+- Disable these emails -,- Vô hiệu hóa những email -
+List,Danh sách
+Grid,lưới
+Product was not registered,Sản phẩm đã được đăng ký không
+Store was not registered,Cửa hàng đã không được đăng ký
+URL key already exists.' .,chìa khóa URL đã tồn tại.' .
+URL key for specified store already exists.,chìa khóa URL cho cửa hàng chỉ định đã tồn tại.
+Product Attribute,Thuộc tính sản phẩm
+Subtotal,Subtotal
+Total Items Quantity,Tổng số đầu mục Số lượng
+Total Weight,Tổng khối lượng
+Payment Method,Phương thức thanh toán
+Shipping Method,Phương pháp vận chuyển
+Shipping Postcode,Vận Chuyển Mã bưu
+Shipping Region,Region Vận Chuyển
+Shipping State/Province,Vận Chuyển Tỉnh / Nhà nước
+Shipping Country,Vận Chuyển Quốc
+Product attribute combination,kết hợp thuộc tính sản phẩm
+Products subselection,sản phẩm subselection
+Conditions combination,điều kiện kết hợp
+Cart Attribute,Giỏ Thuộc tính
+Disapproved,Không được chấp thuận
+Could not save the seller info: %1,Không thể lưu thông tin người bán:% 1
+Not Submited,không Submited
+Unapproved,không được chấp thuận
+"We can't process your request right now. Sorry, that's all we know.","Chúng tôi không thể xử lý yêu cầu của bạn ngay bây giờ. Xin lỗi, đó là tất cả chúng ta đều biết."
+Owl Carousel,Owl Carousel
+Bootstrap Carousel,bootstrap Carousel
+Amount from order,Số tiền từ trật tự
+invoice,hóa đơn
+Refunded,hoàn
+Refund from order,Hoàn trả từ trật tự
+Edit,Biên tập
+View Customer,Xem khách hàng
+View,Lượt xem
+Delete,Xóa bỏ
+"Delete ""${ $.$data.subject }""","Xóa ""$ {$. $ Data.subject}"""
+"Are you sure you wan't to delete a ""${ $.$data.subject }"" record?","Bạn có chắc chắn bạn wan't để xóa một ""$ {$. $ Data.subject}"" kỷ lục?"
+Unread,chưa đọc
+Read,Đọc
+What is the reason to deny this product?,lý do để từ chối sản phẩm này là gì?
+Deny,Phủ nhận
+Reset,Cài lại
+Do you want set commission for product?,Bạn có muốn cài hoa hồng cho sản phẩm?
+View Product,xem sản phẩm
+View Seller,Xem người bán
+All Store Views,Tất cả các lần xem Cửa hàng
+Delete ${ $.$data.name },Xóa $ {$. $ Data.name}
+Are you sure you want to delete a ${ $.$data.name } record?,Bạn có chắc chắn muốn xóa một {data.name $. $} Kỷ lục $?
+Approved ${ $.$data.name },Phê duyệt $ {$. $ Data.name}
+Are you sure you want to enable a ${ $.$data.name } record?,Bạn có chắc chắn bạn muốn kích hoạt một {data.name $. $} Kỷ lục $?
+Disapproved ${ $.$data.name },Không được chấp thuận $ {$. $ Data.name}
+Are you sure you want to disable a ${ $.$data.name } record?,Bạn có chắc chắn bạn muốn vô hiệu hóa một {data.name $. $} Kỷ lục $?
+Complete Withdrawal,Toàn bộ Rút
+Canceled,bị hủy bỏ
+Add Attribute,Thêm thuộc tính
+Add Selected,Thêm lựa chọn
+Select Attribute,Chọn Thuộc tính
+New Attribute,Thuộc tính mới
+New Category,New loại
+Categories,Thể loại
+[GLOBAL],[TOÀN CẦU]
+Customizable Options,Tùy chỉnh Tùy chọn
+Custom options let customers choose the product variations they want.,tùy chọn tùy chỉnh cho phép khách hàng lựa chọn các biến thể sản phẩm mà họ muốn.
+Import Options,Tùy chọn nhập khẩu
+Add Option,Thêm Tùy chọn
+New Option,Lựa chọn mới
+Select Product,Chọn sản phẩm
+Import,nhập khẩu
+Option Title,Lựa chọn Tiêu đề
+Add Value,Thêm giá trị
+Option Type,Loại tùy chọn
+-- Please select --,-- Vui lòng chọn --
+Required,Cần thiết
+Price Type,Giá Loại
+Max Characters,Nhân vật Max
+Compatible File Extensions,Phần mở rộng tập tin tương thích
+Maximum Image Size,Maximum Size Image
+Please leave blank if it is not an image.,Hãy bỏ trống nếu nó không phải là một hình ảnh.
+px.,px.
+%1,% 1
+[WEBSITE],[TRANG MẠNG]
+[STORE VIEW],[CỬA HÀNG XEM]
+This item has weight,Mục này có trọng lượng
+This item has no weight,Mục này không có trọng lượng
+Set Product as New From,Set sản phẩm như mới từ
+"Related Products, Up-Sells, and Cross-Sells","Sản phẩm liên quan, Up-Sells, và Cross-Sells"
+Related products are shown to customers in addition to the item the customer is looking at.,sản phẩm liên quan được hiển thị cho khách hàng ngoài các mục khách hàng đang xem xét.
+Add Related Products,Thêm Sản phẩm liên quan
+Related Products,những sản phẩm liên quan
+An up-sell item is offered to the customer as a pricier or higher-quality alternative to the product the customer is looking at.,Một mục up-bán được cung cấp cho khách hàng như một đắt hoặc có chất lượng cao thay thế cho các sản phẩm khách hàng đang xem xét.
+Add Up-Sell Products,Thêm Up-Bán Sản phẩm
+Up-Sell Products,Up-Bán Sản phẩm
+"These ""impulse-buy"" products appear next to the shopping cart as cross-sells to the items already in the shopping cart.","Những sản phẩm ""xung-mua"" xuất hiện bên cạnh các giỏ mua hàng như cross-bán cho các mặt hàng đã có trong giỏ hàng."
+Add Cross-Sell Products,Thêm Cross-Bán Sản phẩm
+Cross-Sell Products,Cross-Bán Sản phẩm
+Add Selected Products,Thêm sản phẩm được chọn
+Remove,Tẩy
+Thumbnail,Hình nhỏ
+Product in Websites,Sản phẩm trong trang web
+"If your Magento site has multiple views, you can set the scope to apply to a specific view.","Nếu trang web của Magento của bạn có nhiều quan điểm, bạn có thể thiết lập các phạm vi áp dụng cho một cái nhìn cụ thể."
+Websites,trang web
+name,Tên
+Copy Data from,Sao chép dữ liệu từ
+Browse to find or drag image here,Duyệt tìm hoặc kéo hình ảnh ở đây
+Delete image,Xóa ảnh
+Hidden,giấu
+Alt Text,Alt Text
+Image Size,Kích cỡ hình
+{size},{kích thước}
+Image Resolution,Độ phân giải hình ảnh
+{width}^{height} px,{Width} ^ {height} px
+Browse Files...,Duyệt Files ...
+Choose Affected Attribute Set,Chọn Thuộc tính bị ảnh hưởng Set
+Confirm,Xác nhận
+start typing to search attribute,bắt đầu gõ để tìm kiếm thuộc tính
+Title:,Tiêu đề:
+Uploaded:,tải lên:
+Uploader:,Uploader:
+Duration:,Thời gian:
+Basic Settings,Cài đặt cơ bản
+Advanced Settings,Cài đặt nâng cao
+Changes have been made to this section that have not been saved.,Thay đổi đã được thực hiện để phần này chưa được lưu.
+This tab contains invalid data. Please resolve this before saving.,Tab này chứa dữ liệu không hợp lệ. Hãy giải quyết này trước khi lưu.
+Continue,Tiếp tục
+Mass Actions,Thánh lễ Actions
+Select All,Chọn tất cả
+Unselect All,Bỏ chọn tất cả
+Select Visible,chọn Visible
+Unselect Visible,Bỏ chọn Visible
+Upload,Tải lên
+Upload Image Product,Tải lên hình ảnh sản phẩm
+Product Upload,Tải lên sản phẩm
+Import Settings,Cài đặt nhập khẩu
+Check Data,Kiểm tra dữ liệu
+Please Select,Vui lòng chọn
+Download Sample File,Tải mẫu file
+Import Behavior,Hành vi nhập khẩu
+Add/Update,Thêm / Cập nhật
+Error Handling,Xử lý lỗi
+Stop on Error,Dừng trên Lỗi
+Skip error entries,Bỏ qua các mục lỗi
+Allowed Errors Count,Đếm lỗi cho phép
+Please specify number of errors to halt import process,Hãy xác định số lỗi cho quá trình nhập dừng
+Field separator,Dòng separator
+Multiple value separator,Nhiều giá trị phân cách
+File to Import,File để Import
+Select File to Import,Chọn File để Import
+Images File Directory,Images File thư mục
+*Notice Import image first,* Hình ảnh Thông báo nhập đầu tiên
+Additional Settings,Cài đặt thêm
+records found,dữ liệu được tìm thấy
+selected,đã chọn
+per page,trên một trang
+Previous page,Trang trước
+of %1,% 1
+Next page,Trang tiếp theo
+Export to:,Xuất khẩu sang:
+Marketplace,Thương trường
+Marketplace Dashboard,Bảng điều khiển thị trường
+Seller Profile,bán hồ sơ
+Manage Products,Giám đốc sản phẩm
+Create Attribute,tạo Attribute
+New Products,Sản phẩm mới
+My Products List,Danh sách Sản phẩm
+My Transaction List,Danh sách giao dịch của tôi
+Manage Print PDF Header Info,Quản lý In PDF Tiêu đề Thông tin
+My Order History,Tôi tự Lịch sử
+Become Seller,Người bán trở thành
+Personal Information,Thông tin cá nhân
+Seller General,bán chung
+Group,Nhóm
+Url Key,url chính
+"Example: Insert landofcoder,url shop will ","Ví dụ: Chèn landofcoder, cửa hàng url chí"
+Address Information,Thông tin địa chỉ
+Company,Công ty
+Phone Number,Số điện thoại
+Street Address,Địa chỉ
+Street Address %1,Địa chỉ 1%
+City,thành phố
+State/Province,Tỉnh / Nhà nước
+"Please select a region, state or province.","Vui lòng chọn một vùng, tiểu bang hoặc tỉnh."
+Zip/Postal Code,Zip / Postal Code
+* Required Fields,* Phần bắt buộc
+Sign-in Information,Đăng nhập Thông tin
+Password,Mật khẩu
+Password Strength,mật khẩu mạnh
+No Password,Không mật khẩu
+Confirm Password,Xác nhận mật khẩu
+Privacy Policy,Chính sách bảo mật
+I agree the Terms and Condition,Tôi đồng ý các điều khoản và điều kiện
+Terms and Conditions,Các điều khoản và điều kiện
+Create an Account,Tạo một tài khoản
+Back,Trở lại
+Sold By,Được bán bởi
+Visit Shop,Ghé thăm gian hàng
+We can't find seller matching the selection.,Chúng tôi không thể tìm thấy phù hợp với người bán lựa chọn.
+Created At,tạo Tại
+Post Reply Message,Đăng trả lời tin nhắn
+Message ,Thông điệp
+Post Reply,Bài trả lời
+History Message,lịch sử tin nhắn
+We can't find products matching the selection.,Chúng tôi không thể tìm thấy sản phẩm phù hợp với sự lựa chọn.
+Add to Cart,Thêm vào giỏ hàng
+In stock,Trong kho
+Out of stock,Hết hàng
+Learn More,Learn More
+Qty,Số lượng
+ Sales, Bán hàng
+ Sale, Giảm giá
+Joined since ,Tham gia từ
+What’s on your mind?,Bạn đang nghĩ gì vậy?
+Submit,Gửi đi
+Customer Name,tên khách hàng
+Customer Email,Email của khách hàng
+"Turn in to a seller today and enjoy some incredible benefits like
+				adding logo to your profile page for better branding, setting up
+				multiple products to improve conversions, etc.","Rẽ vào một người bán ngày nay và tận hưởng một số lợi ích đáng kinh ngạc như
+thêm biểu tượng vào trang cá nhân của bạn cho xây dựng thương hiệu tốt hơn, thiết lập
+nhiều sản phẩm để cải thiện chuyển đổi, vv"
+Click the button to become a Seller,Nhấp vào nút để trở thành một người bán
+"Example: Insert landofcoder,url shop will","Ví dụ: Chèn landofcoder, cửa hàng url chí"
+"I
+						agree the  Terms and Conditions","Tôi
+đồng ý các điều khoản và điều kiện"
+Admin Approval is required. Please wait until admin confirms your seller account.,Phê duyệt quản lý là bắt buộc. Hãy đợi cho đến khi quản trị viên xác nhận tài khoản của người bán.
+Returns Policies,Returns Chính sách
+Shipping Policies,vận chuyển Chính sách
+Edit Profile Information,Chỉnh sửa Thông tin
+Save Profile,Lưu hồ sơ
+Twitter ID,Twitter ID
+Facebook ID,tài khoản Facebook
+Instagram ID,Instagram ID
+Google Plus ID,Ngoài ra ID Google
+Youtube ID,Youtube ID
+Vimeo ID,Vimeo ID
+Pinterest ID,Pinterest ID
+Rating(s),Đánh giá (s)
+Registered Sellers,Người bán đã đăng ký
+"If you have an account, sign in with your email address.","Nếu bạn có tài khoản, đăng nhập bằng địa chỉ email của bạn."
+Login,Đăng nhập
+Forgot Your Password?,Quên mật khẩu?
+"Creating an account has many benefits: check out faster, keep more than one address, track orders and more.","Tạo một tài khoản có nhiều lợi ích: kiểm tra nhanh hơn, giữ nhiều hơn một địa chỉ, theo dõi đơn đặt hàng và nhiều hơn nữa."
+Customer ratings,xếp hạng khách hàng
+star,ngôi sao
+Write Your Own Review,Viết nhận xét của bạn
+You're rating,Bạn đang rating
+How do you rate this seller,Làm thế nào để bạn đánh giá người bán này
+Value,Giá trị
+Quality,Chất lượng
+What's your nickname?,Biệt danh của bạn là gì?
+What's your Email?,Email của bạn là gì?
+Summary of Your Rating,Tóm tắt đánh giá của bạn
+Let us know your thoughts,Hãy để chúng tôi biết những suy nghĩ của bạn
+Submit Rating,Gửi Đánh giá
+By,qua
+ Rating(s), Đánh giá (s)
+We can't find sellers matching the selection.,Chúng tôi không thể tìm thấy người bán hàng phù hợp với sự lựa chọn.
+Items,Mặt hàng
+of,của
+%1 Item,%1 mục
+%1 Items,% 1 Items
+Previous,Trước
+Next,Kế tiếp
+This operation can take a long time,Thao tác này có thể mất một thời gian dài
+Collapse All,Thu gọn tất cả
+Expand All,Mở rộng tất cả
+Please confirm site switching. All data that hasn't been saved will be lost.,Hãy chuyển đổi trang web xác nhận. Tất cả các dữ liệu mà chưa được lưu sẽ bị mất.
+None,không ai
+Use Default Value,Sử dụng giá trị mặc định
+"Manage Titles (Size, Color, etc.)","Quản lý Titles (Kích thước, màu sắc, vv)"
+Manage Options (Values of Your Attribute),Quản lý Options (Các giá trị của thuộc tính của bạn)
+Is Default,Mặc định là
+Sort Option,Sắp xếp Tùy chọn
+Double click on a group to rename it.,Kích đúp vào một nhóm để đổi tên nó.
+Unassigned Attributes,Thuộc tính Unassigned
+A name is required.,Một tên là bắt buộc.
+This group contains system attributes. Please move system attributes to another group and try again.,Nhóm này chứa các thuộc tính hệ thống. Xin hãy di chuyển thuộc tính hệ thống để một nhóm khác và thử lại.
+Please enter a new group name.,Vui lòng nhập tên nhóm mới.
+"An attribute group named ""/name/"" already exists"".","Một nhóm thuộc tính có tên là ""/ tên /"" đã tồn tại""."
+"Sorry, we're unable to complete this request.","Rất tiếc, chúng tôi không thể hoàn thành yêu cầu này."
+You can't remove attributes from this attribute set.,Bạn không thể xóa thuộc tính từ bộ thuộc tính này.
+Empty,Trống
+Custom Options,tùy chọn tùy chỉnh
+This is a required option.,Đây là một lựa chọn cần thiết.
+The field isn't complete.,Các lĩnh vực không phải là hoàn tất.
+Change,Thay đổi
+Compatible file extensions to upload,phần mở rộng tập tin tương thích để tải lên
+Maximum image width,chiều rộng hình ảnh tối đa
+Maximum image height,chiều cao hình ảnh tối đa
+Maximum number of characters:,số ký tự tối đa:
+Quantity,Định lượng
+start typing to search template,bắt đầu gõ để tìm kiếm mẫu
+Product online,trực tuyến sản phẩm
+Product offline,ẩn sản phẩm
+Product online status,Sản phẩm trạng thái trực tuyến
+Advanced Inventory,Hàng tồn kho cao
+Manage Stock,quản lý Cổ
+Use Config Settings,Sử dụng Cài đặt Config
+Out-of-Stock Threshold,Out-of-Cổ Threshold
+Minimum Qty Allowed in Shopping Cart,Tối thiểu Số lượng phép trong Giỏ hàng
+Maximum Qty Allowed in Shopping Cart,Tối đa Số lượng phép trong Giỏ hàng
+Qty Uses Decimals,Số lượng Sử dụng thập phân
+Backorders,Backorders
+Notify for Quantity Below,Thông báo cho Số lượng Dưới
+Enable Qty Increments,Bật Số lượng Tăng
+Qty Increments,Số lượng Increments
+Stock Availability,Còn hàng
+In Stock,Trong kho
+Out of Stock,Hết hàng
+Add Product To Websites,Thêm sản phẩm Để trang web
+Remove Product From Websites,Di chuyển sản phẩm từ trang web
+"To hide an item in catalog or search results, set the status to ""Disabled"".","Để ẩn một mục trong danh mục hoặc kết quả tìm kiếm, thiết lập trạng thái thành ""Disabled""."
+Step 2: Attribute Values,Bước 2: Thuộc tính Giá trị
+Select values from each attribute to include in this product. Each unique combination of values creates a unigue product SKU.,Chọn giá trị từ mỗi thuộc tính để đưa vào sản phẩm này. Mỗi sự kết hợp độc đáo của các giá trị tạo ra một sản phẩm unigue SKU.
+Sort Variations,Sắp xếp Biến thể
+Options,tùy chọn
+Deselect All,Bỏ chọn tất cả
+Remove Attribute,Remove Thuộc tính
+Save Option,Lưu Tùy chọn
+Remove Option,Remove Tùy chọn
+"Step 3: Bulk Images, Price and Quantity","Bước 3: Bulk Images, Giá và lượng"
+Based on your selections %1 new products will be created. Use this step to customize images and price for your new products.,Dựa trên sự lựa chọn của bạn% 1 sản phẩm mới sẽ được tạo ra. Sử dụng bước này để tùy chỉnh hình ảnh và giá cho sản phẩm mới của bạn.
+Images,hình ảnh
+Apply single set of images to all SKUs,Áp dụng bộ duy nhất của hình ảnh cho tất cả các SKU
+Apply unique images by attribute to each SKU,Áp dụng hình ảnh độc đáo bởi thuộc tính cho mỗi SKU
+Skip image uploading at this time,Bỏ qua hình ảnh tải lên vào thời điểm này
+Remove image,Remove ảnh
+Select attribute,Chọn thuộc tính
+Select,Lựa chọn
+Apply single price to all SKUs,Áp dụng mức giá duy nhất cho tất cả các SKU
+Apply unique prices by attribute to each SKU,Áp dụng giá độc đáo bởi thuộc tính cho mỗi SKU
+Skip price at this time,Bỏ qua giá vào thời điểm này
+Apply single quantity to each SKUs,Áp dụng số lượng duy nhất để mỗi SKU
+Apply unique quantity by attribute to each SKU,Áp dụng số lượng độc đáo bởi thuộc tính cho mỗi SKU
+Skip quantity at this time,Bỏ qua số lượng vào thời điểm này
+Step 1: Select Attributes,Bước 1: Chọn Thuộc tính
+Selected Attributes:,Thuộc tính được chọn:
+Step 4: Summary,Bước 4: Tóm tắt
+We can't save custom-defined options for bundles with dynamic pricing.,Chúng tôi không thể lưu tùy chọn tùy chỉnh được định nghĩa cho bó với giá cả năng động.
+Delete Custom Option,Xóa Tuỳ chỉnh Tùy chọn
+Sort Custom Options,Sắp xếp Tùy chọn Tuỳ chỉnh
+Input Type,Kiểu đầu vào
+%1 <span>x</span> %2 <span>px.</span>,% 1 <span> x </ span>% 2 <span> px. </ Span>
+Sort Custom Option,Sắp xếp Tuỳ chỉnh Tùy chọn
+Web Site,Trang mạng
+Customer Group,Nhóm khách hàng
+Item Price,Giá vật phẩm
+Action,Hoạt động
+and above,trở lên
+Delete Tier,Xóa Tier
+Product In Websites,Sản phẩm Trong trang web
+(Copy data from: %1),(Sao chép dữ liệu từ:% 1)
+Add Video,Thêm video
+Delete video,Video Xóa
+Product Alerts,Cảnh báo sản phẩm
+Allow Multiple Boxes for Shipping,Cho phép Nhiều Thùng đựng Vận Chuyển
+Save success,Lưu thành công
+Marketplace - Module by,Thị trường - Module bởi
+Landofcoder,Landofcoder
+View My Store,Xem cửa hàng của tôi
+Profile,Hồ sơ
+Log Out,Đăng xuất
+Upload Image Zip,Tải lên ảnh Zip
+Upload Images Zip,Tải lên hình ảnh Zip
+Images Zip,hình ảnh Zip
+Credit Amount,Credit Amount
+Total Sales,Tổng số bán hàng
+Total Orders,Tổng số đơn đặt hàng
+Total Products,Số sản phẩm
+Sales Report Day ,Ngày bán hàng Báo cáo
+Sales Report Month,Báo cáo bán hàng theo tháng
+Sales Report Year,Bán hàng Báo cáo năm
+Your top countries,quốc gia hàng đầu của bạn
+Earning amount from country countries,Kiếm tiền từ nước nước
+Total Order,Tổng số thứ tự
+Total Earning,Tổng số Tích luỹ
+Last Orders,Đơn đặt hàng mới nhất
+Best Seller,Người bán hàng giỏi nhất
+Most Viewed Products,Sản phẩm xem nhiều nhất
+Order Date,Ngày đặt hàng
+Product,sản phẩm
+Id,Tôi
+Amount,Số tiền
+Seller Blance,bán blance
+Order Design,để thiết kế
+Create At,tạo Tại
+Billing Address,Địa chỉ thanh toán
+Shipping Address,Địa chỉ giao hàng
+<b>Order:</b> # %1,<B> Đặt hàng: </ b> #% 1
+Order Status,Tình trạng đặt hàng
+Purchased From,Mua từ
+Account Information ,thông tin tài khoản
+Return to Stock,Return to Cổ
+Qty to Refund,SL đặt Refund
+Tax Amount,thuế Số tiền
+Discount Amount,giảm Số tiền
+Row Total,Row Tổng số
+Admin Commission,Ủy ban quản trị
+Seller Total,bán Tổng số
+Ordered,ra lệnh
+Invoiced,hóa đơn
+Payment Methods,Phương thức thanh toán
+The order was placed using,Lệnh được đặt sử dụng
+Credit Memo Comments,Memo tín dụng Comments
+Comment Text,comment chữ
+Order Totals,Các tổng số thứ tự
+Tax,Thuế
+Discount,Giảm giá
+Refund Shipping,hoàn Vận Chuyển
+Adjustment Refund,Điều chỉnh Refund
+Adjustment Fee,điều chỉnh Phí
+Grand Total,Tổng cộng
+Append Comments,Nối Comments
+Visible on Frontend,Visible trên Frontend
+Email Copy of Credit Memo,Gửi email Bản sao Memo tín dụng
+Refund Offline,hoàn tuyến
+Refund Online,hoàn trả trực tuyến
+Refund,Hoàn tiền
+Invoice Date,Invoice ngày
+Bill to Name,Bill Tên
+Grand Total (Base),Tổng cộng (Base)
+Grand Total (Purchased),Tổng cộng (đã mua)
+Bulk Actions,Hành động số lượng lớn
+Invoice Design,Thiết kế hóa đơn
+Export Pdf file,tập tin xuất khẩu Pdf
+<b>Invoice</b> # %1,<B> Hóa đơn </ b> #% 1
+Invoice Totals,Các tổng số hóa đơn
+Shipping & Handling,Vận chuyển & Xử lý
+Seller Amount,bán Amount
+Date,Ngày
+Currency,Tiền tệ
+Cancel Order,Hủy đơn hàng
+Are you sure you want to cancel this order?,Bạn có chắc chắn muốn hủy lệnh này?
+Send Email,Gửi email
+Are you sure you want to send an order email to customer?,Bạn có chắc chắn muốn gửi một email để khách hàng?
+Are you sure you want to create invoice?,bạn có chắc bạn muốn tạo hoá đơn?
+Credit Memo,Bản ghi nhớ tín dụng
+Are you sure you want to create credit memo for order?,bạn có chắc bạn muốn tạo bản ghi nhớ tín dụng cho đơn đặt hàng?
+Ship,Tàu
+Are you sure you want to create ship for order?,bạn có chắc bạn muốn tạo tàu cho đơn đặt hàng?
+Item Status,mục Status
+Tax Percent,Phần trăm thuế
+Shipped,vận chuyển
+Track information,Theo dõi thông tin
+Shipped By,Vận chuyển bằng
+Tracking Number,Số theo dõi
+No shipping information available,Không có thông tin vận chuyển có sẵn
+Carrier,Vận chuyển
+Refund Total,hoàn Tổng số
+Shipment,lô hàng
+Table Shipment,bảng Lô hàng
+Ship Date,Ngày xuất hàng
+Order #,Đặt hàng #
+Ship to Name,Gửi đến Tên
+Total Quantity,Tổng số lượng
+Shipment Design,Thiết kế lô hàng
+<b>Shipment</b> # %1,<B> Lô hàng </ b> #% 1
+Shipping and Tracking Information,Vận chuyển và Thông tin theo dõi
+Track this shipment,Theo dõi lô hàng này
+Number,Con số
+Add,Thêm vào
+Items Shipped,mặt hàng Đã giao
+Product Name,tên sản phẩm
+Qty Shipped,Số lượng Shipped
+Today's Sales,Hôm nay của Sales
+Today's Earnings,Hiện nay Thu nhập
+Current Month's Sales,Sales Current Month của
+Current Month's Earnings,Thu nhập hiện tại của tháng
+Sales Report,báo cáo bán hàng
+Browse to find or drag image here(Size 1240x400),Duyệt tìm hoặc kéo hình ảnh ở đây (Kích thước 1240x400)
+Browse to find or drag image here(Size 200x200),Duyệt tìm hoặc kéo hình ảnh ở đây (Kích thước 200x200)
+Social Media,Truyền thông xã hội
+Facebook Name,Tên Facebook
+Facebook Page ID,Facebook trang ID
+Linkedin ID,Linkedin ID
+Printerest ID,Printerest ID
+Welcome,Chào mừng bạn
+Online,Trực tuyến
+Sender Name,Tên người gửi
+Sender Email,Người gửi email
+Post a Reply,Gửi một trả lời
+Message History,Lịch sử tin nhắn
+Sales,Bán hàng
+Manage Product,quản lý sản phẩm
+Simple Product,Sản phẩm đơn giản
+Virtual Product,Sản phẩm ảo
+Configurable Product,Sản phẩm cấu hình
+Vacation Setting,Setting nghỉ
+Mass Import/Export,Khối Import / Export
+Upload Image,Tải lên ảnh
+ Withdrawal, sự rút lui
+You can withdraw up to,Bạn có thể rút lên đến
+Min amount ,lượng min
+Fee ,Học phí
+Amount to withdraw,Số tiền rút
+ email account, Tài khoản email
+  Info,  Thông tin
+You do not have the minimum amount to withdraw,Bạn không có số tiền tối thiểu để rút
+Nick Name,Tên nick
+Rating,Xếp hạng
+Comment,Bình luận
+All Review,Tất cả giá
+Author,tác giả
+Guest,Khách mời
+Summary Rating,Tóm tắt Đánh giá
+Summary of Review,Tổng kết đánh giá
+Vacation Status,Tình trạng nghỉ
+Turn ON,Bật
+Turn OFF,Tắt
+Vacation Message,tin nhắn nghỉ
+Vacation Date From,Nghỉ ngày Từ
+Vacation Date To,Ngày nghỉ Để
+Add Cart button text,Hiển thị văn bản trên nút add vào giỏ hàng khi bán đi nghỉ
+Select Date,Chọn ngày
+Withdrawal information,thông tin thu hồi
+ Email Account, Tài khoản email
+Net Amount,Số lượng tịnh
+Admin Message,quản trị tin nhắn
+Withdrawal Request,rút Yêu cầu
+Your balance,Số dư tài khoản
+Method,phương pháp
+Withdrawals History,Lịch sử rút tiền
+Total Amount Received,Tổng số tiền đã nhận
+Created,Tạo
+Store View:,Cửa hàng xem:
+Stores Configuration,cửa hàng Cấu hình
+Please confirm scope switching. All data that hasn't been saved will be lost.,Hãy phạm vi xác nhận chuyển đổi. Tất cả các dữ liệu mà chưa được lưu sẽ bị mất.
+Insert Widget...,Chèn Widget ...
+We don't recognize or support this file extension type.,Chúng tôi không nhận ra hoặc hỗ trợ tập tin kiểu mở rộng này.
+Insert Variable...,Insert Variable ...
+Select All on This Page,Chọn Tất cả trên trang này
+Deselect All on This Page,Bỏ chọn tất cả trên trang này
+Go to Details Page,Chuyển đến Chi tiết Trang
+We could not detect a size.,Chúng tôi không thể phát hiện một kích thước.
+Image Detail,hình ảnh chi tiết
+Warning message,Tin nhắn cảnh báo
+New Product Review,Đánh giá sản phẩm mới
+Here are the products you're about to create.,Dưới đây là các sản phẩm bạn sắp tạo.
+Associated Products,Associated Sản phẩm
+You created these products for this configuration.,Bạn tạo ra những sản phẩm dành cho cấu hình này.
+Disassociated Products,disassociated Sản phẩm
+These products are not associated.,Những sản phẩm này không liên quan.
+Ok,Đồng ý
+Add Products to New Option,Thêm sản phẩm đến New Tùy chọn
+"Add Products to Option ""%1""","Thêm sản phẩm để lựa chọn ""% 1"""
+Video Error,Lỗi video
+Unknown video type,loại video Unknown
+Invalid video url,url video không hợp lệ
+Youtube API key is invalid,Youtube API key không hợp lệ
+Video cant be shown due to the following reason: ,Video không thể được hiển thị do các nguyên nhân sau:
+Video not found,Video không được tìm thấy
+New Video,Video mới
+Edit Video,Chỉnh sửa video
+Images and Videos,Hình ảnh và Video
+Select...,Lựa chọn...
+Attributes,Thuộc tính
+"Lof All - <a href=""http://landofcoder.com"" target=""_BLANK"" title=""""Magento Marketplace, Opencart Marketplace, Magento 2 Extension, Free Magento Extension, Opencart Advanced Reports"">landofcoder.com</a>","Lof Tất cả - <a target=""_blank"" href=""http://landofcoder.com"" title=""""Magento Marketplace, Opencart Marketplace, Magento 2 Extension, miễn phí Magento Extension, Opencart nâng cao Reports""> landofcoder.com </ a >"
+Market Place,Thương trường
+General Settings,Cài đặt chung
+Seller List Url,Danh sách người bán Url
+Seller Url Prefix,Bán Url Tiền tố
+Seller Url Suffix,Bán Url Suffix
+Rating Approval Required,Yêu cầu đánh giá phê duyệt
+Seller Approval Required,Yêu cầu người bán chấp thuận
+Seller Settings,bán Cài đặt
+Need Admin Approval Product,Cần quản lý phê duyệt sản phẩm
+Seller Commission(%),Bán Commission (%)
+Enter global commission for sellers.If you don't using commission in http://yourdomain.com/admin/lofmarketplace/commission/index,Nhập hoa hồng toàn cầu cho sellers.If bạn không sử dụng hoa hồng trong http://yourdomain.com/admin/lofmarketplace/commission/index
+Sales Settings,Cài đặt bán hàng
+Can Send Email,Thể Gửi Email
+Email admin,quản trị email
+Can Create Ship,Có thể Tạo Ship
+Can Create Refund,Có thể Tạo Refund
+Seller Panel,bán Bảng điều chỉnh
+Favicon Icon,favicon Biểu tượng
+Default Title,Tiêu đề mặc định
+Header Icon,tiêu đề Biểu tượng
+Header Text,văn bản Tiêu đề
+Footer Text,Footer Tiêu đề
+Email Settings,Cài đặt email
+Enable Send Email,Kích hoạt tính năng Gửi Email
+Email Sender,email của bạn
+Choose template for emailing customer,Chọn mẫu cho gửi email cho khách hàng
+Choose template for emailing seller,Chọn mẫu cho gửi email cho người bán
+Choose template for email reply,Chọn mẫu cho email trả lời
+Choose email template for new rating,Chọn mẫu email để đánh giá mới
+Choose email template for new order,Chọn mẫu email cho đơn đặt hàng mới
+Choose email template for new invoice,Chọn mẫu email cho hóa đơn mới
+Choose email template for new shipment,Chọn mẫu email cho lô hàng mới
+Choose email template for new seller register,Chọn mẫu email để đăng ký bán mới
+Choose email template for approve seller,Chọn mẫu email để phê duyệt bán
+Choose email template for unapprove seller,Chọn mẫu email cho người bán Hủy phê duyệt
+Choose email template for approve product,Chọn mẫu email để phê duyệt sản phẩm
+Choose email template for unapprove product,Chọn mẫu email cho sản phẩm Hủy phê duyệt
+Seller Info On Product View Page,Người bán Thông tin về sản phẩm Xem trang
+Enabled Seller Block,Bật bán Lô
+Show Seller Title,Hiện người bán Tiêu đề
+Show Seller Logo,Hiện Seller Logo
+Show Seller Name,Tên chương trình Người bán
+Show Seller Address,Hiện người bán Địa chỉ
+Show Seller Sales,Hiện người bán bán hàng
+Show Seller Phone,Hiện người bán điện thoại
+Show Seller Contact,Hiện người bán Liên hệ
+Text Contact,văn bản Liên hệ
+Seller List Page,Danh sách người bán Trang
+Number Seller Per Page,Số người bán mỗi trang
+Empty to show all item,Trống để hiển thị tất cả mục
+SEO - Search Engine Optimization,SEO - Search Engine Optimization
+Grid Layout,lưới Layout
+Number Column on Large Desktop,Số cột trên Desktop lớn
+Large devices Desktops (≥1200px),các thiết bị máy tính để bàn lớn (≥1200px)
+Number Column on Desktop,Số cột trên Desktop
+Medium devices Desktops (≥992px),thiết bị vừa Desktops (≥992px)
+Number Column on Tablets,Số cột Tablets
+Small devices Tablets (≥768px),thiết bị nén nhỏ (≥768px)
+Number Column on Phones,Số cột trên điện thoại
+Extra small devices Phones (<768px),Thêm các thiết bị nhỏ Điện thoại (<768px)
+Group Page,nhóm trang
+Seller Multi Shipping,Người bán nhiều Vận Chuyển
+MarketPlace Seller List,Danh sách người bán trên Marketplace
+Get seller list,Lấy danh sách người bán
+Select Static Block,Chọn Static Khối
+Number of Seller to Display,Số người bán để hiển thị
+Number Item per Column,Số hàng trên mỗi cột
+Addtion Class,Addtion Lớp
+Carousel Layout,Carousel Layout
+Number Columns On Page (Phones),Số Cột Ở Trang (Điện thoại)
+Show number items when screen size bellow 480px,mục Hiển thị số khi kích thước màn hình dưới đây 480
+Number Columns On Page (Phones to Small tablets),Số Cột Ở Trang (Điện thoại cho máy tính bảng nhỏ)
+Show number items when screen size between 641px and 480px,mục Hiển thị số khi kích thước màn hình giữa 641px và 480
+Number Columns On Page (Phones to tablets),Số Cột Ở Trang (Điện thoại cho máy tính bảng)
+Show number items when screen size between 768px and 641px,mục Hiển thị số khi kích thước màn hình giữa 768px và 641px
+Number Columns On Page (Portrait tablets),Số Cột Ở Trang (tablet Portrait)
+Show number items when screen size between 979px and 769px,mục Hiển thị số khi kích thước màn hình giữa 979px và 769px
+Number Columns On Page (Default),Số Cột Ở Trang (Mặc định)
+Show number items when screen size between 1199px and 980px,mục Hiển thị số khi kích thước màn hình giữa 1199px và 980px
+Number Columns On Page (Large display),Số Cột Ở Trang (màn hình lớn)
+Show number items when screen size 1200px and up,mục Hiển thị số khi kích thước màn hình 1200px và lên
+Autoplay,Tự chạy
+Autoplay Timeout,autoplay Timeout
+Item Per Page,Mục mỗi trang
+Interval,Interval
+RTL,RTL
+Loop,Vòng
+Show dots navigations,Hiện chấm navigations
+Show next/prev buttons.,Hiển thị các nút / trước tới.
+Nav Prev Text,Nav Trước chữ
+Nav Next Text,Tiêu đề Nav Tiếp theo
+Template,Bản mẫu
+Seller ID,ID người bán
+Updated At,Cập nhật tại
+ ID, TÔI
+Seller Balance,bán Balance
+Delete items,Xóa mục
+Are you sure you want to delete selected items?,Bạn có chắc chắn muốn xóa các mục đã chọn?
+Disable,Vô hiệu hóa
+Enable,cho phép
+Active,tích cực
+Add New Group,Thêm Nhóm mới
+Bill-to Name,Bill-to Name
+Seller Email,bán Email
+Is Read,Được đọc
+Order ID,Order ID
+Increment ID,tăng ID
+Currency Code,Mã tiền tệ
+Sort Order,Thứ tự sắp xếp
+Product ID,ID sản phẩm
+Review ID,Xem lại ID
+Image,hình ảnh
+Shop URL Key,Cửa hàng chính URL
+Product Price,Giá sản phẩm
+Payment ID,ID thanh toán
+Method Payment,phương thức thanh toán
+Pay Action,Pay hành động
+List Seller,danh sách người bán
+Marketplace 1column,Marketplace 1column
+Marketplace 2columns Left,Marketplace 2columns Left
+AttributeSetText,AttributeSetText
+StatusText,StatusText
+PDF Invoices,PDF Hoá đơn
+Category Name,tên danh mục
+Parent Category,Gia phả
+Images And Videos,Hình ảnh và video
+Minimum Qty,tối thiểu Số lượng
+Use Deferred Stock Update,Sử dụng Hoãn Cổ Cập nhật
+Stock Status,Tình trạng tồn kho
+Delete selected items?,Xóa mục được chọn?
+Change status,Thay đổi trạng thái

@@ -1,0 +1,1078 @@
+Become A Seller,Word een Verkoper
+Manage Commissions,Beheer Commissies
+Add New Commission,Voeg Nieuwe Commissievoorstellen
+Save,Commissie Save
+Save and Continue Edit,Opslaan en doorgaan bewerken
+Delete Commission,Delete Commissie
+Edit Commission '%1',Commissie Edit '% 1'
+New Commission,nieuwe Commissievoorstellen
+Calculate Commission Using The Following Information,Bereken Commissie Met behulp van de volgende informatie
+Commission By,In opdracht
+Fixed Amount,Vaste hoeveelheid
+Percent Of Product Price,Percentage product Price
+Calculate Commission Based On,Bereken Commissie op basis van
+Product Price (Incl. Tax),Product Prijs (incl. BTW)
+Product Price (Excl. Tax),Product Prijs (excl. Belasting)
+Product Price After Discount (Incl. Tax),Product Prijs na korting (incl. BTW)
+Product Price After Discount (Excl. Tax),Product Prijs na korting (excl. Belasting)
+Commission,Commissie
+Discard subsequent rules,Weggooien latere regeling
+Yes,Ja
+No,Nee
+Actions,acties
+Conditions (don't add conditions if rule is applied to all products),Voorwaarden (niet voorwaarden toe te voegen als regel wordt toegepast op alle producten)
+Apply To,Van toepassing op
+Conditions,Voorwaarden
+Commission Information,Informatie van de Commissie
+Title,Titel
+Description,Omschrijving
+Status,Toestand
+From,Van
+To,Naar
+Priority,Prioriteit
+Seller Group,verkoper Group
+Store View,Store View
+General Information,General Information
+Preview,Voorbeeld
+Manage Seller Groups,Beheer Verkoper Groepen
+Add New Seller Group,Voeg Nieuwe Verkoper Group
+Save Group,Save Group
+Delete Group,Delete Group
+Edit Group '%1',Groep bewerken '% 1'
+New Group,Nieuwe groep
+Group Information,Group Information
+Group Name,Groepsnaam
+URL Key,URL Key
+Empty to auto create url key,Leeg om auto te creëren url sleutel
+Page Status,pagina Status
+Option Data,Option gegevens
+Limit Product,Limit Product
+Can Add New Product,Kan Nieuw product toevoegen
+Can Cancel Order,Kan Bestelling annuleren
+Can Create Invoice,Kan Factuur aanmaken
+Can Create Shipment,Kan Zending maken
+Can Create Credit Memo,Kan Maak Creditnota
+Hide Payment Information,Verbergen Betalingsinformatie
+The payment information of customer will be hidden from order.,De betaalgegevens van de klant wordt verborgen orde.
+Can submit comments,Kan opmerkingen te maken
+Can Use Group,Kan gebruik maken van Group
+Can Use Shipping,Can voorwaarden Verzenden
+Can Use Review,Can via Review
+Can Use Rating,Kan gebruik maken van Rating
+Can Import/Export Product,Can Import / Export Product
+Can Use Vacation,Kan gebruiken Vacation
+Can Use Report,Kan gebruik maken van Report
+Can Use Withdrawal,Kan gebruik maken van Terugtrekking
+Advanced Options,Geavanceerde mogelijkheden
+Message Seller,bericht van de verkoper
+Add New Message,Nieuw bericht Toevoegen
+Save Message,Bericht opslaan
+Delete Message,Verwijder bericht
+Edit Message '%1',Bericht bewerken '% 1'
+New Message,Nieuw bericht
+Message Information,bericht Informatie
+Subject,Onderwerpen
+Message,Bericht
+added %1 (%2),toegevoegd 1% (2%)
+Can Use Message,Kan gebruik maken van Message
+Manage Payments Method,Betalingsbeheer Method
+Add New Payment,Voeg nieuwe betaalkaarten
+Save Payment,Betaling Save
+Delete Payment,Delete Payment
+Edit Payment '%1',Betaling bewerken '% 1'
+New Payment,New Payment
+Payment Information,betalingsinformatie
+Name,Naam
+Fee By,fee Door
+Fixed Fee,Vaste vergoeding
+Percent Fee,percent Fee
+All,Allemaal
+Min Amount,min Bedrag
+Max Amount,Max Bedrag
+Order Payment,bestellen Betalen
+Note Message,Note Message
+Manage Products,Manage producten
+Add New Product,Nieuw product toevoegen
+Manage Ratings,Beheer Ratings
+Add New Rating,Voeg Nieuwe Rating
+Save Rating,Save Rating
+Delete Rating,Delete Rating
+Edit Rating '%1',Oordeel bewerken: '% 1'
+New Rating,nieuwe Rating
+Rating Information,Rating Information
+Email,E-mail
+Detail,Detail
+Seller Id,verkoper Id
+Rate 1,rate 1
+Rate 2,rate 2
+Rate 3,rate 3
+Manage Sellers,Beheer Verkopers
+Add New Seller,Voeg Nieuwe Verkoper
+Save Seller,Save Verkoper
+Delete Seller,Delete Verkoper
+Edit Seller '%1',Bewerken Verkoper '% 1'
+New Seller,nieuwe Verkoper
+Page Layout,Pagina layout
+Layout,lay-out
+Layout Update XML,Layout bijwerken XML
+Design,Ontwerp
+Seller Information,verkoper Informatie
+Seller Name,Naam van de verkoper
+Link Seller,Link Verkoper
+Contact Number,Contact nummer
+Shop Title,Shop Titel
+Customer,Klant
+Company Banner,Company Banner
+Company Logo,Bedrijfslogo
+Company Locality,bedrijf Plaats
+Company Description,bedrijfsomschrijving
+Return Policy,TERUGSTUURBELEID
+Shipping Policy,verzendingsovereenkomst
+Address,Adres
+Country,land
+Position,Positie
+Meta Data,meta data
+Page Title,Pagina titel
+Keywords,trefwoorden
+Meta Keywords,meta Trefwoorden
+Meta Description,Meta omschrijving
+ID,ID kaart
+Type,Type
+Attribute Set,attribute Set
+Visibility,Zichtbaarheid
+SKU,SKU
+Price,Prijs
+Social Infomation,social Infomation
+Twitter Active,Twitter Active
+Twitter,tjilpen
+Facebook Active,Facebook Active
+Page Facebook Id,Pagina Facebook Id
+Facebook,Facebook
+Google Plus Active,Google Plus Active
+Google Plus,Google Plus
+Youtube Active,Youtube Actief
+Youtube,Youtube
+Vimeo Active,Vimeo Active
+Vimeo,Vimeo
+Linkedin Active,Linkedin Active
+Linkedin,Linkedin
+Instagram Active,Instagram Active
+Instagram,Instagram
+Pinterest Active,Pinterest Active
+Pinterest,Pinterest
+Social Information,sociale Inlichtingen-
+Products,producten
+WYSIWYG Editor,WYSIWYG-editor
+Manage Withdrawals Method,Intrekking beheren Methode
+Add New Withdrawal,Voeg Nieuwe Intrekking
+Save Withdrawal,Save Intrekking
+Edit Withdrawal '%1',Bewerk Intrekking '% 1'
+New Withdrawal,nieuwe Intrekking
+Withdrawal Information,intrekking Informatie
+Fee,Vergoeding
+Order Withdrawal,Bestel Intrekking
+Export,Exporteren
+Export Settings,export-instellingen
+Entity Type,entiteit Type
+Export File Format,Export File Format
+Fields Enclosure,Fields Enclosure
+We can't filter an attribute with no attribute options.,We kunnen een attribuut zonder attribuut opties niet filteren.
+Exclude,Uitsluiten
+Attribute Label,Kenmerk Label
+Attribute Code,attribute Code
+Filter,Filter
+Unknown attribute filter type,Onbekend kenmerk filtertype
+Home,Huis
+Go to Home Page,Ga naar homepagina
+Create New Product,Product maken
+Create New Attribute,Create New Attribute
+Export Product,export Product
+"Images (.gif, .jpg, .png)","Afbeeldingen (.gif, .jpg, .png)"
+Import Product,import Product
+Add Product,Product toevoegen
+label,etiket
+Advanced Report,advanced Report
+Amount Transaction,transactiebedrag
+Invoice,Factuur
+ [deleted], [Geschrapt]
+View Invoice,Bekijk factuur
+Order,Bestellen
+View Order,Bestelling bekijken
+Custom Value,Custom Value
+View Shipment,Bekijk Zending
+Become a Seller,Word Verkoper
+Dashboard,Dashboard
+Edit Profile,Bewerk profiel
+Seller Login,verkoper Inloggen
+Error!,Fout!
+Info,info
+Success,Succes
+Alert,alarm
+Order # %1 %2 | %3,Bestel #% 1% 2 | % 3
+"This order contains (%1) items and therefore cannot be edited through the admin interface. If you wish to continue editing, the (%2) items will be removed,  the order will be canceled and a new order will be placed.","Deze order bevat (1%) items en kan daarom niet worden bewerkt via de beheerinterface. Als u verder wilt gaan bewerken, zal de (% 2) items worden verwijderd, wordt de bestelling geannuleerd en een nieuwe bestelling wordt geplaatst."
+Are you sure? This order will be canceled and a new one will be created instead.,Weet je het zeker? Deze bestelling geannuleerd en een nieuwe zal in plaats daarvan worden gemaakt.
+Payment,Betaling
+Save,Opslaan
+Save & Draft,Concept opslaan
+Save & New,Save & Nieuw
+Save & Duplicate,Save & Duplicate
+Save & Close,Opslaan en sluiten
+Url,url
+Preview Image,Voorbeeld Afbeelding
+Get Video Information,Get Video Informatie
+Hide from Product Page,Verbergen van Product Page
+Role,Rol
+YouTube and Vimeo supported.,YouTube en Vimeo ondersteund.
+"Vimeo supported.<br />To add YouTube video, please enter YouTube API Key first.","Vimeo ondersteund. <br /> te voegen YouTube-video, neem dan eerst voer YouTube API Key."
+Weight,Gewicht
+Create New Seller Account,Maak nieuwe Verkopersaccount
+Review,Beoordeling
+Sell On Marketplace ,Verkopen op Marketplace
+Vacation Settings,vakantie-instellingen
+Pending,In afwachting
+Completed,Voltooid
+Cancel,annuleren
+Withdrawals,onttrekkingen
+Amounts,bedragen
+Manage Seller Amount,Beheer Verkoper Bedrag
+Manage Amount Transaction,Beheer transactiebedrag
+The seller has been deleted.,De verkoper is verwijderd.
+We can't find a seller to delete.,We kunnen niet vinden van een verkoper om te verwijderen.
+Seller,Verkoper
+This seller no longer exits. ,Deze verkoper niet meer uitgangen.
+Edit Seller,bewerken Verkoper
+Sellers,verkopers
+Commissions,commissies
+A total of %1 record(s) have been deleted.,Totaal% 1 record (s) zijn verwijderd.
+A total of %1 record(s) have been disabled.,Totaal% 1 record (s) zijn uitgeschakeld.
+A total of %1 record(s) have been enabled.,Totaal% 1 record (s) zijn ingeschakeld.
+You saved this commission.,Je bewaarde deze commissie.
+Something went wrong while saving the commission.,Er is iets misgegaan bij het opslaan van de commissie.
+Seller Groups,verkoper Groepen
+Groups,groepen
+Manage Groups,Groepen beheren
+Please correct the data sent.,Corrigeer de gegevens verzonden.
+URL key already exists.,URL sleutel bestaat al.
+You saved this group.,U gered van deze groep.
+Something went wrong while saving the seller.,Er is iets misgegaan bij het opslaan van de verkoper.
+Invoices,facturen
+Manage Invoices,Beheer Facturen
+The message has been deleted.,Het bericht is verwijderd.
+We can't find a message to delete.,We kunnen niet vinden van een bericht wilt verwijderen.
+Messages,berichten
+Manage Messages,Berichten beheren
+You saved this message.,U heeft dit bericht opgeslagen.
+Orders,bestellingen
+Manage Orders,Manage Orders
+Manager Payment Method,Manager Payment Method
+Manager Payment,Manager Payment
+You saved this payment.,U gered deze betaling.
+Product has been set commission.,Product is set Commissie.
+Ratings,Waarderingen
+A total of %1 record(s) have been accept.,Totaal% 1 record (s) zijn accepteren.
+A total of %1 record(s) have been reject.,Totaal% 1 record (s) zijn afwijzen.
+You saved this rating.,U gered deze rating.
+Something went wrong while saving the rating.,Er is iets misgegaan bij het opslaan van de rating.
+Refunds,Restitutie
+Manage Refunds,Beheer terugbetalingen
+Refundrequests,Refundrequests
+Manage Refundrequests,Beheer Refundrequests
+Reviews,beoordelingen
+Manage Reviews,Beheer Reviews
+A total of %1 record(s) have been approved.,Totaal% 1 record (s) zijn goedgekeurd.
+A total of %1 record(s) have been disapproved.,Totaal% 1 record (s) zijn afgekeurd.
+The seller has been disapproved.,De verkoper is afgekeurd.
+We can't find a seller to disapproved.,We kunnen een verkoper aan afgekeurde niet vinden.
+The seller has been approved.,De verkoper is goedgekeurd.
+We can't find a seller to approved.,We kunnen niet vinden van een verkoper aan goedgekeurd.
+Something went wrong while saving the page.,Er is iets misgegaan bij het opslaan van de pagina.
+You saved this seller.,U gered deze verkoper.
+SellerProducts,SellerProducts
+Manage SellerProducts,Beheer SellerProducts
+A total of %1 record(s) have been accepted.,Totaal% 1 record (s) zijn aanvaard.
+A total of %1 record(s) have been rejected.,Totaal% 1 record (s) zijn afgewezen.
+Transactions,transacties
+Manage Transactions,Beheer Transacties
+Withdrawal,het terugtrekken
+Manage Withdrawals,Beheer Onttrekkingen
+This withdrawal no longer exits. ,Deze terugtrekking niet meer uitgangen.
+Edit Withdrawal,bewerken Intrekking
+	Withdraw Money : Amount ,Geld opnemen: Bedrag
+You must have a seller account to access,U moet een verkoper-account om toegang te krijgen
+You must have a account to access,U moet een rekening om toegang te krijgen
+"Attribute ""%1"" is required.","Attribuut ""% 1"" is vereist."
+You saved the category.,Je redde de categorie.
+Something went wrong while saving the category.,Er is iets misgegaan bij het opslaan van de categorie.
+This order no longer exists.,Deze bestelling bestaat niet meer.
+You are not authorize to manage this order.,Je hebt geen toestemming om deze bestelling te beheren.
+The invoice no longer exists.,De factuur bestaat niet meer.
+You are not authorize to view this invoice.,Je hebt geen toestemming om deze factuur te bekijken.
+The creditmemo no longer exists.,De Creditnota bestaat niet meer.
+You are not authorize to view this creditmemo.,Je hebt geen toestemming om deze Creditnota bekijken.
+The order has been cancelled.,De bestelling is geannuleerd.
+You are not permitted to cancel this order.,Het is niet toegestaan ​​om deze bestelling te annuleren.
+We can't cancel order right now.,We kunnen niet Om nu te annuleren.
+The credit memo's total must be positive.,totaal de creditnota's moet positief zijn.
+Cannot create online refund for Refund to Store Credit.,Kan geen online restitutie voor terugbetaling aan Store Credit.
+You created the credit memo.,U schiep de creditnota.
+We can't create credit memo for order right now.,We kunnen niet maken creditnota voor bestelling op dit moment.
+You sent the order email.,Je stuurde de bestelling e-mail.
+We can't send the email order right now.,We kunnen niet het e-order op dit moment te sturen.
+Can not create invoice as order is in HOLD state,Kan de factuur niet maken als bestelling is in HOLD toestand
+We can't save the invoice right now.,We kunnen niet de factuur op dit moment op te slaan.
+You can't create an invoice without products.,U kunt een factuur zonder producten die niet te maken.
+Invoice has been created for this order.,Factuur is gemaakt voor deze bestelling.
+Cannot create Invoice for this order.,Kan Factuur niet maken voor deze bestelling.
+We can't create invoice for order right now.,We kunnen geen factuur voor bestelling op dit moment te maken.
+Can not create shipment as order is in HOLD state,Kan de verzending niet aanmaken als bestelling is in HOLD toestand
+Cannot do shipment for the order separately from invoice.,Kan niet zending apart te doen voor de opdracht van de factuur.
+Cannot do shipment for the order.,Kan de verzending niet voor de order.
+The shipment has been created.,De zending is gemaakt.
+The shipping label has been created.,De verzendkosten label is gemaakt.
+We can't ship order right now.,We kunnen niet verzenden bestelling op dit moment.
+That product is not yours,Dat product is niet van jou
+This product no longer exists.,Dit product bestaat niet meer.
+Catalog,Catalogus
+Default Values,Standaard waarden
+Could not get preview image information. Please check your connection and try again.,Kon voorbeeld beeldinformatie niet. Controleer je verbinding en probeer het opnieuw.
+Please correct the data sent value.,Corrigeer de gegevens verzonden waarde.
+Show more,Laat meer zien
+Additional data,Aanvullende gegevens
+Following Error(s) has been occurred during importing process:,Volgende fout (en) is opgetreden tijdens het importeren proces:
+Only the first 100 errors are shown. ,Alleen de eerste 100 fouten worden getoond.
+in row(s):,in Rijen):
+Please make sure to define SKU values for all processed products.,Zorg ervoor dat u SKU waarden te definiëren voor alle verwerkte producten.
+A total of %1 record(s) have been updated.,Totaal% 1 record (s) zijn bijgewerkt.
+Something went wrong while updating the product(s) status.,Er is iets misgegaan tijdens het bijwerken van de (s) status van het apparaat.
+"Your product limit is %1, please upgrade the membership package","Uw limiet product is% 1, dan kunt u een upgrade van het lidmaatschap pakket"
+There is no data for the export.,Er zijn geen gegevens voor de export.
+Maximum error count has been reached or system error is occurred!,Maximum aantal fouten is bereikt of het systeem fout is opgetreden!
+Import successfully done,Import succes gedaan
+Unable to save product,Kan product op te slaan
+You saved the product.,U het product opgeslagen.
+SKU for product %1 has been changed to %2.,SKU productinformatie% 1 is gewijzigd in% 2.
+You duplicated the product.,U gedupliceerd het product.
+The image cannot be removed as it has been assigned to the other image role,Het beeld kan niet worden verwijderd als zij aan de andere afbeelding rol toegewezen
+"Sorry, but the data is invalid or the file is not uploaded.","Sorry, maar de gegevens is ongeldig of het bestand is niet geüpload."
+The file was not uploaded.,Het bestand is niet geüpload.
+This file is empty. Please try another one.,Dit bestand is leeg. Probeer een andere.
+Data validation failed. Please fix the following errors and upload the file again.,Gegevensvalidatie mislukt. Corrigeer de volgende fouten en upload het bestand opnieuw.
+"File is valid! To start import process press ""Import"" button","File is geldig! Om import proces druk op de ""Import"" knop start"
+"The file is valid, but we can't import it for some reason.","Het bestand is geldig, maar we kunnen het niet importeren om wat voor reden."
+"Checked rows: %1, checked entities: %2, invalid rows: %3, total errors: %4","Gecontroleerd tr: 1%, gecontroleerd entiteiten: 2%, ongeldige rijen: 3%, totale fouten: 4%"
+Please specify a carrier.,Geef een carrier.
+Please enter a tracking number.,Geef een volgnummer.
+Cannot add tracking number.%1,Kan niet toevoegen aantal te volgen.% 1
+We can't load track with retrieving identifier right now.%1,We kunnen geen spoor te laden met het ophalen van identifier op dit moment.% 1
+We can't initialize shipment for adding tracking number.,We kunnen niet verzending initialiseren voor het toevoegen van tracking-nummer.
+We can't delete tracking number.,We kunnen niet verwijderen tracking nummer.
+Something went wrong while saving the vacation.,Er is iets misgegaan bij het opslaan van de vakantie.
+"You must confirm your account. Please check your email for the confirmation link or <a href=""%1"">click here</a> for a new link.","U moet uw account te bevestigen. Controleer uw e-mail voor de bevestigingslink of <a href=""%1""> hier klikken </a> voor een nieuwe link."
+"There is already an account with this email address. If you are sure that it is your email address, <a href=""%1"">click here</a> to get your password and access your account.","Er is al een account met dit e-mailadres. Als u zeker weet dat het uw e-mailadres <a href=""%1""> klik hier </a> om uw wachtwoord en toegang tot uw account te krijgen."
+We can't save the customer.,We kunnen de klant niet redden.
+Please make sure your passwords match.,Zorg er alstublieft voor dat uw wachtwoorden overeenkomen.
+"If you are a registered VAT customer, please <a href=""%1"">click here</a> to enter your shipping address for proper VAT calculation.","Als u een geregistreerde BTW klant, neem dan <a href=""%1""> klik hier </a> om uw afleveradres in te voeren voor de juiste btw-berekening."
+"If you are a registered VAT customer, please <a href=""%1"">click here</a> to enter your billing address for proper VAT calculation.","Als u een geregistreerde BTW klant, neem dan <a href=""%1""> klik hier </a> naar uw factuuradres in te voeren voor de juiste btw-berekening."
+Thank you for registering with %1.,Bedankt voor het registreren met% 1.
+"This account is not confirmed. <a href=""%1"">Click here</a> to resend confirmation email.","Dit account is niet bevestigd. <a href=""%1""> Klik hier </a> om opnieuw verzenden bevestigings e-mail."
+Invalid login or password.,Ongeldige login of wachtwoord.
+A login and a password are required.,Een login en een wachtwoord vereist zijn.
+Close,Dichtbij
+Open,Open
+Processing,Verwerken
+Done,Gedaan
+Approved,Goedgekeurd
+Not Approved,Niet goedgekeurd
+Reject,afwijzen
+Accept,Aanvaarden
+Enabled,Ingeschakeld
+Disabled,Gehandicapt
+- Disable these emails -,- Schakel deze e-mails -
+List,Lijst
+Grid,rooster
+Product was not registered,Het product werd niet geregistreerd
+Store was not registered,Store is niet geregistreerd
+URL key already exists.' .,URL sleutel bestaat al.' .
+URL key for specified store already exists.,URL sleutel voor gespecificeerde winkel bestaat al.
+Product Attribute,product Attribute
+Subtotal,Subtotaal
+Total Items Quantity,Total Items Hoeveelheid
+Total Weight,Totale gewicht
+Payment Method,Betalingswijze
+Shipping Method,Verzendmethode
+Shipping Postcode,Verzenden postcode
+Shipping Region,Shipping Region
+Shipping State/Province,Verzending Staat / Provincie
+Shipping Country,verzending Land
+Product attribute combination,Product attribuut combinatie
+Products subselection,producten subselectie
+Conditions combination,voorwaarden combinatie
+Cart Attribute,winkelwagen Attribute
+Disapproved,Afgekeurd
+Could not save the seller info: %1,Kon niet redden de verkoper info:% 1
+Not Submited,niet Submited
+Unapproved,unapproved
+"We can't process your request right now. Sorry, that's all we know.","We kunnen niet uw verzoek op dit ogenblik verwerken. Sorry, dat is alles wat we weten."
+Owl Carousel,Owl Carousel
+Bootstrap Carousel,bootstrap Carousel
+Amount from order,Bedrag van bestelling
+invoice,factuur
+Refunded,teruggestort
+Refund from order,Terugbetaling van bestelling
+Edit,Bewerk
+View Customer,Bekijk Klant
+View,Visie
+Delete,Delete
+"Delete ""${ $.$data.subject }""","Delete ""$ {$. $ Data.subject}"""
+"Are you sure you wan't to delete a ""${ $.$data.subject }"" record?","Weet je zeker dat je wan't naar een delete ""$ {$. $ Data.subject}"" record?"
+Unread,Ongelezen
+Read,Lezen
+What is the reason to deny this product?,Wat is de reden om dit product te ontkennen?
+Deny,Ontkennen
+Reset,Reset
+Do you want set commission for product?,Wilt u ingesteld commissie voor het product?
+View Product,Bekijk product
+View Seller,Bekijk Verkoper
+All Store Views,Alle Store Views
+Delete ${ $.$data.name },Delete $ {$. $ Data.name}
+Are you sure you want to delete a ${ $.$data.name } record?,Weet je zeker dat je een $ {$. $ Data.name} record wilt verwijderen?
+Approved ${ $.$data.name },Goedgekeurde $ {$. $ Data.name}
+Are you sure you want to enable a ${ $.$data.name } record?,Weet je zeker dat je een $ {$. $ Data.name} opname mogelijk te maken?
+Disapproved ${ $.$data.name },Afgekeurd $ {$. $ Data.name}
+Are you sure you want to disable a ${ $.$data.name } record?,Weet je zeker dat je een $ {$. $ Data.name} verslag uit te schakelen?
+Complete Withdrawal,volledige terugtrekking
+Canceled,Geannuleerd
+Add Attribute,Attribuut toevoegen
+Add Selected,Voeg geselecteerde toe
+Select Attribute,Selecteer Kenmerk
+New Attribute,nieuw kenmerk
+New Category,Nieuwe categorie
+Categories,Categorieën
+[GLOBAL],[GLOBAAL]
+Customizable Options,aanpasbare opties
+Custom options let customers choose the product variations they want.,Aangepaste opties kunt klanten kiezen voor het product variaties ze willen.
+Import Options,import Options
+Add Option,add Option
+New Option,nieuwe Optie
+Select Product,Selecteer product
+Import,Importeren
+Option Title,optie Titel
+Add Value,Waarde toevoegen
+Option Type,Option Type
+-- Please select --,-- Selecteer alstublieft --
+Required,Verplicht
+Price Type,Prijs Type
+Max Characters,Max Characters
+Compatible File Extensions,Compatible bestandsextensies
+Maximum Image Size,Maximale beeldgrootte
+Please leave blank if it is not an image.,Laat leeg als het niet een beeld.
+px.,px.
+%1,% 1
+[WEBSITE],[WEBSITE]
+[STORE VIEW],[STORE VIEW]
+This item has weight,Dit item heeft een gewicht
+This item has no weight,Dit punt heeft geen gewicht
+Set Product as New From,Set Productinformatie als Nieuw van
+"Related Products, Up-Sells, and Cross-Sells","Gerelateerde producten, Up-Sells, en Cross-Sells"
+Related products are shown to customers in addition to the item the customer is looking at.,Gerelateerde producten worden getoond aan klanten in aanvulling op het item van de klant is op zoek naar.
+Add Related Products,Voeg Gerelateerde producten
+Related Products,gerelateerde producten
+An up-sell item is offered to the customer as a pricier or higher-quality alternative to the product the customer is looking at.,Een up-sell item wordt aangeboden aan de klant als een duurdere of hogere kwaliteit alternatief voor de producten van de klant is op zoek naar.
+Add Up-Sell Products,Add up-sell producten
+Up-Sell Products,Up-producten verkopen
+"These ""impulse-buy"" products appear next to the shopping cart as cross-sells to the items already in the shopping cart.","Deze ""impuls-buy"" producten verschijnen naast de winkelwagen als cross-verkoopt aan de items die al in de winkelwagen."
+Add Cross-Sell Products,Voeg Cross-verkopen producten
+Cross-Sell Products,Cross-verkopen producten
+Add Selected Products,Producten toevoegen
+Remove,Verwijderen
+Thumbnail,thumbnail
+Product in Websites,Product op Websites
+"If your Magento site has multiple views, you can set the scope to apply to a specific view.",Als uw Magento site heeft meerdere weergaven kunt u het bereik ingesteld van toepassing is op een specifieke weergave.
+Websites,websites
+name,naam
+Copy Data from,Gegevens kopiëren van
+Browse to find or drag image here,Blader image drag hier te vinden of
+Delete image,Verwijder afbeelding
+Hidden,Verborgen
+Alt Text,Alt-tekst
+Image Size,Afbeeldingsgrootte
+{size},{grootte}
+Image Resolution,Foto resolutie
+{width}^{height} px,{Width} ^ {hoogte} px
+Browse Files...,Bestanden doorbladeren...
+Choose Affected Attribute Set,Kies Getroffen Attribute Set
+Confirm,Bevestigen
+start typing to search attribute,beginnen met typen om attribuut zoeken
+Title:,Titel:
+Uploaded:,geüpload:
+Uploader:,Uploader:
+Duration:,Looptijd:
+Basic Settings,Basis instellingen
+Advanced Settings,Geavanceerde instellingen
+Changes have been made to this section that have not been saved.,Er zijn wijzigingen aangebracht in deze sectie die niet zijn opgeslagen.
+This tab contains invalid data. Please resolve this before saving.,Dit tabblad bevat ongeldige gegevens. Gelieve dit oplossen voordat u opslaat.
+Continue,Doorgaan met
+Mass Actions,massa-acties
+Select All,Selecteer alles
+Unselect All,Selectie ongedaan maken
+Select Visible,Selecteer Zichtbaar
+Unselect Visible,unselect Zichtbaar
+Upload,Uploaden
+Upload Image Product,Upload Afbeelding Product
+Product Upload,product uploaden
+Import Settings,Instellingen importeren
+Check Data,Controleer gegevens
+Please Select,Selecteer alstublieft
+Download Sample File,Download Sample File
+Import Behavior,import Gedrag
+Add/Update,Toevoegen / bijwerken
+Error Handling,foutafhandeling
+Stop on Error,Stop bij fout
+Skip error entries,Overslaan fout entries
+Allowed Errors Count,Toegestaan ​​Fouten Count
+Please specify number of errors to halt import process,Gelieve te specificeren aantal fouten tot stilstand import proces
+Field separator,veldscheidingsteken
+Multiple value separator,Veelzijdigheid analyseren separator
+File to Import,File to Import
+Select File to Import,Selecteer File to Import
+Images File Directory,Afbeeldingen File Directory
+*Notice Import image first,image * Let op Import eerste
+Additional Settings,Aanvullende instellingen
+records found,records gevonden
+selected,geselecteerd
+per page,per pagina
+Previous page,Vorige pagina
+of %1,% 1
+Next page,Volgende pagina
+Export to:,Exporteren naar:
+Marketplace,Marktplaats
+Marketplace Dashboard,Marketplace Dashboard
+Seller Profile,Verkopersprofiel
+Manage Products,Manage Products
+Create Attribute,Kenmerk maken
+New Products,Nieuwe Producten
+My Products List,Mijn Producten Lijst
+My Transaction List,Mijn Transactielijst
+Manage Print PDF Header Info,Manage Print PDF Header Info
+My Order History,Mijn Order History
+Become Seller,Word Verkoper
+Personal Information,Persoonlijke informatie
+Seller General,verkoper General
+Group,Groep
+Url Key,url Key
+"Example: Insert landofcoder,url shop will ","Voorbeeld: landofcoder Insert, url winkel wil"
+Address Information,adres informatie
+Company,Bedrijf
+Phone Number,Telefoonnummer
+Street Address,Woonadres
+Street Address %1,Straatnaam 1
+City,stad
+State/Province,Staat / Provincie
+"Please select a region, state or province.","Kies een regio, staat of provincie."
+Zip/Postal Code,Zip / Postal Code
+* Required Fields,* Verplichte velden
+Sign-in Information,Inloggegevens
+Password,Wachtwoord
+Password Strength,wachtwoord sterkte
+No Password,Geen wachtwoord
+Confirm Password,bevestig wachtwoord
+Privacy Policy,Privacybeleid
+I agree the Terms and Condition,Ik ga akkoord de bepalingen en voorwaarden
+Terms and Conditions,Voorwaarden
+Create an Account,Account aanmaken
+Back,Terug
+Sold By,Verkocht door
+Visit Shop,bezoek Shop
+We can't find seller matching the selection.,We kunnen het niet vinden verkoper overeen met de selectie.
+Created At,Gemaakt bij
+Post Reply Message,Reageer Message
+Message ,Bericht
+Post Reply,Reageer
+History Message,geschiedenis Message
+We can't find products matching the selection.,We kunnen geen producten overeen met de selectie vindt.
+Add to Cart,Voeg toe aan winkelkar
+In stock,Op voorraad
+Out of stock,Geen voorraad meer
+Learn More,Kom meer te weten
+Qty,Aantal
+ Sales, verkoop
+ Sale, Uitverkoop
+Joined since ,Geregistreerd sinds
+What’s on your mind?,Waar denk je aan?
+Submit,voorleggen
+Customer Name,klantnaam
+Customer Email,Klanten email
+"Turn in to a seller today and enjoy some incredible benefits like
+				adding logo to your profile page for better branding, setting up
+				multiple products to improve conversions, etc.","Lever aan een verkoper vandaag de dag en geniet van een aantal ongelooflijke voordelen, zoals
+het toevoegen van logo aan uw profiel pagina voor een betere branding, het opzetten
+veelvoudige conversies, etc. verbeteren"
+Click the button to become a Seller,Klik op de knop om een ​​verkoper te worden
+"Example: Insert landofcoder,url shop will","Voorbeeld: landofcoder Insert, url winkel wil"
+"I
+						agree the  Terms and Conditions","ik
+het erover eens de Algemene Voorwaarden"
+Admin Approval is required. Please wait until admin confirms your seller account.,Goedkeuring beheerder is vereist. Wacht tot admin bevestigt uw verkoper account.
+Returns Policies,keert terug beleid
+Shipping Policies,Verzendkosten beleid
+Edit Profile Information,Profiel bewerken Informatie
+Save Profile,Profiel opslaan
+Twitter ID,Twitter ID
+Facebook ID,Facebook identiteit
+Instagram ID,Instagram ID
+Google Plus ID,Google Plus ID
+Youtube ID,Youtube ID
+Vimeo ID,Vimeo ID
+Pinterest ID,Pinterest ID
+Rating(s),Waarderingen)
+Registered Sellers,Registered Verkopers
+"If you have an account, sign in with your email address.","Als je een account hebt, meld u aan met uw e-mailadres."
+Login,Log in
+Forgot Your Password?,Je wachtwoord vergeten?
+"Creating an account has many benefits: check out faster, keep more than one address, track orders and more.","Het creëren van een account heeft vele voordelen: check out sneller, op meer dan één adres, track bestellingen en nog veel meer."
+Customer ratings,klantbeoordelingen
+star,ster
+Write Your Own Review,Schrijf uw eigen review
+You're rating,Je bent waarderen
+How do you rate this seller,Wat vindt u van deze verkoper
+Value,Waarde
+Quality,Kwaliteit
+What's your nickname?,Wat is jouw bijnaam?
+What's your Email?,Wat is jouw e-mail?
+Summary of Your Rating,Samenvatting van Uw Beoordeling
+Let us know your thoughts,Laat ons weten wat uw gedachten
+Submit Rating,Verstuur beoordeling
+By,Door
+ Rating(s), Waarderingen)
+We can't find sellers matching the selection.,We kunnen niet verkopers overeen met de selectie te vinden.
+Items,items
+of,van
+%1 Item,%1 artikel
+%1 Items,% 1 Items
+Previous,voorgaand
+Next,De volgende
+This operation can take a long time,Deze bewerking kan lang duren
+Collapse All,Alles inklappen
+Expand All,Alles uitvouwen
+Please confirm site switching. All data that hasn't been saved will be lost.,Gelieve te bevestigen plaats switching. Alle gegevens die niet zijn opgeslagen gaan verloren.
+None,Geen
+Use Default Value,Standaard gebruiken Value
+"Manage Titles (Size, Color, etc.)","Beheer Titles (formaat, kleur, etc.)"
+Manage Options (Values of Your Attribute),Manage Opties (Waarden van uw Attribute)
+Is Default,is Default
+Sort Option,Sort Option
+Double click on a group to rename it.,Dubbelklik op een groep om de naam te wijzigen.
+Unassigned Attributes,Niet-toegewezen attributen
+A name is required.,Een naam is vereist.
+This group contains system attributes. Please move system attributes to another group and try again.,Deze groep bevat systeem attributen. Beweeg systeem attributen naar een andere groep en probeer het opnieuw.
+Please enter a new group name.,Voer een nieuwe groepsnaam.
+"An attribute group named ""/name/"" already exists"".","Een attribuut groep met de naam ""/ name /"" bestaat al."""
+"Sorry, we're unable to complete this request.","Sorry, we zijn niet in staat om deze aanvraag te voltooien."
+You can't remove attributes from this attribute set.,Je kunt geen attributen verwijderen uit dit attribuut set.
+Empty,Leeg
+Custom Options,Custom Opties
+This is a required option.,Dit is een gewenste optie.
+The field isn't complete.,Het veld is niet compleet.
+Change,Verandering
+Compatible file extensions to upload,Compatible bestandsextensies om te uploaden
+Maximum image width,Maximale beeldbreedte
+Maximum image height,Maximale beeldhoogte
+Maximum number of characters:,Maximaal aantal tekens:
+Quantity,Aantal stuks
+start typing to search template,beginnen met typen om sjabloon te zoeken
+Product online,product online
+Product offline,product offline
+Product online status,Product online status
+Advanced Inventory,geavanceerde Inventory
+Manage Stock,Beheer Voorraad
+Use Config Settings,Gebruik Config Settings
+Out-of-Stock Threshold,Out-of-Stock Threshold
+Minimum Qty Allowed in Shopping Cart,Minimum Aantal toegestaan ​​in Winkelwagen
+Maximum Qty Allowed in Shopping Cart,Maximum Aantal toegestaan ​​in Winkelwagen
+Qty Uses Decimals,Aantal Gebruikt Decimals
+Backorders,nabestellingen
+Notify for Quantity Below,Houd voor kwantiteit Hieronder
+Enable Qty Increments,Enable Aantal Stappen
+Qty Increments,Aantal Stappen
+Stock Availability,Voorraad
+In Stock,Op voorraad
+Out of Stock,Geen voorraad meer
+Add Product To Websites,Voeg product aan websites
+Remove Product From Websites,Verwijder product uit Websites
+"To hide an item in catalog or search results, set the status to ""Disabled"".","Als u een item in catalogus verbergen of zoekresultaten, stelt u de status ""Uitgeschakeld""."
+Step 2: Attribute Values,Stap 2: Attribuutwaarden
+Select values from each attribute to include in this product. Each unique combination of values creates a unigue product SKU.,Kies waarden van elk attribuut in dit product te nemen. Elke unieke combinatie van waarden creëert een unigue product SKU.
+Sort Variations,Sorteer Variations
+Options,opties
+Deselect All,Deselecteer alles
+Remove Attribute,Criterium verwijderen
+Save Option,Optie Save
+Remove Option,Verwijder Option
+"Step 3: Bulk Images, Price and Quantity","Stap 3: Bulk Images, prijs en hoeveelheid"
+Based on your selections %1 new products will be created. Use this step to customize images and price for your new products.,Op basis van uw selecties% 1 nieuwe producten zullen worden gecreëerd. Gebruik deze stap om foto's en de prijs aan te passen voor uw nieuwe producten.
+Images,Afbeeldingen
+Apply single set of images to all SKUs,Breng enkele set van beelden voor alle SKU's
+Apply unique images by attribute to each SKU,Breng unieke foto's van attribuut voor elke SKU
+Skip image uploading at this time,Overslaan afbeelding uploaden op dit moment
+Remove image,afbeelding verwijderen
+Select attribute,Kies een attribuut
+Select,kiezen
+Apply single price to all SKUs,Breng één prijs voor alle SKU's
+Apply unique prices by attribute to each SKU,Breng unieke prijzen met attribuut voor elke SKU
+Skip price at this time,Sla de prijs op dit moment
+Apply single quantity to each SKUs,Breng enkele hoeveelheid aan elke SKU's
+Apply unique quantity by attribute to each SKU,Breng unieke hoeveelheid per attribuut voor elke SKU
+Skip quantity at this time,Sla persoon op dit moment
+Step 1: Select Attributes,Stap 1: Selecteer Attributen
+Selected Attributes:,Geselecteerd attributen:
+Step 4: Summary,Stap 4: Samenvatting
+We can't save custom-defined options for bundles with dynamic pricing.,We kunnen geen aangepaste gedefinieerde opties voor een pakket met dynamische prijsstelling te slaan.
+Delete Custom Option,Delete optie Aangepast
+Sort Custom Options,Sorteer Custom Opties
+Input Type,Input Type
+%1 <span>x</span> %2 <span>px.</span>,% 1 <span> x </ span>% 2 <span> px. </ Span>
+Sort Custom Option,Sorteer optie Aangepast
+Web Site,Website
+Customer Group,Customer Group
+Item Price,Stuksprijs
+Action,Actie
+and above,en hoger
+Delete Tier,Delete Tier
+Product In Websites,Product In Websites
+(Copy data from: %1),(Kopiëren van gegevens van:% 1)
+Add Video,Voeg video toe
+Delete video,Delete video
+Product Alerts,product alerts
+Allow Multiple Boxes for Shipping,Laat Meerdere Dozen voor verzending
+Save success,succes Save
+Marketplace - Module by,Marketplace - Module door
+Landofcoder,Landofcoder
+View My Store,Bekijk Mijn Store
+Profile,Profiel
+Log Out,Uitloggen
+Upload Image Zip,Upload Afbeelding Zip
+Upload Images Zip,Upload Images Zip
+Images Zip,Afbeeldingen Zip
+Credit Amount,Hoeveelheid krediet
+Total Sales,Totale verkoop
+Total Orders,Totaal bestellingen
+Total Products,Total producten
+Sales Report Day ,Sales Report Day
+Sales Report Month,Sales Report Maand
+Sales Report Year,Sales Report Year
+Your top countries,Uw top landen
+Earning amount from country countries,Verdienen bedrag van land landen
+Total Order,Totaal bestellen
+Total Earning,Total Earning
+Last Orders,Last Orders
+Best Seller,Bestseller
+Most Viewed Products,Meest bekeken producten
+Order Date,Besteldatum
+Product,Product
+Id,ID kaart
+Amount,Bedrag
+Seller Blance,verkoper Blance
+Order Design,Bestel een ontwerp
+Create At,Maak At
+Billing Address,factuur adres
+Shipping Address,Verzendingsadres
+<b>Order:</b> # %1,<B> Order: </ b> #% 1
+Order Status,Bestelstatus
+Purchased From,Gekocht van
+Account Information ,Account Informatie
+Return to Stock,Terug naar Stock
+Qty to Refund,Aantal terug te betalen
+Tax Amount,belastingbedrag
+Discount Amount,Korting hoeveelheid
+Row Total,rijtotaal
+Admin Commission,Admin Commissie
+Seller Total,verkoper Total
+Ordered,bestelde
+Invoiced,gefactureerd
+Payment Methods,Betaalmethoden
+The order was placed using,De bestelling geplaatst via
+Credit Memo Comments,Credit Memo Comments
+Comment Text,Comment Text
+Order Totals,Bestel Totalen
+Tax,Belasting
+Discount,Korting
+Refund Shipping,Terugbetalen Verzend
+Adjustment Refund,aanpassing Refund
+Adjustment Fee,Fee Adjustment
+Grand Total,Eindtotaal
+Append Comments,Append Comments
+Visible on Frontend,Zichtbaar op Frontend
+Email Copy of Credit Memo,E-mail Kopie van creditnota
+Refund Offline,Refund Offline
+Refund Online,Refund Online
+Refund,Terugbetaling
+Invoice Date,Factuur datum
+Bill to Name,Bill Naam
+Grand Total (Base),Grand Total (Base)
+Grand Total (Purchased),Grand Total (gekocht)
+Bulk Actions,Bulkacties
+Invoice Design,factuur Ontwerp
+Export Pdf file,PDF-bestand exporteren
+<b>Invoice</b> # %1,<B> Invoice </ b> #% 1
+Invoice Totals,factuurtotalen
+Shipping & Handling,Het verschepen & Behandeling
+Seller Amount,verkoper Bedrag
+Date,Datum
+Currency,Valuta
+Cancel Order,Annuleer bestelling
+Are you sure you want to cancel this order?,Bent u zeker dat u deze bestelling wilt annuleren?
+Send Email,E-mail verzenden
+Are you sure you want to send an order email to customer?,Bent u zeker dat u een bestelling e-mail sturen naar de klant?
+Are you sure you want to create invoice?,Bent u zeker dat u wilt factuur te creëren?
+Credit Memo,credit Memo
+Are you sure you want to create credit memo for order?,Weet u zeker dat u wilt creditnota creëren voor orde?
+Ship,Schip
+Are you sure you want to create ship for order?,Weet u zeker dat u wilt schip maken voor orde?
+Item Status,Item Status
+Tax Percent,tax Procent
+Shipped,verzonden
+Track information,Track informatie
+Shipped By,Verscheept door
+Tracking Number,Volg nummer
+No shipping information available,Geen verzendkosten informatie beschikbaar
+Carrier,Carrier
+Refund Total,Refund Total
+Shipment,Verzending
+Table Shipment,Tabel Verzending
+Ship Date,Verzenddatum
+Order #,Bestellen #
+Ship to Name,Verzenden naar naam
+Total Quantity,Totale kwantiteit
+Shipment Design,verzending Ontwerp
+<b>Shipment</b> # %1,<B> Verzending </ b> #% 1
+Shipping and Tracking Information,Scheepvaart en Tracking Informatie
+Track this shipment,Volg deze zending
+Number,Aantal
+Add,Toevoegen
+Items Shipped,items verzonden
+Product Name,productnaam
+Qty Shipped,Aantal verzonden
+Today's Sales,Today's Sales
+Today's Earnings,De winst van vandaag
+Current Month's Sales,Sales huidige maand's
+Current Month's Earnings,Winst huidige maand's
+Sales Report,Verkoopcijfers
+Browse to find or drag image here(Size 1240x400),Blader te vinden of de afbeelding te slepen hier (Size 1240x400)
+Browse to find or drag image here(Size 200x200),Blader te vinden of de afbeelding te slepen hier (Size 200x200)
+Social Media,Sociale media
+Facebook Name,Facebook Naam
+Facebook Page ID,Facebook Pagina ID
+Linkedin ID,Linkedin ID
+Printerest ID,Printerest ID
+Welcome,Welkom
+Online,Online
+Sender Name,Naam afzender
+Sender Email,Sender E-mail
+Post a Reply,post een antwoord
+Message History,Message History
+Sales,verkoop
+Manage Product,Manage Product
+Simple Product,Simple Product
+Virtual Product,Virtual Product
+Configurable Product,configureerbare Product
+Vacation Setting,vakantie Instelling
+Mass Import/Export,Mass importeren / exporteren
+Upload Image,Afbeelding uploaden
+ Withdrawal, het terugtrekken
+You can withdraw up to,U kunt maximaal intrekken
+Min amount ,min bedrag
+Fee ,Vergoeding
+Amount to withdraw,Bedrag terug te trekken
+ email account, email account
+  Info,  info
+You do not have the minimum amount to withdraw,Je hoeft niet het minimum bedrag terug te trekken
+Nick Name,Nick Name
+Rating,Beoordeling
+Comment,Commentaar
+All Review,alle beoordeling
+Author,Auteur
+Guest,Gast
+Summary Rating,Overzicht waarderingen
+Summary of Review,Overzicht van de testen
+Vacation Status,vakantie Status
+Turn ON,Aanzetten
+Turn OFF,Uitschakelen
+Vacation Message,Vacation Message
+Vacation Date From,Vakantie Datum Vanaf
+Vacation Date To,Vakantie Tot datum
+Add Cart button text,Tekstweergave op de knop TOEVOEGEN wanneer verkoper op vakantie
+Select Date,Selecteer een datum
+Withdrawal information,intrekking informatie
+ Email Account, Email account
+Net Amount,Netto bedrag
+Admin Message,Admin Message
+Withdrawal Request,intrekking Request
+Your balance,Je balans
+Method,Methode
+Withdrawals History,onttrekkingen Geschiedenis
+Total Amount Received,Totaal bedrag Ontvangen
+Created,gemaakt
+Store View:,Store View:
+Stores Configuration,winkels Configuration
+Please confirm scope switching. All data that hasn't been saved will be lost.,Gelieve te bevestigen scope switching. Alle gegevens die niet zijn opgeslagen gaan verloren.
+Insert Widget...,Insert Widget ...
+We don't recognize or support this file extension type.,Wij hebben geen herkent en ondersteunt dit bestandsextensie type.
+Insert Variable...,Variabele invoegen ...
+Select All on This Page,Alles selecteren op deze pagina
+Deselect All on This Page,Selecteren op deze pagina
+Go to Details Page,Ga naar Details Pagina
+We could not detect a size.,We konden niet detecteren een grootte.
+Image Detail,afbeelding Detail
+Warning message,Waarschuwingsbericht
+New Product Review,New Product Review
+Here are the products you're about to create.,Hier zijn de producten die u staat op het punt te maken.
+Associated Products,Aanverwante producten
+You created these products for this configuration.,U hebt gemaakt van deze producten voor deze configuratie.
+Disassociated Products,gedistantieerd producten
+These products are not associated.,Deze producten worden niet geassocieerd.
+Ok,OK
+Add Products to New Option,Producten toevoegen aan New Option
+"Add Products to Option ""%1""","Voeg producten aan Option ""% 1"""
+Video Error,video Error
+Unknown video type,Onbekend type video
+Invalid video url,Ongeldige video-URL
+Youtube API key is invalid,Youtube API-sleutel is ongeldig
+Video cant be shown due to the following reason: ,Video kan niet worden weergegeven vanwege de volgende reden:
+Video not found,Video niet gevonden
+New Video,Nieuwe video
+Edit Video,Bewerk video
+Images and Videos,Afbeeldingen en Video's
+Select...,Selecteer ...
+Attributes,attributen
+"Lof All - <a href=""http://landofcoder.com"" target=""_BLANK"" title=""""Magento Marketplace, Opencart Marketplace, Magento 2 Extension, Free Magento Extension, Opencart Advanced Reports"">landofcoder.com</a>","Lof All - <a href=""http://landofcoder.com"" target=""_blank"" title=""""Magento Marketplace, Opencart Marketplace, Magento 2 Extension, gratis Magento Extension, Opencart Uitgebreid Reports""> landofcoder.com </ a >"
+Market Place,Market Place
+General Settings,Algemene instellingen
+Seller List Url,Seller List Url
+Seller Url Prefix,Verkoper URL-voorvoegsel
+Seller Url Suffix,Verkoper Url Suffix
+Rating Approval Required,Rating vereiste goedkeuring
+Seller Approval Required,Verkoper vereiste goedkeuring
+Seller Settings,verkoperinstellingen
+Need Admin Approval Product,Noodzaak Admin goedkeuring van het produkt
+Seller Commission(%),Verkoper Commissie (%)
+Enter global commission for sellers.If you don't using commission in http://yourdomain.com/admin/lofmarketplace/commission/index,Voer wereldwijde commissie voor sellers.If je niet met behulp van de commissie in http://yourdomain.com/admin/lofmarketplace/commission/index
+Sales Settings,Sales Instellingen
+Can Send Email,Kan E-mail verzenden
+Email admin,E-mail admin
+Can Create Ship,Kan Ship Maak
+Can Create Refund,Kan Refund Maak
+Seller Panel,verkoper Panel
+Favicon Icon,favicon Icon
+Default Title,Default Titel
+Header Icon,header
+Header Text,Koptekst
+Footer Text,Voettekst
+Email Settings,Email instellingen
+Enable Send Email,Schakel E-mail verzenden
+Email Sender,E-mail Sender
+Choose template for emailing customer,Kies een sjabloon voor e-mailen klant
+Choose template for emailing seller,Kies een sjabloon voor e-mailen verkoper
+Choose template for email reply,Kies een sjabloon voor e-mail antwoord
+Choose email template for new rating,Kies e-mail template voor nieuwe rating
+Choose email template for new order,Kies e-mail template voor nieuwe orde
+Choose email template for new invoice,Kies e-mail template voor nieuwe factuur
+Choose email template for new shipment,Kies e-mail template voor nieuwe zending
+Choose email template for new seller register,Kies e-mail template voor nieuwe verkoper register
+Choose email template for approve seller,Kies e-mail template voor goedkeuren verkoper
+Choose email template for unapprove seller,Kies e-mail template voor unapprove verkoper
+Choose email template for approve product,Kies e-mail template voor goed te keuren product
+Choose email template for unapprove product,Kies e-mail template voor unapprove product
+Seller Info On Product View Page,Verkoper Info Op Product bekijken pagina
+Enabled Seller Block,Enabled Verkoper Block
+Show Seller Title,Show Verkoper Titel
+Show Seller Logo,Show Verkoper Logo
+Show Seller Name,Show Verkoper Naam
+Show Seller Address,Show Verkoper Adres
+Show Seller Sales,Show Verkoper Sales
+Show Seller Phone,Show Seller Phone
+Show Seller Contact,Show Verkoper Contact
+Text Contact,tekst Contact
+Seller List Page,Seller List Pagina
+Number Seller Per Page,Aantal Verkoper per pagina
+Empty to show all item,Leeg om alle punt te tonen
+SEO - Search Engine Optimization,SEO - Search Engine Optimization
+Grid Layout,Grid Layout
+Number Column on Large Desktop,Nummer Column op Grote Desktop
+Large devices Desktops (≥1200px),Grote apparaten Desktops (≥1200px)
+Number Column on Desktop,Kolomnummer op het bureaublad
+Medium devices Desktops (≥992px),Medium apparaten Desktops (≥992px)
+Number Column on Tablets,Nummer Column op tablets
+Small devices Tablets (≥768px),Kleine apparaten Tabletten (≥768px)
+Number Column on Phones,Nummer Column op telefoons
+Extra small devices Phones (<768px),Extra kleine apparaten Phones (<768px)
+Group Page,Group Pagina
+Seller Multi Shipping,Verkoper Multi Shipping
+MarketPlace Seller List,MarketPlace Seller List
+Get seller list,Krijg verkoper lijst
+Select Static Block,Selecteer Statische Block
+Number of Seller to Display,Aantal Verkoper dat u wilt zien
+Number Item per Column,Aantal Item per Column
+Addtion Class,addtion Class
+Carousel Layout,Carousel Layout
+Number Columns On Page (Phones),Aantal kolommen op Pagina (telefoons)
+Show number items when screen size bellow 480px,Toon aantal items wanneer schermgrootte blaten 480px
+Number Columns On Page (Phones to Small tablets),Aantal kolommen op Pagina (Phones naar Small tabletten)
+Show number items when screen size between 641px and 480px,Toon aantal items wanneer schermgrootte tussen de 641px en 480px
+Number Columns On Page (Phones to tablets),Aantal kolommen op Pagina (Phones om tabletten)
+Show number items when screen size between 768px and 641px,Toon aantal items wanneer schermgrootte tussen de 768px en 641px
+Number Columns On Page (Portrait tablets),Aantal kolommen op Pagina (portret tabletten)
+Show number items when screen size between 979px and 769px,Toon aantal items wanneer schermgrootte tussen de 979px en 769px
+Number Columns On Page (Default),Aantal kolommen op pagina (Standaard)
+Show number items when screen size between 1199px and 980px,Toon aantal items wanneer schermgrootte tussen de 1199px en 980 px
+Number Columns On Page (Large display),Aantal kolommen op Pagina (Groot display)
+Show number items when screen size 1200px and up,Toon aantal items wanneer schermgrootte 1200px en up
+Autoplay,Automatisch afspelen
+Autoplay Timeout,Autoplay Timeout
+Item Per Page,Item per pagina
+Interval,Interval
+RTL,RTL
+Loop,Lus
+Show dots navigations,Toon dots navigatie
+Show next/prev buttons.,Toon volgende / vorige knoppen.
+Nav Prev Text,Nav Vorige Text
+Nav Next Text,Nav Volgende Tekst
+Template,Sjabloon
+Seller ID,verkoper ID
+Updated At,update
+ ID, ID kaart
+Seller Balance,verkoper Balance
+Delete items,Delete items
+Are you sure you want to delete selected items?,Bent u zeker dat u de geselecteerde items wilt verwijderen?
+Disable,uitschakelen
+Enable,Inschakelen
+Active,Actief
+Add New Group,Nieuwe groep toevoegen
+Bill-to Name,Bill-to Naam
+Seller Email,E-mail verkoper
+Is Read,Is gelezen
+Order ID,Order ID
+Increment ID,verhoging ID
+Currency Code,Valuta code
+Sort Order,sorteervolgorde
+Product ID,Product-ID
+Review ID,beoordeling ID
+Image,Beeld
+Shop URL Key,Shop URL Key
+Product Price,Product prijs
+Payment ID,betaling ID
+Method Payment,Method Payment
+Pay Action,pay Actie
+List Seller,lijst Verkoper
+Marketplace 1column,Marketplace 1column
+Marketplace 2columns Left,Marketplace 2columns Left
+AttributeSetText,AttributeSetText
+StatusText,statusText
+PDF Invoices,PDF Facturen
+Category Name,categorie naam
+Parent Category,hoofdcategorie
+Images And Videos,Afbeeldingen en video's
+Minimum Qty,minimum Aantal
+Use Deferred Stock Update,Gebruik deferred update
+Stock Status,Voorraadstatus
+Delete selected items?,Verwijder geselecteerde items?
+Change status,Verander status

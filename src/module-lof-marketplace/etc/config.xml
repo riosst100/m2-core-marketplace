@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lof_MarketPlace
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<lofmarketplace>
+			<general_settings>
+				<enable>1</enable>
+				<route>lof-seller.html</route>
+				<change_route>lofmarketplace</change_route>
+				<url_prefix>seller</url_prefix>
+				<url_suffix>.html</url_suffix>
+				<enable_all_store>0</enable_all_store>
+                <allow_customer_become_seller>1</allow_customer_become_seller>
+				<commission_approval>1</commission_approval>
+                <customer_become_seller>0</customer_become_seller>
+                <enable_rating>1</enable_rating>
+                <rating_approval>0</rating_approval>
+                <limit_number_of_rating>0</limit_number_of_rating>
+                <require_purchased>0</require_purchased>
+                <require_order_completed>0</require_order_completed>
+                <require_loggin>0</require_loggin>
+                <allow_update_rating>0</allow_update_rating>
+                <rating_sortby>latest</rating_sortby>
+                <show_total_sales>1</show_total_sales>
+			</general_settings>
+            <group_seller>
+                <enable_group_seller>1</enable_group_seller>
+            </group_seller>
+            <seller_settings>
+                <default_attribute_set_id>1</default_attribute_set_id>
+                <approval>0</approval>
+                <approval_editing>0</approval_editing>
+                <pending_product_attributes>0</pending_product_attributes>
+                <commission_type>1</commission_type>
+                <commission>100</commission>
+                <shipping_commission>100</shipping_commission>
+                <calculate_parent_only>1</calculate_parent_only>
+                <default_seller_group>1</default_seller_group>
+				<allow_add_virtual>1</allow_add_virtual>
+				<allow_add_bundle>1</allow_add_bundle>
+				<allow_add_configurable>1</allow_add_configurable>
+				<allow_add_downloadable>1</allow_add_downloadable>
+				<allow_product_advanced_pricing>1</allow_product_advanced_pricing>
+				<allow_product_advanced_inventory>1</allow_product_advanced_inventory>
+				<allow_mass_import_export>1</allow_mass_import_export>
+				<allow_mass_import>1</allow_mass_import>
+				<allow_mass_export>1</allow_mass_export>
+				<allow_mass_upload_image>1</allow_mass_upload_image>
+				<allowed_socials>twitter,facebook,google,youtube,vimeo,linkedin,instagram,pinterest</allowed_socials>
+                <allow_withdrawl>1</allow_withdrawl>
+                <group_seller_infomation>
+                    <benefits>100% product high quality</benefits>
+                    <delivery_policy>Free shipping</delivery_policy>
+                </group_seller_infomation>
+            </seller_settings>
+			<product_view_page>
+				<enable_seller_info>1</enable_seller_info>
+				<show_seller_text>1</show_seller_text>
+				<seller_text>Sellers: </seller_text>
+				<show_seller_image>1</show_seller_image>
+				<show_seller_name>1</show_seller_name>
+			</product_view_page>
+			<sales_settings>
+				<can_send_email>1</can_send_email>
+				<email_admin>owner@example.com</email_admin>
+				<can_cancel>1</can_cancel>
+				<can_invoice>1</can_invoice>
+				<can_ship>1</can_ship>
+				<can_refund>1</can_refund>
+			</sales_settings>
+			<email_settings>
+				<enable_send_email>1</enable_send_email>
+				<enable_send_email_new_product>1</enable_send_email_new_product>
+                <enable_send_email_edit_product>1</enable_send_email_edit_product>
+				<sender_email_identity>general</sender_email_identity>
+				<message_template>lofmarketplace_email_settings_message_template</message_template>
+				<seller_message_template>lofmarketplace_email_settings_seller_message_template</seller_message_template>
+				<reply_message_template>lofmarketplace_email_settings_reply_message_template</reply_message_template>
+				<rating_template>lofmarketplace_email_settings_rating_template</rating_template>
+				<order_template>lofmarketplace_email_settings_order_template</order_template>
+				<invoice_template>lofmarketplace_email_settings_invoice_template</invoice_template>
+				<shipment_template>lofmarketplace_email_settings_shipment_template</shipment_template>
+				<seller_create_product_template>lofmarketplace_email_settings_seller_create_product_template</seller_create_product_template>
+                <seller_edit_product_template>lofmarketplace_email_settings_seller_edit_product_template</seller_edit_product_template>
+				<register_seller_template>lofmarketplace_email_settings_register_seller_template</register_seller_template>
+                <thankyou_register_seller_template>lofmarketplace_email_settings_thankyou_register_seller_template
+                </thankyou_register_seller_template>
+				<approve_seller_template>lofmarketplace_email_settings_approve_seller_template</approve_seller_template>
+				<unapprove_seller_template>lofmarketplace_email_settings_unapprove_seller_template</unapprove_seller_template>
+                <pending_seller_profile_template>lofmarketplace_email_settings_pending_seller_profile_template</pending_seller_profile_template>
+				<approve_product_template>lofmarketplace_email_settings_approve_product_template</approve_product_template>
+				<unapprove_product_template>lofmarketplace_email_settings_unapprove_product_template</unapprove_product_template>
+			</email_settings>
+			<seller_list_page>
+				<layout>grid</layout>
+				<show_seller_name>1</show_seller_name>
+				<item_per_page>8</item_per_page>
+				<page_title>All Sellers</page_title>
+				<meta_description>All Sellers</meta_description>
+				<meta_keywords>fashion, kitchen, sport, soccer</meta_keywords>
+				<lg_column_item>4</lg_column_item>
+				<md_column_item>4</md_column_item>
+				<sm_column_item>2</sm_column_item>
+				<xs_column_item>2</xs_column_item>
+			</seller_list_page>
+			<design>
+				<header_icon>fa-shopping-cart</header_icon>
+				<rtl_layout>0</rtl_layout>
+				<show_seller_group>0</show_seller_group>
+			</design>
+            <seller_profile_page>
+                <show_seller_group_name>1</show_seller_group_name>
+            </seller_profile_page>
+			<group_page>
+				<show_seller_name>1</show_seller_name>
+				<item_per_page>12</item_per_page>
+				<lg_column_item>4</lg_column_item>
+				<md_column_item>4</md_column_item>
+				<sm_column_item>2</sm_column_item>
+				<xs_column_item>2</xs_column_item>
+			</group_page>
+			<seller_block>
+				<enable>1</enable>
+				<title>Top Sellers</title>
+				<seller_groups>1,2</seller_groups>
+				<show_seller_name>0</show_seller_name>
+				<number_item>12</number_item>
+				<carousel_layout>owl_carousel</carousel_layout>
+				<number_item_per_column>1</number_item_per_column>
+				<default_items>5</default_items>
+				<mobile_items>1</mobile_items>
+				<tablet_small_items>2</tablet_small_items>
+				<tablet_items>3</tablet_items>
+				<portrait_items>5</portrait_items>
+				<large_items>6</large_items>
+				<autoplay>1</autoplay>
+				<autoplay_timeout>3000</autoplay_timeout>
+				<autoplay_pauseonhover>1</autoplay_pauseonhover>
+				<item_per_page>4</item_per_page>
+				<lg_column_item>4</lg_column_item>
+				<md_column_item>4</md_column_item>
+				<sm_column_item>2</sm_column_item>
+				<xs_column_item>1</xs_column_item>
+				<interval>3000</interval>
+				<dots>1</dots>
+				<nav>1</nav>
+				<nav_prev>Prev</nav_prev>
+				<nav_next>Next</nav_next>
+				<loop>0</loop>
+				<rtl>0</rtl>
+			</seller_block>
+            <api_settings>
+                <show_email>0</show_email>
+                <show_phone>1</show_phone>
+            </api_settings>
+		</lofmarketplace>
+	</default>
+</config>

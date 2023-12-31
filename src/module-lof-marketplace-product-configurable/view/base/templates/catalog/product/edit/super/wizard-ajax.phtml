@@ -1,0 +1,44 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketProductConfigurable
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\ConfigurableProduct\Block\Adminhtml\Product\Edit\Tab\Variations\Config\Matrix */
+
+$productMatrix = $block->getProductMatrix();
+$attributes = $block->getProductAttributes();
+
+/* @noEscape */ echo $block->getVariationWizard([
+    'attributes' => $attributes,
+    'configurations' => $productMatrix,
+    'configurableModal' => $block->getForm() . '.' . $block->getModal()
+]);
+?>
+<script>
+    require(['jquery', 'uiRegistry', 'underscore'], function ($, registry, _) {
+        $('body').trigger('contentUpdated');
+        $('.<?= /* @noEscape */ $block->getData('config/dataScope') ?>[data-role=steps-wizard-main]').applyBindings();
+
+        registry.async('<?= /* @noEscape */ $block->getData('config/nameStepWizard') ?>')(function (component) {
+            _.delay(component.open.bind(component), 500); // TODO: MAGETWO-50246
+        })
+    });
+</script>

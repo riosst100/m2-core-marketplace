@@ -1,0 +1,68 @@
+<?php
+/**
+ * @var $block \Lof\MarketPlace\Block\Adminhtml\Notifications\Message
+ */
+// phpcs:disable Generic.Files.LineLength.TooLong
+
+$helperData = $this->helper(\Lof\MarketPlace\Helper\Data::class);
+$totalCount = 0;
+$countPendingSellers = 0;
+$countPendingProducts = 0;
+$countWithdrawl = 0;
+$countUnread = $block->countUnread();
+$totalCount += (int)$countUnread;
+$countPendingSellers = (int)$block->countPendingSellers();
+$countPendingProducts = (int)$block->countPendingProducts();
+$countWithdrawl = (int)$block->countWithdrawl();
+$totalCount += $countPendingSellers + $countPendingProducts + $countWithdrawl;
+?>
+<script type="text/javascript">
+    require(['jquery'],
+        function ($) {
+            $('.item-message-seller>a').append('<span class="notifications-counter"><?= $block->escapeHtml($countUnread) ?></span>');
+            $('.item-seller-manage-pending>a').append('<span class="notifications-counter"><?= $block->escapeHtml($countPendingSellers) ?></span>');
+            $('.item-sellerproduct-pending>a').append('<span class="notifications-counter"><?= $block->escapeHtml($countPendingProducts) ?></span>');
+            $('.item-withdrawal>a').append('<span class="notifications-counter"><?= $block->escapeHtml($countWithdrawl) ?></span>');
+            $('.item-marketplace>a').append('<span class="notifications-counter"><?= $block->escapeHtml($totalCount) ?></span>');
+        });
+</script>
+<style>
+    .admin__menu .item-message-seller > a,
+    .admin__menu .item-marketplace > a,
+    .admin__menu .item-seller-manage-pending > a,
+    .admin__menu .item-sellerproduct-pending > a,
+    .admin__menu .item-withdrawal > a,
+    .admin__menu .item-seller-manage > a {
+        position: relative;
+    }
+
+    .admin__menu .item-message-seller > a:before,
+    .admin__menu .item-seller-manage-pending > a:before,
+    .admin__menu .item-sellerproduct-pending > a:before,
+    .admin__menu .item-withdrawal > a:before {
+        content: '\e607';
+        font-family: 'Admin Icons';
+        float: right;
+        font-size: 1.8rem;
+    }
+
+    .admin__menu .item-message-seller > a .notifications-counter,
+    .admin__menu .item-marketplace > a .notifications-counter,
+    .admin__menu .seller-manage-pending > a .notifications-counter,
+    .admin__menu .item-seller-manage-pending > a .notifications-counter,
+    .admin__menu .item-sellerproduct-pending > a .notifications-counter,
+    .admin__menu .item-withdrawal > a .notifications-counter {
+        background-color: #e22626;
+        border-radius: 1em;
+        color: #ffffff;
+        display: inline-block;
+        font-size: 1.1rem;
+        font-weight: 700;
+        right: 3%;
+        margin-left: .3em;
+        margin-top: -2.1em;
+        padding: .3em .5em;
+        position: absolute;
+        top: 60%;
+    }
+</style>

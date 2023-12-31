@@ -1,0 +1,135 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_MarketPlace
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Generic.Files.LineLength.TooLong
+/**
+ * @var $block Lof\MarketPlace\Block\Seller\Vacation
+ */
+$actionUrl = $this->getUrl('catalog/vacation/save',["_secure" => $this->getRequest()->isSecure()]);
+?>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><?= $block->escapeHtml(__('Vacation Settings')) ?></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br>
+                <form id="vacation-settings" action="<?= $block->escapeHtmlAttr($actionUrl) ?>" data-parsley-validate=""
+                      class="form-horizontal form-label-left" novalidate="" data-mage-init='{"validation":{}}'
+                      method="post">
+                    <input type="hidden" name="seller_id" value="<?= $block->escapeHtmlAttr($block->getSellerId()) ?>"/>
+                    <input type="hidden" name="vacation_id"
+                           value="<?= $block->escapeHtmlAttr($block->getVacation()->getData('vacation_id')) ?>"/>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                               for="status"><?= $block->escapeHtml(__('Vacation Status')) ?> <span
+                                class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="radio">
+                                <label>
+                                    <input <?= ($block->getVacation()->getData('status') == 1) ? 'checked' : '' ?>
+                                        type="radio" class="flat" value="1" name="status">
+                                    <?= $block->escapeHtml(__('Turn ON')) ?>
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" class="flat" value="0"
+                                           name="status" <?= ($block->getVacation()->getData('status') == 0) ? 'checked' : '' ?>>
+                                    <?= $block->escapeHtml(__('Turn OFF')) ?>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                               for="last-name"><?= $block->escapeHtml(__('Vacation Message')) ?> <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <textarea id="vacation_message" name="vacation_message" required="required"
+                                      class="form-control col-md-7 col-xs-12" cols="20" rows="10"><?= $block->escapeHtml($block->getVacation()->getData('vacation_message')) ?></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="from_date" class="control-label col-md-3 col-sm-3 col-xs-12">
+                            <?= $block->escapeHtml(__('Vacation Date From')) ?>
+                            <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="from_date" class="form-control col-md-7 col-xs-12" type="text" name="from_date"
+                                   value="<?= $block->escapeHtmlAttr($block->getVacation()->getData('from_date')) ?>"
+                                   required="required">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="to_date" class="control-label col-md-3 col-sm-3 col-xs-12">
+                            <?= $block->escapeHtml(__('Vacation Date To')) ?>
+                            <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="to_date" class="form-control col-md-7 col-xs-12" type="text" name="to_date"
+                                   value="<?= $block->escapeHtmlAttr($block->getVacation()->getData('to_date')) ?>"
+                                   required="required">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                            <?= $block->escapeHtml(__('Add Cart button text')) ?>
+                            <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="text_add_cart" class="form-control col-md-7 col-xs-12" type="text"
+                                   name="text_add_cart"
+                                   value="<?= $block->escapeHtmlAttr($block->getVacation()->getData('text_add_cart')) ?>"
+                                   required="required">
+                        </div>
+                    </div>
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <button type="submit" class="btn btn-success">
+                                <?= $block->escapeHtml(__('Submit')) ?>
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    require([
+        "jquery",
+        "mage/calendar"
+    ], function ($) {
+        $("#from_date").calendar({
+            buttonText: "<?= $block->escapeJs(__('Select Date')) ?>"
+        });
+        $("#to_date").calendar({
+            buttonText: "<?= $block->escapeJs(__('Select Date')) ?>"
+        });
+    });
+</script>
