@@ -12,7 +12,7 @@ $sellerHelper = $this->helper("Lof\MarketPlace\Helper\Seller");
 $sellerVacationProducts = $sellerHelper->getSellerVacationProducts($_productCollection);
 ?>
 <script type="text/javascript">
-    var sellerVacationProducts = <?= \Zend_Json::encode($sellerVacationProducts); ?>;
+    var sellerVacationProducts = <?= \Laminas\Json\Json::encode($sellerVacationProducts); ?>;
     console.log(sellerVacationProducts);
     require([
         'jquery',
