@@ -51,8 +51,8 @@ class CustomerName extends Column
         ContextInterface $context,
         UiComponentFactory $uiComponentFactory,
         UrlInterface $urlBuilder,
-        array $components = [],
         \Lof\PreOrder\Helper\Data $helper,
+        array $components = [],
         array $data = []
     ) {
         $this->helper = $helper;
