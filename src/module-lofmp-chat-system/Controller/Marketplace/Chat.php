@@ -14,7 +14,7 @@
  * version in the future.
  * 
  * @category   Landofcoder
- * @package    Lof_ChatSystem
+ * @package    Lofmp_ChatSystem
  * @copyright  Copyright (c) 2017 Landofcoder (http://www.landofcoder.com/)
  * @license    http://www.landofcoder.com/LICENSE-1.0.html
  */

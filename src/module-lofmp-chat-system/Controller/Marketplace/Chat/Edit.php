@@ -52,7 +52,7 @@ class Edit extends \Magento\Framework\App\Action\Action
      */
     protected $_actionFlag;
     /**
-     * @var \Lof\ChatSystem\Helper\Data
+     * @var \Lofmp\ChatSystem\Helper\Data
      */
     protected $_assignHelper;
 

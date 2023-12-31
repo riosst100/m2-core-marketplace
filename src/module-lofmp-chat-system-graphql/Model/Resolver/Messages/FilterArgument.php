@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lof\ChatSystemGraphQl\Model\Resolver\Messages;
+namespace Lofmp\ChatSystemGraphQl\Model\Resolver\Messages;
 
 use Magento\Framework\GraphQl\Config\Element\Field;
 use Magento\Framework\GraphQl\ConfigInterface;

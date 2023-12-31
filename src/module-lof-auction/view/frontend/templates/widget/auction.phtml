@@ -121,7 +121,7 @@ $available_statuses = [
                 $stopTime = isset($auction_product['stop_auction_utc_time'])?$auction_product['stop_auction_utc_time']:0;
                 $startTime = isset($auction_product['start_auction_utc_time'])?$auction_product['start_auction_utc_time']:0;
 
-                $_image = $_imgHelper->getImg($_product, $image_width, $image_height, 'category_page_grid');
+                $_image = $_imgHelper->getImg($_product, $image_height, $image_width, 'category_page_grid');
                 $auctionData = $auction->getData();
                 $auctionData['stop_auction_time'] = $auction_product["stop_auction_time"];
                 $auctionData['start_auction_time'] = $auction_product["start_auction_time"];
