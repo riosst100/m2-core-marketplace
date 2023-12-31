@@ -84,11 +84,7 @@
         "src/module-lofmp-split-order-paypal/registration.php",
         "src/module-lofmp-store-locator/registration.php",
         "src/module-lofmp-table-rate-shipping/registration.php",
-        "src/module-lofmp-time-discount/registration.php",
-        "src/module-lofmp-HERE/registration.php",
-        "src/module-lofmp-HERE/registration.php",
-        "src/module-lofmp-HERE/registration.php",
-        "src/module-lofmp-HERE/registration.php"
+        "src/module-lofmp-time-discount/registration.php"
       ],
       "psr-4":{
         "CoreMarketplace\\SellerRegistration\\":"src/module-seller-registration",
