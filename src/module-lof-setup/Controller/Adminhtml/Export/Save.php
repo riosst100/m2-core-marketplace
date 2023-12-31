@@ -104,7 +104,7 @@ class Save extends \Magento\Backend\App\Action
         $fileName = str_replace(" ", "-", $fileName);
         if(!empty($content) && isset($params['isdowload']) && $params['isdowload'] ) {
             $content['created_at'] = date("m/d/Y h:i:s a");
-            $content = \Zend_Json::encode($content);
+            $content = \Laminas\Json\Json::encode($content);
             $this->_sendUploadResponse($fileName, $content);
         }
 
@@ -113,7 +113,7 @@ class Save extends \Magento\Backend\App\Action
             $dir = $this->_filesystem->getDirectoryWrite(DirectoryList::APP);
             $file = null;
             $content['created_at'] = date("m/d/Y h:i:s a");
-            $content = \Zend_Json::encode($content);
+            $content = \Laminas\Json\Json::encode($content);
             $filePath = "design/frontend/{$folder}/backup/".$fileName;
             try{
                 $dir->writeFile($filePath, $content);

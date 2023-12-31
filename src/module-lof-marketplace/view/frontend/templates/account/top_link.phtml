@@ -44,9 +44,9 @@
         }
     </script>
     <script>
-        var sellerLinks = <?= \Zend_Json::encode($block->getSellerLinks()); ?>;
-        var sellerStatus = <?= \Zend_Json::encode($block->getSellerStatus()); ?>;
-        var sellerId = <?= \Zend_Json::encode($block->getSellerId()); ?>;
+        var sellerLinks = <?= \Laminas\Json\Json::encode($block->getSellerLinks()); ?>;
+        var sellerStatus = <?= \Laminas\Json\Json::encode($block->getSellerStatus()); ?>;
+        var sellerId = <?= \Laminas\Json\Json::encode($block->getSellerId()); ?>;
         function getSellerLink(customerData) {
             if (sellerId) {
                 if (sellerStatus == 1) {

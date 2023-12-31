@@ -49,7 +49,7 @@ class Files
         foreach ($files as $k => $v) {
             $labelFile = str_replace($importFolderDir, "", $v);
             $file_content = file_get_contents($v);
-            $file_content =  \Zend_Json::decode($file_content);
+            $file_content =  \Laminas\Json\Json::decode($file_content);
             $created_at = $comment = '';
             if(isset($file_content['created_at']) && $file_content['created_at']!='') {
                 $created_at = ' - '.$file_content['created_at'];

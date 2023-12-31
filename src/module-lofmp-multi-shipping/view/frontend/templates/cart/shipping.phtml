@@ -47,7 +47,7 @@
         </script>
 
         <script>
-            window.checkoutConfig = <?php /* @escapeNotVerified */ echo \Zend_Json::encode($block->getCheckoutConfig()); ?>;
+            window.checkoutConfig = <?php /* @escapeNotVerified */ echo \Laminas\Json\Json::encode($block->getCheckoutConfig()); ?>;
             window.customerData = window.checkoutConfig.customerData;
             window.isCustomerLoggedIn = window.checkoutConfig.isCustomerLoggedIn;
             require([
