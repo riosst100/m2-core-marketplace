@@ -96,6 +96,10 @@ class ListLicense extends \Magento\Config\Block\System\Config\Form\Field
             $files6 = glob($path6 . '*/*/license.xml');
 
 
+            $path7 = $this->_filesystem->getDirectoryRead(DirectoryList::ROOT)->getAbsolutePath('vendor/riosst100/m2-core-marketplace/src/');
+            $files7 = glob($path7 . '*/*/license.xml');
+
+
             if(is_array($files) && $files) {
                 $this->_list_files = array_merge($this->_list_files, $files);
             }
@@ -113,6 +117,9 @@ class ListLicense extends \Magento\Config\Block\System\Config\Form\Field
             }
             if(is_array($files6) && $files6) {
                 $this->_list_files = array_merge($this->_list_files, $files6);
+            }
+            if(is_array($files7) && $files7) {
+                $this->_list_files = array_merge($this->_list_files, $files7);
             }
         }
         return $this->_list_files;
@@ -243,6 +250,7 @@ class ListLicense extends \Magento\Config\Block\System\Config\Form\Field
                     \Magento\Framework\UrlInterface::URL_TYPE_WEB
                     );
                 $remoteAddress = $this->_remoteAddress->getRemoteAddress();
+                $remoteAddress = '127.0.0.1';
                 $domain        = $this->getDomain($baseUrl);
                 $response = $this->verifyLicense($value,$_extension['sku'], $domain, $remoteAddress);
                 $license = isset($response["license"])?$response["license"]:false;
