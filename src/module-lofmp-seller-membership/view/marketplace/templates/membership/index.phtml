@@ -35,7 +35,10 @@ $helper = $this->helper("Lof\MarketPlace\Helper\Data");
                     <div class="col-md-12">
                         <div class="col-md-3 col-sm-6 col-xs-12">
                             <div class="pricing ui-ribbon-container">
-                                <?php if (strtotime((new \DateTime())->format('Y-m-d')) >= strtotime($membership->getExpirationDate())) { ?>
+                                <?php
+                                $expiredTime = $membership->getExpirationDate() ?: '';
+                                ?>
+                                <?php if (strtotime((new \DateTime())->format('Y-m-d')) >= strtotime($expiredTime)) { ?>
                                     <div class="ui-ribbon-wrapper">
                                         <div class="ui-ribbon">
                                             <?= __('Expired'); ?>
