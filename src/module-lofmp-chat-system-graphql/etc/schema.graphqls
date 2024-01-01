@@ -94,7 +94,7 @@ input SellerChatFilterInput {
     customer_name: FilterTypeInput @deprecated(reason: "Filter Seller Message customer_name")
     customer_id: FilterEqualTypeInput @deprecated(reason: "Filter Seller Message sender_id")
     status: FilterEqualTypeInput @deprecated(reason: "Filter Seller Message status")
-    is_read: FilterEqualTypeInput @deprecated(reason: "Filter Seller Message is_read"
+    is_read: FilterEqualTypeInput @deprecated(reason: "Filter Seller Message is_read")
     answered: FilterEqualTypeInput @deprecated(reason: "Filter Seller Message answered")
     created_at: FilterTypeInput @deprecated(reason: "Filter Seller Message created_at")
     or: SellerChatFilterInput @deprecated(reason: "Filter Seller Message condition OR")

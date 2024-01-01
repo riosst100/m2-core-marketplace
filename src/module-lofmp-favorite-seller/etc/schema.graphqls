@@ -1,100 +1,164 @@
 type Mutation {
-    addSellerToFavoritelist(sellerId: ID! @doc(description: "The ID of a seller.")) : AddFavoriteOutput @doc(description: "Add one seller to customer favorite list") @resolver(class: "\\Lofmp\\FavoriteSeller\\Model\\Resolver\\AddSellerToFavorite")
-    removeSellerToFavoritelist(sellerIds: [ID]! @doc(description: "The IDs of sellers.")): RemoveFavoriteOutput @doc(description: "Remove one or more seller to favorite list") @resolver(class: "\\Lofmp\\FavoriteSeller\\Model\\Resolver\\RemoveSellersToFavorite")
+  addSellerToFavoritelist(
+    sellerId: ID! @doc(description: "The ID of a seller.")
+  ): AddFavoriteOutput
+    @doc(description: "Add one seller to customer favorite list")
+    @resolver(
+      class: "\\Lofmp\\FavoriteSeller\\Model\\Resolver\\AddSellerToFavorite"
+    )
+  removeSellerToFavoritelist(
+    sellerIds: [ID]! @doc(description: "The IDs of sellers.")
+  ): RemoveFavoriteOutput
+    @doc(description: "Remove one or more seller to favorite list")
+    @resolver(
+      class: "\\Lofmp\\FavoriteSeller\\Model\\Resolver\\RemoveSellersToFavorite"
+    )
 }
 
 type Query {
-    favoritelist(
-        filter: FavoriteFilterInput @doc(description: "Identifies which favorite filter inputs to search for and return.")
-        pageSize: Int = 20 @doc(description: "Specifies the maximum number of results to return at once. This attribute is optional.")
-        currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1.")
-        sort: FavoriteSortInput @doc(description: "Specifies which attributes to sort on, and whether to return the results in ascending or descending favorite.")
-     ): Favorites @resolver(class: "\\Lofmp\\FavoriteSeller\\Model\\Resolver\\FavoritesList") @doc(description: "Return the contents of a customer's favorites.")
+  favoritelist(
+    filter: FavoriteFilterInput
+      @doc(
+        description: "Identifies which favorite filter inputs to search for and return."
+      )
+    pageSize: Int = 20
+      @doc(
+        description: "Specifies the maximum number of results to return at once. This attribute is optional."
+      )
+    currentPage: Int = 1
+      @doc(
+        description: "Specifies which page of results to return. The default value is 1."
+      )
+    sort: FavoriteSortInput
+      @doc(
+        description: "Specifies which attributes to sort on, and whether to return the results in ascending or descending favorite."
+      )
+  ): Favorites
+    @resolver(class: "\\Lofmp\\FavoriteSeller\\Model\\Resolver\\FavoritesList")
+    @doc(description: "Return the contents of a customer's favorites.")
 
-    checkSeller(sellerId: ID! @doc(description: "The ID of a seller.")) : Boolean @doc(description: "Check if the seller is on the customer's favorite list or not") @resolver(class: "\\Lofmp\\FavoriteSeller\\Model\\Resolver\\CheckSeller")
+  checkSeller(sellerId: ID! @doc(description: "The ID of a seller.")): Boolean
+    @doc(
+      description: "Check if the seller is on the customer's favorite list or not"
+    )
+    @resolver(class: "\\Lofmp\\FavoriteSeller\\Model\\Resolver\\CheckSeller")
 
-   favoritelistSeller(
-        filter: FavoriteFilterInput @doc(description: "Identifies which favorite filter inputs to search for and return.")
-        pageSize: Int = 20 @doc(description: "Specifies the maximum number of results to return at once. This attribute is optional.")
-        currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1.")
-        sort: FavoriteSortInput @doc(description: "Specifies which attributes to sort on, and whether to return the results in ascending or descending favorite.")
-    ): FavoriteSellers @resolver(class: "\\Lofmp\\FavoriteSeller\\Model\\Resolver\\FavoritesSellerList") @doc(description: "Return the contents of a customer's favorites.")
+  favoritelistSeller(
+    filter: FavoriteFilterInput
+      @doc(
+        description: "Identifies which favorite filter inputs to search for and return."
+      )
+    pageSize: Int = 20
+      @doc(
+        description: "Specifies the maximum number of results to return at once. This attribute is optional."
+      )
+    currentPage: Int = 1
+      @doc(
+        description: "Specifies which page of results to return. The default value is 1."
+      )
+    sort: FavoriteSortInput
+      @doc(
+        description: "Specifies which attributes to sort on, and whether to return the results in ascending or descending favorite."
+      )
+  ): FavoriteSellers
+    @resolver(
+      class: "\\Lofmp\\FavoriteSeller\\Model\\Resolver\\FavoritesSellerList"
+    )
+    @doc(description: "Return the contents of a customer's favorites.")
 }
 
 type Favorites {
-    total_count: Int @doc(description: "The number of sellers returned")
-    page_info: SearchResultPageInfo @doc(description: "Metadata for pagination rendering")
-    items: [FavoriteSeller] @doc(description: "An array of favorites that match the specified search criteria")
+  total_count: Int @doc(description: "The number of sellers returned")
+  page_info: SearchResultPageInfo
+    @doc(description: "Metadata for pagination rendering")
+  items: [FavoriteSeller]
+    @doc(
+      description: "An array of favorites that match the specified search criteria"
+    )
 }
 
 type FavoriteSellers {
-    total_count: Int @doc(description: "The number of sellers returned")
-    page_info: SearchResultPageInfo @doc(description: "Metadata for pagination rendering")
-    items: [Favorite] @doc(description: "An array of favorites that match the specified search criteria")
+  total_count: Int @doc(description: "The number of sellers returned")
+  page_info: SearchResultPageInfo
+    @doc(description: "Metadata for pagination rendering")
+  items: [Favorite]
+    @doc(
+      description: "An array of favorites that match the specified search criteria"
+    )
 }
 
 type FavoriteSeller {
-    id : Int @doc(description: "The favorite_id")
-    seller : FavSellerInfo @doc(description : "The seller informations")
-    customer_id : Int @doc(description: "The customer_id")
-    creation_time : String @doc(description: "The creation_time")
-    status : Int @doc(description: "The status")
+  id: Int @doc(description: "The favorite_id")
+  seller: FavSellerInfo @doc(description: "The seller informations")
+  customer_id: Int @doc(description: "The customer_id")
+  creation_time: String @doc(description: "The creation_time")
+  status: Int @doc(description: "The status")
 }
 
 type Favorite {
-    id : Int @doc(description: "The favorite_id")
-    customer : CustomerInfo @resolver(class: "\\Lofmp\\FavoriteSeller\\Model\\Resolver\\Customer\\CustomerInfo") @doc(description: "Return the details customer's.")
-    customer_id : Int @doc(description: "The customer_id")
-    creation_time : String @doc(description: "The creation_time")
-    status : Int @doc(description: "The status")
+  id: Int @doc(description: "The favorite_id")
+  customer: CustomerInfo
+    @resolver(
+      class: "\\Lofmp\\FavoriteSeller\\Model\\Resolver\\Customer\\CustomerInfo"
+    )
+    @doc(description: "Return the details customer's.")
+  customer_id: Int @doc(description: "The customer_id")
+  creation_time: String @doc(description: "The creation_time")
+  status: Int @doc(description: "The status")
 }
 
 type FavSellerInfo {
-    seller_id : Int @doc(description: "The seller_id")
-    thumbnail : String @doc(description: "The thumbnail")
-    url : String @doc(description: "The url")
-    description :  String @doc(description: "The description")
-    name : String @doc(description: "The name")
-    rating : Rating @doc(description: "percentage of rating")
+  seller_id: Int @doc(description: "The seller_id")
+  thumbnail: String @doc(description: "The thumbnail")
+  url: String @doc(description: "The url")
+  description: String @doc(description: "The description")
+  name: String @doc(description: "The name")
+  rating: Rating @doc(description: "percentage of rating")
 }
 
 type CustomerInfo {
-    customer_id: Int @doc(description: "The customer_id")
-    name : String @doc(description: "The name")
+  customer_id: Int @doc(description: "The customer_id")
+  name: String @doc(description: "The name")
 }
 
 type Rating {
-    total_count : Int @doc(description: "Query by total_count")
-    count : Int @doc(description: "Query by count")
-    total_rate : Float @doc(description: "Query by total_rate")
-    average : Float @doc(description: "Query by average")
-    rate_one : Float @doc(description: "Query by rate_one")
-    rate_two : Float @doc(description: "Query by rate_two")
-    rate_three : Float @doc(description: "Query by rate_three")
-    rate_four : Float @doc(description: "Query by rate_four")
-    rate_five : Float @doc(description: "Query by rate_five")
+  total_count: Int @doc(description: "Query by total_count")
+  count: Int @doc(description: "Query by count")
+  total_rate: Float @doc(description: "Query by total_rate")
+  average: Float @doc(description: "Query by average")
+  rate_one: Float @doc(description: "Query by rate_one")
+  rate_two: Float @doc(description: "Query by rate_two")
+  rate_three: Float @doc(description: "Query by rate_three")
+  rate_four: Float @doc(description: "Query by rate_four")
+  rate_five: Float @doc(description: "Query by rate_five")
 }
 
 type AddFavoriteOutput {
-    favorite : Favorite! @doc(description: "Contains the favorite with after items were successfully added.")
-    error : String! @doc(description: "error messages.")
+  favorite: Favorite!
+    @doc(
+      description: "Contains the favorite with after items were successfully added."
+    )
+  error: String! @doc(description: "error messages.")
 }
 
 type RemoveFavoriteOutput {
-    favorite : [Favorite]! @doc(description: "Contains the favorites with after items were successfully deleted.")
-    error : [String]! @doc(description: "list error messages.")
+  favorite: [Favorite]!
+    @doc(
+      description: "Contains the favorites with after items were successfully deleted."
+    )
+  error: [String]! @doc(description: "list error messages.")
 }
 
 input FavoriteFilterInput {
-    id : FilterEqualTypeInput @doc(description: "Filter seller_id")
-    seller_id : FilterEqualTypeInput @doc(description: "Filter seller_id")
-    creation_time : FilterTypeInput  @doc(description: "Filter creation_time")
-    status : FilterEqualTypeInput @doc(description: "Filter status")
+  id: FilterEqualTypeInput @doc(description: "Filter seller_id")
+  seller_id: FilterEqualTypeInput @doc(description: "Filter seller_id")
+  creation_time: FilterTypeInput @doc(description: "Filter creation_time")
+  status: FilterEqualTypeInput @doc(description: "Filter status")
 }
 
 input FavoriteSortInput {
-    id : SortEnum @doc(description: "Sort by the favorite id")
-    seller_id: SortEnum @doc(description: "Sort by the seller_id")
-    creation_time: SortEnum @doc(description: "Sort by the creation_time")
-    status: SortEnum @doc(description: "Sort by the status")
+  id: SortEnum @doc(description: "Sort by the favorite id")
+  seller_id: SortEnum @doc(description: "Sort by the seller_id")
+  creation_time: SortEnum @doc(description: "Sort by the creation_time")
+  status: SortEnum @doc(description: "Sort by the status")
 }

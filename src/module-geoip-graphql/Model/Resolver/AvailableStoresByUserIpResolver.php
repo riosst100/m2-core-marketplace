@@ -50,7 +50,7 @@ class AvailableStoresByUserIpResolver implements ResolverInterface
     public function resolve(Field $field, $context, ResolveInfo $info, array $value = null, array $args = null)
     {
         $currentStoreCode = $this->storeManager->getStore()->getCode();
-        $userIpAddress = isset($args['ip_address']) ?: null;
+        $userIpAddress = isset($args['ip_address']) ? $args['ip_address'] : null;
         $countryCode = $userIpAddress ? $this->ipToCountryRepository->getCountryCode($userIpAddress) : null;
         return $this->storeConfigDataProvider->getAvailableStoreConfigByCountryCode(
             $countryCode,

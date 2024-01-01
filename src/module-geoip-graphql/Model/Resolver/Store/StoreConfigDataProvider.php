@@ -77,7 +77,7 @@ class StoreConfigDataProvider extends \Magento\StoreGraphQl\Model\Resolver\Store
      * @param int|null $storeGroupId
      * @return array
      */
-    public function getAvailableStoreConfigByCountryCode(string $countryCode = null, int $storeGroupId = null): array
+    public function getAvailableStoreConfigByCountryCode($countryCode = null, int $storeGroupId = null): array
     {
         $storesConfigData = [];
 
