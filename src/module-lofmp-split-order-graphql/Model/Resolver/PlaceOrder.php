@@ -33,10 +33,8 @@ use Magento\Quote\Api\PaymentMethodManagementInterface;
 use Magento\QuoteGraphQl\Model\Cart\GetCartForUser;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\QuoteGraphQl\Model\Cart\CheckCartCheckoutAllowance;
-use Magento\QuoteGraphQl\Model\Cart\GetCartForCheckout;
 use Magento\QuoteGraphQl\Model\Cart\PlaceOrder as PlaceOrderModel;
 use Magento\GraphQl\Helper\Error\AggregateExceptionMessageFormatter;
-use Magento\QuoteGraphQl\Model\Cart\PlaceOrderMutexInterface;
 
 class PlaceOrder extends \Magento\QuoteGraphQl\Model\Resolver\PlaceOrder
 {
@@ -45,6 +43,11 @@ class PlaceOrder extends \Magento\QuoteGraphQl\Model\Resolver\PlaceOrder
      * @var GetCartForUser
      */
     private $getCartForUser;
+
+    /**
+     * @var PlaceOrderModel
+     */
+    private $placeOrder;
 
     /**
      * @var CheckCartCheckoutAllowance
@@ -62,54 +65,38 @@ class PlaceOrder extends \Magento\QuoteGraphQl\Model\Resolver\PlaceOrder
     private $orderRepository;
 
     /**
-     * @var GetCartForCheckout
-     */
-    private $getCartForCheckout;
-
-    /**
-     * @var PlaceOrderModel
-     */
-    private $placeOrder;
-
-    /**
      * @var AggregateExceptionMessageFormatter
      */
     private $errorMessageFormatter;
 
     /**
-     * @var PlaceOrderMutexInterface
-     */
-    private $placeOrderMutex;
-
-    /**
      * PlaceOrder constructor.
      * @param GetCartForUser $getCartForUser
+     * @param PlaceOrderModel $placeOrder
      * @param CartManagementInterface $cartManagement
      * @param OrderRepositoryInterface $orderRepository
      * @param CheckCartCheckoutAllowance $checkCartCheckoutAllowance
      * @param PaymentMethodManagementInterface $paymentMethodManagement
+     * @param AggregateExceptionMessageFormatter $errorMessageFormatter
      */
     public function __construct(
         GetCartForUser $getCartForUser,
+        PlaceOrderModel $placeOrder,
         CartManagementInterface $cartManagement,
         OrderRepositoryInterface $orderRepository,
         CheckCartCheckoutAllowance $checkCartCheckoutAllowance,
         PaymentMethodManagementInterface $paymentMethodManagement,
-        GetCartForCheckout $getCartForCheckout,
-        PlaceOrderModel $placeOrder,
-        AggregateExceptionMessageFormatter $errorMessageFormatter,
-        ?PlaceOrderMutexInterface $placeOrderMutex = null
+        AggregateExceptionMessageFormatter $errorMessageFormatter
     ) {
         $this->getCartForUser = $getCartForUser;
         $this->cartManagement = $cartManagement;
         $this->orderRepository = $orderRepository;
         $this->checkCartCheckoutAllowance = $checkCartCheckoutAllowance;
         parent::__construct(
-            $getCartForCheckout,
+            $getCartForUser,
             $placeOrder,
             $orderRepository,
-            $errorMessageFormatter,
-            $placeOrderMutex
+            $errorMessageFormatter
         );
     }
 
