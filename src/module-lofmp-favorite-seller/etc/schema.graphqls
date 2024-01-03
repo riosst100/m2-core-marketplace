@@ -4,14 +4,14 @@ type Mutation {
   ): AddFavoriteOutput
     @doc(description: "Add one seller to customer favorite list")
     @resolver(
-      class: "\\Lofmp\\FavoriteSeller\\Model\\Resolver\\AddSellerToFavorite"
+      class: "Lofmp\\FavoriteSeller\\Model\\Resolver\\AddSellerToFavorite"
     )
   removeSellerToFavoritelist(
     sellerIds: [ID]! @doc(description: "The IDs of sellers.")
   ): RemoveFavoriteOutput
     @doc(description: "Remove one or more seller to favorite list")
     @resolver(
-      class: "\\Lofmp\\FavoriteSeller\\Model\\Resolver\\RemoveSellersToFavorite"
+      class: "Lofmp\\FavoriteSeller\\Model\\Resolver\\RemoveSellersToFavorite"
     )
 }
 
@@ -34,14 +34,14 @@ type Query {
         description: "Specifies which attributes to sort on, and whether to return the results in ascending or descending favorite."
       )
   ): Favorites
-    @resolver(class: "\\Lofmp\\FavoriteSeller\\Model\\Resolver\\FavoritesList")
+    @resolver(class: "Lofmp\\FavoriteSeller\\Model\\Resolver\\FavoritesList")
     @doc(description: "Return the contents of a customer's favorites.")
 
   checkSeller(sellerId: ID! @doc(description: "The ID of a seller.")): Boolean
     @doc(
       description: "Check if the seller is on the customer's favorite list or not"
     )
-    @resolver(class: "\\Lofmp\\FavoriteSeller\\Model\\Resolver\\CheckSeller")
+    @resolver(class: "Lofmp\\FavoriteSeller\\Model\\Resolver\\CheckSeller")
 
   favoritelistSeller(
     filter: FavoriteFilterInput
@@ -62,7 +62,7 @@ type Query {
       )
   ): FavoriteSellers
     @resolver(
-      class: "\\Lofmp\\FavoriteSeller\\Model\\Resolver\\FavoritesSellerList"
+      class: "Lofmp\\FavoriteSeller\\Model\\Resolver\\FavoritesSellerList"
     )
     @doc(description: "Return the contents of a customer's favorites.")
 }
@@ -99,7 +99,7 @@ type Favorite {
   id: Int @doc(description: "The favorite_id")
   customer: CustomerInfo
     @resolver(
-      class: "\\Lofmp\\FavoriteSeller\\Model\\Resolver\\Customer\\CustomerInfo"
+      class: "Lofmp\\FavoriteSeller\\Model\\Resolver\\Customer\\CustomerInfo"
     )
     @doc(description: "Return the details customer's.")
   customer_id: Int @doc(description: "The customer_id")

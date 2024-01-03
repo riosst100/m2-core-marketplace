@@ -84,7 +84,7 @@ type Query {
       )
     get_products: Boolean = false @doc(description: "Get Latest Products")
   ): Seller
-    @resolver(class: "\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\SellerById")
+    @resolver(class: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\SellerById")
     @doc(description: "Get Seller by ID")
     @cache(
       cacheIdentity: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\SellerById\\Identity"
@@ -98,7 +98,7 @@ type Query {
       )
     get_products: Boolean = false @doc(description: "Get Latest Products")
   ): Seller
-    @resolver(class: "\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\SellerByUrl")
+    @resolver(class: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\SellerByUrl")
     @doc(description: "Get Seller by Url key")
     @cache(
       cacheIdentity: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\SellerByUrl\\Identity"
@@ -113,7 +113,7 @@ type Query {
     get_products: Boolean = false @doc(description: "Get Latest Products")
   ): Seller
     @resolver(
-      class: "\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\SellerByProduct"
+      class: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\SellerByProduct"
     )
     @doc(description: "Get Seller by ID")
     @cache(
@@ -144,7 +144,7 @@ type Query {
       )
   ): Products
     @resolver(
-      class: "\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\ProductBySellerId"
+      class: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\ProductBySellerId"
     )
     @doc(description: "Get Product by Seller ID")
 
@@ -172,7 +172,7 @@ type Query {
       )
   ): Products
     @resolver(
-      class: "\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\ProductBySellerUrl"
+      class: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\ProductBySellerUrl"
     )
     @doc(description: "Get Product by Seller Url key")
 
@@ -199,7 +199,7 @@ type Query {
       )
   ): Products
     @resolver(
-      class: "\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\ProductSellers"
+      class: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\ProductSellers"
     )
     @doc(
       description: "The seller product query searches for seller products that match the criteria specified in the search and filter attributes"
@@ -223,7 +223,7 @@ type Query {
         description: "Specifies which attributes to sort on, and whether to return the results in ascending or descending order."
       )
   ): Sellers
-    @resolver(class: "\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\Sellers")
+    @resolver(class: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\Sellers")
     @doc(
       description: "The seller query searches for sellers that match the criteria specified in the search and filter attributes"
     )
@@ -249,7 +249,7 @@ type Query {
         description: "Specifies which attributes to sort on, and whether to return the results in ascending or descending order."
       )
   ): SellerGroups
-    @resolver(class: "\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\SellerGroups")
+    @resolver(class: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\SellerGroups")
     @doc(
       description: "The seller query searches for sellers that match the criteria specified in the search and filter attributes"
     )
@@ -276,7 +276,7 @@ type Query {
         description: "Specifies which attributes to sort on, and whether to return the results in ascending or descending order."
       )
   ): SellerRates
-    @resolver(class: "\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\SellerRates")
+    @resolver(class: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\SellerRates")
     @doc(
       description: "The seller rates query searches for seller ratings that match the criteria specified in the search and filter attributes"
     )
@@ -287,7 +287,7 @@ type Query {
 
 type Mutation {
   registerSeller(input: SellerMutationInput!): MarketplaceOuput
-    @resolver(class: "\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\CreateSeller")
+    @resolver(class: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\CreateSeller")
     @doc(
       description: "Register a new Seller Account, create new seller account"
     )
@@ -299,30 +299,30 @@ type Mutation {
     @doc(description: "Query by Mutation Become Seller.")
 
   reviewSeller(input: ReviewInput!): MarketplaceOuput
-    @resolver(class: "\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\ReviewSeller")
+    @resolver(class: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\ReviewSeller")
     @doc(description: "Review Seller")
 
   customerSendMessage(input: CustomerMessageInput!): SellerMessage
     @resolver(
-      class: "\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\Customer\\SendMessage"
+      class: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\Customer\\SendMessage"
     )
     @doc(description: "Customer send message to seller")
 
   customerReplyMessage(input: ReplyMessageInput!): SellerMessageDetail
     @resolver(
-      class: "\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\Customer\\ReplyMessage"
+      class: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\Customer\\ReplyMessage"
     )
     @doc(description: "Customer reply Messaage")
 
   customerDeleteMessage(message_id: Int!): MarketplaceOuput
     @resolver(
-      class: "\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\Customer\\DeleteMessage"
+      class: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\Customer\\DeleteMessage"
     )
     @doc(description: "Customer delete Messaage by id")
 
   sellerReplyMessage(input: SellerReplyMessageInput!): SellerMessageDetail
     @resolver(
-      class: "\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\Seller\\ReplyMessage"
+      class: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\Seller\\ReplyMessage"
     )
     @doc(description: "Seller reply Messaage")
 }
@@ -872,7 +872,7 @@ type SellerMessage {
   ): SellerMessageDetails
     @doc(description: "List of message details by message_id.")
     @resolver(
-      class: "\\Lof\\MarketplaceGraphQl\\Model\\Resolver\\MessageDetail"
+      class: "Lof\\MarketplaceGraphQl\\Model\\Resolver\\MessageDetail"
     )
 }
 
