@@ -17,7 +17,7 @@ type Mutation {
 }
 
 interface CartItemInterface {
-    seller: SplitCartSellerInfo @resolver(class: "\\Lofmp\\SplitCartGraphQl\\Model\\Resolver\\SellerInfo")
+    seller: SplitCartSellerInfo @resolver(class: "Lofmp\\SplitCartGraphQl\\Model\\Resolver\\SellerInfo")
 }
 
 type SplitCartSellerInfo {

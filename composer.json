@@ -139,7 +139,7 @@
         "Lofmp\\SingleCheckout\\":"src/module-lofmp-single-checkout",
         "Lofmp\\Slider\\":"src/module-lofmp-slider",
         "Lofmp\\SplitCart\\":"src/module-lofmp-split-cart",
-        "Lofmp\\SplitCartGraqhQl\\":"src/module-lofmp-split-cart-graphql",
+        "Lofmp\\SplitCartGraphQl\\":"src/module-lofmp-split-cart-graphql",
         "Lofmp\\SplitOrder\\":"src/module-lofmp-split-order",
         "Lofmp\\SplitOrderGraphQl\\":"src/module-lofmp-split-order-graphql",
         "Lofmp\\SplitOrderPaypal\\":"src/module-lofmp-split-order-paypal",

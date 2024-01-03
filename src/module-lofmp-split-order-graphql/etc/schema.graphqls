@@ -19,7 +19,7 @@
 
 type Mutation {
 
-    splitSellerOrder(input: PlaceOrderInput): SellerPlaceOrderOutput @resolver(class: "\\Lofmp\\SplitOrderGraphQl\\Model\\Resolver\\PlaceOrder")
+    splitSellerOrder(input: PlaceOrderInput): SellerPlaceOrderOutput @resolver(class: "Lofmp\\SplitOrderGraphQl\\Model\\Resolver\\PlaceOrder")
 
 }
 type SellerPlaceOrderOutput {
