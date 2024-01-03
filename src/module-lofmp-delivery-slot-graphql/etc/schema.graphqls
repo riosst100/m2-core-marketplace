@@ -5,7 +5,7 @@ type Query {
     target_date: String! @doc(description: "Query by target_date.")
   ): DeliverySlots
     @resolver(
-      class: "Lofmp\\DeliverySlotGraphQl\\Model\\Resolver\\DeliverySlots"
+      class: "Lofmp\\DeliverySlotGraphQl\\Model\\Resolver\\GetDeliverySlots"
     )
     @doc(description: "Query by Get Delivery Slot Config for Guest.")
 }
