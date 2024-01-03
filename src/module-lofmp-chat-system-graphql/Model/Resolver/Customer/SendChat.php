@@ -32,7 +32,7 @@ use Magento\Framework\GraphQl\Exception\GraphQlAuthorizationException;
 use Lof\MarketPlace\Model\ResourceModel\Seller\CollectionFactory;
 
 
-class SendMessage implements ResolverInterface
+class SendChat implements ResolverInterface
 {
     /**
      * @var CustomerMessageRepositoryInterface
