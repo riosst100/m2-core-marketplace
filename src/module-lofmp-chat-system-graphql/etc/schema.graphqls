@@ -18,13 +18,13 @@
 
 type Mutation {
 
-    customerSendChat(input: CustomerChatMessageInput!): SellerChatMessage @resolver(class:"Lof\\ChatSystemGraphQl\\Model\\Resolver\\Customer\\SendChat") @doc(description: "Customer send chat message to seller")
+    customerSendChat(input: CustomerChatMessageInput!): SellerChatMessage @resolver(class:"Lofmp\\ChatSystemGraphQl\\Model\\Resolver\\Customer\\SendChat") @doc(description: "Customer send chat message to seller")
 
-    sellerReplyChat(input: SellerChatMessageInput!): SellerChatMessage @resolver(class:"Lof\\ChatSystemGraphQl\\Model\\Resolver\\Seller\\SendChat") @doc(description: "Seller send chat Messaage to customer")
+    sellerReplyChat(input: SellerChatMessageInput!): SellerChatMessage @resolver(class:"Lofmp\\ChatSystemGraphQl\\Model\\Resolver\\Seller\\SendChat") @doc(description: "Seller send chat Messaage to customer")
 
-    sellerSetBlacklist(chat_id: Int! @doc(description: "A Chat ID.")): SellerChatOutput @resolver(class:"Lof\\ChatSystemGraphQl\\Model\\Resolver\\Seller\\AddBlacklist") @doc(description: "Seller set blacklist for a chat")
+    sellerSetBlacklist(chat_id: Int! @doc(description: "A Chat ID.")): SellerChatOutput @resolver(class:"Lofmp\\ChatSystemGraphQl\\Model\\Resolver\\Seller\\AddBlacklist") @doc(description: "Seller set blacklist for a chat")
 
-    sellerDeleteChat(input: DeleteChatInput! @doc(description: "Input field for delete chat.")): SellerChatOutput @resolver(class:"Lof\\ChatSystemGraphQl\\Model\\Resolver\\Seller\\DeleteChat") @doc(description: "Seller delete a chat")
+    sellerDeleteChat(input: DeleteChatInput! @doc(description: "Input field for delete chat.")): SellerChatOutput @resolver(class:"Lofmp\\ChatSystemGraphQl\\Model\\Resolver\\Seller\\DeleteChat") @doc(description: "Seller delete a chat")
 
 }
 
@@ -74,7 +74,7 @@ type SellerChatMessage {
     messages (
         pageSize: Int = 20 @doc(description: "Specifies the maximum number of results to return at once. This attribute is optional.")
         currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1.")
-    ): SellerChatMessageDetails @doc(description: "List of message details by chat_id.") @resolver(class: "Lof\\ChatSystemGraphQl\\Model\\Resolver\\ChatMessageDetail")
+    ): SellerChatMessageDetails @doc(description: "List of message details by chat_id.") @resolver(class: "Lofmp\\ChatSystemGraphQl\\Model\\Resolver\\ChatMessageDetail")
 }
 
 type SellerChatMessageDetail {
