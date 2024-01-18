@@ -169,7 +169,7 @@ abstract class Category extends \Magento\Framework\App\Action\Action
                 }
             }
         }
-        $inputFilter = new \Zend_Filter_Input($dateFieldFilters, [], $postData);
+        $inputFilter = new \Magento\Framework\Filter\FilterInput($dateFieldFilters, [], $postData);
         return $inputFilter->getUnescaped();
     }
 }

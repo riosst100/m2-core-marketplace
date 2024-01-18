@@ -110,7 +110,7 @@ abstract class AbstractReport extends \Magento\Backend\App\Action
         )->prepareFilterString(
             $this->getRequest()->getParam('loffilter')
         );
-        $inputFilter = new \Zend_Filter_Input(
+        $inputFilter = new \Magento\Framework\Filter\FilterInput(
             ['from' => $this->_dateFilter, 'to' => $this->_dateFilter],
             [],
             $requestData

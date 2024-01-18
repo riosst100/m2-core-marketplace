@@ -75,6 +75,46 @@ class StoreConfigDataProvider extends \Magento\StoreGraphQl\Model\Resolver\Store
      *
      * @param string|null $countryCode
      * @param int|null $storeGroupId
+     */
+    public function getWebsiteByCountryCode($countryCode = null, int $storeGroupId = null) {
+        $storesConfigData = [];
+
+        if ($countryCode) {
+            $websiteList = $this->websiteCollectionFactory->create();
+            if ($websiteList) {
+                foreach($websiteList as $website) {
+                    $websiteId = $website->getId();
+
+                    $selectedWebsite = false;
+                    if ($countryCode && $website->getCode() == strtolower($countryCode)) {
+                        $selectedWebsite = true;
+                    }
+
+                    if ($selectedWebsite) {
+                        // Get website stores by website id
+                        $websiteStores = $this->storeWebsiteRelation->getWebsiteStores((int)$websiteId, true, $storeGroupId);
+                        $storeCodes = array_column($websiteStores, 'code');
+                        $storeConfigs = $this->storeConfigManager->getStoreConfigs($storeCodes);
+                        foreach ($storeConfigs as $storeConfig) {
+                            $key = array_search($storeConfig->getCode(), array_column($websiteStores, 'code'), true);
+                            $storeData = isset($websiteStores[$key]) ? $websiteStores[$key] : null;
+                            if ($storeData && $storeData['default_store_id'] == $storeConfig->getId()) {
+                                return $this->prepareStoreConfigData($storeConfig, $websiteStores[$key]);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Get available website stores by country code
+     *
+     * @param string|null $countryCode
+     * @param int|null $storeGroupId
      * @return array
      */
     public function getAvailableStoreConfigByCountryCode($countryCode = null, int $storeGroupId = null): array

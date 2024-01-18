@@ -35,6 +35,7 @@
         "src/module-category-importexport/registration.php",
         "src/module-geoip/registration.php",
         "src/module-geoip-graphql/registration.php",
+        "src/module-marketplace-graphql/registration.php",
         "src/module-lof-all/registration.php",
         "src/module-lof-marketplace/registration.php",
         "src/module-lof-marketplace-graphql/registration.php",
@@ -91,6 +92,7 @@
       "psr-4":{
         "CoreMarketplace\\SellerRegistration\\":"src/module-seller-registration",
         "CoreMarketplace\\ProductAttributesLink\\":"src/module-product-attributes-link",
+        "CoreMarketplace\\MarketplaceGraphQl\\":"src/module-marketplace-graphql",
         "Webcastle\\CategoryImportExport\\":"src/module-category-importexport",
         "Magefan\\GeoIp\\":"src/module-geoip",
         "CoreMarketplace\\GeoIpGraphQl\\":"src/module-geoip-graphql",

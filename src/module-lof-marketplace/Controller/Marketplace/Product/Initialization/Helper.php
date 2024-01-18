@@ -31,7 +31,6 @@ use Magento\Framework\App\ObjectManager;
 use Magento\Catalog\Controller\Adminhtml\Product\Initialization\Helper\AttributeFilter;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Locale\FormatInterface;
-use Zend_Filter_Input;
 use Magento\Catalog\Model\Product\Filter\DateTime as DateTimeFilter;
 
 /**
@@ -216,7 +215,7 @@ class Helper
             }
         }
 
-        $inputFilter = new Zend_Filter_Input($dateFieldFilters, [], $productData);
+        $inputFilter = new \Magento\Framework\Filter\FilterInput($dateFieldFilters, [], $productData);
         $productData = $inputFilter->getUnescaped();
 
         if (isset($productData['options'])) {
