@@ -1,0 +1,13 @@
+input SellerInput {
+  name: String @doc(description: "Store Name")
+  company: String! @doc(description: "Company Name")
+  company_registration_number: String! @doc(description: "Company Registration Number")
+  country: String! @doc(description: "Store Address Country")
+  address_line_1: String! @doc(description: "Store Address Line 1")
+  address_line_2: String @doc(description: "Store Address Line 2")
+  city: String! @doc(description: "Store Address City")
+  region: String @doc(description: "Store Address Region")
+  region_id: String @doc(description: "Store Address Region")
+  postcode: String! @doc(description: "Store Address Postal Code")
+  contact_number: String! @doc(description: "Store Address Contact Number")
+}

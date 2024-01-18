@@ -53,7 +53,7 @@ class Save extends \Lofmp\CouponCode\Controller\Adminhtml\Rule
                 $model = $this->_objectManager->create('Lofmp\CouponCode\Model\Rule');
                 $model_sale_rule = $this->_objectManager->create('Magento\SalesRule\Model\Rule');
 
-                $inputFilter = new \Zend_Filter_Input(
+                $inputFilter = new \Magento\Framework\Filter\FilterInput(
                     ['from_date' => $this->_dateFilter, 'to_date' => $this->_dateFilter],
                     [],
                     $data

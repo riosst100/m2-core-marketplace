@@ -1584,7 +1584,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $validator = new EmailAddress();
         $validator->setMessage(
             __('"%1" invalid type entered.', $value),
-            \Zend_Validate_EmailAddress::INVALID
+            \Laminas\Validator\EmailAddress::INVALID
         );
         $phpValidateEmail = filter_var($value, FILTER_VALIDATE_EMAIL);
         $coreValidateEmail = true;

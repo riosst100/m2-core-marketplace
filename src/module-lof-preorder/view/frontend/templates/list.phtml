@@ -24,13 +24,13 @@
 $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 $categoryId = 0;
 $category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');//get current category
-if (get_class_methods($category)) {
+if ($category) {
     $categoryId = $category->getId();
 }
 $helper = $this->helper('Lof\PreOrder\Helper\Data');
 $url = $helper->getCheckConfigUrl();
 $_productCollection = $block->getLoadedProductCollection();
-if (get_class_methods($category) && $categoryId) {
+if ($category && $categoryId) {
     $_productCollection->addCategoriesFilter(['eq' => $categoryId]);
 }
 $show_msg = $helper->getShowPreorderMsgOnCategory();
