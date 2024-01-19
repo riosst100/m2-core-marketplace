@@ -2,7 +2,7 @@ input SellerInput {
   name: String @doc(description: "Store Name")
   company: String! @doc(description: "Company Name")
   company_registration_number: String! @doc(description: "Company Registration Number")
-  country: String! @doc(description: "Store Address Country")
+  country_id: String @doc(description: "Store Address Country ID")
   address_line_1: String! @doc(description: "Store Address Line 1")
   address_line_2: String @doc(description: "Store Address Line 2")
   city: String! @doc(description: "Store Address City")

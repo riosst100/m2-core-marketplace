@@ -1,6 +1,6 @@
 <?php
 
-namespace CoreMarketplace\MarketplaceGraphQl\Setup;
+namespace CoreMarketplace\MarketPlace\Setup;
 
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
