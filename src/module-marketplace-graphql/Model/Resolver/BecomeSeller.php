@@ -272,7 +272,7 @@ class BecomeSeller extends \Lof\MarketplaceGraphQl\Model\Resolver\BecomeSeller
             $stores = [];
             $stores[] = $this->helperData->getCurrentStoreId();
             $sellerModel = $this->sellerFactory->create();
-            $status = $sellerApproval ? 0 : 1;
+            $status = $sellerApproval ? 2 : 1;
             try {
                 $sellerModel->setUrlKey($url)
                     ->setGroupId((int)$group)

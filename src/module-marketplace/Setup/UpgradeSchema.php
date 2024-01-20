@@ -52,6 +52,22 @@ class UpgradeSchema implements UpgradeSchemaInterface
             );
         }
 
+        if (version_compare($context->getVersion(), '1.0.2', '<')) 
+        {
+            $sellerTable = $installer->getTable('lof_marketplace_seller');
+
+            $installer->getConnection()->addColumn(
+                $sellerTable,
+                'term_and_conditions',
+                [
+                    'type' => Table::TYPE_TEXT,
+                    'length' => 255,
+                    'nullable' => true,
+                    'comment' => 'Term & Conditions'
+                ]
+            );
+        }
+
         $installer->endSetup();
     }
 }

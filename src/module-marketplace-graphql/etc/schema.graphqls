@@ -11,3 +11,7 @@ input SellerInput {
   postcode: String! @doc(description: "Store Address Postal Code")
   contact_number: String! @doc(description: "Store Address Contact Number")
 }
+
+type Customer {
+  is_seller: Boolean @doc(description: "Customer is seller") @resolver(class: "\\CoreMarketplace\\MarketplaceGraphQl\\Model\\Resolver\\IsCustomerSeller")
+}
