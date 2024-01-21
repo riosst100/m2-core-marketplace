@@ -109,7 +109,7 @@ class IdentificationVerification extends \Lofmp\SellerIdentificationApproval\Blo
                 'label' => __('Identification Requested'),
                 'title' => __('Identification Requested'),
                 'name' => 'identification',
-                'options' => $this->getOptions()
+                'values' => $this->getOptions()
             ]
         );
 
@@ -184,12 +184,20 @@ class IdentificationVerification extends \Lofmp\SellerIdentificationApproval\Blo
      */
     public function getOptions()
     {
+        $values = [];
+
         $options = $this->helper->getIdentificationTypes();
         foreach ($options as $key => $option) {
             if (!$this->helper->isEnable($key)) {
                 unset($options[$key]);
             }
+
+            $values[] = [
+                'label' => $option,
+                'value' => $key
+            ];
         }
-        return $options;
+
+        return $values;
     }
 }

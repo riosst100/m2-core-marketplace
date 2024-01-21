@@ -1,0 +1,108 @@
+<?php
+
+use CoreMarketplace\SellerIdentificationApproval\Block\Marketplace\Seller\Verification;
+
+/**
+ * @var Register $block
+ */
+
+if (!$block->isEnable()) {
+    return;
+}
+
+$listType = $block->getIdentificationTypes();
+$require = $block->isRequire() ? 'required' : '';
+?>
+<div class="negotiable-quote-errors messages">
+<div class="message error-wrap error" data-role="error-wrap">You need to upload required documents to verify your business.</div>
+</div>
+<!-- <div class="field <?= $block->escapeHtmlAttr($require) ?>">
+    <label for="identification" class="label"><?= __('Identification'); ?></label>
+    <div class="control">
+        <select id="identification" name="identification" data-validate="{required:true}">
+            <?php foreach ($listType as $key => $label) : ?>
+                <?php if ($block->isEnable($key)) : ?>
+                    <option value="<?= $key ?>"><?= $block->escapeHtmlAttr($label) ?></option>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </select>
+    </div>
+</div> -->
+<form data-mage-init='{"validation":{}}' action="<?= $block->escapeUrl($block->getUrl('*/*/save')) ?>" method="post">
+    <?php
+    if (isset($listType[''])) {
+        unset($listType['']);
+    }
+    $seller = $block->getSeller();
+    $availableTypes = ['utility_address'];
+    if ($seller) {
+        if ($seller->getSellerType() == "company") {
+            array_push($availableTypes, 'company_registration');
+        }
+    }
+    foreach ($listType as $key => $label) : ?>
+        <?php if ($block->isEnable($key)) : ?>
+            <div class="field required additional_upload" id="field_<?= $key ?>" data-role="attach-wrapper"<?php if (!in_array($key, $availableTypes)): ?> style="display:none"<?php endif; ?>>
+                <h5><?= $label ?></h5>
+                <div data-mage-init='{"Lofmp_SellerIdentificationApproval/js/upload/add-files": {
+                                        "maxSizeB" : "<?= $block->escapeJs($block->getMaxFileSize($key)) ?>",
+                                        "maxSizeMb" : "<?= $block->escapeJs($block->getMaxFileSizeMb($key)) ?>",
+                                        "extensions" : "<?= $block->escapeJs($block->getAllowedExtensions($key)) ?>",
+                                        "typeUpload" : "<?= $block->escapeJs($key) ?>"
+                                        }}' class="field-attachment" id="field-attachment-<?= $key ?>"
+                    data-role="send-files">
+                    <label id="attach-file-<?= $key ?>" tabindex="0"
+                        data-mage-init='{"Lofmp_SellerIdentificationApproval/js/upload/add-file": {}}'
+                        for="<?= $key ?>-add-file-0">
+                        <input name="<?= $key ?>-files[0]" data-role="<?= $key ?>-add-file" id="<?= $key ?>-add-file-0"
+                            type="file">
+                    </label>
+                </div>
+                <input id="confirm-attachment-<?= $key ?>" type="text" value="" data-validate="{required:true}" style="outline:
+                none;
+                border: none;display:none">
+                <div class="attachments-list added-files" data-role="<?= $key ?>-added-files"></div>
+                <div class="attachments-list" data-role="<?= $key ?>-history-added-files"></div>
+            </div>
+            <br />
+        <?php endif; ?>
+    <?php endforeach; ?>
+    <div><button>Submit</button></div>
+</form>
+<hr />
+<div>
+    <h4>Comments from Admin</h4>
+</div>
+<div>There is no comment from admin.</div>
+<br />
+<script>
+    require([
+        "jquery",
+        'mage/mage',
+        'mage/validation',
+        'loader',
+        'domReady!'
+    ], function ($) {
+        // $(document).ready(function () {
+        //     var type = $('#identification').val();
+        //     removeValidation(type);
+        //     showUploadFile(type);
+        //     $("#identification").on('change', function () {
+        //         type = $(this).val();
+        //         removeValidation(type);
+        //         showUploadFile(type);
+        //     })
+
+        //     function showUploadFile(type) {
+        //         $('.additional_upload').hide();
+        //         $('#field_' + type).show();
+        //     }
+
+        //     function removeValidation(type) {
+        //         $('#attach-file-' + type).click(function () {
+        //             $('#confirm-attachment-' + type).hide();
+        //         })
+        //     }
+        // })
+    });
+</script>

@@ -38,7 +38,7 @@
         <add id="Lof_MarketPlace::bundle_product" title="Add Bundle Product" module="Lof_MarketPlace"  action="catalog/product/new/set/4/type/bundle" sortOrder="46" parent="Lof_MarketPlace::catalog" resource="Lof_MarketPlace::bundle_product" dependsOnConfig="lofmarketplace/seller_settings/allow_add_bundle" translate="title"/>
         <add id="Lof_MarketPlace::downloadable_product" title="Add Downloadable Product" module="Lof_MarketPlace"  action="catalog/product/new/set/4/type/downloadable" sortOrder="46" parent="Lof_MarketPlace::catalog" resource="Lof_MarketPlace::downloadable_product" dependsOnConfig="lofmarketplace/seller_settings/allow_add_downloadable" translate="title"/>
 
-        <add id="Lof_MarketPlace::withdrawals" icon="fa fa-usd" title="Withdrawals" module="Lof_MarketPlace" action="catalog/withdrawals" sortOrder="50" resource="Lof_MarketPlace::withdrawals" dependsOnConfig="lofmarketplace/seller_settings/allow_withdrawl" translate="title"/>
+        <!-- <add id="Lof_MarketPlace::withdrawals" icon="fa fa-usd" title="Withdrawals" module="Lof_MarketPlace" action="catalog/withdrawals" sortOrder="50" resource="Lof_MarketPlace::withdrawals" dependsOnConfig="lofmarketplace/seller_settings/allow_withdrawl" translate="title"/> -->
 
         <add id="Lof_MarketPlace::message" icon="fa fa-envelope-o" title="Messages" module="Lof_MarketPlace" sortOrder="60" resource="Lof_MarketPlace::message"/>
         <add id="Lof_MarketPlace::message_customer" title="Manage Customer Messages" module="Lof_MarketPlace" action="catalog/message" parent="Lof_MarketPlace::message" sortOrder="61" resource="Lof_MarketPlace::message_customer" translate="title"/>

@@ -22,50 +22,101 @@
 $group = $this->getGroup()->getData();
 $option = [];
 $styles = '';
-if ($group['can_add_product'] == 0) {
-    $styles .=  'li.item-simple-product,li.item-virtual-product,li.item-configurable-product { display:none; }';
+if (!$group || $group && $group['can_add_product'] == 0) {
+    $styles .=  'li.item-simple-product,li.item-virtual-product,li.item-configurable-product { color:#5e6872 !important; }';
 }
-if ($group['can_cancel_order'] == 0) {
-    $styles .=  'button.lof_cancel_order { display:none; }';
+if (!$group || $group && $group['can_cancel_order'] == 0) {
+    $styles .=  'button.lof_cancel_order { color:#5e6872 !important; }';
 }
-if ($group['can_create_invoice'] == 0) {
-    $styles .=  'button.lof_invoice { display:none; }';
+if (!$group || $group && $group['can_create_invoice'] == 0) {
+    $styles .=  'button.lof_invoice { color:#5e6872 !important; }';
 }
-if ($group['can_create_shipment'] == 0) {
-     $styles .=  'button.lof_ship { display:none; }';
+if (!$group || $group && $group['can_create_shipment'] == 0) {
+     $styles .=  'button.lof_ship { color:#5e6872 !important; }';
 }
-if ($group['hide_payment_info'] == 1) {
-     $styles .=  '.row.payment-info { display:none; }';
+if (!$group || $group && $group['hide_payment_info'] == 1) {
+     $styles .=  '.row.payment-info { color:#5e6872 !important; }';
 }
-if ($group['hide_customer_email'] == 1) {
-    $styles .=  '.invoice-col.customer-info { display:none; }';
+if (!$group || $group && $group['hide_customer_email'] == 1) {
+    $styles .=  '.invoice-col.customer-info { color:#5e6872 !important; }';
 }
-if ($group['can_use_shipping'] == 0) {
-    $styles .=  '#menu-lof-marketplace-shipping { display:none; }';
+if (!$group || $group && $group['can_use_shipping'] == 0) {
+    $styles .=  '#menu-lof-marketplace-shipping a { color:#5e6872 !important; }';
 }
-if ($group['can_submit_order_comments'] == 0) {
+if (!$group || $group && $group['can_submit_order_comments'] == 0) {
      $option[] = __('Can submit order comments');
 }
-if ($group['can_use_message'] == 0) {
-    $styles .=  '#menu-lof-marketplace-message { display:none; }';
+if (!$group || $group && $group['can_use_message'] == 0) {
+    $styles .=  '#menu-lof-marketplace-message a { color:#5e6872 !important; }';
 }
-if ($group['can_use_review'] == 0) {
-    $styles .=  '#menu-lof-marketplace-review { display:none; }';
+if (!$group || $group && $group['can_use_review'] == 0) {
+    $styles .=  '#menu-lof-marketplace-review a { color:#5e6872 !important; }';
 }
-if ($group['can_use_rating'] == 0) {
-    $styles .=  '#menu-lof-marketplace-rating { display:none; }';
+if (!$group || $group && $group['can_use_rating'] == 0) {
+    $styles .=  '#menu-lof-marketplace-rating a { color:#5e6872 !important; }';
 }
-if ($group['can_use_import_export'] == 0) {
-    $styles .=  '#menu-lof-marketplace-upload { display:none; }';
+if (!$group || $group && $group['can_use_import_export'] == 0) {
+    $styles .=  '#menu-lof-marketplace-upload a { color:#5e6872 !important; }';
 }
-if ($group['can_use_vacation'] == 0) {
-    $styles .=  '#menu-lof-marketplace-vacation { display:none; }';
+if (!$group || $group && $group['can_use_vacation'] == 0) {
+    $styles .=  '#menu-lof-marketplace-vacation a { color:#5e6872 !important; }';
 }
-if ($group['can_use_report'] == 0) {
-    $styles .=  '#menu-lof-marketplace-report { display:none; }';
+if (!$group || $group && $group['can_use_report'] == 0) {
+    $styles .=  '#menu-lof-marketplace-report a { color:#5e6872 !important; }';
 }
-if ($group['can_use_withdrawal'] == 0) {
-    $styles .=  '#menu-lof-marketplace-withdrawals { display:none; }';
+if (!$group || $group && $group['can_use_auction'] == 0) {
+    $styles .=  '#menu-lofmp-auction-auction a { color:#5e6872 !important; }';
+}
+if (!$group || $group && $group['can_use_permissions'] == 0) {
+    $styles .=  '#menu-lof-marketpermissions-permissions a { color:#5e6872 !important; }';
+}
+if (!$group || $group && $group['can_use_chat'] == 0) {
+    $styles .=  '#menu-lofmp-chatsystem-chatsystem a { color:#5e6872 !important; }';
+}
+if (!$group || $group && $group['can_use_price_comparison'] == 0) {
+    $styles .=  '#menu-lofmp-pricecomparison-price a { color:#5e6872 !important; }';
+}
+if (!$group || $group && $group['can_use_preorder'] == 0) {
+    $styles .=  '#menu-lofmp-preorder-mppreorder-management a { color:#5e6872 !important; }';
+}
+if (!$group || $group && $group['can_use_deliveryslot'] == 0) {
+    $styles .=  '#menu-lofmp-deliveryslot-deliveryslot a { color:#5e6872 !important; }';
+}
+if (!$group || $group && $group['can_use_rma'] == 0) {
+    $styles .=  '#menu-lofmp-rma-rma a { color:#5e6872 !important; }';
+}
+if (!$group || $group && $group['can_use_featured_products'] == 0) {
+    $styles .=  '#menu-lofmp-featuredproducts-featured-products a { color:#5e6872 !important; }';
+}
+if (!$group || $group && $group['can_use_favorite_seller'] == 0) {
+    $styles .=  '#menu-lofmp-favoriteseller-favorite-seller a { color:#5e6872 !important; }';
+}
+if (!$group || $group && $group['can_use_slider'] == 0) {
+    $styles .=  '#menu-lofmp-slider-slider a { color:#5e6872 !important; }';
+}
+if (!$group || $group && $group['can_use_rfq'] == 0) {
+    $styles .=  '#menu-lofmp-quickrfq-quickrfq a { color:#5e6872 !important; }';
+}
+if (!$group || $group && $group['can_use_faq'] == 0) {
+    $styles .=  '#menu-lofmp-faq-faq a { color:#5e6872 !important; }';
+}
+if (!$group || $group && $group['can_use_coupon'] == 0) {
+    $styles .=  '#menu-lofmp-couponcode-coupon a { color:#5e6872 !important; }';
+}
+if (!$group || $group && $group['can_use_catalog'] == 0) {
+    $styles .=  '#menu-lof-marketplace-catalog a { color:#5e6872 !important; }';
+}
+if (!$group || $group && $group['can_use_sales'] == 0) {
+    $styles .=  '#menu-lof-marketplace-sales a { color:#5e6872 !important; }';
+}
+if (!$group || $group && $group['can_use_profile'] == 0) {
+    $styles .=  '#menu-lof-marketplace-profile a { color:#5e6872 !important; }';
+}
+if (!$group || $group && $group['can_use_membership'] == 0) {
+    $styles .=  '#menu-lofmp-sellermembership-membership a { color:#5e6872 !important; }';
+}
+if (!$group || $group && $group['can_use_dashboard'] == 0) {
+    $styles .=  '#menu-lof-marketplace-dashboard a { color:#5e6872 !important; }';
 }
 ?>
 <style>

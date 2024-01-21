@@ -245,6 +245,7 @@ class BecomeSeller extends \Lof\MarketplaceGraphQl\Model\Resolver\BecomeSeller
                 }
             }
 
+            $sellerType = isset($sellerData['seller_type']) ? $sellerData['seller_type'] : '';
             $name = isset($sellerData['name']) ? $sellerData['name'] : '';
             $city = isset($sellerData['city']) ? $sellerData['city'] : '';
             $company = isset($sellerData['company']) ? $sellerData['company'] : '';
@@ -274,7 +275,8 @@ class BecomeSeller extends \Lof\MarketplaceGraphQl\Model\Resolver\BecomeSeller
             $sellerModel = $this->sellerFactory->create();
             $status = $sellerApproval ? 2 : 1;
             try {
-                $sellerModel->setUrlKey($url)
+                $sellerModel->setSellerType($sellerType)
+                    ->setUrlKey($url)
                     ->setGroupId((int)$group)
                     ->setCustomerId($customer->getId())
                     ->setName($name)

@@ -1,4 +1,5 @@
 input SellerInput {
+  seller_type: String @doc(description: "Store Type")
   name: String @doc(description: "Store Name")
   company: String! @doc(description: "Company Name")
   company_registration_number: String! @doc(description: "Company Registration Number")

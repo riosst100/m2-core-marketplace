@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+    	<add id="CoreMarketplace_SellerIdentificationApproval::verification" title="Seller Verification" module="CoreMarketplace_SellerIdentificationApproval" sortOrder="1" icon="fa fa-users" resource="Lofmp_SellerIdentificationApproval::settings" action="sellerverification/verification/index" />
+    </menu>
+</config>
