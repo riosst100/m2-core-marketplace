@@ -80,9 +80,8 @@ class Becomeseller extends \Magento\Framework\App\Action\Action
         $becomeSellerEnable = $this->helperData->getConfig("general_settings/allow_customer_become_seller");
 
         if ($customerSession->isLoggedIn() && $status != 1 && $becomeSellerEnable) {
-            // $this->_view->loadLayout();
-            // $this->_view->renderLayout();
-            $this->_redirect('marketplace/sellerverification/index');
+            $this->_view->loadLayout();
+            $this->_view->renderLayout();
         } elseif ($customerSession->isLoggedIn() && $status == 1) {
             $this->_redirect('marketplace/catalog/seller');
         } else {
