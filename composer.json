@@ -98,7 +98,7 @@
         "CoreMarketplace\\MarketPlace\\":"src/module-marketplace",
         "CoreMarketplace\\MarketplaceGraphQl\\":"src/module-marketplace-graphql",
         "CoreMarketplace\\SellerIdentificationApproval\\":"src/module-seller-identification-approval",
-        "CoreMarketplace\\SellerMembership":"src/module-seller-membership",
+        "CoreMarketplace\\SellerMembership\\":"src/module-seller-membership",
         "Webcastle\\CategoryImportExport\\":"src/module-category-importexport",
         "Magefan\\GeoIp\\":"src/module-geoip",
         "CoreMarketplace\\GeoIpGraphQl\\":"src/module-geoip-graphql",
