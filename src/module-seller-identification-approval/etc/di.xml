@@ -3,4 +3,5 @@
     <preference for="Lofmp\SellerIdentificationApproval\Block\Adminhtml\Seller\Edit\Tab\IdentificationVerification" type="CoreMarketplace\SellerIdentificationApproval\Block\Adminhtml\Seller\Edit\Tab\IdentificationVerification" />
     <preference for="Lofmp\SellerIdentificationApproval\Observer\SaveAttachment" type="CoreMarketplace\SellerIdentificationApproval\Observer\SaveAttachment" />
     <preference for="Lofmp\SellerIdentificationApproval\Helper\Data" type="CoreMarketplace\SellerIdentificationApproval\Helper\Data" />
+    <preference for="Lofmp\SellerIdentificationApproval\Block\Seller\Register" type="CoreMarketplace\SellerIdentificationApproval\Block\Seller\Register" />
 </config>

@@ -23,6 +23,8 @@ use Lof\MarketPlace\Model\SellerFactory;
 use Lof\MarketPlace\Helper\Seller as SellerHelper;
 use Lof\MarketPlace\Helper\WebsiteStore;
 use CoreMarketplace\MarketPlace\Helper\Data as MarketplaceHelper;
+use Magento\Framework\Event\ManagerInterface as EventManager;
+use Lof\MarketPermissions\Api\SellerManagementInterface;
 
 class BecomeSeller extends \Lof\MarketplaceGraphQl\Model\Resolver\BecomeSeller
 {
@@ -92,6 +94,16 @@ class BecomeSeller extends \Lof\MarketplaceGraphQl\Model\Resolver\BecomeSeller
     protected $marketplaceHelper;
 
     /**
+     * @var EventManager
+     */
+    protected $_eventManager;
+
+    /**
+     * @var SellerManagementInterface
+     */
+    protected $sellerManagementInterface;
+
+    /**
      * Become Seller constructor.
      * @param DataProviderCreateSeller $createSeller
      * @param GetCustomer $getCustomer
@@ -106,6 +118,8 @@ class BecomeSeller extends \Lof\MarketplaceGraphQl\Model\Resolver\BecomeSeller
      * @param SellerHelper $helperSeller
      * @param WebsiteStore $websiteStoreHelper
      * @param MarketplaceHelper $marketplaceHelper
+     * @param EventManager $eventManager
+     * @param SellerManagementInterface $sellerManagementInterface
      */
     public function __construct(
         DataProviderCreateSeller $createSeller,
@@ -120,7 +134,9 @@ class BecomeSeller extends \Lof\MarketplaceGraphQl\Model\Resolver\BecomeSeller
         StoreManagerInterface $storeManager,
         SellerHelper $helperSeller,
         WebsiteStore $websiteStoreHelper,
-        MarketplaceHelper $marketplaceHelper
+        MarketplaceHelper $marketplaceHelper,
+        EventManager $eventManager,
+        SellerManagementInterface $sellerManagementInterface
     ) {
         $this->_createSeller = $createSeller;
         $this->getCustomer = $getCustomer;
@@ -135,6 +151,8 @@ class BecomeSeller extends \Lof\MarketplaceGraphQl\Model\Resolver\BecomeSeller
         $this->helperSeller = $helperSeller;
         $this->websiteStoreHelper = $websiteStoreHelper;
         $this->marketplaceHelper = $marketplaceHelper;
+        $this->_eventManager = $eventManager;
+        $this->sellerManagementInterface = $sellerManagementInterface;
 
         parent::__construct(
             $createSeller,
@@ -277,7 +295,7 @@ class BecomeSeller extends \Lof\MarketplaceGraphQl\Model\Resolver\BecomeSeller
             try {
                 $sellerModel->setSellerType($sellerType)
                     ->setUrlKey($url)
-                    ->setGroupId((int)$group)
+                    ->setGroupId(0)
                     ->setCustomerId($customer->getId())
                     ->setName($name)
                     ->setShopTitle($name)
@@ -296,13 +314,23 @@ class BecomeSeller extends \Lof\MarketplaceGraphQl\Model\Resolver\BecomeSeller
                     ->setStores($stores)
                     ->setPageLayout($layout)
                     ->setEmail($email)
-                    ->setStatus($status);
+                    ->setVerifyStatus(2)
+                    ->setStatus(2);
                 if ($sellerApproval) {
                     $message = __('Save data success! Please wait admin approval.');
                 } else {
                     $message = __('Save data success!');
                 }
                 $sellerModel->save();
+
+                $this->sellerManagementInterface->assignCustomer($sellerModel->getId(), $customer->getId());
+
+                $this->_eventManager->dispatch('seller_register_success_api', [
+                    'object' => $this,
+                    'seller' => $sellerModel,
+                    'customer' => $customer,
+                    'is_become_seller' => true
+                ]);
 
                 $sellerId = $sellerModel->getId();
                 if ($this->helperData->getConfig('email_settings/enable_send_email')) {

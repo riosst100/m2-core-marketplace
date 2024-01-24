@@ -112,18 +112,6 @@ class Main extends \Lof\MarketPlace\Block\Adminhtml\Seller\Edit\Tab\Main
             $fieldset->addField('seller_id', 'hidden', ['name' => 'seller_id']);
         }
 
-        $fieldset->addField(
-            'status',
-            'select',
-            [
-                'label' => __('Status'),
-                'title' => __('Page Status'),
-                'name' => 'status',
-                'options' => $model->getAvailableStatuses(),
-                'disabled' => $isElementDisabled
-            ]
-        );
-
         if ($model->getCustomerId()) {
             $customer = $fieldset->addField(
                 'customer_id',

@@ -77,9 +77,9 @@ class SaveAttachment extends \Lofmp\SellerIdentificationApproval\Observer\SaveAt
 
         $request = $observer->getData('account_controller')->getRequest();
 
-        $identityRequest = $request->getParam('identification');
-        $seller->setData('identification_request', implode(",", $identityRequest));
-        $seller->save();
+        // $identityRequest = $request->getParam('identification');
+        // $seller->setData('identification_request', implode(",", $identityRequest));
+        // $seller->save();
 
         $filesArray = (array)$request->getFiles();
         $deleteIds = $request->getParam('delete_ids');

@@ -40,6 +40,16 @@ class IdentificationVerification extends \Lofmp\SellerIdentificationApproval\Blo
     private $helper;
 
     /**
+     * @var \Lof\MarketPlace\Model\MessageAdmin
+     */
+    protected $message;
+
+    /**
+     * @var \Lof\MarketPlace\Model\MessageDetail
+     */
+    protected $message_detail;
+
+    /**
      * @param Context $context
      * @param Registry $registry
      * @param FormFactory $formFactory
@@ -47,6 +57,8 @@ class IdentificationVerification extends \Lofmp\SellerIdentificationApproval\Blo
      * @param LabelFactory $labelFactory
      * @param BuilderInterface $pageLayoutBuilder
      * @param Data $helper
+     * @param \Lof\MarketPlace\Model\MessageDetail $message_detail
+     * @param \Lof\MarketPlace\Model\MessageAdmin $message
      * @param array $data
      */
     public function __construct(
@@ -57,12 +69,16 @@ class IdentificationVerification extends \Lofmp\SellerIdentificationApproval\Blo
         LabelFactory $labelFactory,
         BuilderInterface $pageLayoutBuilder,
         Data $helper,
+        \Lof\MarketPlace\Model\MessageDetail $message_detail,
+        \Lof\MarketPlace\Model\MessageAdmin $message,
         array $data = []
     ) {
         $this->pageLayoutBuilder = $pageLayoutBuilder;
         $this->_labelFactory = $labelFactory;
         $this->_pageLayout = $pageLayout;
         $this->helper = $helper;
+        $this->message = $message;
+        $this->message_detail = $message_detail;
         parent::__construct(
             $context, 
             $registry, 
@@ -102,31 +118,162 @@ class IdentificationVerification extends \Lofmp\SellerIdentificationApproval\Blo
 
         $fieldset = $form->addFieldset('base_fieldset', ['legend' => __('Identification Verification')]);
 
+        // $fieldset->addField(
+        //     'identification_request',
+        //     'multiselect',
+        //     [
+        //         'label' => __('Identification Requested'),
+        //         'title' => __('Identification Requested'),
+        //         'name' => 'identification',
+        //         'values' => $this->getOptions()
+        //     ]
+        // );
         $fieldset->addField(
-            'identification_request',
-            'multiselect',
+            'status',
+            'select',
             [
-                'label' => __('Identification Requested'),
-                'title' => __('Identification Requested'),
-                'name' => 'identification',
-                'values' => $this->getOptions()
+                'label' => __('Verification Status'),
+                'title' => __('Page Status'),
+                'name' => 'status',
+                'options' => $model->getAvailableStatuses()
             ]
         );
 
         $this->setChild(
             'form_after',
             $this->getLayout()->createBlock(Register::class)
-                ->setTemplate('Lofmp_SellerIdentificationApproval::seller/upload.phtml')
+                ->setTemplate('CoreMarketplace_SellerIdentificationApproval::seller/verification.phtml')
                 ->setNameInLayout('additional_fields')
         );
 
         $this->getChildHtml('additional_fields');
 
-        $form->setValues($model->getData());
+        // $commentModel = $this->_coreRegistry->registry('lof_marketplace_message');
+
+        // $fieldset = $form->addFieldset('comment_fieldset', ['legend' => __('Comments')]);
+
+        // if ($commentModel->getId()) {
+        //     $fieldset->addField('message_id', 'hidden', ['name' => 'message_id']);
+        // }
+        // // if (!$commentModel->getDescription()) {
+        // //     $fieldset->addField(
+        // //         'partner_id',
+        // //         'select',
+        // //         [
+        // //             'name' => 'partner_id',
+        // //             'label' => __('Seller'),
+        // //             'title' => __('Seller'),
+        // //             'required' => false,
+        // //             'values' => [
+        // //                 [
+        // //                     'value'=> $model->getId()
+        // //                 ]
+        // //             ],
+        // //             'disabled' => $isElementDisabled
+        // //         ]
+        // //     );
+        // // }
+
+        // if ($commentModel->getSubject()) {
+        //     $fieldset->addField(
+        //         'subject',
+        //         'note',
+        //         [
+        //             'name' => ' subject',
+        //             'label' => __('Subject'),
+        //             'text' => $commentModel->getSubject()
+        //         ]
+        //     );
+        // } else {
+        //     $fieldset->addField(
+        //         'subject',
+        //         'text',
+        //         ['name' => 'subject', 'label' => __('Subject'), 'title' => __('Subject'), 'required' => true]
+        //     );
+        // }
+        // // if ($commentModel->getDescription()) {
+        // //     $fieldset->addField(
+        // //         'description',
+        // //         'note',
+        // //         [
+        // //             'name' => ' description',
+        // //             'label' => __('Description'),
+        // //             'text' => $commentModel->getDescription()
+        // //         ]
+        // //     );
+        // // } else {
+        // //     $fieldset->addField(
+        // //         'description',
+        // //         'textarea',
+        // //         [
+        // //             'name' => ' description',
+        // //             'label' => __('Description'),
+        // //         ]
+        // //     );
+        // // }
+        // $fieldset->addField(
+        //     'message',
+        //     'textarea',
+        //     [
+        //         'name' => 'message',
+        //         'label' => __('Message'),
+        //         'title' => __('Message'),
+        //         'after_element_html' => $this->_getMessageContentAfterHtml($commentModel->getId(), $commentModel->getSellerId())
+        //     ]
+        // );
+
+        // $form->setValues($commentModel->getData());
 
         $this->setForm($form);
 
         return $this;
+    }
+
+    /**
+     * @param $message_id
+     * @param $seller_id
+     * @return string
+     */
+    protected function _getMessageContentAfterHtml($message_id, $seller_id)
+    {
+        if ($message_id) {
+            $_messsage = $this->message->getCollection()
+                ->addFieldToFilter('seller_id', $seller_id)
+                ->addFieldToFilter('is_read', 0);
+            foreach ($_messsage as $key => $_msg) {
+                $_msg->setData('is_read', 1)->save();
+            }
+            $message = $this->message_detail->getCollection()
+                ->addFieldToFilter('message_id', $message_id)
+                ->addFieldToFilter('message_admin', 1);
+            $data = '';
+            foreach ($message as $key => $_message) {
+                if ($_message->getData('seller_send')) {
+                    $name = $_message->getData('sender_name');
+                    $class = 'user';
+                } else {
+                    $name = $_message->getData('sender_name');
+                    $class = '';
+                }
+                $data .= '<div class="lof-ticket-history">';
+                $data .= '<div class="lof-message">';
+                $data .= '<div class="lof-message-header">';
+                $data .= '<strong>' . $name . '</strong>';
+                $createdAt = $_message->getCreatedAt();
+                $data .= '<span class="minor">'
+                    . __('added %1 (%2)', $this->helper->nicetime($createdAt), $createdAt) . '</span>';
+                $data .= '</div>';
+                $data .= '<div class="lof-message-body ' . $class . '">';
+                $data .= $_message->getContent();
+                $data .= '</div>';
+                $data .= '</div>';
+                $data .= '</div>';
+            }
+
+            return $data;
+        }
+
+        return '';
     }
 
     /**

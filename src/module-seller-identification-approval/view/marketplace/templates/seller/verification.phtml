@@ -28,12 +28,15 @@ $require = $block->isRequire() ? 'required' : '';
         </select>
     </div>
 </div> -->
-<form data-mage-init='{"validation":{}}' action="<?= $block->escapeUrl($block->getUrl('*/*/save')) ?>" method="post">
+<?php
+$seller = $block->getSeller();
+?>
+<form data-mage-init='{"validation":{}}' action="<?= $block->escapeUrl($block->getUrl('*/*/save')) ?>" method="post" enctype="multipart/form-data">
+    <input type="hidden" value="<?= $seller->getId() ?>" name="seller_id" />
     <?php
     if (isset($listType[''])) {
         unset($listType['']);
     }
-    $seller = $block->getSeller();
     $availableTypes = ['utility_address'];
     if ($seller) {
         if ($seller->getSellerType() == "company") {
@@ -42,28 +45,51 @@ $require = $block->isRequire() ? 'required' : '';
     }
     foreach ($listType as $key => $label) : ?>
         <?php if ($block->isEnable($key)) : ?>
-            <div class="field required additional_upload" id="field_<?= $key ?>" data-role="attach-wrapper"<?php if (!in_array($key, $availableTypes)): ?> style="display:none"<?php endif; ?>>
-                <h5><?= $label ?></h5>
+            <?php $files = $block->getFileUpload($key);
+        $count = $files ? count($files) + 1 : 1; ?>
+        <div class="admin__field field field-name">
+            <label for="identification" class="label admin__field-label"><?= $block->escapeHtml($label); ?></label>
+            <div class="admin__field-control control additional_upload" id="field_<?= $key ?>" data-role="attach-wrapper">
                 <div data-mage-init='{"Lofmp_SellerIdentificationApproval/js/upload/add-files": {
                                         "maxSizeB" : "<?= $block->escapeJs($block->getMaxFileSize($key)) ?>",
                                         "maxSizeMb" : "<?= $block->escapeJs($block->getMaxFileSizeMb($key)) ?>",
                                         "extensions" : "<?= $block->escapeJs($block->getAllowedExtensions($key)) ?>",
-                                        "typeUpload" : "<?= $block->escapeJs($key) ?>"
-                                        }}' class="field-attachment" id="field-attachment-<?= $key ?>"
-                    data-role="send-files">
-                    <label id="attach-file-<?= $key ?>" tabindex="0"
-                        data-mage-init='{"Lofmp_SellerIdentificationApproval/js/upload/add-file": {}}'
-                        for="<?= $key ?>-add-file-0">
-                        <input name="<?= $key ?>-files[0]" data-role="<?= $key ?>-add-file" id="<?= $key ?>-add-file-0"
-                            type="file">
+                                        "typeUpload" : "<?= $block->escapeJs($key) ?>",
+                                        "idFiles" : "<?= $count ?>"
+                                        }}' class="field-attachment" id="field-attachment-<?= $key ?>" data-role="send-files">
+
+                    <label tabindex="0" data-mage-init='{"Lofmp_SellerIdentificationApproval/js/upload/add-file": {}}' for="<?= $key ?>-add-file-0">
+                        <input name="<?= $key ?>-files[0]" data-role="<?= $key ?>-add-file" id="<?= $key ?>-add-file-0" type="file">
                     </label>
+                    <?php if ($files):
+                        $index = 1;
+                        foreach ($files as $file) :?>
+                            <label tabindex="0" data-mage-init='{"Lofmp_SellerIdentificationApproval/js/upload/add-file": {}}'
+                                for="<?= $key ?>-add-file-<?= $index ?>" style="display:none">
+                                <input name="<?= $key ?>-files[<?= $index ?>]" data-role="<?= $key ?>-add-file" id="<?= $key ?>-add-file" type="file">
+                            </label>
+                            <?php $index++; ?>
+                        <?php endforeach;
+                    endif; ?>
                 </div>
-                <input id="confirm-attachment-<?= $key ?>" type="text" value="" data-validate="{required:true}" style="outline:
-                none;
-                border: none;display:none">
-                <div class="attachments-list added-files" data-role="<?= $key ?>-added-files"></div>
+                <div class="attachments-list added-files" data-role="<?= $key ?>-added-files">
+                    <?php if ($files):
+                        foreach ($files as $file) :?>
+                            <div class="attachments-item" data-role="attached-item">
+                                <a href="<?= $block->escapeUrl($block->getAttachmentUrl($file->getEntityId())) ?>"
+                                title="<?= $block->escapeHtmlAttr($file->getFileName()) ?>"><?= $block->escapeHtml($file->getFileName()) ?>
+                                </a>
+                                <button type="button" id="<?=$file->getEntityId()?>" class="action-delete delete-old" data-role="delete-button">
+                                    <span>Delete</span>
+                                </button>
+                            </div>
+                            <?php $ids[] = $file->getEntityId();
+                        endforeach;
+                    endif; ?>
+                </div>
                 <div class="attachments-list" data-role="<?= $key ?>-history-added-files"></div>
             </div>
+        </div>
             <br />
         <?php endif; ?>
     <?php endforeach; ?>
@@ -83,26 +109,26 @@ $require = $block->isRequire() ? 'required' : '';
         'loader',
         'domReady!'
     ], function ($) {
-        // $(document).ready(function () {
-        //     var type = $('#identification').val();
-        //     removeValidation(type);
-        //     showUploadFile(type);
-        //     $("#identification").on('change', function () {
-        //         type = $(this).val();
-        //         removeValidation(type);
-        //         showUploadFile(type);
-        //     })
+        $(document).ready(function () {
+            // var type = $('#identification').val();
+            // removeValidation(type);
+            // showUploadFile(type);
+            // $("#identification").on('change', function () {
+            //     type = $(this).val();
+            //     removeValidation(type);
+            //     showUploadFile(type);
+            // })
 
-        //     function showUploadFile(type) {
-        //         $('.additional_upload').hide();
-        //         $('#field_' + type).show();
-        //     }
+            // function showUploadFile(type) {
+            //     $('.additional_upload').hide();
+            //     $('#field_' + type).show();
+            // }
 
-        //     function removeValidation(type) {
-        //         $('#attach-file-' + type).click(function () {
-        //             $('#confirm-attachment-' + type).hide();
-        //         })
-        //     }
-        // })
+            // function removeValidation(type) {
+            //     $('#attach-file-' + type).click(function () {
+            //         $('#confirm-attachment-' + type).hide();
+            //     })
+            // }
+        })
     });
 </script>
