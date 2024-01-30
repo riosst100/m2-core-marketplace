@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="CoreMarketplace_ProductAttributesLink::marketplace" title="Marketplace" translate="title" module="CoreMarketplace_ProductAttributesLink" sortOrder="10" resource="CoreMarketplace_ProductAttributesLink::marketplace"/>
-        <add id="CoreMarketplace_ProductAttributesLink::product_attributes_link" title="Product Attributes Link" module="CoreMarketplace_ProductAttributesLink" sortOrder="10" action="productattributeslink/index/index" resource="CoreMarketplace_ProductAttributesLink::product_attributes_link" parent="CoreMarketplace_ProductAttributesLink::marketplace"/>
+        <!-- <add id="CoreMarketplace_ProductAttributesLink::marketplace" title="Marketplace" translate="title" module="CoreMarketplace_ProductAttributesLink" sortOrder="10" resource="CoreMarketplace_ProductAttributesLink::marketplace"/> -->
+        <!-- <add id="CoreMarketplace_ProductAttributesLink::product_attributes_link" title="Product Attributes Link" module="CoreMarketplace_ProductAttributesLink" sortOrder="10" action="productattributeslink/index/index" resource="CoreMarketplace_ProductAttributesLink::product_attributes_link" parent="CoreMarketplace_ProductAttributesLink::marketplace"/> -->
     </menu>
 </config>

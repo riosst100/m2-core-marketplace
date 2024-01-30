@@ -91,12 +91,12 @@ class Index extends AbstractAccount implements HttpGetActionInterface
         $customerId = $customerSession->getId();
         $status = $this->sellerFactory->create()->load($customerId, 'customer_id')->getStatus();
 
-        if ($customerSession->isLoggedIn() && $status == 2) {
-            // if ($url = $this->session->getBeforeAuthUrl()) {
-            //     $this->_redirectUrl($url);
-            // } else {
+        if ($customerSession->isLoggedIn()) {
+            if ($status != 1) {
                 return $this->resultPageFactory->create();
-            // }
+            } else {
+                $this->_redirectUrl($this->getFrontendUrl('marketplace/catalog/dashboard'));
+            }
         } else {
             $this->messageManager->addNoticeMessage(__('You must have a seller account to access'));
             $this->_redirectUrl($this->getFrontendUrl('lofmarketplace/seller/login'));

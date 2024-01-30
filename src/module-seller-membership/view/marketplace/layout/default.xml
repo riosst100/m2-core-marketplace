@@ -1,10 +1,9 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="vendor-1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceBlock name="seller.membership">
-            <arguments>
-                <argument name="template" xsi:type="string">CoreMarketplace_SellerMembership::membership/option.phtml</argument>
-            </arguments>
-        </referenceBlock>
+        <referenceBlock name="seller.membership" template="CoreMarketplace_SellerMembership::membership/option.phtml" />
+        <referenceContainer name="content">
+		    <block class="CoreMarketplace\SellerMembership\Block\Marketplace\Seller\Notifications" name="notifications_membership" template="CoreMarketplace_SellerMembership::membership/notifications.phtml" />
+        </referenceContainer>
     </body>
 </page>

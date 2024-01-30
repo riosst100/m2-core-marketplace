@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+	<!-- Set some block to use template file from adminhtml area -->
+    <event name="controller_action_predispatch">
+        <observer name="custom_lof_marketplace_action_predispatch" instance="CoreMarketplace\MarketPlace\Observer\PredispatchObserver" />
+        <observer name="lof_marketplace_action_predispatch" disabled="true"/>
+    </event>
+</config>

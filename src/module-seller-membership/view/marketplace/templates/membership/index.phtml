@@ -1,0 +1,106 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_SellerMembership
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+
+$this->processMembership();
+$membership = $this->getMembership();
+$helper = $this->helper("Lof\MarketPlace\Helper\Data");
+?>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><?= __('My Membership'); ?></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <?php if ($membership) : ?>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="pricing ui-ribbon-container">
+                                    <?php
+                                    $expiredTime = $membership->getExpirationDate() ?: '';
+                                    ?>
+                                    <?php if (strtotime((new \DateTime())->format('Y-m-d')) >= strtotime($expiredTime)) { ?>
+                                        <div class="ui-ribbon-wrapper">
+                                            <div class="ui-ribbon">
+                                                <?= __('Expired'); ?>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
+                                    <div class="title">
+                                        <h2><?= $membership->getName(); ?></h2>
+                                        <h1><?= $helper->getPriceFomat($membership->getPrice()); ?></h1>
+                                    </div>
+                                    <div class="x_content">
+                                        <div class="">
+                                            <div class="pricing_features">
+                                                <ul class="list-unstyled text-left">
+                                                    <li>
+                                                        <i class="fa fa-check text-success"></i> <?= __('Expiry Date') . ':'; ?>
+                                                        <strong><?= $membership->getExpirationDate(); ?></strong>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-check text-success"></i> <?= __('Commission') . ':'; ?>
+                                                        <strong><?= $this->getFeeCommission(); ?></strong>
+                                                    </li>
+                                                    <?php
+                                                    $options = $this->getOption();
+                                                    ?>
+                                                    <?php if ($options): ?>
+                                                        <?php foreach ($options as $option) : ?>
+                                                            <li><i class="fa fa-check text-success"></i>
+                                                                <strong><?= $option; ?></strong>
+                                                            </li>
+                                                        <?php endforeach; ?>
+                                                    <?php endif; ?>
+                                                    <?php if ($this->getExtraOptions($membership)) : ?>
+                                                        <?php foreach ($this->getExtraOptions($membership) as $extraOption) : ?>
+                                                            <li>
+                                                                <i class="fa fa-check text-success"></i> <?= $extraOption['title']; ?>:
+                                                                <strong><?= $extraOption['value'] == '-1' || $extraOption['value'] == '' ? __('Unlimited') :$extraOption['value']; ?></strong>
+                                                            </li>
+                                                        <?php endforeach; ?>
+                                                    <?php endif; ?>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="pricing_footer">
+                                            <a href="<?= $helper->getFrontendUrl('lofmpmembership/buy'); ?>"
+                                            class="btn btn-success btn-block"
+                                            role="button"><?= __('Upgrade'); ?>
+                                            </a>
+                                            <p>
+                                                <a href="<?= $this->getUrl('lofmpsellermembership/membership/payment'); ?>"><?= __('View Payment History'); ?></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <div>You don't have a membership.</div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>

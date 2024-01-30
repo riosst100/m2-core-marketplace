@@ -26,10 +26,6 @@ $ids = [];
                                     "idFiles" : "<?= $count ?>"
                                     }}' class="field-attachment" id="field-attachment-<?= $key ?>" data-role="send-files">
 
-                <label tabindex="0" data-mage-init='{"Lofmp_SellerIdentificationApproval/js/upload/add-file": {}}' for="<?= $key ?>-add-file-0">
-                    <input name="<?= $key ?>-files[0]" data-role="<?= $key ?>-add-file" id="<?= $key ?>-add-file-0" type="file">
-                    <?= $block->escapeHtml(__('Attach file')) ?>
-                </label>
                 <?php if ($files):
                     $index = 1;
                     foreach ($files as $file) :?>
@@ -49,9 +45,6 @@ $ids = [];
                             <a href="<?= $block->escapeUrl($block->getAttachmentUrl($file->getEntityId())) ?>"
                                title="<?= $block->escapeHtmlAttr($file->getFileName()) ?>"><?= $block->escapeHtml($file->getFileName()) ?>
                             </a>
-                            <button type="button" id="<?=$file->getEntityId()?>" class="action-delete delete-old" data-role="delete-button">
-                                <span>Delete</span>
-                            </button>
                         </div>
                         <?php $ids[] = $file->getEntityId();
                     endforeach;
@@ -63,12 +56,40 @@ $ids = [];
     <?php endif; ?>
 <?php endforeach; ?>
 <input type="hidden" name="delete_ids">
-
 <script>
     require([
         "jquery"
     ], function ($) {
         $(document).ready(function () {
+
+            showReasonField();
+
+            $('#seller_verify_status').on('change', function(){
+                var status = $(this).val();
+
+                reasonFieldDepend(status);
+                
+                return true;
+            });
+
+            function showReasonField() 
+            {
+                var status = $('#seller_verify_status').val();
+                
+                reasonFieldDepend(status);
+
+                return true;
+            }
+
+            function reasonFieldDepend(status) 
+            {
+                if (status == 0) {
+                    $('#disapproved_reason_container').show();
+                } else {
+                    $('#disapproved_reason_container').hide();
+                }
+            }
+
             var ids = [];
             $('.delete-old').on('click', function () {
                 var deleteId = $(this).attr('id');

@@ -315,7 +315,8 @@ class BecomeSeller extends \Lof\MarketplaceGraphQl\Model\Resolver\BecomeSeller
                     ->setPageLayout($layout)
                     ->setEmail($email)
                     ->setVerifyStatus(2)
-                    ->setStatus(2);
+                    ->setStatus(2)
+                    ->setRegistrationStep('verification');
                 if ($sellerApproval) {
                     $message = __('Save data success! Please wait admin approval.');
                 } else {

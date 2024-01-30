@@ -116,113 +116,40 @@ class IdentificationVerification extends \Lofmp\SellerIdentificationApproval\Blo
 
         $form->setHtmlIdPrefix('seller_');
 
-        $fieldset = $form->addFieldset('base_fieldset', ['legend' => __('Identification Verification')]);
+        $fieldset = $form->addFieldset('base_fieldset', ['legend' => __('Seller Verification')]);
 
-        // $fieldset->addField(
-        //     'identification_request',
-        //     'multiselect',
-        //     [
-        //         'label' => __('Identification Requested'),
-        //         'title' => __('Identification Requested'),
-        //         'name' => 'identification',
-        //         'values' => $this->getOptions()
-        //     ]
-        // );
         $fieldset->addField(
-            'status',
+            'verify_status',
             'select',
             [
-                'label' => __('Verification Status'),
-                'title' => __('Page Status'),
-                'name' => 'status',
-                'options' => $model->getAvailableStatuses()
+                'label' => __('Is Verify'),
+                'title' => __('Is Verify'),
+                'name' => 'verify_status',
+                'options' => $model->getAvailableVerifyStatuses()
             ]
         );
 
+        $fieldset->addField(
+            'disapproved_reason',
+            'text',
+            [
+                'label' => __('Reason'),
+                'title' => __('Reason'),
+                'name' => 'disapproved_reason',
+                'container_id' => 'disapproved_reason_container'
+            ]
+        );
+        
         $this->setChild(
             'form_after',
             $this->getLayout()->createBlock(Register::class)
                 ->setTemplate('CoreMarketplace_SellerIdentificationApproval::seller/verification.phtml')
                 ->setNameInLayout('additional_fields')
         );
-
+        
         $this->getChildHtml('additional_fields');
 
-        // $commentModel = $this->_coreRegistry->registry('lof_marketplace_message');
-
-        // $fieldset = $form->addFieldset('comment_fieldset', ['legend' => __('Comments')]);
-
-        // if ($commentModel->getId()) {
-        //     $fieldset->addField('message_id', 'hidden', ['name' => 'message_id']);
-        // }
-        // // if (!$commentModel->getDescription()) {
-        // //     $fieldset->addField(
-        // //         'partner_id',
-        // //         'select',
-        // //         [
-        // //             'name' => 'partner_id',
-        // //             'label' => __('Seller'),
-        // //             'title' => __('Seller'),
-        // //             'required' => false,
-        // //             'values' => [
-        // //                 [
-        // //                     'value'=> $model->getId()
-        // //                 ]
-        // //             ],
-        // //             'disabled' => $isElementDisabled
-        // //         ]
-        // //     );
-        // // }
-
-        // if ($commentModel->getSubject()) {
-        //     $fieldset->addField(
-        //         'subject',
-        //         'note',
-        //         [
-        //             'name' => ' subject',
-        //             'label' => __('Subject'),
-        //             'text' => $commentModel->getSubject()
-        //         ]
-        //     );
-        // } else {
-        //     $fieldset->addField(
-        //         'subject',
-        //         'text',
-        //         ['name' => 'subject', 'label' => __('Subject'), 'title' => __('Subject'), 'required' => true]
-        //     );
-        // }
-        // // if ($commentModel->getDescription()) {
-        // //     $fieldset->addField(
-        // //         'description',
-        // //         'note',
-        // //         [
-        // //             'name' => ' description',
-        // //             'label' => __('Description'),
-        // //             'text' => $commentModel->getDescription()
-        // //         ]
-        // //     );
-        // // } else {
-        // //     $fieldset->addField(
-        // //         'description',
-        // //         'textarea',
-        // //         [
-        // //             'name' => ' description',
-        // //             'label' => __('Description'),
-        // //         ]
-        // //     );
-        // // }
-        // $fieldset->addField(
-        //     'message',
-        //     'textarea',
-        //     [
-        //         'name' => 'message',
-        //         'label' => __('Message'),
-        //         'title' => __('Message'),
-        //         'after_element_html' => $this->_getMessageContentAfterHtml($commentModel->getId(), $commentModel->getSellerId())
-        //     ]
-        // );
-
-        // $form->setValues($commentModel->getData());
+        $form->setValues($model->getData());
 
         $this->setForm($form);
 

@@ -65,7 +65,7 @@ class Becomeseller extends \Lof\MarketPlace\Controller\Seller\Becomeseller
         $status = $this->sellerFactory->create()->load($customerId, 'customer_id')->getStatus();
         $becomeSellerEnable = $this->helperData->getConfig("general_settings/allow_customer_become_seller");
 
-        if ($customerSession->isLoggedIn() && $status != 1 && $becomeSellerEnable) {
+        if ($customerSession->isLoggedIn() && $status != 1) {
             $this->_redirect('marketplace/sellerverification/index');
         } elseif ($customerSession->isLoggedIn() && $status == 1) {
             $this->_redirect('marketplace/catalog/seller');

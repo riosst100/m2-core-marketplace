@@ -1,0 +1,26 @@
+<?php
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Magento2.Security.XssTemplate.FoundNotAllowed
+// phpcs:disable Generic.Files.LineLength.TooLong
+/**
+ * @var $block Lof\MarketPlace\Block\Account\Navigation
+ */
+$_helper = $this->helper(\Lof\MarketPlace\Helper\Data::class);
+?>
+<footer>
+    <div class="pull-right">
+        <?php if ($_helper->getConfig('design/footer_text')): ?>
+            <?= $_helper->getConfig('design/footer_text'); ?>
+        <?php else: ?>
+            <?= $block->escapeHtml(__('Copyright &copy; 2024 - TCG Collective. All rights reserved.')) ?>
+        <?php endif; ?>
+    </div>
+    <div class="clearfix"></div>
+</footer>
+<script type="text/javascript">
+    require(['jquery'], function () {
+        if (jQuery('#menu-lof-marketplace-shipping ul.child_menu').length == 0) {
+            jQuery('#menu-lof-marketplace-shipping').css('display', 'none')
+        }
+    });
+</script>
