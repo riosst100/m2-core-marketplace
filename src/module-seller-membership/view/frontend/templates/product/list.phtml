@@ -1,24 +1,4 @@
 <?php
-/**
- * Landofcoder
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Landofcoder.com license that is
- * available through the world-wide-web at this URL:
- * https://landofcoder.com/terms
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade this extension to newer
- * version in the future.
- *
- * @category   Landofcoder
- * @package    Lofmp_SellerMembership
- * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
- * @license    https://landofcoder.com/terms
- */
-
 use Magento\Framework\App\Action\Action;
 
 // @codingStandardsIgnoreFile
@@ -35,11 +15,7 @@ $_productCollection = $block->getLoadedProductCollection();
 
 $_helper = $this->helper('Magento\Catalog\Helper\Output');
 $helper = $this->helper('Lof\MarketPlace\Helper\Data');
-
 ?>
-<div class="negotiable-quote-errors messages">
-    <div class="message message-warning error-wrap error" data-role="error-wrap">Please select / buy the membership plan.</div>
-</div>
 <?php if (!$_productCollection->count()): ?>
     <div class="message info empty">
         <div><?php /* @escapeNotVerified */

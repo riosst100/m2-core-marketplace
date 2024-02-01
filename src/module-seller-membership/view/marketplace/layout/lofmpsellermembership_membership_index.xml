@@ -2,7 +2,22 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="vendor-1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
 	<body>
 		<referenceContainer name="content">
-      		<referenceBlock name="marketplace_membership_index" template="CoreMarketplace_SellerMembership::membership/index.phtml" />
+      		<referenceBlock name="marketplace_membership_index" template="CoreMarketplace_SellerMembership::membership/index.phtml">
+				<block class="Lofmp\SellerMembership\Block\Membership\View" name="membership.products" template="CoreMarketplace_SellerMembership::membership/products.phtml">
+					<block class="Lofmp\SellerMembership\Block\Membership\Product\ListProduct" name="membership.products.list" as="product_list" template="CoreMarketplace_SellerMembership::product/list.phtml">
+						<container name="category.product.list.additional" as="additional" />
+						<block class="Magento\Framework\View\Element\RendererList" name="category.product.type.details.renderers" as="details.renderers">
+							<block class="Magento\Framework\View\Element\Template" as="default"/>
+						</block>
+						<block class="Magento\Catalog\Block\Product\ProductList\Toolbar" name="product_list_toolbar" template="Magento_Catalog::product/list/toolbar.phtml">
+							<block class="Magento\Theme\Block\Html\Pager" name="product_list_toolbar_pager"/>
+						</block>
+						<action method="setToolbarBlockName">
+							<argument name="name" xsi:type="string">product_list_toolbar</argument>
+						</action>
+					</block>
+				</block>
+			</referenceBlock>
     	</referenceContainer>
 	</body>
 </page>

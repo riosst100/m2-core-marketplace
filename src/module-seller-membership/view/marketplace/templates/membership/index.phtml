@@ -58,10 +58,6 @@ $helper = $this->helper("Lof\MarketPlace\Helper\Data");
                                                         <i class="fa fa-check text-success"></i> <?= __('Expiry Date') . ':'; ?>
                                                         <strong><?= $membership->getExpirationDate(); ?></strong>
                                                     </li>
-                                                    <li>
-                                                        <i class="fa fa-check text-success"></i> <?= __('Commission') . ':'; ?>
-                                                        <strong><?= $this->getFeeCommission(); ?></strong>
-                                                    </li>
                                                     <?php
                                                     $options = $this->getOption();
                                                     ?>
@@ -84,10 +80,6 @@ $helper = $this->helper("Lof\MarketPlace\Helper\Data");
                                             </div>
                                         </div>
                                         <div class="pricing_footer">
-                                            <a href="<?= $helper->getFrontendUrl('lofmpmembership/buy'); ?>"
-                                            class="btn btn-success btn-block"
-                                            role="button"><?= __('Upgrade'); ?>
-                                            </a>
                                             <p>
                                                 <a href="<?= $this->getUrl('lofmpsellermembership/membership/payment'); ?>"><?= __('View Payment History'); ?></a>
                                             </p>
@@ -98,8 +90,11 @@ $helper = $this->helper("Lof\MarketPlace\Helper\Data");
                         </div>
                     </div>
                 <?php else: ?>
-                    <div>You don't have a membership.</div>
+                    <div class="negotiable-quote-errors messages">
+                        <div class="message message-warning error-wrap error" data-role="error-wrap">You don't have active membership plan. Please buy the membership plan to access seller features.</div>
+                    </div>
                 <?php endif; ?>
+                <a href="/lofmpmembership/buy" class="btn btn-success btn-block"><?= __('Buy / Upgrade Membership') ?></a>
             </div>
         </div>
     </div>

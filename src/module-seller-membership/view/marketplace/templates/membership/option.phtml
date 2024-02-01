@@ -93,7 +93,7 @@ if ($status != 1 || !$group) {
     $styles .=  '#menu-lof-marketplace-profile a { color:#5e6872 !important; }';
     $styles .=  '#menu-lof-marketplace-dashboard a { color:#5e6872 !important; }';
 }
-if ($status == 1 || $seller->getRegistrationStep() != "membership") {
+if ($status != 1 && $seller->getRegistrationStep() != "membership") {
     $styles .=  '#menu-lofmp-sellermembership-membership a { color:#5e6872 !important; }';
 }
 if ($status == 1 || $seller->getRegistrationStep() != "verification") {

@@ -84,7 +84,7 @@ class PredispatchObserver implements ObserverInterface
                 if ($seller->getRegistrationStep() == "verification" && $routeName != "sellerverification") {
                     $this->_redirectUrl($this->getFrontendUrl('marketplace/sellerverification/index/index'));
                 } elseif ($seller->getRegistrationStep() == "membership" && $routeName != "lofmpsellermembership") {
-                    $this->_redirectUrl($this->getFrontendUrl('lofmpmembership/buy/index'));
+                    $this->_redirectUrl($this->getFrontendUrl('marketplace/lofmpsellermembership/membership/index'));
                 }
             }
         }
