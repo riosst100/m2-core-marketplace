@@ -1,3 +1,7 @@
+type Query {
+  sellerCountries: [Country] @resolver(class: "CoreMarketplace\\MarketplaceGraphQl\\Model\\Resolver\\SellerCountries") @doc(description: "Seller countries.") @cache(cacheable: false)
+}
+
 input SellerInput {
   seller_type: String @doc(description: "Store Type")
   name: String @doc(description: "Store Name")
