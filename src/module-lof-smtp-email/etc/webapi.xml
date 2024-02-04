@@ -1,0 +1,123 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<route url="/V1/lof-smtpemail/emaillog" method="POST">
+		<service class="Lof\SmtpEmail\Api\EmaillogRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lof_SmtpEmail::emaillog_save"/>
+		</resources>
+	</route>
+	<route url="/V1/lof-smtpemail/emaillog/search" method="GET">
+		<service class="Lof\SmtpEmail\Api\EmaillogRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Lof_SmtpEmail::emaillog_view"/>
+		</resources>
+	</route>
+	<route url="/V1/lof-smtpemail/emaillog/:emaillogId" method="GET">
+		<service class="Lof\SmtpEmail\Api\EmaillogRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="Lof_SmtpEmail::emaillog_view"/>
+		</resources>
+	</route>
+	<route url="/V1/lof-smtpemail/emaillog/:emaillogId" method="PUT">
+		<service class="Lof\SmtpEmail\Api\EmaillogRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lof_SmtpEmail::emaillog_update"/>
+		</resources>
+	</route>
+	<route url="/V1/lof-smtpemail/emaillog/:emaillogId" method="DELETE">
+		<service class="Lof\SmtpEmail\Api\EmaillogRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Lof_SmtpEmail::emaillog_delete"/>
+		</resources>
+	</route>
+	<route url="/V1/lof-smtpemail/blacklist" method="POST">
+		<service class="Lof\SmtpEmail\Api\BlacklistRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lof_SmtpEmail::blacklist_save"/>
+		</resources>
+	</route>
+	<route url="/V1/lof-smtpemail/blacklist/search" method="GET">
+		<service class="Lof\SmtpEmail\Api\BlacklistRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Lof_SmtpEmail::blacklist_view"/>
+		</resources>
+	</route>
+	<route url="/V1/lof-smtpemail/blacklist/:blacklistId" method="GET">
+		<service class="Lof\SmtpEmail\Api\BlacklistRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="Lof_SmtpEmail::blacklist_view"/>
+		</resources>
+	</route>
+	<route url="/V1/lof-smtpemail/blacklist/:blacklistId" method="PUT">
+		<service class="Lof\SmtpEmail\Api\BlacklistRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lof_SmtpEmail::blacklist_update"/>
+		</resources>
+	</route>
+	<route url="/V1/lof-smtpemail/blacklist/:blacklistId" method="DELETE">
+		<service class="Lof\SmtpEmail\Api\BlacklistRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Lof_SmtpEmail::blacklist_delete"/>
+		</resources>
+	</route>
+	<route url="/V1/lof-smtpemail/blockip" method="POST">
+		<service class="Lof\SmtpEmail\Api\BlockipRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lof_SmtpEmail::blockip_save"/>
+		</resources>
+	</route>
+	<route url="/V1/lof-smtpemail/blockip/search" method="GET">
+		<service class="Lof\SmtpEmail\Api\BlockipRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Lof_SmtpEmail::blockip_view"/>
+		</resources>
+	</route>
+	<route url="/V1/lof-smtpemail/blockip/:blockipId" method="GET">
+		<service class="Lof\SmtpEmail\Api\BlockipRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="Lof_SmtpEmail::blockip_view"/>
+		</resources>
+	</route>
+	<route url="/V1/lof-smtpemail/blockip/:blockipId" method="PUT">
+		<service class="Lof\SmtpEmail\Api\BlockipRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lof_SmtpEmail::blockip_update"/>
+		</resources>
+	</route>
+	<route url="/V1/lof-smtpemail/blockip/:blockipId" method="DELETE">
+		<service class="Lof\SmtpEmail\Api\BlockipRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Lof_SmtpEmail::blockip_delete"/>
+		</resources>
+	</route>
+	<route url="/V1/lof-smtpemail/spam" method="POST">
+		<service class="Lof\SmtpEmail\Api\SpamRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lof_SmtpEmail::spam_save"/>
+		</resources>
+	</route>
+	<route url="/V1/lof-smtpemail/spam/search" method="GET">
+		<service class="Lof\SmtpEmail\Api\SpamRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Lof_SmtpEmail::spam_view"/>
+		</resources>
+	</route>
+	<route url="/V1/lof-smtpemail/spam/:spamId" method="GET">
+		<service class="Lof\SmtpEmail\Api\SpamRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="Lof_SmtpEmail::spam_view"/>
+		</resources>
+	</route>
+	<route url="/V1/lof-smtpemail/spam/:spamId" method="PUT">
+		<service class="Lof\SmtpEmail\Api\SpamRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lof_SmtpEmail::spam_update"/>
+		</resources>
+	</route>
+	<route url="/V1/lof-smtpemail/spam/:spamId" method="DELETE">
+		<service class="Lof\SmtpEmail\Api\SpamRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Lof_SmtpEmail::spam_delete"/>
+		</resources>
+	</route>
+</routes>

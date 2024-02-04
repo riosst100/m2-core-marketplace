@@ -87,15 +87,22 @@ class FrontendPredispatchObserver implements ObserverInterface
             // checkout/onepage/success/
 
             $allowedUrl = [
+                'paypal/express/getTokenData',
+                'customer/section/load',
                 'checkout/index/index',
                 'checkout/cart/add',
                 'checkout/onepage/success',
-                'lofmpmembership/buy/index'
+                'lofmpmembership/buy/index',
+                'paypal/express/onAuthorization',
+                'paypal/express/cancel',
+                '/seller/login',
+                'lofmarketplace/seller/login',
+                'lofmarketplace/seller/loginPost'
             ];
 
             $currentUrl = $routeName.'/'.$controllerName.'/'.$actionName;
 
-            // die($currentUrl);
+            
 
             if ($currentUrl == "checkout/onepage/success") {
                 $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
@@ -106,6 +113,7 @@ $this->messageManager = $objectManager->get('Magento\Framework\Message\ManagerIn
             }
 
             if (!in_array($currentUrl, $allowedUrl)) {
+                // die('='.$currentUrl.'=');
                 return $this->_redirectUrl($this->getFrontendUrl('marketplace/catalog/dashboard'));
             }
 

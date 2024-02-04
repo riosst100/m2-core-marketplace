@@ -4,6 +4,7 @@
     <module name="CoreMarketplace_MarketPlace" setup_version="1.0.3">
         <sequence>
             <module name="Lof_MarketPlace"/>
+            <module name="Magento_Checkout"/>
         </sequence>
     </module>
 </config>

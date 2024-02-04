@@ -60,10 +60,7 @@ class Message extends \Lof\MarketPlace\Block\Adminhtml\Notifications\Message
         $collection = $this->sellerFactory->create()
         ->getCollection()
         ->addFieldToFilter('status', 2)
-        ->addFieldToFilter(['documents_verify_status', 'documents_verify_status'],
-        [
-            ['eq' => 2]
-        ]);
+        ->addFieldToFilter('documents_verify_status', ['eq' => 2]);
 
         return $collection->count();
     }
