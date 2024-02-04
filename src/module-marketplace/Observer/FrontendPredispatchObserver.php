@@ -78,7 +78,40 @@ class FrontendPredispatchObserver implements ObserverInterface
             $seller = $this->sellerFactory->create()->load($customerId, 'customer_id');
             $status = $seller->getStatus();
 
-            // $routeName = $this->action->getRequest()->getRouteName();
+            $routeName = $this->action->getRequest()->getRouteName();
+            $controllerName = $this->action->getRequest()->getControllerName();
+            $actionName = $this->action->getRequest()->getActionName();
+
+            // die($actionName);
+
+            // checkout/onepage/success/
+
+            $allowedUrl = [
+                'checkout/index/index',
+                'checkout/cart/add',
+                'checkout/onepage/success',
+                'lofmpmembership/buy/index'
+            ];
+
+            $currentUrl = $routeName.'/'.$controllerName.'/'.$actionName;
+
+            // die($currentUrl);
+
+            if ($currentUrl == "checkout/onepage/success") {
+                $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$this->messageManager = $objectManager->get('Magento\Framework\Message\ManagerInterface');
+                $this->messageManager->addSuccess(__('Membership plan upgraded successfully'));
+                // return $this->_redirectUrl($this->getFrontendUrl('marketplace/catalog/dashboard'));
+                // die('ok');
+            }
+
+            if (!in_array($currentUrl, $allowedUrl)) {
+                return $this->_redirectUrl($this->getFrontendUrl('marketplace/catalog/dashboard'));
+            }
+
+            
+
+            // 
             // if ($customerSession->isLoggedIn() && $seller) {
             //     if ($routeName != "marketplace" && $routeName != "lofmpmembership") {
             //         $this->_redirectUrl($this->getFrontendUrl('marketplace/catalog/dashboard'));

@@ -33,6 +33,8 @@ class Save extends \Magento\Framework\App\Action\Action
 
     const ATTACHMENTS_FOLDER = 'lof_seller';
 
+    const FLAG_IS_URLS_CHECKED = 'check_url_settings';
+    
     /**
      * @var Data
      */
@@ -156,7 +158,6 @@ class Save extends \Magento\Framework\App\Action\Action
         \Magento\Framework\Url $frontendUrl
     ) {
         parent::__construct($context);
-        $this->session = $session;
         $this->seller = $seller;
         $this->customerMapper = $customerMapper;
         $this->customerExtractor = $customerExtractor;
