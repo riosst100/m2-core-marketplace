@@ -156,7 +156,7 @@ class Save extends \Magento\Framework\App\Action\Action
         \Magento\Framework\Url $frontendUrl
     ) {
         parent::__construct($context);
-        $this->sesson = $session;
+        $this->session = $session;
         $this->seller = $seller;
         $this->customerMapper = $customerMapper;
         $this->customerExtractor = $customerExtractor;

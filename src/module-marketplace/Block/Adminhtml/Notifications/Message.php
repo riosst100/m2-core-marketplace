@@ -62,7 +62,6 @@ class Message extends \Lof\MarketPlace\Block\Adminhtml\Notifications\Message
         ->addFieldToFilter('status', 2)
         ->addFieldToFilter(['documents_verify_status', 'documents_verify_status'],
         [
-            ['eq' => 0],
             ['eq' => 2]
         ]);
 

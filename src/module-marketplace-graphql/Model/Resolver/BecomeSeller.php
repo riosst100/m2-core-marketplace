@@ -314,7 +314,7 @@ class BecomeSeller extends \Lof\MarketplaceGraphQl\Model\Resolver\BecomeSeller
                     ->setStores($stores)
                     ->setPageLayout($layout)
                     ->setEmail($email)
-                    ->setVerifyStatus(2)
+                    ->setVerifyStatus(0)
                     ->setStatus(2)
                     ->setRegistrationStep('verification');
                 if ($sellerApproval) {
