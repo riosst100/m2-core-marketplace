@@ -23,7 +23,7 @@ namespace Lof\SmtpEmail\Model;
 
 use Magento\Framework\Mail\MessageInterface;
 
-abstract class Transport extends \Zend_Mail_Transport_Smtp implements \Magento\Framework\Mail\TransportInterface
+abstract class Transport extends \Laminas\Mail\Transport\Smtp implements \Magento\Framework\Mail\TransportInterface
 {
     /**
      * @var \Magento\Framework\Mail\MessageInterface
@@ -173,7 +173,7 @@ abstract class Transport extends \Zend_Mail_Transport_Smtp implements \Magento\F
      */
     public function sendMessage()
     {
-        $this->_logger->addDebug($this->_emaillog->isBlacklist($this->_message));
+        $this->_logger->debug($this->_emaillog->isBlacklist($this->_message));
         $this->_emaildebug->messageDebug(__('Ready to send email'));
         if($this->_helper->getConfig('general_settings/enable_smtp_email') == 1) {
             try {

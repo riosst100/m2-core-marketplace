@@ -23,6 +23,7 @@ use Magento\Framework\Mail\Template\TransportBuilder;
 use Magento\Framework\UrlInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
+use Lof\MarketPlace\Model\Sender;
 
 /**
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
@@ -119,6 +120,16 @@ class Save extends \Lof\MarketPlace\Controller\Adminhtml\Seller\Save
     protected $sellerHelper;
 
     /**
+     * @var Data
+     */
+    protected $helperData;
+
+    /**
+     * @var Sender
+     */
+    protected $sender;
+
+    /**
      * @param Context $context
      * @param Filesystem $filesystem
      * @param StoreManagerInterface $store
@@ -136,6 +147,8 @@ class Save extends \Lof\MarketPlace\Controller\Adminhtml\Seller\Save
      * @param Data $helper
      * @param SellerHelper $sellerHelper
      * @param \Magento\Framework\Translate\Inline\StateInterface $inlineTranslation
+     * @param Data $helperData
+     * @param Sender $sender
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function __construct(
@@ -155,7 +168,9 @@ class Save extends \Lof\MarketPlace\Controller\Adminhtml\Seller\Save
         Escaper $escaper,
         Data $helper,
         SellerHelper $sellerHelper,
-        \Magento\Framework\Translate\Inline\StateInterface $inlineTranslation
+        \Magento\Framework\Translate\Inline\StateInterface $inlineTranslation,
+        Data $helperData,
+        Sender $sender
     ) {
         $this->helper = $helper;
         $this->customer = $customer;
@@ -173,6 +188,8 @@ class Save extends \Lof\MarketPlace\Controller\Adminhtml\Seller\Save
         $this->customerRepository = $customerRepository;
         $this->inlineTranslation = $inlineTranslation;
         $this->sellerHelper = $sellerHelper;
+        $this->helperData = $helperData;
+        $this->sender = $sender;
 
         parent::__construct(
             $context,
@@ -369,11 +386,19 @@ class Save extends \Lof\MarketPlace\Controller\Adminhtml\Seller\Save
                 // $data['status'] = 1; // Set status to enabled
                 $data['status'] = 2; // Set status to pending
                 $data['registration_step'] = 'membership'; // Change step to membership plan buy
+
+                if ($model->getVerifyStatus() != 1 && $this->helperData->getConfig('email_settings/enable_send_email')) {
+                    $this->sender->approveSeller($data);
+                }
             } else {
                 $data['documents_verify_status'] = 3; // Set documents status to disapproved
                 $data['status'] = 2; // Set status to pending
                 $data['group_id'] = 0; // Set group to 0
                 $data['registration_step'] = 'verification'; // Change step to verification
+
+                if ($model->getDocumentsVerifyStatus() != 3 && $this->helperData->getConfig('email_settings/enable_send_email')) {
+                    $this->sender->unapproveSeller($data);
+                }
             }
             /* END custom verify documents */
 

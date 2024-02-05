@@ -35,6 +35,11 @@ class Main extends \Lof\MarketPlace\Block\Adminhtml\Seller\Edit\Tab\Main
     protected $_sellerGroup;
 
     /**
+     * @var \CoreMarketplace\MarketPlace\Model\Config\Source\SellerType
+     */
+    protected $_sellerType;
+
+    /**
      * @param \Magento\Backend\Block\Template\Context $context
      * @param \Magento\Framework\Registry $registry
      * @param \Magento\Framework\Data\FormFactory $formFactory
@@ -44,6 +49,7 @@ class Main extends \Lof\MarketPlace\Block\Adminhtml\Seller\Edit\Tab\Main
      * @param \Magento\Directory\Model\Config\Source\Country $country
      * @param \Magento\Directory\Model\RegionFactory $regionFactory
      * @param \Lof\MarketPlace\Model\Config\Source\SellerGroup $sellerGroup
+     * @param \CoreMarketplace\MarketPlace\Model\Config\Source\SellerType $sellerType
      * @param array $data
      */
     public function __construct(
@@ -56,6 +62,7 @@ class Main extends \Lof\MarketPlace\Block\Adminhtml\Seller\Edit\Tab\Main
         \Magento\Directory\Model\Config\Source\Country $country,
         \Magento\Directory\Model\RegionFactory $regionFactory,
         \Lof\MarketPlace\Model\Config\Source\SellerGroup $sellerGroup,
+        \CoreMarketplace\MarketPlace\Model\Config\Source\SellerType $sellerType,
         array $data = []
     ) {
         $this->_viewHelper = $viewHelper;
@@ -64,6 +71,7 @@ class Main extends \Lof\MarketPlace\Block\Adminhtml\Seller\Edit\Tab\Main
         $this->_country = $country;
         $this->_regionFactory = $regionFactory;
         $this->_sellerGroup = $sellerGroup;
+        $this->_sellerType = $sellerType;
         parent::__construct(
             $context, 
             $registry, 
@@ -170,6 +178,18 @@ class Main extends \Lof\MarketPlace\Block\Adminhtml\Seller\Edit\Tab\Main
                 'required' => true,
                 'options' => $this->_sellerGroup->toArray(),
                 'disabled' => $isElementDisabled
+            ]
+        );
+
+        $fieldset->addField(
+            'seller_type',
+            'select',
+            [
+                'label' => __('Seller Type'),
+                'title' => __('Seller Type'),
+                'name' => 'seller_type',
+                'required' => true,
+                'options' => $this->_sellerType->toArray()
             ]
         );
 

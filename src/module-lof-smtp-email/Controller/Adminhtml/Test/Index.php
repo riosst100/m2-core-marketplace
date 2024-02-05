@@ -26,7 +26,7 @@ use Magento\Framework\View\Result\PageFactory;
 use Lof\SmtpEmail\Helper\Data;
 use Zend_Mail;
 use Zend_Mail_Exception;
-use Zend_Mail_Transport_Smtp;
+use Laminas\Mail\Transport\Smtp;
 use Zend_Validate;
 use Zend_Validate_Exception;
 
@@ -135,7 +135,7 @@ class Index extends \Magento\Backend\App\Action
             $smtpConf['ssl'] = $ssl;
         }
 
-        $transport = new \Zend_Mail_Transport_Smtp($smtpHost, $smtpConf);
+        $transport = new \Laminas\Mail\Transport\Smtp($smtpHost, $smtpConf);
 
         $from = trim($request->getPost('email'));
         $from = Zend_Validate::is($from, 'EmailAddress') ? $from : $username;
