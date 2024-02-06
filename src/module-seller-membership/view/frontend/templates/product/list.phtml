@@ -74,7 +74,7 @@ $helper = $this->helper('Lof\MarketPlace\Helper\Data');
                                             <h2>
                                                 <?= $_helper->productAttribute($_product, $_product->getName(), 'name'); ?>
                                             </h2>
-                                            <h1 id="lof_price_<?= $_product->getId() ?>"><?= $helper->getPriceFomat($price); ?></h1>
+                                            <h1 id="lof_price_<?= $_product->getId() ?>"><?= $helper->getFormatedPrice($price); ?></h1>
                                         </div>
 
                                         <?= $block->getProductDetailsHtml($_product) ?>
@@ -137,7 +137,7 @@ $helper = $this->helper('Lof\MarketPlace\Helper\Data');
                                                                 if ($duration) {
                                                                     foreach ($duration as $key => $_duration) { ?>
                                                                         <option
-                                                                            value="<?= $_duration['membership_duration'] . '|' . $_duration['membership_unit'] . '|' . $_duration['membership_price'] ?>"><?= $_duration['membership_duration'] . ' ' . $_duration['membership_unit'] . '-' . $helper->getPriceFomat($_duration['membership_price']) ?></option>
+                                                                            value="<?= $_duration['membership_duration'] . '|' . $_duration['membership_unit'] . '|' . $_duration['membership_price'] ?>"><?= $_duration['membership_duration'] . ' ' . $_duration['membership_unit'] . '-' . $helper->getFormatedPrice($_duration['membership_price']) ?></option>
 
                                                                     <?php }
                                                                 }

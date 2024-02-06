@@ -41,25 +41,33 @@ class PredispatchObserver implements ObserverInterface
     protected $state;
 
     /**
+     * @var \Lof\MarketPlace\Helper\Data
+     */
+    protected $helper;
+
+    /**
      * PredispatchObserver constructor.
      * @param \Lof\MarketPlace\Model\SellerFactory $sellerFactory
      * @param \Magento\Framework\Url $frontendUrl
      * @param \Magento\Customer\Model\Session $customerSession
      * @param \Magento\Framework\App\ActionFlag $actionFlag
      * @param \Magento\Framework\App\State $state
+     * @param \Lof\MarketPlace\Helper\Data $helper
      */
     public function __construct(
         \Lof\MarketPlace\Model\SellerFactory $sellerFactory,
         \Magento\Framework\Url $frontendUrl,
         \Magento\Customer\Model\Session $customerSession,
         \Magento\Framework\App\ActionFlag $actionFlag,
-        \Magento\Framework\App\State $state
+        \Magento\Framework\App\State $state,
+        \Lof\MarketPlace\Helper\Data $helper
     ) {
         $this->sellerFactory = $sellerFactory;
         $this->_frontendUrl = $frontendUrl;
         $this->session = $customerSession;
         $this->actionFlag = $actionFlag;
         $this->state = $state;
+        $this->helper = $helper;
     }
 
     /**
@@ -79,6 +87,12 @@ class PredispatchObserver implements ObserverInterface
             $status = $seller->getStatus();
 
             $routeName = $this->action->getRequest()->getRouteName();
+
+            /* Auto set store based on seller country */
+            $sellerCountryID = $seller->getCountryId() ? strtolower($seller->getCountryId()) : null;
+
+            $this->helper->setStoreBySellerCountry($sellerCountryID);
+            /* Auto set store based on seller country */
 
             if ($customerSession->isLoggedIn()) {
                 if ($seller->getRegistrationStep() == "verification" && $routeName != "sellerverification") {

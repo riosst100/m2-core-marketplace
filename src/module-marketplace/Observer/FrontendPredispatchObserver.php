@@ -41,26 +41,44 @@ class FrontendPredispatchObserver implements ObserverInterface
     protected $state;
 
     /**
+     * @var \Magento\Framework\Message\ManagerInterface
+     */
+    protected $messageManager;
+
+    /**
+     * @var \Lof\MarketPlace\Helper\Data
+     */
+    protected $helper;
+
+    /**
      * PredispatchObserver constructor.
      * @param \Lof\MarketPlace\Model\SellerFactory $sellerFactory
      * @param \Magento\Framework\Url $frontendUrl
      * @param \Magento\Customer\Model\Session $customerSession
      * @param \Magento\Framework\App\ActionFlag $actionFlag
      * @param \Magento\Framework\App\State $state
+     * @param \Magento\Framework\Message\ManagerInterface $messageManager
+     * @param \Lof\MarketPlace\Helper\Data $helper
      */
     public function __construct(
         \Lof\MarketPlace\Model\SellerFactory $sellerFactory,
         \Magento\Framework\Url $frontendUrl,
         \Magento\Customer\Model\Session $customerSession,
         \Magento\Framework\App\ActionFlag $actionFlag,
-        \Magento\Framework\App\State $state
+        \Magento\Framework\App\State $state,
+        \Magento\Framework\Message\ManagerInterface $messageManager,
+        \Lof\MarketPlace\Helper\Data $helper
     ) {
         $this->sellerFactory = $sellerFactory;
         $this->_frontendUrl = $frontendUrl;
         $this->session = $customerSession;
         $this->actionFlag = $actionFlag;
         $this->state = $state;
+        $this->messageManager = $messageManager;
+        $this->helper = $helper;
     }
+
+    
 
     /**
      * @param Observer $observer
@@ -82,9 +100,11 @@ class FrontendPredispatchObserver implements ObserverInterface
             $controllerName = $this->action->getRequest()->getControllerName();
             $actionName = $this->action->getRequest()->getActionName();
 
-            // die($actionName);
+            /* Auto set store based on seller country */
+            $sellerCountryID = $seller->getCountryId() ? strtolower($seller->getCountryId()) : null;
 
-            // checkout/onepage/success/
+            $this->helper->setStoreBySellerCountry($sellerCountryID);
+            /* Auto set store based on seller country */
 
             $allowedUrl = [
                 'paypal/express/getTokenData',
@@ -102,33 +122,13 @@ class FrontendPredispatchObserver implements ObserverInterface
 
             $currentUrl = $routeName.'/'.$controllerName.'/'.$actionName;
 
-            
-
             if ($currentUrl == "checkout/onepage/success") {
-                $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-$this->messageManager = $objectManager->get('Magento\Framework\Message\ManagerInterface');
                 $this->messageManager->addSuccess(__('Membership plan upgraded successfully'));
-                // return $this->_redirectUrl($this->getFrontendUrl('marketplace/catalog/dashboard'));
-                // die('ok');
             }
 
             if (!in_array($currentUrl, $allowedUrl)) {
-                // die('='.$currentUrl.'=');
                 return $this->_redirectUrl($this->getFrontendUrl('marketplace/catalog/dashboard'));
             }
-
-            
-
-            // 
-            // if ($customerSession->isLoggedIn() && $seller) {
-            //     if ($routeName != "marketplace" && $routeName != "lofmpmembership") {
-            //         $this->_redirectUrl($this->getFrontendUrl('marketplace/catalog/dashboard'));
-            //     }
-            // } else {
-            //     if ($routeName != "lofmarketplace") {
-            //         $this->_redirectUrl($this->getFrontendUrl('lofmarketplace/seller/login'));
-            //     }
-            // }
         }
 
         return $this;

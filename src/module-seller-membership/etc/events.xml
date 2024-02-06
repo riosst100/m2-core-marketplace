@@ -4,4 +4,8 @@
         <observer name="lofmp_sellermembership_invoice_save_after" disabled="true" />
         <observer name="coremarketplace_sellermembership_invoice_save_after" instance="CoreMarketplace\SellerMembership\Observer\InvoiceSaveAfterObserver" />
     </event>
+    <event name="checkout_onepage_controller_success_action">
+        <observer name="lofmp_sellership_checkout_success_action" disabled="true" />
+        <observer name="coremarketplace_sellership_checkout_success_action" instance="CoreMarketplace\SellerMembership\Observer\InitMembershipSubscription" />
+    </event>
 </config>
