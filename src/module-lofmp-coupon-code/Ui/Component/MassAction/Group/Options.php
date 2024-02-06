@@ -21,13 +21,12 @@
 namespace Lofmp\CouponCode\Ui\Component\MassAction\Group;
 
 use Magento\Framework\UrlInterface;
-use Zend\Stdlib\JsonSerializable;
 use Magento\SalesRule\Model\ResourceModel\Rule\CollectionFactory;
 
 /**
  * Class Options
  */
-class Options implements JsonSerializable
+class Options implements \JsonSerializable
 {
     /**
      * @var array
