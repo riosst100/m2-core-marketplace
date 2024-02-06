@@ -46,7 +46,7 @@ class FrontendPredispatchObserver implements ObserverInterface
     protected $messageManager;
 
     /**
-     * @var \Lof\MarketPlace\Helper\Data
+     * @var \CoreMarketplace\MarketPlace\Helper\Data
      */
     protected $helper;
 
@@ -58,7 +58,7 @@ class FrontendPredispatchObserver implements ObserverInterface
      * @param \Magento\Framework\App\ActionFlag $actionFlag
      * @param \Magento\Framework\App\State $state
      * @param \Magento\Framework\Message\ManagerInterface $messageManager
-     * @param \Lof\MarketPlace\Helper\Data $helper
+     * @param \CoreMarketplace\MarketPlace\Helper\Data $helper
      */
     public function __construct(
         \Lof\MarketPlace\Model\SellerFactory $sellerFactory,
@@ -67,7 +67,7 @@ class FrontendPredispatchObserver implements ObserverInterface
         \Magento\Framework\App\ActionFlag $actionFlag,
         \Magento\Framework\App\State $state,
         \Magento\Framework\Message\ManagerInterface $messageManager,
-        \Lof\MarketPlace\Helper\Data $helper
+        \CoreMarketplace\MarketPlace\Helper\Data $helper
     ) {
         $this->sellerFactory = $sellerFactory;
         $this->_frontendUrl = $frontendUrl;

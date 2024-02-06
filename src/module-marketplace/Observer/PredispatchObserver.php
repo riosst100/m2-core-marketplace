@@ -41,7 +41,7 @@ class PredispatchObserver implements ObserverInterface
     protected $state;
 
     /**
-     * @var \Lof\MarketPlace\Helper\Data
+     * @var \CoreMarketplace\MarketPlace\Helper\Data
      */
     protected $helper;
 
@@ -52,7 +52,7 @@ class PredispatchObserver implements ObserverInterface
      * @param \Magento\Customer\Model\Session $customerSession
      * @param \Magento\Framework\App\ActionFlag $actionFlag
      * @param \Magento\Framework\App\State $state
-     * @param \Lof\MarketPlace\Helper\Data $helper
+     * @param \CoreMarketplace\MarketPlace\Helper\Data $helper
      */
     public function __construct(
         \Lof\MarketPlace\Model\SellerFactory $sellerFactory,
@@ -60,7 +60,7 @@ class PredispatchObserver implements ObserverInterface
         \Magento\Customer\Model\Session $customerSession,
         \Magento\Framework\App\ActionFlag $actionFlag,
         \Magento\Framework\App\State $state,
-        \Lof\MarketPlace\Helper\Data $helper
+        \CoreMarketplace\MarketPlace\Helper\Data $helper
     ) {
         $this->sellerFactory = $sellerFactory;
         $this->_frontendUrl = $frontendUrl;
