@@ -99,6 +99,76 @@ class ListProduct extends \Magento\Catalog\Block\Product\ListProduct
     }
 
     /**
+     * Need use as _prepareLayout - but problem in declaring collection from another block.
+     * (was problem with search result)
+     *
+     * @return $this
+     */
+    protected function _beforeToHtml()
+    {
+        $collection = $this->_getProductCollection();
+
+        $this->addToolbarBlock($collection);
+
+        if (!$collection->isLoaded()) {
+            $collection->load();
+        }
+
+        return parent::_beforeToHtml();
+    }
+
+    /**
+     * Get toolbar block from layout
+     *
+     * @return bool|Toolbar
+     */
+    private function getToolbarFromLayout()
+    {
+        $blockName = $this->getToolbarBlockName();
+
+        $toolbarLayout = false;
+
+        if ($blockName) {
+            $toolbarLayout = $this->getLayout()->getBlock($blockName);
+        }
+
+        return $toolbarLayout;
+    }
+
+    private function addToolbarBlock($collection)
+    {
+        $toolbarLayout = $this->getToolbarFromLayout();
+
+        if ($toolbarLayout) {
+            $this->configureToolbar($toolbarLayout, $collection);
+        }
+    }
+    
+    private function configureToolbar($toolbar, $collection)
+    {
+        // use sortable parameters
+        $orders = $this->getAvailableOrders();
+        if ($orders) {
+            $toolbar->setAvailableOrders($orders);
+        }
+        $sort = $this->getSortBy();
+        if ($sort) {
+            $toolbar->setDefaultOrder($sort);
+        }
+        $dir = $this->getDefaultDirection();
+        if ($dir) {
+            $toolbar->setDefaultDirection($dir);
+        }
+        $modes = $this->getModes();
+        if ($modes) {
+            $toolbar->setModes($modes);
+        }
+        // set collection to toolbar and apply sort
+        $toolbar->setCollection($collection);
+        $this->setChild('toolbar', $toolbar);
+    }
+
+    /**
      * @return \Magento\Catalog\Model\ResourceModel\Product\Collection|\Magento\Eav\Model\Entity\Collection\AbstractCollection
      * @throws \Magento\Framework\Exception\LocalizedException
      */

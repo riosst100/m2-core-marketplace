@@ -493,14 +493,12 @@ class Main extends \Lof\MarketPlace\Block\Adminhtml\Seller\Edit\Tab\Main
 
         $fieldset->addField(
             'term_and_conditions',
-            'editor',
+            'textarea',
             [
                 'name' => 'term_and_conditions',
-                'style' => 'height:200px;',
                 'label' => __('Term & Conditions'),
                 'title' => __('Term & Conditions'),
-                'disabled' => $isElementDisabled,
-                'config' => $wysiwygDescriptionConfig
+                'disabled' => $isElementDisabled
             ]
         );
 

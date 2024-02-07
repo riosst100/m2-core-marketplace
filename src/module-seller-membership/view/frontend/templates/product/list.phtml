@@ -37,6 +37,7 @@ $helper = $this->helper('Lof\MarketPlace\Helper\Data');
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
+                <?= $block->getToolbarHtml() ?>
                     <div class="row">
                         <div class="col-md-12">
                             <?php foreach ($_productCollection as $_product):

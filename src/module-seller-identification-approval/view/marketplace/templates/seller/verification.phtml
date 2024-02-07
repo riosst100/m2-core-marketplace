@@ -37,6 +37,10 @@ $ids = [];
                 if (isset($listType[''])) {
                     unset($listType['']);
                 }
+
+                if ($seller->getSellerType() == "individual") {
+                    unset($listType['company_registration']);
+                }
                 ?>
                 <?php foreach ($listType as $key => $label) : ?>
                     <?php if ($block->isEnable($key)) : ?>
