@@ -24,11 +24,8 @@ namespace Lof\SmtpEmail\Controller\Adminhtml\Test;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 use Lof\SmtpEmail\Helper\Data;
-use Zend_Mail;
-use Zend_Mail_Exception;
 use Laminas\Mail\Transport\Smtp;
-use Zend_Validate;
-use Zend_Validate_Exception;
+use Laminas\Validator\EmailAddress;
 
 class Index extends \Magento\Backend\App\Action
 {
@@ -119,40 +116,46 @@ class Index extends \Magento\Backend\App\Action
         $providerId = (int)$request->getPost('provider');
         $providerName = $this->_providers->getProviderName($providerId);
 
-        $smtpConf = array(
+        $options = [
             'name' => $providerName,
-            'port' => $port
-        );
+            'host' => $smtpHost,
+            'port' => $port,
+        ];
 
         if ($auth != 'none') {
-            $smtpConf['auth'] = $auth;
-            $smtpConf['username'] = $username;
-            $smtpConf['password'] = $password;
+            $options['connection_class'] = $auth;
+            $options['connection_config'] = [
+                'username' => $username,
+                'password' => $password
+            ];
         }
 
         $ssl = $request->getPost('ssl');
         if ($ssl != 'none' && $ssl) {
-            $smtpConf['ssl'] = $ssl;
+            $options['connection_config']['ssl'] = $ssl;
         }
 
-        $transport = new \Laminas\Mail\Transport\Smtp($smtpHost, $smtpConf);
+        $smtpOptions = new \Laminas\Mail\Transport\SmtpOptions($options);
+        $transport = new \Laminas\Mail\Transport\Smtp($smtpOptions);
 
         $from = trim($request->getPost('email'));
-        $from = Zend_Validate::is($from, 'EmailAddress') ? $from : $username;
-        //Create email
-        $mail = new \Zend_Mail();
-        $mail->setFrom($from, $name);
-        $mail->addTo($to, $to);
-        $mail->setSubject('Hello from Landofcoder SMTP (1 of 2)');
-        $mail->setBodyHtml('Thank you for choosing Landofcoder\'s extension.');
+
+        // Validate email
+        $validator = new EmailAddress();
+        $from = $validator->isValid($from) ? $from : $username;
+
+        // Create mail message
+        $message = new \Laminas\Mail\Message();
+        $message->setFrom($from, $name);
+        $message->addTo($to, $to);
+        $message->setSubject('Hello from Landofcoder SMTP (1 of 2)');
+        $message->setBody('Thank you for choosing Landofcoder\'s extension.');
 
         $result = __('Sent... Please check your email') . ' ' . $to;
 
+        // Send email
         try {
-            //only way to prevent zend from giving a error
-            if (!$mail->send($transport) instanceof \Zend_Mail) {
-                //ok
-            }
+            $transport->send($message);
         } catch (\Exception $e) {
             $result = __($e->getMessage());
         }
