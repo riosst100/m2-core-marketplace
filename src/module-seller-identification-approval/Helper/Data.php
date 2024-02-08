@@ -11,8 +11,9 @@ class Data extends \Lofmp\SellerIdentificationApproval\Helper\Data
     public function getIdentificationTypes()
     {
         return [
-            'utility_address' => __('Utility Address'),
-            'company_registration' => __('Company Registration')
+            'company_registration' => __('Business Registration'),
+            'identity' => __('Proof of Identity'),
+            'utility_address' => __('Proof of Address')
         ];
     }
 }

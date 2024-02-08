@@ -15,7 +15,7 @@ $ids = [];
 ?>
 <div class="fieldset-wrapper">
     <div id="identification" class="admin__fieldset-wrapper-content">
-        <fieldset class="admin__fieldset" name="general">
+        <fieldset class="admin__fieldset" style="padding-top:1rem" name="general">
             <?php
             $seller = $block->getSeller();
             $documentsVerifyStatus = $seller->getDocumentsVerifyStatus();
@@ -31,7 +31,13 @@ $ids = [];
                     <div class="message message-error error-wrap error" data-role="error-wrap">Your documents was rejected<?= $seller->getDisapprovedReason() ? ' with reason <b>'.$seller->getDisapprovedReason().'</b>' : '' ?>. Please submit another documents.</div>
                 <?php endif; ?>
             </div>
-            <form data-mage-init='{"validation":{}}' action="<?= $block->escapeUrl($block->getUrl('*/*/save')) ?>" method="post" enctype="multipart/form-data">
+            <?php if ($seller->getSellerType() == "individual") : ?>
+                <div><?= __('You must complete identity verification to become successfully registered as a individual seller') ?></div>
+            <?php endif; ?>
+            <?php if ($seller->getSellerType() == "company") : ?>
+                <div><?= __('You must complete identity verification to become successfully registered as a company') ?></div>
+            <?php endif; ?>
+            <form style="padding:5px" data-mage-init='{"validation":{}}' action="<?= $block->escapeUrl($block->getUrl('*/*/save')) ?>" method="post" enctype="multipart/form-data">
                 <input type="hidden" value="<?= $seller->getId() ?>" name="seller_id" />
                 <?php
                 if (isset($listType[''])) {
@@ -40,6 +46,10 @@ $ids = [];
 
                 if ($seller->getSellerType() == "individual") {
                     unset($listType['company_registration']);
+                }
+
+                if ($seller->getSellerType() == "company") {
+                    unset($listType['identity']);
                 }
                 ?>
                 <?php foreach ($listType as $key => $label) : ?>
@@ -52,6 +62,33 @@ $ids = [];
                         ?>
                         <div class="admin__field">
                             <label for="identification" class="admin__field-label"><?= $block->escapeHtml($label); ?></label>
+                                <?php if ($key == "company_registration") : ?>
+                                    <small>
+                                        <div>Proof of Business Name and ID</div>
+                                        <div>Documents must include information such as business name as well as Business ID number. The business name on this document must match the name you've registered as a seller</div>
+                                    </small>
+                                <?php endif; ?>
+                                <?php if ($key == "identity") : ?>
+                                    <small>
+                                        <div>Documents must include information such as first and last name, date of birth, issuance and expiry date, as well as the document ID number. The name on this document must match the name you've registered as a seller</div>
+                                        <br />
+                                        <div>Acceptable Proof of Identify documents</div>
+                                        <div>Passport</div>
+                                        <div>Driver’s License (front and back)</div>
+                                        <div>State or Government Issue ID (front and back)</div>
+                                    </small>
+                                <?php endif; ?>
+                                <?php if ($key == "utility_address") : ?>
+                                    <small>
+                                        <div>A proof of residence document that confirms where you live. This document must show both your full name and residential address. We can only confirm physical addresses, not PO Box addresses</div>
+                                        <br />
+                                        <div>Acceptable Proof of Address  documents</div>
+                                        <div>Utility bill (Dated within the last 3 months)</div>
+                                        <div>Phone bill (Dated within the last 3 months)</div>
+                                        <div>Bank or credit card statement (Dated with the last 3 months)</div>
+                                    </small>
+                                <?php endif; ?>
+                                <br />
                             <div class="admin__field-control additional_upload" id="field_<?= $key ?>" data-role="attach-wrapper">
                                 <div data-mage-init='{"Lofmp_SellerIdentificationApproval/js/upload/add-files": {
                                         "maxSizeB" : "<?= $block->escapeJs($block->getMaxFileSize($key)) ?>",

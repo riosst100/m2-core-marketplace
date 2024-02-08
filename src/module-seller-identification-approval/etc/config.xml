@@ -8,6 +8,12 @@
                 <file_formats>doc,docx,xls,xlsx,pdf,txt,jpg,png,jpeg</file_formats>
                 <maximum_file_size>2</maximum_file_size>
             </company_registration>
+            <identity>
+                <enabled>1</enabled>
+                <allow_update>1</allow_update>
+                <file_formats>doc,docx,xls,xlsx,pdf,txt,jpg,png,jpeg</file_formats>
+                <maximum_file_size>2</maximum_file_size>
+            </identity>
             <utility_address>
                 <enabled>1</enabled>
                 <allow_update>1</allow_update>
