@@ -112,7 +112,8 @@ class Main extends \Lof\MarketPlace\Block\Adminhtml\Seller\Edit\Tab\Main
         /** @var \Magento\Framework\Data\Form $form */
         $form = $this->_formFactory->create();
 
-        $form->setHtmlIdPrefix('seller_');
+        $htmlIdPrefix = 'seller_';
+        $form->setHtmlIdPrefix($htmlIdPrefix);
 
         $fieldset = $form->addFieldset('base_fieldset', ['legend' => __('Seller Information')]);
 
@@ -204,6 +205,7 @@ class Main extends \Lof\MarketPlace\Block\Adminhtml\Seller\Edit\Tab\Main
                 'disabled' => $isElementDisabled
             ]
         );
+
         $fieldset->addField(
             'company',
             'text',
@@ -529,6 +531,16 @@ class Main extends \Lof\MarketPlace\Block\Adminhtml\Seller\Edit\Tab\Main
                 ->addFieldMap($customer->getHtmlId(), $customer->getName())
                 ->addFieldMap($email->getHtmlId(), $email->getName())
                 ->addFieldDependence($email->getName(), $customer->getName(), '0')
+        );
+
+        $this->setChild(
+            'form_after', 
+            $this->getLayout()->createBlock(\Magento\Backend\Block\Widget\Form\Element\Dependence::class)
+            ->addFieldMap("{$htmlIdPrefix}seller_type", 'seller_type')
+            ->addFieldMap("{$htmlIdPrefix}company", 'company')
+            ->addFieldMap("{$htmlIdPrefix}company_registration_number", 'company_registration_number')
+            ->addFieldDependence('company', 'seller_type', 'company')
+            ->addFieldDependence('company_registration_number', 'seller_type', 'company')
         );
 
         return $this;
