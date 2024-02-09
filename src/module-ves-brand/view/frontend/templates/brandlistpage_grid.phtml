@@ -1,0 +1,49 @@
+<?php
+$_brandCollection = $block->getCollection();
+
+// Boostrap Carousel
+$itemsperpage = (int)$this->getConfig('brand_list_page/item_per_page',12);
+$lg_column_item = (int)$this->getConfig('brand_list_page/lg_column_item',6);
+$md_column_item = (int)$this->getConfig('brand_list_page/md_column_item',6);
+$sm_column_item = (int)$this->getConfig('brand_list_page/sm_column_item',4);
+$xs_column_item = (int)$this->getConfig('brand_list_page/xs_column_item',2);
+
+$show_brand_name = $this->getConfig('brand_list_page/show_brand_name');
+$lg_column = 12/$lg_column_item;
+$md_column = 12/$md_column_item;
+$sm_column = 12/$sm_column_item;
+$xs_column = 12/$xs_column_item;
+$i = 1;
+$x = 0;
+?>
+<?php if ( $total = $_brandCollection->count() ): ?>
+<div class="brandlist">
+	<div class="block-content">
+		<?php foreach ($_brandCollection as $_brand) : ?>
+		<?php if( $lg_column_item == 1 || $x%$lg_column_item == 0): ?>
+		<!-- ROW -->
+		<div class="row">
+			<?php endif; ?>
+			<div class="col-lg-<?= $lg_column ?> col-md-<?= $md_column ?> col-sm-<?= $sm_column ?> col-xs-<?= $xs_column ?>">
+				<div class="brand-item">
+					<div class="brand-image"><a href="<?= $_brand->getUrl(); ?>" title="<?= $_brand->getName(); ?>"><img src="<?= $_brand->getThumbnailUrl(); ?>"/></a></div>
+					<?php if($show_brand_name): ?>
+					<div class="brand-name"><a href="<?= $_brand->getUrl(); ?>" title="<?= $_brand->getName(); ?>"><?= $_brand->getName() ?></a></div>
+					<?php endif; ?>
+				</div>
+			</div>
+			<?php if( $lg_column_item == 1 || ($x+1)%$lg_column_item == 0 || $i == $total ):  ?>
+		</div><!-- ROW -->
+		<?php endif; ?>
+		<?php $i++; $x++; ?>
+		<?php endforeach ?>
+	</div>
+	<?php if($html = $block->getChildHtml('toolbar')): ?>
+	<div class="brand-toolbar toolbar toolbar-products">
+	<?= $html ?>
+	</div>
+	<?php endif; ?>
+</div>
+<?php else: ?>
+<div class="message info empty"><div><?= __('We can\'t find brands matching the selection.'); ?></div>
+<?php endif; ?>

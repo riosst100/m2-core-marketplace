@@ -91,7 +91,10 @@
         "src/module-lofmp-split-order-paypal/registration.php",
         "src/module-lofmp-store-locator/registration.php",
         "src/module-lofmp-table-rate-shipping/registration.php",
-        "src/module-lofmp-time-discount/registration.php"
+        "src/module-lofmp-time-discount/registration.php",
+        "src/module-ves-all/registration.php",
+        "src/module-ves-brand/registration.php",
+        "src/module-ves-setup/registration.php"
       ],
       "psr-4":{
         "CoreMarketplace\\SellerRegistration\\":"src/module-seller-registration",
@@ -155,7 +158,10 @@
         "Lofmp\\SplitOrderPaypal\\":"src/module-lofmp-split-order-paypal",
         "Lofmp\\StoreLocator\\":"src/module-lofmp-store-locator",
         "Lofmp\\TableRateShipping\\":"src/module-lofmp-table-rate-shipping",
-        "Lofmp\\TimeDiscount\\":"src/module-lofmp-time-discount"
+        "Lofmp\\TimeDiscount\\":"src/module-lofmp-time-discount",
+        "Ves\\All\\":"src/module-ves-all",
+        "Ves\\Brand\\":"src/module-ves-brand",
+        "Ves\\Setup\\":"src/module-ves-setup"
       }
     }
 }
