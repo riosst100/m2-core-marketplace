@@ -122,6 +122,10 @@ class FrontendPredispatchObserver implements ObserverInterface
 
             $currentUrl = $routeName.'/'.$controllerName.'/'.$actionName;
 
+            if ($currentUrl == "customer/account/logoutSuccess") {
+                return $this->_redirectUrl($this->helper->getPwaBaseUrl());
+            }
+
             if ($currentUrl == "checkout/onepage/success") {
                 $this->messageManager->addSuccess(__('Membership plan upgraded successfully'));
             }
