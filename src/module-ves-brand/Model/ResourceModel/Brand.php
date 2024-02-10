@@ -76,9 +76,9 @@ class Brand extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         \Magento\Framework\Stdlib\DateTime\DateTime $date,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\Stdlib\DateTime $dateTime,
-        $connectionName = null,
         \Magento\Catalog\Model\Product\Action $productAction,
-        ProductRepositoryInterface $productRepository
+        ProductRepositoryInterface $productRepository,
+        $connectionName = null
         ) {
         parent::__construct($context, $connectionName);
         $this->_date = $date;
