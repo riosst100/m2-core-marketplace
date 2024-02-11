@@ -2,4 +2,9 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Lofmp\SellerMembership\Block\Membership\Index" type="CoreMarketplace\SellerMembership\Block\Membership\Index" />
     <preference for="Lofmp\SellerMembership\Controller\Marketplace\Membership\Index" type="CoreMarketplace\SellerMembership\Controller\Marketplace\Membership\Index" />
+    <preference for="Lofmp\SellerMembership\Ui\DataProvider\Product\Form\Modifier\SellerMembershipValue" type="CoreMarketplace\SellerMembership\Ui\DataProvider\Product\Form\Modifier\SellerMembershipValue" />
+    <preference for="Lofmp\SellerMembership\Block\Membership\Product\ListProduct" type="CoreMarketplace\SellerMembership\Block\Membership\Product\ListProduct" />
+    <preference for="Lofmp\SellerMembership\Helper\Data" type="CoreMarketplace\SellerMembership\Helper\Data" />
+    <preference for="Lofmp\SellerMembership\Model\Product\Type\SellerMembership" type="CoreMarketplace\SellerMembership\Model\Product\Type\SellerMembership" />
+    <preference for="Lofmp\SellerMembership\Model\Product\Type\Membership\Price" type="CoreMarketplace\SellerMembership\Model\Product\Type\Membership\Price" />
 </config>

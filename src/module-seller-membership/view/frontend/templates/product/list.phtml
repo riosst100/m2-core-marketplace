@@ -37,7 +37,7 @@ $helper = $this->helper('Lof\MarketPlace\Helper\Data');
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                <?= $block->getToolbarHtml() ?>
+                <?php //echo $block->getToolbarHtml() ?>
                     <div class="row">
                         <div class="col-md-12">
                             <?php foreach ($_productCollection as $_product):
@@ -52,6 +52,8 @@ $helper = $this->helper('Lof\MarketPlace\Helper\Data');
 
                                 if ($duration && !is_array($duration)) {
                                     $duration = @json_decode($duration, true);
+
+                                    $duration = $block->filterMembershipDurationByWebsite($duration);
 
                                     $price = @current($duration);
                                     $price = $price['membership_price'];
@@ -137,6 +139,11 @@ $helper = $this->helper('Lof\MarketPlace\Helper\Data');
                                                                 <?php
                                                                 if ($duration) {
                                                                     foreach ($duration as $key => $_duration) { ?>
+                                                                    <?php
+                                                                    if (isset($_duration['website_id']) && $_duration['website_id'] != $block->getCurrentWebsiteId()) {
+                                                                        continue;
+                                                                    }
+                                                                    ?>
                                                                         <option
                                                                             value="<?= $_duration['membership_duration'] . '|' . $_duration['membership_unit'] . '|' . $_duration['membership_price'] ?>"><?= $_duration['membership_duration'] . ' ' . $_duration['membership_unit'] . '-' . $helper->getFormatedPrice($_duration['membership_price']) ?></option>
 
