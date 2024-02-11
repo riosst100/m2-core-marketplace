@@ -103,7 +103,7 @@ class FrontendPredispatchObserver implements ObserverInterface
             /* Auto set store based on seller country */
             $sellerCountryID = $seller->getCountryId() ? strtolower($seller->getCountryId()) : null;
 
-            $this->helper->setStoreBySellerCountry($sellerCountryID);
+            // $this->helper->setStoreBySellerCountry($sellerCountryID);
             /* Auto set store based on seller country */
 
             $allowedUrl = [
@@ -130,9 +130,9 @@ class FrontendPredispatchObserver implements ObserverInterface
                 $this->messageManager->addSuccess(__('Membership plan upgraded successfully'));
             }
 
-            if (!in_array($currentUrl, $allowedUrl)) {
-                return $this->_redirectUrl($this->getFrontendUrl('marketplace/catalog/dashboard'));
-            }
+            // if (!in_array($currentUrl, $allowedUrl)) {
+            //     return $this->_redirectUrl($this->getFrontendUrl('marketplace/catalog/dashboard'));
+            // }
         }
 
         return $this;
