@@ -7,4 +7,5 @@
     <preference for="Lofmp\SellerMembership\Helper\Data" type="CoreMarketplace\SellerMembership\Helper\Data" />
     <preference for="Lofmp\SellerMembership\Model\Product\Type\SellerMembership" type="CoreMarketplace\SellerMembership\Model\Product\Type\SellerMembership" />
     <preference for="Lofmp\SellerMembership\Model\Product\Type\Membership\Price" type="CoreMarketplace\SellerMembership\Model\Product\Type\Membership\Price" />
+    <preference for="Lofmp\SellerMembership\Model\ResourceModel\Transaction\Grid\Collection" type="CoreMarketplace\SellerMembership\Model\ResourceModel\Transaction\Grid\Collection" />
 </config>
