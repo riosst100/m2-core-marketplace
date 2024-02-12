@@ -96,12 +96,12 @@ class Data extends \Lofmp\SellerMembership\Helper\Data
         if ($durations && is_array($durations)) {
             $filteredDurations = [];
 
-            foreach($durations as $duration) {
+            foreach($durations as $index => $duration) {
                 if (isset($duration['website_id']) && $duration['website_id'] != $this->getCurrentWebsiteId()) {
                     continue;
                 }
 
-                $filteredDurations[] = $duration;
+                $filteredDurations[$index] = $duration;
             }
 
             return $filteredDurations;

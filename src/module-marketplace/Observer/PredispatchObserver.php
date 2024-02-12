@@ -90,8 +90,10 @@ class PredispatchObserver implements ObserverInterface
 
             /* Auto set store based on seller country */
             $sellerCountryID = $seller->getCountryId() ? strtolower($seller->getCountryId()) : null;
-
-            $this->helper->setStoreBySellerCountry($sellerCountryID);
+            $newUrl = $this->helper->autoSelectWebsite($sellerCountryID);
+            if ($newUrl) {
+                // $this->_redirectUrl($newUrl);
+            }
             /* Auto set store based on seller country */
 
             if ($customerSession->isLoggedIn()) {

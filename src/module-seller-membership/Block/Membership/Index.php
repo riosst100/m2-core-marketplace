@@ -68,6 +68,11 @@ class Index extends \Lofmp\SellerMembership\Block\Membership\Index
     protected $email;
 
     /**
+     * @var \Magento\Framework\Url
+     */
+    protected $urlHelper;
+
+    /**
      * Index constructor.
      * @param \Magento\Catalog\Block\Product\Context $context
      * @param \Magento\Customer\Model\Session $customerSession
@@ -80,6 +85,7 @@ class Index extends \Lofmp\SellerMembership\Block\Membership\Index
      * @param \Magento\Framework\App\ResourceConnection $resource
      * @param ProductCollection $productCollectionFactory
      * @param \Psr\Log\LoggerInterface $logger
+     * @param \Magento\Framework\Url $urlHelper
      * @param array $data
      */
     public function __construct(
@@ -94,6 +100,7 @@ class Index extends \Lofmp\SellerMembership\Block\Membership\Index
         \Magento\Framework\App\ResourceConnection $resource,
         ProductCollection $productCollectionFactory,
         \Psr\Log\LoggerInterface $logger,
+        \Magento\Framework\Url $urlHelper,
         array $data = []
     ) {
         $this->_storeManager = $context->getStoreManager();
@@ -107,6 +114,7 @@ class Index extends \Lofmp\SellerMembership\Block\Membership\Index
         $this->marketHelper = $marketHelper;
         $this->_logger = $logger;
         $this->email = $email;
+        $this->urlHelper = $urlHelper;
         parent::__construct(
             $context,
             $customerSession,
@@ -121,6 +129,13 @@ class Index extends \Lofmp\SellerMembership\Block\Membership\Index
             $logger,
             $data
         );
+    }
+
+    public function getFrontendUrl($urlPath) 
+    {
+        $storeId = $this->_storeManager->getStore()->getId();
+        
+        return $this->urlHelper->getUrl($urlPath, [ '_scope' => $storeId]);
     }
 
     /**

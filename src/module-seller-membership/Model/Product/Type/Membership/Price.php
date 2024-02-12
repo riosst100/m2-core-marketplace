@@ -10,7 +10,7 @@ use Magento\Catalog\Api\Data\ProductTierPriceExtensionFactory;
 use Magento\Framework\App\ObjectManager;
 use Magento\Store\Api\Data\WebsiteInterface;
 
-class Price extends \Lofmp\SellerMembership\Model\Product\Type\Membership\Price
+class Price extends \Magento\Catalog\Model\Product\Type\Price
 {
     /**
      * Core event manager proxy
@@ -159,7 +159,7 @@ class Price extends \Lofmp\SellerMembership\Model\Product\Type\Membership\Price
             $price = @current($duration);
             $price = $price['membership_price'];
         }
-
+        
         $product->setData('price', $price);
 
          return parent::getPrice($product);
@@ -182,6 +182,8 @@ class Price extends \Lofmp\SellerMembership\Model\Product\Type\Membership\Price
         }
 
         $membership = @unserialize($membership->getValue());
+
+        $membership = $this->membershipHelper->filterMembershipDurationByWebsite($membership);
 
         $price = isset($membership['membership_price']) ? $membership['membership_price'] : 0;
 

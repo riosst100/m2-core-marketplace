@@ -9,7 +9,7 @@ use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\File\Http;
 use Magento\Framework\File\UploaderFactory;
 
-class SellerMembership extends \Lofmp\SellerMembership\Model\Product\Type\SellerMembership
+class SellerMembership extends \Magento\Catalog\Model\Product\Type\Virtual
 {
     /**
      * @var \Magento\Framework\Filesystem
@@ -152,7 +152,6 @@ class SellerMembership extends \Lofmp\SellerMembership\Model\Product\Type\Seller
      */
     protected function _prepareProduct(\Magento\Framework\DataObject $buyRequest, $product, $processMode)
     {
-
         $options = $buyRequest->getData('seller_membership');
 
         $duration = isset($options['duration']) ? $options['duration'] : 0;

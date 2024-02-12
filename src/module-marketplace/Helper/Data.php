@@ -308,6 +308,80 @@ class Data extends \Lof\MarketPlace\Helper\Data
         $this->websiteRepository = $websiteRepository;
     }
 
+    public function getCurrentUrl() 
+    {
+        return $this->_frontendUrl->getCurrentUrl();
+    }
+
+    public function autoSelectWebsite($targetWebsiteCode = null) 
+    {
+        $baseUrl = $this->getCurrentBaseUrl();
+        if ($baseUrl && $targetWebsiteCode) {
+            $currentWebsiteCode = trim(str_replace("/", "", parse_url($baseUrl, PHP_URL_PATH)));
+            if ($currentWebsiteCode) {
+                $currentWebsiteCode = trim(str_replace("/", "", $currentWebsiteCode));
+                if ($currentWebsiteCode != $targetWebsiteCode) {
+
+                    $currentUrl = $this->_frontendUrl->getCurrentUrl();
+                    $urlPath = parse_url($currentUrl, PHP_URL_PATH);
+
+                    $urlPathArr = explode("/", $urlPath);
+
+                    unset($urlPathArr[0]);
+                    unset($urlPathArr[1]);
+
+                    $urlPath = implode("/", $urlPathArr);
+
+                    $websites = $this->_storeManager->getWebsites(false, true);
+                    if ($websites) {
+                        $targetWebsite = null;
+                        foreach($websites as $code => $website) {
+                            if ($code == $targetWebsiteCode) {
+                                $targetWebsite = $website;
+                            }
+                        }
+                        
+                        if ($targetWebsite) {
+                            return $targetWebsite->getDefaultStore()->getBaseUrl().$urlPath;
+                        }
+                    }
+                }
+            } else {
+                if ($targetWebsiteCode) {
+                    $currentUrl = $this->_frontendUrl->getCurrentUrl();
+                    $urlPath = parse_url($currentUrl, PHP_URL_PATH);
+
+                    $urlPathArr = explode("/", $urlPath);
+
+                    unset($urlPathArr[0]);
+
+                    $urlPath = implode("/", $urlPathArr);
+
+                    $websites = $this->_storeManager->getWebsites(false, true);
+                    if ($websites) {
+                        $targetWebsite = null;
+                        foreach($websites as $code => $website) {
+                            if ($code == $targetWebsiteCode) {
+                                $targetWebsite = $website;
+                            }
+                        }
+                        
+                        if ($targetWebsite) {
+                            return $targetWebsite->getDefaultStore()->getBaseUrl().$urlPath;
+                        }
+                    }
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public function getCurrentBaseUrl() 
+    {
+        return $this->_storeManager->getStore()->getBaseUrl();
+    }
+
     public function getPwaBaseUrl() 
     {
         return $this->getConfig('pwa/base_url') ?? '/';

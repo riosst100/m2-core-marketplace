@@ -90,7 +90,8 @@ class FrontendPredispatchObserver implements ObserverInterface
         $this->action = $controllerAction;
 
         $area = $this->state->getAreaCode();
-        if ($area === 'frontend') {
+        $currentUrl = $this->helper->getCurrentUrl();
+        if ($area === 'frontend' && !str_contains($currentUrl, "loginascustomer/login/index")) {
             $customerSession = $this->session;
             $customerId = $customerSession->getId();
             $seller = $this->sellerFactory->create()->load($customerId, 'customer_id');
@@ -102,8 +103,10 @@ class FrontendPredispatchObserver implements ObserverInterface
 
             /* Auto set store based on seller country */
             $sellerCountryID = $seller->getCountryId() ? strtolower($seller->getCountryId()) : null;
-
-            // $this->helper->setStoreBySellerCountry($sellerCountryID);
+            $newUrl = $this->helper->autoSelectWebsite($sellerCountryID);
+            if ($newUrl) {
+                $this->_redirectUrl($newUrl);
+            }
             /* Auto set store based on seller country */
 
             $allowedUrl = [
@@ -117,7 +120,8 @@ class FrontendPredispatchObserver implements ObserverInterface
                 'paypal/express/cancel',
                 '/seller/login',
                 'lofmarketplace/seller/login',
-                'lofmarketplace/seller/loginPost'
+                'lofmarketplace/seller/loginPost',
+                'loginascustomer/login/index'
             ];
 
             $currentUrl = $routeName.'/'.$controllerName.'/'.$actionName;

@@ -93,7 +93,7 @@ $helper = $this->helper("Lof\MarketPlace\Helper\Data");
                         <div class="message message-warning error-wrap error" data-role="error-wrap">You don't have active membership plan. Please buy the membership plan to access seller features.</div>
                     </div>
                 <?php endif; ?>
-                <a href="/lofmpmembership/buy" class="btn btn-success btn-block"><?= __('Buy / Upgrade Membership') ?></a>
+                <a href="<?= $this->getFrontendUrl('lofmpmembership/buy/index'); ?>" class="btn btn-success btn-block"><?= __('Buy / Upgrade Membership') ?></a>
             </div>
         </div>
     </div>
