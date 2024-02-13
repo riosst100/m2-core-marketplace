@@ -15,6 +15,7 @@ $actionUrl = $block->getUrl('catalog/saveprofile', ["_secure" => $this->getReque
 $_directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
 $country_id = isset($seller['country_id']) ? $seller['country_id'] : 'US';
 $countries = $block->getCountries($country_id);
+$shipToCountries = $block->getShipToCountries();
 ?>
 <form class="entry-edit form-inline editprofile"
       action="<?= $block->escapeHtmlAttr($actionUrl) ?>"
@@ -43,16 +44,6 @@ $countries = $block->getCountries($country_id);
             <fieldset class="admin__fieldset" name="general">
                 <div class="admin__field required _required">
                     <label class="admin__field-label">
-                        <span><?= $block->escapeHtml(__('Store Name')) ?></span>
-                    </label>
-                    <div class="admin__field-control">
-                        <input type="text" name="name" class="admin__control-text"
-                               value="<?= $block->escapeHtmlAttr($seller['name']) ?>"
-                               data-validate="{required:true}"/>
-                    </div>
-                </div>
-                <div class="admin__field required _required">
-                    <label class="admin__field-label">
                         <span><?= $block->escapeHtml(__('Email')) ?></span>
                     </label>
                     <div class="admin__field-control">
@@ -63,24 +54,24 @@ $countries = $block->getCountries($country_id);
                 </div>
                 <div class="admin__field required _required">
                     <label class="admin__field-label">
-                        <span><?= $block->escapeHtml(__('Contact Number')) ?></span>
+                        <span><?= $block->escapeHtml(__('Store Name')) ?></span>
                     </label>
                     <div class="admin__field-control">
-                        <input type="text" pattern="\(?\+?(\d{1,4})?\)?\(?\d{3,4}\)?[\s.-]?\d{3,4}[\s.-]?(\d{3,6})?"
-                               name="telephone" class="admin__control-text"
-                               value="<?= $block->escapeHtmlAttr($seller['telephone']) ?>"
+                        <input type="text" name="name" class="admin__control-text"
+                               value="<?= $block->escapeHtmlAttr($seller['name']) ?>"
                                data-validate="{required:true}"/>
                     </div>
                 </div>
-                <!-- <div class="admin__field">
+                <div class="admin__field">
                     <label class="admin__field-label">
-                        <span><?= $block->escapeHtml(__('Shop Title')) ?></span>
+                        <?= $block->escapeHtml(__('Store Description')) ?>
                     </label>
                     <div class="admin__field-control">
-                        <input type="text" name="shop_title" class="admin__control-text"
-                               value="<?= $block->escapeHtmlAttr($seller['shop_title']) ?>"/>
+                        <textarea rows="3" id="description" type="text" name="description"
+                                  class="admin__control-text"
+                                  value=""><?= $helper->filter($seller['description']); ?></textarea>
                     </div>
-                </div> -->
+                </div>
                 <?php
                 $sellerType = isset($seller['seller_type']) ? $seller['seller_type'] : 'individual';
                 ?>
@@ -104,15 +95,6 @@ $countries = $block->getCountries($country_id);
                         </div>
                     </div>
                 <?php endif; ?>
-                <!-- <div class="admin__field">
-                    <label class="admin__field-label">
-                        <span><?= $block->escapeHtml(__('Company URL')) ?></span>
-                    </label>
-                    <div class="admin__field-control">
-                        <input type="text" name="company_url" class="admin__control-text"
-                               value="<?= $block->escapeHtmlAttr($seller['company_url']) ?>"/>
-                    </div>
-                </div> -->
                 <?php $_taxvat = $block->getLayout()->createBlock(\Lof\MarketPlace\Block\Widget\Taxvat::class) ?>
                 <?php if ($_taxvat->isEnabled()): ?>
                 <?php $taxvatValue = $customer->getTaxvat(); ?>
@@ -196,27 +178,65 @@ $countries = $block->getCountries($country_id);
                                value="<?= $block->escapeHtmlAttr($seller['city']) ?>"/>
                     </div>
                 </div>
-
-                <!-- <div class="admin__field">
+                <div class="admin__field required _required">
                     <label class="admin__field-label">
-                        <?= $block->escapeHtml(__('Company Description')) ?>
+                        <span><?= $block->escapeHtml(__('Contact Number')) ?></span>
                     </label>
                     <div class="admin__field-control">
-                        <textarea rows="7" id="company_description" type="text" name="company_description"
-                                  class="admin__control-text"
-                                  value=""><?= $helper->filter($seller['company_description']); ?></textarea>
+                        <input type="text" pattern="\(?\+?(\d{1,4})?\)?\(?\d{3,4}\)?[\s.-]?\d{3,4}[\s.-]?(\d{3,6})?"
+                               name="telephone" class="admin__control-text"
+                               value="<?= $block->escapeHtmlAttr($seller['telephone']) ?>"
+                               data-validate="{required:true}"/>
                     </div>
-                </div> -->
-                <!-- <div class="admin__field">
+                </div>
+                <div class="admin__field">
                     <label class="admin__field-label">
-                        <?= $block->escapeHtml(__('Return Policy')) ?>
+                        <span><?= $block->escapeHtml(__('Website URL')) ?></span>
                     </label>
                     <div class="admin__field-control">
-                        <textarea rows="7" id="return_policy" type="text" name="return_policy"
-                                  class="admin__control-text"
-                                  value=""><?= $helper->filter($seller['return_policy']); ?></textarea>
+                        <input type="text" name="website_url" class="admin__control-text"
+                               value="<?= $block->escapeHtmlAttr($seller['website_url']) ?>" />
                     </div>
-                </div> -->
+                </div>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <span><?= $block->escapeHtml(__('Operating Hours')) ?></span>
+                    </label>
+                    <div class="admin__field-control">
+                    </div>
+                </div>
+                <div class="admin__field required _required">
+                    <label class="admin__field-label">
+                        <span><?= $block->escapeHtml(__('Ship To')) ?></span>
+                    </label>
+                    <div class="admin__field-control">
+                        <select multiple name="ship_to" id="ship_to" class="required-entry _required select admin__control-multiselect" style="overflow:hidden">
+                            <option value="domestic" selected><?= $block->escapeHtml(__('Domestic')); ?></option>
+                            <option value="international"><?= $block->escapeHtml(__('International')); ?></option>
+                        </select>
+                    </div>
+                </div>
+                <?php
+                $sellerShipTo = isset($seller['ship_to']) ? $seller['ship_to'] : null;
+                ?>
+                <div class="admin__field required _required" id="ship_to_country_field" <?= $sellerShipTo && in_array('international', $sellerShipTo) ? '' : 'style="display:none"' ?>>
+                    <label class="admin__field-label">
+                        <span><?= $block->escapeHtml(__('Ship To Country')) ?></span>
+                    </label>
+                    <div class="admin__field-control">
+                        <select id="ship_to_country" name="ship_to_country" class="_required select admin__control-multiselect" multiple>
+                            <?php if ($shipToCountries) : ?>
+                                <?php foreach ($shipToCountries as $index => $_country) : ?>
+                                    <?php
+                                    $sellerShipToCountry = $seller["ship_to_country"] ? explode(",", $seller["ship_to_country"]) : null;
+                                    ?>
+                                    <option
+                                        value="<?= $block->escapeHtmlAttr($_country["value"]); ?>" <?= $sellerShipToCountry && in_array($_country["value"], $sellerShipToCountry) ? 'selected' : ''; ?>><?= $block->escapeHtml($_country["label"]); ?></option>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </select>
+                    </div>
+                </div>
                 <div class="admin__field">
                     <label class="admin__field-label">
                         <?= $block->escapeHtml(__('Term & Conditions')) ?>
@@ -231,6 +251,182 @@ $countries = $block->getCountries($country_id);
         </div>
     </div>
 
+    <div class="fieldset-wrapper admin__collapsible-block-wrapper">
+        <div class="fieldset-wrapper-title" data-toggle="collapse" data-target="#operaing_hours_fieldset">
+            <strong class="admin__collapsible-title">
+                <?= $block->escapeHtml(__('Operating Hours')) ?>
+            </strong>
+        </div>
+        <div id="operaing_hours_fieldset" class="admin__fieldset-wrapper-content admin__collapsible-content">
+            <fieldset class="admin__fieldset">
+                <script>
+                    require([
+                        'jquery',
+                        'mdtimepicker'
+                    ], function ($) {
+                        $(document).on("focus", "input[name*='_time']", function () {
+                            // $(this).attr('readOnly', false);
+                            // $(this).timepicker({
+                            //     'timeFormat': 'hh:mm tt',
+                            //     'ampm': true,
+                            //     'disableTextInput': true
+                            // });
+                            $(this).mdtimepicker({
+                                readOnly: true
+                            })
+
+                            return false;
+                        });
+                        
+                        $('[data-fieldname="operating_hours_status"]').on('change', function() {
+                            changeOperatingHoursStatus($(this).val(), $(this).data('fieldcode'));
+                        });
+
+                        $('[name="remove_operating_hours"]').on('click', function() {
+                            removeOperatingHoursStatus($(this).data('fieldcode'), $(this).data('count'));
+                        });
+
+                        $('[name="add_operating_hours"]').on('click', function() {
+                            var fieldcode = $(this).data('fieldcode');
+                            var count = parseInt($('#' + fieldcode + '_time_count').val()) + 1;
+                            
+                            var newTimeField = $('#operating-hours-template').clone(true);
+                            $(newTimeField).attr("id", fieldcode + '_' + count + '_operating_hours')
+                            .show()
+                            .find("input, span")
+                            .each(function () {
+                                var id = $(this).attr('id');
+                                var name = $(this).attr('name');
+                                var fieldName = $(this).data('fieldcode');
+
+                                if (fieldName == "opening_time" || fieldName == "closing_time") {
+                                    $(this).attr("name", "operating_hours[" + fieldcode + "][" + count + "][" + fieldName + "]");
+                                }
+
+                                if (name == "remove_operating_hours") {
+                                    $(this).attr("data-count", count);
+                                    $(this).attr("data-fieldcode", fieldcode);
+                                }
+                            });
+
+                            $('#' + fieldcode + '_time_container').append(newTimeField);
+                            $('#' + fieldcode + '_time_count').val(count);
+                        });
+
+                        function removeOperatingHoursStatus(fieldcode, count) 
+                        {
+                            $('#' + fieldcode + '_' + count + '_operating_hours').remove();
+                        }
+
+                        function changeOperatingHoursStatus(val, fieldcode) 
+                        {
+                            if (val && val == "open") {
+                                $('#' + fieldcode + '_operating_hours_container').show();
+                                // $('#' + fieldcode + '_operating_hours_container').find('input').each(function() {
+                                //     $(this).attr('data-validate', '{required:true}');
+                                // });
+                            } else {
+                                $('#' + fieldcode + '_operating_hours_container').hide();
+                            }
+                        }
+                    });
+                </script>
+                <?php foreach ($block->getDayNames() as $day): ?>
+                    <?php
+                    $fieldPrefix = $day['code'];
+                    ?>
+                    <fieldset class="admin__field">
+                        <label class="admin__field-label">
+                            <span><?= $block->escapeHtml($day['label']) ?></span>
+                        </label>
+                        <div class="admin__field-control">
+                            <select data-fieldcode="<?= $fieldPrefix ?>" data-fieldname="operating_hours_status" name="operating_hours[<?= $fieldPrefix ?>][status]" class="_required select admin__control-select">
+                                <?php foreach ($block->getOperatingStatusList() as $status): ?>
+                                    <option value="<?= $status['value'] ?>"><?= $status['label'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="admin__field-control" id="<?= $fieldPrefix ?>_operating_hours_container" style="display:none">
+                            <div id="<?= $fieldPrefix ?>_time_container">
+                                <div id="<?= $fieldPrefix ?>_0_operating_hours">
+                                    <table style="width: 70%">
+                                        <tr>
+                                            <td style="padding-right: 15px">
+                                                <div class="admin__field">
+                                                    <label class="admin__field-label">
+                                                        <span><?= __('Opening Hours') ?></span>
+                                                    </label>
+                                                    <div class="admin__field-control">
+                                                        <input class="admin__control-text" type="text" autocomplete="off" value="" name="operating_hours[<?= $day['code'] ?>][0][opening_time]">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td style="padding-right: 15px">
+                                                <div class="admin__field">
+                                                    <label class="admin__field-label">
+                                                        <span><?= __('Closing Hours') ?></span>
+                                                    </label>
+                                                    <div class="admin__field-control">
+                                                        <input class="admin__control-text" type="text" autocomplete="off" value="" name="operating_hours[<?= $day['code'] ?>][0][closing_time]">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <span data-count="0" data-fieldcode="<?= $fieldPrefix ?>" name="remove_operating_hours">
+                                                        <i class="fa fa-trash" style="font-size: 20px;padding-top: 25px;"></i>
+                                                    </span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <br />
+                            <input type="hidden" id="<?= $fieldPrefix ?>_time_count" value="0" />
+                            <button type="button" name="add_operating_hours" data-fieldcode="<?= $fieldPrefix ?>">
+                                <span><?= $block->escapeHtml(__("Add More Time")); ?></span>
+                            </button>
+                        </div>
+                    </fieldset>
+                    <br />
+                <?php endforeach; ?>
+            </fieldset>
+            <div id="operating-hours-template" style="display:none">
+                <table style="width: 70%">
+                    <tr>
+                        <td style="padding-right: 15px">
+                            <div class="admin__field">
+                                <label class="admin__field-label">
+                                    <span><?= __('Opening Hours') ?></span>
+                                </label>
+                                <div class="admin__field-control">
+                                    <input class="admin__control-text" type="text" autocomplete="off" value="" fieldcode="opening_time">
+                                </div>
+                            </div>
+                        </td>
+                        <td style="padding-right: 15px">
+                            <div class="admin__field">
+                                <label class="admin__field-label">
+                                    <span><?= __('Closing Hours') ?></span>
+                                </label>
+                                <div class="admin__field-control">
+                                    <input class="admin__control-text" type="text" autocomplete="off" value="" fieldcode="closing_time">
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <span name="remove_operating_hours">
+                                    <i class="fa fa-trash" style="font-size: 20px;padding-top: 25px;"></i>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
     <div class="fieldset-wrapper admin__collapsible-block-wrapper">
         <div class="fieldset-wrapper-title" data-toggle="collapse" data-target="#images">
             <strong class="admin__collapsible-title">
@@ -453,28 +649,51 @@ $countries = $block->getCountries($country_id);
     <?= $block->getChildHtml('additional_fields'); ?>
 </form>
 <script>
-    require(["jquery", "prototype", "mage/adminhtml/form"], function ($jQ) {
-        var old_region_name = $jQ("#seller_region").val();
+    require(["jquery"], function ($) {
+        $('#ship_to').on('change', function() {
+            changeShipTo($(this).val());
+        });
+
+        function changeShipTo(val) 
+        {
+            if (val && val.length) {
+                if (val.includes("international")) {
+                    $('#ship_to_country').addClass('required-entry');
+                    $('#ship_to_country_field').show();
+                } else {
+                    $('#ship_to_country').removeClass('required-entry');
+                    $('#ship_to_country_field').hide();
+                }
+            } else {
+                $('#ship_to_country').removeClass('required-entry');
+                $('#ship_to_country_field').hide();
+            }
+        }
+    });
+</script>
+<script>
+    require(["jquery", "prototype", "mage/adminhtml/form"], function ($) {
+        var old_region_name = $("#seller_region").val();
         var seller_region_id = "<?= isset($seller["region_id"]) ? (int)$seller["region_id"] : 0;?>"
         $("seller_region_id_id").setAttribute("defaultValue", seller_region_id);
         new regionUpdater("seller_country_id", "seller_region_id", "seller_region_id_id", <?= $_directoryHelper->getRegionJson();?>);
-        if (!$jQ("#seller_region_id_id:visible").length) {
-            $jQ("#region-unavailable").hide();
+        if (!$("#seller_region_id_id:visible").length) {
+            $("#region-unavailable").hide();
         } else {
-            $jQ("#region-unavailable").show();
+            $("#region-unavailable").show();
         }
-        $jQ("#seller_country_id").on("change", function () {
-            if (!$jQ("#seller_region_id_id:visible").length) {
-                $jQ("#region-unavailable").hide();
+        $("#seller_country_id").on("change", function () {
+            if (!$("#seller_region_id_id:visible").length) {
+                $("#region-unavailable").hide();
             } else {
-                $jQ("#region-unavailable").show();
+                $("#region-unavailable").show();
             }
         })
-        $jQ("#seller_region_id_id").on("change", function () {
-            if ($jQ(this).val() && $jQ("#seller_region").length > 0) {
-                $jQ("#seller_region").val($jQ("#seller_region_id_id option:selected").text());
-            } else if ($jQ("#seller_region").length > 0) {
-                $jQ("#seller_region").val(old_region_name);
+        $("#seller_region_id_id").on("change", function () {
+            if ($(this).val() && $("#seller_region").length > 0) {
+                $("#seller_region").val($("#seller_region_id_id option:selected").text());
+            } else if ($("#seller_region").length > 0) {
+                $("#seller_region").val(old_region_name);
             }
         })
     })
@@ -483,20 +702,20 @@ $countries = $block->getCountries($country_id);
     require([
         'jquery',
         'mage/adminhtml/wysiwyg/tiny_mce/setup'
-    ], function (jQuery) {
-        jQuery(document).ready(function () {
-            jQuery('input[type="checkbox"]').each(function () {
-                jQuery(this).bind('change', function () {
-                    if (jQuery(this).prop('checked')) {
-                        jQuery(this).val(1);
+    ], function ($) {
+        $(document).ready(function () {
+            $('input[type="checkbox"]').each(function () {
+                $(this).bind('change', function () {
+                    if ($(this).prop('checked')) {
+                        $(this).val(1);
                     } else {
-                        jQuery(this).val(0);
+                        $(this).val(0);
                     }
                 });
             });
-            jQuery(window).on("load resize", function (e) {
-                console.log(jQuery(window).width());
-                if (jQuery(window).width() >= 768) {
+            $(window).on("load resize", function (e) {
+                console.log($(window).width());
+                if ($(window).width() >= 768) {
                     wysiwygcompany_description = new wysiwygSetup("company_description", {
                         "width": "99%",  // defined width of editor
                         "height": "200px", // height of editor

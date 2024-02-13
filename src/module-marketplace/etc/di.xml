@@ -4,4 +4,5 @@
     <preference for="Lof\MarketPlace\Controller\Seller\Becomeseller" type="CoreMarketplace\MarketPlace\Controller\Seller\Becomeseller" />
     <preference for="Lof\MarketPlace\Helper\Data" type="CoreMarketplace\MarketPlace\Helper\Data" />
     <preference for="Lof\MarketPlace\Model\Seller" type="CoreMarketplace\MarketPlace\Model\Seller" />
+    <preference for="Lof\MarketPlace\Block\Seller\Editprofile" type="CoreMarketplace\MarketPlace\Block\Seller\Editprofile" />
 </config>

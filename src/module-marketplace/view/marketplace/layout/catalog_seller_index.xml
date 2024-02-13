@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="vendor-1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="CoreMarketplace_MarketPlace::lib/mdtimepicker/mdtimepicker.css" />
+        <script type="text/javascript" src="lib/mdtimepicker/mdtimepicker.js"></script>
+    </head>
     <body>
         <referenceContainer name="content">
             <referenceBlock name="editprofile" template="CoreMarketplace_MarketPlace::seller/editprofile.phtml" />
