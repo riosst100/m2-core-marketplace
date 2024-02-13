@@ -198,33 +198,42 @@ $shipToCountries = $block->getShipToCountries();
                                value="<?= $block->escapeHtmlAttr($seller['website_url']) ?>" />
                     </div>
                 </div>
-                <div class="admin__field">
-                    <label class="admin__field-label">
-                        <span><?= $block->escapeHtml(__('Operating Hours')) ?></span>
-                    </label>
-                    <div class="admin__field-control">
-                    </div>
-                </div>
+                <?php
+                $sellerShipTo = isset($seller['ship_to']) ? explode(",", $seller['ship_to']) : null;
+                ?>
                 <div class="admin__field required _required">
                     <label class="admin__field-label">
                         <span><?= $block->escapeHtml(__('Ship To')) ?></span>
                     </label>
                     <div class="admin__field-control">
-                        <select multiple name="ship_to" id="ship_to" class="required-entry _required select admin__control-multiselect" style="overflow:hidden">
-                            <option value="domestic" selected><?= $block->escapeHtml(__('Domestic')); ?></option>
-                            <option value="international"><?= $block->escapeHtml(__('International')); ?></option>
+                        <select multiple name="ship_to[]" id="ship_to" class="required-entry _required select admin__control-multiselect" style="overflow:hidden">
+                            <option value="domestic" <?= $sellerShipTo && in_array('domestic', $sellerShipTo) ? 'selected' : '' ?>>
+                                <?= $block->escapeHtml(__('Domestic')); ?>
+                            </option>
+                            <option value="international" <?= $sellerShipTo && in_array('international', $sellerShipTo) ? 'selected' : '' ?>>
+                                <?= $block->escapeHtml(__('International')); ?>
+                            </option>
                         </select>
                     </div>
                 </div>
                 <?php
-                $sellerShipTo = isset($seller['ship_to']) ? $seller['ship_to'] : null;
+                $internationalSeller = false;
+                if (is_array($sellerShipTo)) {
+                    if (in_array('international', $sellerShipTo)) {
+                        $internationalSeller = true;
+                    }
+                } else {
+                    if ($sellerShipTo == "international") {
+                        $internationalSeller = true;
+                    }
+                }
                 ?>
-                <div class="admin__field required _required" id="ship_to_country_field" <?= $sellerShipTo && in_array('international', $sellerShipTo) ? '' : 'style="display:none"' ?>>
+                <div class="admin__field required _required" id="ship_to_country_field" <?= $internationalSeller ? '' : 'style="display:none"' ?>>
                     <label class="admin__field-label">
                         <span><?= $block->escapeHtml(__('Ship To Country')) ?></span>
                     </label>
                     <div class="admin__field-control">
-                        <select id="ship_to_country" name="ship_to_country" class="_required select admin__control-multiselect" multiple>
+                        <select id="ship_to_country" name="ship_to_country[]" class="_required select admin__control-multiselect" multiple>
                             <?php if ($shipToCountries) : ?>
                                 <?php foreach ($shipToCountries as $index => $_country) : ?>
                                     <?php
@@ -259,82 +268,16 @@ $shipToCountries = $block->getShipToCountries();
         </div>
         <div id="operaing_hours_fieldset" class="admin__fieldset-wrapper-content admin__collapsible-content">
             <fieldset class="admin__fieldset">
-                <script>
-                    require([
-                        'jquery',
-                        'mdtimepicker'
-                    ], function ($) {
-                        $(document).on("focus", "input[name*='_time']", function () {
-                            // $(this).attr('readOnly', false);
-                            // $(this).timepicker({
-                            //     'timeFormat': 'hh:mm tt',
-                            //     'ampm': true,
-                            //     'disableTextInput': true
-                            // });
-                            console.log($(this))
-                            $(this).mdtimepicker({
-                                readOnly: true
-                            })
-
-                            return false;
-                        });
-                        
-                        $('[data-fieldname="operating_hours_status"]').on('change', function() {
-                            changeOperatingHoursStatus($(this).val(), $(this).data('fieldcode'));
-                        });
-
-                        $('[name="remove_operating_hours"]').on('click', function() {
-                            removeOperatingHoursStatus($(this).data('fieldcode'), $(this).data('count'));
-                        });
-
-                        $('[name="add_operating_hours"]').on('click', function() {
-                            var fieldcode = $(this).data('fieldcode');
-                            var count = parseInt($('#' + fieldcode + '_time_count').val()) + 1;
-                            
-                            var newTimeField = $('#operating-hours-template').clone(true);
-                            $(newTimeField).attr("id", fieldcode + '_' + count + '_operating_hours')
-                            .show()
-                            .find("input, span")
-                            .each(function () {
-                                var id = $(this).attr('id');
-                                var name = $(this).attr('name');
-                                var fieldName = $(this).data('fieldcode');
-
-                                if (fieldName == "opening_time" || fieldName == "closing_time") {
-                                    $(this).attr("name", "operating_hours[" + fieldcode + "][" + count + "][" + fieldName + "]");
-                                }
-
-                                if (name == "remove_operating_hours") {
-                                    $(this).attr("data-count", count);
-                                    $(this).attr("data-fieldcode", fieldcode);
-                                }
-                            });
-
-                            $('#' + fieldcode + '_time_container').append(newTimeField);
-                            $('#' + fieldcode + '_time_count').val(count);
-                        });
-
-                        function removeOperatingHoursStatus(fieldcode, count) 
-                        {
-                            $('#' + fieldcode + '_' + count + '_operating_hours').remove();
-                        }
-
-                        function changeOperatingHoursStatus(val, fieldcode) 
-                        {
-                            if (val && val == "open") {
-                                $('#' + fieldcode + '_operating_hours_container').show();
-                                // $('#' + fieldcode + '_operating_hours_container').find('input').each(function() {
-                                //     $(this).attr('data-validate', '{required:true}');
-                                // });
-                            } else {
-                                $('#' + fieldcode + '_operating_hours_container').hide();
-                            }
-                        }
-                    });
-                </script>
+                <?php
+                $operatingHours = isset($seller['operating_hours']) && $seller['operating_hours'] ? json_decode($seller['operating_hours'],true) : [];
+                ?>
                 <?php foreach ($block->getDayNames() as $day): ?>
                     <?php
                     $fieldPrefix = $day['code'];
+
+                    $operatingHoursPerDays = isset($operatingHours[$fieldPrefix]) && $operatingHours[$fieldPrefix] ? $operatingHours[$fieldPrefix] : [];
+                    $status = isset($operatingHoursPerDays['status']) && $operatingHoursPerDays['status'] ? $operatingHoursPerDays['status'] : null;
+                    $timeList = isset($operatingHoursPerDays['time']) && $operatingHoursPerDays['time'] ? $operatingHoursPerDays['time'] : null;
                     ?>
                     <fieldset class="admin__field">
                         <label class="admin__field-label">
@@ -342,51 +285,63 @@ $shipToCountries = $block->getShipToCountries();
                         </label>
                         <div class="admin__field-control">
                             <select data-fieldcode="<?= $fieldPrefix ?>" data-fieldname="operating_hours_status" name="operating_hours[<?= $fieldPrefix ?>][status]" class="_required select admin__control-select">
-                                <?php foreach ($block->getOperatingStatusList() as $status): ?>
-                                    <option value="<?= $status['value'] ?>"><?= $status['label'] ?></option>
+                                <?php foreach ($block->getOperatingStatusList() as $statusOption): ?>
+                                    <option value="<?= $statusOption['value'] ?>" <?= $status && ($statusOption['value'] == $status) ? 'selected' : '' ?>><?= $statusOption['label'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <div class="admin__field-control" id="<?= $fieldPrefix ?>_operating_hours_container" style="display:none">
+                        <div class="admin__field-control" id="<?= $fieldPrefix ?>_operating_hours_container" <?= $status == "open" ? '' : 'style="display:none"' ?>>
                             <div id="<?= $fieldPrefix ?>_time_container">
-                                <div id="<?= $fieldPrefix ?>_0_operating_hours">
-                                    <table style="width: 70%">
-                                        <tr>
-                                            <td style="padding-right: 15px">
-                                                <div class="admin__field">
-                                                    <label class="admin__field-label">
-                                                        <span><?= __('Opening Hours') ?></span>
-                                                    </label>
-                                                    <div class="admin__field-control">
-                                                        <input class="admin__control-text" type="text" autocomplete="off" value="" name="operating_hours[<?= $day['code'] ?>][0][opening_time]">
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td style="padding-right: 15px">
-                                                <div class="admin__field">
-                                                    <label class="admin__field-label">
-                                                        <span><?= __('Closing Hours') ?></span>
-                                                    </label>
-                                                    <div class="admin__field-control">
-                                                        <input class="admin__control-text" type="text" autocomplete="off" value="" name="operating_hours[<?= $day['code'] ?>][0][closing_time]">
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div>
-                                                    <span data-count="0" data-fieldcode="<?= $fieldPrefix ?>" name="remove_operating_hours">
-                                                        <i class="fa fa-trash" style="font-size: 20px;padding-top: 25px;"></i>
-                                                    </span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
+                                <?php if ($status == "open" && $timeList) : ?>
+                                    <?php foreach($timeList as $index => $time) : ?>
+                                        <?php
+                                        $openingTime = isset($time['opening_time']) && $time['opening_time'] ? $time['opening_time'] : null;
+                                        $closingTime = isset($time['closing_time']) && $time['closing_time'] ? $time['closing_time'] : null;
+
+                                        if (!$openingTime || !$closingTime) {
+                                            continue;
+                                        }
+                                        ?>
+                                        <div id="<?= $fieldPrefix ?>_<?= $index ?>_operating_hours">
+                                            <table style="width: 70%">
+                                                <tr>
+                                                    <td style="padding-right: 15px">
+                                                        <div class="admin__field">
+                                                            <label class="admin__field-label">
+                                                                <span><?= __('Opening Hours') ?></span>
+                                                            </label>
+                                                            <div class="admin__field-control">
+                                                                <input class="admin__control-text" type="text" autocomplete="off" value="<?= $openingTime ?>" name="operating_hours[<?= $day['code'] ?>][time][<?= $index ?>][opening_time]">
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td style="padding-right: 15px">
+                                                        <div class="admin__field">
+                                                            <label class="admin__field-label">
+                                                                <span><?= __('Closing Hours') ?></span>
+                                                            </label>
+                                                            <div class="admin__field-control">
+                                                                <input class="admin__control-text" type="text" autocomplete="off" value="<?= $closingTime ?>" name="operating_hours[<?= $day['code'] ?>][time][<?= $index ?>][closing_time]">
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div>
+                                                            <span data-count="<?= $index ?>" data-fieldcode="<?= $fieldPrefix ?>" name="remove_operating_hours">
+                                                                <i class="fa fa-trash" style="font-size: 20px;padding-top: 25px;"></i>
+                                                            </span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </div>
                             <br />
-                            <input type="hidden" id="<?= $fieldPrefix ?>_time_count" value="0" />
+                            <input type="hidden" id="<?= $fieldPrefix ?>_time_count" value="<?= $timeList ? count($timeList) : 0 ?>" />
                             <button type="button" name="add_operating_hours" data-fieldcode="<?= $fieldPrefix ?>">
-                                <span><?= $block->escapeHtml(__("Add More Time")); ?></span>
+                                <span><?= $block->escapeHtml(__("Add Time")); ?></span>
                             </button>
                         </div>
                     </fieldset>
@@ -402,7 +357,7 @@ $shipToCountries = $block->getShipToCountries();
                                     <span><?= __('Opening Hours') ?></span>
                                 </label>
                                 <div class="admin__field-control">
-                                    <input class="admin__control-text" type="text" autocomplete="off" value="" fieldcode="opening_time">
+                                    <input class="admin__control-text" type="text" autocomplete="off" value="" data-fieldcode="opening_time">
                                 </div>
                             </div>
                         </td>
@@ -412,7 +367,7 @@ $shipToCountries = $block->getShipToCountries();
                                     <span><?= __('Closing Hours') ?></span>
                                 </label>
                                 <div class="admin__field-control">
-                                    <input class="admin__control-text" type="text" autocomplete="off" value="" fieldcode="closing_time">
+                                    <input class="admin__control-text" type="text" autocomplete="off" value="" data-fieldcode="closing_time">
                                 </div>
                             </div>
                         </td>
@@ -649,6 +604,72 @@ $shipToCountries = $block->getShipToCountries();
     </div>
     <?= $block->getChildHtml('additional_fields'); ?>
 </form>
+<script>
+require([
+    'jquery',
+    'mdtimepicker'
+], function ($) {
+    $(document).on("focus", "input[name*='_time']", function () {
+        $(this).mdtimepicker({
+            readOnly: true
+        })
+
+        return false;
+    });
+    
+    $('[data-fieldname="operating_hours_status"]').on('change', function() {
+        changeOperatingHoursStatus($(this).val(), $(this).data('fieldcode'));
+    });
+
+    $('[name="remove_operating_hours"]').on('click', function() {
+        removeOperatingHoursStatus($(this).data('fieldcode'), $(this).data('count'));
+    });
+
+    $('[name="add_operating_hours"]').on('click', function() {
+        var fieldcode = $(this).data('fieldcode');
+        var count = parseInt($('#' + fieldcode + '_time_count').val()) + 1;
+        
+        var newTimeField = $('#operating-hours-template').clone(true);
+        $(newTimeField).attr("id", fieldcode + '_' + count + '_operating_hours')
+        .show()
+        .find("input, span")
+        .each(function () {
+            var id = $(this).attr('id');
+            var name = $(this).attr('name');
+            var fieldName = $(this).data('fieldcode');
+
+            if (fieldName == "opening_time" || fieldName == "closing_time") {
+                $(this).attr("name", "operating_hours[" + fieldcode + "][time][" + count + "][" + fieldName + "]");
+            }
+
+            if (name == "remove_operating_hours") {
+                $(this).attr("data-count", count);
+                $(this).attr("data-fieldcode", fieldcode);
+            }
+        });
+
+        $('#' + fieldcode + '_time_container').append(newTimeField);
+        $('#' + fieldcode + '_time_count').val(count);
+    });
+
+    function removeOperatingHoursStatus(fieldcode, count) 
+    {
+        $('#' + fieldcode + '_' + count + '_operating_hours').remove();
+    }
+
+    function changeOperatingHoursStatus(val, fieldcode) 
+    {
+        if (val && val == "open") {
+            $('#' + fieldcode + '_operating_hours_container').show();
+            // $('#' + fieldcode + '_operating_hours_container').find('input').each(function() {
+            //     $(this).attr('data-validate', '{required:true}');
+            // });
+        } else {
+            $('#' + fieldcode + '_operating_hours_container').hide();
+        }
+    }
+});
+</script>
 <script>
     require(["jquery"], function ($) {
         $('#ship_to').on('change', function() {

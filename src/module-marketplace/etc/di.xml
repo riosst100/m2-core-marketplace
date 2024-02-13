@@ -5,6 +5,7 @@
     <preference for="Lof\MarketPlace\Helper\Data" type="CoreMarketplace\MarketPlace\Helper\Data" />
     <preference for="Lof\MarketPlace\Model\Seller" type="CoreMarketplace\MarketPlace\Model\Seller" />
     <preference for="Lof\MarketPlace\Block\Seller\Editprofile" type="CoreMarketplace\MarketPlace\Block\Seller\Editprofile" />
+    <preference for="Lof\MarketPlace\Controller\Marketplace\Saveprofile\Index" type="CoreMarketplace\MarketPlace\Controller\Marketplace\Saveprofile\Index" />
     <type name="Magento\Theme\Model\View\Design">
         <arguments>
             <argument name="themes" xsi:type="array">

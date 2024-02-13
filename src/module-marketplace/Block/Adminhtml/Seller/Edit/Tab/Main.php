@@ -40,6 +40,11 @@ class Main extends \Lof\MarketPlace\Block\Adminhtml\Seller\Edit\Tab\Main
     protected $_sellerType;
 
     /**
+     * @var \Magento\Directory\Model\Config\Source\Country\Full
+     */
+    protected $countryFull;
+
+    /**
      * @param \Magento\Backend\Block\Template\Context $context
      * @param \Magento\Framework\Registry $registry
      * @param \Magento\Framework\Data\FormFactory $formFactory
@@ -47,6 +52,7 @@ class Main extends \Lof\MarketPlace\Block\Adminhtml\Seller\Edit\Tab\Main
      * @param \Magento\Cms\Model\Wysiwyg\Config $wysiwygConfig
      * @param \Lof\MarketPlace\Helper\Data $viewHelper
      * @param \Magento\Directory\Model\Config\Source\Country $country
+     * @param \Magento\Directory\Model\Config\Source\Country\Full $countryFull
      * @param \Magento\Directory\Model\RegionFactory $regionFactory
      * @param \Lof\MarketPlace\Model\Config\Source\SellerGroup $sellerGroup
      * @param \CoreMarketplace\MarketPlace\Model\Config\Source\SellerType $sellerType
@@ -60,6 +66,7 @@ class Main extends \Lof\MarketPlace\Block\Adminhtml\Seller\Edit\Tab\Main
         \Magento\Cms\Model\Wysiwyg\Config $wysiwygConfig,
         \Lof\MarketPlace\Helper\Data $viewHelper,
         \Magento\Directory\Model\Config\Source\Country $country,
+        \Magento\Directory\Model\Config\Source\Country\Full $countryFull,
         \Magento\Directory\Model\RegionFactory $regionFactory,
         \Lof\MarketPlace\Model\Config\Source\SellerGroup $sellerGroup,
         \CoreMarketplace\MarketPlace\Model\Config\Source\SellerType $sellerType,
@@ -69,6 +76,7 @@ class Main extends \Lof\MarketPlace\Block\Adminhtml\Seller\Edit\Tab\Main
         $this->_systemStore = $systemStore;
         $this->_wysiwygConfig = $wysiwygConfig;
         $this->_country = $country;
+        $this->_countryFull = $countryFull;
         $this->_regionFactory = $regionFactory;
         $this->_sellerGroup = $sellerGroup;
         $this->_sellerType = $sellerType;
@@ -98,6 +106,7 @@ class Main extends \Lof\MarketPlace\Block\Adminhtml\Seller\Edit\Tab\Main
         $model = $this->_coreRegistry->registry('lof_marketplace_seller');
         $formData = ['country_id' => ""];
         $countries = $this->_country->toOptionArray(false, 'US');
+        $shipToCountries = $this->_countryFull->toOptionArray(true, null);
         // $regionCollection = $this->_regionFactory->create()->getCollection()->addCountryFilter(
         //     $formData['country_id']
         // );
@@ -275,12 +284,70 @@ class Main extends \Lof\MarketPlace\Block\Adminhtml\Seller\Edit\Tab\Main
         // );
 
         $fieldset->addField(
+            'description',
+            'textarea',
+            [
+                'name' => 'description',
+                'label' => __('Store Description'),
+                'title' => __('Store Description'),
+                'required' => false,
+                'disabled' => $isElementDisabled
+            ]
+        );
+
+        $fieldset->addField(
             'contact_number',
             'text',
             [
                 'name' => 'telephone',
                 'label' => __('Contact Number'),
                 'title' => __('Contact Number'),
+                'disabled' => $isElementDisabled
+            ]
+        );
+
+        $fieldset->addField(
+            'website_url',
+            'text',
+            [
+                'name' => 'website_url',
+                'label' => __('Website URL'),
+                'title' => __('Website URL'),
+                'disabled' => $isElementDisabled
+            ]
+        );
+
+        $field = $fieldset->addField(
+            'ship_to',
+            'multiselect',
+            [
+                'name' => 'ship_to[]',
+                'label' => __('Ship To'),
+                'title' => __('Ship To'),
+                'required' => true,
+                'values' => [
+                    [
+                        'value' => 'domestic',
+                        'label' => __('Domestic')
+                    ],
+                    [
+                        'value' => 'international',
+                        'label' => __('International')
+                    ]
+                ],
+                'disabled' => $isElementDisabled
+            ]
+        );
+
+        $field = $fieldset->addField(
+            'ship_to_country',
+            'multiselect',
+            [
+                'name' => 'ship_to_country[]',
+                'label' => __('Ship To Country'),
+                'title' => __('Ship To Country'),
+                'required' => true,
+                'values' => $shipToCountries,
                 'disabled' => $isElementDisabled
             ]
         );
@@ -412,7 +479,7 @@ class Main extends \Lof\MarketPlace\Block\Adminhtml\Seller\Edit\Tab\Main
             'region_id',
             'note',
             [
-                'label' => __('Region ID'),
+                'label' => __('State / Provice ID'),
                 'required' => false,
                 'name' => 'region_id',
                 'disabled' => $isElementDisabled
@@ -439,8 +506,8 @@ class Main extends \Lof\MarketPlace\Block\Adminhtml\Seller\Edit\Tab\Main
             'text',
             [
                 'name' => 'region',
-                'label' => __('Region'),
-                'title' => __('Region'),
+                'label' => __('State / Provice'),
+                'title' => __('State / Provice'),
                 'disabled' => $isElementDisabled
             ]
         );
@@ -541,6 +608,12 @@ class Main extends \Lof\MarketPlace\Block\Adminhtml\Seller\Edit\Tab\Main
             ->addFieldMap("{$htmlIdPrefix}company_registration_number", 'company_registration_number')
             ->addFieldDependence('company', 'seller_type', 'company')
             ->addFieldDependence('company_registration_number', 'seller_type', 'company')
+        );
+
+        $this->setChild(
+            'form_after',
+            $this->getLayout()->createBlock(\Magento\Framework\View\Element\Template::class)
+                ->setTemplate('CoreMarketplace_MarketPlace::seller/ship-to/js.phtml')
         );
 
         return $this;

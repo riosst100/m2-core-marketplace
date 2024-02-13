@@ -199,15 +199,15 @@ class Index extends \Magento\Customer\Controller\AbstractAccount
                 }
 
                 $sellerStores = $sellerModel->getStoreId();
-                // $this->storeManager = $objectManager->get(\Magento\Store\Model\StoreManagerInterface::class)
-                // $data['store_id'] = $sellerStores ? (is_array($sellerStores) ? $sellerStores[0] : (int)$sellerStores) : $this->storeManager->getStore()->getId();
-                // if ($this->_sellerHelper->getConfig('general_settings/enable_all_store')) {
-                //     $newStores = $this->websiteStoreHelper->getWebsteStoreIds();
-                //     if ($newStores && count($newStores) > 0) {
-                //         $sellerStores = is_array($sellerStores) ? $sellerStores : [$sellerStores];
-                //         $sellerStores = array_merge($newStores, $sellerStores);
-                //     }
-                // }
+                $this->storeManager = $objectManager->get(\Magento\Store\Model\StoreManagerInterface::class);
+                $data['store_id'] = $sellerStores ? (is_array($sellerStores) ? $sellerStores[0] : (int)$sellerStores) : $this->storeManager->getStore()->getId();
+                if ($this->_sellerHelper->getConfig('general_settings/enable_all_store')) {
+                    $newStores = $this->websiteStoreHelper->getWebsteStoreIds();
+                    if ($newStores && count($newStores) > 0) {
+                        $sellerStores = is_array($sellerStores) ? $sellerStores : [$sellerStores];
+                        $sellerStores = array_merge($newStores, $sellerStores);
+                    }
+                }
                 $data['stores'] = $sellerStores;
                 if (isset($data['email'])) {
                     // Don't change email.
