@@ -1,4 +1,4 @@
 <theme xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/theme.xsd">
     <title>Custom Marketplace Theme</title>
-    <parent>marketplace/Lof/market</parent>
+    <parent>Lof/market</parent>
 </theme>

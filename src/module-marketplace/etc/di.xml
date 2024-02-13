@@ -5,4 +5,11 @@
     <preference for="Lof\MarketPlace\Helper\Data" type="CoreMarketplace\MarketPlace\Helper\Data" />
     <preference for="Lof\MarketPlace\Model\Seller" type="CoreMarketplace\MarketPlace\Model\Seller" />
     <preference for="Lof\MarketPlace\Block\Seller\Editprofile" type="CoreMarketplace\MarketPlace\Block\Seller\Editprofile" />
+    <type name="Magento\Theme\Model\View\Design">
+        <arguments>
+            <argument name="themes" xsi:type="array">
+                <item name="marketplace" xsi:type="string">CoreMarketplace/market</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
