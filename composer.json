@@ -160,7 +160,7 @@
         "Lofmp\\SplitOrderPaypal\\":"src/module-lofmp-split-order-paypal",
         "Lofmp\\TableRateShipping\\":"src/module-lofmp-table-rate-shipping",
         "Lofmp\\TimeDiscount\\":"src/module-lofmp-time-discount",
-        "Lofmp\\StoreLocater\\":"src/module-lofmp-store-locator",
+        "Lofmp\\StoreLocator\\":"src/module-lofmp-store-locator",
         "Ves\\All\\":"src/module-ves-all",
         "Ves\\Brand\\":"src/module-ves-brand",
         "Ves\\Setup\\":"src/module-ves-setup"
