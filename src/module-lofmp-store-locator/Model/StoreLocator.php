@@ -101,7 +101,7 @@ class StoreLocator extends \Magento\Framework\Model\AbstractModel
     public function beforeSave()
     {
         $needle = 'storelocator_id="' . $this->getId() . '"';
-        if (false == strstr($this->getContent(), $needle)) {
+        if ($this->getContent() && false == strstr($this->getContent(), $needle)) {
             return parent::beforeSave();
         }
         throw new \Magento\Framework\Exception\LocalizedException(

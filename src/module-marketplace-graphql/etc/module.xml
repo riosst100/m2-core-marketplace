@@ -3,8 +3,9 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
     <module name="CoreMarketplace_MarketplaceGraphQl" setup_version="1.0.1">
         <sequence>
-            <module name="Lof_MarketplaceGraphQl"/>
-            <module name="Magento_CustomerGraphQl"/>
+            <module name="Lof_MarketplaceGraphQl" />
+            <module name="Magento_CustomerGraphQl" />
+            <module name="Magento_QuoteGraphQl" />
         </sequence>
     </module>
 </config>
