@@ -17,6 +17,37 @@ input SellerInput {
   contact_number: String! @doc(description: "Store Address Contact Number")
 }
 
+type Seller {
+  seller_type: String @doc(description: "Store Type")
+  name: String @doc(description: "Store Name")
+  company: String @doc(description: "Company Name")
+  company_registration_number: String @doc(description: "Company Registration Number")
+  country_id: String @doc(description: "Store Address Country ID")
+  address_line_1: String! @doc(description: "Store Address Line 1")
+  address_line_2: String @doc(description: "Store Address Line 2")
+  city: String! @doc(description: "Store Address City")
+  region: String @doc(description: "Store Address Region")
+  region_id: String @doc(description: "Store Address Region")
+  postcode: String! @doc(description: "Store Address Postal Code")
+  contact_number: String! @doc(description: "Store Address Contact Number")
+  description: String @doc(description: "Store Description")
+  website_url: String @doc(description: "Store Website URL")
+  ship_to: String @doc(description: "Store Ship To")
+  ship_to_country: String @doc(description: "Store Ship To Country")
+  operating_hours: [OperatingHours] @doc(description: "Store Operating Hours") @resolver(class: "\\CoreMarketplace\\MarketplaceGraphQl\\Model\\Resolver\\SellerOperatingHours")
+  term_and_conditions: String @doc(description: "Store Term & Conditions")
+}
+
+type OperatingHours {
+  day: String @doc(description: "Hours Code")
+  time: [Time] @doc(description: "Hours Time")
+}
+
+type Time {
+  opening_time: String @doc(description: "Opening Time")
+  closing_time: String @doc(description: "Closing Time")
+}
+
 type Customer {
   is_seller: Boolean @doc(description: "Customer is seller") @resolver(class: "\\CoreMarketplace\\MarketplaceGraphQl\\Model\\Resolver\\IsCustomerSeller")
 }
