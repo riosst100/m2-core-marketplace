@@ -12,6 +12,7 @@ use Magento\Catalog\Api\ProductRepositoryInterface;
 use Lof\MarketPlace\Api\SellersFrontendRepositoryInterface;
 use Lof\MarketPlace\Api\SellerProductsRepositoryInterface;
 use Lof\MarketPlace\Api\SellersRepositoryInterface;
+use Lof\MarketPlace\Helper\Data;
 
 class SellerByUrl extends \Lof\MarketplaceGraphQl\Model\Resolver\SellerByUrl
 {
@@ -50,6 +51,11 @@ class SellerByUrl extends \Lof\MarketplaceGraphQl\Model\Resolver\SellerByUrl
     protected $sellerCollectionFactory;
 
     /**
+     * @var Data
+     */
+    protected $helper;
+
+    /**
      * AbstractSellerQuery constructor.
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      * @param SellersFrontendRepositoryInterface $seller
@@ -57,6 +63,7 @@ class SellerByUrl extends \Lof\MarketplaceGraphQl\Model\Resolver\SellerByUrl
      * @param ProductRepositoryInterface $productRepository
      * @param SellersRepositoryInterface $sellerManagementRepository
      * @param SellerCollection $sellerCollectionFactory
+     * @param Data $helper
      */
     public function __construct(
         SearchCriteriaBuilder $searchCriteriaBuilder,
@@ -64,7 +71,8 @@ class SellerByUrl extends \Lof\MarketplaceGraphQl\Model\Resolver\SellerByUrl
         SellerProductsRepositoryInterface $productSeller,
         ProductRepositoryInterface $productRepository,
         SellersRepositoryInterface $sellerManagementRepository,
-        SellerCollection $sellerCollectionFactory
+        SellerCollection $sellerCollectionFactory,
+        Data $helper
     ) {
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->_sellerRepository = $seller;
@@ -72,6 +80,7 @@ class SellerByUrl extends \Lof\MarketplaceGraphQl\Model\Resolver\SellerByUrl
         $this->_productRepository = $productRepository;
         $this->_sellerManagementRepository = $sellerManagementRepository;
         $this->sellerCollectionFactory = $sellerCollectionFactory;
+        $this->helper = $helper;
 
         parent::__construct(
             $searchCriteriaBuilder,
@@ -96,6 +105,7 @@ class SellerByUrl extends \Lof\MarketplaceGraphQl\Model\Resolver\SellerByUrl
         $isGetOtherInfo = isset($args['get_other_info']) ? (bool)$args['get_other_info'] : false;
         $sellerData = $this->_sellerRepository->getByUrl($args['seller_url'], $isGetOtherInfo, $isGetProducts);
         $data = $sellerData ? $sellerData->__toArray() : [];
+
         $data["model"] = $sellerData;
 
         $sellerId = $sellerData ? $sellerData->getId() : null;
@@ -106,6 +116,9 @@ class SellerByUrl extends \Lof\MarketplaceGraphQl\Model\Resolver\SellerByUrl
                 $seller = $sellerColl->getFirstItem();
                 if ($seller) {
                     $data = $seller->getData();
+                    $data['store_id'] = $sellerData->getStoreId();
+                    $data['image'] = $sellerData->getImage();
+                    $data['thumbnail'] = $sellerData->getThumbnail();
                     $data['model'] = $seller;
                 }
             }

@@ -110,7 +110,7 @@ $shipToCountries = $block->getShipToCountries();
                         <?= $block->escapeHtml(__('Address Line 1')) ?>
                     </label>
                     <div class="admin__field-control">
-                        <input type="text" name="address" class="admin__control-text"
+                        <input type="text" name="address_line_1" class="admin__control-text"
                                value="<?= $block->escapeHtmlAttr($seller['address_line_1']) ?>"/>
                     </div>
                 </div>
@@ -119,7 +119,7 @@ $shipToCountries = $block->getShipToCountries();
                         <?= $block->escapeHtml(__('Address Line 2')) ?>
                     </label>
                     <div class="admin__field-control">
-                        <input type="text" name="address" class="admin__control-text"
+                        <input type="text" name="address_line_2" class="admin__control-text"
                                value="<?= $block->escapeHtmlAttr($seller['address_line_2']) ?>"/>
                     </div>
                 </div>
@@ -140,7 +140,7 @@ $shipToCountries = $block->getShipToCountries();
                     </div>
                 </div>
                 <div class="admin__field field field-region_id required _required">
-                    <label class="admin__field-label"  id="region-unavailable">
+                    <label class="admin__field-label" id="region-unavailable">
                         <span><?= $block->escapeHtml(__('State/Province')) ?></span>
                     </label>
                     <div class="admin__field-control">
@@ -151,7 +151,7 @@ $shipToCountries = $block->getShipToCountries();
                         </select>
                     </div>
                 </div>
-                <div class="admin__field">
+                <div class="admin__field" id="region_container" <?= $seller['region_id'] ? "style='display:none'" : "" ?>>
                     <label class="admin__field-label">
                         <?= $block->escapeHtml(__('State/Province')) ?>
                     </label>
@@ -162,20 +162,20 @@ $shipToCountries = $block->getShipToCountries();
                 </div>
                 <div class="admin__field">
                     <label class="admin__field-label">
-                        <?= $block->escapeHtml(__('Postal Code')) ?>
-                    </label>
-                    <div class="admin__field-control">
-                        <input type="text" name="postcode" class="admin__control-text"
-                               value="<?= $block->escapeHtmlAttr($seller['postcode']) ?>"/>
-                    </div>
-                </div>
-                <div class="admin__field">
-                    <label class="admin__field-label">
                         <?= $block->escapeHtml(__('City')) ?>
                     </label>
                     <div class="admin__field-control">
                         <input type="text" name="city" class="admin__control-text"
                                value="<?= $block->escapeHtmlAttr($seller['city']) ?>"/>
+                    </div>
+                </div>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?= $block->escapeHtml(__('Postal Code')) ?>
+                    </label>
+                    <div class="admin__field-control">
+                        <input type="text" name="postcode" class="admin__control-text"
+                               value="<?= $block->escapeHtmlAttr($seller['postcode']) ?>"/>
                     </div>
                 </div>
                 <div class="admin__field required _required">
@@ -244,6 +244,26 @@ $shipToCountries = $block->getShipToCountries();
                                 <?php endforeach; ?>
                             <?php endif; ?>
                         </select>
+                    </div>
+                </div>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?= $block->escapeHtml(__('Return Policy')) ?>
+                    </label>
+                    <div class="admin__field-control">
+                        <textarea rows="7" id="return_policy" type="text" name="return_policy"
+                                  class="admin__control-text"
+                                  value=""><?= $helper->filter($seller['return_policy']); ?></textarea>
+                    </div>
+                </div>
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <?= $block->escapeHtml(__('Shipping Policy')) ?>
+                    </label>
+                    <div class="admin__field-control">
+                        <textarea rows="7" id="shipping_policy" type="text" name="shipping_policy"
+                                  class="admin__control-text"
+                                  value=""><?= $helper->filter($seller['shipping_policy']); ?></textarea>
                     </div>
                 </div>
                 <div class="admin__field">
@@ -695,19 +715,29 @@ require([
 </script>
 <script>
     require(["jquery", "prototype", "mage/adminhtml/form"], function ($) {
-        var old_region_name = $("#seller_region").val();
-        var seller_region_id = "<?= isset($seller["region_id"]) ? (int)$seller["region_id"] : 0;?>"
-        $("seller_region_id_id").setAttribute("defaultValue", seller_region_id);
         new regionUpdater("seller_country_id", "seller_region_id", "seller_region_id_id", <?= $_directoryHelper->getRegionJson();?>);
+
+        var old_region_name = $("#seller_region").val();
+        
+        var seller_region_id = "<?= isset($seller["region_id"]) ? (int)$seller["region_id"] : 0;?>"
+        if (seller_region_id != 0) {
+            $('#seller_region_id_id').val(seller_region_id);
+        }
+        
         if (!$("#seller_region_id_id:visible").length) {
             $("#region-unavailable").hide();
+            $('#region_container').show();
         } else {
+            $('#region_container').hide();
             $("#region-unavailable").show();
         }
         $("#seller_country_id").on("change", function () {
             if (!$("#seller_region_id_id:visible").length) {
+                $('#region_container').show();
                 $("#region-unavailable").hide();
+                $('#seller_region').val('');
             } else {
+                $('#region_container').hide();
                 $("#region-unavailable").show();
             }
         })
@@ -719,60 +749,4 @@ require([
             }
         })
     })
-</script>
-<script type="text/javascript">
-    require([
-        'jquery',
-        'mage/adminhtml/wysiwyg/tiny_mce/setup'
-    ], function ($) {
-        $(document).ready(function () {
-            $('input[type="checkbox"]').each(function () {
-                $(this).bind('change', function () {
-                    if ($(this).prop('checked')) {
-                        $(this).val(1);
-                    } else {
-                        $(this).val(0);
-                    }
-                });
-            });
-            $(window).on("load resize", function (e) {
-                console.log($(window).width());
-                if ($(window).width() >= 768) {
-                    wysiwygcompany_description = new wysiwygSetup("company_description", {
-                        "width": "99%",  // defined width of editor
-                        "height": "200px", // height of editor
-                        "plugins": [{"name": "image"}], // for image
-                        "tinymce": {
-                            "toolbar": "formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist | link table charmap",
-                            "plugins": "advlist autolink lists link charmap media noneditable table contextmenu paste code help table",
-                        }
-                    });
-                    wysiwygcompany_description.setup("exact");
-
-                    wysiwygcompany_description = new wysiwygSetup("return_policy", {
-                        "width": "99%",  // defined width of editor
-                        "height": "200px", // height of editor
-                        "plugins": [{"name": "image"}], // for image
-                        "tinymce": {
-                            "toolbar": "formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist | link table charmap",
-                            "plugins": "advlist autolink lists link charmap media noneditable table contextmenu paste code help table",
-                        }
-                    });
-                    wysiwygcompany_description.setup("exact");
-
-                    wysiwygcompany_description = new wysiwygSetup("shipping_policy", {
-                        "width": "99%",  // defined width of editor
-                        "height": "200px", // height of editor
-                        "plugins": [{"name": "image"}], // for image
-                        "tinymce": {
-                            "toolbar": "formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist | link table charmap",
-                            "plugins": "advlist autolink lists link charmap media noneditable table contextmenu paste code help table",
-                        }
-                    });
-                    wysiwygcompany_description.setup("exact");
-
-                }
-            });
-        });
-    });
 </script>

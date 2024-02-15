@@ -1,0 +1,378 @@
+<?php
+$helper       = $this->helper("Lof\MarketPlace\Helper\Data");
+$helperSeller = $this->helper("Lof\MarketPlace\Helper\Seller");
+$seller       = $helperSeller->getSellerByCustomer();
+$helper1      = $this->helper("Lofmp\StoreLocator\Helper\Data");
+
+$sellerlocator = null;
+
+$_directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
+
+$id = $this->getRequest()->getParam('id');
+if($id){
+	$sellerlocator = $helper1->getSellerLocator($id);
+	$tagid 					= $helper1->getTagId($id);
+	$categoryid				= $helper1->getCategoryId($id);
+	$location_lat  = $sellerlocator['lat'];
+	$location_lng  = $sellerlocator['lng'];
+}
+$api_key                = $helper1->getConfig('general/api_key');
+$pagination             = $helper1->getConfig('general/pagination');
+$store_limit            = $helper1->getConfig('general/store_limit');
+$store_perpage          = $helper1->getConfig('general/store_perpage');
+$enable_category_filter = $helper1->getConfig('general/enable_category_filter');
+$enable_tag_filter      = $helper1->getConfig('general/enable_tag_filter');
+$location_lng           = $helper1->getConfig('location/location_lng');
+$location_lat           = $helper1->getConfig('location/location_lat');
+$zoom                   = (int) $helper1->getConfig('location/zoom');
+$pub                    = $block->getViewFileUrl('Lofmp_StoreLocator/js/plugins/storelocator/templates');
+$infoTemplate           = $pub . '/infowindow-description.html';
+$locationTemplate       = $pub . '/location-list-description.html';
+$dataLocation           = $this->getMediaUrl() . 'storelocator/index/locations';
+$tagcollection          = $this->getTagCollection();
+$categoryCollection     = $this->getCategoryCollection();
+$zipcodeCollection      = $this->getListZipCode();
+$countryCollection      = $this->getListCountry();
+$cityCollection         = $this->getListCity();
+$dataCountry            = $this->getCountry();
+$sellerId   			= $seller['seller_id'];
+// $product_ids = $helper1->getProductIDbySellerid($sellerId);
+//         print_r($product_ids);
+//         die();
+$twitter_id				= $seller['twitter_id'];
+$facebook_id			= $seller['facebook_id'];
+$_countries 			= $this->getListCountry();
+$categoryCollection     = $this->getCategoryCollection();
+$tagCollection          = $this->getTagCollection();
+
+?>
+
+<form class="entry-edit form-inline" action="<?php echo $block->getUrl('catalog/sellerlocator/save/storelocator_id/'.$id, ["_secure" => $this->getRequest()->isSecure()]) ?>" enctype="multipart/form-data" method="post" data-role="form-profile-validate" data-mage-init='{"validation":{}}'>
+	<input type="hidden" name="store_id" class="admin__control-text" value="<?php echo $helper->getCurrentStoreId(); ?>" />
+	<div class="lof-mp-page-title page-title">
+		<?php if ($sellerlocator) : ?>
+			<h2><?php echo __('Edit Store Locator') ?></h2>
+		<?php else: ?>
+			<h2><?php echo __('Add New Store Locator') ?></h2>
+		<?php endif; ?>
+		<div class="page-actions-buttons">
+			 <div class="actions-split save primary" title="Save">
+				<button class="action-default primary" title="<?php echo __('Save ') ?>" type="submit">
+					<span><span><?php echo __('Save ') ?></span></span>
+				</button>
+			</div>
+		</div>
+	</div>
+	<div class="admin__fieldset-wrapper-content">
+		<fieldset class="admin__fieldset">
+		    <div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Store Name"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="name" class="admin__control-text" value="<?php if(!empty($sellerlocator)) echo $sellerlocator['name']; ?>" />
+				</div>
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?= $block->escapeHtml(__('Address Line 1')) ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="address_line_1" class="admin__control-text"
+							value="<?php if(!empty($sellerlocator)) echo $sellerlocator['address_line_1']; ?>"/>
+				</div>
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?= $block->escapeHtml(__('Address Line 2')) ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="address_line_2" class="admin__control-text"
+							value="<?php if(!empty($sellerlocator)) echo $sellerlocator['address_line_2']; ?>"/>
+				</div>
+			</div>
+			<div class="admin__field required _required">
+				<label class="admin__field-label">
+					<span><?= $block->escapeHtml(__('Country')) ?></span>
+				</label>
+				<div class="admin__field-control">
+					<select name="country" id="country"
+							class="required-entry _required select admin__control-select">
+						<?php if ($_countries) : ?>
+							<?php foreach($_countries as $_country): ?>
+								<option value="<?php echo $_country['value'] ?>" <?php if(!empty($sellerlocator)&&$_country['value']==$sellerlocator['country']) echo 'selected'?>>
+									<?php echo $_country['label'] ?>
+								</option>
+							<?php endforeach; ?>
+						<?php endif; ?>
+					</select>
+				</div>
+			</div>
+			<div class="admin__field field field-region_id required _required">
+				<label class="admin__field-label" id="region-unavailable">
+					<span><?= $block->escapeHtml(__('State/Province')) ?></span>
+				</label>
+				<div class="admin__field-control">
+					<select id="region_id_id" name="region_id"
+							title="<?= $block->escapeHtmlAttr(__("State/Province")); ?>"
+							class="select admin__control-select" style="display:none;">
+						<option value=""><?= $block->escapeHtml(__('Please select')); ?></option>
+					</select>
+				</div>
+			</div>
+			<div class="admin__field" id="region_container" <?= $sellerlocator && $sellerlocator['region_id'] ? "style='display:none'" : "" ?>>
+				<label class="admin__field-label">
+					<?= $block->escapeHtml(__('State/Province')) ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" id="region" name="region" class="admin__control-text"
+							value="<?php if(!empty($sellerlocator)) echo $sellerlocator['region']; ?>"/>
+				</div>
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?= $block->escapeHtml(__('City')) ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="city" class="admin__control-text"
+							value="<?php if(!empty($sellerlocator)) echo $sellerlocator['city']; ?>"/>
+				</div>
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?= $block->escapeHtml(__('Postal Code')) ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="postcode" class="admin__control-text"
+							value="<?php if(!empty($sellerlocator)) echo $sellerlocator['postcode']; ?>"/>
+				</div>
+			</div>
+		</fieldset>
+	</div>
+	<div class="fieldset-wrapper admin__collapsible-block-wrapper">
+		<div class="fieldset-wrapper-title" data-toggle="collapse" data-target="#operaing_hours_fieldset">
+			<strong class="admin__collapsible-title">
+				<?= $block->escapeHtml(__('Operating Hours')) ?>
+			</strong>
+		</div>
+		<div id="operaing_hours_fieldset" class="admin__fieldset-wrapper-content admin__collapsible-content">
+            <fieldset class="admin__fieldset">
+                <?php
+                $operatingHours = isset($sellerlocator['operating_hours']) && $sellerlocator['operating_hours'] ? json_decode($sellerlocator['operating_hours'],true) : [];
+                ?>
+                <?php foreach ($block->getDayNames() as $day): ?>
+                    <?php
+                    $fieldPrefix = $day['code'];
+
+                    $operatingHoursPerDays = isset($operatingHours[$fieldPrefix]) && $operatingHours[$fieldPrefix] ? $operatingHours[$fieldPrefix] : [];
+                    $status = isset($operatingHoursPerDays['status']) && $operatingHoursPerDays['status'] ? $operatingHoursPerDays['status'] : null;
+                    $timeList = isset($operatingHoursPerDays['time']) && $operatingHoursPerDays['time'] ? $operatingHoursPerDays['time'] : null;
+                    ?>
+                    <fieldset class="admin__field">
+                        <label class="admin__field-label">
+                            <span><?= $block->escapeHtml($day['label']) ?></span>
+                        </label>
+                        <div class="admin__field-control">
+                            <select data-fieldcode="<?= $fieldPrefix ?>" data-fieldname="operating_hours_status" name="operating_hours[<?= $fieldPrefix ?>][status]" class="_required select admin__control-select">
+                                <?php foreach ($block->getOperatingStatusList() as $statusOption): ?>
+                                    <option value="<?= $statusOption['value'] ?>" <?= $status && ($statusOption['value'] == $status) ? 'selected' : '' ?>><?= $statusOption['label'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="admin__field-control" id="<?= $fieldPrefix ?>_operating_hours_container" <?= $status == "open" ? '' : 'style="display:none"' ?>>
+                            <div id="<?= $fieldPrefix ?>_time_container">
+                                <?php if ($status == "open" && $timeList) : ?>
+                                    <?php foreach($timeList as $index => $time) : ?>
+                                        <?php
+                                        $openingTime = isset($time['opening_time']) && $time['opening_time'] ? $time['opening_time'] : null;
+                                        $closingTime = isset($time['closing_time']) && $time['closing_time'] ? $time['closing_time'] : null;
+
+                                        if (!$openingTime || !$closingTime) {
+                                            continue;
+                                        }
+                                        ?>
+                                        <div id="<?= $fieldPrefix ?>_<?= $index ?>_operating_hours">
+                                            <table style="width: 70%">
+                                                <tr>
+                                                    <td style="padding-right: 15px">
+                                                        <div class="admin__field">
+                                                            <label class="admin__field-label">
+                                                                <span><?= __('Opening Hours') ?></span>
+                                                            </label>
+                                                            <div class="admin__field-control">
+                                                                <input class="admin__control-text" type="text" autocomplete="off" value="<?= $openingTime ?>" name="operating_hours[<?= $day['code'] ?>][time][<?= $index ?>][opening_time]">
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td style="padding-right: 15px">
+                                                        <div class="admin__field">
+                                                            <label class="admin__field-label">
+                                                                <span><?= __('Closing Hours') ?></span>
+                                                            </label>
+                                                            <div class="admin__field-control">
+                                                                <input class="admin__control-text" type="text" autocomplete="off" value="<?= $closingTime ?>" name="operating_hours[<?= $day['code'] ?>][time][<?= $index ?>][closing_time]">
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div>
+                                                            <span data-count="<?= $index ?>" data-fieldcode="<?= $fieldPrefix ?>" name="remove_operating_hours">
+                                                                <i class="fa fa-trash" style="font-size: 20px;padding-top: 25px;"></i>
+                                                            </span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </div>
+                            <br />
+                            <input type="hidden" id="<?= $fieldPrefix ?>_time_count" value="<?= $timeList ? count($timeList) : 0 ?>" />
+                            <button type="button" name="add_operating_hours" data-fieldcode="<?= $fieldPrefix ?>">
+                                <span><?= $block->escapeHtml(__("Add Time")); ?></span>
+                            </button>
+                        </div>
+                    </fieldset>
+                    <br />
+                <?php endforeach; ?>
+            </fieldset>
+            <div id="operating-hours-template" style="display:none">
+                <table style="width: 70%">
+                    <tr>
+                        <td style="padding-right: 15px">
+                            <div class="admin__field">
+                                <label class="admin__field-label">
+                                    <span><?= __('Opening Hours') ?></span>
+                                </label>
+                                <div class="admin__field-control">
+                                    <input class="admin__control-text" type="text" autocomplete="off" value="" data-fieldcode="opening_time">
+                                </div>
+                            </div>
+                        </td>
+                        <td style="padding-right: 15px">
+                            <div class="admin__field">
+                                <label class="admin__field-label">
+                                    <span><?= __('Closing Hours') ?></span>
+                                </label>
+                                <div class="admin__field-control">
+                                    <input class="admin__control-text" type="text" autocomplete="off" value="" data-fieldcode="closing_time">
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <span name="remove_operating_hours">
+                                    <i class="fa fa-trash" style="font-size: 20px;padding-top: 25px;"></i>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+	</div>
+</form>
+<script>
+    require(["jquery", "prototype", "mage/adminhtml/form"], function ($) {
+        new regionUpdater("country", "region_id", "region_id_id", <?= $_directoryHelper->getRegionJson();?>);
+
+        var old_region_name = $("#region").val();
+        
+        var region_id = "<?= $sellerlocator && isset($sellerlocator["region_id"]) ? (int)$sellerlocator["region_id"] : 0;?>"
+        if (region_id != 0) {
+            $('#region_id_id').val(region_id);
+        }
+        
+        if (!$("#region_id_id:visible").length) {
+            $("#region-unavailable").hide();
+            $('#region_container').show();
+        } else {
+            $('#region_container').hide();
+            $("#region-unavailable").show();
+        }
+        $("#country").on("change", function () {
+            if (!$("#region_id_id:visible").length) {
+                $('#region_container').show();
+                $("#region-unavailable").hide();
+                $('#region').val('');
+            } else {
+                $('#region_container').hide();
+                $("#region-unavailable").show();
+            }
+        })
+        $("#region_id_id").on("change", function () {
+            if ($(this).val() && $("#region").length > 0) {
+                $("#region").val($("#region_id_id option:selected").text());
+            } else if ($("#region").length > 0) {
+                $("#region").val(old_region_name);
+            }
+        })
+    })
+</script>
+<script>
+require([
+    'jquery',
+    'mdtimepicker'
+], function ($) {
+    $(document).on("focus", "input[name*='_time']", function () {
+        $(this).mdtimepicker({
+            readOnly: true
+        })
+
+        return false;
+    });
+    
+    $('[data-fieldname="operating_hours_status"]').on('change', function() {
+        changeOperatingHoursStatus($(this).val(), $(this).data('fieldcode'));
+    });
+
+    $('[name="remove_operating_hours"]').on('click', function() {
+        removeOperatingHoursStatus($(this).data('fieldcode'), $(this).data('count'));
+    });
+
+    $('[name="add_operating_hours"]').on('click', function() {
+        var fieldcode = $(this).data('fieldcode');
+        var count = parseInt($('#' + fieldcode + '_time_count').val()) + 1;
+        
+        var newTimeField = $('#operating-hours-template').clone(true);
+        $(newTimeField).attr("id", fieldcode + '_' + count + '_operating_hours')
+        .show()
+        .find("input, span")
+        .each(function () {
+            var id = $(this).attr('id');
+            var name = $(this).attr('name');
+            var fieldName = $(this).data('fieldcode');
+
+            if (fieldName == "opening_time" || fieldName == "closing_time") {
+                $(this).attr("name", "operating_hours[" + fieldcode + "][time][" + count + "][" + fieldName + "]");
+            }
+
+            if (name == "remove_operating_hours") {
+                $(this).attr("data-count", count);
+                $(this).attr("data-fieldcode", fieldcode);
+            }
+        });
+
+        $('#' + fieldcode + '_time_container').append(newTimeField);
+        $('#' + fieldcode + '_time_count').val(count);
+    });
+
+    function removeOperatingHoursStatus(fieldcode, count) 
+    {
+        $('#' + fieldcode + '_' + count + '_operating_hours').remove();
+    }
+
+    function changeOperatingHoursStatus(val, fieldcode) 
+    {
+        if (val && val == "open") {
+            $('#' + fieldcode + '_operating_hours_container').show();
+            // $('#' + fieldcode + '_operating_hours_container').find('input').each(function() {
+            //     $(this).attr('data-validate', '{required:true}');
+            // });
+        } else {
+            $('#' + fieldcode + '_operating_hours_container').hide();
+        }
+    }
+});
+</script>

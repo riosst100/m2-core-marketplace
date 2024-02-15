@@ -1,1 +1,30 @@
-dd
+<script>
+    require(["jquery"], function ($) {  
+
+        $(document).ready(function(){
+            var shipTo = $('#seller_ship_to').val();
+            if (shipTo) {
+                changeShipTo(shipTo);
+            } else {
+                changeShipTo(null);
+            }
+        });
+
+        $('#seller_ship_to').on('change', function() {
+            changeShipTo($(this).val());
+        });
+
+        function changeShipTo(val) 
+        {
+            if (val && val.length) {
+                if (val.includes("international")) {
+                    $('.field-ship_to_country').show();
+                } else {
+                    $('.field-ship_to_country').hide();
+                }
+            } else {
+                $('.field-ship_to_country').hide();
+            }
+        }
+    });
+</script>

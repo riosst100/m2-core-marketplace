@@ -212,6 +212,59 @@ class Save extends \Lof\MarketPlace\Controller\Adminhtml\Seller\Save
         );
     }
 
+    protected function processShipTo($data) 
+    {
+        $isInternational = false;
+
+        $allowedShipTo = ['domestic', 'international'];
+
+        if ($data && isset($data['ship_to'])) {
+            $shipTo = $data['ship_to'];
+            if (is_array($shipTo)) {
+                foreach($shipTo as $value) {
+                    if (!in_array($value, $allowedShipTo)) {
+                        continue;
+                    }
+
+                    if ($value == "international") {
+                        $isInternational = true;
+                    }
+                }
+
+                $data['ship_to'] = implode(",", $shipTo);
+            } else {
+                if (!in_array($shipTo, $allowedShipTo)) {
+                    $data['ship_to'] = 'domestic';
+                    $data['ship_to_country'] = '';
+
+                    $isInternational = false;
+                }
+                
+                if ($shipTo == "international") {
+                    $isInternational = true;
+                }
+            }
+        } else {
+            $data['ship_to'] = 'domestic';
+            $data['ship_to_country'] = '';
+
+            $isInternational = false;
+        }
+
+        if ($isInternational) {
+            if ($data && isset($data['ship_to_country'])) {
+                $shipToCountry = $data['ship_to_country'];
+                if (is_array($shipToCountry)) {
+                    $data['ship_to_country'] = implode(",", $shipToCountry);
+                }
+            }
+        } else {
+            $data['ship_to_country'] = '';
+        }
+
+        return $data;
+    }
+
     /**
      * Save action
      *
@@ -224,6 +277,8 @@ class Save extends \Lof\MarketPlace\Controller\Adminhtml\Seller\Save
     public function execute()
     {
         $data = $this->getRequest()->getPostValue();
+
+        $data = $this->processShipTo($data);
 
         /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
