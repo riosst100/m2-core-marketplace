@@ -6,7 +6,7 @@ use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Store\Model\StoreManager;
 
-class Save extends \Lofmp\StoreLocator\Controller\Marketplace\sellerlocator\Save
+class Save extends \Lofmp\StoreLocator\Controller\MarketPlace\sellerlocator\Save
 {
     /**
      *
