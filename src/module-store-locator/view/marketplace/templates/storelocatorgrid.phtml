@@ -1,0 +1,51 @@
+<?php
+$helper1    = $this->helper("Lofmp\StoreLocator\Helper\Data");
+$storelocator_list = $helper1->getStoreLocator();
+$url = $this->getBaseUrl().'marketplace/catalog/sellerlocator/index';
+?>
+<div class="lof-mp-page-title page-title">
+    <h2><?= __('Manage Store Locators') ?></h2>
+    <div class="page-actions-buttons">
+       <div class="actions-split save primary" title="New">
+        <button class="action-default primary" onclick="location.href='<?= $url ?>'" title="<?= __('New') ?>" type="button" >
+          <span><span><?= __('New') ?></span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+ <div class="x_content">
+      <table id="datatable" class="table table-striped table-bordered">
+              <thead>
+                <tr class="headings">
+                  <th class="hidden"></th>
+                  <th class="column-title"><?= __('Status');?> </th>
+                  <th class="column-title"><?= __('Store Name');?> </th>
+                  <th class="column-title"><?= __('Country');?> </th>
+                  <th class="column-title"><?= __('Region');?> </th>
+                  <th class="column-title"><?= __('City');?> </th>
+                  <th class="column-title"><?= __('Address');?> </th>
+                  <th class="column-title"><?= __('Action');?> </th>
+                </tr>
+              </thead>
+              <tbody>
+              <?php
+              foreach ($storelocator_list as $item):
+                $storeLocator = $item->getData();
+                $baseUrl = $this->getBaseUrl().'marketplace/catalog/sellerlocator/index?id='.$storeLocator["storelocator_id"];
+              ?>
+                <tr class="even pointer">
+                  <td class="hidden"></td>
+                  <td class=" "><?=  $storeLocator["is_active"]?__("Enabled"):__("Disabled"); ?></td>
+                  <td class=" "><?=  $storeLocator["name"] ?></td>
+                  <td class=" "><?=  $storeLocator["country"] ?></td>
+                  <td class=" "><?=  $storeLocator["region"] ?></td>
+                  <td class=" "><?=  $storeLocator["city"] ?></td>
+                  <td class=" "><?=  $storeLocator["address_line_1"] ?></td>
+                  <td class=" last"><a href="<?= $baseUrl?>"><?= __("Edit");?></a></td>
+                </tr>
+                <?php
+                endforeach;
+                ?>
+              </tbody>    
+        </table>
+ </div>

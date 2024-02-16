@@ -3,6 +3,6 @@
     <menu>
     	<add id="Lofmp_StoreLocator::seller_locator" icon="fa fa-map-marker" title="Store Locator" module="Lofmp_StoreLocator" sortOrder="21" resource="Lofmp_StoreLocator::locator"/>
     	<add id="Lofmp_StoreLocator::manage_locator" title="Manage Store Locators" module="Lofmp_StoreLocator" action="catalog/sellerlocator/grid" sortOrder="21" parent="Lofmp_StoreLocator::seller_locator" resource="Lofmp_StoreLocator::manager"/>
-        <add id="Lofmp_StoreLocator::tag_locator" title="Add Tag" module="Lofmp_StoreLocator" action="catalog/tag" sortOrder="21" parent="Lofmp_StoreLocator::seller_locator" resource="Lofmp_StoreLocator::tag"/>
+        <!-- <add id="Lofmp_StoreLocator::tag_locator" title="Add Tag" module="Lofmp_StoreLocator" action="catalog/tag" sortOrder="21" parent="Lofmp_StoreLocator::seller_locator" resource="Lofmp_StoreLocator::tag"/> -->
     </menu>
 </config>

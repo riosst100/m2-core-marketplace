@@ -34,6 +34,11 @@ class Save extends \Lofmp\StoreLocator\Controller\MarketPlace\sellerlocator\Save
 
     protected $_moduleHelper;
 
+    /**
+     * @var \Lof\MarketPlace\Helper\Data
+     */
+    protected $sellerHelper;
+
     protected $_storeManager;
 
     public function __construct(
@@ -46,7 +51,8 @@ class Save extends \Lofmp\StoreLocator\Controller\MarketPlace\sellerlocator\Save
         \Magento\Customer\Model\Session $sellerSession,
         \Lof\MarketPlace\Model\SellerFactory $sellerFactory,
         \Magento\Framework\Url $frontendUrl,
-        \Lofmp\StoreLocator\Helper\Data $_helper
+        \Lofmp\StoreLocator\Helper\Data $_helper,
+        \Lof\MarketPlace\Helper\Data $sellerHelper
     ) {
         $this->storeLocatorFactory     = $storeLocatorFactory;
         $this->session           = $customerSession;
@@ -55,6 +61,7 @@ class Save extends \Lofmp\StoreLocator\Controller\MarketPlace\sellerlocator\Save
         $this->_frontendUrl = $frontendUrl;
         $this->_moduleHelper = $_helper;
         $this->_storeManager = $storeManager;
+        $this->sellerHelper = $sellerHelper;
         parent::__construct (
             $context,
             $customerSession,
@@ -72,6 +79,50 @@ class Save extends \Lofmp\StoreLocator\Controller\MarketPlace\sellerlocator\Save
     public function getFrontendUrl($route = '', $params = []){
         return $this->_frontendUrl->getUrl($route,$params);
     }
+
+    protected function processOpeningHours($data) 
+    {
+        if ($data && isset($data['operating_hours'])) {
+            $operatingHours = $data['operating_hours'];
+            if ($operatingHours) {
+                $filteredOpeningHours = [];
+                foreach($operatingHours as $day => $operatingHour) {
+
+                    $status = isset($operatingHour['status']) && $operatingHour['status'] ? $operatingHour['status'] : null;
+                    if ($status != "open") {
+                        continue;
+                    }
+
+                    $timeList = isset($operatingHour['time']) && $operatingHour['time'] ? $operatingHour['time'] : null;
+                    if (!$timeList) {
+                        continue;
+                    }
+                    
+                    $filteredTime = [];
+                    foreach($timeList as $index => $time) {
+                        $openingTime = isset($time['opening_time']) && $time['opening_time'] ? $time['opening_time'] : null;
+                        $closingTime = isset($time['closing_time']) && $time['closing_time'] ? $time['closing_time'] : null;
+                        if ($openingTime && $closingTime) {
+                            $filteredTime[] = $time;
+                        }
+                    }
+
+                    if (!$filteredTime) {
+                        continue;
+                    }
+
+                    $operatingHour['time'] = $filteredTime;
+
+                    $filteredOpeningHours[$day] = $operatingHour;
+                }
+
+                $data['operating_hours'] = json_encode($filteredOpeningHours);
+            }
+        }
+
+        return $data;
+    }
+
     /**
      * Customer login form page
      *
@@ -81,26 +132,24 @@ class Save extends \Lofmp\StoreLocator\Controller\MarketPlace\sellerlocator\Save
         $this->messageManager->addSuccess('Save Tag Success', 'demo');
         $customerSession = $this->session;
         $customerId = $customerSession->getId();
-     
-      
+
         if ($customerSession->isLoggedIn()) {
             $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-            
 
             $data = $this->getRequest()->getPostValue();
-           
-  
             if ($data) {
+
+                $data = $this->processOpeningHours($data);
                
                 $model = $this->_objectManager->create('Lofmp\StoreLocator\Model\StoreLocator');
                 $id = $this->getRequest()->getParam('storelocator_id');
-                $data['is_active']=0;
+                $data['is_active'] = 0;
                 if ($id) {
                     $model->load($id);    
                     $data['storelocator_id']=$id;
                     unset($data['is_active']);               
                 }
-                try { 
+                try {
                         /** @var \Magento\Framework\Filesystem\Directory\Read $mediaDirectory */
                         // $mediaDirectory = $this->_objectManager->get('Magento\Framework\Filesystem')
                         // ->getDirectoryRead(DirectoryList::MEDIA);
@@ -138,6 +187,7 @@ class Save extends \Lofmp\StoreLocator\Controller\MarketPlace\sellerlocator\Save
                         //     $data['thumbnail'] = $thumbnail;
                         // }
                         $model->setData($data);
+                        $model->setSellerId($this->sellerHelper->getSellerId());
                         $model->save();
                         
                         //Rewrite url for store locator item
@@ -153,7 +203,7 @@ class Save extends \Lofmp\StoreLocator\Controller\MarketPlace\sellerlocator\Save
                         //End rewrite url for store locator item
 
                         $this->messageManager->addSuccess('Save Success');
-                        $this->_redirect ( "catalog/sellerlocator/grid" );
+                        return $this->_redirect ( "catalog/sellerlocator/index/id/".$model->getId() );
 
                 } catch (\Magento\Framework\Exception\LocalizedException $e) {
                     $this->messageManager->addError($e->getMessage());
@@ -164,13 +214,13 @@ class Save extends \Lofmp\StoreLocator\Controller\MarketPlace\sellerlocator\Save
                 }   
             } 
         } elseif($customerSession->isLoggedIn() && $status == 0) {
-            $this->_redirect ( $this->getFrontendUrl('lofmarketplace/seller/becomeseller') );
+            return $this->_redirect ( $this->getFrontendUrl('lofmarketplace/seller/becomeseller') );
         } else {
             $this->messageManager->addNotice ( __ ( 'You must have a seller account to access' ) );
-            $this->_redirect ( $this->getFrontendUrl('lofmarketplace/seller/login'));
+            return $this->_redirect ( $this->getFrontendUrl('lofmarketplace/seller/login'));
         }
 
-        $this->_redirect ( $this->getFrontendUrl('marketplace/catalog/sellerlocator/index'));
+        return $this->_redirect ( $this->getFrontendUrl('marketplace/catalog/sellerlocator/index'));
     }
 
 
