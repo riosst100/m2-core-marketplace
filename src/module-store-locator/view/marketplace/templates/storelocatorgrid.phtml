@@ -6,9 +6,9 @@ $url = $this->getBaseUrl().'marketplace/catalog/sellerlocator/index';
 <div class="lof-mp-page-title page-title">
     <h2><?= __('Manage Store Locators') ?></h2>
     <div class="page-actions-buttons">
-       <div class="actions-split save primary" title="New">
-        <button class="action-default primary" onclick="location.href='<?= $url ?>'" title="<?= __('New') ?>" type="button" >
-          <span><span><?= __('New') ?></span></span>
+       <div class="actions-split save primary" title="Add New Store">
+        <button class="action-default primary" onclick="location.href='<?= $url ?>'" title="<?= __('Add New Store') ?>" type="button" >
+          <span><span><?= __('Add New Store') ?></span></span>
         </button>
       </div>
     </div>
@@ -18,7 +18,6 @@ $url = $this->getBaseUrl().'marketplace/catalog/sellerlocator/index';
               <thead>
                 <tr class="headings">
                   <th class="hidden"></th>
-                  <th class="column-title"><?= __('Status');?> </th>
                   <th class="column-title"><?= __('Store Name');?> </th>
                   <th class="column-title"><?= __('Country');?> </th>
                   <th class="column-title"><?= __('Region');?> </th>
@@ -32,16 +31,18 @@ $url = $this->getBaseUrl().'marketplace/catalog/sellerlocator/index';
               foreach ($storelocator_list as $item):
                 $storeLocator = $item->getData();
                 $baseUrl = $this->getBaseUrl().'marketplace/catalog/sellerlocator/index?id='.$storeLocator["storelocator_id"];
+                $deleteBaseUrl = $this->getBaseUrl().'marketplace/catalog/sellerlocator/delete?id='.$storeLocator["storelocator_id"];
               ?>
                 <tr class="even pointer">
                   <td class="hidden"></td>
-                  <td class=" "><?=  $storeLocator["is_active"]?__("Enabled"):__("Disabled"); ?></td>
                   <td class=" "><?=  $storeLocator["name"] ?></td>
                   <td class=" "><?=  $storeLocator["country"] ?></td>
                   <td class=" "><?=  $storeLocator["region"] ?></td>
                   <td class=" "><?=  $storeLocator["city"] ?></td>
                   <td class=" "><?=  $storeLocator["address_line_1"] ?></td>
-                  <td class=" last"><a href="<?= $baseUrl?>"><?= __("Edit");?></a></td>
+                  <td class=" last">
+                    <a href="<?= $baseUrl?>"><?= __("Edit");?></a> | <a href="<?= $deleteBaseUrl?>"><?= __("Delete");?></a>
+                  </td>
                 </tr>
                 <?php
                 endforeach;

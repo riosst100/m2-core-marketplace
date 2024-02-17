@@ -42,39 +42,52 @@ class SellerOperatingHours implements ResolverInterface
         $seller = $value['model'];
         if ($seller) {
             $operatingHours = $seller && $seller->getOperatingHours() ? json_decode($seller->getOperatingHours(),true) : null;
-            if ($operatingHours) {
-                foreach($operatingHours as $day => $operatingHour) {
-                    $formattedOperatingHours[] = [
-                        'day' => $this->getDayName($day),
-                        'time' => isset($operatingHour['time']) && $operatingHour['time'] ? $operatingHour['time'] : []
-                    ];
-                }
+            foreach($this->getDayNames() as $index => $day) {
+                $code = $day['code'];
+                $formattedOperatingHours[] = [
+                    'day' => $day['label'],
+                    'status' => isset($operatingHours[$code]['status']) && $operatingHours[$code]['status'] ? $operatingHours[$code]['status'] : 'closed',
+                    'time' => isset($operatingHours[$code]['time']) && $operatingHours[$code]['time'] ? $operatingHours[$code]['time'] : []
+                ];
             }
         }
 
         return $formattedOperatingHours;
     }
 
-    public function getDayName($day) 
+    public function getDayNames() 
     {
-        $label = '';
+        $dayNames = [
+            [
+                'code' => 'mon',
+                'label' => 'Monday'
+            ],
+            [
+                'code' => 'tue',
+                'label' => 'Tuesday'
+            ],
+            [
+                'code' => 'wed',
+                'label' => 'Wednesday'
+            ],
+            [
+                'code' => 'thu',
+                'label' => 'Thursday'
+            ],
+            [
+                'code' => 'fri',
+                'label' => 'Friday'
+            ],
+            [
+                'code' => 'sat',
+                'label' => 'Saturday'
+            ],
+            [
+                'code' => 'sun',
+                'label' => 'Sunday'
+            ]
+        ];
 
-        if ($day == "mon") {
-            $label = __('Monday');
-        } elseif ($day == "tue") {
-            $label = __('Tuesday');
-        } elseif ($day == "wed") {
-            $label = __('Wednesday');
-        } elseif ($day == "thu") {
-            $label = __('Thursday');
-        } elseif ($day == "fri") {
-            $label = __('Friday');
-        } elseif ($day == "sat") {
-            $label = __('Saturday');
-        } elseif ($day == "sun") {
-            $label = __('Sunday');
-        }
-
-        return $label;
+        return $dayNames;
     }
 }
