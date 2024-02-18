@@ -35,21 +35,20 @@ class SellerOperatingHours implements ResolverInterface
         array $value = null,
         array $args = null
     ) {
-        if (!isset($value['model'])) {
-            throw new LocalizedException(__('"model" value should be specified'));
+        $operatingHours = isset($value['operating_hours']) && $value['operating_hours'] ? json_decode($value['operating_hours'], true) : null;
+
+        if (isset($value['model'])) {
+            $model = $value['model'];
+            $operatingHours = $model && $model->getOperatingHours() ? json_decode($model->getOperatingHours(),true) : null;
         }
 
-        $seller = $value['model'];
-        if ($seller) {
-            $operatingHours = $seller && $seller->getOperatingHours() ? json_decode($seller->getOperatingHours(),true) : null;
-            foreach($this->getDayNames() as $index => $day) {
-                $code = $day['code'];
-                $formattedOperatingHours[] = [
-                    'day' => $day['label'],
-                    'status' => isset($operatingHours[$code]['status']) && $operatingHours[$code]['status'] ? $operatingHours[$code]['status'] : 'closed',
-                    'time' => isset($operatingHours[$code]['time']) && $operatingHours[$code]['time'] ? $operatingHours[$code]['time'] : []
-                ];
-            }
+        foreach($this->getDayNames() as $index => $day) {
+            $code = $day['code']; 
+            $formattedOperatingHours[] = [
+                'day' => $day['label'],
+                'status' => isset($operatingHours[$code]['status']) && $operatingHours[$code]['status'] ? $operatingHours[$code]['status'] : 'closed',
+                'time' => isset($operatingHours[$code]['time']) && $operatingHours[$code]['time'] ? $operatingHours[$code]['time'] : []
+            ];
         }
 
         return $formattedOperatingHours;

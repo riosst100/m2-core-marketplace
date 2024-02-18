@@ -2,6 +2,10 @@ type Query {
   sellerCountries: [Country] @resolver(class: "CoreMarketplace\\MarketplaceGraphQl\\Model\\Resolver\\SellerCountries") @doc(description: "Seller countries.") @cache(cacheable: false)
 }
 
+input ProductAttributeFilterInput {
+  seller_id: FilterEqualTypeInput @doc(description: "Filter seller id")
+}
+
 input SellerInput {
   seller_type: String @doc(description: "Store Type")
   name: String @doc(description: "Store Name")
@@ -27,6 +31,7 @@ type Seller {
   address_line_2: String @doc(description: "Store Address Line 2")
   city: String @doc(description: "Store Address City")
   region: String @doc(description: "Store Address Region")
+  creation_time: String @doc(description: "Creation Time")
   region_id: String @doc(description: "Store Address Region")
   postcode: String @doc(description: "Store Address Postal Code")
   contact_number: String @doc(description: "Store Address Contact Number")

@@ -308,6 +308,27 @@ class Data extends \Lof\MarketPlace\Helper\Data
         $this->websiteRepository = $websiteRepository;
     }
 
+    public function getCurrentSeller() 
+    {
+        $customerId = $this->getCustomerId();
+        if ($customerId) {
+            return $this->getSellerByCustomerId($customerId);
+        }
+
+        return null;
+    }
+
+    public function getCountryName($countryCode) 
+    {
+        $country = $this->_countryFactory->create()
+        ->loadByCode($countryCode);
+        if ($country) {
+            return $country->getName();
+        }
+
+        return '';
+    }
+
     public function getCurrentUrl() 
     {
         return $this->_frontendUrl->getCurrentUrl();

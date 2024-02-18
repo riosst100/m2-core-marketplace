@@ -73,7 +73,7 @@ class StoreLocator extends \Lofmp\StoreLocator\Model\StoreLocator
      */
     public function beforeSave()
     {
-        return parent::beforeSave();
+        return $this;
     }
 
     public function getStoreLocatorId(){

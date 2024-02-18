@@ -120,6 +120,35 @@ class SellerByUrl extends \Lof\MarketplaceGraphQl\Model\Resolver\SellerByUrl
                     $data['image'] = $sellerData->getImage();
                     $data['thumbnail'] = $sellerData->getThumbnail();
                     $data['model'] = $seller;
+                    $data['creation_time'] = date("F Y", strtotime($sellerData->getCreationTime()));
+
+                    $shipTo = $seller->getShipTo() ? explode(",", $seller->getShipTo()) : ['domestic'];
+                    if ($shipTo) {
+                        if (count($shipTo) > 1) {
+                            $data['ship_to'] = __('Domestic & International');
+                        } else {
+                            if ($shipTo[0] == "domestic") {
+                                $data['ship_to'] = __('Domestic');
+                            } else {
+                                $data['ship_to'] = __('International');
+                            }
+                        }
+                    }
+
+                    $country = [];
+
+                    $shipToCountry = $seller->getShipToCountry() ? explode(",", $seller->getShipToCountry()) : [];
+                    if ($shipToCountry) {
+                        foreach($shipToCountry as $countryCode) {
+                            $country[] = $this->helper->getCountryName($countryCode);
+                        }
+                    }
+
+                    if ($country) {
+                        $data['ship_to_country'] = implode(", ", $country);
+                    } else {
+                        $data['ship_to_country'] = null;
+                    }
                 }
             }
         }

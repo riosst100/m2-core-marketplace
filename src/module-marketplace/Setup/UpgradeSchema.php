@@ -132,6 +132,33 @@ class UpgradeSchema implements UpgradeSchemaInterface
             );
         }
 
+        if (version_compare($context->getVersion(), '1.0.6', '<')) 
+        {
+            $table = $installer->getTable('lof_marketplace_group');
+            $installer->getConnection()->addColumn(
+                $table,
+                'can_use_auction',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+                    'length' => 10,
+                    'nullable' => false,
+                    'default' => 0,
+                    'comment' => 'Can use auction'
+                ]
+            );
+            $installer->getConnection()->addColumn(
+                $table,
+                'can_use_preorder',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+                    'length' => 10,
+                    'nullable' => false,
+                    'default' => 0,
+                    'comment' => 'Can use preorder'
+                ]
+            );
+        }
+
         $installer->endSetup();
     }
 }

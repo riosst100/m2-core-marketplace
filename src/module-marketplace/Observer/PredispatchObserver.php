@@ -46,6 +46,11 @@ class PredispatchObserver implements ObserverInterface
     protected $helper;
 
     /**
+     * @var \Magento\Framework\Message\ManagerInterface
+     */
+    protected $messageManager;
+
+    /**
      * PredispatchObserver constructor.
      * @param \Lof\MarketPlace\Model\SellerFactory $sellerFactory
      * @param \Magento\Framework\Url $frontendUrl
@@ -53,6 +58,7 @@ class PredispatchObserver implements ObserverInterface
      * @param \Magento\Framework\App\ActionFlag $actionFlag
      * @param \Magento\Framework\App\State $state
      * @param \CoreMarketplace\MarketPlace\Helper\Data $helper
+     * @param \Magento\Framework\Message\ManagerInterface $messageManager
      */
     public function __construct(
         \Lof\MarketPlace\Model\SellerFactory $sellerFactory,
@@ -60,7 +66,8 @@ class PredispatchObserver implements ObserverInterface
         \Magento\Customer\Model\Session $customerSession,
         \Magento\Framework\App\ActionFlag $actionFlag,
         \Magento\Framework\App\State $state,
-        \CoreMarketplace\MarketPlace\Helper\Data $helper
+        \CoreMarketplace\MarketPlace\Helper\Data $helper,
+        \Magento\Framework\Message\ManagerInterface $messageManager
     ) {
         $this->sellerFactory = $sellerFactory;
         $this->_frontendUrl = $frontendUrl;
@@ -68,6 +75,7 @@ class PredispatchObserver implements ObserverInterface
         $this->actionFlag = $actionFlag;
         $this->state = $state;
         $this->helper = $helper;
+        $this->messageManager = $messageManager;
     }
 
     /**
@@ -90,11 +98,14 @@ class PredispatchObserver implements ObserverInterface
 
             /* Auto set store based on seller country */
             $sellerCountryID = $seller->getCountryId() ? strtolower($seller->getCountryId()) : null;
-            $newUrl = $this->helper->autoSelectWebsite($sellerCountryID);
-            if ($newUrl) {
-                // $this->_redirectUrl($newUrl);
-            }
+
+            // $this->helper->setStoreBySellerCountry($sellerCountryID);
             /* Auto set store based on seller country */
+
+            // $newUrl = $this->helper->autoSelectWebsite($sellerCountryID);
+            // if ($newUrl) {
+            //     $this->_redirectUrl($newUrl);
+            // }
 
             if ($customerSession->isLoggedIn()) {
                 if ($seller->getRegistrationStep() == "verification" && $routeName != "sellerverification") {
