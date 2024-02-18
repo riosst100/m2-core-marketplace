@@ -8,6 +8,7 @@ use Magento\Framework\GraphQl\Config\Element\Field;
 use Magento\Framework\GraphQl\Query\ResolverInterface;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
 use Lofmp\StoreLocator\Model\StoreLocatorFactory;
+use Lof\MarketPlace\Helper\Data;
 
 class StoreLocators implements ResolverInterface
 {
@@ -17,12 +18,20 @@ class StoreLocators implements ResolverInterface
     private StoreLocatorFactory $storeLocatorFactory;
 
     /**
+     * @var Data
+     */
+    protected $helper;
+
+    /**
      * @param StoreLocatorFactory $storeLocatorFactory
+     * @param Data $helper
      */
     public function __construct(
-        StoreLocatorFactory $storeLocatorFactory
+        StoreLocatorFactory $storeLocatorFactory,
+        Data $helper
     ) {
         $this->storeLocatorFactory = $storeLocatorFactory;
+        $this->helper = $helper;
     }
 
     /**
@@ -39,16 +48,22 @@ class StoreLocators implements ResolverInterface
             throw new LocalizedException(__('"model" value should be specified'));
         }
 
+        $data = [];
+
         $seller = $value['model'];
         if ($seller) {
             $collection = $this->storeLocatorFactory->create()
             ->getCollection()
             ->addFieldToFilter('seller_id', $seller->getId());
             if ($collection->getSize()) {
-                return $collection->getData();
+                foreach($collection as $storeLocator) {
+                    $storeLocatorData = $storeLocator->getData();
+                    $storeLocatorData['country'] = $this->helper->getCountryName($storeLocator->getCountry());
+                    $data[] = $storeLocatorData;
+                }
             }
         }
 
-        return [];
+        return $data;
     }
 }

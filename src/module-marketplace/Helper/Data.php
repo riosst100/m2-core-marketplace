@@ -318,12 +318,14 @@ class Data extends \Lof\MarketPlace\Helper\Data
         return null;
     }
 
-    public function getCountryName($countryCode) 
+    public function getCountryName($countryCode = null) 
     {
-        $country = $this->_countryFactory->create()
-        ->loadByCode($countryCode);
-        if ($country) {
-            return $country->getName();
+        if ($countryCode) {
+            $country = $this->_countryFactory->create()
+            ->loadByCode($countryCode);
+            if ($country) {
+                return $country->getName();
+            }
         }
 
         return '';
