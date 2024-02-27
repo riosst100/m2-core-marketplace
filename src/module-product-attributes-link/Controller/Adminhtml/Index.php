@@ -8,18 +8,19 @@ use Magento\Backend\App\Action;
 abstract class Index extends \Magento\Backend\App\Action
 {
     /**
-     * Authorization level of a basic admin session
-     *
-     * @see _isAllowed()
+     * @var \Magento\Framework\View\Result\PageFactory
      */
-    const ADMIN_RESOURCE = 'CoreMarketplace_ProductAttributesLink::product_attributes_link';
+    protected $resultPageFactory;
 
     /**
-     * @param Action\Context $context
+     * @param \Magento\Backend\App\Action\Context $context
+     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context
+        \Magento\Backend\App\Action\Context $context,
+        \Magento\Framework\View\Result\PageFactory $resultPageFactory
     ) {
+        $this->resultPageFactory = $resultPageFactory;
         parent::__construct($context);
     }
 }

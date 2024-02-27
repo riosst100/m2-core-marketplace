@@ -47,7 +47,7 @@ class Actions extends Column
                         'productattributeslink/index/edit',
                         ['id' => $item['entity_id']]
                     ),
-                    'ariaLabel' => __('Edit ') . $item['name'],
+                    'ariaLabel' => __('Edit'),
                     'label' => __('Edit'),
                     'hidden' => false,
                 ];

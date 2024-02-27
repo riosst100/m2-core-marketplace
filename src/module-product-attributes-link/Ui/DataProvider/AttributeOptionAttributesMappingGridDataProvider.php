@@ -4,7 +4,7 @@ namespace CoreMarketplace\ProductAttributesLink\Ui\DataProvider;
 
 use CoreMarketplace\ProductAttributesLink\Model\ResourceModel\ProductAttributesLink\CollectionFactory;
 
-class ProductAttributesMappingDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
+class AttributeOptionAttributesMappingGridDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
     /**
      * Product link collection
@@ -24,11 +24,17 @@ class ProductAttributesMappingDataProvider extends \Magento\Ui\DataProvider\Abst
     protected $addFilterStrategies;
 
     /**
+     * @var \Magento\Eav\Model\ResourceModel\Entity\Attribute
+     */
+    protected $eavAttribute;
+
+    /**
      * SellerDataProvider constructor.
      * @param string $name
      * @param string $primaryFieldName
      * @param string $requestFieldName
      * @param CollectionFactory $collectionFactory
+     * @param \Magento\Eav\Model\ResourceModel\Entity\Attribute $eavAttribute
      * @param array $addFieldStrategies
      * @param array $addFilterStrategies
      * @param array $meta
@@ -39,6 +45,7 @@ class ProductAttributesMappingDataProvider extends \Magento\Ui\DataProvider\Abst
         $primaryFieldName,
         $requestFieldName,
         CollectionFactory $collectionFactory,
+        \Magento\Eav\Model\ResourceModel\Entity\Attribute $eavAttribute,
         array $addFieldStrategies = [],
         array $addFilterStrategies = [],
         array $meta = [],
@@ -54,6 +61,40 @@ class ProductAttributesMappingDataProvider extends \Magento\Ui\DataProvider\Abst
         $this->collection = $collectionFactory->create();
         $this->addFieldStrategies = $addFieldStrategies;
         $this->addFilterStrategies = $addFilterStrategies;
+        $this->eavAttribute = $eavAttribute;
+
+        $categoryNameAttributeId = $this->getAttributeIdByCode(\Magento\Catalog\Model\Category::ENTITY, 'name');
+
+        $this->collection->addFieldToFilter('mapping_type', 'attribute_option');
+        $this->collection->addFieldToFilter('main_table.attribute_code', ['neq' => null]);
+        $this->collection->getSelect()->joinLeft(
+            ['mpalg' => 'marketplace_product_attributes_link_group'],
+            'mpalg.entity_id=main_table.group_id',
+            ['group' => 'mpalg.name']
+        );
+        $this->collection->getSelect()->joinLeft(
+            ['ea' => 'eav_attribute'],
+            'ea.attribute_code=main_table.target_attribute_code',
+            ['target_attribute' => 'ea.frontend_label']
+        );
+        $this->collection->getSelect()->joinLeft(
+            ['ea1' => 'eav_attribute'],
+            'ea1.attribute_code=main_table.attribute_code',
+            ['attribute_name' => 'ea1.frontend_label']
+        );
+        $this->collection->getSelect()->joinLeft(
+            ['eaov' => 'eav_attribute_option_value'],
+            'eaov.option_id=main_table.attribute_option_id',
+            ['attribute_option' => 'eaov.value']
+        );
+    }
+
+    public function getAttributeIdByCode($entity, $code) 
+    {
+        return $this->eavAttribute->getIdByCode(
+            $entity,
+            $code
+        );
     }
 
     /**

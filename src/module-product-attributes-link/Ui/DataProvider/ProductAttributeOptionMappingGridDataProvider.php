@@ -4,7 +4,7 @@ namespace CoreMarketplace\ProductAttributesLink\Ui\DataProvider;
 
 use CoreMarketplace\ProductAttributesLink\Model\ResourceModel\ProductAttributesLink\CollectionFactory;
 
-class ProductAttributesMappingDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
+class ProductAttributeOptionMappingGridDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
     /**
      * Product link collection
@@ -54,6 +54,13 @@ class ProductAttributesMappingDataProvider extends \Magento\Ui\DataProvider\Abst
         $this->collection = $collectionFactory->create();
         $this->addFieldStrategies = $addFieldStrategies;
         $this->addFilterStrategies = $addFilterStrategies;
+
+        $this->collection->addFieldToFilter('mapping_type', 'attribute_option');
+        $this->collection->getSelect()->joinLeft(
+            ['mpalg' => 'marketplace_product_attributes_link_group'],
+            'mpalg.entity_id=main_table.group_id',
+            ['group' => 'mpalg.name']
+        );
     }
 
     /**

@@ -90,8 +90,13 @@ class FrontendPredispatchObserver implements ObserverInterface
         $this->action = $controllerAction;
 
         $area = $this->state->getAreaCode();
-        $currentUrl = $this->helper->getCurrentUrl();
-        if ($area === 'frontend' && !str_contains($currentUrl, "loginascustomer/login/index")) {
+        $currentWebsiteUrl = $this->helper->getCurrentUrl();
+
+        if (str_contains($currentWebsiteUrl, "lofmarketplace/catalog/dashboard")) {
+            $this->_redirectUrl($this->getFrontendUrl('marketplace/catalog/dashboard'));
+        }
+
+        if ($area === 'frontend' && !str_contains($currentWebsiteUrl, "loginascustomer/login/index")) {
             $customerSession = $this->session;
             $customerId = $customerSession->getId();
             $seller = $this->sellerFactory->create()->load($customerId, 'customer_id');
@@ -105,7 +110,7 @@ class FrontendPredispatchObserver implements ObserverInterface
             $sellerCountryID = $seller->getCountryId() ? strtolower($seller->getCountryId()) : null;
             $newUrl = $this->helper->autoSelectWebsite($sellerCountryID);
             if ($newUrl) {
-                $this->_redirectUrl($newUrl);
+                // $this->_redirectUrl($newUrl);
             }
             /* Auto set store based on seller country */
 

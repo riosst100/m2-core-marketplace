@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="vendor-1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="styles"/>
+    <update handle="seller_store_switcher"/>
+    <head>
+        <title>Add New Product</title>
+        <css src="jquery/fileUploader/css/jquery.fileupload-ui.css"/>
+    </head>
+    <update handle="editor"/>
+    <update handle="catalog_product_form"/>
+	<body>
+		<referenceContainer name="footer">
+        	<block class="Lof\MarketPlace\Block\Seller\Product\Head" name="product.rewrite.js" template="Lof_MarketPlace::head.phtml" />
+    	</referenceContainer>
+        <referenceContainer name="before.body.end">
+            <block class="Lof\MarketPlace\Block\Seller\Product\Head" name="marketplace.js" template="Lof_MarketPlace::js.phtml" />
+        </referenceContainer>
+	</body>
+</page>

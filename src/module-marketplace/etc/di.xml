@@ -7,6 +7,10 @@
     <preference for="Lof\MarketPlace\Block\Seller\Editprofile" type="CoreMarketplace\MarketPlace\Block\Seller\Editprofile" />
     <preference for="Lof\MarketPlace\Controller\Marketplace\Saveprofile\Index" type="CoreMarketplace\MarketPlace\Controller\Marketplace\Saveprofile\Index" />
     <preference for="Lof\MarketPlace\Block\Adminhtml\Group\Edit\Tab\Option" type="CoreMarketplace\MarketPlace\Block\Adminhtml\Group\Edit\Tab\Option" />
+    <preference for="Lof\MarketPlace\Ui\DataProvider\Product\Form\Modifier\Categories" type="CoreMarketplace\MarketPlace\Ui\DataProvider\Product\Form\Modifier\Categories" />
+    <preference for="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\AttributeSet" type="CoreMarketplace\MarketPlace\Ui\DataProvider\Product\Form\Modifier\AttributeSet" />
+    <preference for="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Eav" type="CoreMarketplace\MarketPlace\Ui\DataProvider\Product\Form\Modifier\Eav" />
+    <preference for="Lof\MarketPlace\Controller\Marketplace\Product\Reload" type="CoreMarketplace\MarketPlace\Controller\Marketplace\Product\Reload" />
     <type name="Magento\Theme\Model\View\Design">
         <arguments>
             <argument name="themes" xsi:type="array">

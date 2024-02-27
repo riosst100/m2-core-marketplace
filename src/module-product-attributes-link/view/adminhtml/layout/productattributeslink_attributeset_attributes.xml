@@ -2,13 +2,13 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <update handle="styles"/>
     <body>
-        <referenceBlock name="menu">
+        <!-- <referenceBlock name="menu">
             <action method="setActive">
                 <argument name="itemId" xsi:type="string">CoreMarketplace_ProductAttributesLink::product_attributes_link</argument>
             </action>
-        </referenceBlock>
+        </referenceBlock> -->
         <referenceContainer name="content">
-            <uiComponent name="productattributeslink_listing"/>
+            <uiComponent name="productattributeslink_attributeset_attributes_mapping_listing"/>
         </referenceContainer>
     </body>
 </page>

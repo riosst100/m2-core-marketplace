@@ -11,6 +11,6 @@ class ProductAttributesLink extends \Magento\Framework\Model\ResourceModel\Db\Ab
      */
     public function _construct()
     {
-        $this->_init("coremarketplace_product_attributes_link", "entity_id");
+        $this->_init("marketplace_product_attributes_link", "entity_id");
     }
 }

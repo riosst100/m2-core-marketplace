@@ -1,51 +1,45 @@
 <?xml version="1.0"?>
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
-    <table name="coremarketplace_product_attributes_link" resource="default" engine="innodb" comment="Product Attributes Link Table">
-        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true"
-                comment="Entity ID"/>
-        <column xsi:type="int" name="attribute_id" unsigned="true" nullable="false"
-                identity="false" comment="Attribute ID"/>
-        <column xsi:type="int" name="target_attribute_id" unsigned="true" nullable="false"
-                identity="false" comment="Target Attribute ID"/>
-        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
-                comment="Creation Time"/>
-        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
-                comment="Update Time"/>
+    <table name="marketplace_product_attributes_link" resource="default" engine="innodb" comment="Product Attributes Link Table">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Entity ID"/>
+        <column xsi:type="varchar" name="mapping_type" nullable="false" comment="Mapping Type"/>
+        <column xsi:type="varchar" name="entity_type" nullable="false" comment="Entity Type"/>
+        <column xsi:type="int" name="group_id" unsigned="true" nullable="true" identity="false" comment="Group ID"/>
+        <column xsi:type="int" name="category_id" unsigned="true" nullable="true" identity="false" comment="Category ID"/>
+        <column xsi:type="varchar" name="attribute_code" nullable="true" comment="Attribute Code"/>
+        <column xsi:type="int" name="attribute_option_id" unsigned="true" nullable="true" identity="false" comment="Attribute Option ID"/>
+        <column xsi:type="varchar" name="target_attribute_code" nullable="true" comment="Target Attribute Code"/>
+        <column xsi:type="text" name="target_attribute_options" nullable="true" comment="Target Attribute Options"/>
+        <column xsi:type="int" name="target_attribute_set_id" unsigned="true" nullable="true" identity="false" comment="Target Attribute Set ID"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Update Time"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="entity_id"/>
         </constraint>
-        <index referenceId="COREMARKETPLACE_PRODUCT_ATTRIBUTES_LINK_ATTRIBUTE_ID" indexType="btree">
-            <column name="attribute_id"/>
+        <index referenceId="MARKETPLACE_PRODUCT_ATTRIBUTES_LINK_ATTRIBUTE_CODE" indexType="btree">
+            <column name="attribute_code"/>
         </index>
-        <index referenceId="COREMARKETPLACE_PRODUCT_ATTRIBUTES_LINK_TARGET_ATTRIBUTE_ID" indexType="btree">
-            <column name="target_attribute_id"/>
+        <index referenceId="MARKETPLACE_PRODUCT_ATTRIBUTES_LINK_ATTRIBUTE_OPTION_ID" indexType="btree">
+            <column name="attribute_option_id"/>
         </index>
+        <index referenceId="MARKETPLACE_PRODUCT_ATTRIBUTES_LINK_TARGET_ATTRIBUTE_CODE" indexType="btree">
+            <column name="target_attribute_code"/>
+        </index>
+        <index referenceId="MARKETPLACE_PRODUCT_ATTRIBUTES_LINK_CATEGORY_ID" indexType="btree">
+            <column name="category_id"/>
+        </index>
+        <constraint xsi:type="foreign" referenceId="CR_MP_PRD_ATTR_LINK_GROUP_ID"
+            table="marketplace_product_attributes_link" column="group_id" referenceTable="marketplace_product_attributes_link_group"
+            referenceColumn="entity_id" onDelete="CASCADE" />
     </table>
-    <table name="coremarketplace_product_attributes_link_option" resource="default" engine="innodb" comment="Product Attributes Link Table">
-        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true"
-                comment="Entity ID"/>
-        <column xsi:type="int" name="link_id" unsigned="true" nullable="false"
-                identity="false" comment="Link ID"/>
-        <column xsi:type="int" name="option_id" unsigned="true" nullable="false"
-                identity="false" comment="Attribute Option ID"/>
-        <column xsi:type="int" name="target_option_id" unsigned="true" nullable="false"
-                identity="false" comment="Target Attribute Option IDs"/>
-        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
-                comment="Creation Time"/>
-        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
-                comment="Update Time"/>
+    <table name="marketplace_product_attributes_link_group" resource="default" engine="innodb" comment="Product Attributes Mapping Group Table">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Entity ID"/>
+        <column xsi:type="varchar" name="name" nullable="false" comment="Name"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Update Time"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="entity_id"/>
         </constraint>
-        <index referenceId="COREMARKETPLACE_PRODUCT_ATTRIBUTES_LINK_OPTION_OPTION_ID" indexType="btree">
-            <column name="option_id"/>
-        </index>
-        <index referenceId="COREMARKETPLACE_PRODUCT_ATTRIBUTES_LINK_OPTION_TARGET_OPTION_ID" indexType="btree">
-            <column name="target_option_id"/>
-        </index>
-        <constraint xsi:type="foreign" referenceId="CR_MP_PRD_ATTR_LINK_LINK_ID"
-                table="coremarketplace_product_attributes_link_option" column="link_id" referenceTable="coremarketplace_product_attributes_link"
-                referenceColumn="entity_id" onDelete="CASCADE"/>
     </table>
 </schema>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="marketplace">
+        <route id="productattributeslink" frontName="productattributeslink">
+            <module name="CoreMarketplace_ProductAttributesLink" after="Magento_Catalog"/>
+        </route>
+    </router>
+</config>

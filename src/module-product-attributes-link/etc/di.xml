@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<virtualType name="AttributeSetCategoriesMappingGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AttributeSetCategoriesMappingGridDataProvider" type="CoreMarketplace\ProductAttributesLink\Ui\DataProvider\AttributeSetCategoriesMappingGridDataProvider">
+        <arguments>
+            <argument name="filterPool" xsi:type="object" shared="false">AttributeSetCategoriesMappingGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AttributeSetAttributesMappingGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AttributeSetAttributesMappingGridDataProvider" type="CoreMarketplace\ProductAttributesLink\Ui\DataProvider\AttributeSetAttributesMappingGridDataProvider">
+        <arguments>
+            <argument name="filterPool" xsi:type="object" shared="false">AttributeSetAttributesMappingGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AttributeOptionAttributesMappingGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AttributeOptionAttributesMappingGridDataProvider" type="CoreMarketplace\ProductAttributesLink\Ui\DataProvider\AttributeOptionAttributesMappingGridDataProvider">
+        <arguments>
+            <argument name="filterPool" xsi:type="object" shared="false">AttributeOptionAttributesMappingGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AttributeOptionCategoriesMappingGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AttributeOptionCategoriesMappingGridDataProvider" type="CoreMarketplace\ProductAttributesLink\Ui\DataProvider\AttributeOptionCategoriesMappingGridDataProvider">
+        <arguments>
+            <argument name="filterPool" xsi:type="object" shared="false">AttributeOptionCategoriesMappingGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+</config>
